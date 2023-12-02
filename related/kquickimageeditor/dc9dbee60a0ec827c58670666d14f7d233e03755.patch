@@ -1,0 +1,27 @@
+From dc9dbee60a0ec827c58670666d14f7d233e03755 Mon Sep 17 00:00:00 2001
+From: Alessandro Astone <ales.astone@gmail.com>
+Date: Mon, 27 Nov 2023 17:57:49 +0100
+Subject: [PATCH] Read QT_MAJOR_VERSION dynamically in CMake Config
+
+Because this library can build against both qt5/qt6 but the cmake
+config file would differ between the two otherwise
+---
+ KQuickImageEditorConfig.cmake.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/KQuickImageEditorConfig.cmake.in b/KQuickImageEditorConfig.cmake.in
+index b7ebf0b..e74a9b5 100644
+--- a/KQuickImageEditorConfig.cmake.in
++++ b/KQuickImageEditorConfig.cmake.in
+@@ -4,7 +4,7 @@
+ @PACKAGE_INIT@
+ 
+ include(CMakeFindDependencyMacro)
+-find_dependency(Qt@QT_MAJOR_VERSION@Core @REQUIRED_QT_VERSION@)
++find_dependency(Qt${QT_MAJOR_VERSION}Core @REQUIRED_QT_VERSION@)
+ 
+ # Any changes in this ".cmake" file will be overwritten by CMake, the source is the ".cmake.in" file.
+ 
+-- 
+GitLab
+

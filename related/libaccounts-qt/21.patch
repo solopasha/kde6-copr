@@ -1,0 +1,275 @@
+From 3107822e036300684c2bdf587838a110eea8ba30 Mon Sep 17 00:00:00 2001
+From: Nicolas Fella <nicolas.fella@gmx.de>
+Date: Mon, 1 Aug 2022 20:35:03 +0200
+Subject: [PATCH 1/5] Port away from deprecated QList::toSet
+
+---
+ tests/tst_libaccounts.cpp | 44 +++++++++++++++++++++++++++++----------
+ 1 file changed, 33 insertions(+), 11 deletions(-)
+
+diff --git a/tests/tst_libaccounts.cpp b/tests/tst_libaccounts.cpp
+index 471e3d5..efede91 100644
+--- a/tests/tst_libaccounts.cpp
++++ b/tests/tst_libaccounts.cpp
+@@ -326,11 +326,11 @@ void AccountsTest::testService()
+     QCOMPARE(service.description(), QStringLiteral("Test description"));
+     QCOMPARE(service.iconName(), QString("general_myservice"));
+     QCOMPARE(service.trCatalog(), QString("accounts"));
+-    QStringList tags;
++    QSet<QString> tags;
+     tags << "email" << "e-mail";
+-    QCOMPARE(service.tags(), tags.toSet());
++    QCOMPARE(service.tags(), tags);
+     // Called twice, because the second time it returns a cached result
+-    QCOMPARE(service.tags(), tags.toSet());
++    QCOMPARE(service.tags(), tags);
+     QVERIFY(service.hasTag("email"));
+     QVERIFY(!service.hasTag("chat"));
+ 
+@@ -687,10 +687,15 @@ void AccountsTest::testAccountService()
+     spyChanged.clear();
+     spyEnabled.clear();
+ 
+-    QStringList expectedChanges;
++    QSet<QString> expectedChanges;
+     expectedChanges << "parameters/server";
+     expectedChanges << "enabled";
+-    QCOMPARE(m_accountServiceChangedFields.toSet(), expectedChanges.toSet());
++#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
++    QSet<QString> changedFields(m_accountServiceChangedFields.begin(), m_accountServiceChangedFields.end());
++#else
++    QSet<QString> changedFields = m_accountServiceChangedFields.toSet();
++#endif
++    QCOMPARE(changedFields, expectedChanges);
+ 
+     QCOMPARE(accountService->value("server").toString(),
+              UTF8("www.example.com"));
+@@ -727,17 +732,34 @@ void AccountsTest::testAccountService()
+ 
+ 
+     /* test some more APIs */
+-    QStringList expectedList;
++    QSet<QString> expectedList;
+     expectedList << "server" << "fallback-conference-server" <<
+         "port" << "old-ssl";
+-    QCOMPARE(accountService->childKeys().toSet(), expectedList.toSet());
+-    QCOMPARE(accountService->childGroups().toSet(), QSet<QString>());
++#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
++    QStringList childKeysList = accountService->childKeys();
++    QSet<QString> childKeys(childKeysList.begin(), childKeysList.end());
++
++    QStringList childGroupsList = accountService->childGroups();
++    QSet<QString> childGroups(childGroupsList.begin(), childGroupsList.end());
++#else
++    QSet<QString> childKeys = accountService->childKeys().toSet();
++    QSet<QString> childGroups = accountService->childGroups().toSet();
++#endif
++
++    QCOMPARE(childKeys, expectedList);
++    QCOMPARE(childGroups, QSet<QString>());
+     QCOMPARE(accountService->contains("port"), true);
+     accountService->endGroup();
+ 
+-    expectedList.clear();
+-    expectedList << "parameters";
+-    QCOMPARE(accountService->childGroups().toSet(), expectedList.toSet());
++    QSet<QString> expectedList2;
++    expectedList2 << "parameters";
++#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
++    QStringList childGroupsList2 = accountService->childGroups();
++    QSet<QString> childGroups2(childGroupsList2.begin(), childGroupsList2.end());
++#else
++    QSet<QString> childGroups2 = accountService->childGroups().toSet();
++#endif
++    QCOMPARE(childGroups2, expectedList2);
+ 
+     /* Remove one key */
+     accountService->remove("parameters/port");
+-- 
+GitLab
+
+
+From 102cf562f9d143de2f93ba40f8448c1d531c2c7b Mon Sep 17 00:00:00 2001
+From: Nicolas Fella <nicolas.fella@gmx.de>
+Date: Tue, 18 Oct 2022 01:40:05 +0200
+Subject: [PATCH 3/5] Use undeprecated Account::value
+
+---
+ tests/tst_libaccounts.cpp | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/tests/tst_libaccounts.cpp b/tests/tst_libaccounts.cpp
+index efede91..d12091c 100644
+--- a/tests/tst_libaccounts.cpp
++++ b/tests/tst_libaccounts.cpp
+@@ -516,8 +516,7 @@ void AccountsTest::testAccountValue()
+     QTRY_COMPARE(synced.count(), 1);
+ 
+     /* check that the values we wrote are retrieved successfully */
+-    QVariant val = QVariant::String;
+-    account->value(QString("test"), val);
++    QVariant val = account->value(QString("test"));
+     QCOMPARE(val.toString(), QString("value"));
+ 
+     SettingSource source;
+-- 
+GitLab
+
+
+From 3c4d5fa1f53cd66c9870b799e8518980176547b2 Mon Sep 17 00:00:00 2001
+From: Nicolas Fella <nicolas.fella@gmx.de>
+Date: Tue, 18 Oct 2022 02:03:59 +0200
+Subject: [PATCH 4/5] Don't access a QString out-of-bounds
+
+This asserts in Qt6
+---
+ Accounts/account-service.cpp | 2 +-
+ Accounts/account.cpp         | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Accounts/account-service.cpp b/Accounts/account-service.cpp
+index e6c04f2..d8d4304 100644
+--- a/Accounts/account-service.cpp
++++ b/Accounts/account-service.cpp
+@@ -335,7 +335,7 @@ void AccountService::endGroup()
+     Q_D(AccountService);
+     d->prefix = d->prefix.section(slash, 0, -3,
+                                   QString::SectionIncludeTrailingSep);
+-    if (d->prefix[0] == slash) d->prefix.remove(0, 1);
++    if (!d->prefix.isEmpty() && d->prefix[0] == slash) d->prefix.remove(0, 1);
+ }
+ 
+ /*!
+diff --git a/Accounts/account.cpp b/Accounts/account.cpp
+index 2e40c60..104611a 100644
+--- a/Accounts/account.cpp
++++ b/Accounts/account.cpp
+@@ -548,7 +548,7 @@ void Account::endGroup()
+ {
+     d->prefix = d->prefix.section(slash, 0, -3,
+                                   QString::SectionIncludeTrailingSep);
+-    if (d->prefix[0] == slash) d->prefix.remove(0, 1);
++    if (!d->prefix.isEmpty() && d->prefix[0] == slash) d->prefix.remove(0, 1);
+ }
+ 
+ /*!
+-- 
+GitLab
+
+
+From 18557f7def9af8f4a9e0e93e9f575ae11e5066aa Mon Sep 17 00:00:00 2001
+From: Nicolas Fella <nicolas.fella@gmx.de>
+Date: Fri, 7 Apr 2023 15:49:22 +0200
+Subject: [PATCH 5/5] Adjust buildsystem to include correct Qt Major version
+ number
+
+---
+ Accounts/Accounts.pro                      |  4 ++--
+ Accounts/AccountsQt5Config.cmake.in        |  2 +-
+ Accounts/AccountsQt6Config.cmake.in        |  5 +++++
+ Accounts/AccountsQt6ConfigVersion.cmake.in | 10 ++++++++++
+ Accounts/accounts-qt6.pc.in                | 15 +++++++++++++++
+ tests/tst_libaccounts.pro                  |  2 +-
+ 6 files changed, 34 insertions(+), 4 deletions(-)
+ create mode 100644 Accounts/AccountsQt6Config.cmake.in
+ create mode 100644 Accounts/AccountsQt6ConfigVersion.cmake.in
+ create mode 100644 Accounts/accounts-qt6.pc.in
+
+diff --git a/Accounts/Accounts.pro b/Accounts/Accounts.pro
+index 13804ee..da62da7 100644
+--- a/Accounts/Accounts.pro
++++ b/Accounts/Accounts.pro
+@@ -3,7 +3,7 @@ include( ../common-project-config.pri )
+ include( ../common-vars.pri )
+ 
+ TEMPLATE = lib
+-TARGET = accounts-qt5
++TARGET = accounts-qt$${QT_MAJOR_VERSION}
+ 
+ # Input
+ public_headers = \
+@@ -45,7 +45,7 @@ QT -= gui
+ 
+ INCLUDEPATH += $${TOP_SRC_DIR}
+ 
+-CMAKE_BASENAME = AccountsQt5
++CMAKE_BASENAME = AccountsQt$${QT_MAJOR_VERSION}
+ 
+ PKGCONFIG += \
+ 	glib-2.0 \
+diff --git a/Accounts/AccountsQt5Config.cmake.in b/Accounts/AccountsQt5Config.cmake.in
+index 55a8964..746f689 100644
+--- a/Accounts/AccountsQt5Config.cmake.in
++++ b/Accounts/AccountsQt5Config.cmake.in
+@@ -2,4 +2,4 @@
+ #  ACCOUNTSQT_LIBRARIES - The libraries needed to use libaccounts-qt
+ 
+ set(ACCOUNTSQT_LIBRARIES $${INSTALL_LIBDIR}/lib$${TARGET}.so)
+-set(ACCOUNTSQT_INCLUDE_DIRS $${INSTALL_PREFIX}/include/$${TARGET}/)
+\ No newline at end of file
++set(ACCOUNTSQT_INCLUDE_DIRS $${INSTALL_PREFIX}/include/$${TARGET}/)
+diff --git a/Accounts/AccountsQt6Config.cmake.in b/Accounts/AccountsQt6Config.cmake.in
+new file mode 100644
+index 0000000..55a8964
+--- /dev/null
++++ b/Accounts/AccountsQt6Config.cmake.in
+@@ -0,0 +1,5 @@
++#  ACCOUNTSQT_INCLUDE_DIRS - The libaccounts-qt include directories
++#  ACCOUNTSQT_LIBRARIES - The libraries needed to use libaccounts-qt
++
++set(ACCOUNTSQT_LIBRARIES $${INSTALL_LIBDIR}/lib$${TARGET}.so)
++set(ACCOUNTSQT_INCLUDE_DIRS $${INSTALL_PREFIX}/include/$${TARGET}/)
+\ No newline at end of file
+diff --git a/Accounts/AccountsQt6ConfigVersion.cmake.in b/Accounts/AccountsQt6ConfigVersion.cmake.in
+new file mode 100644
+index 0000000..616cd60
+--- /dev/null
++++ b/Accounts/AccountsQt6ConfigVersion.cmake.in
+@@ -0,0 +1,10 @@
++set(PACKAGE_VERSION $${PROJECT_VERSION})
++
++if(\"${PACKAGE_VERSION}\" VERSION_LESS \"${PACKAGE_FIND_VERSION}\" )
++   set(PACKAGE_VERSION_COMPATIBLE FALSE)
++else(\"${PACKAGE_VERSION}\" VERSION_LESS \"${PACKAGE_FIND_VERSION}\" )
++   set(PACKAGE_VERSION_COMPATIBLE TRUE)
++   if( \"${PACKAGE_FIND_VERSION}\" STREQUAL \"${PACKAGE_VERSION}\")
++      set(PACKAGE_VERSION_EXACT TRUE)
++   endif( \"${PACKAGE_FIND_VERSION}\" STREQUAL \"${PACKAGE_VERSION}\")
++endif(\"${PACKAGE_VERSION}\" VERSION_LESS \"${PACKAGE_FIND_VERSION}\" )
+diff --git a/Accounts/accounts-qt6.pc.in b/Accounts/accounts-qt6.pc.in
+new file mode 100644
+index 0000000..c625b2e
+--- /dev/null
++++ b/Accounts/accounts-qt6.pc.in
+@@ -0,0 +1,15 @@
++prefix=$$INSTALL_PREFIX
++exec_prefix=${prefix}
++libdir=$$INSTALL_LIBDIR
++includedir=${prefix}/include/accounts-qt6
++servicefilesdir=${prefix}/share/accounts/services
++servicetypefilesdir=${prefix}/share/accounts/service-types
++providerfilesdir=${prefix}/share/accounts/providers
++
++Name: libaccounts-qt6
++Description: Accounts Library
++Version: $$PROJECT_VERSION
++Libs: -L${libdir} -laccounts-qt6
++Requires: Qt6Core Qt6Xml
++Cflags:  -I${includedir}
++
+diff --git a/tests/tst_libaccounts.pro b/tests/tst_libaccounts.pro
+index a5b91fe..9992c0b 100644
+--- a/tests/tst_libaccounts.pro
++++ b/tests/tst_libaccounts.pro
+@@ -9,7 +9,7 @@ QT = \
+     testlib \
+     xml
+ 
+-LIBS += -laccounts-qt5
++LIBS += -laccounts-qt$${QT_MAJOR_VERSION}
+ 
+ INCLUDEPATH += $${TOP_SRC_DIR}
+ QMAKE_LIBDIR += \
+-- 
+GitLab
+

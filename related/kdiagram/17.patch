@@ -1,0 +1,2715 @@
+From ee8e7246f9c07d21fe6c6fc5af38599bf57bf390 Mon Sep 17 00:00:00 2001
+From: Jonathan Esk-Riddell <jr@jriddell.org>
+Date: Wed, 22 Nov 2023 16:30:45 +0000
+Subject: [PATCH 1/5] bump soversion ahead of release alongside 6th megarelease
+
+---
+ src/KChart/CMakeLists.txt | 1 +
+ src/KGantt/CMakeLists.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/src/KChart/CMakeLists.txt b/src/KChart/CMakeLists.txt
+index aca669b6..0d5d6119 100644
+--- a/src/KChart/CMakeLists.txt
++++ b/src/KChart/CMakeLists.txt
+@@ -4,6 +4,7 @@ ecm_setup_version(${KCHARTLIB_VERSION}
+     VARIABLE_PREFIX KCHART
+     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kchart_version.h"
+     PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KChartConfigVersion.cmake"
++    SOVERSION 3
+ )
+ 
+ include_directories(
+diff --git a/src/KGantt/CMakeLists.txt b/src/KGantt/CMakeLists.txt
+index cd1e4ae5..a44f1552 100644
+--- a/src/KGantt/CMakeLists.txt
++++ b/src/KGantt/CMakeLists.txt
+@@ -4,6 +4,7 @@ ecm_setup_version(${KGANTTLIB_VERSION}
+     VARIABLE_PREFIX KGANTT
+     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kgantt_version.h"
+     PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KGanttConfigVersion.cmake"
++    SOVERSION 3
+ )
+ 
+ if(BUILD_TESTING)
+-- 
+GitLab
+
+
+From 970418eccf8f18a73c4c5a17800b356c96c89671 Mon Sep 17 00:00:00 2001
+From: Jonathan Esk-Riddell <jr@jriddell.org>
+Date: Thu, 23 Nov 2023 12:30:14 +0000
+Subject: [PATCH 2/5] make this Qt 6 only and rename library and cmake target
+ to add Qt6 suffix to allow co-installability with Qt5 builds
+
+---
+ CMakeLists.txt                                | 21 +++++-----
+ examples/Axis/Chart/CMakeLists.txt            |  2 +-
+ examples/Axis/Labels/CMakeLists.txt           |  2 +-
+ examples/Axis/Parameters/CMakeLists.txt       |  2 +-
+ examples/Axis/Widget/CMakeLists.txt           |  2 +-
+ examples/Background/CMakeLists.txt            |  2 +-
+ examples/Bars/Advanced/CMakeLists.txt         |  2 +-
+ examples/Bars/Parameters/CMakeLists.txt       |  2 +-
+ examples/Bars/Simple/CMakeLists.txt           |  2 +-
+ examples/DataValueTexts/CMakeLists.txt        |  2 +-
+ examples/DrawIntoPainter/CMakeLists.txt       |  2 +-
+ examples/EmptyValues/CMakeLists.txt           |  2 +-
+ examples/Gantt/legend_example/CMakeLists.txt  |  2 +-
+ examples/Gantt/palette/CMakeLists.txt         |  2 +-
+ examples/Gantt/printing/CMakeLists.txt        |  2 +-
+ examples/Gantt/project/CMakeLists.txt         |  2 +-
+ examples/Grids/CartesianGrid/CMakeLists.txt   |  2 +-
+ examples/Grids/PolarGrid/CMakeLists.txt       |  2 +-
+ .../HeadersFooters/Advanced/CMakeLists.txt    |  2 +-
+ .../HeadersFootersParameters/CMakeLists.txt   |  2 +-
+ .../HeadersFootersSimple/CMakeLists.txt       |  2 +-
+ .../Legends/LegendAdvanced/CMakeLists.txt     |  2 +-
+ .../Legends/LegendOverDiagram/CMakeLists.txt  |  2 +-
+ .../Legends/LegendParameters/CMakeLists.txt   |  2 +-
+ examples/Legends/LegendSimple/CMakeLists.txt  |  2 +-
+ examples/LeveyJennings/Simple/CMakeLists.txt  |  2 +-
+ examples/Lines/Advanced/CMakeLists.txt        |  2 +-
+ examples/Lines/AreaPerCell/CMakeLists.txt     |  2 +-
+ examples/Lines/Parameters/CMakeLists.txt      |  2 +-
+ examples/Lines/PointChart/CMakeLists.txt      |  2 +-
+ examples/Lines/PointWidget/CMakeLists.txt     |  2 +-
+ .../Lines/SimpleLineWidget/CMakeLists.txt     |  2 +-
+ examples/ModelView/HidingData/CMakeLists.txt  |  2 +-
+ examples/ModelView/TableView/CMakeLists.txt   |  2 +-
+ examples/NoValues/CMakeLists.txt              |  2 +-
+ examples/Pie/Advanced/CMakeLists.txt          |  2 +-
+ examples/Pie/Parameters/CMakeLists.txt        |  2 +-
+ examples/Pie/Simple/CMakeLists.txt            |  2 +-
+ .../Plane/AdjustedBoundaries/CMakeLists.txt   |  2 +-
+ examples/Plane/OverlayedPlanes/CMakeLists.txt |  2 +-
+ examples/Plotter/Advanced/CMakeLists.txt      |  2 +-
+ examples/Plotter/BigDataset/CMakeLists.txt    |  2 +-
+ examples/Plotter/BubbleChart/CMakeLists.txt   |  2 +-
+ examples/Plotter/Isometric/CMakeLists.txt     |  2 +-
+ examples/Plotter/Logarithmic/CMakeLists.txt   |  2 +-
+ examples/Plotter/Simple/CMakeLists.txt        |  2 +-
+ examples/Plotter/Timeline/CMakeLists.txt      |  2 +-
+ examples/Polar/Advanced/CMakeLists.txt        |  2 +-
+ examples/Polar/Parameters/CMakeLists.txt      |  2 +-
+ examples/Polar/Simple/CMakeLists.txt          |  2 +-
+ examples/RealTime/CMakeLists.txt              |  2 +-
+ .../SeparateDiagrams/CMakeLists.txt           |  2 +-
+ examples/Sql/CMakeLists.txt                   |  2 +-
+ examples/Stock/Advanced/CMakeLists.txt        |  2 +-
+ .../TernaryCharts/Advanced/CMakeLists.txt     |  2 +-
+ examples/Widget/Advanced/CMakeLists.txt       |  2 +-
+ examples/Widget/Parameters/CMakeLists.txt     |  2 +-
+ examples/Widget/Simple/CMakeLists.txt         |  2 +-
+ examples/Zoom/Keyboard/CMakeLists.txt         |  2 +-
+ examples/Zoom/ScrollBars/CMakeLists.txt       |  2 +-
+ examples/demo/CMakeLists.txt                  |  2 +-
+ qtests/AttributesModel/CMakeLists.txt         |  2 +-
+ qtests/AxisOwnership/CMakeLists.txt           |  2 +-
+ qtests/BarDiagrams/CMakeLists.txt             |  2 +-
+ .../CMakeLists.txt                            |  2 +-
+ qtests/CartesianPlanes/CMakeLists.txt         |  2 +-
+ qtests/ChartElementOwnership/CMakeLists.txt   |  2 +-
+ qtests/Cloning/CMakeLists.txt                 |  2 +-
+ qtests/DrawIntoPainter/CMakeLists.txt         |  2 +-
+ qtests/Legends/CMakeLists.txt                 |  2 +-
+ qtests/LineDiagrams/CMakeLists.txt            |  2 +-
+ qtests/Measure/CMakeLists.txt                 |  2 +-
+ qtests/Palette/CMakeLists.txt                 |  2 +-
+ qtests/ParamVsParam/CMakeLists.txt            |  2 +-
+ qtests/PieDiagrams/CMakeLists.txt             |  2 +-
+ qtests/PolarDiagrams/CMakeLists.txt           |  2 +-
+ qtests/PolarPlanes/CMakeLists.txt             |  2 +-
+ qtests/QLayout/CMakeLists.txt                 |  2 +-
+ qtests/RelativePosition/CMakeLists.txt        |  2 +-
+ qtests/WidgetElementOwnership/CMakeLists.txt  |  2 +-
+ src/KChart/CMakeLists.txt                     | 40 +++++++++----------
+ src/KChart/KChartConfig.cmake.in              |  9 -----
+ src/KChart/KChartQt6Config.cmake.in           |  9 +++++
+ src/KGantt/CMakeLists.txt                     | 38 +++++++++---------
+ src/KGantt/KGanttConfig.cmake.in              |  9 -----
+ src/KGantt/KGanttQt6Config.cmake.in           |  9 +++++
+ src/KGantt/test/CMakeLists.txt                |  8 ++--
+ tests/DelayedData/CMakeLists.txt              |  2 +-
+ tests/Gantt/apireview/CMakeLists.txt          |  2 +-
+ tests/Gantt/customconstraints/CMakeLists.txt  |  2 +-
+ tests/Gantt/gfxview/CMakeLists.txt            |  2 +-
+ tests/Gantt/headers/CMakeLists.txt            |  2 +-
+ tests/Gantt/listview/CMakeLists.txt           |  2 +-
+ tests/Gantt/reorder/CMakeLists.txt            |  2 +-
+ tests/Gantt/unittest/CMakeLists.txt           |  2 +-
+ tests/Gantt/view/CMakeLists.txt               |  2 +-
+ tests/RootIndex/CMakeLists.txt                |  2 +-
+ 97 files changed, 161 insertions(+), 160 deletions(-)
+ delete mode 100644 src/KChart/KChartConfig.cmake.in
+ create mode 100644 src/KChart/KChartQt6Config.cmake.in
+ delete mode 100644 src/KGantt/KGanttConfig.cmake.in
+ create mode 100644 src/KGantt/KGanttQt6Config.cmake.in
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index aac89fb2..a9610df7 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -2,10 +2,11 @@ cmake_minimum_required(VERSION 3.16)
+ 
+ project( kdiagram )
+ 
+-set(KF5_MIN_VERSION "5.90.0")
+-set(QT_REQUIRED_VERSION "5.15.2")
++set(QT_REQUIRED_VERSION "6.5.0")
++set(KF_MIN_VERSION "5.245.0")
++set(KF_MAJOR_VERSION "6")
+ 
+-find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
++find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
+ 
+ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+ 
+@@ -34,21 +35,21 @@ cmake_dependent_option(BUILD_QCH
+ )
+ add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)")
+ 
+-find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} REQUIRED NO_MODULE
++find_package(Qt6 ${QT_REQUIRED_VERSION} REQUIRED NO_MODULE
+     COMPONENTS
+     PrintSupport
+     Svg
+     Widgets
+ )
+ if(BUILD_TESTING)
+-    find_package(Qt${QT_MAJOR_VERSION}Test QUIET)
+-    if (NOT Qt${QT_MAJOR_VERSION}Test_FOUND)
+-        message(STATUS "Qt${QT_MAJOR_VERSION}Test not found, unit tests will not be built.")
++    find_package(Qt6Test QUIET)
++    if (NOT Qt6Test_FOUND)
++        message(STATUS "Qt6Test not found, unit tests will not be built.")
+     endif()
+ endif()
+ 
+-find_package(Qt${QT_MAJOR_VERSION}Sql QUIET)
+-if (NOT Qt${QT_MAJOR_VERSION}Sql_FOUND)
++find_package(Qt6Sql QUIET)
++if (NOT Qt6Sql_FOUND)
+     message(STATUS "Qt5Sql not found, examples with SQL will not be built.")
+ endif()
+ 
+@@ -92,7 +93,7 @@ if(BUILD_TESTING)
+     add_subdirectory( examples )
+     add_subdirectory( tests )
+ 
+-    if(Qt${QT_MAJOR_VERSION}Test_FOUND)
++    if(Qt6Test_FOUND)
+         add_subdirectory( qtests )
+     endif()
+ endif()
+diff --git a/examples/Axis/Chart/CMakeLists.txt b/examples/Axis/Chart/CMakeLists.txt
+index 629bf2d6..abe72344 100644
+--- a/examples/Axis/Chart/CMakeLists.txt
++++ b/examples/Axis/Chart/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(AxisChart_SRCS
+ 
+ add_executable(AxisChart  ${AxisChart_SRCS})
+ 
+-target_link_libraries(AxisChart testtools KChart Qt::Widgets)
++target_link_libraries(AxisChart testtools KChartQt6 Qt::Widgets)
+diff --git a/examples/Axis/Labels/CMakeLists.txt b/examples/Axis/Labels/CMakeLists.txt
+index 376316e3..7962ab16 100644
+--- a/examples/Axis/Labels/CMakeLists.txt
++++ b/examples/Axis/Labels/CMakeLists.txt
+@@ -16,4 +16,4 @@ qt_add_resources(AxisLabels_SRCS
+ 
+ add_executable(AxisLabels  ${AxisLabels_SRCS})
+ 
+-target_link_libraries(AxisLabels testtools KChart Qt::Widgets)
++target_link_libraries(AxisLabels testtools KChartQt6 Qt::Widgets)
+diff --git a/examples/Axis/Parameters/CMakeLists.txt b/examples/Axis/Parameters/CMakeLists.txt
+index 35f5cd4a..83b62796 100644
+--- a/examples/Axis/Parameters/CMakeLists.txt
++++ b/examples/Axis/Parameters/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(AxisParameters_SRCS
+ 
+ add_executable(AxisParameters  ${AxisParameters_SRCS})
+ 
+-target_link_libraries(AxisParameters testtools KChart Qt::Widgets)
++target_link_libraries(AxisParameters testtools KChartQt6 Qt::Widgets)
+diff --git a/examples/Axis/Widget/CMakeLists.txt b/examples/Axis/Widget/CMakeLists.txt
+index b569f856..c40830e7 100644
+--- a/examples/Axis/Widget/CMakeLists.txt
++++ b/examples/Axis/Widget/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(AxisWidget  main.cpp)
+ 
+-target_link_libraries(AxisWidget KChart Qt::Widgets)
++target_link_libraries(AxisWidget KChartQt6 Qt::Widgets)
+diff --git a/examples/Background/CMakeLists.txt b/examples/Background/CMakeLists.txt
+index e292736a..0d5de818 100644
+--- a/examples/Background/CMakeLists.txt
++++ b/examples/Background/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(Background  main.cpp)
+ 
+-target_link_libraries(Background KChart Qt::Widgets)
++target_link_libraries(Background KChartQt6 Qt::Widgets)
+diff --git a/examples/Bars/Advanced/CMakeLists.txt b/examples/Bars/Advanced/CMakeLists.txt
+index 4f124105..9411e6b2 100644
+--- a/examples/Bars/Advanced/CMakeLists.txt
++++ b/examples/Bars/Advanced/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(BarsAdvanced_SRCS
+ 
+ add_executable(BarsAdvanced  ${BarsAdvanced_SRCS})
+ 
+-target_link_libraries(BarsAdvanced testtools KChart Qt::Widgets)
++target_link_libraries(BarsAdvanced testtools KChartQt6 Qt::Widgets)
+diff --git a/examples/Bars/Parameters/CMakeLists.txt b/examples/Bars/Parameters/CMakeLists.txt
+index b2c94809..ec8f30e8 100644
+--- a/examples/Bars/Parameters/CMakeLists.txt
++++ b/examples/Bars/Parameters/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(BarsParameters  main.cpp)
+ 
+-target_link_libraries(BarsParameters KChart Qt::Widgets)
++target_link_libraries(BarsParameters KChartQt6 Qt::Widgets)
+diff --git a/examples/Bars/Simple/CMakeLists.txt b/examples/Bars/Simple/CMakeLists.txt
+index 7bece458..2a6c46e9 100644
+--- a/examples/Bars/Simple/CMakeLists.txt
++++ b/examples/Bars/Simple/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(BarsSimple  main.cpp)
+ 
+-target_link_libraries(BarsSimple KChart Qt::Widgets)
++target_link_libraries(BarsSimple KChartQt6 Qt::Widgets)
+diff --git a/examples/DataValueTexts/CMakeLists.txt b/examples/DataValueTexts/CMakeLists.txt
+index 56c583c3..28fb5389 100644
+--- a/examples/DataValueTexts/CMakeLists.txt
++++ b/examples/DataValueTexts/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(DataValueTexts_SRCS
+ 
+ add_executable(DataValueTexts  ${DataValueTexts_SRCS})
+ 
+-target_link_libraries(DataValueTexts testtools KChart Qt::Widgets)
++target_link_libraries(DataValueTexts testtools KChartQt6 Qt::Widgets)
+diff --git a/examples/DrawIntoPainter/CMakeLists.txt b/examples/DrawIntoPainter/CMakeLists.txt
+index 449937fe..671f8371 100644
+--- a/examples/DrawIntoPainter/CMakeLists.txt
++++ b/examples/DrawIntoPainter/CMakeLists.txt
+@@ -16,4 +16,4 @@ qt_add_resources(DrawIntoPainter_SRCS
+ 
+ add_executable(DrawIntoPainter  ${DrawIntoPainter_SRCS})
+ 
+-target_link_libraries(DrawIntoPainter testtools KChart Qt::Widgets Qt::PrintSupport)
++target_link_libraries(DrawIntoPainter testtools KChartQt6 Qt::Widgets Qt::PrintSupport)
+diff --git a/examples/EmptyValues/CMakeLists.txt b/examples/EmptyValues/CMakeLists.txt
+index e97ce6d2..30018594 100644
+--- a/examples/EmptyValues/CMakeLists.txt
++++ b/examples/EmptyValues/CMakeLists.txt
+@@ -10,4 +10,4 @@ qt_add_resources(EmptyValues_SRCS
+ 
+ add_executable(EmptyValues  ${EmptyValues_SRCS})
+ 
+-target_link_libraries(EmptyValues testtools KChart Qt::Widgets)
++target_link_libraries(EmptyValues testtools KChartQt6 Qt::Widgets)
+diff --git a/examples/Gantt/legend_example/CMakeLists.txt b/examples/Gantt/legend_example/CMakeLists.txt
+index c5f80472..ae077a3d 100644
+--- a/examples/Gantt/legend_example/CMakeLists.txt
++++ b/examples/Gantt/legend_example/CMakeLists.txt
+@@ -15,4 +15,4 @@ qt_wrap_ui(legend_example_SRCS
+ 
+ add_executable(legend_example  ${legend_example_SRCS})
+ 
+-target_link_libraries(legend_example KGantt Qt::Widgets Qt::PrintSupport)
++target_link_libraries(legend_example KGanttQt6 Qt::Widgets Qt::PrintSupport)
+diff --git a/examples/Gantt/palette/CMakeLists.txt b/examples/Gantt/palette/CMakeLists.txt
+index 3fbce35b..e580fad7 100644
+--- a/examples/Gantt/palette/CMakeLists.txt
++++ b/examples/Gantt/palette/CMakeLists.txt
+@@ -8,4 +8,4 @@ set(GanttPalette_SRCS
+ 
+ add_executable(GanttPalette  ${GanttPalette_SRCS})
+ 
+-target_link_libraries(GanttPalette KGantt Qt::Widgets Qt::PrintSupport)
++target_link_libraries(GanttPalette KGanttQt6 Qt::Widgets Qt::PrintSupport)
+diff --git a/examples/Gantt/printing/CMakeLists.txt b/examples/Gantt/printing/CMakeLists.txt
+index 40130600..546df446 100644
+--- a/examples/Gantt/printing/CMakeLists.txt
++++ b/examples/Gantt/printing/CMakeLists.txt
+@@ -8,4 +8,4 @@ set(GanttPrinting_SRCS
+ 
+ add_executable(GanttPrinting  ${GanttPrinting_SRCS})
+ 
+-target_link_libraries(GanttPrinting KGantt Qt::Widgets Qt::PrintSupport)
++target_link_libraries(GanttPrinting KGanttQt6 Qt::Widgets Qt::PrintSupport)
+diff --git a/examples/Gantt/project/CMakeLists.txt b/examples/Gantt/project/CMakeLists.txt
+index 7d90f356..bb3c2f5a 100644
+--- a/examples/Gantt/project/CMakeLists.txt
++++ b/examples/Gantt/project/CMakeLists.txt
+@@ -8,4 +8,4 @@ set(project_SRCS
+ 
+ add_executable(project  ${project_SRCS})
+ 
+-target_link_libraries(project KGantt Qt::Widgets Qt::PrintSupport)
++target_link_libraries(project KGanttQt6 Qt::Widgets Qt::PrintSupport)
+diff --git a/examples/Grids/CartesianGrid/CMakeLists.txt b/examples/Grids/CartesianGrid/CMakeLists.txt
+index c5afd83a..35346160 100644
+--- a/examples/Grids/CartesianGrid/CMakeLists.txt
++++ b/examples/Grids/CartesianGrid/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(CartesianGrid  main.cpp)
+ 
+-target_link_libraries(CartesianGrid KChart Qt::Widgets)
++target_link_libraries(CartesianGrid KChartQt6 Qt::Widgets)
+diff --git a/examples/Grids/PolarGrid/CMakeLists.txt b/examples/Grids/PolarGrid/CMakeLists.txt
+index f4e4bb78..4bdc687a 100644
+--- a/examples/Grids/PolarGrid/CMakeLists.txt
++++ b/examples/Grids/PolarGrid/CMakeLists.txt
+@@ -10,4 +10,4 @@ qt_wrap_ui(PolarGrid_SRCS
+ 
+ add_executable(PolarGrid  ${PolarGrid_SRCS})
+ 
+-target_link_libraries(PolarGrid KChart Qt::Widgets)
++target_link_libraries(PolarGrid KChartQt6 Qt::Widgets)
+diff --git a/examples/HeadersFooters/Advanced/CMakeLists.txt b/examples/HeadersFooters/Advanced/CMakeLists.txt
+index c4309ef6..9055a58a 100644
+--- a/examples/HeadersFooters/Advanced/CMakeLists.txt
++++ b/examples/HeadersFooters/Advanced/CMakeLists.txt
+@@ -15,4 +15,4 @@ qt_add_resources(HeadersFootersAdvanced_SRCS
+ 
+ add_executable(HeadersFootersAdvanced  ${HeadersFootersAdvanced_SRCS})
+ 
+-target_link_libraries(HeadersFootersAdvanced testtools KChart Qt::Widgets Qt::PrintSupport)
++target_link_libraries(HeadersFootersAdvanced testtools KChartQt6 Qt::Widgets Qt::PrintSupport)
+diff --git a/examples/HeadersFooters/HeadersFootersParameters/CMakeLists.txt b/examples/HeadersFooters/HeadersFootersParameters/CMakeLists.txt
+index 17115aa9..2888614e 100644
+--- a/examples/HeadersFooters/HeadersFootersParameters/CMakeLists.txt
++++ b/examples/HeadersFooters/HeadersFootersParameters/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(HeadersFootersParameters  main.cpp)
+ 
+-target_link_libraries(HeadersFootersParameters KChart Qt::Widgets)
++target_link_libraries(HeadersFootersParameters KChartQt6 Qt::Widgets)
+diff --git a/examples/HeadersFooters/HeadersFootersSimple/CMakeLists.txt b/examples/HeadersFooters/HeadersFootersSimple/CMakeLists.txt
+index dd8eb762..f538b87f 100644
+--- a/examples/HeadersFooters/HeadersFootersSimple/CMakeLists.txt
++++ b/examples/HeadersFooters/HeadersFootersSimple/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(HeadersFootersSimple  main.cpp)
+ 
+-target_link_libraries(HeadersFootersSimple KChart Qt::Widgets)
++target_link_libraries(HeadersFootersSimple KChartQt6 Qt::Widgets)
+diff --git a/examples/Legends/LegendAdvanced/CMakeLists.txt b/examples/Legends/LegendAdvanced/CMakeLists.txt
+index a4d27890..f42bd05b 100644
+--- a/examples/Legends/LegendAdvanced/CMakeLists.txt
++++ b/examples/Legends/LegendAdvanced/CMakeLists.txt
+@@ -17,4 +17,4 @@ qt_add_resources(LegendAdvanced_SRCS
+ 
+ add_executable(LegendAdvanced  ${LegendAdvanced_SRCS})
+ 
+-target_link_libraries(LegendAdvanced testtools KChart Qt::Widgets)
++target_link_libraries(LegendAdvanced testtools KChartQt6 Qt::Widgets)
+diff --git a/examples/Legends/LegendOverDiagram/CMakeLists.txt b/examples/Legends/LegendOverDiagram/CMakeLists.txt
+index 181b6f3c..4de8d0ee 100644
+--- a/examples/Legends/LegendOverDiagram/CMakeLists.txt
++++ b/examples/Legends/LegendOverDiagram/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(LegendOverDiagram  main.cpp)
+ 
+-target_link_libraries(LegendOverDiagram KChart Qt::Widgets)
++target_link_libraries(LegendOverDiagram KChartQt6 Qt::Widgets)
+diff --git a/examples/Legends/LegendParameters/CMakeLists.txt b/examples/Legends/LegendParameters/CMakeLists.txt
+index 04d99461..77df4b68 100644
+--- a/examples/Legends/LegendParameters/CMakeLists.txt
++++ b/examples/Legends/LegendParameters/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(LegendParameters  main.cpp)
+ 
+-target_link_libraries(LegendParameters KChart Qt::Widgets)
++target_link_libraries(LegendParameters KChartQt6 Qt::Widgets)
+diff --git a/examples/Legends/LegendSimple/CMakeLists.txt b/examples/Legends/LegendSimple/CMakeLists.txt
+index 931dbc3a..4ef9490f 100644
+--- a/examples/Legends/LegendSimple/CMakeLists.txt
++++ b/examples/Legends/LegendSimple/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(LegendSimple  main.cpp)
+ 
+-target_link_libraries(LegendSimple KChart Qt::Widgets)
++target_link_libraries(LegendSimple KChartQt6 Qt::Widgets)
+diff --git a/examples/LeveyJennings/Simple/CMakeLists.txt b/examples/LeveyJennings/Simple/CMakeLists.txt
+index a9db2091..82ec204b 100644
+--- a/examples/LeveyJennings/Simple/CMakeLists.txt
++++ b/examples/LeveyJennings/Simple/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(LeveyJenningsSimple  main.cpp)
+ 
+-target_link_libraries(LeveyJenningsSimple KChart Qt::Widgets)
++target_link_libraries(LeveyJenningsSimple KChartQt6 Qt::Widgets)
+diff --git a/examples/Lines/Advanced/CMakeLists.txt b/examples/Lines/Advanced/CMakeLists.txt
+index 2513068b..578d211d 100644
+--- a/examples/Lines/Advanced/CMakeLists.txt
++++ b/examples/Lines/Advanced/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(LinesAdvanced_SRCS
+ 
+ add_executable(LinesAdvanced  ${LinesAdvanced_SRCS})
+ 
+-target_link_libraries(LinesAdvanced testtools KChart Qt::Widgets)
++target_link_libraries(LinesAdvanced testtools KChartQt6 Qt::Widgets)
+diff --git a/examples/Lines/AreaPerCell/CMakeLists.txt b/examples/Lines/AreaPerCell/CMakeLists.txt
+index 0e8d7e4f..56c78b2b 100644
+--- a/examples/Lines/AreaPerCell/CMakeLists.txt
++++ b/examples/Lines/AreaPerCell/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(AreaPerCell main.cpp)
+ 
+-target_link_libraries(AreaPerCell KChart Qt::Widgets)
++target_link_libraries(AreaPerCell KChartQt6 Qt::Widgets)
+diff --git a/examples/Lines/Parameters/CMakeLists.txt b/examples/Lines/Parameters/CMakeLists.txt
+index 318aafc8..08da0945 100644
+--- a/examples/Lines/Parameters/CMakeLists.txt
++++ b/examples/Lines/Parameters/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(Parameters main.cpp)
+ 
+-target_link_libraries(Parameters KChart Qt::Widgets)
++target_link_libraries(Parameters KChartQt6 Qt::Widgets)
+diff --git a/examples/Lines/PointChart/CMakeLists.txt b/examples/Lines/PointChart/CMakeLists.txt
+index 6e0de0d4..cd52de88 100644
+--- a/examples/Lines/PointChart/CMakeLists.txt
++++ b/examples/Lines/PointChart/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(PointChart_SRCS
+ 
+ add_executable(PointChart  ${PointChart_SRCS})
+ 
+-target_link_libraries(PointChart testtools KChart Qt::Widgets)
++target_link_libraries(PointChart testtools KChartQt6 Qt::Widgets)
+diff --git a/examples/Lines/PointWidget/CMakeLists.txt b/examples/Lines/PointWidget/CMakeLists.txt
+index 6801e19b..b50dc3f1 100644
+--- a/examples/Lines/PointWidget/CMakeLists.txt
++++ b/examples/Lines/PointWidget/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(PointWidget main.cpp)
+ 
+-target_link_libraries(PointWidget KChart Qt::Widgets)
++target_link_libraries(PointWidget KChartQt6 Qt::Widgets)
+diff --git a/examples/Lines/SimpleLineWidget/CMakeLists.txt b/examples/Lines/SimpleLineWidget/CMakeLists.txt
+index c797fe6f..158dcdc5 100644
+--- a/examples/Lines/SimpleLineWidget/CMakeLists.txt
++++ b/examples/Lines/SimpleLineWidget/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(SimpleLineWidget main.cpp)
+ 
+-target_link_libraries(SimpleLineWidget KChart Qt::Widgets)
++target_link_libraries(SimpleLineWidget KChartQt6 Qt::Widgets)
+diff --git a/examples/ModelView/HidingData/CMakeLists.txt b/examples/ModelView/HidingData/CMakeLists.txt
+index fbd0f85a..f35a7d4a 100644
+--- a/examples/ModelView/HidingData/CMakeLists.txt
++++ b/examples/ModelView/HidingData/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(HidingData_SRCS
+ 
+ add_executable(HidingData  ${HidingData_SRCS})
+ 
+-target_link_libraries(HidingData testtools KChart Qt::Widgets)
++target_link_libraries(HidingData testtools KChartQt6 Qt::Widgets)
+diff --git a/examples/ModelView/TableView/CMakeLists.txt b/examples/ModelView/TableView/CMakeLists.txt
+index 5f7e533d..d2e9ab2d 100644
+--- a/examples/ModelView/TableView/CMakeLists.txt
++++ b/examples/ModelView/TableView/CMakeLists.txt
+@@ -10,4 +10,4 @@ qt_add_resources(TableView_SRCS
+ 
+ add_executable(TableView  ${TableView_SRCS})
+ 
+-target_link_libraries(TableView testtools KChart Qt::Widgets)
++target_link_libraries(TableView testtools KChartQt6 Qt::Widgets)
+diff --git a/examples/NoValues/CMakeLists.txt b/examples/NoValues/CMakeLists.txt
+index 96e5c170..c582c38e 100644
+--- a/examples/NoValues/CMakeLists.txt
++++ b/examples/NoValues/CMakeLists.txt
+@@ -6,4 +6,4 @@ set(NoValues_SRCS
+ 
+ add_executable(NoValues  ${NoValues_SRCS})
+ 
+-target_link_libraries(NoValues KChart Qt::Widgets)
++target_link_libraries(NoValues KChartQt6 Qt::Widgets)
+diff --git a/examples/Pie/Advanced/CMakeLists.txt b/examples/Pie/Advanced/CMakeLists.txt
+index 9c21dc04..4797739e 100644
+--- a/examples/Pie/Advanced/CMakeLists.txt
++++ b/examples/Pie/Advanced/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(PieAdvanced_SRCS
+ 
+ add_executable(PieAdvanced  ${PieAdvanced_SRCS})
+ 
+-target_link_libraries(PieAdvanced testtools KChart Qt::Widgets)
++target_link_libraries(PieAdvanced testtools KChartQt6 Qt::Widgets)
+diff --git a/examples/Pie/Parameters/CMakeLists.txt b/examples/Pie/Parameters/CMakeLists.txt
+index 3672e0d3..fa428856 100644
+--- a/examples/Pie/Parameters/CMakeLists.txt
++++ b/examples/Pie/Parameters/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(PieParameters  main.cpp)
+ 
+-target_link_libraries(PieParameters KChart Qt::Widgets)
++target_link_libraries(PieParameters KChartQt6 Qt::Widgets)
+diff --git a/examples/Pie/Simple/CMakeLists.txt b/examples/Pie/Simple/CMakeLists.txt
+index e88a9b18..e02e2663 100644
+--- a/examples/Pie/Simple/CMakeLists.txt
++++ b/examples/Pie/Simple/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(PieSimple  main.cpp)
+ 
+-target_link_libraries(PieSimple KChart Qt::Widgets)
++target_link_libraries(PieSimple KChartQt6 Qt::Widgets)
+diff --git a/examples/Plane/AdjustedBoundaries/CMakeLists.txt b/examples/Plane/AdjustedBoundaries/CMakeLists.txt
+index 422c5afa..977958e5 100644
+--- a/examples/Plane/AdjustedBoundaries/CMakeLists.txt
++++ b/examples/Plane/AdjustedBoundaries/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(AdjustedBoundaries  main.cpp)
+ 
+-target_link_libraries(AdjustedBoundaries KChart Qt::Widgets)
++target_link_libraries(AdjustedBoundaries KChartQt6 Qt::Widgets)
+diff --git a/examples/Plane/OverlayedPlanes/CMakeLists.txt b/examples/Plane/OverlayedPlanes/CMakeLists.txt
+index 44ce21c4..b28dcea7 100644
+--- a/examples/Plane/OverlayedPlanes/CMakeLists.txt
++++ b/examples/Plane/OverlayedPlanes/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(OverlayedPlanes_SRCS
+ 
+ add_executable(OverlayedPlanes  ${OverlayedPlanes_SRCS})
+ 
+-target_link_libraries(OverlayedPlanes testtools KChart Qt::Widgets)
++target_link_libraries(OverlayedPlanes testtools KChartQt6 Qt::Widgets)
+diff --git a/examples/Plotter/Advanced/CMakeLists.txt b/examples/Plotter/Advanced/CMakeLists.txt
+index bdd3fbc9..c8c694b7 100644
+--- a/examples/Plotter/Advanced/CMakeLists.txt
++++ b/examples/Plotter/Advanced/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(PlotterAdvanced  main.cpp)
+ 
+-target_link_libraries(PlotterAdvanced KChart Qt::Widgets)
++target_link_libraries(PlotterAdvanced KChartQt6 Qt::Widgets)
+diff --git a/examples/Plotter/BigDataset/CMakeLists.txt b/examples/Plotter/BigDataset/CMakeLists.txt
+index 36305f76..54b0c574 100644
+--- a/examples/Plotter/BigDataset/CMakeLists.txt
++++ b/examples/Plotter/BigDataset/CMakeLists.txt
+@@ -12,4 +12,4 @@ qt_wrap_ui(BigDataset_SRCS
+ 
+ add_executable(BigDataset  ${BigDataset_SRCS})
+ 
+-target_link_libraries(BigDataset KChart Qt::Widgets)
++target_link_libraries(BigDataset KChartQt6 Qt::Widgets)
+diff --git a/examples/Plotter/BubbleChart/CMakeLists.txt b/examples/Plotter/BubbleChart/CMakeLists.txt
+index 6398dd76..cd4cfda1 100644
+--- a/examples/Plotter/BubbleChart/CMakeLists.txt
++++ b/examples/Plotter/BubbleChart/CMakeLists.txt
+@@ -10,4 +10,4 @@ qt_wrap_ui(BubbleChart_SRCS
+ 
+ add_executable(BubbleChart  ${BubbleChart_SRCS})
+ 
+-target_link_libraries(BubbleChart KChart Qt::Widgets)
++target_link_libraries(BubbleChart KChartQt6 Qt::Widgets)
+diff --git a/examples/Plotter/Isometric/CMakeLists.txt b/examples/Plotter/Isometric/CMakeLists.txt
+index 30ef5907..4ee9a7a0 100644
+--- a/examples/Plotter/Isometric/CMakeLists.txt
++++ b/examples/Plotter/Isometric/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(Isometric  main.cpp)
+ 
+-target_link_libraries(Isometric KChart Qt::Widgets)
++target_link_libraries(Isometric KChartQt6 Qt::Widgets)
+diff --git a/examples/Plotter/Logarithmic/CMakeLists.txt b/examples/Plotter/Logarithmic/CMakeLists.txt
+index 9c9756a3..8630e40a 100644
+--- a/examples/Plotter/Logarithmic/CMakeLists.txt
++++ b/examples/Plotter/Logarithmic/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(Logarithmic  main.cpp)
+ 
+-target_link_libraries(Logarithmic KChart Qt::Widgets)
++target_link_libraries(Logarithmic KChartQt6 Qt::Widgets)
+diff --git a/examples/Plotter/Simple/CMakeLists.txt b/examples/Plotter/Simple/CMakeLists.txt
+index 6668efe9..9292ec88 100644
+--- a/examples/Plotter/Simple/CMakeLists.txt
++++ b/examples/Plotter/Simple/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(PlotterSimple  main.cpp)
+ 
+-target_link_libraries(PlotterSimple KChart Qt::Widgets)
++target_link_libraries(PlotterSimple KChartQt6 Qt::Widgets)
+diff --git a/examples/Plotter/Timeline/CMakeLists.txt b/examples/Plotter/Timeline/CMakeLists.txt
+index bb8bd80b..1c20c31d 100644
+--- a/examples/Plotter/Timeline/CMakeLists.txt
++++ b/examples/Plotter/Timeline/CMakeLists.txt
+@@ -8,4 +8,4 @@ set(PlotterTimeline_SRCS
+ 
+ add_executable(PlotterTimeline  ${PlotterTimeline_SRCS})
+ 
+-target_link_libraries(PlotterTimeline KChart Qt::Widgets)
++target_link_libraries(PlotterTimeline KChartQt6 Qt::Widgets)
+diff --git a/examples/Polar/Advanced/CMakeLists.txt b/examples/Polar/Advanced/CMakeLists.txt
+index 25a2ec50..9db93a30 100644
+--- a/examples/Polar/Advanced/CMakeLists.txt
++++ b/examples/Polar/Advanced/CMakeLists.txt
+@@ -10,4 +10,4 @@ qt_wrap_ui(PolarAdvanced_SRCS
+ 
+ add_executable(PolarAdvanced  ${PolarAdvanced_SRCS})
+ 
+-target_link_libraries(PolarAdvanced KChart Qt::Widgets)
++target_link_libraries(PolarAdvanced KChartQt6 Qt::Widgets)
+diff --git a/examples/Polar/Parameters/CMakeLists.txt b/examples/Polar/Parameters/CMakeLists.txt
+index e10a4c8c..ee95a18f 100644
+--- a/examples/Polar/Parameters/CMakeLists.txt
++++ b/examples/Polar/Parameters/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(PolarParameters  main.cpp)
+ 
+-target_link_libraries(PolarParameters KChart Qt::Widgets)
++target_link_libraries(PolarParameters KChartQt6 Qt::Widgets)
+diff --git a/examples/Polar/Simple/CMakeLists.txt b/examples/Polar/Simple/CMakeLists.txt
+index f47e00be..3822faad 100644
+--- a/examples/Polar/Simple/CMakeLists.txt
++++ b/examples/Polar/Simple/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(PolarSimple  main.cpp)
+ 
+-target_link_libraries(PolarSimple KChart Qt::Widgets)
++target_link_libraries(PolarSimple KChartQt6 Qt::Widgets)
+diff --git a/examples/RealTime/CMakeLists.txt b/examples/RealTime/CMakeLists.txt
+index 93e7fa66..162231ca 100644
+--- a/examples/RealTime/CMakeLists.txt
++++ b/examples/RealTime/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(RealTime  main.cpp)
+ 
+-target_link_libraries(RealTime KChart Qt::Widgets)
++target_link_libraries(RealTime KChartQt6 Qt::Widgets)
+diff --git a/examples/SharedAbscissa/SeparateDiagrams/CMakeLists.txt b/examples/SharedAbscissa/SeparateDiagrams/CMakeLists.txt
+index e58ca9a8..b045cc86 100644
+--- a/examples/SharedAbscissa/SeparateDiagrams/CMakeLists.txt
++++ b/examples/SharedAbscissa/SeparateDiagrams/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(SeparateDiagrams_SRCS
+ 
+ add_executable(SeparateDiagrams  ${SeparateDiagrams_SRCS})
+ 
+-target_link_libraries(SeparateDiagrams testtools KChart Qt::Widgets)
++target_link_libraries(SeparateDiagrams testtools KChartQt6 Qt::Widgets)
+diff --git a/examples/Sql/CMakeLists.txt b/examples/Sql/CMakeLists.txt
+index bd9f7bfb..52bce1aa 100644
+--- a/examples/Sql/CMakeLists.txt
++++ b/examples/Sql/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(Sql  main.cpp)
+ 
+-target_link_libraries(Sql KChart Qt::Widgets Qt::Sql)
++target_link_libraries(Sql KChartQt6 Qt::Widgets Qt::Sql)
+diff --git a/examples/Stock/Advanced/CMakeLists.txt b/examples/Stock/Advanced/CMakeLists.txt
+index bb30fb3b..add422f5 100644
+--- a/examples/Stock/Advanced/CMakeLists.txt
++++ b/examples/Stock/Advanced/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(StockDiagram_SRCS
+ 
+ add_executable(StockDiagram  ${StockDiagram_SRCS})
+ 
+-target_link_libraries(StockDiagram testtools KChart Qt::Widgets)
++target_link_libraries(StockDiagram testtools KChartQt6 Qt::Widgets)
+diff --git a/examples/TernaryCharts/Advanced/CMakeLists.txt b/examples/TernaryCharts/Advanced/CMakeLists.txt
+index 92600bfe..cb47b14a 100644
+--- a/examples/TernaryCharts/Advanced/CMakeLists.txt
++++ b/examples/TernaryCharts/Advanced/CMakeLists.txt
+@@ -10,4 +10,4 @@ qt_wrap_ui(TernaryChartsAdvanced_SRCS
+ 
+ add_executable(TernaryChartsAdvanced  ${TernaryChartsAdvanced_SRCS})
+ 
+-target_link_libraries(TernaryChartsAdvanced KChart Qt::Widgets)
++target_link_libraries(TernaryChartsAdvanced KChartQt6 Qt::Widgets)
+diff --git a/examples/Widget/Advanced/CMakeLists.txt b/examples/Widget/Advanced/CMakeLists.txt
+index 5744bedb..27ed5d9c 100644
+--- a/examples/Widget/Advanced/CMakeLists.txt
++++ b/examples/Widget/Advanced/CMakeLists.txt
+@@ -10,4 +10,4 @@ qt_wrap_ui(WidgetAdvanced_SRCS
+ 
+ add_executable(WidgetAdvanced  ${WidgetAdvanced_SRCS})
+ 
+-target_link_libraries(WidgetAdvanced KChart Qt::Widgets)
++target_link_libraries(WidgetAdvanced KChartQt6 Qt::Widgets)
+diff --git a/examples/Widget/Parameters/CMakeLists.txt b/examples/Widget/Parameters/CMakeLists.txt
+index 435f7729..69d27df5 100644
+--- a/examples/Widget/Parameters/CMakeLists.txt
++++ b/examples/Widget/Parameters/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(WidgetParameters  main.cpp)
+ 
+-target_link_libraries(WidgetParameters KChart Qt::Widgets)
++target_link_libraries(WidgetParameters KChartQt6 Qt::Widgets)
+diff --git a/examples/Widget/Simple/CMakeLists.txt b/examples/Widget/Simple/CMakeLists.txt
+index 3e762027..442e5895 100644
+--- a/examples/Widget/Simple/CMakeLists.txt
++++ b/examples/Widget/Simple/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(WidgetSimple  main.cpp)
+ 
+-target_link_libraries(WidgetSimple KChart Qt::Widgets)
++target_link_libraries(WidgetSimple KChartQt6 Qt::Widgets)
+diff --git a/examples/Zoom/Keyboard/CMakeLists.txt b/examples/Zoom/Keyboard/CMakeLists.txt
+index 974eba7e..ba445390 100644
+--- a/examples/Zoom/Keyboard/CMakeLists.txt
++++ b/examples/Zoom/Keyboard/CMakeLists.txt
+@@ -12,4 +12,4 @@ qt_wrap_ui(ZoomKeyboard_SRCS
+ 
+ add_executable(ZoomKeyboard  ${ZoomKeyboard_SRCS})
+ 
+-target_link_libraries(ZoomKeyboard KChart Qt::Widgets)
++target_link_libraries(ZoomKeyboard KChartQt6 Qt::Widgets)
+diff --git a/examples/Zoom/ScrollBars/CMakeLists.txt b/examples/Zoom/ScrollBars/CMakeLists.txt
+index ba79a234..150bb46e 100644
+--- a/examples/Zoom/ScrollBars/CMakeLists.txt
++++ b/examples/Zoom/ScrollBars/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(ZoomScrollBars_SRCS
+ 
+ add_executable(ZoomScrollBars  ${ZoomScrollBars_SRCS})
+ 
+-target_link_libraries(ZoomScrollBars testtools KChart Qt::Widgets)
++target_link_libraries(ZoomScrollBars testtools KChartQt6 Qt::Widgets)
+diff --git a/examples/demo/CMakeLists.txt b/examples/demo/CMakeLists.txt
+index d09e65a5..112fb207 100644
+--- a/examples/demo/CMakeLists.txt
++++ b/examples/demo/CMakeLists.txt
+@@ -33,4 +33,4 @@ qt_add_resources(demo_SRCS
+ 
+ add_executable(demo  ${demo_SRCS})
+ 
+-target_link_libraries(demo testtools KChart Qt::Widgets)
++target_link_libraries(demo testtools KChartQt6 Qt::Widgets)
+diff --git a/qtests/AttributesModel/CMakeLists.txt b/qtests/AttributesModel/CMakeLists.txt
+index 2935cd1e..db1096a7 100644
+--- a/qtests/AttributesModel/CMakeLists.txt
++++ b/qtests/AttributesModel/CMakeLists.txt
+@@ -9,5 +9,5 @@ qt_add_resources(TestKChartAttributesModel_SRCS
+ ecm_add_test(
+     ${TestKChartAttributesModel_SRCS}
+     TEST_NAME TestKChartAttributesModel
+-    LINK_LIBRARIES testtools KChart Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/AxisOwnership/CMakeLists.txt b/qtests/AxisOwnership/CMakeLists.txt
+index 0db46c43..46a55d09 100644
+--- a/qtests/AxisOwnership/CMakeLists.txt
++++ b/qtests/AxisOwnership/CMakeLists.txt
+@@ -9,5 +9,5 @@ qt_add_resources(TestKChartAxisOwnership_SRCS
+ ecm_add_test(
+     ${TestKChartAxisOwnership_SRCS}
+     TEST_NAME TestKChartAxisOwnership
+-    LINK_LIBRARIES testtools KChart Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/BarDiagrams/CMakeLists.txt b/qtests/BarDiagrams/CMakeLists.txt
+index 27103164..21fb5c82 100644
+--- a/qtests/BarDiagrams/CMakeLists.txt
++++ b/qtests/BarDiagrams/CMakeLists.txt
+@@ -9,5 +9,5 @@ qt_add_resources(TestKChartBarDiagrams_SRCS
+ ecm_add_test(
+     ${TestKChartBarDiagrams_SRCS}
+     TEST_NAME TestKChartBarDiagrams
+-    LINK_LIBRARIES testtools KChart Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/CartesianDiagramDataCompressor/CMakeLists.txt b/qtests/CartesianDiagramDataCompressor/CMakeLists.txt
+index c5274897..76b3fd63 100644
+--- a/qtests/CartesianDiagramDataCompressor/CMakeLists.txt
++++ b/qtests/CartesianDiagramDataCompressor/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ ecm_add_test(
+     CartesianDiagramDataCompressorTests.cpp
+     TEST_NAME CartesianDiagramDataCompressorTests
+-    LINK_LIBRARIES KChart Qt::Widgets Qt::Test
++    LINK_LIBRARIES KChartQt6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/CartesianPlanes/CMakeLists.txt b/qtests/CartesianPlanes/CMakeLists.txt
+index a77a55ff..03227ba6 100644
+--- a/qtests/CartesianPlanes/CMakeLists.txt
++++ b/qtests/CartesianPlanes/CMakeLists.txt
+@@ -9,5 +9,5 @@ qt_add_resources(TestCartesianPlanes_SRCS
+ ecm_add_test(
+     ${TestCartesianPlanes_SRCS}
+     TEST_NAME TestCartesianPlanes
+-    LINK_LIBRARIES testtools KChart Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/ChartElementOwnership/CMakeLists.txt b/qtests/ChartElementOwnership/CMakeLists.txt
+index 27a75fed..f76bc4e1 100644
+--- a/qtests/ChartElementOwnership/CMakeLists.txt
++++ b/qtests/ChartElementOwnership/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ ecm_add_test(
+     main.cpp
+     TEST_NAME TestChartElementOwnership
+-    LINK_LIBRARIES KChart Qt::Widgets Qt::Test
++    LINK_LIBRARIES KChartQt6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/Cloning/CMakeLists.txt b/qtests/Cloning/CMakeLists.txt
+index a0b0699d..d4bf3d49 100644
+--- a/qtests/Cloning/CMakeLists.txt
++++ b/qtests/Cloning/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ ecm_add_test(
+     main.cpp
+     TEST_NAME TestCloning
+-    LINK_LIBRARIES KChart Qt::Widgets Qt::Test
++    LINK_LIBRARIES KChartQt6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/DrawIntoPainter/CMakeLists.txt b/qtests/DrawIntoPainter/CMakeLists.txt
+index f3718524..dabe5202 100644
+--- a/qtests/DrawIntoPainter/CMakeLists.txt
++++ b/qtests/DrawIntoPainter/CMakeLists.txt
+@@ -15,7 +15,7 @@ qt_add_resources(TestDrawIntoPainter_SRCS
+ ecm_add_test(
+     ${TestDrawIntoPainter_SRCS}
+     TEST_NAME TestDrawIntoPainter
+-    LINK_LIBRARIES testtools KChart Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
+ )
+ 
+ set_property(TEST TestDrawIntoPainter PROPERTY TIMEOUT 600)
+diff --git a/qtests/Legends/CMakeLists.txt b/qtests/Legends/CMakeLists.txt
+index f9705342..cb9176bb 100644
+--- a/qtests/Legends/CMakeLists.txt
++++ b/qtests/Legends/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ ecm_add_test(
+     main.cpp
+     TEST_NAME TestLegends
+-    LINK_LIBRARIES testtools KChart Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/LineDiagrams/CMakeLists.txt b/qtests/LineDiagrams/CMakeLists.txt
+index 5868dcf5..bb2ed0c3 100644
+--- a/qtests/LineDiagrams/CMakeLists.txt
++++ b/qtests/LineDiagrams/CMakeLists.txt
+@@ -9,5 +9,5 @@ qt_add_resources(TestLineDiagrams_SRCS
+ ecm_add_test(
+     ${TestLineDiagrams_SRCS}
+     TEST_NAME TestLineDiagrams
+-    LINK_LIBRARIES testtools KChart Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/Measure/CMakeLists.txt b/qtests/Measure/CMakeLists.txt
+index c582f476..c33fe679 100644
+--- a/qtests/Measure/CMakeLists.txt
++++ b/qtests/Measure/CMakeLists.txt
+@@ -9,5 +9,5 @@ qt_add_resources(TestMeasure_SRCS
+ ecm_add_test(
+     ${TestMeasure_SRCS}
+     TEST_NAME TestMeasure
+-    LINK_LIBRARIES testtools KChart Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/Palette/CMakeLists.txt b/qtests/Palette/CMakeLists.txt
+index e4e0a776..fd325746 100644
+--- a/qtests/Palette/CMakeLists.txt
++++ b/qtests/Palette/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ ecm_add_test(
+     main.cpp
+     TEST_NAME TestKChartPalette
+-    LINK_LIBRARIES KChart Qt::Widgets Qt::Test
++    LINK_LIBRARIES KChartQt6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/ParamVsParam/CMakeLists.txt b/qtests/ParamVsParam/CMakeLists.txt
+index bdc5ed88..7b9c138f 100644
+--- a/qtests/ParamVsParam/CMakeLists.txt
++++ b/qtests/ParamVsParam/CMakeLists.txt
+@@ -8,5 +8,5 @@ set(TestParamVsParam_SRCS
+ ecm_add_test(
+     ${TestParamVsParam_SRCS}
+     TEST_NAME TestParamVsParam
+-    LINK_LIBRARIES testtools KChart Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/PieDiagrams/CMakeLists.txt b/qtests/PieDiagrams/CMakeLists.txt
+index fd16ebb8..7cb321d6 100644
+--- a/qtests/PieDiagrams/CMakeLists.txt
++++ b/qtests/PieDiagrams/CMakeLists.txt
+@@ -9,5 +9,5 @@ qt_add_resources(TestPieDiagrams_SRCS
+ ecm_add_test(
+     ${TestPieDiagrams_SRCS}
+     TEST_NAME TestPieDiagrams
+-    LINK_LIBRARIES testtools KChart Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/PolarDiagrams/CMakeLists.txt b/qtests/PolarDiagrams/CMakeLists.txt
+index ee433707..32c96a75 100644
+--- a/qtests/PolarDiagrams/CMakeLists.txt
++++ b/qtests/PolarDiagrams/CMakeLists.txt
+@@ -9,5 +9,5 @@ qt_add_resources(TestPolarDiagrams_SRCS
+ ecm_add_test(
+     ${TestPolarDiagrams_SRCS}
+     TEST_NAME TestPolarDiagrams
+-    LINK_LIBRARIES testtools KChart Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/PolarPlanes/CMakeLists.txt b/qtests/PolarPlanes/CMakeLists.txt
+index 72cf879b..5301c5d5 100644
+--- a/qtests/PolarPlanes/CMakeLists.txt
++++ b/qtests/PolarPlanes/CMakeLists.txt
+@@ -9,5 +9,5 @@ qt_add_resources(TestPolarPlanes_SRCS
+ ecm_add_test(
+     ${TestPolarPlanes_SRCS}
+     TEST_NAME TestPolarPlanes
+-    LINK_LIBRARIES testtools KChart Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/QLayout/CMakeLists.txt b/qtests/QLayout/CMakeLists.txt
+index 1d81304e..317e100a 100644
+--- a/qtests/QLayout/CMakeLists.txt
++++ b/qtests/QLayout/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ ecm_add_test(
+     main.cpp
+     TEST_NAME TestQLayout
+-    LINK_LIBRARIES KChart Qt::Widgets Qt::Test
++    LINK_LIBRARIES KChartQt6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/RelativePosition/CMakeLists.txt b/qtests/RelativePosition/CMakeLists.txt
+index ca7fa02f..5052d006 100644
+--- a/qtests/RelativePosition/CMakeLists.txt
++++ b/qtests/RelativePosition/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ ecm_add_test(
+     main.cpp
+     TEST_NAME TestRelativePosition
+-    LINK_LIBRARIES KChart Qt::Widgets Qt::Test
++    LINK_LIBRARIES KChartQt6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/WidgetElementOwnership/CMakeLists.txt b/qtests/WidgetElementOwnership/CMakeLists.txt
+index acd8c42c..2074d328 100644
+--- a/qtests/WidgetElementOwnership/CMakeLists.txt
++++ b/qtests/WidgetElementOwnership/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ ecm_add_test(
+     main.cpp
+     TEST_NAME TestWidgetElementOwnership
+-    LINK_LIBRARIES KChart Qt::Widgets Qt::Test
++    LINK_LIBRARIES KChartQt6 Qt::Widgets Qt::Test
+ )
+diff --git a/src/KChart/CMakeLists.txt b/src/KChart/CMakeLists.txt
+index 0d5d6119..1106721e 100644
+--- a/src/KChart/CMakeLists.txt
++++ b/src/KChart/CMakeLists.txt
+@@ -1,9 +1,9 @@
+-set( KCHARTLIB_VERSION "2.8.89" )
++set( KCHARTLIB_VERSION "3.0.0" )
+ 
+ ecm_setup_version(${KCHARTLIB_VERSION}
+     VARIABLE_PREFIX KCHART
+     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kchart_version.h"
+-    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KChartConfigVersion.cmake"
++    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KChartQt6ConfigVersion.cmake"
+     SOVERSION 3
+ )
+ 
+@@ -193,7 +193,7 @@ ecm_create_qm_loader(kchart_LIB_SRCS kchart_qt)
+ 
+ qt_wrap_cpp(kchart_LIB_SRCS KChartEnums.h)
+ 
+-add_library(KChart ${kchart_LIB_SRCS} ${kchart_LIB_HEADERS})
++add_library(KChartQt6 ${kchart_LIB_SRCS} ${kchart_LIB_HEADERS})
+ 
+ # TODO: check if this snippet from .pro file should be ported, otherwise remove file
+ # linux-*{
+@@ -203,26 +203,26 @@ add_library(KChart ${kchart_LIB_SRCS} ${kchart_LIB_HEADERS})
+ #   }
+ # }
+ 
+-generate_export_header( KChart )
++generate_export_header( KChartQt6 BASE_NAME KChart )
+ 
+-target_include_directories(KChart
++target_include_directories(KChartQt6
+     INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KChart>"
+ )
+ 
+-target_link_libraries(KChart
++target_link_libraries(KChartQt6
+ PUBLIC
+     Qt::Widgets
+ PRIVATE
+     Qt::Svg
+ )
+-set_target_properties( KChart PROPERTIES
++set_target_properties( KChartQt6 PROPERTIES
+   VERSION     ${KCHART_VERSION}
+   SOVERSION   ${KCHART_SOVERSION}
+-  EXPORT_NAME "KChart"
++  EXPORT_NAME "KChartQt6"
+ )
+ 
+-install( TARGETS KChart
+-    EXPORT KChartTargets
++install( TARGETS KChartQt6
++    EXPORT KChartQt6Targets
+     ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+ 
+ 
+@@ -330,7 +330,7 @@ if(BUILD_QCH)
+ endif()
+ 
+ # create a Config.cmake and a ConfigVersion.cmake file and install them
+-set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KChart")
++set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KChartQt6")
+ 
+ if (BUILD_QCH)
+     ecm_install_qch_export(
+@@ -343,28 +343,28 @@ if (BUILD_QCH)
+ endif()
+ 
+ configure_package_config_file(
+-    "${CMAKE_CURRENT_SOURCE_DIR}/KChartConfig.cmake.in"
+-    "${CMAKE_CURRENT_BINARY_DIR}/KChartConfig.cmake"
++    "${CMAKE_CURRENT_SOURCE_DIR}/KChartQt6Config.cmake.in"
++    "${CMAKE_CURRENT_BINARY_DIR}/KChartQt6Config.cmake"
+     INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
+ )
+ 
+ install(FILES
+-            "${CMAKE_CURRENT_BINARY_DIR}/KChartConfig.cmake"
+-            "${CMAKE_CURRENT_BINARY_DIR}/KChartConfigVersion.cmake"
++            "${CMAKE_CURRENT_BINARY_DIR}/KChartQt6Config.cmake"
++            "${CMAKE_CURRENT_BINARY_DIR}/KChartQt6ConfigVersion.cmake"
+         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+         COMPONENT Devel)
+ 
+-install(EXPORT KChartTargets
++install(EXPORT KChartQt6Targets
+         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+-        FILE KChartTargets.cmake)
++        FILE KChartQt6Targets.cmake)
+ 
+ ecm_generate_pri_file(
+     VERSION ${KCHARTLIB_VERSION}
+-    BASE_NAME KChart
+-    LIB_NAME KChart
++    BASE_NAME KChartQt6
++    LIB_NAME KChartQt6
+     DEPS "widgets svg"
+     FILENAME_VAR PRI_FILENAME
+-    INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KChart
++    INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KChartQt6
+ )
+ 
+ install(FILES ${PRI_FILENAME}
+diff --git a/src/KChart/KChartConfig.cmake.in b/src/KChart/KChartConfig.cmake.in
+deleted file mode 100644
+index d7162629..00000000
+--- a/src/KChart/KChartConfig.cmake.in
++++ /dev/null
+@@ -1,9 +0,0 @@
+-@PACKAGE_INIT@
+-
+-include(CMakeFindDependencyMacro)
+-find_dependency(Qt@QT_MAJOR_VERSION@Core @QT_REQUIRED_VERSION@)
+-find_dependency(Qt@QT_MAJOR_VERSION@Svg @QT_REQUIRED_VERSION@)
+-find_dependency(Qt@QT_MAJOR_VERSION@Widgets @QT_REQUIRED_VERSION@)
+-
+-include("${CMAKE_CURRENT_LIST_DIR}/KChartTargets.cmake")
+-@PACKAGE_INCLUDE_QCHTARGETS@
+diff --git a/src/KChart/KChartQt6Config.cmake.in b/src/KChart/KChartQt6Config.cmake.in
+new file mode 100644
+index 00000000..42c0e6fc
+--- /dev/null
++++ b/src/KChart/KChartQt6Config.cmake.in
+@@ -0,0 +1,9 @@
++@PACKAGE_INIT@
++
++include(CMakeFindDependencyMacro)
++find_dependency(Qt6Core @QT_REQUIRED_VERSION@)
++find_dependency(Qt6Svg @QT_REQUIRED_VERSION@)
++find_dependency(Qt6Widgets @QT_REQUIRED_VERSION@)
++
++include("${CMAKE_CURRENT_LIST_DIR}/KChartQt6Targets.cmake")
++@PACKAGE_INCLUDE_QCHTARGETS@
+diff --git a/src/KGantt/CMakeLists.txt b/src/KGantt/CMakeLists.txt
+index a44f1552..1b59c7a6 100644
+--- a/src/KGantt/CMakeLists.txt
++++ b/src/KGantt/CMakeLists.txt
+@@ -1,14 +1,14 @@
+-set( KGANTTLIB_VERSION "2.8.89" )
++set( KGANTTLIB_VERSION "3.0.0" )
+ 
+ ecm_setup_version(${KGANTTLIB_VERSION}
+     VARIABLE_PREFIX KGANTT
+     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kgantt_version.h"
+-    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KGanttConfigVersion.cmake"
++    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KGanttQt6ConfigVersion.cmake"
+     SOVERSION 3
+ )
+ 
+ if(BUILD_TESTING)
+-    if(Qt5Test_FOUND)
++    if(Qt6Test_FOUND)
+         add_subdirectory(test)
+     endif()
+ endif()
+@@ -54,29 +54,29 @@ qt_wrap_ui(kgantt_LIB_SRCS
+ 
+ ecm_create_qm_loader(kgantt_LIB_SRCS kgantt_qt)
+ 
+-add_library( KGantt ${kgantt_LIB_SRCS} )
++add_library( KGanttQt6 ${kgantt_LIB_SRCS} )
+ 
+-generate_export_header( KGantt )
++generate_export_header( KGanttQt6 BASE_NAME KGantt )
+ 
+-target_include_directories(KGantt
++target_include_directories(KGanttQt6
+     INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KGantt>"
+ )
+ 
+-target_link_libraries( KGantt
++target_link_libraries( KGanttQt6
+ PUBLIC
+     Qt::Widgets
+ PRIVATE
+     Qt::PrintSupport
+ )
+ 
+-set_target_properties( KGantt PROPERTIES
++set_target_properties( KGanttQt6 PROPERTIES
+   VERSION     ${KGANTT_VERSION}
+   SOVERSION   ${KGANTT_SOVERSION}
+-  EXPORT_NAME "KGantt"
++  EXPORT_NAME "KGanttQt6"
+ )
+ 
+-install( TARGETS KGantt
+-    EXPORT KGanttTargets
++install( TARGETS KGanttQt6
++    EXPORT KGanttQt6Targets
+     ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+ 
+ ecm_generate_headers(kgantt_LIB_HEADERS
+@@ -157,25 +157,25 @@ if (BUILD_QCH)
+ endif()
+ 
+ configure_package_config_file(
+-    "${CMAKE_CURRENT_SOURCE_DIR}/KGanttConfig.cmake.in"
+-    "${CMAKE_CURRENT_BINARY_DIR}/KGanttConfig.cmake"
++    "${CMAKE_CURRENT_SOURCE_DIR}/KGanttQt6Config.cmake.in"
++    "${CMAKE_CURRENT_BINARY_DIR}/KGanttQt6Config.cmake"
+     INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
+ )
+ 
+ install(FILES
+-            "${CMAKE_CURRENT_BINARY_DIR}/KGanttConfig.cmake"
+-            "${CMAKE_CURRENT_BINARY_DIR}/KGanttConfigVersion.cmake"
++            "${CMAKE_CURRENT_BINARY_DIR}/KGanttQt6Config.cmake"
++            "${CMAKE_CURRENT_BINARY_DIR}/KGanttQt6ConfigVersion.cmake"
+         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+         COMPONENT Devel)
+ 
+-install(EXPORT KGanttTargets
++install(EXPORT KGanttQt6Targets
+         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+-        FILE KGanttTargets.cmake)
++        FILE KGanttQt6Targets.cmake)
+ 
+ ecm_generate_pri_file(
+     VERSION ${KGANTTLIB_VERSION}
+-    BASE_NAME KGantt
+-    LIB_NAME KGantt
++    BASE_NAME KGanttQt6
++    LIB_NAME KGanttQt6
+     DEPS "widgets printsupport"
+     FILENAME_VAR PRI_FILENAME
+     INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KGantt
+diff --git a/src/KGantt/KGanttConfig.cmake.in b/src/KGantt/KGanttConfig.cmake.in
+deleted file mode 100644
+index a919664e..00000000
+--- a/src/KGantt/KGanttConfig.cmake.in
++++ /dev/null
+@@ -1,9 +0,0 @@
+-@PACKAGE_INIT@
+-
+-include(CMakeFindDependencyMacro)
+-find_dependency(Qt@QT_MAJOR_VERSION@Core @QT_REQUIRED_VERSION@)
+-find_dependency(Qt@QT_MAJOR_VERSION@Widgets @QT_REQUIRED_VERSION@)
+-find_dependency(Qt@QT_MAJOR_VERSION@PrintSupport @QT_REQUIRED_VERSION@)
+-
+-include("${CMAKE_CURRENT_LIST_DIR}/KGanttTargets.cmake")
+-@PACKAGE_INCLUDE_QCHTARGETS@
+diff --git a/src/KGantt/KGanttQt6Config.cmake.in b/src/KGantt/KGanttQt6Config.cmake.in
+new file mode 100644
+index 00000000..306f6d52
+--- /dev/null
++++ b/src/KGantt/KGanttQt6Config.cmake.in
+@@ -0,0 +1,9 @@
++@PACKAGE_INIT@
++
++include(CMakeFindDependencyMacro)
++find_dependency(Qt6Core @QT_REQUIRED_VERSION@)
++find_dependency(Qt6Widgets @QT_REQUIRED_VERSION@)
++find_dependency(Qt6PrintSupport @QT_REQUIRED_VERSION@)
++
++include("${CMAKE_CURRENT_LIST_DIR}/KGanttTargets.cmake")
++@PACKAGE_INCLUDE_QCHTARGETS@
+diff --git a/src/KGantt/test/CMakeLists.txt b/src/KGantt/test/CMakeLists.txt
+index 02b38dcc..916334d1 100644
+--- a/src/KGantt/test/CMakeLists.txt
++++ b/src/KGantt/test/CMakeLists.txt
+@@ -5,20 +5,20 @@
+ 
+ ecm_add_test(TestKGanttConstraint.cpp
+     TEST_NAME KGanttConstraint
+-    LINK_LIBRARIES KGantt Qt::Test
++    LINK_LIBRARIES KGanttQt6 Qt::Test
+ )
+ 
+ ecm_add_test(TestKGanttConstraintModel.cpp
+     TEST_NAME KGanttConstraintModel
+-    LINK_LIBRARIES KGantt Qt::Test
++    LINK_LIBRARIES KGanttQt6 Qt::Test
+ )
+ 
+ ecm_add_test(TestMultiItems.cpp
+     TEST_NAME KGanttMultiItems
+-    LINK_LIBRARIES KGantt Qt::Test
++    LINK_LIBRARIES KGanttQt6 Qt::Test
+ )
+ 
+ ecm_add_test(TestKGanttView.cpp
+     TEST_NAME KGanttView
+-    LINK_LIBRARIES PUBLIC KGantt Qt::Test
++    LINK_LIBRARIES PUBLIC KGanttQt6 Qt::Test
+ )
+diff --git a/tests/DelayedData/CMakeLists.txt b/tests/DelayedData/CMakeLists.txt
+index 6894a70a..845258db 100644
+--- a/tests/DelayedData/CMakeLists.txt
++++ b/tests/DelayedData/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(DelayedData main.cpp)
+ 
+-target_link_libraries(DelayedData KChart Qt::Widgets)
++target_link_libraries(DelayedData KChartQt6 Qt::Widgets)
+diff --git a/tests/Gantt/apireview/CMakeLists.txt b/tests/Gantt/apireview/CMakeLists.txt
+index cf009b76..f60be532 100644
+--- a/tests/Gantt/apireview/CMakeLists.txt
++++ b/tests/Gantt/apireview/CMakeLists.txt
+@@ -15,4 +15,4 @@ qt_wrap_ui(TestApiReview_SRCS
+ 
+ add_executable(TestApiReview  ${TestApiReview_SRCS})
+ 
+-target_link_libraries(TestApiReview KGantt Qt::Widgets Qt::PrintSupport)
++target_link_libraries(TestApiReview KGanttQt6 Qt::Widgets Qt::PrintSupport)
+diff --git a/tests/Gantt/customconstraints/CMakeLists.txt b/tests/Gantt/customconstraints/CMakeLists.txt
+index 6a5a8e6e..95c75b11 100644
+--- a/tests/Gantt/customconstraints/CMakeLists.txt
++++ b/tests/Gantt/customconstraints/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(TestCustomConstraints  main.cpp)
+ 
+-target_link_libraries(TestCustomConstraints KGantt Qt::Widgets Qt::PrintSupport)
++target_link_libraries(TestCustomConstraints KGanttQt6 Qt::Widgets Qt::PrintSupport)
+diff --git a/tests/Gantt/gfxview/CMakeLists.txt b/tests/Gantt/gfxview/CMakeLists.txt
+index e5907306..bfb4c731 100644
+--- a/tests/Gantt/gfxview/CMakeLists.txt
++++ b/tests/Gantt/gfxview/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(TestGfxView  main.cpp)
+ 
+-target_link_libraries(TestGfxView KGantt Qt::Widgets Qt::PrintSupport)
++target_link_libraries(TestGfxView KGanttQt6 Qt::Widgets Qt::PrintSupport)
+diff --git a/tests/Gantt/headers/CMakeLists.txt b/tests/Gantt/headers/CMakeLists.txt
+index c193172a..37ffd84c 100644
+--- a/tests/Gantt/headers/CMakeLists.txt
++++ b/tests/Gantt/headers/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(TestHeaders  main.cpp)
+ 
+-target_link_libraries(TestHeaders KGantt Qt::Widgets)
++target_link_libraries(TestHeaders KGanttQt6 Qt::Widgets)
+diff --git a/tests/Gantt/listview/CMakeLists.txt b/tests/Gantt/listview/CMakeLists.txt
+index 654240d3..235a8bd2 100644
+--- a/tests/Gantt/listview/CMakeLists.txt
++++ b/tests/Gantt/listview/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(TestListView  main.cpp)
+ 
+-target_link_libraries(TestListView KGantt Qt::Widgets)
++target_link_libraries(TestListView KGanttQt6 Qt::Widgets)
+diff --git a/tests/Gantt/reorder/CMakeLists.txt b/tests/Gantt/reorder/CMakeLists.txt
+index 4e0b046a..29c3e581 100644
+--- a/tests/Gantt/reorder/CMakeLists.txt
++++ b/tests/Gantt/reorder/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(TestReorder  main.cpp)
+ 
+-target_link_libraries(TestReorder KGantt Qt::Widgets)
++target_link_libraries(TestReorder KGanttQt6 Qt::Widgets)
+diff --git a/tests/Gantt/unittest/CMakeLists.txt b/tests/Gantt/unittest/CMakeLists.txt
+index 9e51c7e7..ff180275 100644
+--- a/tests/Gantt/unittest/CMakeLists.txt
++++ b/tests/Gantt/unittest/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(TestUnittests  main.cpp)
+ 
+-target_link_libraries(TestUnittests KGantt Qt::Widgets)
++target_link_libraries(TestUnittests KGanttQt6 Qt::Widgets)
+diff --git a/tests/Gantt/view/CMakeLists.txt b/tests/Gantt/view/CMakeLists.txt
+index fe596661..5fde9814 100644
+--- a/tests/Gantt/view/CMakeLists.txt
++++ b/tests/Gantt/view/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(TestView  main.cpp)
+ 
+-target_link_libraries(TestView KGantt Qt::Widgets Qt::PrintSupport)
++target_link_libraries(TestView KGanttQt6 Qt::Widgets Qt::PrintSupport)
+diff --git a/tests/RootIndex/CMakeLists.txt b/tests/RootIndex/CMakeLists.txt
+index 4249c562..a2d9a965 100644
+--- a/tests/RootIndex/CMakeLists.txt
++++ b/tests/RootIndex/CMakeLists.txt
+@@ -10,4 +10,4 @@ qt_wrap_ui(RootIndex_SRCS
+ 
+ add_executable(RootIndex  ${RootIndex_SRCS})
+ 
+-target_link_libraries(RootIndex KChart Qt::Widgets)
++target_link_libraries(RootIndex KChartQt6 Qt::Widgets)
+-- 
+GitLab
+
+
+From ad39c1864d977e6e93fcff963d23362c0c42ba95 Mon Sep 17 00:00:00 2001
+From: Jonathan Esk-Riddell <jr@jriddell.org>
+Date: Thu, 23 Nov 2023 12:56:22 +0000
+Subject: [PATCH 3/5] change name of translations to avoid overlap
+
+---
+ src/KChart/CMakeLists.txt | 2 +-
+ src/KGantt/CMakeLists.txt | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/KChart/CMakeLists.txt b/src/KChart/CMakeLists.txt
+index 1106721e..eb10afd4 100644
+--- a/src/KChart/CMakeLists.txt
++++ b/src/KChart/CMakeLists.txt
+@@ -189,7 +189,7 @@ qt_add_resources(kchart_LIB_SRCS
+     KChart_LeveyJennings_resources.qrc
+ )
+ 
+-ecm_create_qm_loader(kchart_LIB_SRCS kchart_qt)
++ecm_create_qm_loader(kchart_LIB_SRCS kchart_qt6)
+ 
+ qt_wrap_cpp(kchart_LIB_SRCS KChartEnums.h)
+ 
+diff --git a/src/KGantt/CMakeLists.txt b/src/KGantt/CMakeLists.txt
+index 1b59c7a6..a95feca0 100644
+--- a/src/KGantt/CMakeLists.txt
++++ b/src/KGantt/CMakeLists.txt
+@@ -52,7 +52,7 @@ qt_wrap_ui(kgantt_LIB_SRCS
+     kganttdatetimetimelinedialog.ui
+ )
+ 
+-ecm_create_qm_loader(kgantt_LIB_SRCS kgantt_qt)
++ecm_create_qm_loader(kgantt_LIB_SRCS kgantt_qt6)
+ 
+ add_library( KGanttQt6 ${kgantt_LIB_SRCS} )
+ 
+-- 
+GitLab
+
+
+From 3afb9213b4d1e01c45067c5afc91a292ac8e6c8a Mon Sep 17 00:00:00 2001
+From: Jonathan Esk-Riddell <jr@jriddell.org>
+Date: Thu, 23 Nov 2023 17:18:52 +0000
+Subject: [PATCH 4/5] remove qt5 CI jobs
+
+---
+ .gitlab-ci.yml | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
+index 11729e41..cbc843ef 100644
+--- a/.gitlab-ci.yml
++++ b/.gitlab-ci.yml
+@@ -4,12 +4,7 @@
+ include:
+   - project: sysadmin/ci-utilities
+     file:
+-      - /gitlab-templates/linux.yml
+       - /gitlab-templates/linux-qt6.yml
+-      - /gitlab-templates/linux-static.yml
+-      - /gitlab-templates/freebsd.yml
+       - /gitlab-templates/freebsd-qt6.yml
+-      - /gitlab-templates/windows.yml
+       - /gitlab-templates/windows-qt6.yml
+-      - /gitlab-templates/windows-static.yml
+ 
+-- 
+GitLab
+
+
+From d83d8de758b4c6718c2f788acff3fdc770477332 Mon Sep 17 00:00:00 2001
+From: Jonathan Esk-Riddell <jr@jriddell.org>
+Date: Fri, 24 Nov 2023 13:21:27 +0000
+Subject: [PATCH 5/5] rename to KGantt6 and KChart6 and do not install headers
+ into frameworks directory
+
+---
+ examples/Axis/Chart/CMakeLists.txt            |  2 +-
+ examples/Axis/Labels/CMakeLists.txt           |  2 +-
+ examples/Axis/Parameters/CMakeLists.txt       |  2 +-
+ examples/Axis/Widget/CMakeLists.txt           |  2 +-
+ examples/Background/CMakeLists.txt            |  2 +-
+ examples/Bars/Advanced/CMakeLists.txt         |  2 +-
+ examples/Bars/Parameters/CMakeLists.txt       |  2 +-
+ examples/Bars/Simple/CMakeLists.txt           |  2 +-
+ examples/DataValueTexts/CMakeLists.txt        |  2 +-
+ examples/DrawIntoPainter/CMakeLists.txt       |  2 +-
+ examples/EmptyValues/CMakeLists.txt           |  2 +-
+ examples/Gantt/legend_example/CMakeLists.txt  |  2 +-
+ examples/Gantt/palette/CMakeLists.txt         |  2 +-
+ examples/Gantt/printing/CMakeLists.txt        |  2 +-
+ examples/Gantt/project/CMakeLists.txt         |  2 +-
+ examples/Grids/CartesianGrid/CMakeLists.txt   |  2 +-
+ examples/Grids/PolarGrid/CMakeLists.txt       |  2 +-
+ .../HeadersFooters/Advanced/CMakeLists.txt    |  2 +-
+ .../HeadersFootersParameters/CMakeLists.txt   |  2 +-
+ .../HeadersFootersSimple/CMakeLists.txt       |  2 +-
+ .../Legends/LegendAdvanced/CMakeLists.txt     |  2 +-
+ .../Legends/LegendOverDiagram/CMakeLists.txt  |  2 +-
+ .../Legends/LegendParameters/CMakeLists.txt   |  2 +-
+ examples/Legends/LegendSimple/CMakeLists.txt  |  2 +-
+ examples/LeveyJennings/Simple/CMakeLists.txt  |  2 +-
+ examples/Lines/Advanced/CMakeLists.txt        |  2 +-
+ examples/Lines/AreaPerCell/CMakeLists.txt     |  2 +-
+ examples/Lines/Parameters/CMakeLists.txt      |  2 +-
+ examples/Lines/PointChart/CMakeLists.txt      |  2 +-
+ examples/Lines/PointWidget/CMakeLists.txt     |  2 +-
+ .../Lines/SimpleLineWidget/CMakeLists.txt     |  2 +-
+ examples/ModelView/HidingData/CMakeLists.txt  |  2 +-
+ examples/ModelView/TableView/CMakeLists.txt   |  2 +-
+ examples/NoValues/CMakeLists.txt              |  2 +-
+ examples/Pie/Advanced/CMakeLists.txt          |  2 +-
+ examples/Pie/Parameters/CMakeLists.txt        |  2 +-
+ examples/Pie/Simple/CMakeLists.txt            |  2 +-
+ .../Plane/AdjustedBoundaries/CMakeLists.txt   |  2 +-
+ examples/Plane/OverlayedPlanes/CMakeLists.txt |  2 +-
+ examples/Plotter/Advanced/CMakeLists.txt      |  2 +-
+ examples/Plotter/BigDataset/CMakeLists.txt    |  2 +-
+ examples/Plotter/BubbleChart/CMakeLists.txt   |  2 +-
+ examples/Plotter/Isometric/CMakeLists.txt     |  2 +-
+ examples/Plotter/Logarithmic/CMakeLists.txt   |  2 +-
+ examples/Plotter/Simple/CMakeLists.txt        |  2 +-
+ examples/Plotter/Timeline/CMakeLists.txt      |  2 +-
+ examples/Polar/Advanced/CMakeLists.txt        |  2 +-
+ examples/Polar/Parameters/CMakeLists.txt      |  2 +-
+ examples/Polar/Simple/CMakeLists.txt          |  2 +-
+ examples/RealTime/CMakeLists.txt              |  2 +-
+ .../SeparateDiagrams/CMakeLists.txt           |  2 +-
+ examples/Sql/CMakeLists.txt                   |  2 +-
+ examples/Stock/Advanced/CMakeLists.txt        |  2 +-
+ .../TernaryCharts/Advanced/CMakeLists.txt     |  2 +-
+ examples/Widget/Advanced/CMakeLists.txt       |  2 +-
+ examples/Widget/Parameters/CMakeLists.txt     |  2 +-
+ examples/Widget/Simple/CMakeLists.txt         |  2 +-
+ examples/Zoom/Keyboard/CMakeLists.txt         |  2 +-
+ examples/Zoom/ScrollBars/CMakeLists.txt       |  2 +-
+ examples/demo/CMakeLists.txt                  |  2 +-
+ qtests/AttributesModel/CMakeLists.txt         |  2 +-
+ qtests/AxisOwnership/CMakeLists.txt           |  2 +-
+ qtests/BarDiagrams/CMakeLists.txt             |  2 +-
+ .../CMakeLists.txt                            |  2 +-
+ qtests/CartesianPlanes/CMakeLists.txt         |  2 +-
+ qtests/ChartElementOwnership/CMakeLists.txt   |  2 +-
+ qtests/Cloning/CMakeLists.txt                 |  2 +-
+ qtests/DrawIntoPainter/CMakeLists.txt         |  2 +-
+ qtests/Legends/CMakeLists.txt                 |  2 +-
+ qtests/LineDiagrams/CMakeLists.txt            |  2 +-
+ qtests/Measure/CMakeLists.txt                 |  2 +-
+ qtests/Palette/CMakeLists.txt                 |  2 +-
+ qtests/ParamVsParam/CMakeLists.txt            |  2 +-
+ qtests/PieDiagrams/CMakeLists.txt             |  2 +-
+ qtests/PolarDiagrams/CMakeLists.txt           |  2 +-
+ qtests/PolarPlanes/CMakeLists.txt             |  2 +-
+ qtests/QLayout/CMakeLists.txt                 |  2 +-
+ qtests/RelativePosition/CMakeLists.txt        |  2 +-
+ qtests/WidgetElementOwnership/CMakeLists.txt  |  2 +-
+ src/KChart/CMakeLists.txt                     | 44 +++++++++----------
+ ...Config.cmake.in => KChart6Config.cmake.in} |  2 +-
+ src/KGantt/CMakeLists.txt                     | 44 +++++++++----------
+ ...Config.cmake.in => KGantt6Config.cmake.in} |  2 +-
+ src/KGantt/test/CMakeLists.txt                |  8 ++--
+ tests/DelayedData/CMakeLists.txt              |  2 +-
+ tests/Gantt/apireview/CMakeLists.txt          |  2 +-
+ tests/Gantt/customconstraints/CMakeLists.txt  |  2 +-
+ tests/Gantt/gfxview/CMakeLists.txt            |  2 +-
+ tests/Gantt/headers/CMakeLists.txt            |  2 +-
+ tests/Gantt/listview/CMakeLists.txt           |  2 +-
+ tests/Gantt/reorder/CMakeLists.txt            |  2 +-
+ tests/Gantt/unittest/CMakeLists.txt           |  2 +-
+ tests/Gantt/view/CMakeLists.txt               |  2 +-
+ tests/RootIndex/CMakeLists.txt                |  2 +-
+ 94 files changed, 139 insertions(+), 139 deletions(-)
+ rename src/KChart/{KChartQt6Config.cmake.in => KChart6Config.cmake.in} (78%)
+ rename src/KGantt/{KGanttQt6Config.cmake.in => KGantt6Config.cmake.in} (80%)
+
+diff --git a/examples/Axis/Chart/CMakeLists.txt b/examples/Axis/Chart/CMakeLists.txt
+index abe72344..0efc9790 100644
+--- a/examples/Axis/Chart/CMakeLists.txt
++++ b/examples/Axis/Chart/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(AxisChart_SRCS
+ 
+ add_executable(AxisChart  ${AxisChart_SRCS})
+ 
+-target_link_libraries(AxisChart testtools KChartQt6 Qt::Widgets)
++target_link_libraries(AxisChart testtools KChart6 Qt::Widgets)
+diff --git a/examples/Axis/Labels/CMakeLists.txt b/examples/Axis/Labels/CMakeLists.txt
+index 7962ab16..39f7eba7 100644
+--- a/examples/Axis/Labels/CMakeLists.txt
++++ b/examples/Axis/Labels/CMakeLists.txt
+@@ -16,4 +16,4 @@ qt_add_resources(AxisLabels_SRCS
+ 
+ add_executable(AxisLabels  ${AxisLabels_SRCS})
+ 
+-target_link_libraries(AxisLabels testtools KChartQt6 Qt::Widgets)
++target_link_libraries(AxisLabels testtools KChart6 Qt::Widgets)
+diff --git a/examples/Axis/Parameters/CMakeLists.txt b/examples/Axis/Parameters/CMakeLists.txt
+index 83b62796..43e0a0fc 100644
+--- a/examples/Axis/Parameters/CMakeLists.txt
++++ b/examples/Axis/Parameters/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(AxisParameters_SRCS
+ 
+ add_executable(AxisParameters  ${AxisParameters_SRCS})
+ 
+-target_link_libraries(AxisParameters testtools KChartQt6 Qt::Widgets)
++target_link_libraries(AxisParameters testtools KChart6 Qt::Widgets)
+diff --git a/examples/Axis/Widget/CMakeLists.txt b/examples/Axis/Widget/CMakeLists.txt
+index c40830e7..d9f901cc 100644
+--- a/examples/Axis/Widget/CMakeLists.txt
++++ b/examples/Axis/Widget/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(AxisWidget  main.cpp)
+ 
+-target_link_libraries(AxisWidget KChartQt6 Qt::Widgets)
++target_link_libraries(AxisWidget KChart6 Qt::Widgets)
+diff --git a/examples/Background/CMakeLists.txt b/examples/Background/CMakeLists.txt
+index 0d5de818..ca782aab 100644
+--- a/examples/Background/CMakeLists.txt
++++ b/examples/Background/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(Background  main.cpp)
+ 
+-target_link_libraries(Background KChartQt6 Qt::Widgets)
++target_link_libraries(Background KChart6 Qt::Widgets)
+diff --git a/examples/Bars/Advanced/CMakeLists.txt b/examples/Bars/Advanced/CMakeLists.txt
+index 9411e6b2..0f469c1e 100644
+--- a/examples/Bars/Advanced/CMakeLists.txt
++++ b/examples/Bars/Advanced/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(BarsAdvanced_SRCS
+ 
+ add_executable(BarsAdvanced  ${BarsAdvanced_SRCS})
+ 
+-target_link_libraries(BarsAdvanced testtools KChartQt6 Qt::Widgets)
++target_link_libraries(BarsAdvanced testtools KChart6 Qt::Widgets)
+diff --git a/examples/Bars/Parameters/CMakeLists.txt b/examples/Bars/Parameters/CMakeLists.txt
+index ec8f30e8..d848f5fb 100644
+--- a/examples/Bars/Parameters/CMakeLists.txt
++++ b/examples/Bars/Parameters/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(BarsParameters  main.cpp)
+ 
+-target_link_libraries(BarsParameters KChartQt6 Qt::Widgets)
++target_link_libraries(BarsParameters KChart6 Qt::Widgets)
+diff --git a/examples/Bars/Simple/CMakeLists.txt b/examples/Bars/Simple/CMakeLists.txt
+index 2a6c46e9..7108d407 100644
+--- a/examples/Bars/Simple/CMakeLists.txt
++++ b/examples/Bars/Simple/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(BarsSimple  main.cpp)
+ 
+-target_link_libraries(BarsSimple KChartQt6 Qt::Widgets)
++target_link_libraries(BarsSimple KChart6 Qt::Widgets)
+diff --git a/examples/DataValueTexts/CMakeLists.txt b/examples/DataValueTexts/CMakeLists.txt
+index 28fb5389..d4ccf908 100644
+--- a/examples/DataValueTexts/CMakeLists.txt
++++ b/examples/DataValueTexts/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(DataValueTexts_SRCS
+ 
+ add_executable(DataValueTexts  ${DataValueTexts_SRCS})
+ 
+-target_link_libraries(DataValueTexts testtools KChartQt6 Qt::Widgets)
++target_link_libraries(DataValueTexts testtools KChart6 Qt::Widgets)
+diff --git a/examples/DrawIntoPainter/CMakeLists.txt b/examples/DrawIntoPainter/CMakeLists.txt
+index 671f8371..bbf00f95 100644
+--- a/examples/DrawIntoPainter/CMakeLists.txt
++++ b/examples/DrawIntoPainter/CMakeLists.txt
+@@ -16,4 +16,4 @@ qt_add_resources(DrawIntoPainter_SRCS
+ 
+ add_executable(DrawIntoPainter  ${DrawIntoPainter_SRCS})
+ 
+-target_link_libraries(DrawIntoPainter testtools KChartQt6 Qt::Widgets Qt::PrintSupport)
++target_link_libraries(DrawIntoPainter testtools KChart6 Qt::Widgets Qt::PrintSupport)
+diff --git a/examples/EmptyValues/CMakeLists.txt b/examples/EmptyValues/CMakeLists.txt
+index 30018594..59c21454 100644
+--- a/examples/EmptyValues/CMakeLists.txt
++++ b/examples/EmptyValues/CMakeLists.txt
+@@ -10,4 +10,4 @@ qt_add_resources(EmptyValues_SRCS
+ 
+ add_executable(EmptyValues  ${EmptyValues_SRCS})
+ 
+-target_link_libraries(EmptyValues testtools KChartQt6 Qt::Widgets)
++target_link_libraries(EmptyValues testtools KChart6 Qt::Widgets)
+diff --git a/examples/Gantt/legend_example/CMakeLists.txt b/examples/Gantt/legend_example/CMakeLists.txt
+index ae077a3d..2f904f3a 100644
+--- a/examples/Gantt/legend_example/CMakeLists.txt
++++ b/examples/Gantt/legend_example/CMakeLists.txt
+@@ -15,4 +15,4 @@ qt_wrap_ui(legend_example_SRCS
+ 
+ add_executable(legend_example  ${legend_example_SRCS})
+ 
+-target_link_libraries(legend_example KGanttQt6 Qt::Widgets Qt::PrintSupport)
++target_link_libraries(legend_example KGantt6 Qt::Widgets Qt::PrintSupport)
+diff --git a/examples/Gantt/palette/CMakeLists.txt b/examples/Gantt/palette/CMakeLists.txt
+index e580fad7..2fc425cc 100644
+--- a/examples/Gantt/palette/CMakeLists.txt
++++ b/examples/Gantt/palette/CMakeLists.txt
+@@ -8,4 +8,4 @@ set(GanttPalette_SRCS
+ 
+ add_executable(GanttPalette  ${GanttPalette_SRCS})
+ 
+-target_link_libraries(GanttPalette KGanttQt6 Qt::Widgets Qt::PrintSupport)
++target_link_libraries(GanttPalette KGantt6 Qt::Widgets Qt::PrintSupport)
+diff --git a/examples/Gantt/printing/CMakeLists.txt b/examples/Gantt/printing/CMakeLists.txt
+index 546df446..789c9931 100644
+--- a/examples/Gantt/printing/CMakeLists.txt
++++ b/examples/Gantt/printing/CMakeLists.txt
+@@ -8,4 +8,4 @@ set(GanttPrinting_SRCS
+ 
+ add_executable(GanttPrinting  ${GanttPrinting_SRCS})
+ 
+-target_link_libraries(GanttPrinting KGanttQt6 Qt::Widgets Qt::PrintSupport)
++target_link_libraries(GanttPrinting KGantt6 Qt::Widgets Qt::PrintSupport)
+diff --git a/examples/Gantt/project/CMakeLists.txt b/examples/Gantt/project/CMakeLists.txt
+index bb3c2f5a..fb7b162b 100644
+--- a/examples/Gantt/project/CMakeLists.txt
++++ b/examples/Gantt/project/CMakeLists.txt
+@@ -8,4 +8,4 @@ set(project_SRCS
+ 
+ add_executable(project  ${project_SRCS})
+ 
+-target_link_libraries(project KGanttQt6 Qt::Widgets Qt::PrintSupport)
++target_link_libraries(project KGantt6 Qt::Widgets Qt::PrintSupport)
+diff --git a/examples/Grids/CartesianGrid/CMakeLists.txt b/examples/Grids/CartesianGrid/CMakeLists.txt
+index 35346160..2fa0a582 100644
+--- a/examples/Grids/CartesianGrid/CMakeLists.txt
++++ b/examples/Grids/CartesianGrid/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(CartesianGrid  main.cpp)
+ 
+-target_link_libraries(CartesianGrid KChartQt6 Qt::Widgets)
++target_link_libraries(CartesianGrid KChart6 Qt::Widgets)
+diff --git a/examples/Grids/PolarGrid/CMakeLists.txt b/examples/Grids/PolarGrid/CMakeLists.txt
+index 4bdc687a..e55aad00 100644
+--- a/examples/Grids/PolarGrid/CMakeLists.txt
++++ b/examples/Grids/PolarGrid/CMakeLists.txt
+@@ -10,4 +10,4 @@ qt_wrap_ui(PolarGrid_SRCS
+ 
+ add_executable(PolarGrid  ${PolarGrid_SRCS})
+ 
+-target_link_libraries(PolarGrid KChartQt6 Qt::Widgets)
++target_link_libraries(PolarGrid KChart6 Qt::Widgets)
+diff --git a/examples/HeadersFooters/Advanced/CMakeLists.txt b/examples/HeadersFooters/Advanced/CMakeLists.txt
+index 9055a58a..86582aeb 100644
+--- a/examples/HeadersFooters/Advanced/CMakeLists.txt
++++ b/examples/HeadersFooters/Advanced/CMakeLists.txt
+@@ -15,4 +15,4 @@ qt_add_resources(HeadersFootersAdvanced_SRCS
+ 
+ add_executable(HeadersFootersAdvanced  ${HeadersFootersAdvanced_SRCS})
+ 
+-target_link_libraries(HeadersFootersAdvanced testtools KChartQt6 Qt::Widgets Qt::PrintSupport)
++target_link_libraries(HeadersFootersAdvanced testtools KChart6 Qt::Widgets Qt::PrintSupport)
+diff --git a/examples/HeadersFooters/HeadersFootersParameters/CMakeLists.txt b/examples/HeadersFooters/HeadersFootersParameters/CMakeLists.txt
+index 2888614e..c6e2b9d1 100644
+--- a/examples/HeadersFooters/HeadersFootersParameters/CMakeLists.txt
++++ b/examples/HeadersFooters/HeadersFootersParameters/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(HeadersFootersParameters  main.cpp)
+ 
+-target_link_libraries(HeadersFootersParameters KChartQt6 Qt::Widgets)
++target_link_libraries(HeadersFootersParameters KChart6 Qt::Widgets)
+diff --git a/examples/HeadersFooters/HeadersFootersSimple/CMakeLists.txt b/examples/HeadersFooters/HeadersFootersSimple/CMakeLists.txt
+index f538b87f..81248f29 100644
+--- a/examples/HeadersFooters/HeadersFootersSimple/CMakeLists.txt
++++ b/examples/HeadersFooters/HeadersFootersSimple/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(HeadersFootersSimple  main.cpp)
+ 
+-target_link_libraries(HeadersFootersSimple KChartQt6 Qt::Widgets)
++target_link_libraries(HeadersFootersSimple KChart6 Qt::Widgets)
+diff --git a/examples/Legends/LegendAdvanced/CMakeLists.txt b/examples/Legends/LegendAdvanced/CMakeLists.txt
+index f42bd05b..3d61ef9a 100644
+--- a/examples/Legends/LegendAdvanced/CMakeLists.txt
++++ b/examples/Legends/LegendAdvanced/CMakeLists.txt
+@@ -17,4 +17,4 @@ qt_add_resources(LegendAdvanced_SRCS
+ 
+ add_executable(LegendAdvanced  ${LegendAdvanced_SRCS})
+ 
+-target_link_libraries(LegendAdvanced testtools KChartQt6 Qt::Widgets)
++target_link_libraries(LegendAdvanced testtools KChart6 Qt::Widgets)
+diff --git a/examples/Legends/LegendOverDiagram/CMakeLists.txt b/examples/Legends/LegendOverDiagram/CMakeLists.txt
+index 4de8d0ee..d0f3e47a 100644
+--- a/examples/Legends/LegendOverDiagram/CMakeLists.txt
++++ b/examples/Legends/LegendOverDiagram/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(LegendOverDiagram  main.cpp)
+ 
+-target_link_libraries(LegendOverDiagram KChartQt6 Qt::Widgets)
++target_link_libraries(LegendOverDiagram KChart6 Qt::Widgets)
+diff --git a/examples/Legends/LegendParameters/CMakeLists.txt b/examples/Legends/LegendParameters/CMakeLists.txt
+index 77df4b68..350b221a 100644
+--- a/examples/Legends/LegendParameters/CMakeLists.txt
++++ b/examples/Legends/LegendParameters/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(LegendParameters  main.cpp)
+ 
+-target_link_libraries(LegendParameters KChartQt6 Qt::Widgets)
++target_link_libraries(LegendParameters KChart6 Qt::Widgets)
+diff --git a/examples/Legends/LegendSimple/CMakeLists.txt b/examples/Legends/LegendSimple/CMakeLists.txt
+index 4ef9490f..2dd6cc7a 100644
+--- a/examples/Legends/LegendSimple/CMakeLists.txt
++++ b/examples/Legends/LegendSimple/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(LegendSimple  main.cpp)
+ 
+-target_link_libraries(LegendSimple KChartQt6 Qt::Widgets)
++target_link_libraries(LegendSimple KChart6 Qt::Widgets)
+diff --git a/examples/LeveyJennings/Simple/CMakeLists.txt b/examples/LeveyJennings/Simple/CMakeLists.txt
+index 82ec204b..f38a1050 100644
+--- a/examples/LeveyJennings/Simple/CMakeLists.txt
++++ b/examples/LeveyJennings/Simple/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(LeveyJenningsSimple  main.cpp)
+ 
+-target_link_libraries(LeveyJenningsSimple KChartQt6 Qt::Widgets)
++target_link_libraries(LeveyJenningsSimple KChart6 Qt::Widgets)
+diff --git a/examples/Lines/Advanced/CMakeLists.txt b/examples/Lines/Advanced/CMakeLists.txt
+index 578d211d..2ac97635 100644
+--- a/examples/Lines/Advanced/CMakeLists.txt
++++ b/examples/Lines/Advanced/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(LinesAdvanced_SRCS
+ 
+ add_executable(LinesAdvanced  ${LinesAdvanced_SRCS})
+ 
+-target_link_libraries(LinesAdvanced testtools KChartQt6 Qt::Widgets)
++target_link_libraries(LinesAdvanced testtools KChart6 Qt::Widgets)
+diff --git a/examples/Lines/AreaPerCell/CMakeLists.txt b/examples/Lines/AreaPerCell/CMakeLists.txt
+index 56c78b2b..741ec73b 100644
+--- a/examples/Lines/AreaPerCell/CMakeLists.txt
++++ b/examples/Lines/AreaPerCell/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(AreaPerCell main.cpp)
+ 
+-target_link_libraries(AreaPerCell KChartQt6 Qt::Widgets)
++target_link_libraries(AreaPerCell KChart6 Qt::Widgets)
+diff --git a/examples/Lines/Parameters/CMakeLists.txt b/examples/Lines/Parameters/CMakeLists.txt
+index 08da0945..9fa68222 100644
+--- a/examples/Lines/Parameters/CMakeLists.txt
++++ b/examples/Lines/Parameters/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(Parameters main.cpp)
+ 
+-target_link_libraries(Parameters KChartQt6 Qt::Widgets)
++target_link_libraries(Parameters KChart6 Qt::Widgets)
+diff --git a/examples/Lines/PointChart/CMakeLists.txt b/examples/Lines/PointChart/CMakeLists.txt
+index cd52de88..aae43562 100644
+--- a/examples/Lines/PointChart/CMakeLists.txt
++++ b/examples/Lines/PointChart/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(PointChart_SRCS
+ 
+ add_executable(PointChart  ${PointChart_SRCS})
+ 
+-target_link_libraries(PointChart testtools KChartQt6 Qt::Widgets)
++target_link_libraries(PointChart testtools KChart6 Qt::Widgets)
+diff --git a/examples/Lines/PointWidget/CMakeLists.txt b/examples/Lines/PointWidget/CMakeLists.txt
+index b50dc3f1..528e90c5 100644
+--- a/examples/Lines/PointWidget/CMakeLists.txt
++++ b/examples/Lines/PointWidget/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(PointWidget main.cpp)
+ 
+-target_link_libraries(PointWidget KChartQt6 Qt::Widgets)
++target_link_libraries(PointWidget KChart6 Qt::Widgets)
+diff --git a/examples/Lines/SimpleLineWidget/CMakeLists.txt b/examples/Lines/SimpleLineWidget/CMakeLists.txt
+index 158dcdc5..8cb96eaf 100644
+--- a/examples/Lines/SimpleLineWidget/CMakeLists.txt
++++ b/examples/Lines/SimpleLineWidget/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(SimpleLineWidget main.cpp)
+ 
+-target_link_libraries(SimpleLineWidget KChartQt6 Qt::Widgets)
++target_link_libraries(SimpleLineWidget KChart6 Qt::Widgets)
+diff --git a/examples/ModelView/HidingData/CMakeLists.txt b/examples/ModelView/HidingData/CMakeLists.txt
+index f35a7d4a..8fca34fe 100644
+--- a/examples/ModelView/HidingData/CMakeLists.txt
++++ b/examples/ModelView/HidingData/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(HidingData_SRCS
+ 
+ add_executable(HidingData  ${HidingData_SRCS})
+ 
+-target_link_libraries(HidingData testtools KChartQt6 Qt::Widgets)
++target_link_libraries(HidingData testtools KChart6 Qt::Widgets)
+diff --git a/examples/ModelView/TableView/CMakeLists.txt b/examples/ModelView/TableView/CMakeLists.txt
+index d2e9ab2d..76238a11 100644
+--- a/examples/ModelView/TableView/CMakeLists.txt
++++ b/examples/ModelView/TableView/CMakeLists.txt
+@@ -10,4 +10,4 @@ qt_add_resources(TableView_SRCS
+ 
+ add_executable(TableView  ${TableView_SRCS})
+ 
+-target_link_libraries(TableView testtools KChartQt6 Qt::Widgets)
++target_link_libraries(TableView testtools KChart6 Qt::Widgets)
+diff --git a/examples/NoValues/CMakeLists.txt b/examples/NoValues/CMakeLists.txt
+index c582c38e..7c264d75 100644
+--- a/examples/NoValues/CMakeLists.txt
++++ b/examples/NoValues/CMakeLists.txt
+@@ -6,4 +6,4 @@ set(NoValues_SRCS
+ 
+ add_executable(NoValues  ${NoValues_SRCS})
+ 
+-target_link_libraries(NoValues KChartQt6 Qt::Widgets)
++target_link_libraries(NoValues KChart6 Qt::Widgets)
+diff --git a/examples/Pie/Advanced/CMakeLists.txt b/examples/Pie/Advanced/CMakeLists.txt
+index 4797739e..1094fe75 100644
+--- a/examples/Pie/Advanced/CMakeLists.txt
++++ b/examples/Pie/Advanced/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(PieAdvanced_SRCS
+ 
+ add_executable(PieAdvanced  ${PieAdvanced_SRCS})
+ 
+-target_link_libraries(PieAdvanced testtools KChartQt6 Qt::Widgets)
++target_link_libraries(PieAdvanced testtools KChart6 Qt::Widgets)
+diff --git a/examples/Pie/Parameters/CMakeLists.txt b/examples/Pie/Parameters/CMakeLists.txt
+index fa428856..04368a55 100644
+--- a/examples/Pie/Parameters/CMakeLists.txt
++++ b/examples/Pie/Parameters/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(PieParameters  main.cpp)
+ 
+-target_link_libraries(PieParameters KChartQt6 Qt::Widgets)
++target_link_libraries(PieParameters KChart6 Qt::Widgets)
+diff --git a/examples/Pie/Simple/CMakeLists.txt b/examples/Pie/Simple/CMakeLists.txt
+index e02e2663..d21063e6 100644
+--- a/examples/Pie/Simple/CMakeLists.txt
++++ b/examples/Pie/Simple/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(PieSimple  main.cpp)
+ 
+-target_link_libraries(PieSimple KChartQt6 Qt::Widgets)
++target_link_libraries(PieSimple KChart6 Qt::Widgets)
+diff --git a/examples/Plane/AdjustedBoundaries/CMakeLists.txt b/examples/Plane/AdjustedBoundaries/CMakeLists.txt
+index 977958e5..6bcf55cc 100644
+--- a/examples/Plane/AdjustedBoundaries/CMakeLists.txt
++++ b/examples/Plane/AdjustedBoundaries/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(AdjustedBoundaries  main.cpp)
+ 
+-target_link_libraries(AdjustedBoundaries KChartQt6 Qt::Widgets)
++target_link_libraries(AdjustedBoundaries KChart6 Qt::Widgets)
+diff --git a/examples/Plane/OverlayedPlanes/CMakeLists.txt b/examples/Plane/OverlayedPlanes/CMakeLists.txt
+index b28dcea7..8ad0694a 100644
+--- a/examples/Plane/OverlayedPlanes/CMakeLists.txt
++++ b/examples/Plane/OverlayedPlanes/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(OverlayedPlanes_SRCS
+ 
+ add_executable(OverlayedPlanes  ${OverlayedPlanes_SRCS})
+ 
+-target_link_libraries(OverlayedPlanes testtools KChartQt6 Qt::Widgets)
++target_link_libraries(OverlayedPlanes testtools KChart6 Qt::Widgets)
+diff --git a/examples/Plotter/Advanced/CMakeLists.txt b/examples/Plotter/Advanced/CMakeLists.txt
+index c8c694b7..732c42d5 100644
+--- a/examples/Plotter/Advanced/CMakeLists.txt
++++ b/examples/Plotter/Advanced/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(PlotterAdvanced  main.cpp)
+ 
+-target_link_libraries(PlotterAdvanced KChartQt6 Qt::Widgets)
++target_link_libraries(PlotterAdvanced KChart6 Qt::Widgets)
+diff --git a/examples/Plotter/BigDataset/CMakeLists.txt b/examples/Plotter/BigDataset/CMakeLists.txt
+index 54b0c574..8eb90b87 100644
+--- a/examples/Plotter/BigDataset/CMakeLists.txt
++++ b/examples/Plotter/BigDataset/CMakeLists.txt
+@@ -12,4 +12,4 @@ qt_wrap_ui(BigDataset_SRCS
+ 
+ add_executable(BigDataset  ${BigDataset_SRCS})
+ 
+-target_link_libraries(BigDataset KChartQt6 Qt::Widgets)
++target_link_libraries(BigDataset KChart6 Qt::Widgets)
+diff --git a/examples/Plotter/BubbleChart/CMakeLists.txt b/examples/Plotter/BubbleChart/CMakeLists.txt
+index cd4cfda1..8e2cc91f 100644
+--- a/examples/Plotter/BubbleChart/CMakeLists.txt
++++ b/examples/Plotter/BubbleChart/CMakeLists.txt
+@@ -10,4 +10,4 @@ qt_wrap_ui(BubbleChart_SRCS
+ 
+ add_executable(BubbleChart  ${BubbleChart_SRCS})
+ 
+-target_link_libraries(BubbleChart KChartQt6 Qt::Widgets)
++target_link_libraries(BubbleChart KChart6 Qt::Widgets)
+diff --git a/examples/Plotter/Isometric/CMakeLists.txt b/examples/Plotter/Isometric/CMakeLists.txt
+index 4ee9a7a0..c8f967ff 100644
+--- a/examples/Plotter/Isometric/CMakeLists.txt
++++ b/examples/Plotter/Isometric/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(Isometric  main.cpp)
+ 
+-target_link_libraries(Isometric KChartQt6 Qt::Widgets)
++target_link_libraries(Isometric KChart6 Qt::Widgets)
+diff --git a/examples/Plotter/Logarithmic/CMakeLists.txt b/examples/Plotter/Logarithmic/CMakeLists.txt
+index 8630e40a..51ea30cb 100644
+--- a/examples/Plotter/Logarithmic/CMakeLists.txt
++++ b/examples/Plotter/Logarithmic/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(Logarithmic  main.cpp)
+ 
+-target_link_libraries(Logarithmic KChartQt6 Qt::Widgets)
++target_link_libraries(Logarithmic KChart6 Qt::Widgets)
+diff --git a/examples/Plotter/Simple/CMakeLists.txt b/examples/Plotter/Simple/CMakeLists.txt
+index 9292ec88..7271df99 100644
+--- a/examples/Plotter/Simple/CMakeLists.txt
++++ b/examples/Plotter/Simple/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(PlotterSimple  main.cpp)
+ 
+-target_link_libraries(PlotterSimple KChartQt6 Qt::Widgets)
++target_link_libraries(PlotterSimple KChart6 Qt::Widgets)
+diff --git a/examples/Plotter/Timeline/CMakeLists.txt b/examples/Plotter/Timeline/CMakeLists.txt
+index 1c20c31d..4aacf13e 100644
+--- a/examples/Plotter/Timeline/CMakeLists.txt
++++ b/examples/Plotter/Timeline/CMakeLists.txt
+@@ -8,4 +8,4 @@ set(PlotterTimeline_SRCS
+ 
+ add_executable(PlotterTimeline  ${PlotterTimeline_SRCS})
+ 
+-target_link_libraries(PlotterTimeline KChartQt6 Qt::Widgets)
++target_link_libraries(PlotterTimeline KChart6 Qt::Widgets)
+diff --git a/examples/Polar/Advanced/CMakeLists.txt b/examples/Polar/Advanced/CMakeLists.txt
+index 9db93a30..1ba00149 100644
+--- a/examples/Polar/Advanced/CMakeLists.txt
++++ b/examples/Polar/Advanced/CMakeLists.txt
+@@ -10,4 +10,4 @@ qt_wrap_ui(PolarAdvanced_SRCS
+ 
+ add_executable(PolarAdvanced  ${PolarAdvanced_SRCS})
+ 
+-target_link_libraries(PolarAdvanced KChartQt6 Qt::Widgets)
++target_link_libraries(PolarAdvanced KChart6 Qt::Widgets)
+diff --git a/examples/Polar/Parameters/CMakeLists.txt b/examples/Polar/Parameters/CMakeLists.txt
+index ee95a18f..94f480c0 100644
+--- a/examples/Polar/Parameters/CMakeLists.txt
++++ b/examples/Polar/Parameters/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(PolarParameters  main.cpp)
+ 
+-target_link_libraries(PolarParameters KChartQt6 Qt::Widgets)
++target_link_libraries(PolarParameters KChart6 Qt::Widgets)
+diff --git a/examples/Polar/Simple/CMakeLists.txt b/examples/Polar/Simple/CMakeLists.txt
+index 3822faad..34172178 100644
+--- a/examples/Polar/Simple/CMakeLists.txt
++++ b/examples/Polar/Simple/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(PolarSimple  main.cpp)
+ 
+-target_link_libraries(PolarSimple KChartQt6 Qt::Widgets)
++target_link_libraries(PolarSimple KChart6 Qt::Widgets)
+diff --git a/examples/RealTime/CMakeLists.txt b/examples/RealTime/CMakeLists.txt
+index 162231ca..3a9f872b 100644
+--- a/examples/RealTime/CMakeLists.txt
++++ b/examples/RealTime/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(RealTime  main.cpp)
+ 
+-target_link_libraries(RealTime KChartQt6 Qt::Widgets)
++target_link_libraries(RealTime KChart6 Qt::Widgets)
+diff --git a/examples/SharedAbscissa/SeparateDiagrams/CMakeLists.txt b/examples/SharedAbscissa/SeparateDiagrams/CMakeLists.txt
+index b045cc86..990aeee8 100644
+--- a/examples/SharedAbscissa/SeparateDiagrams/CMakeLists.txt
++++ b/examples/SharedAbscissa/SeparateDiagrams/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(SeparateDiagrams_SRCS
+ 
+ add_executable(SeparateDiagrams  ${SeparateDiagrams_SRCS})
+ 
+-target_link_libraries(SeparateDiagrams testtools KChartQt6 Qt::Widgets)
++target_link_libraries(SeparateDiagrams testtools KChart6 Qt::Widgets)
+diff --git a/examples/Sql/CMakeLists.txt b/examples/Sql/CMakeLists.txt
+index 52bce1aa..84b68e12 100644
+--- a/examples/Sql/CMakeLists.txt
++++ b/examples/Sql/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(Sql  main.cpp)
+ 
+-target_link_libraries(Sql KChartQt6 Qt::Widgets Qt::Sql)
++target_link_libraries(Sql KChart6 Qt::Widgets Qt::Sql)
+diff --git a/examples/Stock/Advanced/CMakeLists.txt b/examples/Stock/Advanced/CMakeLists.txt
+index add422f5..9ab99fdb 100644
+--- a/examples/Stock/Advanced/CMakeLists.txt
++++ b/examples/Stock/Advanced/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(StockDiagram_SRCS
+ 
+ add_executable(StockDiagram  ${StockDiagram_SRCS})
+ 
+-target_link_libraries(StockDiagram testtools KChartQt6 Qt::Widgets)
++target_link_libraries(StockDiagram testtools KChart6 Qt::Widgets)
+diff --git a/examples/TernaryCharts/Advanced/CMakeLists.txt b/examples/TernaryCharts/Advanced/CMakeLists.txt
+index cb47b14a..9d89e84b 100644
+--- a/examples/TernaryCharts/Advanced/CMakeLists.txt
++++ b/examples/TernaryCharts/Advanced/CMakeLists.txt
+@@ -10,4 +10,4 @@ qt_wrap_ui(TernaryChartsAdvanced_SRCS
+ 
+ add_executable(TernaryChartsAdvanced  ${TernaryChartsAdvanced_SRCS})
+ 
+-target_link_libraries(TernaryChartsAdvanced KChartQt6 Qt::Widgets)
++target_link_libraries(TernaryChartsAdvanced KChart6 Qt::Widgets)
+diff --git a/examples/Widget/Advanced/CMakeLists.txt b/examples/Widget/Advanced/CMakeLists.txt
+index 27ed5d9c..e8dfe6d3 100644
+--- a/examples/Widget/Advanced/CMakeLists.txt
++++ b/examples/Widget/Advanced/CMakeLists.txt
+@@ -10,4 +10,4 @@ qt_wrap_ui(WidgetAdvanced_SRCS
+ 
+ add_executable(WidgetAdvanced  ${WidgetAdvanced_SRCS})
+ 
+-target_link_libraries(WidgetAdvanced KChartQt6 Qt::Widgets)
++target_link_libraries(WidgetAdvanced KChart6 Qt::Widgets)
+diff --git a/examples/Widget/Parameters/CMakeLists.txt b/examples/Widget/Parameters/CMakeLists.txt
+index 69d27df5..4e2cfdab 100644
+--- a/examples/Widget/Parameters/CMakeLists.txt
++++ b/examples/Widget/Parameters/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(WidgetParameters  main.cpp)
+ 
+-target_link_libraries(WidgetParameters KChartQt6 Qt::Widgets)
++target_link_libraries(WidgetParameters KChart6 Qt::Widgets)
+diff --git a/examples/Widget/Simple/CMakeLists.txt b/examples/Widget/Simple/CMakeLists.txt
+index 442e5895..bc9d9462 100644
+--- a/examples/Widget/Simple/CMakeLists.txt
++++ b/examples/Widget/Simple/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(WidgetSimple  main.cpp)
+ 
+-target_link_libraries(WidgetSimple KChartQt6 Qt::Widgets)
++target_link_libraries(WidgetSimple KChart6 Qt::Widgets)
+diff --git a/examples/Zoom/Keyboard/CMakeLists.txt b/examples/Zoom/Keyboard/CMakeLists.txt
+index ba445390..915b4a6a 100644
+--- a/examples/Zoom/Keyboard/CMakeLists.txt
++++ b/examples/Zoom/Keyboard/CMakeLists.txt
+@@ -12,4 +12,4 @@ qt_wrap_ui(ZoomKeyboard_SRCS
+ 
+ add_executable(ZoomKeyboard  ${ZoomKeyboard_SRCS})
+ 
+-target_link_libraries(ZoomKeyboard KChartQt6 Qt::Widgets)
++target_link_libraries(ZoomKeyboard KChart6 Qt::Widgets)
+diff --git a/examples/Zoom/ScrollBars/CMakeLists.txt b/examples/Zoom/ScrollBars/CMakeLists.txt
+index 150bb46e..abf417df 100644
+--- a/examples/Zoom/ScrollBars/CMakeLists.txt
++++ b/examples/Zoom/ScrollBars/CMakeLists.txt
+@@ -14,4 +14,4 @@ qt_add_resources(ZoomScrollBars_SRCS
+ 
+ add_executable(ZoomScrollBars  ${ZoomScrollBars_SRCS})
+ 
+-target_link_libraries(ZoomScrollBars testtools KChartQt6 Qt::Widgets)
++target_link_libraries(ZoomScrollBars testtools KChart6 Qt::Widgets)
+diff --git a/examples/demo/CMakeLists.txt b/examples/demo/CMakeLists.txt
+index 112fb207..8273e969 100644
+--- a/examples/demo/CMakeLists.txt
++++ b/examples/demo/CMakeLists.txt
+@@ -33,4 +33,4 @@ qt_add_resources(demo_SRCS
+ 
+ add_executable(demo  ${demo_SRCS})
+ 
+-target_link_libraries(demo testtools KChartQt6 Qt::Widgets)
++target_link_libraries(demo testtools KChart6 Qt::Widgets)
+diff --git a/qtests/AttributesModel/CMakeLists.txt b/qtests/AttributesModel/CMakeLists.txt
+index db1096a7..d3b0b212 100644
+--- a/qtests/AttributesModel/CMakeLists.txt
++++ b/qtests/AttributesModel/CMakeLists.txt
+@@ -9,5 +9,5 @@ qt_add_resources(TestKChartAttributesModel_SRCS
+ ecm_add_test(
+     ${TestKChartAttributesModel_SRCS}
+     TEST_NAME TestKChartAttributesModel
+-    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChart6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/AxisOwnership/CMakeLists.txt b/qtests/AxisOwnership/CMakeLists.txt
+index 46a55d09..9a05595a 100644
+--- a/qtests/AxisOwnership/CMakeLists.txt
++++ b/qtests/AxisOwnership/CMakeLists.txt
+@@ -9,5 +9,5 @@ qt_add_resources(TestKChartAxisOwnership_SRCS
+ ecm_add_test(
+     ${TestKChartAxisOwnership_SRCS}
+     TEST_NAME TestKChartAxisOwnership
+-    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChart6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/BarDiagrams/CMakeLists.txt b/qtests/BarDiagrams/CMakeLists.txt
+index 21fb5c82..10bffe8a 100644
+--- a/qtests/BarDiagrams/CMakeLists.txt
++++ b/qtests/BarDiagrams/CMakeLists.txt
+@@ -9,5 +9,5 @@ qt_add_resources(TestKChartBarDiagrams_SRCS
+ ecm_add_test(
+     ${TestKChartBarDiagrams_SRCS}
+     TEST_NAME TestKChartBarDiagrams
+-    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChart6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/CartesianDiagramDataCompressor/CMakeLists.txt b/qtests/CartesianDiagramDataCompressor/CMakeLists.txt
+index 76b3fd63..be2e25e9 100644
+--- a/qtests/CartesianDiagramDataCompressor/CMakeLists.txt
++++ b/qtests/CartesianDiagramDataCompressor/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ ecm_add_test(
+     CartesianDiagramDataCompressorTests.cpp
+     TEST_NAME CartesianDiagramDataCompressorTests
+-    LINK_LIBRARIES KChartQt6 Qt::Widgets Qt::Test
++    LINK_LIBRARIES KChart6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/CartesianPlanes/CMakeLists.txt b/qtests/CartesianPlanes/CMakeLists.txt
+index 03227ba6..a86e83fa 100644
+--- a/qtests/CartesianPlanes/CMakeLists.txt
++++ b/qtests/CartesianPlanes/CMakeLists.txt
+@@ -9,5 +9,5 @@ qt_add_resources(TestCartesianPlanes_SRCS
+ ecm_add_test(
+     ${TestCartesianPlanes_SRCS}
+     TEST_NAME TestCartesianPlanes
+-    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChart6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/ChartElementOwnership/CMakeLists.txt b/qtests/ChartElementOwnership/CMakeLists.txt
+index f76bc4e1..135539c7 100644
+--- a/qtests/ChartElementOwnership/CMakeLists.txt
++++ b/qtests/ChartElementOwnership/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ ecm_add_test(
+     main.cpp
+     TEST_NAME TestChartElementOwnership
+-    LINK_LIBRARIES KChartQt6 Qt::Widgets Qt::Test
++    LINK_LIBRARIES KChart6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/Cloning/CMakeLists.txt b/qtests/Cloning/CMakeLists.txt
+index d4bf3d49..b6f53284 100644
+--- a/qtests/Cloning/CMakeLists.txt
++++ b/qtests/Cloning/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ ecm_add_test(
+     main.cpp
+     TEST_NAME TestCloning
+-    LINK_LIBRARIES KChartQt6 Qt::Widgets Qt::Test
++    LINK_LIBRARIES KChart6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/DrawIntoPainter/CMakeLists.txt b/qtests/DrawIntoPainter/CMakeLists.txt
+index dabe5202..67f72052 100644
+--- a/qtests/DrawIntoPainter/CMakeLists.txt
++++ b/qtests/DrawIntoPainter/CMakeLists.txt
+@@ -15,7 +15,7 @@ qt_add_resources(TestDrawIntoPainter_SRCS
+ ecm_add_test(
+     ${TestDrawIntoPainter_SRCS}
+     TEST_NAME TestDrawIntoPainter
+-    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChart6 Qt::Widgets Qt::Test
+ )
+ 
+ set_property(TEST TestDrawIntoPainter PROPERTY TIMEOUT 600)
+diff --git a/qtests/Legends/CMakeLists.txt b/qtests/Legends/CMakeLists.txt
+index cb9176bb..eecf0d7f 100644
+--- a/qtests/Legends/CMakeLists.txt
++++ b/qtests/Legends/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ ecm_add_test(
+     main.cpp
+     TEST_NAME TestLegends
+-    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChart6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/LineDiagrams/CMakeLists.txt b/qtests/LineDiagrams/CMakeLists.txt
+index bb2ed0c3..a5e87a04 100644
+--- a/qtests/LineDiagrams/CMakeLists.txt
++++ b/qtests/LineDiagrams/CMakeLists.txt
+@@ -9,5 +9,5 @@ qt_add_resources(TestLineDiagrams_SRCS
+ ecm_add_test(
+     ${TestLineDiagrams_SRCS}
+     TEST_NAME TestLineDiagrams
+-    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChart6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/Measure/CMakeLists.txt b/qtests/Measure/CMakeLists.txt
+index c33fe679..5551d815 100644
+--- a/qtests/Measure/CMakeLists.txt
++++ b/qtests/Measure/CMakeLists.txt
+@@ -9,5 +9,5 @@ qt_add_resources(TestMeasure_SRCS
+ ecm_add_test(
+     ${TestMeasure_SRCS}
+     TEST_NAME TestMeasure
+-    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChart6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/Palette/CMakeLists.txt b/qtests/Palette/CMakeLists.txt
+index fd325746..c1efe345 100644
+--- a/qtests/Palette/CMakeLists.txt
++++ b/qtests/Palette/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ ecm_add_test(
+     main.cpp
+     TEST_NAME TestKChartPalette
+-    LINK_LIBRARIES KChartQt6 Qt::Widgets Qt::Test
++    LINK_LIBRARIES KChart6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/ParamVsParam/CMakeLists.txt b/qtests/ParamVsParam/CMakeLists.txt
+index 7b9c138f..2228c85b 100644
+--- a/qtests/ParamVsParam/CMakeLists.txt
++++ b/qtests/ParamVsParam/CMakeLists.txt
+@@ -8,5 +8,5 @@ set(TestParamVsParam_SRCS
+ ecm_add_test(
+     ${TestParamVsParam_SRCS}
+     TEST_NAME TestParamVsParam
+-    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChart6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/PieDiagrams/CMakeLists.txt b/qtests/PieDiagrams/CMakeLists.txt
+index 7cb321d6..3e92e662 100644
+--- a/qtests/PieDiagrams/CMakeLists.txt
++++ b/qtests/PieDiagrams/CMakeLists.txt
+@@ -9,5 +9,5 @@ qt_add_resources(TestPieDiagrams_SRCS
+ ecm_add_test(
+     ${TestPieDiagrams_SRCS}
+     TEST_NAME TestPieDiagrams
+-    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChart6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/PolarDiagrams/CMakeLists.txt b/qtests/PolarDiagrams/CMakeLists.txt
+index 32c96a75..42d0e263 100644
+--- a/qtests/PolarDiagrams/CMakeLists.txt
++++ b/qtests/PolarDiagrams/CMakeLists.txt
+@@ -9,5 +9,5 @@ qt_add_resources(TestPolarDiagrams_SRCS
+ ecm_add_test(
+     ${TestPolarDiagrams_SRCS}
+     TEST_NAME TestPolarDiagrams
+-    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChart6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/PolarPlanes/CMakeLists.txt b/qtests/PolarPlanes/CMakeLists.txt
+index 5301c5d5..955df2c3 100644
+--- a/qtests/PolarPlanes/CMakeLists.txt
++++ b/qtests/PolarPlanes/CMakeLists.txt
+@@ -9,5 +9,5 @@ qt_add_resources(TestPolarPlanes_SRCS
+ ecm_add_test(
+     ${TestPolarPlanes_SRCS}
+     TEST_NAME TestPolarPlanes
+-    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
++    LINK_LIBRARIES testtools KChart6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/QLayout/CMakeLists.txt b/qtests/QLayout/CMakeLists.txt
+index 317e100a..df912838 100644
+--- a/qtests/QLayout/CMakeLists.txt
++++ b/qtests/QLayout/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ ecm_add_test(
+     main.cpp
+     TEST_NAME TestQLayout
+-    LINK_LIBRARIES KChartQt6 Qt::Widgets Qt::Test
++    LINK_LIBRARIES KChart6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/RelativePosition/CMakeLists.txt b/qtests/RelativePosition/CMakeLists.txt
+index 5052d006..263176af 100644
+--- a/qtests/RelativePosition/CMakeLists.txt
++++ b/qtests/RelativePosition/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ ecm_add_test(
+     main.cpp
+     TEST_NAME TestRelativePosition
+-    LINK_LIBRARIES KChartQt6 Qt::Widgets Qt::Test
++    LINK_LIBRARIES KChart6 Qt::Widgets Qt::Test
+ )
+diff --git a/qtests/WidgetElementOwnership/CMakeLists.txt b/qtests/WidgetElementOwnership/CMakeLists.txt
+index 2074d328..fb979f65 100644
+--- a/qtests/WidgetElementOwnership/CMakeLists.txt
++++ b/qtests/WidgetElementOwnership/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ ecm_add_test(
+     main.cpp
+     TEST_NAME TestWidgetElementOwnership
+-    LINK_LIBRARIES KChartQt6 Qt::Widgets Qt::Test
++    LINK_LIBRARIES KChart6 Qt::Widgets Qt::Test
+ )
+diff --git a/src/KChart/CMakeLists.txt b/src/KChart/CMakeLists.txt
+index eb10afd4..359c1cf9 100644
+--- a/src/KChart/CMakeLists.txt
++++ b/src/KChart/CMakeLists.txt
+@@ -3,7 +3,7 @@ set( KCHARTLIB_VERSION "3.0.0" )
+ ecm_setup_version(${KCHARTLIB_VERSION}
+     VARIABLE_PREFIX KCHART
+     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kchart_version.h"
+-    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KChartQt6ConfigVersion.cmake"
++    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KChart6ConfigVersion.cmake"
+     SOVERSION 3
+ )
+ 
+@@ -193,7 +193,7 @@ ecm_create_qm_loader(kchart_LIB_SRCS kchart_qt6)
+ 
+ qt_wrap_cpp(kchart_LIB_SRCS KChartEnums.h)
+ 
+-add_library(KChartQt6 ${kchart_LIB_SRCS} ${kchart_LIB_HEADERS})
++add_library(KChart6 ${kchart_LIB_SRCS} ${kchart_LIB_HEADERS})
+ 
+ # TODO: check if this snippet from .pro file should be ported, otherwise remove file
+ # linux-*{
+@@ -203,26 +203,26 @@ add_library(KChartQt6 ${kchart_LIB_SRCS} ${kchart_LIB_HEADERS})
+ #   }
+ # }
+ 
+-generate_export_header( KChartQt6 BASE_NAME KChart )
++generate_export_header( KChart6 BASE_NAME KChart )
+ 
+-target_include_directories(KChartQt6
+-    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KChart>"
++target_include_directories(KChart6
++    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/KChart>"
+ )
+ 
+-target_link_libraries(KChartQt6
++target_link_libraries(KChart6
+ PUBLIC
+     Qt::Widgets
+ PRIVATE
+     Qt::Svg
+ )
+-set_target_properties( KChartQt6 PROPERTIES
++set_target_properties( KChart6 PROPERTIES
+   VERSION     ${KCHART_VERSION}
+   SOVERSION   ${KCHART_SOVERSION}
+-  EXPORT_NAME "KChartQt6"
++  EXPORT_NAME "KChart6"
+ )
+ 
+-install( TARGETS KChartQt6
+-    EXPORT KChartQt6Targets
++install( TARGETS KChart6
++    EXPORT KChart6Targets
+     ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+ 
+ 
+@@ -299,12 +299,12 @@ install(FILES
+             ${CMAKE_CURRENT_BINARY_DIR}/kchart_export.h
+             ${kchart_LIB_HEADERS}
+             ${kchart_LIB_FWDHEADERS}
+-        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KChart
++        DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KChart
+         COMPONENT Devel)
+ 
+ install(FILES
+     ${CMAKE_CURRENT_BINARY_DIR}/kchart_version.h
+-    DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KChart COMPONENT Devel)
++    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KChart COMPONENT Devel)
+ 
+ if(BUILD_QCH)
+     ecm_add_qch(
+@@ -330,7 +330,7 @@ if(BUILD_QCH)
+ endif()
+ 
+ # create a Config.cmake and a ConfigVersion.cmake file and install them
+-set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KChartQt6")
++set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KChart6")
+ 
+ if (BUILD_QCH)
+     ecm_install_qch_export(
+@@ -343,28 +343,28 @@ if (BUILD_QCH)
+ endif()
+ 
+ configure_package_config_file(
+-    "${CMAKE_CURRENT_SOURCE_DIR}/KChartQt6Config.cmake.in"
+-    "${CMAKE_CURRENT_BINARY_DIR}/KChartQt6Config.cmake"
++    "${CMAKE_CURRENT_SOURCE_DIR}/KChart6Config.cmake.in"
++    "${CMAKE_CURRENT_BINARY_DIR}/KChart6Config.cmake"
+     INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
+ )
+ 
+ install(FILES
+-            "${CMAKE_CURRENT_BINARY_DIR}/KChartQt6Config.cmake"
+-            "${CMAKE_CURRENT_BINARY_DIR}/KChartQt6ConfigVersion.cmake"
++            "${CMAKE_CURRENT_BINARY_DIR}/KChart6Config.cmake"
++            "${CMAKE_CURRENT_BINARY_DIR}/KChart6ConfigVersion.cmake"
+         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+         COMPONENT Devel)
+ 
+-install(EXPORT KChartQt6Targets
++install(EXPORT KChart6Targets
+         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+-        FILE KChartQt6Targets.cmake)
++        FILE KChart6Targets.cmake)
+ 
+ ecm_generate_pri_file(
+     VERSION ${KCHARTLIB_VERSION}
+-    BASE_NAME KChartQt6
+-    LIB_NAME KChartQt6
++    BASE_NAME KChart6
++    LIB_NAME KChart6
+     DEPS "widgets svg"
+     FILENAME_VAR PRI_FILENAME
+-    INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KChartQt6
++    INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR}/KChart
+ )
+ 
+ install(FILES ${PRI_FILENAME}
+diff --git a/src/KChart/KChartQt6Config.cmake.in b/src/KChart/KChart6Config.cmake.in
+similarity index 78%
+rename from src/KChart/KChartQt6Config.cmake.in
+rename to src/KChart/KChart6Config.cmake.in
+index 42c0e6fc..f54cf745 100644
+--- a/src/KChart/KChartQt6Config.cmake.in
++++ b/src/KChart/KChart6Config.cmake.in
+@@ -5,5 +5,5 @@ find_dependency(Qt6Core @QT_REQUIRED_VERSION@)
+ find_dependency(Qt6Svg @QT_REQUIRED_VERSION@)
+ find_dependency(Qt6Widgets @QT_REQUIRED_VERSION@)
+ 
+-include("${CMAKE_CURRENT_LIST_DIR}/KChartQt6Targets.cmake")
++include("${CMAKE_CURRENT_LIST_DIR}/KChartTargets.cmake")
+ @PACKAGE_INCLUDE_QCHTARGETS@
+diff --git a/src/KGantt/CMakeLists.txt b/src/KGantt/CMakeLists.txt
+index a95feca0..326208f3 100644
+--- a/src/KGantt/CMakeLists.txt
++++ b/src/KGantt/CMakeLists.txt
+@@ -3,7 +3,7 @@ set( KGANTTLIB_VERSION "3.0.0" )
+ ecm_setup_version(${KGANTTLIB_VERSION}
+     VARIABLE_PREFIX KGANTT
+     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kgantt_version.h"
+-    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KGanttQt6ConfigVersion.cmake"
++    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KGantt6ConfigVersion.cmake"
+     SOVERSION 3
+ )
+ 
+@@ -54,29 +54,29 @@ qt_wrap_ui(kgantt_LIB_SRCS
+ 
+ ecm_create_qm_loader(kgantt_LIB_SRCS kgantt_qt6)
+ 
+-add_library( KGanttQt6 ${kgantt_LIB_SRCS} )
++add_library( KGantt6 ${kgantt_LIB_SRCS} )
+ 
+-generate_export_header( KGanttQt6 BASE_NAME KGantt )
++generate_export_header( KGantt6 BASE_NAME KGantt )
+ 
+-target_include_directories(KGanttQt6
+-    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KGantt>"
++target_include_directories(KGantt6
++    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/KGantt>"
+ )
+ 
+-target_link_libraries( KGanttQt6
++target_link_libraries( KGantt6
+ PUBLIC
+     Qt::Widgets
+ PRIVATE
+     Qt::PrintSupport
+ )
+ 
+-set_target_properties( KGanttQt6 PROPERTIES
++set_target_properties( KGantt6 PROPERTIES
+   VERSION     ${KGANTT_VERSION}
+   SOVERSION   ${KGANTT_SOVERSION}
+-  EXPORT_NAME "KGanttQt6"
++  EXPORT_NAME "KGantt6"
+ )
+ 
+-install( TARGETS KGanttQt6
+-    EXPORT KGanttQt6Targets
++install( TARGETS KGantt6
++    EXPORT KGantt6Targets
+     ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+ 
+ ecm_generate_headers(kgantt_LIB_HEADERS
+@@ -113,12 +113,12 @@ install(FILES
+             ${CMAKE_CURRENT_BINARY_DIR}/kgantt_export.h
+             ${kgantt_LIB_HEADERS}
+             kganttabstractgrid_p.h
+-        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KGantt
++        DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KGantt
+         COMPONENT Devel)
+ 
+ install(FILES
+     ${CMAKE_CURRENT_BINARY_DIR}/kgantt_version.h
+-    DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KGantt COMPONENT Devel)
++    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KGantt COMPONENT Devel)
+ 
+ if(BUILD_QCH)
+     ecm_add_qch(
+@@ -144,7 +144,7 @@ if(BUILD_QCH)
+ endif()
+ 
+ # create a Config.cmake and a ConfigVersion.cmake file and install them
+-set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KGantt")
++set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KGantt6")
+ 
+ if (BUILD_QCH)
+     ecm_install_qch_export(
+@@ -157,28 +157,28 @@ if (BUILD_QCH)
+ endif()
+ 
+ configure_package_config_file(
+-    "${CMAKE_CURRENT_SOURCE_DIR}/KGanttQt6Config.cmake.in"
+-    "${CMAKE_CURRENT_BINARY_DIR}/KGanttQt6Config.cmake"
++    "${CMAKE_CURRENT_SOURCE_DIR}/KGantt6Config.cmake.in"
++    "${CMAKE_CURRENT_BINARY_DIR}/KGantt6Config.cmake"
+     INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
+ )
+ 
+ install(FILES
+-            "${CMAKE_CURRENT_BINARY_DIR}/KGanttQt6Config.cmake"
+-            "${CMAKE_CURRENT_BINARY_DIR}/KGanttQt6ConfigVersion.cmake"
++            "${CMAKE_CURRENT_BINARY_DIR}/KGantt6Config.cmake"
++            "${CMAKE_CURRENT_BINARY_DIR}/KGantt6ConfigVersion.cmake"
+         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+         COMPONENT Devel)
+ 
+-install(EXPORT KGanttQt6Targets
++install(EXPORT KGantt6Targets
+         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+-        FILE KGanttQt6Targets.cmake)
++        FILE KGantt6Targets.cmake)
+ 
+ ecm_generate_pri_file(
+     VERSION ${KGANTTLIB_VERSION}
+-    BASE_NAME KGanttQt6
+-    LIB_NAME KGanttQt6
++    BASE_NAME KGantt6
++    LIB_NAME KGantt6
+     DEPS "widgets printsupport"
+     FILENAME_VAR PRI_FILENAME
+-    INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KGantt
++    INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR}/KGantt
+ )
+ 
+ install(FILES ${PRI_FILENAME}
+diff --git a/src/KGantt/KGanttQt6Config.cmake.in b/src/KGantt/KGantt6Config.cmake.in
+similarity index 80%
+rename from src/KGantt/KGanttQt6Config.cmake.in
+rename to src/KGantt/KGantt6Config.cmake.in
+index 306f6d52..cebeaec9 100644
+--- a/src/KGantt/KGanttQt6Config.cmake.in
++++ b/src/KGantt/KGantt6Config.cmake.in
+@@ -5,5 +5,5 @@ find_dependency(Qt6Core @QT_REQUIRED_VERSION@)
+ find_dependency(Qt6Widgets @QT_REQUIRED_VERSION@)
+ find_dependency(Qt6PrintSupport @QT_REQUIRED_VERSION@)
+ 
+-include("${CMAKE_CURRENT_LIST_DIR}/KGanttTargets.cmake")
++include("${CMAKE_CURRENT_LIST_DIR}/KGantt6Targets.cmake")
+ @PACKAGE_INCLUDE_QCHTARGETS@
+diff --git a/src/KGantt/test/CMakeLists.txt b/src/KGantt/test/CMakeLists.txt
+index 916334d1..63405de4 100644
+--- a/src/KGantt/test/CMakeLists.txt
++++ b/src/KGantt/test/CMakeLists.txt
+@@ -5,20 +5,20 @@
+ 
+ ecm_add_test(TestKGanttConstraint.cpp
+     TEST_NAME KGanttConstraint
+-    LINK_LIBRARIES KGanttQt6 Qt::Test
++    LINK_LIBRARIES KGantt6 Qt::Test
+ )
+ 
+ ecm_add_test(TestKGanttConstraintModel.cpp
+     TEST_NAME KGanttConstraintModel
+-    LINK_LIBRARIES KGanttQt6 Qt::Test
++    LINK_LIBRARIES KGantt6 Qt::Test
+ )
+ 
+ ecm_add_test(TestMultiItems.cpp
+     TEST_NAME KGanttMultiItems
+-    LINK_LIBRARIES KGanttQt6 Qt::Test
++    LINK_LIBRARIES KGantt6 Qt::Test
+ )
+ 
+ ecm_add_test(TestKGanttView.cpp
+     TEST_NAME KGanttView
+-    LINK_LIBRARIES PUBLIC KGanttQt6 Qt::Test
++    LINK_LIBRARIES PUBLIC KGantt6 Qt::Test
+ )
+diff --git a/tests/DelayedData/CMakeLists.txt b/tests/DelayedData/CMakeLists.txt
+index 845258db..14731321 100644
+--- a/tests/DelayedData/CMakeLists.txt
++++ b/tests/DelayedData/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(DelayedData main.cpp)
+ 
+-target_link_libraries(DelayedData KChartQt6 Qt::Widgets)
++target_link_libraries(DelayedData KChart6 Qt::Widgets)
+diff --git a/tests/Gantt/apireview/CMakeLists.txt b/tests/Gantt/apireview/CMakeLists.txt
+index f60be532..4bce5c44 100644
+--- a/tests/Gantt/apireview/CMakeLists.txt
++++ b/tests/Gantt/apireview/CMakeLists.txt
+@@ -15,4 +15,4 @@ qt_wrap_ui(TestApiReview_SRCS
+ 
+ add_executable(TestApiReview  ${TestApiReview_SRCS})
+ 
+-target_link_libraries(TestApiReview KGanttQt6 Qt::Widgets Qt::PrintSupport)
++target_link_libraries(TestApiReview KGantt6 Qt::Widgets Qt::PrintSupport)
+diff --git a/tests/Gantt/customconstraints/CMakeLists.txt b/tests/Gantt/customconstraints/CMakeLists.txt
+index 95c75b11..122ae1dc 100644
+--- a/tests/Gantt/customconstraints/CMakeLists.txt
++++ b/tests/Gantt/customconstraints/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(TestCustomConstraints  main.cpp)
+ 
+-target_link_libraries(TestCustomConstraints KGanttQt6 Qt::Widgets Qt::PrintSupport)
++target_link_libraries(TestCustomConstraints KGantt6 Qt::Widgets Qt::PrintSupport)
+diff --git a/tests/Gantt/gfxview/CMakeLists.txt b/tests/Gantt/gfxview/CMakeLists.txt
+index bfb4c731..8f1a8579 100644
+--- a/tests/Gantt/gfxview/CMakeLists.txt
++++ b/tests/Gantt/gfxview/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(TestGfxView  main.cpp)
+ 
+-target_link_libraries(TestGfxView KGanttQt6 Qt::Widgets Qt::PrintSupport)
++target_link_libraries(TestGfxView KGantt6 Qt::Widgets Qt::PrintSupport)
+diff --git a/tests/Gantt/headers/CMakeLists.txt b/tests/Gantt/headers/CMakeLists.txt
+index 37ffd84c..c425dbc3 100644
+--- a/tests/Gantt/headers/CMakeLists.txt
++++ b/tests/Gantt/headers/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(TestHeaders  main.cpp)
+ 
+-target_link_libraries(TestHeaders KGanttQt6 Qt::Widgets)
++target_link_libraries(TestHeaders KGantt6 Qt::Widgets)
+diff --git a/tests/Gantt/listview/CMakeLists.txt b/tests/Gantt/listview/CMakeLists.txt
+index 235a8bd2..f7777e49 100644
+--- a/tests/Gantt/listview/CMakeLists.txt
++++ b/tests/Gantt/listview/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(TestListView  main.cpp)
+ 
+-target_link_libraries(TestListView KGanttQt6 Qt::Widgets)
++target_link_libraries(TestListView KGantt6 Qt::Widgets)
+diff --git a/tests/Gantt/reorder/CMakeLists.txt b/tests/Gantt/reorder/CMakeLists.txt
+index 29c3e581..75024aec 100644
+--- a/tests/Gantt/reorder/CMakeLists.txt
++++ b/tests/Gantt/reorder/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(TestReorder  main.cpp)
+ 
+-target_link_libraries(TestReorder KGanttQt6 Qt::Widgets)
++target_link_libraries(TestReorder KGantt6 Qt::Widgets)
+diff --git a/tests/Gantt/unittest/CMakeLists.txt b/tests/Gantt/unittest/CMakeLists.txt
+index ff180275..ccb6d4b2 100644
+--- a/tests/Gantt/unittest/CMakeLists.txt
++++ b/tests/Gantt/unittest/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(TestUnittests  main.cpp)
+ 
+-target_link_libraries(TestUnittests KGanttQt6 Qt::Widgets)
++target_link_libraries(TestUnittests KGantt6 Qt::Widgets)
+diff --git a/tests/Gantt/view/CMakeLists.txt b/tests/Gantt/view/CMakeLists.txt
+index 5fde9814..e96b7729 100644
+--- a/tests/Gantt/view/CMakeLists.txt
++++ b/tests/Gantt/view/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_executable(TestView  main.cpp)
+ 
+-target_link_libraries(TestView KGanttQt6 Qt::Widgets Qt::PrintSupport)
++target_link_libraries(TestView KGantt6 Qt::Widgets Qt::PrintSupport)
+diff --git a/tests/RootIndex/CMakeLists.txt b/tests/RootIndex/CMakeLists.txt
+index a2d9a965..a5c662aa 100644
+--- a/tests/RootIndex/CMakeLists.txt
++++ b/tests/RootIndex/CMakeLists.txt
+@@ -10,4 +10,4 @@ qt_wrap_ui(RootIndex_SRCS
+ 
+ add_executable(RootIndex  ${RootIndex_SRCS})
+ 
+-target_link_libraries(RootIndex KChartQt6 Qt::Widgets)
++target_link_libraries(RootIndex KChart6 Qt::Widgets)
+-- 
+GitLab
+
