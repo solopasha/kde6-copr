@@ -1,0 +1,104 @@
+
+%undefine __cmake_in_source_build
+
+%global framework modemmanager-qt
+
+Name:    kf6-%{framework}
+Version: 5.246.0
+Release: 1%{?dist}
+Summary: A Tier 1 KDE Frameworks module wrapping ModemManager DBus API
+License: GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
+URL:     https://invent.kde.org/frameworks/%{framework}
+%frameworks_source
+
+BuildRequires:  extra-cmake-modules
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  gcc-c++
+BuildRequires:  ModemManager-devel >= 1.0.0
+BuildRequires:  qt6-qtbase-devel
+
+Requires:       kf6-filesystem
+
+%description
+A Qt 6 library for ModemManager.
+
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       ModemManager-devel
+Requires:       qt6-qtbase-devel
+%description    devel
+Qt 6 libraries and header files for developing applications
+that use ModemManager.
+
+%prep
+%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
+%autosetup -n %{framework}-%{version} -p1
+
+%build
+%cmake_kf6
+%cmake_build
+
+%install
+%cmake_install
+
+%files
+%doc README README.md
+%license LICENSES/*
+%{_kf6_datadir}/qlogging-categories6/*.categories
+%{_kf6_datadir}/qlogging-categories6/*.renamecategories
+%{_kf6_libdir}/libKF6ModemManagerQt.so.*
+
+%files devel
+%{_kf6_libdir}/libKF6ModemManagerQt.so
+%{_kf6_libdir}/cmake/KF6ModemManagerQt/
+%{_kf6_includedir}/ModemManagerQt/
+
+%changelog
+* Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1
+- 5.245.0
+
+* Wed Sep 27 2023 Justin Zobel <justin.zobel@gmail.com> - 5.240.0^20230829.233545.2b7a359714ce9f4a58b6372b68bd6e3a929886d2-48
+- rebuilt
+
+* Wed Sep 27 2023 Justin Zobel <justin.zobel@gmail.com> - 5.240.0^20230829.233545.2b7a359714ce9f4a58b6372b68bd6e3a929886d2-47
+- rebuilt
+
+* Tue Sep 26 2023 Justin Zobel <justin.zobel@gmail.com> - 5.240.0^20230829.233545.2b7a359714ce9f4a58b6372b68bd6e3a929886d2-46
+- rebuilt
+
+* Tue Sep 26 2023 Justin Zobel <justin.zobel@gmail.com> - 5.240.0^20230829.233545.2b7a359714ce9f4a58b6372b68bd6e3a929886d2-45
+- rebuilt
+
+* Tue Sep 26 2023 Justin Zobel <justin.zobel@gmail.com> - 5.240.0^20230829.233545.2b7a359714ce9f4a58b6372b68bd6e3a929886d2-44
+- rebuilt
+
+* Tue Sep 26 2023 Justin Zobel <justin.zobel@gmail.com> - 5.240.0^20230829.233545.2b7a359714ce9f4a58b6372b68bd6e3a929886d2-43
+- rebuilt
+
+* Mon Sep 25 2023 Justin Zobel <justin.zobel@gmail.com> - 5.240.0^20230829.233545.2b7a359714ce9f4a58b6372b68bd6e3a929886d2-42
+- rebuilt
+
+* Sun Sep 24 2023 Justin Zobel <justin.zobel@gmail.com> - 5.240.0^20230829.233545.2b7a359714ce9f4a58b6372b68bd6e3a929886d2-41
+- rebuilt
+
+* Sat Sep 23 2023 Justin Zobel <justin.zobel@gmail.com> - 5.240.0^20230829.233545.2b7a359714ce9f4a58b6372b68bd6e3a929886d2-40
+- rebuilt
+
+* Fri Sep 22 2023 Justin Zobel <justin.zobel@gmail.com> - 5.240.0^20230829.233545.2b7a359714ce9f4a58b6372b68bd6e3a929886d2-39
+- rebuilt
+
+* Thu Sep 21 2023 Justin Zobel <justin.zobel@gmail.com> - 5.240.0^20230829.233545.2b7a359714ce9f4a58b6372b68bd6e3a929886d2-38
+- rebuilt
+
+* Thu Sep 21 2023 Justin Zobel <justin.zobel@gmail.com> - 5.240.0^20230829.233545.2b7a359-37
+- rebuilt
+
+* Thu Sep 21 2023 Justin Zobel <justin.zobel@gmail.com> - 5.240.0^20230829.233545.2b7a359-36
+- rebuilt
+
+* Wed Sep 20 2023 Justin Zobel <justin.zobel@gmail.com> - 5.240.0^20230829.233545.2b7a359-35
+- rebuilt
+
+* Tue Aug 29 2023 Justin Zobel <justin.zobel@gmail.com> - 5.240.0^20230813.164311.fa71a4d-1
+- Initial package

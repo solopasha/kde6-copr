@@ -1,0 +1,61 @@
+From a48d3763f7ac6295bf8aed6c74ff1fa21c0526b9 Mon Sep 17 00:00:00 2001
+From: Luigi Toscano <luigi.toscano@tiscali.it>
+Date: Mon, 13 Mar 2023 23:01:13 +0100
+Subject: [PATCH] Fix the translation template number (5->6)
+
+KF5 and KF6 must be co-installable, so change the major version
+number integrated into the translation template name.
+
+Even though kuserfeedback was technically not part of Frameworks 5.x,
+as it was used quite a while, having it co-installable
+with its KF6 counterparts can be useful.
+---
+ src/console/CMakeLists.txt       | 2 +-
+ src/console/Messages.sh          | 2 +-
+ src/provider/Messages.sh         | 2 +-
+ src/provider/core/CMakeLists.txt | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/console/CMakeLists.txt b/src/console/CMakeLists.txt
+index 73bf9f19..93884534 100644
+--- a/src/console/CMakeLists.txt
++++ b/src/console/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-ecm_create_qm_loader(userfeedback_console_QM_LOADER userfeedbackconsole5_qt)
++ecm_create_qm_loader(userfeedback_console_QM_LOADER userfeedbackconsole6_qt)
+ 
+ set(console_lib_srcs
+     core/aggregation.cpp
+diff --git a/src/console/Messages.sh b/src/console/Messages.sh
+index e60236aa..9d9b4fbe 100755
+--- a/src/console/Messages.sh
++++ b/src/console/Messages.sh
+@@ -1,4 +1,4 @@
+ #!/bin/sh
+ 
+-$EXTRACT_TR_STRINGS `find . -name \*.cpp -o -name \*.h -o -name \*.ui -o -name \*.qml` -o $podir/userfeedbackconsole5_qt.pot
++$EXTRACT_TR_STRINGS `find . -name \*.cpp -o -name \*.h -o -name \*.ui -o -name \*.qml` -o $podir/userfeedbackconsole6_qt.pot
+ 
+diff --git a/src/provider/Messages.sh b/src/provider/Messages.sh
+index 384c8290..965b9963 100755
+--- a/src/provider/Messages.sh
++++ b/src/provider/Messages.sh
+@@ -1,4 +1,4 @@
+ #!/bin/sh
+ 
+-$EXTRACT_TR_STRINGS `find . -name \*.cpp -o -name \*.h -o -name \*.ui -o -name \*.qml` -o $podir/userfeedbackprovider5_qt.pot
++$EXTRACT_TR_STRINGS `find . -name \*.cpp -o -name \*.h -o -name \*.ui -o -name \*.qml` -o $podir/userfeedbackprovider6_qt.pot
+ 
+diff --git a/src/provider/core/CMakeLists.txt b/src/provider/core/CMakeLists.txt
+index 2e8e1f3a..26ea969cc 100644
+--- a/src/provider/core/CMakeLists.txt
++++ b/src/provider/core/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-ecm_create_qm_loader(userfeedback_core_QM_LOADER userfeedbackprovider5_qt)
++ecm_create_qm_loader(userfeedback_core_QM_LOADER userfeedbackprovider6_qt)
+ 
+ if (ECM_VERSION VERSION_GREATER "5.67.0")
+ ecm_qt_declare_logging_category(userfeedback_core_debug_srcs HEADER logging_p.h IDENTIFIER KUserFeedback::Log CATEGORY_NAME org.kde.UserFeedback
+-- 
+GitLab
+
