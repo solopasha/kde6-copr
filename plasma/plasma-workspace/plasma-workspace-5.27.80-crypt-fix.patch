@@ -1,0 +1,100 @@
+From cfcf6e6f6c94e9a112431349ea30824bf430735b Mon Sep 17 00:00:00 2001
+From: Reilly Brogan <reilly@reillybrogan.com>
+Date: Mon, 13 Nov 2023 22:45:50 -0600
+Subject: [PATCH] Use libxcrypt for salt generation
+
+Many distros have already completed their migration to yescrypt for password hashes. For these distros it is desirable that the user KCM follows suit and generates yescrypt hashes for accountsservice by default.
+
+The easiest way to handle this is to check to see if we're building with at least libxcrypt 4. This version is guaranteed to have the `crypt_gensalt` symbol which will typically default to yescrypt on those distros. The `crypt` function will detect that we're passing in a yescrypt prefix and generate the correct hash. This is functionally identical to how DEs that use libaccountsservice work.
+---
+ CMakeLists.txt           |  5 +++++
+ config-workspace.h.cmake |  3 +++
+ kcms/users/src/user.cpp  | 11 +++++++++++
+ 3 files changed, 19 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ad4a7e2417..905e8466c8 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -184,6 +184,11 @@ if(PipeWire_FOUND)
+   find_package(Libdrm REQUIRED)
+ endif()
+ 
++pkg_check_modules(libxcrypt libxcrypt>=4)
++if(${libxcrypt_FOUND})
++    set(HAVE_CRYPT_GENSALT true)
++endif()
++
+ find_package(Qt6 REQUIRED CONFIG COMPONENTS WaylandCompositor)
+ find_package(Qt6WaylandClient COMPONENTS Private)
+ find_package(PlasmaWaylandProtocols 1.6 REQUIRED)
+diff --git a/config-workspace.h.cmake b/config-workspace.h.cmake
+index 5e252be071..0a10624341 100644
+--- a/config-workspace.h.cmake
++++ b/config-workspace.h.cmake
+@@ -6,6 +6,9 @@
+ /* Define to 1 if you have the <sys/time.h> header file. */
+ #cmakedefine HAVE_SYS_TIME_H 1
+ 
++/* Define to 1 if you have libxcrypt with crypt_gensalt. */
++#cmakedefine01 HAVE_CRYPT_GENSALT
++
+ /* place where plasma-frameworks things are installed */
+ #define PLASMA_RELATIVE_DATA_INSTALL_DIR "@PLASMA_RELATIVE_DATA_INSTALL_DIR@"
+ 
+diff --git a/kcms/users/src/user.cpp b/kcms/users/src/user.cpp
+index 07301c7db6..b784579d63 100644
+--- a/kcms/users/src/user.cpp
++++ b/kcms/users/src/user.cpp
+@@ -9,6 +9,7 @@
+ #include "user.h"
+ #include "kcmusers_debug.h"
+ #include "user_interface.h"
++#include <config-workspace.h>
+ #include <KLocalizedString>
+ #include <KWallet>
+ #include <QImage>
+@@ -16,6 +17,10 @@
+ #include <sys/types.h>
+ #include <unistd.h>
+ 
++#if HAVE_CRYPT_GENSALT
++#include <crypt.h>
++#endif
++
+ User::User(QObject *parent)
+     : QObject(parent)
+ {
+@@ -197,6 +202,7 @@ void User::loadData()
+     }
+ }
+ 
++#if !(HAVE_CRYPT_GENSALT)
+ static char saltCharacter()
+ {
+     static constexpr const quint32 letterCount = 64;
+@@ -211,9 +217,13 @@ static char saltCharacter()
+ 
+     return saltCharacters[index];
+ }
++#endif
+ 
+ static QString saltPassword(const QString &plain)
+ {
++#if HAVE_CRYPT_GENSALT
++    QString salt = crypt_gensalt (NULL, 0, NULL, 0);
++#else
+     QString salt;
+ 
+     salt.append("$6$");
+@@ -223,6 +233,7 @@ static QString saltPassword(const QString &plain)
+     }
+ 
+     salt.append("$");
++#endif
+ 
+     auto stdStrPlain = plain.toStdString();
+     auto cStrPlain = stdStrPlain.c_str();
+-- 
+GitLab
+

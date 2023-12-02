@@ -1,0 +1,39 @@
+From aac8aeab553f902cd4b963bafd0bae5da92736a3 Mon Sep 17 00:00:00 2001
+From: Marco Martin <notmart@gmail.com>
+Date: Wed, 29 Nov 2023 14:53:06 +0100
+Subject: [PATCH] Don't crash when an empty visualparent is passed
+
+This is a legal thing, that can be done by QML as well, so it should
+never crash
+---
+ src/plasmaquick/popupplasmawindow.cpp | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
+
+diff --git a/src/plasmaquick/popupplasmawindow.cpp b/src/plasmaquick/popupplasmawindow.cpp
+index dade407960..fb231b13d0 100644
+--- a/src/plasmaquick/popupplasmawindow.cpp
++++ b/src/plasmaquick/popupplasmawindow.cpp
+@@ -224,12 +224,14 @@ void PopupPlasmaWindow::setVisualParent(QQuickItem *item)
+         QObject::disconnect(d->m_visualParent->window(), nullptr, this, nullptr);
+     }
+     d->m_visualParent = item;
+-    QObject::connect(d->m_visualParent->window(), &QQuickWindow::yChanged, this, [this]() {
+-        d->updatePosition();
+-    });
+-    QObject::connect(d->m_visualParent->window(), &QQuickWindow::xChanged, this, [this]() {
+-        d->updatePosition();
+-    });
++    if (d->m_visualParent) {
++        QObject::connect(d->m_visualParent->window(), &QQuickWindow::yChanged, this, [this]() {
++            d->updatePosition();
++        });
++        QObject::connect(d->m_visualParent->window(), &QQuickWindow::xChanged, this, [this]() {
++            d->updatePosition();
++        });
++    }
+     Q_EMIT visualParentChanged();
+     queuePositionUpdate();
+ }
+-- 
+GitLab
+
