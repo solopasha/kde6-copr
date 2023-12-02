@@ -1,0 +1,70 @@
+**   BSD 2-Clause License ** 
+
+skanpage-1.0/CMakeLists.txt:
+skanpage-1.0/LICENSES/BSD-2-Clause.txt:
+skanpage-1.0/autotests/CMakeLists.txt:
+skanpage-1.0/icons/CMakeLists.txt:
+skanpage-1.0/src/CMakeLists.txt:
+
+
+** GNU General Public License, Version 2 ** 
+
+skanpage-1.0/README.md: 
+skanpage-1.0/logo.png.license: 
+skanpage-1.0/LICENSES/GPL-2.0-only.txt: 
+skanpage-1.0/autotests/documentSaverTest.cpp: 
+skanpage-1.0/icons/48-apps-skanpage.png.license: 
+skanpage-1.0/icons/sc-apps-skanpage.svg.license: 
+skanpage-1.0/src/DevicesModel.cpp: 
+skanpage-1.0/src/DevicesModel.h: 
+skanpage-1.0/src/DocumentModel.cpp: 
+skanpage-1.0/src/DocumentModel.h: 
+skanpage-1.0/src/DocumentPrinter.cpp: 
+skanpage-1.0/src/DocumentPrinter.h: 
+skanpage-1.0/src/DocumentSaver.cpp: 
+skanpage-1.0/src/DocumentSaver.h: 
+skanpage-1.0/src/InProgressPainter.cpp: 
+skanpage-1.0/src/InProgressPainter.h: 
+skanpage-1.0/src/Messages.sh: 
+skanpage-1.0/src/OptionsModel.cpp: 
+skanpage-1.0/src/OptionsModel.h: 
+skanpage-1.0/src/SingleOption.cpp: 
+skanpage-1.0/src/SingleOption.h: 
+skanpage-1.0/src/Skanpage.cpp: 
+skanpage-1.0/src/Skanpage.h: 
+skanpage-1.0/src/SkanpageUtils.cpp: 
+skanpage-1.0/src/SkanpageUtils.h: 
+skanpage-1.0/src/main.cpp: 
+skanpage-1.0/src/qml.qrc: 
+skanpage-1.0/autotests/images/test075.jpg.license: 
+skanpage-1.0/autotests/images/test150.jpg.license: 
+skanpage-1.0/autotests/images/test300.jpg.license: 
+skanpage-1.0/src/qml/DevicesView.qml: 
+skanpage-1.0/src/qml/DocumentList.qml: 
+skanpage-1.0/src/qml/DocumentPage.qml: 
+skanpage-1.0/src/qml/DocumentView.qml: 
+skanpage-1.0/src/qml/DoubleSpinBoxWithSuffix.qml: 
+skanpage-1.0/src/qml/GlobalMenu.qml: 
+skanpage-1.0/src/qml/InProgressPage.qml: 
+skanpage-1.0/src/qml/IntegerSpinBoxWithSuffix.qml: 
+skanpage-1.0/src/qml/MainWindow.qml: 
+skanpage-1.0/src/qml/OptionDelegate.qml: 
+skanpage-1.0/src/qml/OptionsWindow.qml: 
+
+
+skanpage-1.0/logo.png: UNKNOWN
+skanpage-1.0/icons/48-apps-skanpage.png: UNKNOWN
+skanpage-1.0/icons/sc-apps-skanpage.svg: UNKNOWN
+skanpage-1.0/autotests/images/test075.jpg: UNKNOWN
+skanpage-1.0/autotests/images/test150.jpg: UNKNOWN
+skanpage-1.0/autotests/images/test300.jpg: UNKNOWN
+
+
+skanpage-1.0/.kde-ci.yml: Creative Commons CC0 1.0
+skanpage-1.0/org.kde.skanpage.appdata.xml: Creative Commons CC0 1.0
+skanpage-1.0/org.kde.skanpage.desktop: Creative Commons CC0 1.0
+skanpage-1.0/LICENSES/CC0-1.0.txt: Creative Commons CC0 1.0
+
+skanpage-1.0/LICENSES/GPL-3.0-only.txt: GNU General Public License, Version 3
+skanpage-1.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt: GNU General Public License, Version 3
+

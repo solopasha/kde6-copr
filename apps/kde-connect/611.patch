@@ -1,0 +1,154 @@
+From 12d3013101aa3526225cd0c8b092f7cd1f16f3d5 Mon Sep 17 00:00:00 2001
+From: Nicolas Fella <nicolas.fella@gmx.de>
+Date: Tue, 14 Nov 2023 23:48:56 +0100
+Subject: [PATCH] Port away from Kirigami BasicListItem
+
+It doesn't exist any more in KF6
+---
+ CMakeLists.txt              |  2 +-
+ app/qml/DevicePage.qml      |  9 +++++----
+ app/qml/FindDevicesPage.qml | 18 +++++++++++++-----
+ app/qml/main.qml            | 15 ++++++++-------
+ app/qml/runcommand.qml      | 13 +++++++++----
+ 5 files changed, 36 insertions(+), 21 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index f21c945f9..854dd0ab5 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -57,7 +57,7 @@ ecm_set_disabled_deprecation_versions(
+ add_library(kdeconnectversion INTERFACE)
+ target_include_directories(kdeconnectversion INTERFACE ${CMAKE_CURRENT_BINARY_DIR})
+ 
+-set(KF5_REQUIRED_COMPONENTS I18n ConfigWidgets DBusAddons IconThemes Notifications KIO KCMUtils Service Solid Kirigami2 People WindowSystem GuiAddons DocTools)
++set(KF5_REQUIRED_COMPONENTS I18n ConfigWidgets DBusAddons IconThemes Notifications KIO KCMUtils Service Solid Kirigami People WindowSystem GuiAddons DocTools)
+ 
+ set_package_properties(KF${QT_MAJOR_VERSION}Kirigami2 PROPERTIES
+     DESCRIPTION "QtQuick plugins to build user interfaces based on KDE UX guidelines"
+diff --git a/app/qml/DevicePage.qml b/app/qml/DevicePage.qml
+index 864e273cb..e5aa08f71 100644
+--- a/app/qml/DevicePage.qml
++++ b/app/qml/DevicePage.qml
+@@ -46,11 +46,12 @@ Kirigami.ScrollablePage {
+ 
+     ListView {
+         model: plugins
+-        delegate: Kirigami.BasicListItem {
+-            label: name
+-            @KIRIGAMI_ICON@: iconName
++        delegate: QQC2.ItemDelegate {
++            text: name
++            icon.name: iconName
+             highlighted: false
+-            iconColor: "transparent"
++            icon.color: "transparent"
++            width: ListView.view.width
+             visible: loaded
+             onClicked: onClick()
+         }
+diff --git a/app/qml/FindDevicesPage.qml b/app/qml/FindDevicesPage.qml
+index 40601d105..69387e418 100644
+--- a/app/qml/FindDevicesPage.qml
++++ b/app/qml/FindDevicesPage.qml
+@@ -60,12 +60,20 @@ Kirigami.ScrollablePage
+         model: DevicesSortProxyModel {
+             sourceModel: DevicesModel {}
+         }
+-        delegate: Kirigami.BasicListItem {
+-            @KIRIGAMI_ICON@: iconName
+-            iconColor: "transparent"
+-            label: model.name
+-            subtitle: toolTip
++        delegate: ItemDelegate {
++            id: delegate
++            icon.name: iconName
++            icon.color: "transparent"
++            text: model.name
++            width: ListView.view.width
+             highlighted: false
++
++            contentItem: Kirigami.IconTitleSubtitle {
++                title: delegate.text
++                subtitle: toolTip
++                icon: icon.fromControlsIcon(delegate.icon)
++            }
++
+             onClicked: {
+                 pageStack.push(
+                     deviceComp,
+diff --git a/app/qml/main.qml b/app/qml/main.qml
+index 94e429016..54fcf6e6a 100644
+--- a/app/qml/main.qml
++++ b/app/qml/main.qml
+@@ -68,10 +68,10 @@ Kirigami.ApplicationWindow {
+                 }
+             }
+ 
+-            Kirigami.BasicListItem {
++            QQC2.ItemDelegate {
+                 id: findDevicesAction
+                 text: i18nd("kdeconnect-app", "Find devices...")
+-                @KIRIGAMI_ICON@: "list-add"
++                icon.name: "list-add"
+                 checked: pageStack.currentItem && pageStack.currentItem.objectName == "FindDevices"
+                 Layout.fillWidth: true
+ 
+@@ -92,13 +92,13 @@ Kirigami.ApplicationWindow {
+                     }
+                 }
+ 
+-                Kirigami.BasicListItem {
++                QQC2.ItemDelegate {
+                     Layout.fillWidth: true
+                     text: model.name + "\n" + toolTip
+                     enabled: status & DevicesModel.Reachable
+                     checked: pageStack.currentItem && pageStack.currentItem.currentDevice == device
+-                    @KIRIGAMI_ICON@: model.iconName
+-                    iconColor: "transparent"
++                    icon.name: model.iconName
++                    icon.color: "transparent"
+                     onClicked: {
+                         root.pageStack.clear()
+                         root.pageStack.push(
+@@ -114,9 +114,10 @@ Kirigami.ApplicationWindow {
+                 Layout.fillWidth: true
+             }
+ 
+-            Kirigami.BasicListItem {
++            QQC2.ItemDelegate {
+                 text: i18n("Settings")
+-                @KIRIGAMI_ICON@: "settings-configure"
++                icon.name: "settings-configure"
++                Layout.fillWidth: true
+                 onClicked: pageStack.pushDialogLayer('qrc:/qml/Settings.qml', {}, {
+                     title: i18n("Settings"),
+                 });
+diff --git a/app/qml/runcommand.qml b/app/qml/runcommand.qml
+index f2fde7b23..abf7b2a65 100644
+--- a/app/qml/runcommand.qml
++++ b/app/qml/runcommand.qml
+@@ -30,12 +30,17 @@ Kirigami.ScrollablePage
+         model: RemoteCommandsModel {
+             deviceId: pluginInterface.deviceId
+         }
+-        delegate: Kirigami.BasicListItem {
++        delegate: ItemDelegate {
++            id: delegate
+             width: ListView.view.width
+-            label: name
+-            subtitle: command
++            text: name
++
++            contentItem: Kirigami.TitleSubtitle {
++                title: delegate.text
++                subtitle: command
++            }
++
+             onClicked: pluginInterface.triggerCommand(key)
+-            reserveSpaceForIcon: false
+         }
+ 
+         Kirigami.PlaceholderMessage {
+-- 
+GitLab
+

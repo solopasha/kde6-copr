@@ -1,0 +1,99 @@
+
+*No copyright* Creative Commons Attribution 4.0
+-----------------------------------------------
+tokodon-22.02/README.md
+
+*No copyright* Creative Commons CC0 1.0
+---------------------------------------
+tokodon-22.02/.gitlab-ci.yml
+tokodon-22.02/.kde-ci.yml
+tokodon-22.02/LICENSES/CC0-1.0.txt
+tokodon-22.02/android/AndroidManifest.xml
+tokodon-22.02/org.kde.tokodon.desktop
+tokodon-22.02/src/Messages.sh
+
+*No copyright* GNU General Public License, Version 2 or Later
+----------------------------------------------------
+tokodon-22.02/src/content/ui/Settings/AccountsPage.qml
+
+*No copyright* GNU General Public License, Version 3
+----------------------------------------------------
+tokodon-22.02/src/account.cpp
+tokodon-22.02/src/account.h
+tokodon-22.02/src/accountmanager.cpp
+tokodon-22.02/src/accountmanager.h
+tokodon-22.02/src/accountmodel.cpp
+tokodon-22.02/src/accountmodel.h
+tokodon-22.02/src/attachmenteditormodel.cpp
+tokodon-22.02/src/attachmenteditormodel.h
+tokodon-22.02/src/clipboard.cpp
+tokodon-22.02/src/clipboard.h
+tokodon-22.02/src/content/ui/AccountInfo.qml
+tokodon-22.02/src/content/ui/AuthorizationPage.qml
+tokodon-22.02/src/content/ui/FullScreenImage.qml
+tokodon-22.02/src/content/ui/LoginPage.qml
+tokodon-22.02/src/content/ui/MastoPage.qml
+tokodon-22.02/src/content/ui/TimelinePage.qml
+tokodon-22.02/src/content/ui/TootComposer.qml
+tokodon-22.02/src/content/ui/main.qml
+tokodon-22.02/src/main.cpp
+tokodon-22.02/src/notificationmodel.cpp
+tokodon-22.02/src/notificationmodel.h
+tokodon-22.02/src/post.cpp
+tokodon-22.02/src/post.h
+tokodon-22.02/src/threadmodel.cpp
+tokodon-22.02/src/threadmodel.h
+tokodon-22.02/src/timelinemodel.cpp
+tokodon-22.02/src/timelinemodel.h
+
+ _No copyright_ GNU Lesser General Public License, Version 2.1
+-------------------------------------------------------------
+tokodon-22.02/src/config.kcfgc
+tokodon-22.02/src/content/ui/Settings/GeneralPage.qml
+
+
+
+*No copyright* GNU Lesser General Public License, Version 2.1 or Later
+-------------------------------------------------------------
+tokodon-22.02/src/content/ui/Settings/SonnetConfigPage.qml
+
+*No copyright* GNU Library General Public License, Version 2.0 or Later
+--------------------------------------------------------------
+tokodon-22.02/src/content/ui/Settings/SettingsPage.qml
+
+Creative Commons CC0 1.0
+------------------------
+tokodon-22.02/org.kde.tokodon.appdata.xml
+
+Unknown or generated
+--------------------
+tokodon-22.02/CMakeLists.txt
+tokodon-22.02/LICENSES/GPL-3.0-only.txt
+tokodon-22.02/org.kde.tokodon.svg
+tokodon-22.02/po/ca/tokodon.po
+tokodon-22.02/po/ca@valencia/tokodon.po
+tokodon-22.02/po/cs/tokodon.po
+tokodon-22.02/po/de/tokodon.po
+tokodon-22.02/po/en_GB/tokodon.po
+tokodon-22.02/po/es/tokodon.po
+tokodon-22.02/po/fi/tokodon.po
+tokodon-22.02/po/fr/tokodon.po
+tokodon-22.02/po/it/tokodon.po
+tokodon-22.02/po/ko/tokodon.po
+tokodon-22.02/po/nl/tokodon.po
+tokodon-22.02/po/pl/tokodon.po
+tokodon-22.02/po/pt/tokodon.po
+tokodon-22.02/po/pt_BR/tokodon.po
+tokodon-22.02/po/sk/tokodon.po
+tokodon-22.02/po/sl/tokodon.po
+tokodon-22.02/po/sv/tokodon.po
+tokodon-22.02/po/uk/tokodon.po
+tokodon-22.02/src/CMakeLists.txt
+tokodon-22.02/src/content/elephant.svg
+tokodon-22.02/src/content/icon/boost-post-done.svg
+tokodon-22.02/src/content/icon/boost-post.svg
+tokodon-22.02/src/content/icon/like-post-done.svg
+tokodon-22.02/src/content/icon/like-post.svg
+tokodon-22.02/src/resources.qrc
+
+

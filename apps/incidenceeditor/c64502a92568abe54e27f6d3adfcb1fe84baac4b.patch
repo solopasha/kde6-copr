@@ -1,0 +1,55 @@
+From c64502a92568abe54e27f6d3adfcb1fe84baac4b Mon Sep 17 00:00:00 2001
+From: Jonathan Esk-Riddell <jr@jriddell.org>
+Date: Fri, 24 Nov 2023 13:37:53 +0000
+Subject: [PATCH] use renamed kdiagram lib
+
+---
+ CMakeLists.txt           | 4 ++--
+ autotests/CMakeLists.txt | 2 +-
+ src/CMakeLists.txt       | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 67e42b6d..447442e7 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -48,8 +48,8 @@ set(PIMCOMMON_LIB_VERSION "5.240.81")
+ set(PIMTEXTEDIT_LIB_VERSION "5.240.81")
+ set(IDENTITYMANAGEMENT_LIB_VERSION "5.240.81")
+ 
+-set(KDIAGRAM_LIB_VERSION "1.4.0")
+-find_package(KGantt ${KDIAGRAM_LIB_VERSION} CONFIG REQUIRED)
++set(KDIAGRAM_LIB_VERSION "3.0.0")
++find_package(KGantt6 ${KDIAGRAM_LIB_VERSION} CONFIG REQUIRED)
+ 
+ find_package(Qt6 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets)
+ 
+diff --git a/autotests/CMakeLists.txt b/autotests/CMakeLists.txt
+index 83d33b3a..c39e59b3 100644
+--- a/autotests/CMakeLists.txt
++++ b/autotests/CMakeLists.txt
+@@ -4,7 +4,7 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR})
+ 
+ include_directories(${CMAKE_SOURCE_DIR}/src)
+ 
+-set(grant_lib KGantt)
++set(grant_lib KGantt6)
+ 
+ macro(IE_UNIT_TESTS)
+   foreach(_testname ${ARGN})
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index a5e88cf7..b841aa19 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -157,7 +157,7 @@ PUBLIC
+   KPim6::CalendarSupport      # For KCalPrefs
+   KPim6::EventViews
+ PRIVATE
+-  KGantt              # For FreeBusy Editor
++  KGantt6             # For FreeBusy Editor
+   KPim6::PimTextEdit
+   KF6::Codecs
+   KPim6::LdapWidgets
+-- 
+GitLab
+

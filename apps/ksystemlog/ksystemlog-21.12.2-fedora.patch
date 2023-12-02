@@ -1,0 +1,83 @@
+diff --git a/src/modes/apache/apacheConfiguration.cpp b/src/modes/apache/apacheConfiguration.cpp
+index e39f06d..45eabac 100644
+--- a/src/modes/apache/apacheConfiguration.cpp
++++ b/src/modes/apache/apacheConfiguration.cpp
+@@ -10,10 +10,10 @@ ApacheConfiguration::ApacheConfiguration()
+ {
+     mConfiguration->setCurrentGroup(QStringLiteral("ApacheLogMode"));
+ 
+-    const QStringList defaultApachePaths{QStringLiteral("/var/log/apache2/error.log")};
++    const QStringList defaultApachePaths{QStringLiteral("/var/log/httpd/error.log")};
+     mConfiguration->addItemStringList(QStringLiteral("ApacheLogFilesPaths"), mApachePaths, defaultApachePaths, QStringLiteral("ApacheLogFilesPaths"));
+ 
+-    const QStringList defaultApacheAccessPaths{QStringLiteral("/var/log/apache2/access.log")};
++    const QStringList defaultApacheAccessPaths{QStringLiteral("/var/log/httpd/access.log")};
+     mConfiguration->addItemStringList(QStringLiteral("ApacheAccessLogFilesPaths"),
+                                       mApacheAccessPaths,
+                                       defaultApacheAccessPaths,
+diff --git a/src/modes/authentication/authenticationConfiguration.cpp b/src/modes/authentication/authenticationConfiguration.cpp
+index 117f084..47d1145 100644
+--- a/src/modes/authentication/authenticationConfiguration.cpp
++++ b/src/modes/authentication/authenticationConfiguration.cpp
+@@ -10,7 +10,7 @@ AuthenticationConfiguration::AuthenticationConfiguration()
+ {
+     mConfiguration->setCurrentGroup(QStringLiteral("AuthenticationLogMode"));
+ 
+-    const QString defaultAuthenticationPath{QStringLiteral("/var/log/auth.log")};
++    const QString defaultAuthenticationPath{QStringLiteral("/var/log/secure")};
+     mConfiguration->addItemString(QStringLiteral("LogFilePath"), mAuthenticationPath, defaultAuthenticationPath, QStringLiteral("LogFilePath"));
+ 
+     const QStringList defaultWarningKeywords{QStringLiteral("failed")};
+diff --git a/src/modes/cron/cronConfiguration.cpp b/src/modes/cron/cronConfiguration.cpp
+index 50ccda4..0e43168 100644
+--- a/src/modes/cron/cronConfiguration.cpp
++++ b/src/modes/cron/cronConfiguration.cpp
+@@ -10,7 +10,7 @@ CronConfiguration::CronConfiguration()
+ {
+     mConfiguration->setCurrentGroup(QStringLiteral("CronLogMode"));
+ 
+-    const QStringList defaultCronPaths{QStringLiteral("/var/log/syslog")};
++    const QStringList defaultCronPaths{QStringLiteral("/var/log/cron")};
+     mConfiguration->addItemStringList(QStringLiteral("LogFilesPaths"), mCronPaths, defaultCronPaths, QStringLiteral("LogFilesPaths"));
+ 
+     const QString defaultProcessFilter(QStringLiteral("/usr/sbin/cron"));
+diff --git a/src/modes/daemon/daemonConfiguration.cpp b/src/modes/daemon/daemonConfiguration.cpp
+index ce2b902..fc7d899 100644
+--- a/src/modes/daemon/daemonConfiguration.cpp
++++ b/src/modes/daemon/daemonConfiguration.cpp
+@@ -10,7 +10,7 @@ DaemonConfiguration::DaemonConfiguration()
+ {
+     mConfiguration->setCurrentGroup(QStringLiteral("DaemonLogMode"));
+ 
+-    const QStringList defaultDaemonPaths{QStringLiteral("/var/log/daemon.log")};
++    const QStringList defaultDaemonPaths{QStringLiteral("/var/log/boot.log")};
+     mConfiguration->addItemStringList(QStringLiteral("LogFilesPaths"), mDaemonPaths, defaultDaemonPaths, QStringLiteral("LogFilesPaths"));
+ }
+ 
+diff --git a/src/modes/postfix/postfixConfiguration.cpp b/src/modes/postfix/postfixConfiguration.cpp
+index 484daad..d72ea12 100644
+--- a/src/modes/postfix/postfixConfiguration.cpp
++++ b/src/modes/postfix/postfixConfiguration.cpp
+@@ -8,8 +8,7 @@
+ 
+ PostfixConfiguration::PostfixConfiguration()
+     : GenericLogModeConfiguration(QStringLiteral(POSTFIX_LOG_MODE_ID),
+-                                  QStringList() << QStringLiteral("/var/log/mail.log") << QStringLiteral("/var/log/mail.info")
+-                                                << QStringLiteral("/var/log/mail.warn") << QStringLiteral("/var/log/mail.err"),
++                                  QStringList() << QStringLiteral("/var/log/maillog"),
+                                   QList<int>() << Globals::NOTICE_LOG_LEVEL_ID << Globals::INFORMATION_LOG_LEVEL_ID << Globals::WARNING_LOG_LEVEL_ID
+                                                << Globals::ERROR_LOG_LEVEL_ID)
+ {
+diff --git a/src/modes/system/systemConfiguration.cpp b/src/modes/system/systemConfiguration.cpp
+index 33eb1a5..786c73a 100644
+--- a/src/modes/system/systemConfiguration.cpp
++++ b/src/modes/system/systemConfiguration.cpp
+@@ -8,7 +8,7 @@
+ 
+ SystemConfiguration::SystemConfiguration()
+     : GenericLogModeConfiguration(QStringLiteral(SYSTEM_LOG_MODE_ID),
+-                                  QStringList() << QStringLiteral("/var/log/syslog"),
++                                  QStringList() << QStringLiteral("/var/log/cron"),
+                                   QList<int>() << Globals::INFORMATION_LOG_LEVEL_ID)
+ {
+     /*
