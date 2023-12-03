@@ -1,0 +1,25 @@
+From 7194acd1f42bab4baec0f388e325550fde19899c Mon Sep 17 00:00:00 2001
+From: Christophe Marin <christophe@krop.fr>
+Date: Thu, 30 Nov 2023 10:23:50 +0100
+Subject: [PATCH] Rename plasma-activities logging category file
+
+kde.plasma.categories is too generic and doesn't match plasma-activities-stats pattern
+---
+ src/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 0b35d759..48aeb2a1 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -40,6 +40,6 @@ add_subdirectory (cli)
+ 
+ ecm_qt_install_logging_categories(
+     EXPORT PLASMA_ACTIVITIES
+-    FILE kde.plasma.categories
++    FILE plasma-activities.categories
+     DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
+ )
+-- 
+GitLab
+
