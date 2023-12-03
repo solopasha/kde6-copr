@@ -42,7 +42,7 @@ BuildRequires:  libappstream-glib
 BuildRequires:  libraw1394-devel
 %endif
 
-BuildRequires: cmake(KF6Kirigami2)
+BuildRequires: cmake(KF6Kirigami)
 Requires: kf6-kirigami2%{?_isa}
 
 # Optional

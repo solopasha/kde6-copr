@@ -12,7 +12,7 @@ URL:     https://invent.kde.org/plasma/%{name}
 
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
-BuildRequires: cmake(KF6Kirigami2)
+BuildRequires: cmake(KF6Kirigami)
 Requires: kf6-kirigami2%{?_isa}
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6Declarative)

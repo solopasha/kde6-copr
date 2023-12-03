@@ -37,7 +37,7 @@ BuildRequires: cmake(Qt6Quick)
 BuildRequires: cmake(Qt6QuickWidgets)
 BuildRequires: cmake(Qt6Widgets)
 
-BuildRequires: cmake(KF6Kirigami2)
+BuildRequires: cmake(KF6Kirigami)
 BuildRequires: plasma-workspace-devel
 Requires:      kf6-kirigami2%{?_isa}
 

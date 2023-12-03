@@ -13,7 +13,7 @@ BuildRequires: gcc-c++
 BuildRequires: cmake
 BuildRequires: kf6-rpm-macros
 BuildRequires: cmake(KF6ConfigWidgets)
-BuildRequires: cmake(KF6Kirigami2)
+BuildRequires: cmake(KF6Kirigami)
 BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6ColorScheme)
 BuildRequires: pkgconfig(Qt6Gui)

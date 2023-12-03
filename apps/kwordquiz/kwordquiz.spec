@@ -44,7 +44,7 @@ BuildRequires: kf6-kwindowsystem-devel
 BuildRequires: kf6-kxmlgui-devel
 BuildRequires: kf6-rpm-macros
 BuildRequires: cmake(KF6KirigamiAddons)
-BuildRequires: cmake(KF6Kirigami2)
+BuildRequires: cmake(KF6Kirigami)
 BuildRequires: cmake(Qt6Multimedia)
 BuildRequires: cmake(Qt6QuickControls2)
 BuildRequires: libappstream-glib

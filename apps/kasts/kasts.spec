@@ -34,7 +34,7 @@ BuildRequires:  cmake(Qt6Multimedia)
 
 BuildRequires:  cmake(KF6I18n)           >= %{kf6_min_version}
 BuildRequires:  cmake(KF6CoreAddons)     >= %{kf6_min_version}
-BuildRequires:  cmake(KF6Kirigami2)      >= %{kf6_min_version}
+BuildRequires:  cmake(KF6Kirigami)      >= %{kf6_min_version}
 BuildRequires:  cmake(KF6KirigamiAddons)
 BuildRequires:  cmake(KF6Syndication)    >= %{kf6_min_version}
 BuildRequires:  cmake(KF6Config)         >= %{kf6_min_version}

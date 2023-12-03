@@ -43,7 +43,7 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
 
 # lookandfeelexplorer deps
-BuildRequires:  cmake(KF6Kirigami2)
+BuildRequires:  cmake(KF6Kirigami)
 Requires:       kf6-filesystem
 
 # Little lie: this package does not provide the actual plasmate tool yet (but

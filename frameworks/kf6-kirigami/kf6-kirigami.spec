@@ -1,6 +1,6 @@
 %global		framework kirigami
 
-Name:		kf6-%{framework}2
+Name:		kf6-%{framework}
 Version:	5.246.0
 Release:	1%{?dist}
 Summary:	QtQuick plugins to build user interfaces based on the KDE UX guidelines
@@ -12,7 +12,6 @@ BuildRequires:	cmake
 BuildRequires:	gcc-c++
 BuildRequires:	extra-cmake-modules >= %{version}
 BuildRequires:	kf6-rpm-macros
-BuildRequires:	make
 BuildRequires:	qt6-linguist
 BuildRequires:	qt6-qtbase-devel
 BuildRequires:	qt6-qtdeclarative-devel
@@ -21,14 +20,21 @@ BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:	cmake(Qt6Quick)
 BuildRequires:	cmake(Qt6ShaderTools)
 BuildRequires:	cmake(Qt6Core5Compat)
-BuildRequires:	pkgconfig(xkbcommon)
+
+Requires:       qt6-qt5compat
+
+# Renamed from kf6-kirigami2
+Obsoletes:      kf6-kirigami2 < 5.246.0-2
+Provides:       kf6-kirigami2 = %{version}-%{release}
 
 %description
 %{summary}.
 
-%package	devel
-Summary:	Development files for %{name}
-Requires:	%{name} = %{version}-%{release}
+%package	    devel
+Summary:	    Development files for %{name}
+Requires:	    %{name} = %{version}-%{release}
+Obsoletes:      kf6-kirigami2-devel < 5.246.0-2
+Provides:       kf6-kirigami2-devel = %{version}-%{release}
 %description	devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
@@ -36,8 +42,6 @@ developing applications that use %{name}.
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{framework}-%{version} -p1
-# Some licenses are missing from the main LICENSES folder but are in the template folder, copying them over.
-cp %{_builddir}/%{framework}-%{version}/templates/kirigami6/LICENSES/* %{_builddir}/%{framework}-%{version}/LICENSES/
 
 %build
 %cmake_kf6

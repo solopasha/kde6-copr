@@ -45,7 +45,7 @@ BuildRequires:  cmake(KF6ModemManagerQt)
 BuildRequires:  cmake(KF6Svg)
 # Runtime check
 BuildRequires:  cmake(KF6Prison)
-BuildRequires:  cmake(KF6Kirigami2)
+BuildRequires:  cmake(KF6Kirigami)
 
 BuildRequires:  pkgconfig(ModemManager) >= 1.0.0
 BuildRequires:  pkgconfig(libnm) >= 1.0.0

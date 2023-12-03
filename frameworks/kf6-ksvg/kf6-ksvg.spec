@@ -23,7 +23,7 @@ BuildRequires: cmake(KF6Archive)
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6GuiAddons)
-BuildRequires: cmake(KF6Kirigami2)
+BuildRequires: cmake(KF6Kirigami)
 BuildRequires: cmake(KF6ColorScheme)
 
 %description

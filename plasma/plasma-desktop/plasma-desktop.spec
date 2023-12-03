@@ -141,7 +141,7 @@ Requires:       kwin
 # kickoff -> edit applications (#1229393)
 Requires:       kmenuedit
 
-BuildRequires:  cmake(KF6Kirigami2)
+BuildRequires:  cmake(KF6Kirigami)
 Requires:       kf6-kirigami2%{?_isa}
 BuildRequires:  cmake(KF6KirigamiAddons)
 Requires:       kirigami-addons%{?_isa}

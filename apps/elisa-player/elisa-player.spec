@@ -35,7 +35,7 @@ BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6XmlGui)
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
-BuildRequires:  cmake(KF6Kirigami2)
+BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6QQC2DesktopStyle)
 

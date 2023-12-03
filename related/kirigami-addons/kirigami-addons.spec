@@ -13,7 +13,7 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6Kirigami2)
+BuildRequires:  cmake(KF6Kirigami)
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Quick)

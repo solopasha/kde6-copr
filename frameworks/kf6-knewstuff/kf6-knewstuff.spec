@@ -28,7 +28,7 @@ BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(Qt6UiPlugin)
-BuildRequires:  cmake(KF6Kirigami2)
+BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6Syndication)
 BuildRequires:  pkgconfig(xkbcommon)
 Requires:  kf6-filesystem

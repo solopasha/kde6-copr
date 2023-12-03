@@ -18,7 +18,7 @@ BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6Kirigami2)
+BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6Purpose)
 BuildRequires:  cmake(KF6XmlGui)
 
