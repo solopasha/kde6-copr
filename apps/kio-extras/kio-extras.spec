@@ -1,8 +1,6 @@
-%global base_name kio-extras
-
-Name:    kio-extras-kf6
+Name:    kio-extras
 Version: 24.01.80
-Release: 1%{?dist}
+Release: 1.2%{?dist}
 Summary: Additional components to increase the functionality of KIO Framework
 
 License: GPLv2+
@@ -63,16 +61,24 @@ BuildRequires:  taglib-devel > 1.11
 # This package provides plugins for KIO
 Supplements:    kf6-kio-core
 
+Obsoletes:      kio-extras-kf6 < 24.01.80-2
+Provides:       kio-extras-kf6 = %{version}-%{release}
+Provides:       kio-extras-kf6%{?_isa} = %{version}-%{release}
+
 %description
 %{summary}.
 
 %package info
 Summary: Info kioslave
+Obsoletes:  kio-extras-kf6-info < 24.01.80-2
+Provides:   kio-extras-kf6-info = %{version}-%{release}
 %description info
 Kioslave for reading info pages.
 
 %package        devel
 Summary:        Development files for %{name}
+Obsoletes:      kio-extras-kf6-devel < 24.01.80-2
+Provides:       kio-extras-kf6-devel = %{version}-%{release}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 %description devel
 %{summary}.
@@ -80,7 +86,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{sourcerootdir} -p1
+%autosetup -p1
 
 
 %build
@@ -115,7 +121,7 @@ rm %{buildroot}%{_datadir}/applications/kcm_trash.desktop
 %{_kf6_datadir}/solid/actions/solid_afc.desktop
 %{_kf6_datadir}/solid/actions/solid_mtp.desktop
 
-%{_kf6_libdir}/libkioarchive6.so.6*
+%{_kf6_libdir}/libkioarchive6.so.6{,.*}
 
 %{_kf6_libexecdir}/smbnotifier
 
