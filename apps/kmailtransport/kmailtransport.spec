@@ -1,6 +1,6 @@
 Name:    kmailtransport
 Version: 24.01.80
-Release: 1.1%{?dist}
+Release: 1.2%{?dist}
 Summary: The KMailTransport Library
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later
@@ -22,7 +22,7 @@ BuildRequires:  cmake(Qt6Keychain)
 
 BuildRequires:  pkgconfig(libsasl2)
 
-Conflicts:      kf5-%{name} < 24.01.75
+Conflicts:      kf5-%{name} < 23.08.3-2
 
 %description
 %{summary}.
@@ -30,7 +30,7 @@ Conflicts:      kf5-%{name} < 24.01.75
 
 %package        devel
 Summary:        Development files for %{name}
-Conflicts:      kf5-%{name}-devel < 24.01.75
+Conflicts:      kf5-%{name}-devel < 23.08.3-2
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6Config)
 %description    devel

@@ -1,6 +1,6 @@
 Name:    kmbox
 Version: 24.01.80
-Release: 1%{?dist}
+Release: 1.1%{?dist}
 Summary: The KMbox Library
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later
@@ -12,14 +12,14 @@ BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KPim6Mime)
 
-Obsoletes:      kf5-kmbox < 24.01.75
+Conflicts:      kf5-kmbox < 23.08.3-2
 
 %description
 %{summary}.
 
 %package        devel
 Summary:        Development files for %{name}
-Obsoletes:      kf5-kmbox-devel < 24.01.75
+Conflicts:      kf5-kmbox-devel < 23.08.3-2
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KPim6Mime)
 %description    devel

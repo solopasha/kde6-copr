@@ -1,6 +1,6 @@
 Name:    libgravatar
 Version: 24.01.80
-Release: 1%{?dist}
+Release: 1.1%{?dist}
 Summary: Gravatar support library
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later
@@ -24,14 +24,14 @@ BuildRequires:  cmake(KPim6PimCommon)
 BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6Widgets)
 
-Obsoletes:      kf5-%{name} < 24.01.75
+Conflicts:      kf5-%{name} < 23.08.3-2
 
 %description
 %{summary}.
 
 %package        devel
 Summary:        Development files for %{name}
-Obsoletes:      kf5-%{name}-devel < 24.01.75
+Conflicts:      kf5-%{name}-devel < 23.08.3-2
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 %description    devel
 %{summary}.

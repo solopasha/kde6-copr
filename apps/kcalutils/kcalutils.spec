@@ -1,6 +1,6 @@
 Name:           kcalutils
 Version:        24.01.80
-Release:        1%{?dist}
+Release:        1.1%{?dist}
 Summary:        The KCalendarUtils Library
 
 License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later
@@ -19,14 +19,14 @@ BuildRequires:  cmake(KF6TextTemplate)
 BuildRequires:  cmake(KF6CalendarCore)
 BuildRequires:  cmake(KPim6IdentityManagementCore)
 
-Obsoletes:      kf5-kcalendarutils < 24.01.75
+Conflicts:      kf5-kcalendarutils < 23.08.3-2
 
 %description
 %{summary}.
 
 %package        devel
 Summary:        Development files for %{name}
-Obsoletes:      kf5-kcalendarutils-devel < 24.01.75
+Conflicts:      kf5-kcalendarutils-devel < 23.08.3-2
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6CoreAddons)
 Requires:       cmake(KF6Config)

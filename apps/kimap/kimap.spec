@@ -1,6 +1,6 @@
 Name:    kimap
 Version: 24.01.80
-Release: 1%{?dist}
+Release: 1.1%{?dist}
 Summary: The KIMAP Library
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later
@@ -22,14 +22,14 @@ Suggests: cyrus-sasl-gssapi%{?_isa}
 Suggests: cyrus-sasl-md5%{?_isa}
 Requires: cyrus-sasl-plain%{?_isa}
 
-Obsoletes:  kf5-kimap < 24.01.75
+Conflicts:  kf5-kimap < 23.08.3-2
 
 %description
 %{summary}.
 
 %package        devel
 Summary:        Development files for %{name}
-Obsoletes:      kf5-kimap-devel < 24.01.75
+Conflicts:      kf5-kimap-devel < 23.08.3-2
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6CoreAddons)
 Requires:       cmake(KPim6Mime)

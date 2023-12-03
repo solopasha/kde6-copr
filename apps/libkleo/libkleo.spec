@@ -2,7 +2,7 @@
 
 Name:    libkleo
 Version: 24.01.80
-Release: 1%{?dist}
+Release: 1.1%{?dist}
 Summary: KDE PIM cryptographic library
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-2.0-or-later WITH GCC-exception-3.1
@@ -32,14 +32,14 @@ BuildRequires:  boost-devel
 
 Recommends:     pinentry-gui
 
-Obsoletes:      kf5-%{name} < 24.01.75
+Conflicts:      kf5-%{name} < 23.08.3-2
 
 %description
 %{summary}.
 
 %package        devel
 Summary:        Development files for %{name}
-Obsoletes:      kf5-%{name}-devel < 24.01.75
+Conflicts:      kf5-%{name}-devel < 23.08.3-2
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(Gpgmepp)
 Requires:       cmake(QGpgmeQt6)

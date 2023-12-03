@@ -43,7 +43,7 @@ BuildRequires:  kf5-kmime-devel >= %{majmin_ver}
 BuildRequires:  kf5-akonadi-mime-devel >= %{majmin_ver}
 BuildRequires:  kf5-akonadi-server-devel >= %{majmin_ver}
 BuildRequires:  kf5-ksmtp-devel >= %{majmin_ver}
-BuildRequires:  libkgapi-devel >= %{majmin_ver}
+BuildRequires:  libkgapi-qt5-devel >= %{majmin_ver}
 BuildRequires:  cmake(KF5Akonadi)
 BuildRequires:  cmake(KF5AkonadiMime)
 BuildRequires:  cmake(KPim5Mime)
@@ -62,6 +62,8 @@ BuildRequires: xorg-x11-server-Xvfb
 Conflicts: kdepimlibs-akonadi < 4.14.10-4
 # kio/smtp.so moved here
 Conflicts: kf5-akonadi < 16.07
+
+Requires:   kmailtransport >= 24.01.80
 
 %description
 %{summary}.
@@ -100,11 +102,10 @@ rm -rf %{buildroot}%{_kf5_datadir}/{locale,config.kcfg}
 export CTEST_OUTPUT_ON_FAILURE=1
 xvfb-run -a \
 dbus-launch --exit-with-session \
-make test ARGS="--output-on-failure --timeout 20" -C %{_target_platform} ||:
+make test ARGS="--output-on-failure --timeout 20" -C %{_vpath_builddir} ||:
 %endif
 
 
-%ldconfig_scriptlets
 
 %files
 %license LICENSES/*

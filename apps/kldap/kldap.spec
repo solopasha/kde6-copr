@@ -1,6 +1,6 @@
 Name:    kldap
 Version: 24.01.80
-Release: 1%{?dist}
+Release: 1.1%{?dist}
 Summary: The KLDAP Library
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND MIT
@@ -17,10 +17,10 @@ BuildRequires:  cmake(KF6WidgetsAddons)
 
 BuildRequires:  cmake(Qt6Keychain)
 
-BuildRequires:  pkgconfig(ldap) 
+BuildRequires:  pkgconfig(ldap)
 BuildRequires:  pkgconfig(libsasl2)
 
-Obsoletes:      kf5-%{name} < 24.01.75
+Conflicts:      kf5-%{name} < 23.08.3-2
 
 
 %description
@@ -28,9 +28,9 @@ Obsoletes:      kf5-%{name} < 24.01.75
 
 %package        devel
 Summary:        Development files for %{name}
-Obsoletes:      kf5-%{name}-devel < 24.01.75
+Conflicts:      kf5-%{name}-devel < 23.08.3-2
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       pkgconfig(ldap) 
+Requires:       pkgconfig(ldap)
 Requires:       pkgconfig(libsasl2)
 %description    devel
 The %{name}-devel package contains libraries and header files for

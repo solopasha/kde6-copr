@@ -1,6 +1,6 @@
 Name:    ksmtp
 Version: 24.01.80
-Release: 1%{?dist}
+Release: 1.1%{?dist}
 Summary: KDE SMTP libraries
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later
@@ -23,14 +23,14 @@ Suggests: cyrus-sasl-gssapi%{?_isa}
 Recommends: cyrus-sasl-md5%{?_isa}
 Requires: cyrus-sasl-plain%{?_isa}
 
-Obsoletes:      kf5-%{name} < 24.01.75
+Conflicts:      kf5-%{name} < 23.08.3-2
 
 %description
 %{summary}.
 
 %package        devel
 Summary:        Development files for %{name}
-Obsoletes:      kf5-%{name}-devel < 24.01.75
+Conflicts:      kf5-%{name}-devel < 23.08.3
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6CoreAddons)
 %description    devel

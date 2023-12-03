@@ -1,31 +1,51 @@
+%global framework libkgapi
+
 # trim changelog included in binary rpms
 %global _changelog_trimtime %(date +%s -d "1 year ago")
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1895674
 %global _lto_cflags %{nil}
 
-Name:    libkgapi
-Version: 24.01.80
-Release: 1%{?dist}
+Name:    libkgapi-qt5
+Version: 23.08.3
+Release: 2%{?dist}
 Summary: Library to access to Google services
 
 License: GPLv2+
-URL:     https://invent.kde.org/pim/%{name}
-%apps_source
+URL:     https://invent.kde.org/pim/libkgapi
 
-BuildRequires:  kf6-rpm-macros
+%global revision %(echo %{version} | cut -d. -f3)
+%if %{revision} >= 50
+%global stable unstable
+%else
+%global stable stable
+%endif
+Source0: http://download.kde.org/%{stable}/release-service/%{version}/src/libkgapi-%{version}.tar.xz
+
+# libical (and thus kcalendarcore) not on all arches for RHEL8.
+%if 0%{?rhel} == 8
+ExclusiveArch: x86_64 ppc64le aarch64 %{arm}
+%endif
+
+BuildRequires:  kf5-rpm-macros
 BuildRequires:  extra-cmake-modules
+BuildRequires:  qt5-qtbase-devel
+BuildRequires:  qt5-qtxmlpatterns-devel
+BuildRequires:  qt5-qttools-static
 
-BuildRequires:  cmake(KF6CalendarCore)
-BuildRequires:  cmake(KF6Contacts)
-BuildRequires:  cmake(KF6Wallet)
+BuildRequires:  kf5-kcoreaddons-devel
+BuildRequires:  kf5-ki18n-devel
+BuildRequires:  kf5-kio-devel
+BuildRequires:  kf5-kwallet-devel
+BuildRequires:  kf5-kwindowsystem-devel
 
-BuildRequires:  cmake(Qt6Core)
-BuildRequires:  cmake(Qt6Network)
-BuildRequires:  cmake(Qt6Widgets)
-BuildRequires:  cmake(Qt6Xml)
+BuildRequires:  kf5-kcalendarcore-devel >= %{version}
+BuildRequires:  kf5-kcontacts-devel >= %{version}
 
-BuildRequires:  pkgconfig(libsasl2)
+BuildRequires:  cyrus-sasl-devel
+
+Obsoletes:      libkgoogle < 0.3.2
+Provides:       libkgoogle = %{version}-%{release}
 
 
 %description
@@ -35,58 +55,72 @@ to build akonadi-google resources.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       cmake(KF6CalendarCore)
-Requires:       cmake(KF6Contacts)
+Requires:       kf5-kcoreaddons-devel
+Requires:       kf5-kcalendarcore-devel
+Requires:       kf5-kcontacts-devel
+Obsoletes:      libkgoogle-devel < 0.3.2
+Provides:       libkgoogle-devel = %{version}-%{release}
 %description devel
 Libraries and header files for developing applications that use akonadi-google
 resources.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%autosetup -n libkgapi-%{version}
 
 
 %build
-%cmake_kf6
+%cmake_kf5
 %cmake_build
 
 
 %install
 %cmake_install
 
-%find_lang_kf6 libkgapi_qt
+rm %{buildroot}%{_libdir}/sasl2/libkdexoauth2.so*
+rm -rf %{buildroot}%{_kf5_datadir}/locale
 
 
-%files -f libkgapi_qt.lang
+%files
 %doc README*
 %license LICENSES/*
-%{_kf6_datadir}/qlogging-categories6/*%{name}.*
-%{_libdir}/sasl2/libkdexoauth2.so*
-%{_kf6_libdir}/libKPim6GAPIBlogger.so.*
-%{_kf6_libdir}/libKPim6GAPICalendar.so.*
-%{_kf6_libdir}/libKPim6GAPICore.so.*
-%{_kf6_libdir}/libKPim6GAPIDrive.so.*
-%{_kf6_libdir}/libKPim6GAPILatitude.so.*
-%{_kf6_libdir}/libKPim6GAPIMaps.so.*
-%{_kf6_libdir}/libKPim6GAPIPeople.so.*
-%{_kf6_libdir}/libKPim6GAPITasks.so.*
+%{_kf5_datadir}/qlogging-categories5/*%{framework}.*
+%{_kf5_libdir}/libKPim5GAPIBlogger.so.5*
+%{_kf5_libdir}/libKPim5GAPICalendar.so.5*
+%{_kf5_libdir}/libKPim5GAPICore.so.5*
+%{_kf5_libdir}/libKPim5GAPIDrive.so.5*
+%{_kf5_libdir}/libKPim5GAPILatitude.so.5*
+%{_kf5_libdir}/libKPim5GAPIMaps.so.5*
+%{_kf5_libdir}/libKPim5GAPIPeople.so.5*
+%{_kf5_libdir}/libKPim5GAPITasks.so.5*
 
 %files devel
-%{_kf6_libdir}/libKPim6GAPIPeople.so
-%{_kf6_libdir}/libKPim6GAPIBlogger.so
-%{_kf6_libdir}/libKPim6GAPICalendar.so
-%{_kf6_libdir}/libKPim6GAPICore.so
-%{_kf6_libdir}/libKPim6GAPIDrive.so
-%{_kf6_libdir}/libKPim6GAPILatitude.so
-%{_kf6_libdir}/libKPim6GAPIMaps.so
-%{_kf6_libdir}/libKPim6GAPITasks.so
-%{_kf6_libdir}/cmake/KPim6GAPI/
-%dir %{_includedir}/KPim6/
-%{_includedir}/KPim6/KGAPI/
+%{_kf5_libdir}/libKPim5GAPIPeople.so
+%{_kf5_libdir}/libKPim5GAPIBlogger.so
+%{_kf5_libdir}/libKPim5GAPICalendar.so
+%{_kf5_libdir}/libKPim5GAPICore.so
+%{_kf5_libdir}/libKPim5GAPIDrive.so
+%{_kf5_libdir}/libKPim5GAPILatitude.so
+%{_kf5_libdir}/libKPim5GAPIMaps.so
+%{_kf5_libdir}/libKPim5GAPITasks.so
+%{_kf5_archdatadir}/mkspecs/modules/qt_KGAPIBlogger.pri
+%{_kf5_archdatadir}/mkspecs/modules/qt_KGAPICalendar.pri
+%{_kf5_archdatadir}/mkspecs/modules/qt_KGAPICore.pri
+%{_kf5_archdatadir}/mkspecs/modules/qt_KGAPIDrive.pri
+%{_kf5_archdatadir}/mkspecs/modules/qt_KGAPILatitude.pri
+%{_kf5_archdatadir}/mkspecs/modules/qt_KGAPIMaps.pri
+%{_kf5_archdatadir}/mkspecs/modules/qt_KGAPITasks.pri
+%{_kf5_archdatadir}/mkspecs/modules/qt_KGAPIPeople.pri
+%{_kf5_libdir}/cmake/KPimGAPI/
+%{_kf5_libdir}/cmake/KPim5GAPI/
+%dir %{_includedir}/KPim5/
+%{_includedir}/KPim5/KGAPI/
 
 
 %changelog
+* Tue Nov 14 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.3-1
+- 23.08.3
+
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 

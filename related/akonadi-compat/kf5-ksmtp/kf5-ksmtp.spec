@@ -1,131 +1,85 @@
-Name:    pimcommon
-Version: 24.01.80
-Release: 1.1%{?dist}
-Summary: PIM common libraries
+%global framework ksmtp
 
-License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LicenseRef-KDE-Accepted-GPL
-URL:     https://api.kde.org/kdepim/pimcommon/html/
-%apps_source
+Name:    kf5-%{framework}
+Version: 23.08.3
+Release: 2%{?dist}
+Summary: KDE SMTP libraries
 
-# handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
-%{?qt6_qtwebengine_arches:ExclusiveArch: %{qt6_qtwebengine_arches}}
+License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later
+URL:     https://invent.kde.org/frameworks/%{framework}/
 
-# kf5
-BuildRequires:  extra-cmake-modules
-BuildRequires:  kf6-rpm-macros
+%global revision %(echo %{version} | cut -d. -f3)
+%if %{revision} >= 50
+%global stable unstable
+%else
+%global stable stable
+%endif
+Source0:        https://download.kde.org/%{stable}/release-service/%{version}/src/%{framework}-%{version}.tar.xz
 
-BuildRequires:  cmake(KF6Archive)
-BuildRequires:  cmake(KF6Codecs)
-BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6Contacts)
-BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6ItemModels)
-BuildRequires:  cmake(KF6JobWidgets)
-BuildRequires:  cmake(KF6KCMUtils)
-BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(KF6NewStuff)
-BuildRequires:  cmake(KF6Purpose)
-BuildRequires:  cmake(KF6Service)
-BuildRequires:  cmake(KF6TextAddonsWidgets)
-BuildRequires:  cmake(KF6TextAutoCorrectionWidgets)
-BuildRequires:  cmake(KF6TextCustomEditor)
-BuildRequires:  cmake(KF6TextWidgets)
-BuildRequires:  cmake(KF6WidgetsAddons)
-BuildRequires:  cmake(KF6WidgetsAddons)
-BuildRequires:  cmake(KF6XmlGui)
+## upstream patches
 
-BuildRequires:  cmake(KPim6Akonadi)
-BuildRequires:  cmake(KPim6AkonadiContactWidgets)
-BuildRequires:  cmake(KPim6AkonadiSearch)
-BuildRequires:  cmake(KPim6IMAP)
-BuildRequires:  cmake(KPim6LdapWidgets)
-BuildRequires:  cmake(KPim6Libkdepim)
+## upstreamable patches
 
-BuildRequires:  cmake(Qt6DBus)
-BuildRequires:  cmake(Qt6Network)
-BuildRequires:  cmake(Qt6Widgets)
-BuildRequires:  cmake(Qt6Xml)
+%global kf5_ver 5.29
+BuildRequires: extra-cmake-modules >= %{kf5_ver}
+BuildRequires: cmake(KF5CoreAddons)
+BuildRequires: cmake(KF5I18n)
+BuildRequires: cmake(KF5KIO)
 
+BuildRequires: cmake(Qt5Network)
 
-BuildRequires:  pkgconfig(libxslt)
+BuildRequires: kf5-kmime-devel >= %{version}
+BuildRequires: cmake(KPim5Mime)
 
-Conflicts:      kf5-%{name} < 23.08.3-2
+BuildRequires: pkgconfig(libsasl2)
+
+# runtime sasl plugins
+Suggests: cyrus-sasl-gssapi%{?_isa}
+Recommends: cyrus-sasl-md5%{?_isa}
+Requires: cyrus-sasl-plain%{?_isa}
 
 %description
 %{summary}.
 
-%package        akonadi
-Summary:        The PimCommonAkondi runtime library
-Conflicts:      kf5-%{name}-akonadi < 23.08.3-2
-Requires:       %{name}%{?_isa} = %{version}-%{release}
-%description akonadi
-%{summary}.
-
 %package        devel
 Summary:        Development files for %{name}
-Conflicts:      kf5-%{name}-devel < 23.08.3-2
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       %{name}-akonadi%{?_isa} = %{version}-%{release}
-Requires:       cmake(KF6Config)
-Requires:       cmake(KF6Contacts)
-Requires:       cmake(KF6KIO)
-Requires:       cmake(KF6TextAutoCorrectionWidgets)
-Requires:       cmake(KF6TextCustomEditor)
-Requires:       cmake(KPim6Akonadi)
-Requires:       cmake(KPim6AkonadiContactWidgets)
-Requires:       cmake(KPim6IMAP)
-Requires:       cmake(KPim6Libkdepim)
-Requires:       cmake(Qt6DBus)
-Requires:       cmake(Qt6Gui)
-Requires:       cmake(Qt6Widgets)
+Requires:       cmake(KF5CoreAddons)
+Requires:       cmake(KPim5Mime)
+Requires:       kf5-kmime-devel >= %{version}
 %description    devel
-The %{name}-devel package contains libraries and header files for
-developing applications that use %{name}.
+%{summary}.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%autosetup -n %{framework}-%{version} -p1
 
 
 %build
-%cmake_kf6
+%cmake_kf5
+
 %cmake_build
 
 
 %install
 %cmake_install
+rm -rf %{buildroot}%{_kf5_datadir}/locale
 
-%find_lang %{name} --all-name --with-html
-
-
-
-%files -f %{name}.lang
+%files
 %license LICENSES/*
-%{_kf6_datadir}/qlogging-categories6/*%{name}.*
-%{_kf6_libdir}/libKPim6PimCommon.so.*
-%{_kf6_libdir}/libKPim6PimCommonAkonadi.so.*
-%{_qt6_plugindir}/designer/pimcommon6widgets.so
-
-%files akonadi
-%{_qt6_plugindir}/designer/pimcommon6akonadiwidgets.so
+%{_kf5_datadir}/qlogging-categories5/*%{framework}.*
+%{_kf5_libdir}/libKPim5SMTP.so.*
 
 %files devel
-%{_includedir}/KPim6/PimCommon/
-%{_includedir}/KPim6/PimCommonAkonadi/
-%{_kf6_libdir}/cmake/KPim6PimCommon/
-%{_kf6_libdir}/cmake/KPim6PimCommonAkonadi/
-%{_kf6_libdir}/libKPim6PimCommon.so
-%{_kf6_libdir}/libKPim6PimCommonAkonadi.so
+%{_kf5_libdir}/libKPim5SMTP.so
+%{_kf5_libdir}/cmake/KPim5SMTP/
+%{_includedir}/KPim5/KSMTP/
+%{_kf5_archdatadir}/mkspecs/modules/qt_KSMTP.pri
 
 
 %changelog
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
-
-* Sun Sep 24 2023 Kevin Kofler <Kevin@tigcc.ticalc.org> - 23.08.1-2
-- KF5TextAutoCorrection -> KF5TextAutoCorrectionWidgets (ktextaddons 1.5.1)
 
 * Sat Sep 16 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.1-1
 - 23.08.1
@@ -144,9 +98,6 @@ developing applications that use %{name}.
 
 * Sat May 13 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.04.1-1
 - 23.04.1
-
-* Mon May 01 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.04.0-2
-- Add Requires to fix upstream issue (see comment in spec file)
 
 * Fri Apr 14 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.04.0-1
 - 23.04.0
@@ -244,7 +195,7 @@ developing applications that use %{name}.
 * Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 20.08.3-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
-* Fri Nov  6 15:47:29 CST 2020 Rex Dieter <rdieter@fedoraproject.org> - 20.08.3-1
+* Fri Nov  6 15:43:44 CST 2020 Rex Dieter <rdieter@fedoraproject.org> - 20.08.3-1
 - 20.08.3
 
 * Tue Sep 15 2020 Rex Dieter <rdieter@fedoraproject.org> - 20.08.1-1
@@ -261,6 +212,9 @@ developing applications that use %{name}.
 
 * Fri Jun 12 2020 Rex Dieter <rdieter@fedoraproject.org> - 20.04.2-1
 - 20.04.2
+
+* Thu Jun 11 2020 Rex Dieter <rdieter@fedoraproject.org> - 20.04.1-2
+- Recommends: cyrus-sasl-md5 (was Suggests)
 
 * Wed May 27 2020 Rex Dieter <rdieter@fedoraproject.org> - 20.04.1-1
 - 20.04.1
@@ -325,7 +279,7 @@ developing applications that use %{name}.
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 18.04.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
-* Wed Jun 06 2018 Rex Dieter <rdieter@fedoraproject.org> - 18.04.2-1
+* Sat Jun 30 2018 Rex Dieter <rdieter@fedoraproject.org> - 18.04.2-1
 - 18.04.2
 
 * Wed May 09 2018 Rex Dieter <rdieter@fedoraproject.org> - 18.04.1-1
@@ -343,66 +297,24 @@ developing applications that use %{name}.
 * Thu Jan 11 2018 Rex Dieter <rdieter@fedoraproject.org> - 17.12.1-1
 - 17.12.1
 
-* Tue Dec 12 2017 Rex Dieter <rdieter@fedoraproject.org> - 17.12.0-1
+* Thu Dec 28 2017 Rex Dieter <rdieter@fedoraproject.org> - 17.12.0-5
+- more upstream fixes
+
+* Fri Dec 22 2017 Rex Dieter <rdieter@fedoraproject.org> - 17.12.0-4
+- Fix duplicate authentication (D9476)
+
+* Tue Dec 19 2017 Rex Dieter <rdieter@fedoraproject.org> - 17.12.0-3
+- pull in upstream fixes
+
+* Mon Dec 18 2017 Rex Dieter <rdieter@fedoraproject.org> - 17.12.0-2
+- Requires: cyrus-sasl-plain
+- Suggests: cyrus-sasl-{gssapi,md5}
+
+* Wed Dec 13 2017 Rex Dieter <rdieter@fedoraproject.org> - 17.12.0-1
 - 17.12.0
 
-* Wed Dec 06 2017 Rex Dieter <rdieter@fedoraproject.org> - 17.11.90-1
-- 17.11.90
+* Fri Nov 24 2017 Rex Dieter <rdieter@fedoraproject.org> - 17.11.80-2
+- fix -devel Requires
 
 * Wed Nov 22 2017 Rex Dieter <rdieter@fedoraproject.org> - 17.11.80-1
 - 17.11.80
-
-* Wed Nov 08 2017 Rex Dieter <rdieter@fedoraproject.org> - 17.08.3-1
-- 17.08.3
-
-* Mon Sep 25 2017 Rex Dieter <rdieter@fedoraproject.org> - 17.08.1-1
-- 17.08.1
-
-* Fri Jul 28 2017 Rex Dieter <rdieter@fedoraproject.org> - 17.04.3-1
-- 17.04.3
-
-* Wed Jul 26 2017 Fedora Release Engineering <releng@fedoraproject.org> - 17.04.2-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
-
-* Thu Jun 15 2017 Rex Dieter <rdieter@fedoraproject.org> - 17.04.2-1
-- 17.04.2
-
-* Sun May 14 2017 Rex Dieter <rdieter@fedoraproject.org> - 17.04.1-1
-- 17.04.1
-
-* Thu Mar 09 2017 Rex Dieter <rdieter@fedoraproject.org> - 16.12.3-1
-- 16.12.3
-
-* Thu Feb 09 2017 Rex Dieter <rdieter@fedoraproject.org> - 16.12.2-1
-- 16.12.2
-
-* Mon Jan 16 2017 Rex Dieter <rdieter@fedoraproject.org> - 16.12.1-1
-- 16.12.1
-
-* Tue Dec 13 2016 Rex Dieter <rdieter@fedoraproject.org> - 16.08.3-2
-- use %%qt5_qtwebengine_arches
-
-* Mon Dec 05 2016 Rex Dieter <rdieter@fedoraproject.org> - 16.08.3-1
-- 16.08.3
-
-* Thu Oct 13 2016 Rex Dieter <rdieter@fedoraproject.org> - 16.08.2-1
-- 16.08.2
-
-* Thu Sep 08 2016 Rex Dieter <rdieter@fedoraproject.org> - 16.08.1-1
-- 16.08.1
-
-* Sun Sep 04 2016 Rex Dieter <rdieter@fedoraproject.org> - 16.08.0-1
-- 16.08.0
-
-* Sun Jul 10 2016 Rex Dieter <rdieter@fedoraproject.org> - 16.04.3-1
-- 16.04.3
-
-* Sun Jun 12 2016 Rex Dieter <rdieter@fedoraproject.org> - 16.04.2-1
-- 16.04.2
-
-* Thu May 26 2016 Rex Dieter <rdieter@fedoraproject.org> - 16.04.1-2
-- fix Conflicts/Obsoletes versioning
-
-* Tue May 24 2016 Rex Dieter <rdieter@fedoraproject.org> - 16.04.1-1
-- first try
-
