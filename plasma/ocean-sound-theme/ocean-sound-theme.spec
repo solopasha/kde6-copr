@@ -17,6 +17,7 @@ Requires:       kf6-filesystem
 %{summary}.
 
 %prep
+%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup
 
 
