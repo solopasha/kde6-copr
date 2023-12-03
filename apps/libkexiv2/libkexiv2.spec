@@ -5,9 +5,7 @@ Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later
 URL:     https://invent.kde.org/graphics/%{name}
-Source0: http://download.kde.org/%{stable_kf6}/release-service/%{version}/src/%{name}-%{version}.tar.xz
-
-## upstream patches (master branch)
+%apps_source
 
 BuildRequires: extra-cmake-modules
 BuildRequires: kf5-rpm-macros
@@ -56,6 +54,7 @@ Requires: cmake(Qt6Gui)
 
 
 %prep
+%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -p1
 
 

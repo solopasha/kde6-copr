@@ -1,15 +1,12 @@
-
 %global         base_name breeze-grub
 
 Name:           grub2-breeze-theme
-Version: 5.90.0
-Release: 1%{?dist}
+Version:        5.90.0
+Release:        1%{?dist}
 Summary:        Breeze theme for GRUB
-
 License:        BSD-2-Clause AND CC-BY-SA-4.0 AND GPL-2.0-or-later WITH Font-exception-2.0 AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only)
 URL:            https://invent.kde.org/plasma/%{base_name}.git
-
-Source0:        https://download.kde.org/%{stable_kf6}/plasma/%{version}/%{base_name}-%{version}.tar.xz
+%plasma_source
 
 Source10: README.fedora
 
@@ -37,6 +34,7 @@ Provides:       %{base_name} = %{version}-%{release}
 
 
 %prep
+%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{base_name}-%{version} -p1
 
 install -m644 -p %{SOURCE10} .
