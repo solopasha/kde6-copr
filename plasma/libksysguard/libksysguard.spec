@@ -26,8 +26,6 @@ BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Declarative)
 BuildRequires:  cmake(KF6NewStuff)
-# kf6 optional
-BuildRequires:  cmake(Plasma)
 # qt6 required
 BuildRequires:  qt6-qttools-devel
 BuildRequires:  cmake(Qt6DBus)

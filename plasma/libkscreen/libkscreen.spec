@@ -11,7 +11,6 @@ URL:     https://invent.kde.org/plasma/%{name}
 # KDE Frameworks
 BuildRequires:  extra-cmake-modules
 BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KWayland)
 
 # Fedora
 BuildRequires:  kf6-rpm-macros

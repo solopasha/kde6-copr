@@ -26,7 +26,6 @@ BuildRequires: cmake(KF6KCMUtils)
 BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6Declarative)
 BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(Plasma)
 
 BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib

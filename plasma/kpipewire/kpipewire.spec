@@ -19,7 +19,6 @@ Requires:       kf6-filesystem
 BuildRequires:  extra-cmake-modules
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KWayland)
 
 # Misc
 BuildRequires:  libdrm-devel

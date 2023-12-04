@@ -137,8 +137,6 @@ rm %{buildroot}%{_datadir}/applications/kcm_trash.desktop
 
 %files devel
 %{_includedir}/KioArchive6/*.h
-# no soname symlink? --rex
-#{_kf6_libdir}/libkioarchive.so
 %{_kf6_libdir}/cmake/KioArchive6/
 
 
