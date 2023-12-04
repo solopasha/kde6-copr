@@ -1,35 +1,26 @@
-# uncomment to enable bootstrap mode
-#global bootstrap 1
-
-%if !0%{?bootstrap}
 %global tests 1
-%endif
 
-%global  base_name konsole
-
-Name:    konsole6
+Name:    konsole
 Summary: KDE Terminal emulator
 Version: 24.01.80
 Release: 1%{?dist}
 
 # sources: MIT and LGPLv2 and LGPLv2+ and GPLv2+
 License: GPL-2.0-only AND GFDL-1.1-or-later
-URL:     http://www.kde.org/applications/system/konsole/
-#URL:    http://konsole.kde.org/
+URL:     https://apps.kde.org/konsole/
 %apps_source
+Patch:   https://invent.kde.org/utilities/konsole/-/commit/53c51e09ef68debd43a1977b2c2c31ba9e290f9a.patch
 
-## upstreamable patches
-
-## upstream patches
-
-## downstream patches
 Patch200: konsole-history_location_default.patch
 # custom konsolerc that sets default to cache as well
 Source10: konsolerc
 
-Obsoletes: konsole < 14.12
 Obsoletes: konsole5 < 24.01.75
 Provides:  konsole = %{version}-%{release}
+
+Obsoletes: konsole6 < 24.01.80-2
+Provides:  konsole6 = %{version}-%{release}
+Provides:  konsole6%{?_isa} = %{version}-%{release}
 
 BuildRequires: make
 BuildRequires: desktop-file-utils
@@ -44,8 +35,9 @@ BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6ConfigWidgets)
 BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6Crash)
-BuildRequires: cmake(KF6GuiAddons)
 BuildRequires: cmake(KF6DBusAddons)
+BuildRequires: cmake(KF6GlobalAccel)
+BuildRequires: cmake(KF6GuiAddons)
 BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6KIO)
@@ -53,13 +45,12 @@ BuildRequires: cmake(KF6NewStuff)
 BuildRequires: cmake(KF6Notifications)
 BuildRequires: cmake(KF6NotifyConfig)
 BuildRequires: cmake(KF6Parts)
+BuildRequires: cmake(KF6Pty)
 BuildRequires: cmake(KF6Service)
 BuildRequires: cmake(KF6TextWidgets)
 BuildRequires: cmake(KF6WidgetsAddons)
 BuildRequires: cmake(KF6WindowSystem)
 BuildRequires: cmake(KF6XmlGui)
-BuildRequires: cmake(KF6GlobalAccel)
-BuildRequires: cmake(KF6Pty)
 
 BuildRequires: libappstream-glib
 BuildRequires: cmake(Qt6Core)
@@ -75,25 +66,24 @@ BuildRequires: appstream
 BuildRequires: xorg-x11-server-Xvfb dbus-x11
 %endif
 
-# translations moved here
-Conflicts: kde-l10n < 17.03
-
 Requires: %{name}-part%{?_isa} = %{version}-%{release}
-Requires: keditbookmarks
+Recommends: keditbookmarks
 
 %description
 %{summary}.
 
 %package part
 Summary: Konsole6 kpart plugin
-Obsoletes: konsole5-part < 24.01.75
+Obsoletes: konsole6-part < 24.01.80-2
+Provides:  konsole6-part = %{version}-%{release}
+Provides:  konsole6-part%{?_isa} = %{version}-%{release}
 %description part
 %{summary}.
 
 
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{base_name}-%{version} -p1
+%autosetup -p1
 
 
 %build
@@ -107,37 +97,28 @@ Obsoletes: konsole5-part < 24.01.75
 %install
 %cmake_install
 
-install -m644 -p -b -D %{SOURCE10} %{buildroot}%{_kf6_sysconfdir}/xdg/konsolerc
+install -m644 -p -D %{SOURCE10} %{buildroot}%{_kf6_sysconfdir}/xdg/konsolerc
 
 %find_lang konsole --with-html
-
-# add startupWMClass=konsole if not already present
-grep 'StartupWMClass=' %{buildroot}%{_kf6_datadir}/applications/org.kde.konsole.desktop >& /dev/null || \
-desktop-file-edit --set-key=StartupWMClass --set-value=konsole %{buildroot}%{_kf6_datadir}/applications/org.kde.konsole.desktop
 
 
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.konsole.appdata.xml ||:
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.konsole.desktop
 %if 0%{?tests}
-test "$(xvfb-run -a %{_vpath_builddir}/src/konsole --version)" = "konsole %{version}" ||:
-export CTEST_OUTPUT_ON_FAILURE=1
-DBUS_SESSION_BUS_ADDRESS=
-xvfb-run -a \
-make test -C %{_vpath_builddir} ARGS="--output-on-failure --timeout 30" ||:
+xvfb-run -a bash -c "%ctest" || :
 %endif
 
 
 %files -f konsole.lang
 %dir %{_kf6_datadir}/knsrcfiles/
 %doc README*
-%{_kf6_sysconfdir}/xdg/konsolerc~
 %{_kf6_bindir}/konsole
 %{_kf6_bindir}/konsoleprofile
 %{_kf6_datadir}/applications/org.kde.konsole.desktop
-%{_kf6_datadir}/kglobalaccel/org.kde.konsole.desktop
-%{_kf6_datadir}/kconf_update/konsole.upd
 %{_kf6_datadir}/kconf_update/konsole_add_hamburgermenu_to_toolbar.sh
+%{_kf6_datadir}/kconf_update/konsole.upd
+%{_kf6_datadir}/kglobalaccel/org.kde.konsole.desktop
 %{_kf6_datadir}/kio/servicemenus/konsolerun.desktop
 %{_kf6_datadir}/knotifications6/konsole.notifyrc
 %{_kf6_datadir}/knsrcfiles/konsole.knsrc
@@ -154,10 +135,10 @@ make test -C %{_vpath_builddir} ARGS="--output-on-failure --timeout 30" ||:
 %files part
 %config(noreplace) %{_kf6_sysconfdir}/xdg/konsolerc
 %{_kf6_datadir}/konsole/
-%{_kf6_libdir}/libkonsoleapp.so.*
-%{_kf6_libdir}/libkonsoleprivate.so.*
+%{_kf6_libdir}/libkonsoleapp.so.%{version}
+%{_kf6_libdir}/libkonsoleprivate.so.%{version}
+%{_kf6_plugindir}/parts/konsolepart.so
 %{_kf6_qtplugindir}/konsoleplugins/
-%{_kf6_qtplugindir}/kf6/parts/konsolepart.so
 
 
 %changelog
