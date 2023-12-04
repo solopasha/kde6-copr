@@ -28,7 +28,7 @@
 Name:    kf5-%{framework}
 Summary: PIM Storage Service
 Version: 23.08.3
-Release: 2.1%{?dist}
+Release: 3%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-KDE-Accepted-GPL AND MIT
 URL:     https://invent.kde.org/frameworks/%{framework}
@@ -81,9 +81,8 @@ BuildRequires:  pkgconfig(sqlite3) >= 3.6.23
 %if ! 0%{?bootstrap}
 BuildRequires:  pkgconfig(Qt5Designer)
 BuildRequires:  cmake(KF5DesignerPlugin)
-# BuildRequires:  cmake(AccountsQt5)
-# BuildRequires:  cmake(KAccounts)
-# BuildRequires:  kaccounts-integration-devel
+BuildRequires:  cmake(AccountsQt5)
+BuildRequires:  cmake(KAccounts)
 %endif
 
 # ^^ sqlite3 driver plugin needs versioned qt5 dep

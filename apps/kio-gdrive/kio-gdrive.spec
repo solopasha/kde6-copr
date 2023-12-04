@@ -1,11 +1,12 @@
 Name:           kio-gdrive
 Version:        24.01.80
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An Google Drive KIO slave for KDE
 
 License:        GPL-2.0-or-later
 URL:            https://community.kde.org/KIO_GDrive
 %apps_source
+Patch:          https://invent.kde.org/network/kio-gdrive/-/commit/e4701190d65f4d1559ded153e8d8307e46d507b1.patch
 # handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
 # arch's where libkgapi is available (due to inderect dependencies on qtwebengine)
 %{?qt6_qtwebengine_arches:ExclusiveArch: %{qt6_qtwebengine_arches}}
@@ -16,7 +17,7 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 BuildRequires:  intltool
 
-BuildRequires:  cmake(KAccounts)
+BuildRequires:  cmake(KAccounts6)
 
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6I18n)

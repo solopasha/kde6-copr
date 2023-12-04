@@ -1,0 +1,63 @@
+From 857e22ecef960652f26e2793f57fc4fdb44dea20 Mon Sep 17 00:00:00 2001
+From: Nicolas Fella <nicolas.fella@gmx.de>
+Date: Mon, 4 Dec 2023 15:00:38 +0100
+Subject: [PATCH] Reenable and fix KAccounts integration
+
+---
+ CMakeLists.txt                        | 6 +++---
+ src/agentbase/CMakeLists.txt          | 2 +-
+ src/agentbase/accountsintegration.cpp | 4 ++--
+ 3 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 73cd9dd16..421c175ab 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -91,13 +91,13 @@ set_package_properties(AccountsQt6 PROPERTIES
+     TYPE OPTIONAL
+ )
+ set(KAccounts_MINIMUM_VERSION "19.08.0")
+-find_package(KAccounts ${KAccounts_MINIMUM_VERSION})
+-set_package_properties(KAccounts PROPERTIES
++find_package(KAccounts6 ${KAccounts_MINIMUM_VERSION})
++set_package_properties(KAccounts6 PROPERTIES
+     DESCRIPTION "KDE library for Accounts framework integration"
+     URL "https://cgit.kde.org/kaccounts-integration.git"
+     TYPE OPTIONAL
+ )
+-if (${AccountsQt6_FOUND} AND ${KAccounts_FOUND})
++if (${AccountsQt6_FOUND} AND ${KAccounts6_FOUND})
+     set(WITH_ACCOUNTS TRUE)
+ endif()
+ 
+diff --git a/src/agentbase/CMakeLists.txt b/src/agentbase/CMakeLists.txt
+index 4391db014..3f5467ea4 100644
+--- a/src/agentbase/CMakeLists.txt
++++ b/src/agentbase/CMakeLists.txt
+@@ -94,7 +94,7 @@ PRIVATE
+ )
+ 
+ if (WITH_ACCOUNTS)
+-    target_link_libraries(KPim6AkonadiAgentBase PRIVATE KAccounts Qt::Xml)
++    target_link_libraries(KPim6AkonadiAgentBase PRIVATE KAccounts6 Qt::Xml)
+     target_include_directories(KPim6AkonadiAgentBase PRIVATE ${ACCOUNTSQT_INCLUDE_DIRS})
+ endif()
+ 
+diff --git a/src/agentbase/accountsintegration.cpp b/src/agentbase/accountsintegration.cpp
+index 40b43317a..ec2eedacf 100644
+--- a/src/agentbase/accountsintegration.cpp
++++ b/src/agentbase/accountsintegration.cpp
+@@ -16,8 +16,8 @@
+ #if WITH_ACCOUNTS
+ #include <Accounts/Account>
+ #include <Accounts/Manager>
+-#include <Core>
+-#include <GetCredentialsJob>
++#include <KAccounts/Core>
++#include <KAccounts/GetCredentialsJob>
+ #endif
+ 
+ using namespace Akonadi;
+-- 
+GitLab
+
