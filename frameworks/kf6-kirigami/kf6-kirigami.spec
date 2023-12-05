@@ -2,7 +2,7 @@
 
 Name:		kf6-%{framework}
 Version:	5.246.0
-Release:	1.1%{?dist}
+Release:	1.1.1%{?dist}
 Summary:	QtQuick plugins to build user interfaces based on the KDE UX guidelines
 License:	BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:		https://invent.kde.org/frameworks/%{framework}
@@ -17,6 +17,7 @@ BuildRequires:	qt6-qtbase-devel
 BuildRequires:	qt6-qtdeclarative-devel
 BuildRequires:	qt6-qtsvg-devel
 BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:	cmake(Qt6Quick)
 BuildRequires:	cmake(Qt6ShaderTools)
 BuildRequires:	cmake(Qt6Core5Compat)

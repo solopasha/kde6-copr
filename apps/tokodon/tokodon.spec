@@ -1,6 +1,6 @@
 Name:           tokodon
 Version:        24.01.80
-Release:        1.1%{?dist}
+Release:        1.1.1%{?dist}
 License:        GPL-2.0-only OR GPL-3.0-only AND CC0-1.0 AND LGPL-2.1-or-later
 Summary:        Kirigami-based mastodon client
 Url:            https://invent.kde.org/network/tokodon
@@ -40,6 +40,7 @@ BuildRequires:  cmake(Qt6WebSockets)
 BuildRequires:  cmake(Qt6WebView)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 Requires:       kf6-kirigami2
 Requires:       kirigami-addons

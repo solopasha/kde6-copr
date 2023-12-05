@@ -12,7 +12,7 @@
 Name:    kate
 Summary: Advanced Text Editor
 Version: 24.01.80
-Release: 1.1%{?dist}
+Release: 1.1.1%{?dist}
 
 # kwrite LGPLv2+
 # kate: app LGPLv2, plugins, LGPLv2 and LGPLv2+ and GPLv2+
@@ -47,6 +47,7 @@ BuildRequires: cmake(Qt6Sql)
 BuildRequires: cmake(Qt6Test)
 BuildRequires: cmake(Qt6Concurrent)
 BuildRequires: qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 %if ! 0%{?bootstrap}
 BuildRequires: cmake(PlasmaActivities)

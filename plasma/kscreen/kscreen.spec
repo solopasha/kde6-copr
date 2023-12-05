@@ -1,7 +1,7 @@
 Name:    kscreen
 Epoch:   1
 Version: 5.90.0
-Release: 1.1%{?dist}
+Release: 1.1.1%{?dist}
 Summary: KDE Display Management software
 
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later (GPL-2.0-only OR GPL-3.0-only)
@@ -16,6 +16,7 @@ BuildRequires:  systemd-rpm-macros
 
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  qt6-qtsensors-devel
 
 BuildRequires:  cmake(LayerShellQt)

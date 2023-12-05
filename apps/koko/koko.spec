@@ -1,6 +1,6 @@
 Name:           koko
 Version:        24.01.80
-Release:        1%{?dist}
+Release:        1.1%{?dist}
 License:        GPLv2+ and GPLv3 and LGPLv2 and LGPLv2+ and CC0 and BSD
 Summary:        An Image gallery application
 URL:            https://apps.kde.org/koko/
@@ -34,6 +34,7 @@ BuildRequires: cmake(Qt6Svg)
 BuildRequires: cmake(Qt6Test)
 BuildRequires: cmake(Qt6Widgets)
 BuildRequires: qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires: cmake(exiv2)
 BuildRequires: cmake(KQuickImageEditor)

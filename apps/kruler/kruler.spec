@@ -1,7 +1,7 @@
 Name:    kruler
 Summary: A screen ruler and color measurement tool 
 Version: 24.01.80
-Release: 1%{?dist}
+Release: 1.1%{?dist}
 
 License: GPLv2 and GFDL
 URL:     https://www.kde.org/applications/graphics/kruler/
@@ -20,6 +20,7 @@ BuildRequires: cmake(KF6DocTools)
 BuildRequires: pkgconfig(Qt6Widgets)
 BuildRequires: pkgconfig(xcb)
 BuildRequires: qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires: libappstream-glib
 
 # when split occurred

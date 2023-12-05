@@ -4,7 +4,7 @@
 
 Name:    yakuake
 Version: 24.01.80
-Release: 1%{?dist}
+Release: 1.1%{?dist}
 Summary: A drop-down terminal emulator
 
 # KDE e.V. may determine that future GPL versions are accepted
@@ -41,6 +41,7 @@ BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 
 %if 0%{?fedora}

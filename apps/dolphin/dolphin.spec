@@ -1,7 +1,7 @@
 Name:           dolphin
 Summary:        KDE File Manager
 Version:        24.01.80
-Release:        1.3%{?dist}
+Release:        1.3.1%{?dist}
 
 License:        GPLv2+
 URL:            https://invent.kde.org/system/dolphin
@@ -46,6 +46,7 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires:  cmake(KF6UserFeedback)
 BuildRequires:  cmake(packagekitqt6)

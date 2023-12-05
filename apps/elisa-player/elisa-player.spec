@@ -2,7 +2,7 @@
 
 Name:       elisa-player
 Version:    24.01.80
-Release:    %autorelease
+Release:    %autorelease.1
 Summary:    Elisa music player
 
 # Main program LGPLv3+
@@ -52,6 +52,8 @@ BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6QuickTest)
 BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 # Runtime Dependencies
 Requires:       hicolor-icon-theme

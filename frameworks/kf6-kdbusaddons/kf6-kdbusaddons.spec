@@ -2,7 +2,7 @@
 
 Name:			kf6-%{framework}
 Version:		5.246.0
-Release:		1%{?dist}
+Release:		1.1%{?dist}
 Summary:		KDE Frameworks 6 Tier 1 addon with various classes on top of QtDBus
 License:		CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only
 URL:			https://invent.kde.org/frameworks/%{framework}
@@ -15,6 +15,7 @@ BuildRequires:		gcc-c++
 BuildRequires:		qt6-qtbase-devel
 BuildRequires:		qt6-qttools-devel
 BuildRequires:          qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:		pkgconfig(xkbcommon)
 
 Requires:		kf6-filesystem

@@ -1,6 +1,6 @@
 Name:    layer-shell-qt
 Version: 5.90.0
-Release: 1%{?dist}
+Release: 1.1%{?dist}
 Summary: Library to easily use clients based on wlr-layer-shell
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-3.0-or-later AND MIT
@@ -13,6 +13,7 @@ BuildRequires: extra-cmake-modules
 
 BuildRequires: qt6-qtbase-devel
 BuildRequires: qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires: cmake(Qt6WaylandClient)
 BuildRequires: cmake(Qt6Qml)

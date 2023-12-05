@@ -1,6 +1,6 @@
 Name:           xwaylandvideobridge
 Version:        0.3.0
-Release:        2.1%{?dist}
+Release:        2.1.1%{?dist}
 Summary:        Utility to allow streaming Wayland windows to X applications
 
 License:        (GPL-2.0-only or GPL-3.0-only) and LGPL-2.0-or-later and BSD-3-Clause
@@ -17,6 +17,7 @@ BuildRequires:  ninja-build
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  extra-cmake-modules
 BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(KF6CoreAddons)

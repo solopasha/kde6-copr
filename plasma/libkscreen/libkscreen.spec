@@ -1,7 +1,7 @@
 Name:    libkscreen
 Summary: KDE display configuration library
 Version: 5.90.0
-Release: 1.1%{?dist}
+Release: 1.1.1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/%{name}
@@ -30,6 +30,7 @@ BuildRequires:  plasma-wayland-protocols-devel
 # Qt
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  qt6-qtwayland-devel
 BuildRequires:  cmake(Qt6WaylandClient)
 

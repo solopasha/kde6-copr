@@ -1,7 +1,7 @@
 Name:    xdg-desktop-portal-kde
 Summary: Backend implementation for xdg-desktop-portal using Qt/KF5
 Version: 5.90.0
-Release: 1%{?dist}
+Release: 1.1%{?dist}
 
 License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
 URL:     https://invent.kde.org/plasma/%{name}
@@ -16,6 +16,7 @@ BuildRequires:  qt6-qtbase-devel
 # libQt6Gui.so.6(Qt_6.6_PRIVATE_API)(64bit)
 # libQt6PrintSupport.so.6(Qt_6.6_PRIVATE_API)(64bit)
 BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  qt6-qtbase-static
 BuildRequires:  qt6-qtdeclarative-devel
 BuildRequires:  qt6-qtquickcontrols2-devel

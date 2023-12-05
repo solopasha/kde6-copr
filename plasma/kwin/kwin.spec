@@ -3,7 +3,7 @@
 
 Name:    kwin
 Version: 5.90.0
-Release: 1.2%{?dist}
+Release: 1.2.1%{?dist}
 Summary: KDE Window manager
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -26,6 +26,7 @@ BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-static
 # KWinQpaPlugin (and others?)
 BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  qt6-qtsensors-devel
 BuildRequires:  qt6-qttools-devel
 BuildRequires:  qt6-qttools-static

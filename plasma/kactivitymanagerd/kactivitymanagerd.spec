@@ -1,7 +1,7 @@
 Name:    kactivitymanagerd
 Summary: Plasma service to manage user's activities
 Version: 5.90.0
-Release: 1%{?dist}
+Release: 1.1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
@@ -14,6 +14,8 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Core5Compat)
+BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6CoreAddons)

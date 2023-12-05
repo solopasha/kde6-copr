@@ -6,7 +6,7 @@
 
 Name:    kde-connect
 Version: 24.01.80%{?bumpver:^%{bumpver}.git%{shortcommit0}}
-Release: 1.1%{?dist}
+Release: 1.1.1%{?dist}
 License: GPLv2+
 Summary: KDE Connect client for communication with smartphones
 URL:     https://community.kde.org/KDEConnect
@@ -57,6 +57,7 @@ BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 # upstream name
 Provides:       kdeconnect-kde = %{version}-%{release}

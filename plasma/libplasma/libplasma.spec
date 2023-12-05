@@ -1,6 +1,6 @@
 Name:    libplasma
 Version: 5.90.0
-Release: 1.2%{?dist}
+Release: 1.2.1%{?dist}
 Summary: Plasma is the foundation of the KDE user interface (v6)
 
 # LicenseRef-QtCommercial is also in the licenses, but is being omitted as it is optional.
@@ -27,6 +27,7 @@ BuildRequires:  cmake(KF6Solid)
 BuildRequires:  openssl-devel
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  qt6-qtdeclarative-devel
 BuildRequires:  qt6-qtsvg-devel
 

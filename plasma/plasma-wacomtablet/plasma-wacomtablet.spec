@@ -3,7 +3,7 @@
 Name:    plasma-wacomtablet
 Summary: KDE Control module for Wacom Graphictablets
 Version: 5.90.0
-Release: 1%{?dist}
+Release: 1.1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/wacomtablet
@@ -22,6 +22,7 @@ BuildRequires: cmake(Qt6Gui)
 BuildRequires: cmake(Qt6Qml)
 BuildRequires: cmake(Qt6Widgets)
 BuildRequires: qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6CoreAddons)

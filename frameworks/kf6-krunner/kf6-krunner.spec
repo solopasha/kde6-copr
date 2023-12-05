@@ -2,7 +2,7 @@
 
 Name:    kf6-%{framework}
 Version: 5.246.0
-Release: 1%{?dist}
+Release: 1.1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 solution with parallelized query system
 
 License: BSD-2-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
@@ -24,6 +24,8 @@ BuildRequires:  cmake(KF6ThreadWeaver)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtdeclarative-devel
+BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires:  cmake(KF6ItemModels)
 

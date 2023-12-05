@@ -2,7 +2,7 @@
 
 Name:           kf6-%{framework}
 Version: 5.246.0
-Release: 1%{?dist}
+Release: 1.1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 addon for KJobs
 # The following are in the LICENSES folder, but go unused: LGPL-3.0-only, LicenseRef-KDE-Accepted-LGPL
 License:        CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later
@@ -18,6 +18,7 @@ BuildRequires:  libX11-devel
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qttools-devel
 BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6WidgetsAddons)

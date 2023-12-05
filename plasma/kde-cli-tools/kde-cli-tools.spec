@@ -1,6 +1,6 @@
 Name:    kde-cli-tools
 Version: 5.90.0
-Release: 1%{?dist}
+Release: 1.1%{?dist}
 Summary: Tools based on KDE Frameworks 5 to better interact with the system
 
 License: Artistic-2.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -12,6 +12,7 @@ URL:     https://invent.kde.org/plasma/%{name}
 
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Svg)
 

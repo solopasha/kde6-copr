@@ -2,7 +2,7 @@ Name:    gwenview
 Summary: An image viewer
 Epoch:   1
 Version: 24.01.80
-Release: 1.3%{?dist}
+Release: 1.3.1%{?dist}
 
 # app: GPLv2+
 # lib:  IJG and (LGPLv2 or LGPLv3 or LGPLv3+ (KDE e.V.)) and LGPLv2+ and GPLv2+
@@ -56,6 +56,7 @@ BuildRequires: cmake(kColorPicker)
 BuildRequires: cmake(kImageAnnotator)
 
 BuildRequires: qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires: qt6-qtwayland-devel
 BuildRequires: wayland-protocols-devel
 

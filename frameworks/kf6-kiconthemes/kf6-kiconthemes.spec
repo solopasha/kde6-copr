@@ -2,7 +2,7 @@
 
 Name:    kf6-%{framework}
 Version: 5.246.0
-Release: 1%{?dist}
+Release: 1.1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 integration module with icon themes
 
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -22,6 +22,7 @@ BuildRequires:  cmake(KF6ItemViews)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtsvg-devel
 

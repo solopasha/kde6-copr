@@ -1,6 +1,6 @@
 Name:    kscreenlocker
 Version: 5.90.0
-Release: 1%{?dist}
+Release: 1.1%{?dist}
 Summary: Library and components for secure lock screen architecture
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -18,6 +18,7 @@ BuildRequires: cmake(LayerShellQt)
 BuildRequires:  perl-generators
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  cmake(Qt6Quick)
 
 BuildRequires:  kf6-rpm-macros
