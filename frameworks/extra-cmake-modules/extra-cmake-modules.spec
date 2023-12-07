@@ -35,7 +35,7 @@ BuildRequires: python3-sphinxcontrib-qthelp
 %endif
 BuildRequires: pkgconfig(Qt5Core)
 BuildRequires: pkgconfig(Qt6Core)
-Requires: kf5-rpm-macros
+Requires: (kf5-rpm-macros if qt5-qtbase-devel)
 Requires: kf6-rpm-macros
 Recommends: appstream
 # /usr/share/ECM/modules/ECMPoQmTools.cmake
