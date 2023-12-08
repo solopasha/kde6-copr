@@ -7,15 +7,17 @@ License:        GPL-2.0-or-later
 URL:            https://community.kde.org/KIO_GDrive
 %apps_source
 Patch:          https://invent.kde.org/network/kio-gdrive/-/commit/e4701190d65f4d1559ded153e8d8307e46d507b1.patch
+Patch:          kf5.patch
 # handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
 # arch's where libkgapi is available (due to inderect dependencies on qtwebengine)
 %{?qt6_qtwebengine_arches:ExclusiveArch: %{qt6_qtwebengine_arches}}
 
-BuildRequires:  extra-cmake-modules
 BuildRequires:  desktop-file-utils
-BuildRequires:  kf6-rpm-macros
-BuildRequires:  libappstream-glib
+BuildRequires:  extra-cmake-modules
 BuildRequires:  intltool
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  kf5-rpm-macros
+BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(KAccounts6)
 
@@ -31,9 +33,28 @@ BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6Widgets)
 
+BuildRequires:  cmake(KAccounts)
+
+BuildRequires:  cmake(KF5DocTools)
+BuildRequires:  cmake(KF5I18n)
+BuildRequires:  cmake(KF5KIO)
+BuildRequires:  cmake(KF5Notifications)
+BuildRequires:  cmake(KF5Purpose)
+
+BuildRequires:  cmake(KPim5GAPI)
+
+BuildRequires:  cmake(Qt5Gui)
+BuildRequires:  cmake(Qt5Network)
+BuildRequires:  cmake(Qt5Widgets)
+
 %description
 Provides KIO Access to Google Drive using the gdrive:/// protocol.
 
+%package        qt5
+Summary:        Qt5 support for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+%description    qt5
+%{summary}.
 
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
@@ -41,12 +62,22 @@ Provides KIO Access to Google Drive using the gdrive:/// protocol.
 
 
 %build
+%global _vpath_builddir %{_target_platform}-qt5
+%cmake_kf5 -DQT_MAJOR_VERSION=5
+%cmake_build
+
+%global _vpath_builddir %{_target_platform}-qt6
 %cmake_kf6 -DQT_MAJOR_VERSION=6
 %cmake_build
 
 
 %install
+%global _vpath_builddir %{_target_platform}-qt5
 %cmake_install
+
+%global _vpath_builddir %{_target_platform}-qt6
+%cmake_install
+
 %find_lang kio5_gdrive --all-name --with-html
 
 
@@ -69,6 +100,15 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml ||:
 %{_kf6_plugindir}/propertiesdialog/gdrivepropertiesplugin.so
 %{_kf6_plugindir}/purpose/purpose_gdrive.so
 %{_qt6_plugindir}/kaccounts/daemonplugins/gdrive.so
+
+%files qt5
+%dir %{_kf5_plugindir}/kfileitemaction/
+%{_kf5_plugindir}/kfileitemaction/gdrivecontextmenuaction.so
+%{_kf5_plugindir}/kio/gdrive.so
+%{_kf5_plugindir}/propertiesdialog/gdrivepropertiesplugin.so
+%{_kf5_plugindir}/purpose/purpose_gdrive.so
+%{_kf6_datadir}/knotifications5/gdrive.notifyrc
+%{_qt5_plugindir}/kaccounts/daemonplugins/gdrive.so
 
 
 %changelog
