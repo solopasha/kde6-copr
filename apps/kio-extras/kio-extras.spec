@@ -1,6 +1,6 @@
 Name:    kio-extras
 Version: 24.01.80
-Release: 1.2%{?dist}
+Release: 1.3%{?dist}
 Summary: Additional components to increase the functionality of KIO Framework
 
 License: GPLv2+
@@ -60,6 +60,8 @@ BuildRequires:  taglib-devel > 1.11
 
 # This package provides plugins for KIO
 Supplements:    kf6-kio-core
+
+Recommends:     kio-extras-kf5
 
 Obsoletes:      kio-extras-kf6 < 24.01.80-2
 Provides:       kio-extras-kf6 = %{version}-%{release}
