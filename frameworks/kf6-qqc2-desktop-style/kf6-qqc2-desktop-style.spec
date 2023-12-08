@@ -2,29 +2,31 @@
 
 Name:    kf6-%{framework}
 Version: 5.246.0
-Release: 1.1%{?dist}
-Summary: QtQuickControls2 style for consistency between QWidget and QML apps 
+Release: 1.2%{?dist}
+Summary: QtQuickControls2 style for consistency between QWidget and QML apps
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KFQF-Accepted-GPL
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_source
 
+BuildRequires: cmake
 BuildRequires: extra-cmake-modules >= %{version}
 BuildRequires: gcc-c++
-BuildRequires: cmake
 BuildRequires: kf6-rpm-macros
-BuildRequires: cmake(KF6ConfigWidgets)
-BuildRequires: cmake(KF6Kirigami)
-BuildRequires: cmake(KF6IconThemes)
+
 BuildRequires: cmake(KF6ColorScheme)
-BuildRequires: pkgconfig(Qt6Gui)
-BuildRequires: pkgconfig(Qt6Quick)
-BuildRequires: pkgconfig(Qt6Widgets)
+BuildRequires: cmake(KF6Config)
+BuildRequires: cmake(KF6IconThemes)
+BuildRequires: cmake(KF6Kirigami)
 BuildRequires: cmake(KF6Sonnet)
-BuildRequires: pkgconfig(xkbcommon)
+
+BuildRequires: cmake(Qt6Gui)
+BuildRequires: cmake(Qt6Quick)
+BuildRequires: cmake(Qt6Widgets)
 BuildRequires: qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 Requires:      kf6-kirigami2
+Requires:      kf6-sonnet
 
 %description
 This is a style for QtQuickControls 2 that uses QWidget's QStyle for
@@ -47,9 +49,9 @@ between QWidget-based and QML-based apps.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_libdir}/cmake/KF6QQC2DesktopStyle/
+%{_kf6_plugindir}/kirigami/platform/org.kde.desktop.so
 %{_qt6_qmldir}/org/kde/desktop/
 %{_qt6_qmldir}/org/kde/qqc2desktopstyle/
-%{_kf6_plugindir}/kirigami/platform/org.kde.desktop.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1
