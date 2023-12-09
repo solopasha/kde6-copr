@@ -2,7 +2,7 @@
 
 Name:    kf6-%{framework}
 Version: 5.246.0
-Release: 2.2%{?dist}
+Release: 2.4%{?dist}
 Summary: KDE Frameworks 6 Tier 3 solution for filesystem abstraction
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -101,10 +101,10 @@ Documentation for %{name}.
 
 %package        core
 Summary:        Core components of the KIO Framework
-%{?kf6_kinit_requires}
 Requires:       %{name}-core-libs%{?_isa} = %{version}-%{release}
 Requires:       %{name}-doc = %{version}-%{release}
 Requires:       kf6-filesystem
+Requires:       (kio-extras-kf5 if kf5-kio-core)
 %description    core
 KIOCore library provides core non-GUI components for working with KIO.
 
@@ -116,9 +116,6 @@ Requires:       %{name}-core%{?_isa} = %{version}-%{release}
 
 %package        widgets
 Summary:        Widgets for KIO Framework
-## org.kde.klauncher6 service referenced from : widgets/krun.cpp
-## included here for completeness, even those -core already has a dependency.
-%{?kf6_kinit_requires}
 Requires:       %{name}-core%{?_isa} = %{version}-%{release}
 %description    widgets
 KIOWidgets contains classes that provide generic job control, progress
