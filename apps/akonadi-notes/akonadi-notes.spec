@@ -19,9 +19,9 @@ BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KPim6Mime)
 
 %if 0%{?tests}
-BuildRequires: akonadi
-BuildRequires: akonadi-mysql
-BuildRequires: xorg-x11-server-Xvfb
+BuildRequires:  akonadi
+BuildRequires:  akonadi-mysql
+BuildRequires:  xorg-x11-server-Xvfb
 %endif
 
 Conflicts:      kf5-%{name} < 23.08.3-2
@@ -45,7 +45,7 @@ developing applications that use %{name}.
 
 
 %build
-%cmake_kf5 \
+%cmake_kf6 \
   -DBUILD_TESTING:BOOL=%{?tests:ON}%{!?tests:OFF}
 %cmake_build
 

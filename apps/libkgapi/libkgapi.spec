@@ -1,6 +1,3 @@
-# trim changelog included in binary rpms
-%global _changelog_trimtime %(date +%s -d "1 year ago")
-
 # https://bugzilla.redhat.com/show_bug.cgi?id=1895674
 %global _lto_cflags %{nil}
 

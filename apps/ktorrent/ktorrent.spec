@@ -1,6 +1,3 @@
-# trim changelog included in binary rpms
-%global _changelog_trimtime %(date +%s -d "1 year ago")
-
 Name:    ktorrent
 Version: 24.01.80
 Release: 1%{?dist}

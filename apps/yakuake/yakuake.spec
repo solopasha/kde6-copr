@@ -1,7 +1,3 @@
-
-# trim changelog included in binary rpms
-%global _changelog_trimtime %(date +%s -d "1 year ago")
-
 Name:    yakuake
 Version: 24.01.80
 Release: 1.1%{?dist}
