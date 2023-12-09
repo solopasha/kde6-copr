@@ -80,7 +80,7 @@ Analytics and administration tool for UserFeedback servers.
 
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf5_metainfodir}/org.kde.kuserfeedback-console.appdata.xml
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.kuserfeedback-console.appdata.xml
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kuserfeedback-console.desktop
 
 

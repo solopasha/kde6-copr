@@ -107,7 +107,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.ktorrent.
 %{_kf6_datadir}/icons/hicolor/*/*/*
 %{_kf6_datadir}/ktorrent/
 %{_kf6_datadir}/knotifications6/ktorrent.notifyrc
-%{_kf5_datadir}/kxmlgui5/ktorrent/
+%{_kf6_datadir}/kxmlgui5/ktorrent/
 %{_qt6_plugindir}/ktorrent_plugins/*.so
 
 

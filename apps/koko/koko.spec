@@ -85,7 +85,7 @@ cp %{SOURCE12} src/
 %{_kf6_qmldir}/org/kde/%{name}/
 
 %files devel
-%{_kf5_libdir}/libkokocommon.so
+%{_kf6_libdir}/libkokocommon.so
 
 %changelog
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
