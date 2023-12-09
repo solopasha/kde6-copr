@@ -2,7 +2,7 @@
 
 Name:    kf6-%{framework}
 Version: 5.246.0
-Release: 2.1%{?dist}
+Release: 2.2%{?dist}
 Summary: KDE Frameworks 6 Tier 3 solution for filesystem abstraction
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -10,6 +10,7 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_source
 
 Patch:   https://invent.kde.org/frameworks/kio/-/commit/bdef648edd54e146c30e881d8eb95990a59c5bbc.patch
+Patch:   https://invent.kde.org/frameworks/kio/-/commit/d807cbe0a7fb02ff6bda4f7be066c1323423743f.patch
 
 %if 0%{?flatpak}
 # Disable the help: and ghelp: protocol for Flatpak builds, to avoid depending
@@ -17,35 +18,34 @@ Patch:   https://invent.kde.org/frameworks/kio/-/commit/bdef648edd54e146c30e881d
 Patch101: kio-no-help-protocol.patch
 %endif
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake
+
 BuildRequires:  cmake(KF6Archive)
-BuildRequires:  cmake(KF6Crash)
-BuildRequires:  cmake(KF6Solid)
-BuildRequires:  switcheroo-control
+BuildRequires:  cmake(KF6Bookmarks)
 BuildRequires:  cmake(KF6ColorScheme)
+BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6Service)
-BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
-BuildRequires:  cmake(KF6Bookmarks)
-BuildRequires:  cmake(KF6Completion)
-BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6ItemViews)
 BuildRequires:  cmake(KF6JobWidgets)
-BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  cmake(KF6Notifications)
+BuildRequires:  cmake(KF6KDED)
+BuildRequires:  cmake(KF6Service)
+BuildRequires:  cmake(KF6Solid)
 BuildRequires:  cmake(KF6Wallet)
 BuildRequires:  cmake(KF6WidgetsAddons)
-BuildRequires:  cmake(KF6XmlGui)
+BuildRequires:  cmake(KF6WindowSystem)
+
+BuildRequires:  switcheroo-control
 
 BuildRequires:  libacl-devel
 %if !0%{?flatpak}
@@ -54,14 +54,13 @@ BuildRequires:  libxslt-devel
 %endif
 BuildRequires:  pkgconfig(blkid)
 BuildRequires:  pkgconfig(mount)
-BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  zlib-devel
 
 BuildRequires:  qt6-qtbase-devel
+BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  cmake(Qt6UiPlugin)
 BuildRequires:  cmake(Qt6Qml)
-
-BuildRequires:  cmake(KF6KDED)
 BuildRequires:  cmake(Qt6Core5Compat)
 
 Requires:       %{name}-core%{?_isa} = %{version}-%{release}
@@ -77,7 +76,7 @@ KDE Frameworks 6 Tier 3 solution for filesystem abstraction
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
-Requires:       kf6-kbookmarks-devel
+Requires:       cmake(KF6Bookmarks)
 Requires:       cmake(KF6Completion)
 Requires:       cmake(KF6Config)
 Requires:       cmake(KF6CoreAddons)
@@ -85,7 +84,7 @@ Requires:       cmake(KF6ItemViews)
 Requires:       cmake(KF6JobWidgets)
 Requires:       cmake(KF6Service)
 Requires:       cmake(KF6Solid)
-Requires:       cmake(KF6XmlGui)
+Requires:       cmake(KF6WidgetsAddons)
 Requires:       cmake(KF6WindowSystem)
 Requires:       qt6-qtbase-devel
 %description    devel
@@ -198,12 +197,16 @@ Recommends:     switcheroo-control
 
 %files devel
 %{_kf6_datadir}/kdevappwizard/templates/kioworker6.tar.bz2
-%{_kf6_includedir}/*
+%{_kf6_includedir}/KIO/
+%{_kf6_includedir}/KIOCore/
+%{_kf6_includedir}/KIOFileWidgets/
+%{_kf6_includedir}/KIOGui/
+%{_kf6_includedir}/KIOWidgets/
+%{_kf6_libdir}/cmake/KF6KIO/
 %{_kf6_libdir}/libKF6KIOCore.so
 %{_kf6_libdir}/libKF6KIOFileWidgets.so
 %{_kf6_libdir}/libKF6KIOGui.so
 %{_kf6_libdir}/libKF6KIOWidgets.so
-%{_kf6_libdir}/cmake/KF6KIO/
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

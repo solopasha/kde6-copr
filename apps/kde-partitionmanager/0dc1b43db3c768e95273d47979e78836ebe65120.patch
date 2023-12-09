@@ -1,0 +1,27 @@
+From 0dc1b43db3c768e95273d47979e78836ebe65120 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Andrius=20=C5=A0tikonas?= <andrius@stikonas.eu>
+Date: Thu, 7 Dec 2023 21:14:56 +0000
+Subject: [PATCH] Do not allow setting zero alignment.
+
+BUG: 478224
+---
+ src/config/configurepagegeneral.ui | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/src/config/configurepagegeneral.ui b/src/config/configurepagegeneral.ui
+index d1779f50..51ed124e 100644
+--- a/src/config/configurepagegeneral.ui
++++ b/src/config/configurepagegeneral.ui
+@@ -59,6 +59,9 @@ SPDX-License-Identifier: GPL-3.0-or-later
+         <property name="suffix">
+          <string> sectors</string>
+         </property>
++        <property name="minimum">
++         <number>1</number>
++        </property>
+         <property name="maximum">
+          <number>16777215</number>
+         </property>
+-- 
+GitLab
+
