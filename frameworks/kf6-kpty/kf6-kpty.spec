@@ -1,8 +1,8 @@
 %global framework kpty
 
 Name:           kf6-%{framework}
-Version: 5.246.0
-Release: 1%{?dist}
+Version:        5.246.0
+Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 module providing Pty abstraction
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -10,12 +10,14 @@ URL:            https://invent.kde.org/frameworks/%{framework}
 
 %frameworks_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
 BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
+
 BuildRequires:  libutempter-devel
 BuildRequires:  qt6-qtbase-devel
 

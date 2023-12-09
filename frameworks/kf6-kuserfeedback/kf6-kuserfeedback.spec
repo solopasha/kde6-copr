@@ -9,27 +9,22 @@ License: MIT AND CC0-1.0 AND BSD-3-Clause
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_source
 
-## upstream patches
-
-
 BuildRequires: cmake
-BuildRequires: gnupg2
-BuildRequires: gcc-c++
-
-BuildRequires: kf6-rpm-macros
-BuildRequires: libappstream-glib
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
+BuildRequires: gcc-c++
+BuildRequires: kf6-rpm-macros
+BuildRequires: libappstream-glib
 
+BuildRequires: cmake(Qt6Charts)
+BuildRequires: cmake(Qt6Core)
+BuildRequires: cmake(Qt6LinguistTools)
+BuildRequires: cmake(Qt6Network)
+BuildRequires: cmake(Qt6PrintSupport)
 BuildRequires: cmake(Qt6Qml)
 BuildRequires: cmake(Qt6Svg)
-BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6Test)
-BuildRequires: cmake(Qt6Charts)
-BuildRequires: cmake(Qt6Network)
 BuildRequires: cmake(Qt6Widgets)
-BuildRequires: cmake(Qt6PrintSupport)
-BuildRequires: cmake(Qt6LinguistTools)
 
 BuildRequires: bison
 BuildRequires: flex

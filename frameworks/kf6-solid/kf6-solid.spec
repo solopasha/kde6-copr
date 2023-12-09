@@ -12,7 +12,6 @@ URL:            https://solid.kde.org/
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  extra-cmake-modules >= %{version}
-Requires:       kf6-filesystem
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Qml)
@@ -27,6 +26,8 @@ BuildRequires:  bison
 Recommends:     media-player-info
 Recommends:     udisks2
 Recommends:     upower
+
+Requires:       kf6-filesystem
 
 %description
 Solid provides the following features for application developers:
@@ -51,7 +52,6 @@ developing applications that use %{name}.
     -DWITH_NEW_POWER_ASYNC_API:BOOL=ON \
     -DWITH_NEW_POWER_ASYNC_FREEDESKTOP:BOOL=ON \
     -DWITH_NEW_SOLID_JOB:BOOL=ON
-
 %cmake_build
 
 %install

@@ -1,6 +1,4 @@
 
-%undefine __cmake_in_source_build
-
 %global framework kplotting
 
 Name:           kf6-%{framework}
@@ -11,24 +9,14 @@ License:        GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_source
 
-# Compile Tools
 BuildRequires:  cmake
-BuildRequires:  gcc-c++
-
-# Fedora
-BuildRequires:  kf6-rpm-macros
-Requires:       kf6-filesystem
-
-# KDE Frameworks
 BuildRequires:  extra-cmake-modules >= %{version}
-
-# Other
-BuildRequires:  pcre2-devel
-BuildRequires:  perl-interpreter
-
-# Qt
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6UiPlugin)
+
+Requires:       kf6-filesystem
 
 %description
 KPlotting provides classes to do plotting.
@@ -60,8 +48,8 @@ developing applications that use %{name}.
 
 %files devel
 %{_kf6_includedir}/KPlotting/
-%{_kf6_libdir}/libKF6Plotting.so
 %{_kf6_libdir}/cmake/KF6Plotting/
+%{_kf6_libdir}/libKF6Plotting.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

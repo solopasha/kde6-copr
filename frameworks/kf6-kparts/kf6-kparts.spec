@@ -10,24 +10,20 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 
 %frameworks_source
 
-BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6JobWidgets)
-BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Service)
-BuildRequires:  cmake(KF6TextWidgets)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6XmlGui)
-BuildRequires:  cmake(KF6ColorScheme)
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  qt6-qtbase-devel
-BuildRequires:  pkgconfig(xkbcommon)
+
 Requires:  kf6-filesystem
 
 %description
@@ -37,7 +33,7 @@ KDE Frameworks 6 Tier 3 solution for KParts
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6KIO)
-Requires:       cmake(KF6TextWidgets)
+Requires:       cmake(KF6Service)
 Requires:       cmake(KF6XmlGui)
 %description    devel
 The %{name}-devel package contains libraries and header files for
@@ -60,17 +56,18 @@ mkdir -p %{buildroot}%{_kf6_plugindir}/parts/
 %files -f %{name}.lang
 %doc README.md AUTHORS
 %license LICENSES/*.txt
-%{_kf6_libdir}/libKF6Parts.so.*
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
+%{_kf6_libdir}/libKF6Parts.so.*
 %dir %{_kf6_plugindir}/parts/
 
 %files devel
-%{_kf6_includedir}/KParts/
-%{_kf6_libdir}/libKF6Parts.so
-%{_kf6_libdir}/cmake/KF6Parts/
 %dir %{_kf6_datadir}/kdevappwizard/
 %dir %{_kf6_datadir}/kdevappwizard/templates/
 %{_kf6_datadir}/kdevappwizard/templates/kparts6-app.tar.bz2
+%{_kf6_includedir}/KParts/
+%{_kf6_libdir}/cmake/KF6Parts/
+%{_kf6_libdir}/libKF6Parts.so
+
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

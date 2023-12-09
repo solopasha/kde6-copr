@@ -9,14 +9,12 @@ URL:		https://invent.kde.org/frameworks/%{framework}
 %frameworks_source
 
 BuildRequires:	cmake
-BuildRequires:	gcc-c++
 BuildRequires:	extra-cmake-modules >= %{version}
-BuildRequires:	kf6-rpm-macros
-BuildRequires:	qt6-qtbase-devel
-BuildRequires:	qt6-qttools-devel
-BuildRequires:	qt6-qttools-static
-BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	fdupes
+BuildRequires:	gcc-c++
+BuildRequires:	kf6-rpm-macros
+
+BuildRequires:	cmake(Qt6Widgets)
 
 Requires:	kf6-filesystem
 
@@ -26,7 +24,7 @@ KDE Frameworks 6 Tier 1 addon with various classes on top of QtWidgets.
 %package	devel
 Summary:	Development files for %{name}
 Requires:	%{name} = %{version}-%{release}
-Requires:	qt6-qtbase-devel
+Requires:	cmake(Qt6Widgets)
 %description	devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
@@ -48,16 +46,15 @@ developing applications that use %{name}.
 %files -f kwidgetsaddons6_qt.lang
 %doc README.md
 %license LICENSES/*.txt
+%{_kf6_datadir}/kf6/kcharselect/
 %{_kf6_datadir}/qlogging-categories6/*categories
 %{_kf6_libdir}/libKF6WidgetsAddons.so.*
-%{_kf6_datadir}/kf6/kcharselect/
 %{_kf6_qtplugindir}/designer/*6widgets.so
 
 %files devel
-
 %{_kf6_includedir}/KWidgetsAddons/
-%{_kf6_libdir}/libKF6WidgetsAddons.so
 %{_kf6_libdir}/cmake/KF6WidgetsAddons/
+%{_kf6_libdir}/libKF6WidgetsAddons.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

@@ -14,7 +14,6 @@ BuildRequires:  cmake
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  pkgconfig(xkbcommon)
 
 Requires:       kf6-filesystem
 
@@ -24,6 +23,7 @@ Requires:       kf6-filesystem
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
+Requires:       cmake(KF6Config)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.

@@ -13,23 +13,25 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
-BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  libX11-devel
-BuildRequires:  qt6-qtbase-devel
+
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6ItemViews)
 BuildRequires:  cmake(KF6WidgetsAddons)
+
 BuildRequires:  cmake(Qt6UiPlugin)
-BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  libX11-devel
+BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
+
 Requires:       kf6-filesystem
 
 %description
@@ -67,10 +69,10 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kxmlgui5/
 %dir %{_kf6_datadir}/kxmlgui5/
 
 %files devel
-%{_kf6_qtplugindir}/designer/*6widgets.so
 %{_kf6_includedir}/KXmlGui/
-%{_kf6_libdir}/libKF6XmlGui.so
 %{_kf6_libdir}/cmake/KF6XmlGui/
+%{_kf6_libdir}/libKF6XmlGui.so
+%{_kf6_qtplugindir}/designer/*6widgets.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

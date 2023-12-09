@@ -1,4 +1,4 @@
-%global 	framework kguiaddons
+%global framework kguiaddons
 
 Name:		kf6-%{framework}
 Version:	5.246.0
@@ -10,20 +10,18 @@ URL:		https://invent.kde.org/frameworks/%{framework}
 
 %frameworks_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}
-BuildRequires:	cmake
-BuildRequires:	gcc-c++
-BuildRequires:  libX11-devel
-BuildRequires:  libxcb-devel
-BuildRequires:  qt6-qtbase-private-devel
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  plasma-wayland-protocols-devel
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtwayland-devel
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  qt6-qtbase-private-devel
 
+BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  cmake(Qt6WaylandClient)
-
 BuildRequires:  pkgconfig(wayland-client)
+BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xkbcommon)
 
 Requires:       kf6-filesystem
@@ -35,7 +33,6 @@ Requires:       kf6-filesystem
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       qt6-qtbase-devel
-
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
@@ -55,14 +52,14 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_bindir}/kde-geo-uri-handler
+%{_kf6_datadir}/applications/*-handler.desktop
 %{_kf6_datadir}/qlogging-categories6/*categories
 %{_kf6_libdir}/libKF6GuiAddons.so.*
-%{_kf6_datadir}/applications/*-handler.desktop
 
 %files devel
 %{_kf6_includedir}/KGuiAddons/
-%{_kf6_libdir}/libKF6GuiAddons.so
 %{_kf6_libdir}/cmake/KF6GuiAddons/
+%{_kf6_libdir}/libKF6GuiAddons.so
 
 
 %changelog

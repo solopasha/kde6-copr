@@ -24,6 +24,7 @@ BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6Archive)
+BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6Bookmarks)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Completion)

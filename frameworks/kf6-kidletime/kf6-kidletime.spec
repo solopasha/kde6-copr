@@ -55,14 +55,14 @@ developing applications that use %{name}.
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6IdleTime.so.*
 %dir %{_kf6_plugindir}/org.kde.kidletime.platforms/
+%{_kf6_plugindir}/org.kde.kidletime.platforms/KF6IdleTimeWaylandPlugin.so
 %{_kf6_plugindir}/org.kde.kidletime.platforms/KF6IdleTimeXcbPlugin0.so
 %{_kf6_plugindir}/org.kde.kidletime.platforms/KF6IdleTimeXcbPlugin1.so
-%{_kf6_plugindir}/org.kde.kidletime.platforms/KF6IdleTimeWaylandPlugin.so
 
 %files devel
 %{_kf6_includedir}/KIdleTime/
-%{_kf6_libdir}/libKF6IdleTime.so
 %{_kf6_libdir}/cmake/KF6IdleTime/
+%{_kf6_libdir}/libKF6IdleTime.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

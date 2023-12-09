@@ -11,23 +11,14 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 
 %frameworks_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6Crash)
-BuildRequires:  cmake(KF6DBusAddons)
-BuildRequires:  cmake(KF6WindowSystem)
-# for systemd-related macros
-BuildRequires:  systemd
-BuildRequires:  cmake(Qt6Core)
-BuildRequires:  cmake(Qt6LinguistTools)
-BuildRequires:  pkgconfig(xkbcommon)
-BuildRequires:  xcb-util-keysyms-devel
-BuildRequires:  libX11-devel
-BuildRequires:  libxcb-devel
+
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Widgets)
 
 Requires:       kf6-filesystem
 

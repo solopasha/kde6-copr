@@ -1,4 +1,4 @@
-%global framework	kdbusaddons
+%global framework kdbusaddons
 
 Name:			kf6-%{framework}
 Version:		5.246.0
@@ -8,15 +8,14 @@ License:		CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only
 URL:			https://invent.kde.org/frameworks/%{framework}
 %frameworks_source
 
-BuildRequires:		extra-cmake-modules >= %{version}
-BuildRequires:		kf6-rpm-macros
 BuildRequires:		cmake
+BuildRequires:		extra-cmake-modules >= %{version}
 BuildRequires:		gcc-c++
-BuildRequires:		qt6-qtbase-devel
-BuildRequires:		qt6-qttools-devel
-BuildRequires:          qt6-qtbase-private-devel
+BuildRequires:		kf6-rpm-macros
+BuildRequires:		cmake(Qt6DBus)
+BuildRequires:		cmake(Qt6Gui)
+BuildRequires:      qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
-BuildRequires:		pkgconfig(xkbcommon)
 
 Requires:		kf6-filesystem
 
@@ -47,14 +46,14 @@ developing applications that use %{name}.
 %files -f kdbusaddons6_qt.lang
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_datadir}/qlogging-categories6/%{framework}*
 %{_kf6_bindir}/kquitapp6
+%{_kf6_datadir}/qlogging-categories6/%{framework}*
 %{_kf6_libdir}/libKF6DBusAddons.so.*
 
 %files devel
 %{_kf6_includedir}/KDBusAddons/
-%{_kf6_libdir}/libKF6DBusAddons.so
 %{_kf6_libdir}/cmake/KF6DBusAddons/
+%{_kf6_libdir}/libKF6DBusAddons.so
 
 
 %changelog

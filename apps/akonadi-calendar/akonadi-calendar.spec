@@ -82,10 +82,7 @@ developing applications that use %{name}.
 
 %check
 %if 0%{?tests}
-export CTEST_OUTPUT_ON_FAILURE=1
-xvfb-run -a \
-dbus-launch --exit-with-session \
-make test ARGS="--output-on-failure --timeout 30" -C %{_vpath_builddir} ||:
+xvfb-run -a bash -c "%ctest" || :
 %endif
 
 

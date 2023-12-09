@@ -1,4 +1,4 @@
-%global tests 0
+%global tests 1
 
 Name:    akonadi-calendar-tools
 Summary: Akonadi Calendar Tools
@@ -29,7 +29,6 @@ BuildRequires: cmake(Qt6Widgets)
 %if 0%{?tests}
 BuildRequires: dbus-x11
 BuildRequires: xorg-x11-server-Xvfb
-BuildRequires: make
 %endif
 
 %description
@@ -56,10 +55,7 @@ BuildRequires: make
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %if 0%{?tests}
-export CTEST_OUTPUT_ON_FAILURE=1
-xvfb-run -a \
-dbus-launch --exit-with-session \
-make test ARGS="--output-on-failure --timeout 20" -C %{_vpath_builddir} ||:
+xvfb-run -a bash -c "%ctest" || :
 %endif
 
 

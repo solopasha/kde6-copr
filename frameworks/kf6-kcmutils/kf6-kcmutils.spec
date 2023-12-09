@@ -10,21 +10,18 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 
 %frameworks_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
-BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6IconThemes)
-BuildRequires:  cmake(KF6ItemViews)
-BuildRequires:  cmake(KF6Package)
-BuildRequires:  cmake(KF6XmlGui)
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6ConfigWidgets)
+BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6GuiAddons)
-BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  cmake(KF6ColorScheme)
-BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6ItemViews)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6WidgetsAddons)
+BuildRequires:  cmake(KF6XmlGui)
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtdeclarative-devel
 
@@ -38,7 +35,7 @@ created with the KConfigWidgets framework.
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6ConfigWidgets)
-Requires:       cmake(KF6Service)
+Requires:       cmake(KF6CoreAddons)
 Requires:       cmake(Qt6Qml)
 %description    devel
 The %{name}-devel package contains libraries and header files for

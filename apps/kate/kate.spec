@@ -1,23 +1,14 @@
-# trim changelog included in binary rpms
-%global _changelog_trimtime %(date +%s -d "1 year ago")
-
-# uncomment to enable bootstrap mode
-#global bootstrap 1
-
-%if !0%{?bootstrap}
-## tests busted due to %%{_target_platform} not being used as default anymore -- rex
-#global tests 1
-%endif
+%global tests 1
 
 Name:    kate
 Summary: Advanced Text Editor
 Version: 24.01.80
-Release: 1.1.1%{?dist}
+Release: 1.1.2%{?dist}
 
 # kwrite LGPLv2+
 # kate: app LGPLv2, plugins, LGPLv2 and LGPLv2+ and GPLv2+
 # ktexteditor: LGPLv2
-License: LGPLv2 and LGPLv2+ and GPLv2+ 
+License: LGPLv2 and LGPLv2+ and GPLv2+
 URL:     https://apps.kde.org/kate/
 %apps_source
 
@@ -25,6 +16,7 @@ URL:     https://apps.kde.org/kate/
 
 BuildRequires: desktop-file-utils
 BuildRequires: gettext
+BuildRequires: libappstream-glib
 BuildRequires: pkgconfig(x11)
 
 BuildRequires: extra-cmake-modules
@@ -49,7 +41,6 @@ BuildRequires: cmake(Qt6Concurrent)
 BuildRequires: qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
-%if ! 0%{?bootstrap}
 BuildRequires: cmake(PlasmaActivities)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6Wallet)
@@ -60,11 +51,8 @@ BuildRequires: cmake(KF6ThreadWeaver)
 BuildRequires: cmake(KF6NewStuff)
 BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6UserFeedback)
-%endif
 
 %if 0%{?tests}
-BuildRequires: make
-BuildRequires: libappstream-glib
 BuildRequires: xorg-x11-server-Xvfb
 %endif
 
@@ -73,8 +61,6 @@ Requires: %{name}-libs = %{version}-%{release}
 # and make it optional
 Recommends: %{name}-plugins%{?_isa} = %{version}-%{release}
 
-# translations moved here
-Conflicts: kde-l10n < 17.03
 
 %description
 %{summary}.
@@ -87,19 +73,15 @@ Summary: Private runtime libraries for %{name}
 %package plugins
 Summary: Kate plugins
 License: LGPLv2
-# upgrade path, when -plugins were split
-Obsoletes: kate < 14.12.1
 Requires: %{name} = %{version}-%{release}
 # Kate integrated terminal plugin doesnt work without Konsole
-Recommends: konsole5
+Recommends: konsole
 %description plugins
 %{summary}.
 
 %package -n kwrite
 Summary: Text Editor
 License: LGPLv2+
-# translations moved here
-Conflicts: kde-l10n < 17.03
 Requires: %{name}-libs = %{version}-%{release}
 %description -n kwrite
 %{summary}.
@@ -134,9 +116,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.ka
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.kate.desktop
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.kwrite.desktop
 %if 0%{?tests}
-export CTEST_OUTPUT_ON_FAILURE=1
-xvfb-run -a \
-make test ARGS="--output-on-failure --timeout 20" -C %{_target_platform} ||:
+xvfb-run -a bash -c "%ctest" || :
 %endif
 
 

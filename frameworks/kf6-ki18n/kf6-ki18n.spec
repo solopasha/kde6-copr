@@ -9,25 +9,25 @@ URL:		https://invent.kde.org/frameworks/%{framework}
 %frameworks_source
 
 BuildRequires:	cmake
-BuildRequires:	gcc-c++
 BuildRequires:	extra-cmake-modules >= %{version}
+BuildRequires:	gcc-c++
 BuildRequires:	gettext
 BuildRequires:	kf6-rpm-macros
 BuildRequires:	perl-interpreter
-BuildRequires:	python3
-BuildRequires:	qt6-qtbase-devel
-BuildRequires:	qt6-qtdeclarative-devel
-BuildRequires:	cmake(Qt6Qml)
 BuildRequires:	pkgconfig(iso-codes)
+BuildRequires:	python3
+BuildRequires:	cmake(Qt6Qml)
+BuildRequires:	cmake(Qt6Core)
 
 Requires:	kf6-filesystem
+Requires:	iso-codes
 
 %description
 KDE Frameworks 6 Tier 1 addon for localization.
 
 %package	devel
 Summary:	Development files for %{name}
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}%{?_isa} = %{version}-%{release}
 Requires:	gettext
 Requires:	python3
 %description	devel
@@ -52,9 +52,9 @@ developing applications that use %{name}.
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
+%{_kf6_datadir}/qlogging-categories6/*%{framework}*
 %{_kf6_libdir}/libKF6I18n.so.*
 %{_kf6_libdir}/libKF6I18nLocaleData.so.*
-%{_kf6_datadir}/qlogging-categories6/*%{framework}*
 %{_kf6_qmldir}/org/kde/i18n/localeData/
 %{_kf6_qtplugindir}/kf6/ktranscript.so
 %lang(ca) %{_datadir}/locale/ca/LC_SCRIPTS/ki18n6/
@@ -63,21 +63,21 @@ developing applications that use %{name}.
 %lang(gd) %{_datadir}/locale/gd/LC_SCRIPTS/ki18n6/
 %lang(ja) %{_datadir}/locale/ja/LC_SCRIPTS/ki18n6/
 %lang(ko) %{_datadir}/locale/ko/LC_SCRIPTS/ki18n6/
-%lang(ru) %{_datadir}/locale/ru/LC_SCRIPTS/ki18n6/
-%lang(sr) %{_datadir}/locale/sr/LC_SCRIPTS/ki18n6/
 %lang(nb) %{_datadir}/locale/nb/LC_SCRIPTS/ki18n6/
 %lang(nn) %{_datadir}/locale/nn/LC_SCRIPTS/ki18n6/
+%lang(ru) %{_datadir}/locale/ru/LC_SCRIPTS/ki18n6/
+%lang(sr) %{_datadir}/locale/sr/LC_SCRIPTS/ki18n6/
+%lang(sr) %{_datadir}/locale/uk/LC_SCRIPTS/ki18n6/
 %lang(sr@ijekavian) %{_datadir}/locale/sr@ijekavian/LC_SCRIPTS/ki18n6/
 %lang(sr@ijekavianlatin) %{_datadir}/locale/sr@ijekavianlatin/LC_SCRIPTS/ki18n6/
 %lang(sr@latin) %{_datadir}/locale/sr@latin/LC_SCRIPTS/ki18n6/
-%lang(sr) %{_datadir}/locale/uk/LC_SCRIPTS/ki18n6/
 
 %files devel
 %{_kf6_includedir}/KI18n/
 %{_kf6_includedir}/KI18nLocaleData/
+%{_kf6_libdir}/cmake/KF6I18n/
 %{_kf6_libdir}/libKF6I18n.so
 %{_kf6_libdir}/libKF6I18nLocaleData.so
-%{_kf6_libdir}/cmake/KF6I18n/
 
 
 %changelog

@@ -17,8 +17,6 @@ BuildRequires:	cmake(Qt6Qml)
 BuildRequires:	cmake(Qt6Quick)
 BuildRequires:	cmake(Qt6QuickControls2)
 BuildRequires:	cmake(Qt6ShaderTools)
-BuildRequires:	make
-BuildRequires:	pkgconfig(xkbcommon)
 
 %description
 The Quick Charts module provides a set of charts that can be used from QtQuick
@@ -31,6 +29,7 @@ quality.
 %package	devel
 Summary:	Development files for %{name}
 Requires:	%{name} = %{version}-%{release}
+Requires:	cmake(Qt6Core)
 %description	devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.

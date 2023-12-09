@@ -1,8 +1,8 @@
 %global framework kjobwidgets
 
 Name:           kf6-%{framework}
-Version: 5.246.0
-Release: 1.1%{?dist}
+Version:        5.246.0
+Release:        1.1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 addon for KJobs
 # The following are in the LICENSES folder, but go unused: LGPL-3.0-only, LicenseRef-KDE-Accepted-LGPL
 License:        CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later
@@ -23,7 +23,6 @@ BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6WidgetsAddons)
 
-BuildRequires:  pkgconfig(xkbcommon)
 Requires:       kf6-filesystem
 
 %description
@@ -60,10 +59,10 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6JobWidgets.so.*
 
 %files devel
-%{_kf6_includedir}/KJobWidgets/
-%{_kf6_libdir}/libKF6JobWidgets.so
-%{_kf6_libdir}/cmake/KF6JobWidgets/
 %{_kf6_datadir}/dbus-1/interfaces/*.xml
+%{_kf6_includedir}/KJobWidgets/
+%{_kf6_libdir}/cmake/KF6JobWidgets/
+%{_kf6_libdir}/libKF6JobWidgets.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

@@ -8,29 +8,27 @@ License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
-BuildRequires:  cmake(KF6Attica)
-BuildRequires:  cmake(KF6Archive)
-BuildRequires:  cmake(KF6Package)
-BuildRequires:  cmake(KF6TextWidgets)
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtdeclarative-devel
+
+BuildRequires:  cmake(KF6Archive)
+BuildRequires:  cmake(KF6Attica)
 BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6ItemViews)
-BuildRequires:  cmake(KF6Service)
-BuildRequires:  cmake(KF6WidgetsAddons)
-BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  cmake(Qt6UiPlugin)
 BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6Syndication)
-BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  cmake(KF6WidgetsAddons)
+BuildRequires:  cmake(KF6Package)
+
+BuildRequires:  qt6-qtbase-devel
+BuildRequires:  qt6-qtdeclarative-devel
+
 Requires:  kf6-filesystem
 
 %description
@@ -41,8 +39,7 @@ application data like plugins, themes, motives, etc.
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6Attica)
-Requires:       cmake(KF6Service)
-Requires:       cmake(KF6XmlGui)
+Requires:       cmake(KF6CoreAddons)
 Requires:       qt6-qtbase-devel
 %description    devel
 The %{name}-devel package contains libraries and header files for
@@ -61,8 +58,6 @@ developing applications that use %{name}.
 %find_lang %{name} --all-name
 
 %files -f %{name}.lang
-%dir %{_kf6_qmldir}/org/
-%dir %{_kf6_qmldir}/org/kde
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_bindir}/knewstuff*
@@ -73,9 +68,9 @@ developing applications that use %{name}.
 %{_kf6_qmldir}/org/kde/newstuff/
 
 %files devel
-%{_kf6_includedir}/KNewStuff
-%{_kf6_includedir}/KNewStuffCore
-%{_kf6_includedir}/KNewStuffWidgets
+%{_kf6_includedir}/KNewStuff/
+%{_kf6_includedir}/KNewStuffCore/
+%{_kf6_includedir}/KNewStuffWidgets/
 %{_kf6_libdir}/cmake/KF6NewStuff/
 %{_kf6_libdir}/cmake/KF6NewStuffCore/
 %{_kf6_libdir}/libKF6NewStuffCore.so

@@ -10,33 +10,26 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 
 %frameworks_source
 
-BuildRequires:  cmake(Qca-qt6)
-BuildRequires:  cmake(Qt6Core5Compat)
-
-BuildRequires:  cmake(KF6ConfigWidgets)
-
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
-BuildRequires:  libgcrypt-devel
 BuildRequires:  cmake
-BuildRequires:  qt6-qtbase-devel
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires:  cmake(Qt6Core5Compat)
-
-BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Notifications)
-BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(KF6ColorScheme)
-BuildRequires:  pkgconfig(xkbcommon)
+
+BuildRequires:  qt6-qtbase-devel
+
 BuildRequires:  cmake(Gpgmepp)
+BuildRequires:  cmake(Qca-qt6)
+BuildRequires:  pkgconfig(libgcrypt)
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       kf6-filesystem
@@ -85,7 +78,6 @@ developing applications that use %{name}.
 %{_kf6_datadir}/knotifications6/kwalletd6.notifyrc
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
 %{_mandir}/man1/kwallet-query.1*
-
 
 %files libs
 %{_kf6_libdir}/libKF6Wallet.so.*

@@ -10,7 +10,6 @@ URL:		https://invent.kde.org/frameworks/%{framework}
 
 BuildRequires:	cmake
 BuildRequires:	gcc-c++
-BuildRequires:	make
 BuildRequires:	extra-cmake-modules >= %{version}
 BuildRequires:	kf6-rpm-macros
 BuildRequires:	qt6-qtbase-devel
@@ -52,15 +51,12 @@ cat *.lang > all.lang
 %files -f all.lang
 %doc README.md
 %license LICENSES/*.txt
+%{_kf6_datadir}/kf6/jsonschema/kpluginmetadata.schema.json
 %{_kf6_datadir}/kf6/licenses/
 %{_kf6_datadir}/mime/packages/kde6.xml
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6CoreAddons.so.*
-%{_kf6_libdir}/qt6/qml/org/kde/coreaddons/libkcoreaddonsplugin.so
-%{_kf6_libdir}/qt6/qml/org/kde/coreaddons/qmldir
-%{_datadir}/kf6/jsonschema/kpluginmetadata.schema.json
-%{_libdir}/qt6/qml/org/kde/coreaddons/kcoreaddonsplugin.qmltypes
-%{_libdir}/qt6/qml/org/kde/coreaddons/kde-qmlmodule.version
+%{_kf6_qmldir}/org/kde/coreaddons/
 
 %files devel
 %{_kf6_includedir}/KCoreAddons/

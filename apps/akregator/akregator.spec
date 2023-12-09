@@ -87,10 +87,7 @@ Requires: %{name} = %{version}-%{release}
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml
 %if 0%{?tests}
-export CTEST_OUTPUT_ON_FAILURE=1
-xvfb-run -a \
-dbus-launch --exit-with-session \
-make test ARGS="--output-on-failure --timeout 20" -C %{_vpath_builddir} ||:
+xvfb-run -a bash -c "%ctest" || :
 %endif
 
 

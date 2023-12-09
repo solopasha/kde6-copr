@@ -13,18 +13,15 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(KF6Notifications)
-BuildRequires:  cmake(KF6WidgetsAddons)
-BuildRequires:  cmake(KF6XmlGui)
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  pkgconfig(libcanberra)
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  cmake(Qt6TextToSpeech)
+
 Requires:  kf6-filesystem
 
 %description
@@ -58,8 +55,8 @@ developing applications that use %{name}.
 
 %files devel
 %{_kf6_includedir}/KNotifyConfig/
-%{_kf6_libdir}/libKF6NotifyConfig.so
 %{_kf6_libdir}/cmake/KF6NotifyConfig/
+%{_kf6_libdir}/libKF6NotifyConfig.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

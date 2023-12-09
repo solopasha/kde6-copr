@@ -11,16 +11,16 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 
 %frameworks_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
+BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6Crash)
-BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  qt6-qtbase-devel
 
 # for the Administration category
@@ -58,18 +58,18 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kservicetypes6
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_bindir}/kbuildsycoca6
-%{_kf6_libdir}/libKF6Service.so.6*
-%{_kf6_libdir}/libKF6Service.so.5*
-%{_kf6_datadir}/kservicetypes6/
 %{_kf6_datadir}/kservices6/
+%{_kf6_datadir}/kservicetypes6/
+%{_kf6_datadir}/qlogging-categories6/%{framework}.*
+%{_kf6_libdir}/libKF6Service.so.5*
+%{_kf6_libdir}/libKF6Service.so.6*
 %{_kf6_mandir}/man8/*.8*
 
 %files devel
 %{_kf6_includedir}/KService/
-%{_kf6_libdir}/libKF6Service.so
 %{_kf6_libdir}/cmake/KF6Service/
+%{_kf6_libdir}/libKF6Service.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

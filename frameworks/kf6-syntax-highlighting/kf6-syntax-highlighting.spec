@@ -9,23 +9,21 @@ License:        MIT AND BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-on
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_source
 
-# Compile Tools
 BuildRequires:  cmake
-BuildRequires:  gcc-c++
-
-# KDE Frameworks
 BuildRequires:  extra-cmake-modules
-
-# Fedora
-Requires:       kf6-filesystem
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-
-# Other
 BuildRequires:  perl-interpreter
 
-# Qt
 BuildRequires:  cmake(Qt6Core)
-BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6PrintSupport)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Test)
+BuildRequires:  cmake(Qt6Widgets)
+
+Requires:       kf6-filesystem
 
 %description
 %{summary}.
@@ -33,6 +31,7 @@ BuildRequires:  cmake(Qt6Qml)
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Core)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
@@ -50,8 +49,7 @@ developing applications that use %{name}.
 %find_lang_kf6 syntaxhighlighting6_qt
 
 %check
-export CTEST_OUTPUT_ON_FAILURE=1
-make test ARGS="--output-on-failure --timeout 300" -C %{_target_platform} ||:
+%ctest
 
 %files -f syntaxhighlighting6_qt.lang
 %doc README.md
@@ -60,12 +58,12 @@ make test ARGS="--output-on-failure --timeout 300" -C %{_target_platform} ||:
 %{_kf6_datadir}/qlogging-categories6/*categories
 %{_kf6_libdir}/libKF6SyntaxHighlighting.so.5*
 %{_kf6_libdir}/libKF6SyntaxHighlighting.so.6
-%{_kf6_qmldir}/org/kde/syntaxhighlighting
+%{_kf6_qmldir}/org/kde/syntaxhighlighting/
 
 %files devel
 %{_kf6_includedir}/KSyntaxHighlighting/
-%{_kf6_libdir}/libKF6SyntaxHighlighting.so
 %{_kf6_libdir}/cmake/KF6SyntaxHighlighting/
+%{_kf6_libdir}/libKF6SyntaxHighlighting.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

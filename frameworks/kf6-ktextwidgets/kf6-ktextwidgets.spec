@@ -10,24 +10,21 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 
 %frameworks_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
+BuildRequires:  kf6-rpm-macros
+
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6Service)
-BuildRequires:  cmake(KF6WidgetsAddons)
-BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6Sonnet)
-BuildRequires:  cmake(KF6ColorScheme)
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  cmake(Qt6UiPlugin)
-BuildRequires:  pkgconfig(Qt6TextToSpeech)
-BuildRequires:  cmake(Qt6QmlIntegration)
-BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  cmake(KF6WidgetsAddons)
+
+BuildRequires:  cmake(Qt6TextToSpeech)
+BuildRequires:  cmake(Qt6Widgets)
 
 Requires:  kf6-filesystem
 
@@ -64,8 +61,8 @@ developing applications that use %{name}.
 
 %files devel
 %{_kf6_includedir}/KTextWidgets/
-%{_kf6_libdir}/libKF6TextWidgets.so
 %{_kf6_libdir}/cmake/KF6TextWidgets/
+%{_kf6_libdir}/libKF6TextWidgets.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

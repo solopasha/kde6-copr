@@ -9,15 +9,16 @@ URL:            https://invent.kde.org/frameworks/%{framework}
 
 %frameworks_source
 
-BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  kf6-karchive-devel
+BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6I18n)
 BuildRequires:  qt6-qtbase-devel
+
 Requires:  kf6-filesystem
 
 %description
@@ -51,17 +52,17 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kpackage/
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
+%{_kf6_bindir}/kpackagetool6
+%{_kf6_datadir}/kpackage/
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6Package.so.*
 %{_kf6_qtplugindir}/kpackage/
-%{_kf6_datadir}/kpackage/
-%{_kf6_bindir}/kpackagetool6
 %{_mandir}/man1/kpackagetool6.1*
 
 %files devel
 %{_kf6_includedir}/KPackage/
-%{_kf6_libdir}/libKF6Package.so
 %{_kf6_libdir}/cmake/KF6Package/
+%{_kf6_libdir}/libKF6Package.so
 
 
 %changelog

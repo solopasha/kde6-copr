@@ -11,23 +11,22 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 
 %frameworks_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
-BuildRequires:  kf6-kauth-devel
-BuildRequires:  kf6-kcodecs-devel
+BuildRequires:  kf6-rpm-macros
+
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6WidgetsAddons)
-BuildRequires:  kf6-rpm-macros
-BuildRequires:  pkgconfig(xkbcommon)
-BuildRequires:  cmake(KF6ColorScheme)
-Requires:  kf6-filesystem
+BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  cmake(Qt6UiPlugin)
+
+Requires:  kf6-filesystem
 
 %description
 KConfigWidgets provides easy-to-use classes to create configuration dialogs, as
@@ -36,8 +35,7 @@ well as a set of widgets which uses KConfig to store their settings.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       kf6-kauth-devel
-Requires:       kf6-kcodecs-devel
+Requires:       cmake(KF6Codecs)
 Requires:       cmake(KF6ColorScheme)
 Requires:       cmake(KF6Config)
 Requires:       cmake(KF6WidgetsAddons)

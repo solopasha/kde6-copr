@@ -10,21 +10,22 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_source
 
 BuildRequires: cmake
-BuildRequires: gcc-c++
-
-BuildRequires: kf6-rpm-macros
 BuildRequires: extra-cmake-modules >= %{version}
+BuildRequires: gcc-c++
+BuildRequires: kf6-rpm-macros
 
-BuildRequires: cmake(Qt6)
-BuildRequires: cmake(Qt6Quick)
-BuildRequires: cmake(Qt6Svg)
-BuildRequires: pkgconfig(xkbcommon)
 BuildRequires: cmake(KF6Archive)
+BuildRequires: cmake(KF6ColorScheme)
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6GuiAddons)
-BuildRequires: cmake(KF6Kirigami)
-BuildRequires: cmake(KF6ColorScheme)
+BuildRequires: cmake(KF6KirigamiPlatform)
+
+BuildRequires: cmake(Qt6Gui)
+BuildRequires: cmake(Qt6Qml)
+BuildRequires: cmake(Qt6Quick)
+BuildRequires: cmake(Qt6QuickControls2)
+BuildRequires: cmake(Qt6Svg)
 
 %description
 %{summary}.
@@ -32,7 +33,7 @@ BuildRequires: cmake(KF6ColorScheme)
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-
+Requires:       cmake(Qt6Gui)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
@@ -51,13 +52,13 @@ developing applications that use %{name}.
 
 %files
 %license LICENSES/*
-%{_kf6_libdir}/libKF6Svg.so.*
-%{_kf6_libdir}/qt6/qml/org/kde/ksvg
 %{_kf6_datadir}/qlogging-categories6/ksvg.categories
+%{_kf6_libdir}/libKF6Svg.so.*
+%{_kf6_libdir}/qt6/qml/org/kde/ksvg/
 
 %files devel
-%{_kf6_includedir}/KSvg
-%{_kf6_libdir}/cmake/KF6Svg
+%{_kf6_includedir}/KSvg/
+%{_kf6_libdir}/cmake/KF6Svg/
 %{_kf6_libdir}/libKF6Svg.so
 
 %changelog

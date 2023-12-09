@@ -51,8 +51,8 @@ developing applications that use %{name}.
 
 %files devel
 %{_kf6_includedir}/KCodecs/
-%{_kf6_libdir}/libKF6Codecs.so
 %{_kf6_libdir}/cmake/KF6Codecs/
+%{_kf6_libdir}/libKF6Codecs.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

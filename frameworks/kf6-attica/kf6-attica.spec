@@ -1,31 +1,30 @@
-%global		framework attica
+%global framework attica
 
-Name:		kf6-%{framework}
-Version:	5.246.0
-Release:	1%{?dist}
-Summary:	KDE Frameworks Tier 1 Addon with Open Collaboration Services API
-License:	CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL.txt
-URL:		https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        5.246.0
+Release:        1%{?dist}
+Summary:        KDE Frameworks Tier 1 Addon with Open Collaboration Services API
+License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL.txt
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_source
 
-BuildRequires:	gcc-c++
-BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules >= %{version}
-BuildRequires:	kf6-rpm-macros
-BuildRequires:	qt6-qtbase-devel
-BuildRequires:	reuse
+BuildRequires:  gcc-c++
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  qt6-qtbase-devel
 
-Requires:	kf6-filesystem
+Requires:       kf6-filesystem
 
 %description
 Attica is a Qt library that implements the Open Collaboration Services
 API version 1.4.
 
-%package	devel
-Summary:	Development files for %{name}
-Requires:	%{name} = %{version}-%{release}
-Requires:	qt6-qtbase-devel
-%description	devel
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name} = %{version}-%{release}
+Requires:       qt6-qtbase-devel
+%description    devel
 %{summary}.
 
 %if 0%{?docs}

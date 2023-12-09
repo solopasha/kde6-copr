@@ -7,11 +7,14 @@ Summary:	KDE Frameworks 6 Tier 1 addon for advanced thread management
 License:	CC0-1.0 AND LGPL-2.0-or-later
 URL:		https://invent.kde.org/frameworks/%{framework}
 %frameworks_source
-BuildRequires:	extra-cmake-modules >= %{version}
-BuildRequires:	kf6-rpm-macros
-BuildRequires:	qt6-qtbase-devel
+
 BuildRequires:	cmake
+BuildRequires:	extra-cmake-modules >= %{version}
 BuildRequires:	gcc-c++
+BuildRequires:	kf6-rpm-macros
+
+BuildRequires:	qt6-qtbase-devel
+
 Requires:	kf6-filesystem
 
 %description
@@ -39,17 +42,16 @@ developing applications that use %{name}.
 %install
 %cmake_install
 
+
 %files
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_libdir}/libKF6ThreadWeaver.so.*
 
 %files devel
-%doc README.md
-%license LICENSES/*.txt
 %{_kf6_includedir}/ThreadWeaver/
-%{_kf6_libdir}/libKF6ThreadWeaver.so
 %{_kf6_libdir}/cmake/KF6ThreadWeaver/
+%{_kf6_libdir}/libKF6ThreadWeaver.so
 
 
 %changelog

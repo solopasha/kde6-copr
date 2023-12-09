@@ -48,8 +48,8 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 Summary:        Development files for %{name}
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6IconThemes)
-Requires:       cmake(KF6ConfigWidgets)
-
+Requires:       cmake(KF6ColorScheme)
+Requires:       cmake(KF6WidgetsAddons)
 %description    devel
 The %{name}-devel package contains files to develop for %{name}.
 

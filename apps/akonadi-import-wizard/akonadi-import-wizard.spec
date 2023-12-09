@@ -1,3 +1,5 @@
+%global tests 1
+
 Name:    akonadi-import-wizard
 Summary: Akonadi Import Wizard
 Version: 24.01.80
@@ -40,7 +42,6 @@ BuildRequires: cmake(Qt6Widgets)
 %if 0%{?tests}
 BuildRequires: dbus-x11
 BuildRequires: xorg-x11-server-Xvfb
-BuildRequires: make
 %endif
 
 %description
@@ -52,7 +53,6 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KPim6MailTransport)
 %description    devel
 %{summary}.
-
 
 
 %prep
@@ -73,15 +73,10 @@ Requires:       cmake(KPim6MailTransport)
 
 
 %check
-
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.akonadiimportwizard.desktop
 %if 0%{?tests}
-export CTEST_OUTPUT_ON_FAILURE=1
-xvfb-run -a \
-dbus-launch --exit-with-session \
-make test ARGS="--output-on-failure --timeout 20" -C %{_vpath_builddir } ||:
+xvfb-run -a bash -c "%ctest" || :
 %endif
-
 
 
 %files -f %{name}.lang

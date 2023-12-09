@@ -6,7 +6,7 @@ Version: 24.01.80
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
-URL:     https://www.kde.org/applications/utilities/kalarm
+URL:     https://invent.kde.org/pim/kalarm
 %apps_source
 Patch:   https://invent.kde.org/pim/kalarm/-/commit/d0998827b0fd5ce761957d0c57296975bd383d97.patch
 Patch:   https://invent.kde.org/pim/kalarm/-/commit/42306336c11da7ff24200fa0ca956283cf501a35.patch
@@ -91,10 +91,7 @@ KAlarm is a personal alarm message, command and email scheduler.
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml
 %if 0%{?tests}
-export CTEST_OUTPUT_ON_FAILURE=1
-xvfb-run -a \
-dbus-launch --exit-with-session \
-make test ARGS="--output-on-failure --timeout 20" -C %{_vpath_builddir} ||:
+xvfb-run -a bash -c "%ctest" || :
 %endif
 
 %files -f %{name}.lang
@@ -112,14 +109,14 @@ make test ARGS="--output-on-failure --timeout 20" -C %{_vpath_builddir} ||:
 %{_kf6_datadir}/knotifications6/kalarm.notifyrc
 %{_kf6_datadir}/polkit-1/actions/org.kde.kalarm.rtcwake.policy
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
-%{_kf6_libdir}/libkalarmcalendar.so.6
 %{_kf6_libdir}/libkalarmcalendar.so.5.*
-%{_kf6_libdir}/libkalarmplugin.so.6
+%{_kf6_libdir}/libkalarmcalendar.so.6
 %{_kf6_libdir}/libkalarmplugin.so.5.*
+%{_kf6_libdir}/libkalarmplugin.so.6
 %{_kf6_libexecdir}/kauth/kalarm_helper
 %{_kf6_metainfodir}/org.kde.kalarm.appdata.xml
 %{_kf6_qtplugindir}/pim6/kalarm/akonadiplugin.so
-%{_sysconfdir}/xdg/autostart/kalarm.autostart.desktop
+%{_kf6_sysconfdir}/xdg/autostart/kalarm.autostart.desktop
 
 
 %changelog

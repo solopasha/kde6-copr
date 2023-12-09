@@ -11,11 +11,12 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 
 %frameworks_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
-BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake
+
+BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  qt6-qtbase-devel
 
 BuildRequires:  cmake(KF6KIO)

@@ -11,16 +11,16 @@ URL:     https://projects.kde.org/%{framework}
 
 %frameworks_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
 BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
-
 BuildRequires:  cmake(KF6I18n)
+
 BuildRequires:  cmake(Qt6Gui)
 
 %description

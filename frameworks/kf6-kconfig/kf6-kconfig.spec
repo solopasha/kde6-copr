@@ -1,22 +1,21 @@
 %global		framework kconfig
 
-Name:		kf6-%{framework}
+Name:		  kf6-%{framework}
 Version:	5.246.0
 Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with advanced configuration system
 License:	BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND MIT
-URL:		https://invent.kde.org/frameworks/%{framework}
+URL:		  https://invent.kde.org/frameworks/%{framework}
 %frameworks_source
 
 BuildRequires:	cmake
-BuildRequires:	gcc-c++
 BuildRequires:	extra-cmake-modules >= %{version}
+BuildRequires:	gcc-c++
 BuildRequires:	kf6-rpm-macros
 BuildRequires:	cmake(Qt6DBus)
 BuildRequires:	cmake(Qt6Gui)
 BuildRequires:	cmake(Qt6Qml)
 BuildRequires:	cmake(Qt6Xml)
-BuildRequires:	pkgconfig(xkbcommon)
 
 Requires:	kf6-filesystem
 
@@ -27,7 +26,8 @@ parts: KConfigCore and KConfigGui.
 %package	devel
 Summary:	Development files for %{name}
 Requires:	%{name}%{?_isa} = %{version}-%{release}
-Requires:	pkgconfig(Qt6Xml)
+Requires:	cmake(Qt6DBus)
+Requires:	cmake(Qt6Qml)
 %description	devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
@@ -55,18 +55,15 @@ developing applications that use %{name}.
 %{_kf6_bindir}/kreadconfig6
 %{_kf6_bindir}/kwriteconfig6
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
-%{_kf6_libdir}/libKF6ConfigCore.so.6*
 %{_kf6_libdir}/libKF6ConfigCore.so.5*
-%{_kf6_libdir}/libKF6ConfigQml.so.6*
-%{_kf6_libdir}/libKF6ConfigQml.so.5*
-%{_kf6_libdir}/libKF6ConfigGui.so.6*
+%{_kf6_libdir}/libKF6ConfigCore.so.6*
 %{_kf6_libdir}/libKF6ConfigGui.so.5*
+%{_kf6_libdir}/libKF6ConfigGui.so.6*
+%{_kf6_libdir}/libKF6ConfigQml.so.5*
+%{_kf6_libdir}/libKF6ConfigQml.so.6*
+%{_kf6_libdir}/qt6/qml/org/kde/config/
 %{_kf6_libexecdir}/kconf_update
 %{_kf6_libexecdir}/kconfig_compiler_kf6
-%{_kf6_libdir}/qt6/qml/org/kde/config/libkconfigqmlplugin.so
-%{_kf6_libdir}/qt6/qml/org/kde/config/qmldir
-%{_kf6_libdir}/qt6/qml/org/kde/config/kconfigqmlplugin.qmltypes
-%{_kf6_libdir}/qt6/qml/org/kde/config/kde-qmlmodule.version
 
 %files devel
 %{_kf6_includedir}/KConfig/

@@ -10,10 +10,8 @@ URL:		https://invent.kde.org/frameworks/%{framework}
 
 BuildRequires:	cmake
 BuildRequires:	gcc-c++
-BuildRequires:	make
 BuildRequires:	extra-cmake-modules >= %{version}
 BuildRequires:	kf6-rpm-macros
-BuildRequires:	bison
 BuildRequires:	libical-devel
 BuildRequires:	qt6-qtbase-devel
 BuildRequires:	pkgconfig(xkbcommon)

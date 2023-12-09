@@ -9,16 +9,17 @@ License:        CC0-1.0 AND LGPL-2.0-or-later
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_source
 
-BuildRequires:  kf6-rpm-macros
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
-BuildRequires:  cmake(Qt6Widgets)
-BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6WindowSystem)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Widgets)
+
 BuildRequires:  pkgconfig(x11)
-BuildRequires:  qt-devel
-BuildRequires:  pkgconfig(xkbcommon)
+
 Requires:  kf6-filesystem
 
 %description
@@ -27,6 +28,7 @@ Requires:  kf6-filesystem
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Widgets)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
@@ -36,7 +38,7 @@ developing applications that use %{name}.
 %autosetup -n %{framework}-%{version}
 
 %build
-%cmake_kf6 -DBUILD_WITH_QT6=ON
+%cmake_kf6
 %cmake_build
 
 %install
@@ -44,10 +46,10 @@ developing applications that use %{name}.
 %find_lang_kf6 kstatusnotifieritem6_qt
 
 %files -f kstatusnotifieritem6_qt.lang
-%{_kf6_libdir}/libKF6StatusNotifierItem.so.*
 %{_kf6_datadir}/dbus-1/interfaces/kf6_org.kde.StatusNotifierItem.xml
 %{_kf6_datadir}/dbus-1/interfaces/kf6_org.kde.StatusNotifierWatcher.xml
 %{_kf6_datadir}/qlogging-categories6/kstatusnotifieritem.categories
+%{_kf6_libdir}/libKF6StatusNotifierItem.so.*
 
 %files devel
 %{_kf6_includedir}/KStatusNotifierItem

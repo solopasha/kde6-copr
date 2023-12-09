@@ -12,16 +12,13 @@ BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(KF6Codecs)
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qttools-devel
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6Xml)
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
-BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6WidgetsAddons)
-BuildRequires:  cmake(KF6XmlGui)
 
 Requires:  kf6-filesystem
 
@@ -32,8 +29,9 @@ XBEL format.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       qt6-qtbase-devel
 Requires:       cmake(KF6WidgetsAddons)
+Requires:       cmake(Qt6Widgets)
+Requires:       cmake(Qt6Xml)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
@@ -53,22 +51,22 @@ developing applications that use %{name}.
 %find_lang_kf6 kbookmarks6_qt
 
 
-
 %files -f kbookmarks6_qt.lang
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
+%{_kf6_datadir}/qlogging-categories6/%{framework}widgets.categories
 %{_kf6_libdir}/libKF6Bookmarks.so.*
 %{_kf6_libdir}/libKF6BookmarksWidgets.so.5*
 %{_kf6_libdir}/libKF6BookmarksWidgets.so.6*
-%{_kf6_datadir}/qlogging-categories6/%{framework}widgets.categories
 
 %files devel
 %{_kf6_includedir}/KBookmarks/
-%{_kf6_libdir}/libKF6Bookmarks.so
-%{_kf6_libdir}/cmake/KF6Bookmarks/
 %{_kf6_includedir}/KBookmarksWidgets/
+%{_kf6_libdir}/cmake/KF6Bookmarks/
+%{_kf6_libdir}/libKF6Bookmarks.so
 %{_kf6_libdir}/libKF6BookmarksWidgets.so
+
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

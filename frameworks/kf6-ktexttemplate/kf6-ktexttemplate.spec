@@ -24,6 +24,7 @@ for theming and advanced generation of other text such as code.
 %package	devel
 Summary:	Development files for %{name}
 Requires:	%{name} = %{version}-%{release}
+Requires:	cmake(Qt6Core)
 %description	devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
@@ -41,14 +42,14 @@ developing applications that use %{name}.
 
 %files
 %license LICENSES/*.txt
-%{_libdir}/libKF6TextTemplate.so.*
-%{_kf6_plugindir}/ktexttemplate
 %{_kf6_datadir}/qlogging-categories6/ktexttemplate.categories
+%{_kf6_plugindir}/ktexttemplate
+%{_libdir}/libKF6TextTemplate.so.*
 
 
 %files devel
-%{_kf6_includedir}/KTextTemplate
-%{_libdir}/cmake/KF6TextTemplate
+%{_kf6_includedir}/KTextTemplate/
+%{_libdir}/cmake/KF6TextTemplate/
 %{_libdir}/libKF6TextTemplate.so
 
 %changelog

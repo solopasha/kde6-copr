@@ -10,25 +10,28 @@ URL:            https://invent.kde.org/frameworks/%{framework}
 
 %frameworks_source
 
-BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
-BuildRequires:  kf6-karchive-devel
+BuildRequires:  kf6-rpm-macros
+
+BuildRequires:  cmake(KF6Archive)
+BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(KF6Config)
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  libattr-devel
-BuildRequires:  pkgconfig(exiv2) >= 0.20
+
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Xml)
+
 BuildRequires:  catdoc
-Recommends:     catdoc
+BuildRequires:  cmake(QMobipocket6)
 BuildRequires:  ebook-tools-devel
 BuildRequires:  ffmpeg-free-devel
+BuildRequires:  pkgconfig(exiv2) >= 0.20
+BuildRequires:  pkgconfig(libattr)
 BuildRequires:  pkgconfig(poppler-qt6)
-BuildRequires:  pkgconfig(taglib) >= 1.9
-BuildRequires:  pkgconfig(xkbcommon)
-BuildRequires:  cmake(QMobipocket6)
+BuildRequires:  pkgconfig(taglib)
+Recommends:     catdoc
 
 %description
 %{summary}.
@@ -63,9 +66,9 @@ mkdir -p %{buildroot}%{_kf6_plugindir}/kfilemetadata/writers/
 %{_kf6_plugindir}/kfilemetadata/writers/kfilemetadata_taglibwriter.so
 
 %files devel
-%{_kf6_libdir}/libKF6FileMetaData.so
-%{_kf6_libdir}/cmake/KF6FileMetaData
 %{_kf6_includedir}/KFileMetaData/
+%{_kf6_libdir}/cmake/KF6FileMetaData
+%{_kf6_libdir}/libKF6FileMetaData.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

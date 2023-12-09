@@ -14,11 +14,11 @@ BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6Service)
+BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Pty)
-#BuildRequires:  libX11-devel
+BuildRequires:  pkgconfig(x11)
 BuildRequires:  qt6-qtbase-devel
 Requires:  kf6-filesystem
 

@@ -13,22 +13,17 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6IconThemes)
-BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(KF6Notifications)
-BuildRequires:  cmake(KF6Package)
 BuildRequires:  cmake(KF6WidgetsAddons)
-BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(Qt6ShaderTools)
-BuildRequires:  libepoxy-devel
-BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtdeclarative-devel
+
 Requires:  kf6-filesystem
 
 %description
@@ -38,8 +33,7 @@ KDE Frameworks 6 Tier 3 addon for Qt declarative
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6Config)
-Requires:       cmake(KF6Package)
-Requires:       qt6-qtdeclarative-devel
+Requires:       cmake(Qt6Quick)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
@@ -60,8 +54,6 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_libdir}/libKF6CalendarEvents.so.*
-%dir %{_kf6_qmldir}/org/
-%dir %{_kf6_qmldir}/org/kde/
 %{_kf6_qmldir}/org/kde/draganddrop/
 %{_kf6_qmldir}/org/kde/graphicaleffects/
 %{_kf6_qmldir}/org/kde/kquickcontrols/

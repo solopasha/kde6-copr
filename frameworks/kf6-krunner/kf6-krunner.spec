@@ -9,25 +9,20 @@ License: BSD-2-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LG
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
 BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(KF6Service)
-BuildRequires:  cmake(KF6Solid)
-BuildRequires:  cmake(KF6ThreadWeaver)
-BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  cmake(KF6ItemModels)
+
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtdeclarative-devel
 BuildRequires:  qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
-
-BuildRequires:  cmake(KF6ItemModels)
 
 Requires:  kf6-filesystem
 
@@ -37,6 +32,7 @@ KRunner provides a parallelized query system extendable via plugins.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
+Requires:       cmake(KF6CoreAddons)
 Requires:       qt6-qtbase-devel
 %description    devel
 The %{name}-devel package contains libraries and header files for
@@ -60,12 +56,12 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Runner.so.*
 
 %files devel
-%{_kf6_includedir}/KRunner/
-%{_kf6_libdir}/libKF6Runner.so
-%{_kf6_libdir}/cmake/KF6Runner/
 %{_kf6_datadir}/dbus-1/interfaces/*
 %{_kf6_datadir}/kdevappwizard/templates/runner6.tar.bz2
 %{_kf6_datadir}/kdevappwizard/templates/runner6python.tar.bz2
+%{_kf6_includedir}/KRunner/
+%{_kf6_libdir}/cmake/KF6Runner/
+%{_kf6_libdir}/libKF6Runner.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

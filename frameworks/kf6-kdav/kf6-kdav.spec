@@ -15,15 +15,13 @@ BuildRequires:  gcc-c++
 BuildRequires:  cmake
 BuildRequires:  kf6-rpm-macros
 
-BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KIO)
 
-BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6KIO)
-BuildRequires:  pkgconfig(xkbcommon)
-BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Test)
 
 Requires:  kf6-filesystem
 
@@ -54,13 +52,13 @@ developing applications that use %{name}.
 %doc README*
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*%{framework}.*
-%{_kf6_libdir}/libKF6DAV.so.6
 %{_kf6_libdir}/libKF6DAV.so.5*
+%{_kf6_libdir}/libKF6DAV.so.6
 
 %files devel
 %{_kf6_includedir}/KDAV/
-%{_kf6_libdir}/libKF6DAV.so
 %{_kf6_libdir}/cmake/KF6DAV/
+%{_kf6_libdir}/libKF6DAV.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

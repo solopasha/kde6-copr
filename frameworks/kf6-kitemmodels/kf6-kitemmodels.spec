@@ -55,8 +55,8 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_includedir}/KItemModels/
-%{_kf6_libdir}/libKF6ItemModels.so
 %{_kf6_libdir}/cmake/KF6ItemModels/
+%{_kf6_libdir}/libKF6ItemModels.so
 
 
 %changelog

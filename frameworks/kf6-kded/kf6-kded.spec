@@ -10,20 +10,22 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 
 %frameworks_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
+BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6Service)
-BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  qt6-qtbase-devel
 
-BuildRequires:  systemd
+BuildRequires:  systemd-rpm-macros
+
 Requires:  kf6-filesystem
 
 %description
@@ -56,10 +58,10 @@ developing applications that use %{name}.
 mkdir -p %{buildroot}%{_kf6_plugindir}/kded
 
 %post
-%systemd_user_post  plasma-kded.service
+%systemd_user_post  plasma-kded6.service
 
 %preun
-%systemd_user_preun plasma-kded.service
+%systemd_user_preun plasma-kded6.service
 
 %files -f kded6.lang
 %doc README.md

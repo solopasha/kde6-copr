@@ -10,27 +10,28 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 
 %frameworks_source
 
-BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6Archive)
+BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Parts)
-BuildRequires:  cmake(KF6ColorScheme)
-BuildRequires:  kf6-rpm-macros
-BuildRequires:  pkgconfig(Qt6TextToSpeech)
-BuildRequires:  pkgconfig(Qt6Widgets)
-BuildRequires:  pkgconfig(Qt6PrintSupport)
-BuildRequires:  pkgconfig(Qt6Qml)
-BuildRequires:  pkgconfig(Qt6Xml)
 BuildRequires:  cmake(KF6SyntaxHighlighting)
-BuildRequires:  pkgconfig(libgit2) >= 0.22.0
+
+BuildRequires:  cmake(Qt6PrintSupport)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6TextToSpeech)
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6Xml)
+
 BuildRequires:  pkgconfig(editorconfig)
-BuildRequires:  pkgconfig(xkbcommon)
+
 Requires: kf6-filesystem
 
 %description
@@ -48,7 +49,6 @@ Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       cmake(KF6Parts)
 Requires:       cmake(KF6SyntaxHighlighting)
-#Requires:       kf6-syntax-highlighting-devel
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
@@ -78,9 +78,9 @@ rm -f %{buildroot}%{_kf6_datadir}/katepart5/script/README.md
 %{_kf6_datadir}/polkit-1/actions/org.kde.ktexteditor.katetextbuffer.policy
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6TextEditor.so.*
+%{_kf6_libexecdir}/kauth/kauth_ktexteditor_helper
 %{_kf6_plugindir}/parts/katepart.so
 %{_kf6_qtplugindir}/ktexteditor/
-%{_kf6_libexecdir}/kauth/kauth_ktexteditor_helper
 
 %files devel
 %{_kf6_datadir}/kdevappwizard/templates/ktexteditor6-plugin.tar.bz2

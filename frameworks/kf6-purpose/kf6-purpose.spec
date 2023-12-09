@@ -21,13 +21,13 @@ BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6KIO)
 BuildRequires: cmake(KF6Kirigami)
-BuildRequires: cmake(KF6KIO)
 BuildRequires: cmake(KF6Notifications)
 BuildRequires: cmake(KF6Prison)
 BuildRequires: cmake(KF6Declarative)
+# BuildRequires: cmake(KAccounts6)
 BuildRequires: pkgconfig(Qt6Network)
 BuildRequires: pkgconfig(Qt6Qml)
-BuildRequires: pkgconfig(xkbcommon)
+
 Requires: hicolor-icon-theme
 
 %description

@@ -20,7 +20,6 @@ BuildRequires:	qt6-qtdeclarative-devel
 BuildRequires:	qt6-qttools-devel
 BuildRequires:	zlib-devel
 BuildRequires:	cmake(Qt6Quick)
-BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(hunspell)
 BuildRequires:	pkgconfig(aspell)
 BuildRequires:	pkgconfig(libvoikko)

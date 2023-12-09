@@ -1,6 +1,4 @@
 
-%undefine __cmake_in_source_build
-
 %global framework modemmanager-qt
 
 Name:    kf6-%{framework}
@@ -14,7 +12,7 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  gcc-c++
-BuildRequires:  ModemManager-devel >= 1.0.0
+BuildRequires:  pkgconfig(ModemManager)
 BuildRequires:  qt6-qtbase-devel
 
 Requires:       kf6-filesystem
@@ -50,9 +48,9 @@ that use ModemManager.
 %{_kf6_libdir}/libKF6ModemManagerQt.so.*
 
 %files devel
-%{_kf6_libdir}/libKF6ModemManagerQt.so
-%{_kf6_libdir}/cmake/KF6ModemManagerQt/
 %{_kf6_includedir}/ModemManagerQt/
+%{_kf6_libdir}/cmake/KF6ModemManagerQt/
+%{_kf6_libdir}/libKF6ModemManagerQt.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

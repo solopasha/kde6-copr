@@ -15,7 +15,6 @@ BuildRequires:	extra-cmake-modules >= %{version}
 BuildRequires:	kf6-rpm-macros
 BuildRequires:	qt6-qtbase-devel
 BuildRequires:	qt6-qttools-devel
-BuildRequires:	pkgconfig(xkbcommon)
 
 Requires:	kf6-filesystem
 
@@ -51,10 +50,9 @@ developing applications that use %{name}.
 %{_kf6_qtplugindir}/designer/*6widgets.so
 
 %files devel
-
 %{_kf6_includedir}/KItemViews/
-%{_kf6_libdir}/libKF6ItemViews.so
 %{_kf6_libdir}/cmake/KF6ItemViews/
+%{_kf6_libdir}/libKF6ItemViews.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

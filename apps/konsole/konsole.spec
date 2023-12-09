@@ -22,7 +22,6 @@ Obsoletes: konsole6 < 24.01.80-2
 Provides:  konsole6 = %{version}-%{release}
 Provides:  konsole6%{?_isa} = %{version}-%{release}
 
-BuildRequires: make
 BuildRequires: desktop-file-utils
 BuildRequires: gettext
 BuildRequires: pkgconfig(x11)

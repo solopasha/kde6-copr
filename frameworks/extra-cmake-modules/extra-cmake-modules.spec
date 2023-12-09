@@ -24,7 +24,6 @@ BuildArch:      noarch
 ## upstreamable patches
 
 BuildRequires: kf6-rpm-macros
-BuildRequires: make
 %if 0%{?docs}
 # qcollectiongenerator
 BuildRequires: qt6-qttools-devel

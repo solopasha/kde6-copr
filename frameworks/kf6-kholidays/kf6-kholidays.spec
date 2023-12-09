@@ -10,15 +10,13 @@ URL:		https://invent.kde.org/frameworks/%{framework}
 
 %frameworks_source
 
-BuildRequires:	extra-cmake-modules >= %{version}
-BuildRequires:	kf6-rpm-macros
 BuildRequires:	cmake
+BuildRequires:	extra-cmake-modules >= %{version}
 BuildRequires:	gcc-c++
+BuildRequires:	kf6-rpm-macros
 
-BuildRequires: 	pkgconfig(Qt6Core)
-BuildRequires: 	pkgconfig(Qt6Qml)
-BuildRequires: 	qt6-qttools-static
-BuildRequires:	make
+BuildRequires: 	cmake(Qt6Core)
+BuildRequires: 	cmake(Qt6Qml)
 
 %description
 The KHolidays library provides a C++ API that determines holiday
@@ -26,7 +24,8 @@ and other special events for a geographical region.
 
 %package	devel
 Summary:	Development files for %{name}
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}%{?_isa} = %{version}-%{release}
+Requires: 	cmake(Qt6Core)
 %description	devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.

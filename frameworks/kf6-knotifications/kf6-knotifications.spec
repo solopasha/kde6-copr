@@ -10,15 +10,18 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 
 %frameworks_source
 
-BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(Qt6Gui)
-BuildRequires:  cmake(Qt6DBus)
-BuildRequires:  cmake(Qt6Qml)
-BuildRequires:  libcanberra-devel
+
 BuildRequires:  cmake(KF6Config)
+
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Qml)
+
+BuildRequires:  pkgconfig(libcanberra)
 
 %description
 KDE Frameworks 6 Tier 3 solution with abstraction for system
@@ -52,16 +55,13 @@ mkdir -p %{buildroot}/%{_kf6_datadir}/knotifications6
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6Notifications.so.*
+%{_kf6_qmldir}/org/kde/notification/
 %dir %{_kf6_datadir}/knotifications6
-%{_libdir}/qt6/qml/org/kde/notification/kde-qmlmodule.version
-%{_libdir}/qt6/qml/org/kde/notification/knotificationqmlplugin.qmltypes
-%{_libdir}/qt6/qml/org/kde/notification/libknotificationqmlplugin.so
-%{_libdir}/qt6/qml/org/kde/notification/qmldir
 
 %files devel
 %{_kf6_includedir}/KNotifications/
-%{_kf6_libdir}/libKF6Notifications.so
 %{_kf6_libdir}/cmake/KF6Notifications/
+%{_kf6_libdir}/libKF6Notifications.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

@@ -9,14 +9,11 @@ URL:		https://invent.kde.org/frameworks/%{framework}
 %frameworks_source
 
 BuildRequires:	cmake
-BuildRequires:	gcc-c++
 BuildRequires:	extra-cmake-modules >= %{version}
+BuildRequires:	fdupes
+BuildRequires:	gcc-c++
 BuildRequires:	kf6-rpm-macros
-BuildRequires:	make
-BuildRequires:	qt6-qtbase-devel
-BuildRequires:	qt6-qttools-devel
-BuildRequires:	cmake(Qt6Qml)
-BuildRequires:  pkgconfig(Qt6WaylandClient)
+
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xcb)
 BuildRequires:	pkgconfig(xcb-icccm)
@@ -24,15 +21,16 @@ BuildRequires:	pkgconfig(xcb-keysyms)
 BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(xfixes)
 BuildRequires:	pkgconfig(xrender)
-BuildRequires:  wayland-devel
+BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  egl-wayland-devel
-BuildRequires:  wayland-protocols-devel
-BuildRequires:  plasma-wayland-protocols-devel
-BuildRequires:	fdupes
-BuildRequires:  pkgconfig(Qt6Core)
-BuildRequires:  pkgconfig(Qt6Gui)
+BuildRequires:  pkgconfig(wayland-protocols)
+BuildRequires:  cmake(PlasmaWaylandProtocols)
+BuildRequires:  cmake(Qt6WaylandClient)
+BuildRequires:	cmake(Qt6Gui)
+BuildRequires:	cmake(Qt6Qml)
 BuildRequires:  qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
+
 Requires:	kf6-filesystem
 
 %description
@@ -65,15 +63,15 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6WindowSystem.so.*
-%dir %{_kf6_plugindir}/kwindowsystem/
 %{_kf6_plugindir}/kwindowsystem/KF6WindowSystemX11Plugin.so
 %{_kf6_qmldir}/org/kde/kwindowsystem
+%dir %{_kf6_plugindir}/kwindowsystem/
 %{_qt6_plugindir}/kf6/kwindowsystem/KF6WindowSystemKWaylandPlugin.so
 
 %files devel
 %{_kf6_includedir}/KWindowSystem/
-%{_kf6_libdir}/libKF6WindowSystem.so
 %{_kf6_libdir}/cmake/KF6WindowSystem/
+%{_kf6_libdir}/libKF6WindowSystem.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

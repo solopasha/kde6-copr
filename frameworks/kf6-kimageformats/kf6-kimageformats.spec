@@ -12,7 +12,6 @@ URL:            https://invent.kde.org/frameworks/%{framework}
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
-BuildRequires:  jasper-devel
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  pkgconfig(libavif)
 BuildRequires:  cmake(OpenEXR)
@@ -25,7 +24,6 @@ BuildRequires:	pkgconfig(libjxl) >= 0.7.0
 BuildRequires:	pkgconfig(libjxl_threads) >= 0.7.0
 BuildRequires:	pkgconfig(libraw)
 BuildRequires:	pkgconfig(libraw_r)
-BuildRequires:	libxkbcommon-devel
 
 Requires:       kf6-filesystem
 

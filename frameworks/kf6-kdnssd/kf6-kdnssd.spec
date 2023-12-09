@@ -13,8 +13,8 @@ BuildRequires:	gcc-c++
 BuildRequires:	avahi-devel
 BuildRequires:	extra-cmake-modules >= %{version}
 BuildRequires:	kf6-rpm-macros
-BuildRequires:	qt6-qtbase-devel
-BuildRequires:	qt6-qttools-devel
+BuildRequires:	cmake(Qt6Network)
+BuildRequires:	cmake(Qt6DBus)
 
 Requires:	nss-mdns
 Requires:	kf6-filesystem
@@ -25,7 +25,7 @@ KDE Frameworks 6 Tier 1 integration module for DNS-SD services (Zeroconf)
 %package	devel
 Summary:	Development files for %{name}
 Requires:	%{name} = %{version}-%{release}
-Requires:	qt6-qtbase-devel
+Requires:	cmake(Qt6Network)
 %description	devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
@@ -49,8 +49,8 @@ developing applications that use %{name}.
 
 %files devel
 %{_kf6_includedir}/KDNSSD/
-%{_kf6_libdir}/libKF6DNSSD.so
 %{_kf6_libdir}/cmake/KF6DNSSD/
+%{_kf6_libdir}/libKF6DNSSD.so
 
 
 %changelog
