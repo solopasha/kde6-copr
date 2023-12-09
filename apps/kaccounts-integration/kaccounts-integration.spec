@@ -109,7 +109,7 @@ Requires:       cmake(SignOnQt5)
 %license LICENSES/*
 %{_kf6_datadir}/applications/kcm_kaccounts.desktop
 %{_kf6_libdir}/libkaccounts6.so.2
-%{_kf6_libdir}/libkaccounts6.so.24.01.80
+%{_kf6_libdir}/libkaccounts6.so.%{lua: print((macros.version:gsub('%^.*', '')))}
 %{_kf6_plugindir}/kded/kded_accounts.so
 %{_kf6_qmldir}/org/kde/kaccounts/
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_kaccounts.so
@@ -122,7 +122,7 @@ Requires:       cmake(SignOnQt5)
 
 %files qt5
 %{_kf5_libdir}/libkaccounts.so.2
-%{_kf5_libdir}/libkaccounts.so.24.01.80
+%{_kf5_libdir}/libkaccounts.so.%{lua: print((macros.version:gsub('%^.*', '')))}
 %{_kf5_qmldir}/org/kde/kaccounts/
 
 %files qt5-devel

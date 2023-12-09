@@ -1,12 +1,10 @@
-%global framework libkleo
-
 Name:    libkleo
 Version: 24.01.80
 Release: 1.1%{?dist}
 Summary: KDE PIM cryptographic library
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-2.0-or-later WITH GCC-exception-3.1
-URL:     https://invent.kde.org/frameworks/%{framework}/
+URL:     https://invent.kde.org/pim/libkleo
 %apps_source
 
 BuildRequires:  extra-cmake-modules
@@ -66,15 +64,15 @@ developing applications that use %{name}.
 
 %files -f %{name}.lang
 %license LICENSES/*
-%{_kf6_sysconfdir}/xdg/libkleopatrarc
+%{_kf6_datadir}/libkleopatra/
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
 %{_kf6_libdir}/libKPim6Libkleo.so.*
-%{_kf6_datadir}/libkleopatra/
+%{_kf6_sysconfdir}/xdg/libkleopatrarc
 
 %files devel
-%{_kf6_libdir}/libKPim6Libkleo.so
-%{_kf6_libdir}/cmake/KPim6Libkleo/
 %{_includedir}/KPim6/Libkleo/
+%{_kf6_libdir}/cmake/KPim6Libkleo/
+%{_kf6_libdir}/libKPim6Libkleo.so
 
 
 %changelog

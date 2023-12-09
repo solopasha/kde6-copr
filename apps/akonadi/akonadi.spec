@@ -1,13 +1,4 @@
-%global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
-
-# trim changelog included in binary rpms
-%global _changelog_trimtime %(date +%s -d "1 year ago")
-
 %global mysql mysql
-%if 0%{?rhel} > 6
-# el7 mariadb pkgs don't have compat Provides: mysql (apparently?)
-%global mysql mariadb
-%endif
 
 %if 0%{?flatpak}
 %global database_backend SQLITE
@@ -19,7 +10,7 @@ Version: 24.01.80
 Release: 2.1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-KDE-Accepted-GPL AND MIT
-URL:     https://invent.kde.org/frameworks/%{framework}
+URL:     https://invent.kde.org/pim/akonadi
 %apps_source
 Patch:   https://invent.kde.org/pim/akonadi/-/commit/857e22ecef960652f26e2793f57fc4fdb44dea20.patch
 
@@ -67,7 +58,6 @@ Requires(postun): /usr/sbin/update-alternatives
 %if ! 0%{?flatpak}
 Recommends:     %{name}-mysql = %{version}-%{release}
 %endif
-
 
 Conflicts: kf5-akonadi-server < 23.08.3-2
 
@@ -178,50 +168,50 @@ fi
 %dir %{_sysconfdir}/xdg/akonadi/
 %ghost %config(missingok,noreplace) %{_sysconfdir}/xdg/akonadi/akonadiserverrc
 %config(noreplace) %{_sysconfdir}/xdg/akonadi/akonadiserverrc.sqlite
-%{_kf6_datadir}/qlogging-categories6/akonadi.*
 %{_kf6_bindir}/akonadi_agent_launcher
 %{_kf6_bindir}/akonadi_agent_server
 %{_kf6_bindir}/akonadi_control
 %{_kf6_bindir}/akonadi_rds
 %{_kf6_bindir}/akonadictl
 %{_kf6_bindir}/akonadiserver
-%{_kf6_libdir}/akonadi/
-%{_kf6_datadir}/dbus-1/services/org.freedesktop.Akonadi.*.service
-%{_kf6_datadir}/dbus-1/interfaces/org.freedesktop.Akonadi.*.xml
-%{_kf6_datadir}/mime/packages/akonadi-mime.xml
 %{_kf6_datadir}/akonadi/
 %{_kf6_datadir}/config.kcfg/resourcebase.kcfg
+%{_kf6_datadir}/dbus-1/interfaces/org.freedesktop.Akonadi.*.xml
+%{_kf6_datadir}/dbus-1/services/org.freedesktop.Akonadi.*.service
+%{_kf6_datadir}/icons/hicolor/*/apps/akonadi.*
 %{_kf6_datadir}/kf6/akonadi/
-%{_kf6_qtplugindir}/designer/akonadi6widgets.so
+%{_kf6_datadir}/mime/packages/akonadi-mime.xml
+%{_kf6_datadir}/qlogging-categories6/akonadi.*
+%{_kf6_libdir}/akonadi/
 %{_kf6_libdir}/libKPim6AkonadiAgentBase.so.*
 %{_kf6_libdir}/libKPim6AkonadiCore.so.*
 %{_kf6_libdir}/libKPim6AkonadiPrivate.so.*
 %{_kf6_libdir}/libKPim6AkonadiWidgets.so.*
 %{_kf6_libdir}/libKPim6AkonadiXml.so.*
-%{_kf6_datadir}/icons/hicolor/*/apps/akonadi.*
+%{_kf6_qtplugindir}/designer/akonadi6widgets.so
 # akonadi_knut_resource
 %{_kf6_bindir}/akonadi_knut_resource
 %{_kf6_datadir}/kf6/akonadi_knut_resource/
 
 %files devel
-%{_kf6_bindir}/akonadi2xml
-%{_kf6_bindir}/akonadiselftest
-%{_kf6_bindir}/akonaditest
-%{_kf6_bindir}/asapcat
 %{_includedir}/KPim6/Akonadi/
 %{_includedir}/KPim6/AkonadiAgentBase/
 %{_includedir}/KPim6/AkonadiCore/
 %{_includedir}/KPim6/AkonadiWidgets/
 %{_includedir}/KPim6/AkonadiXml/
+%{_kf6_bindir}/akonadi2xml
+%{_kf6_bindir}/akonadiselftest
+%{_kf6_bindir}/akonaditest
+%{_kf6_bindir}/asapcat
+%{_kf6_datadir}/kdevappwizard/templates/akonadiresource.tar.bz2
+%{_kf6_datadir}/kdevappwizard/templates/akonadiserializer.tar.bz2
+%{_kf6_libdir}/cmake/KPim6Akonadi/
 %{_kf6_libdir}/libKPim6AkonadiAgentBase.so
 %{_kf6_libdir}/libKPim6AkonadiCore.so
 %{_kf6_libdir}/libKPim6AkonadiPrivate.so
 %{_kf6_libdir}/libKPim6AkonadiWidgets.so
 %{_kf6_libdir}/libKPim6AkonadiXml.so
-%{_kf6_libdir}/cmake/KPim6Akonadi/
 %{_kf6_qtplugindir}/pim6/akonadi/akonadi_test_searchplugin.so
-%{_kf6_datadir}/kdevappwizard/templates/akonadiresource.tar.bz2
-%{_kf6_datadir}/kdevappwizard/templates/akonadiserializer.tar.bz2
 
 %post mysql
 /usr/sbin/update-alternatives \

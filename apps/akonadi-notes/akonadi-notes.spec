@@ -6,10 +6,9 @@ Release: 1.1%{?dist}
 Summary: The Akonadi Notes Library
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later
-URL:     https://invent.kde.org/frameworks/%{framework}
+URL:     https://invent.kde.org/pim/akonadi-notes
 %apps_source
 
-BuildRequires:  make
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 
@@ -71,9 +70,9 @@ make test ARGS="--output-on-failure --timeout 30" -C %{_vpath_builddir} ||:
 %{_kf6_libdir}/libKPim6AkonadiNotes.so.*
 
 %files devel
+%{_includedir}/KPim6/AkonadiNotes/
 %{_kf6_libdir}/cmake/KPim6AkonadiNotes/
 %{_kf6_libdir}/libKPim6AkonadiNotes.so
-%{_includedir}/KPim6/AkonadiNotes/
 
 
 %changelog

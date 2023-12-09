@@ -4,15 +4,16 @@ Release: 1.1%{?dist}
 Summary: The KMime Library
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later
-URL:     https://invent.kde.org/frameworks/%{framework}
+URL:     https://invent.kde.org/pim/kmime
 %apps_source
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 
-BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Codecs)
+
+BuildRequires:  cmake(Qt6Core)
 
 Conflicts:      kf5-kmime < 23.08.3-2
 
@@ -23,8 +24,8 @@ Conflicts:      kf5-kmime < 23.08.3-2
 Summary:        Development files for %{name}
 Conflicts:      kf5-kmime-devel < 23.08.3-2
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       cmake(Qt6Core)
 Requires:       cmake(KF6Codecs)
+Requires:       cmake(Qt6Core)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.

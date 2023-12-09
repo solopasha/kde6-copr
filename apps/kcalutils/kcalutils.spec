@@ -4,19 +4,20 @@ Release:        1.1%{?dist}
 Summary:        The KCalendarUtils Library
 
 License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later
-URL:            https://invent.kde.org/frameworks/%{framework}
+URL:            https://invent.kde.org/pim/kcalutils
 %apps_source
 
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  extra-cmake-modules
 
+BuildRequires:  cmake(KF6CalendarCore)
+BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6Codecs)
-BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6TextTemplate)
-BuildRequires:  cmake(KF6CalendarCore)
+BuildRequires:  cmake(KF6WidgetsAddons)
+
 BuildRequires:  cmake(KPim6IdentityManagementCore)
 
 Conflicts:      kf5-kcalendarutils < 23.08.3-2
@@ -28,9 +29,9 @@ Conflicts:      kf5-kcalendarutils < 23.08.3-2
 Summary:        Development files for %{name}
 Conflicts:      kf5-kcalendarutils-devel < 23.08.3-2
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       cmake(KF6CoreAddons)
-Requires:       cmake(KF6Config)
 Requires:       cmake(KF6CalendarCore)
+Requires:       cmake(KF6Config)
+Requires:       cmake(KF6CoreAddons)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
@@ -60,8 +61,8 @@ developing applications that use %{name}.
 
 %files devel
 %{_includedir}/KPim6/KCalUtils/
-%{_kf6_libdir}/libKPim6CalendarUtils.so
 %{_kf6_libdir}/cmake/KPim6CalendarUtils/
+%{_kf6_libdir}/libKPim6CalendarUtils.so
 
 
 %changelog

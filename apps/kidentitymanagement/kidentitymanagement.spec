@@ -4,7 +4,7 @@ Release: 1.1%{?dist}
 Summary: The KIdentityManagement Library
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later
-URL:     https://invent.kde.org/frameworks/%{framework}
+URL:     https://invent.kde.org/pim/kidentitymanagement
 %apps_source
 
 BuildRequires:  extra-cmake-modules
@@ -18,9 +18,10 @@ BuildRequires:  cmake(KF6KirigamiAddons)
 BuildRequires:  cmake(KF6TextCustomEditor)
 BuildRequires:  cmake(KF6TextWidgets)
 BuildRequires:  cmake(KF6XmlGui)
-BuildRequires:  cmake(KPim6TextEdit)
-BuildRequires:  cmake(Qt6Network)
 
+BuildRequires:  cmake(KPim6TextEdit)
+
+BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6Quick)
 
 Conflicts:      kf5-kidentitymanagement < 23.08.3-2
@@ -59,8 +60,8 @@ developing applications that use %{name}.
 %license LICENSES/*
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
 %{_kf6_libdir}/libKPim6IdentityManagementCore.so.*
-%{_kf6_libdir}/libKPim6IdentityManagementWidgets.so.*
 %{_kf6_libdir}/libKPim6IdentityManagementQuick.so.*
+%{_kf6_libdir}/libKPim6IdentityManagementWidgets.so.*
 %{_kf6_qmldir}/org/kde/kidentitymanagement/
 
 %files devel

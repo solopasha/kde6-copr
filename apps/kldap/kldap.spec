@@ -62,7 +62,7 @@ developing applications that use %{name}.
 
 %files devel
 %{_includedir}/KPim6/KLDAPCore/
-%{_includedir}/KPim6/KLDAPWidgets
+%{_includedir}/KPim6/KLDAPWidgets/
 %{_kf6_libdir}/cmake/KPim6LdapCore/
 %{_kf6_libdir}/cmake/KPim6LdapWidgets/
 %{_kf6_libdir}/libKPim6LdapCore.so

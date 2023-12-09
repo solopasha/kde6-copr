@@ -4,7 +4,7 @@ Release: 1%{?dist}
 Summary: The KTNef Library
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later
-URL:     https://invent.kde.org/frameworks/%{framework}
+URL:     https://invent.kde.org/pim/ktnef
 %apps_source
 
 BuildRequires:  extra-cmake-modules
@@ -13,6 +13,7 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6CalendarCore)
 BuildRequires:  cmake(KF6Contacts)
 BuildRequires:  cmake(KF6I18n)
+
 BuildRequires:  cmake(KPim6CalendarUtils)
 
 BuildRequires:  cmake(Qt6Widgets)
@@ -56,8 +57,8 @@ developing applications that use %{name}.
 
 %files devel
 %{_includedir}/KPim6/KTNEF/
-%{_kf6_libdir}/libKPim6Tnef.so
 %{_kf6_libdir}/cmake/KPim6Tnef/
+%{_kf6_libdir}/libKPim6Tnef.so
 
 
 %changelog

@@ -4,7 +4,7 @@ Release: 1.1%{?dist}
 Summary: The Akonadi Search library and indexing agent
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/frameworks/%{framework}
+URL:     https://invent.kde.org/pim/akonadi-search
 %apps_source
 
 BuildRequires:  cargo
@@ -12,7 +12,6 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  rust
 
-BuildRequires:  cmake(Corrosion)
 BuildRequires:  cmake(KF6CalendarCore)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6Contacts)
@@ -31,6 +30,7 @@ BuildRequires:  cmake(KPim6Mime)
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Test)
 
+BuildRequires:  cmake(Corrosion)
 BuildRequires:  pkgconfig(xapian-core)
 
 Conflicts:      kf5-%{name} < 23.08.3-2

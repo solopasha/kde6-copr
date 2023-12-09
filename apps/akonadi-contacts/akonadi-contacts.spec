@@ -1,5 +1,3 @@
-%global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
-
 %global tests 1
 
 Name:    akonadi-contacts
@@ -8,7 +6,7 @@ Release: 1.1%{?dist}
 Summary: The Akonadi Contacts Library
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
-URL:     https://invent.kde.org/frameworks/%{framework}
+URL:     https://invent.kde.org/pim/akonadi-contacts
 %apps_source
 
 # handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
@@ -32,6 +30,7 @@ BuildRequires:  cmake(KF6TextUtils)
 BuildRequires:  cmake(KF6TextWidgets)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6XmlGui)
+
 BuildRequires:  cmake(KPim6Akonadi)
 BuildRequires:  cmake(KPim6GrantleeTheme)
 BuildRequires:  cmake(KPim6Mime)
@@ -55,10 +54,10 @@ Conflicts:      kf5-%{name} < 23.08.3-2
 Summary:   Development files for %{name}
 Conflicts: kf5-%{name}-devel < 23.08.3-2
 Requires:  %{name}%{?_isa} = %{version}-%{release}
-Requires:  cmake(Qt6Widgets)
-Requires:  cmake(KPim6Akonadi)
 Requires:  cmake(KF6Contacts)
+Requires:  cmake(KPim6Akonadi)
 Requires:  cmake(KPim6GrantleeTheme)
+Requires:  cmake(Qt6Widgets)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.

@@ -4,7 +4,7 @@ Release: 1.1%{?dist}
 Summary: Library to deal with Apple Wallet pass files
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later
-URL:     https://invent.kde.org/frameworks/%{framework}
+URL:     https://invent.kde.org/pim/kpkpass
 %apps_source
 
 BuildRequires:  extra-cmake-modules

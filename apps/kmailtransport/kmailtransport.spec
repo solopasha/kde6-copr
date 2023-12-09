@@ -4,7 +4,7 @@ Release: 1.2%{?dist}
 Summary: The KMailTransport Library
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later
-URL:     https://invent.kde.org/frameworks/%{framework}
+URL:     https://invent.kde.org/pim/kmailtransport
 %apps_source
 
 # handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
@@ -16,8 +16,10 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
+
 BuildRequires:  cmake(KPim6SMTP)
 BuildRequires:  cmake(KPim6GAPI)
+
 BuildRequires:  cmake(Qt6Keychain)
 
 BuildRequires:  pkgconfig(libsasl2)
@@ -56,17 +58,17 @@ developing applications that use %{name}.
 
 %files -f %{name}.lang
 %license LICENSES/*
+%{_kf6_datadir}/config.kcfg/mailtransport.kcfg
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
 %{_kf6_libdir}/libKPim6MailTransport.so.*
-%{_kf6_datadir}/config.kcfg/mailtransport.kcfg
 %dir %{_kf6_qtplugindir}/pim6
 %{_kf6_qtplugindir}/pim6/mailtransport/mailtransport_smtpplugin.so
 
 
 %files devel
 %{_includedir}/KPim6/MailTransport/
-%{_kf6_libdir}/libKPim6MailTransport.so
 %{_kf6_libdir}/cmake/KPim6MailTransport/
+%{_kf6_libdir}/libKPim6MailTransport.so
 
 
 %changelog

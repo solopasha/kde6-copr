@@ -4,7 +4,7 @@ Release: 1.1%{?dist}
 Summary: The KMbox Library
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later
-URL:     https://invent.kde.org/frameworks/%{framework}
+URL:     https://invent.kde.org/pim/kmbox
 %apps_source
 
 BuildRequires:  extra-cmake-modules

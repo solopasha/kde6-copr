@@ -4,7 +4,7 @@ Release: 1.2%{?dist}
 Summary: The Kontact Interface Library
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/frameworks/%{framework}
+URL:     https://invent.kde.org/pim/kontactinterface
 %apps_source
 
 BuildRequires:  extra-cmake-modules
@@ -59,9 +59,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKPim6KontactInterface.so.*
 
 %files devel
-%{_kf6_libdir}/libKPim6KontactInterface.so
-%{_kf6_libdir}/cmake/KPim6KontactInterface/
 %{_includedir}/KPim6/KontactInterface/
+%{_kf6_libdir}/cmake/KPim6KontactInterface/
+%{_kf6_libdir}/libKPim6KontactInterface.so
 
 
 %changelog
