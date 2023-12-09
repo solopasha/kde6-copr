@@ -3,7 +3,7 @@
 Name:    kdnssd
 Summary: KDE Network Monitor for DNS-SD services (Zeroconf)
 Version: 24.01.80
-Release: 1%{?dist}
+Release: 1.1%{?dist}
 
 # KDE e.V. may determine that future GPL versions are accepted
 License: GPLv2 or GPLv3
@@ -28,6 +28,7 @@ BuildRequires:  cmake(Qt5Core)
 BuildRequires:  kf5-rpm-macros
 
 Requires:       %{name}-common
+Recommends:     %{name}-qt5
 
 # new upstream name in 4.12.95
 Provides: kio-zeroconf = %{version}-%{release}
@@ -52,7 +53,6 @@ BuildArch:      noarch
 
 %package        qt5
 Summary:        KIO worker to discover file systems by DNS-SD
-Obsoletes:      %{name} < 24.01.75
 Requires:       %{name}-common
 %description    qt5
 %{summary}.
