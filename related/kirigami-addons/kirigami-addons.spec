@@ -2,7 +2,7 @@
 
 Name:           kirigami-addons
 Version:        0.11.76
-Release:        3.3%{?dist}
+Release:        3.4%{?dist}
 License:        BSD-2-Clause AND CC-BY-SA-4.0 AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND LicenseRef-KFQF-Accepted-GPL
 Summary:        Convergent visual components ("widgets") for Kirigami-based applications
 Url:            https://invent.kde.org/libraries/kirigami-addons
@@ -18,6 +18,8 @@ BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6QuickControls2)
+
+Requires:       kf6-kitemmodels
 
 Provides:       kf6-kirigami2-addons
 Provides:       kf6-kirigami2-addons%{?_isa}
