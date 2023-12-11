@@ -22,8 +22,6 @@ BuildRequires:  cmake(KPim6GAPI)
 
 BuildRequires:  cmake(Qt6Keychain)
 
-BuildRequires:  pkgconfig(libsasl2)
-
 Conflicts:      kf5-%{name} < 23.08.3-2
 
 %description
