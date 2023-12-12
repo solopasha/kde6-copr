@@ -10,8 +10,7 @@ License: GPLv2 and GFDL
 URL:     https://www.kde.org/applications/utilities/knotes/
 %apps_source
 
-# handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
-%{?qt6_qtwebengine_arches:ExclusiveArch: %{qt6_qtwebengine_arches}}
+
 
 BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib

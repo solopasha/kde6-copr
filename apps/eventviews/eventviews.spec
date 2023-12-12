@@ -8,8 +8,7 @@ URL:     https://invent.kde.org/pim/%{framework}
 %apps_source
 Patch:   https://invent.kde.org/pim/eventviews/-/commit/601f88f1d05f00e621976be58d170355caa29fdd.patch
 
-# handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
-%{?qt6_qtwebengine_arches:ExclusiveArch: %{qt6_qtwebengine_arches}}
+
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros

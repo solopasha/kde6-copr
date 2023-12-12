@@ -7,8 +7,7 @@ License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/pim/libkdepim
 %apps_source
 
-# handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
-%{?qt5_qtwebengine_arches:ExclusiveArch: %{qt6_qtwebengine_arches}}
+
 
 BuildRequires:  boost-devel
 BuildRequires:  extra-cmake-modules

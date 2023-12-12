@@ -8,9 +8,7 @@ URL:            https://community.kde.org/KIO_GDrive
 %apps_source
 Patch:          https://invent.kde.org/network/kio-gdrive/-/commit/e4701190d65f4d1559ded153e8d8307e46d507b1.patch
 Patch:          kf5.patch
-# handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
-# arch's where libkgapi is available (due to inderect dependencies on qtwebengine)
-%{?qt6_qtwebengine_arches:ExclusiveArch: %{qt6_qtwebengine_arches}}
+
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules

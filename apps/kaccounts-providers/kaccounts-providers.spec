@@ -10,8 +10,7 @@ License: GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/network/%{name}
 %apps_source
 
-# handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
-%{?qt6_qtwebengine_arches:ExclusiveArch: %{qt6_qtwebengine_arches}}
+
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  intltool

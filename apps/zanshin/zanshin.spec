@@ -9,8 +9,7 @@ License:        GPLv2
 URL:            http://zanshin.kde.org/
 %apps_source
 
-# handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
-%{?qt6_qtwebengine_arches:ExclusiveArch: %{qt6_qtwebengine_arches}}
+
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  desktop-file-utils

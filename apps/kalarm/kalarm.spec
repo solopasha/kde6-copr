@@ -11,8 +11,7 @@ URL:     https://invent.kde.org/pim/kalarm
 Patch:   https://invent.kde.org/pim/kalarm/-/commit/d0998827b0fd5ce761957d0c57296975bd383d97.patch
 Patch:   https://invent.kde.org/pim/kalarm/-/commit/42306336c11da7ff24200fa0ca956283cf501a35.patch
 
-# handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
-%{?qt6_qtwebengine_arches:ExclusiveArch: %{qt6_qtwebengine_arches}}
+
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules

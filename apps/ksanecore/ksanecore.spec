@@ -46,8 +46,8 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 %{_kf5_libdir}/libKSaneCore.so.*
 
 %files devel
-%{_includedir}/KSaneCore/*
-%{_kf5_libdir}/cmake/KSaneCore/*
+%{_includedir}/KSaneCore/
+%{_kf5_libdir}/cmake/KSaneCore/
 %{_kf5_libdir}/libKSaneCore.so
 
 

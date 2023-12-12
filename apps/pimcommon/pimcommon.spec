@@ -4,13 +4,11 @@ Release: 1.1%{?dist}
 Summary: PIM common libraries
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LicenseRef-KDE-Accepted-GPL
-URL:     https://api.kde.org/kdepim/pimcommon/html/
+URL:     https://invent.kde.org/pim/pimcommon
 %apps_source
 
-# handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
-%{?qt6_qtwebengine_arches:ExclusiveArch: %{qt6_qtwebengine_arches}}
 
-# kf5
+
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 
@@ -46,9 +44,6 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(Qt6Xml)
-
-
-BuildRequires:  pkgconfig(libxslt)
 
 Conflicts:      kf5-%{name} < 23.08.3-2
 
@@ -98,7 +93,6 @@ developing applications that use %{name}.
 %cmake_install
 
 %find_lang %{name} --all-name --with-html
-
 
 
 %files -f %{name}.lang

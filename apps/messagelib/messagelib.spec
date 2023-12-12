@@ -9,8 +9,7 @@ License: BSD-3-Clause AND BSL-1.0 AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-la
 URL:     https://invent.kde.org/pim/%{framework}/
 %apps_source
 
-# handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
-%{?qt6_qtwebengine_arches:ExclusiveArch: %{qt6_qtwebengine_arches}}
+
 
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  extra-cmake-modules

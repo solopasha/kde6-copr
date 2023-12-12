@@ -9,9 +9,7 @@ URL:     https://invent.kde.org/pim/incidenceeditor
 Patch:  https://invent.kde.org/pim/incidenceeditor/-/commit/c64502a92568abe54e27f6d3adfcb1fe84baac4b.patch
 Patch:  https://invent.kde.org/pim/incidenceeditor/-/commit/d2bda9e3754f7daa8ea876e1d909fe038e03c85b.patch
 
-# handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
-# available only where kf5-eventviews is
-%{?qt6_qtwebengine_arches:ExclusiveArch: %{qt6_qtwebengine_arches}}
+
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
