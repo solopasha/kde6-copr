@@ -20,6 +20,7 @@ kf6-qqc2-desktop-style
 kglobalacceld
 koko
 kontactinterface
+kpmcore
 kruler
 kscreen
 kscreenlocker
