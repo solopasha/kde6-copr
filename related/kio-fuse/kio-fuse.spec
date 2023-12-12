@@ -14,11 +14,11 @@ Source0:        %{url}/-/archive/v%{version}/%{name}-v%{version}.tar.bz2
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  systemd-rpm-macros
-BuildRequires:  kf5-rpm-macros
+BuildRequires:  kf6-rpm-macros
 BuildRequires:  extra-cmake-modules
 
 BuildRequires:  pkgconfig(fuse3)
-BuildRequires:  fuse3
+
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Test)
@@ -29,7 +29,7 @@ BuildRequires:  cmake(KF6CoreAddons)
 %if 0%{?tests}
 BuildRequires:  dbus-x11
 BuildRequires:  kio-extras
-BuildRequires:  make
+BuildRequires:  fuse3
 %endif
 
 Requires:       systemd
