@@ -1,6 +1,6 @@
 Name:          ktextaddons
 Version:       1.5.2
-Release:       2%{?dist}
+Release:       2.1%{?dist}
 Summary:       Various text handling addons
 
 License:       CC0-1.0 AND LGPL-2.0-or-later AND GPL-2.0-or-later AND BSD-3-Clause
@@ -51,6 +51,7 @@ BuildRequires: cmake(Qt5Widgets)
 
 %package       qt6
 Summary:       Qt6 support for %{name}
+Requires:      %{name}-docs
 %description   qt6
 %{summary}.
 
@@ -62,17 +63,25 @@ Requires:      %{name}-qt6%{?_isa} = %{version}-%{release}
 
 %package       qt5
 Summary:       Qt5 support for %{name}
-Obsoletes:     ktextaddons
+Obsoletes:     ktextaddons < 1.5.2
+Provides:      ktextaddons = %{version}-%{release}
+Requires:      %{name}-docs
 %description   qt5
 %{summary}.
 
 %package       qt5-devel
 Summary:       Development files for %{name}
 Requires:      %{name}-qt5%{?_isa} = %{version}-%{release}
-Obsoletes:     ktextaddons-devel
+Obsoletes:     ktextaddons-devel < 1.5.2
+Provides:      ktextaddons-devel = %{version}-%{release}
 %description   qt5-devel
 %{summary}.
 
+%package       docs
+Summary:       Translations and documents for %{name}
+BuildArch:     noarch
+%description   docs
+%{summary}.
 
 %prep
 %autosetup -p1
@@ -98,9 +107,8 @@ Obsoletes:     ktextaddons-devel
 %find_lang %{name} --all-name
 
 
-%files qt6 -f %{name}.lang
+%files qt6
 %license LICENSES/*
-%doc README.md
 %{_kf6_libdir}/libKF6TextAddonsWidgets.so.1
 %{_kf6_libdir}/libKF6TextAddonsWidgets.so.%{version}
 %{_kf6_libdir}/libKF6TextAutoCorrectionCore.so.1
@@ -230,6 +238,9 @@ Obsoletes:     ktextaddons-devel
 %{_kf5_libdir}/cmake/KF5TextGrammarCheck/
 %{_kf5_libdir}/cmake/KF5TextTranslator/
 %{_kf5_libdir}/cmake/KF5TextUtils/
+
+%files docs -f %{name}.lang
+%doc README.md
 
 
 %changelog

@@ -3,17 +3,11 @@
 Name:    kf6-audiocd-kio
 Summary: KIO worker for accessing audio CDs
 Version: 24.01.80
-Release: 1.1%{?dist}
+Release: 1.2%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-3.0-or-later
 URL:     https://www.kde.org/applications/multimedia/
 %apps_source
-
-
-# cdparanoia-devel not on all arches for RHEL8.
-%if 0%{?rhel} == 8
-ExclusiveArch: x86_64 ppc64le aarch64 %{arm}
-%endif
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
@@ -43,7 +37,7 @@ BuildRequires: pkgconfig(vorbis)
 Recommends:    lame
 Recommends:    opus-tools
 
-Obsoletes:      kf5-audiocd-kio
+Obsoletes:     kf5-audiocd-kio < 24.01.80
 
 
 %description
@@ -51,7 +45,7 @@ Obsoletes:      kf5-audiocd-kio
 
 %package devel
 Summary:  Development files for %{name}
-Obsoletes:      kf5-audiocd-kio-devel
+Obsoletes: kf5-audiocd-kio-devel < 24.01.80
 # libaudiocdplugins.so symlink conflict
 Conflicts: audiocd-kio-devel
 Requires: %{name}%{?_isa} = %{version}-%{release}
@@ -60,7 +54,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %package doc
 Summary: Documentation for %{name}
-Obsoletes:      kf5-audiocd-kio-doc
+Obsoletes: kf5-audiocd-kio-doc < 24.01.80
 License: GFDL
 Requires:  %{name} = %{version}-%{release}
 BuildArch: noarch
