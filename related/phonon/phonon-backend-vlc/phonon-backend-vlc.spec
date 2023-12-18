@@ -1,9 +1,9 @@
 Name:    phonon-backend-vlc
 Summary: VLC phonon backend
 Version: 0.12.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: LGPL-2.0-or-later
-URL:     http://phonon.kde.org/
+URL:     https://invent.kde.org/libraries/phonon-vlc
 Source0: http://download.kde.org/stable/phonon/phonon-backend-vlc/%{version}/phonon-backend-vlc-%{version}.tar.xz
 
 ## downstream patches
@@ -24,7 +24,7 @@ BuildRequires: cmake(Qt6LinguistTools)
 BuildRequires: pkgconfig(xcb)
 
 %global phonon_ver %(pkg-config --modversion phonon4qt5 2>/dev/null || echo 4.12)
-%global vlc_ver %(pkg-config --modversion libvlc 2>/dev/null || echo 1.1.10)
+%global vlc_ver %(pkg-config --modversion libvlc 2>/dev/null || echo 3.0.0)
 
 %description
 %{summary}.
@@ -32,7 +32,8 @@ BuildRequires: pkgconfig(xcb)
 %package -n phonon-qt5-backend-vlc
 Summary:  Vlc phonon-qt5 backend
 Provides: phonon-qt5-backend%{?_isa} = %{phonon_ver}
-Requires: (vlc-core%{?_isa} >= %{vlc_ver} or vlc-free-core%{?_isa} >= %{vlc_ver})
+Requires: %{name}-common = %{version}-%{release}
+Requires: vlc-plugins-base%{?_isa} >= %{vlc_ver}
 Requires: phonon-qt5%{?_isa} >= %{phonon_ver}
 %description -n phonon-qt5-backend-vlc
 %{summary}.
@@ -40,13 +41,21 @@ Requires: phonon-qt5%{?_isa} >= %{phonon_ver}
 %package -n phonon-qt6-backend-vlc
 Summary:  Vlc phonon-qt6 backend
 Provides: phonon-qt6-backend%{?_isa} = %{phonon_ver}
-Requires: (vlc-core%{?_isa} >= %{vlc_ver} or vlc-free-core%{?_isa} >= %{vlc_ver})
+Requires: %{name}-common = %{version}-%{release}
+Requires: vlc-plugins-base%{?_isa} >= %{vlc_ver}
 Requires: phonon-qt6%{?_isa} >= %{phonon_ver}
 %description -n phonon-qt6-backend-vlc
 %{summary}.
 
+%package common
+Summary:        Translation files for %{name}
+BuildArch:      noarch
+%description common
+%{summary}.
+
+
 %prep
-%autosetup -n phonon-backend-vlc-%{version} -p1
+%autosetup -p1
 
 # reset initial preference below (fedora's default) gstreamer
 sed -i -e 's|^InitialPreference=.*|InitialPreference=10|g' src/phonon-vlc.json.in
@@ -71,7 +80,7 @@ sed -i -e 's|^InitialPreference=.*|InitialPreference=10|g' src/phonon-vlc.json.i
 %find_lang phonon_vlc --with-qt
 
 
-%files -n phonon-qt5-backend-vlc -f phonon_vlc.lang
+%files -n phonon-qt5-backend-vlc
 %doc AUTHORS
 %license COPYING.LIB
 %{_qt5_plugindir}/phonon4qt5_backend/phonon_vlc_qt5.so
@@ -80,6 +89,9 @@ sed -i -e 's|^InitialPreference=.*|InitialPreference=10|g' src/phonon-vlc.json.i
 %doc AUTHORS
 %license COPYING.LIB
 %{_qt6_plugindir}/phonon4qt6_backend/phonon_vlc_qt6.so
+
+%files common -f phonon_vlc.lang
+
 
 %changelog
 * Wed Aug 02 2023 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.11.3-4
