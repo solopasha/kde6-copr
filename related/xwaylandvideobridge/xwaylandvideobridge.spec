@@ -1,13 +1,11 @@
 Name:           xwaylandvideobridge
-Version:        0.3.0
-Release:        2.1.1%{?dist}
+Version:        0.4.0
+Release:        1%{?dist}
 Summary:        Utility to allow streaming Wayland windows to X applications
 
 License:        (GPL-2.0-only or GPL-3.0-only) and LGPL-2.0-or-later and BSD-3-Clause
 URL:            https://invent.kde.org/system/xwaylandvideobridge
 Source0:        https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz
-Patch:          https://invent.kde.org/system/xwaylandvideobridge/-/commit/9ee3d7a21ee3069e37a205318914f48b2b597eaa.patch
-Patch:          https://invent.kde.org/system/xwaylandvideobridge/-/commit/0ca63bfbd8b30dfdb5807f6e4e35ca272d7cdc01.patch
 
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
