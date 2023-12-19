@@ -1,13 +1,10 @@
 %global framework libkgapi
 
-# trim changelog included in binary rpms
-%global _changelog_trimtime %(date +%s -d "1 year ago")
-
 # https://bugzilla.redhat.com/show_bug.cgi?id=1895674
 %global _lto_cflags %{nil}
 
-Name:    libkgapi-qt5
-Version: 23.08.3
+Name:    kf5-libkgapi
+Version: 23.08.4
 Release: 2%{?dist}
 Summary: Library to access to Google services
 
@@ -20,12 +17,7 @@ URL:     https://invent.kde.org/pim/libkgapi
 %else
 %global stable stable
 %endif
-Source0: http://download.kde.org/%{stable}/release-service/%{version}/src/libkgapi-%{version}.tar.xz
-
-# libical (and thus kcalendarcore) not on all arches for RHEL8.
-%if 0%{?rhel} == 8
-ExclusiveArch: x86_64 ppc64le aarch64 %{arm}
-%endif
+Source0: https://download.kde.org/%{stable}/release-service/%{version}/src/libkgapi-%{version}.tar.xz
 
 BuildRequires:  kf5-rpm-macros
 BuildRequires:  extra-cmake-modules
@@ -46,6 +38,8 @@ BuildRequires:  cyrus-sasl-devel
 
 Obsoletes:      libkgoogle < 0.3.2
 Provides:       libkgoogle = %{version}-%{release}
+Obsoletes:      libkgapi-qt5 < 23.08.4-3
+Provides:       libkgapi-qt5 = %{version}-%{release}
 
 
 %description
@@ -60,6 +54,8 @@ Requires:       kf5-kcalendarcore-devel
 Requires:       kf5-kcontacts-devel
 Obsoletes:      libkgoogle-devel < 0.3.2
 Provides:       libkgoogle-devel = %{version}-%{release}
+Obsoletes:      libkgapi-qt5-devel < 23.08.4-3
+Provides:       libkgapi-qt5-devel = %{version}-%{release}
 %description devel
 Libraries and header files for developing applications that use akonadi-google
 resources.

@@ -10,7 +10,7 @@
 %endif
 
 Name:    kf5-%{framework}
-Version: 23.08.3
+Version: 23.08.4
 Release: 2%{?dist}
 Summary: The KPimTextEdit Library
 
