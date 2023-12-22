@@ -1,8 +1,8 @@
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
 
 Name:    kpimtextedit
-Version: 24.01.80
-Release: 1.1%{?dist}
+Version: 24.01.85
+Release: 1%{?dist}
 Summary: The KPimTextEdit Library
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL

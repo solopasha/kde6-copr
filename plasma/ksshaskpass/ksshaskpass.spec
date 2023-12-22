@@ -1,10 +1,10 @@
 Name:    ksshaskpass
-Version: 5.90.0
+Version: 5.91.0
 Release: 1%{?dist}
 Summary: A ssh-add helper that uses kwallet and kpassworddialog
 
 License: GPLv2
-URL:     https://cgit.kde.org/%{name}.git
+URL:     https://invent.kde.org/plasma/ksshaskpass
 
 %plasma_source
 

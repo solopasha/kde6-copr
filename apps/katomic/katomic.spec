@@ -1,6 +1,6 @@
 Name:    katomic
 Summary: An educational game built around molecular geometry
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 
 # code GPLv2+, docs GFDL

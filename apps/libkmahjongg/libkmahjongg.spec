@@ -1,6 +1,6 @@
 Name:    libkmahjongg
 Summary: Common code, backgrounds and tile sets for games using Mahjongg tiles
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 License: GPLv2+
 URL:     https://invent.kde.org/games/%{name}

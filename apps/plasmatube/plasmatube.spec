@@ -1,14 +1,10 @@
-%global commit0 1051309dbe896a95ef90d9c9d9a7a37eef8a09a8
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-#global bumpver 1
-
 Name:           plasmatube
-Version:        24.01.80
-Release:        1.2%{?dist}
+Version:        24.01.85
+Release:        1%{?dist}
 License:        GPL-3.0-or-later AND GPL-2.0-or-later AND CC0-1.0 AND CC-BY-SA-4.0
 Summary:        YouTube video player based on QtMultimedia and youtube-dl
 Url:            https://apps.kde.org/plasmatube/
-%apps_source     
+%apps_source
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules

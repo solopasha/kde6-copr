@@ -1,6 +1,6 @@
 Name:           svgpart
 Summary:        SVG KPart
-Version:        24.01.80
+Version:        24.01.85
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later
@@ -20,6 +20,8 @@ BuildRequires:  cmake(KF6XmlGui)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6SvgWidgets)
 BuildRequires:  cmake(Qt6Widgets)
+
+Recommends:     svgpart-qt5
 
 
 %description

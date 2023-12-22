@@ -2,7 +2,7 @@
 
 Name:    plymouth-kcm
 Summary: Plymouth configuration module for systemsettings
-Version: 5.90.0
+Version: 5.91.0
 Release: 1%{?dist}
 
 License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later
@@ -14,20 +14,21 @@ Patch1:         0001-fedora.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  kf6-kcmutils
-BuildRequires:  qt6-qtbase-devel
 BuildRequires:  plymouth-devel
 
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Test)
+
 BuildRequires:  cmake(KF6Archive)
+BuildRequires:  cmake(KF6Auth)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KCMUtils)
+BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6NewStuff)
 BuildRequires:  cmake(KF6NewStuffCore)
-BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(KF6Declarative)
-BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6ConfigWidgets)
-BuildRequires:  cmake(KF6KCMUtils)
 
 Requires:   plymouth
 

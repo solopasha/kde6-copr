@@ -1,15 +1,11 @@
 Name:    incidenceeditor
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 Summary: KDE PIM library for creating and editing calendar incidences
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LicenseRef-KDE-Accepted-GPL
 URL:     https://invent.kde.org/pim/incidenceeditor
 %apps_source
-Patch:  https://invent.kde.org/pim/incidenceeditor/-/commit/c64502a92568abe54e27f6d3adfcb1fe84baac4b.patch
-Patch:  https://invent.kde.org/pim/incidenceeditor/-/commit/d2bda9e3754f7daa8ea876e1d909fe038e03c85b.patch
-
-
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
@@ -41,7 +37,6 @@ BuildRequires:  cmake(KPim6TextEdit)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  cmake(KGantt6)
-
 
 
 Obsoletes:      kf5-%{name} < 24.01.75

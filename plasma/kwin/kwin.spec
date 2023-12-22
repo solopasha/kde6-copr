@@ -2,15 +2,14 @@
 %bcond x11 1
 
 Name:    kwin
-Version: 5.90.0
-Release: 1.2.1%{?dist}
+Version: 5.91.0
+Release: 1%{?dist}
 Summary: KDE Window manager
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://userbase.kde.org/KWin
 
 %plasma_source
-Patch:  https://github.com/KDE/kwin/compare/v5.90.0...master.patch
 
 ## upstream patches
 ## proposed patches
@@ -23,13 +22,11 @@ BuildRequires:  systemd-rpm-macros
 # Qt
 BuildRequires:  cmake(QAccessibilityClient6)
 BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtbase-static
 # KWinQpaPlugin (and others?)
 BuildRequires:  qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  qt6-qtsensors-devel
 BuildRequires:  qt6-qttools-devel
-BuildRequires:  qt6-qttools-static
 BuildRequires:  qt6-qtwayland-devel
 BuildRequires:  cmake(Qt6Core5Compat)
 
@@ -79,7 +76,7 @@ BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(Plasma)
-#BuildRequires:  cmake(KF6WidgetAddons)
+BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6KCMUtils)
@@ -93,6 +90,8 @@ BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6Runner)
 BuildRequires:  cmake(KF6Svg)
 BuildRequires:  cmake(KF6GuiAddons)
+BuildRequires:  cmake(KF6Auth)
+BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  cmake(KDecoration2)
 BuildRequires:  kscreenlocker-devel
@@ -100,6 +99,8 @@ BuildRequires:  plasma-breeze-devel
 BuildRequires:  plasma-wayland-protocols-devel
 BuildRequires:  cmake(KGlobalAccelD)
 BuildRequires:  libdisplay-info-devel
+BuildRequires:  pkgconfig(freetype2)
+BuildRequires:  pkgconfig(fontconfig)
 
 ## Runtime deps
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
@@ -111,18 +112,9 @@ Requires:       plasma-framework%{?_isa} >= %{version}
 Requires:       qt6-qtmultimedia%{?_isa}
 Requires:       qt6-qtdeclarative%{?_isa}
 
-# Before kwin was split out from kde-workspace into a subpackage
-Conflicts:      kde-workspace%{?_isa} < 4.11.14-2
-
-Obsoletes:      kwin-gles < 5
-Obsoletes:      kwin-gles-libs < 5
-
 # http://bugzilla.redhat.com/605675
 # until initial-setup is fixed... (#1197135)
 Provides: firstboot(windowmanager) = kwin
-
-# Split of X11 variant into subpackage
-Obsoletes: kwin < 5.19.5-3
 
 Requires:   %{name}-wayland = %{version}-%{release}
 
@@ -134,18 +126,10 @@ Summary:        KDE Window Manager with Wayland support
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       %{name}-common%{?_isa} = %{version}-%{release}
 Requires:       kwayland-integration%{?_isa}
-%if ! 0%{?bootstrap}
-BuildRequires:  xorg-x11-server-Xwayland
-%endif
+BuildRequires:  pkgconfig(xwayland)
 Requires:       xorg-x11-server-Xwayland
 # http://bugzilla.redhat.com/605675
 Provides:       firstboot(windowmanager) = kwin_wayland
-# KWinQpaPlugin (and others?)
-
-# Obsolete kwin-wayland-nvidia package as this is now done automatically
-# by kwin-wayland
-Obsoletes:      %{name}-wayland-nvidia < 5.20.2-2
-Provides:       %{name}-wayland-nvidia = %{version}-%{release}
 %if ! %{with x11}
 # Obsolete kwin-x11 as we are dropping the package
 Obsoletes:      %{name}-x11 < %{version}-%{release}
@@ -174,15 +158,11 @@ Provides:       firstboot(windowmanager) = kwin_x11
 Summary:        Common files for KWin X11 and KWin Wayland
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       kwayland%{?_isa}
-# Split of X11 variant into subpackage
-Obsoletes:      %{name}-common < 5.19.5-3
 %description    common
 %{summary}.
 
 %package        libs
 Summary:        KWin runtime libraries
-# Before kwin-libs was split out from kde-workspace into a subpackage
-Conflicts:      kde-workspace-libs%{?_isa} < 4.11.14-2
 %description    libs
 %{summary}.
 
@@ -193,7 +173,6 @@ Requires:       %{name}-common%{?_isa} = %{version}-%{release}
 Requires:       kf6-kconfig-devel
 Requires:       kf6-kservice-devel
 Requires:       kf6-kwindowsystem-devel
-Conflicts:      kde-workspace-devel < 5.0.0-1
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.

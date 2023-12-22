@@ -3,7 +3,7 @@
 
 Name:           signon-ui
 Version:        0.17^1.git%{shortcommit0}
-Release:        1.2%{?dist}
+Release:        2%{?dist}
 Summary:        Online Accounts Sign-on Ui
 
 License:        GPLv3
@@ -12,8 +12,9 @@ URL:            https://gitlab.com/accounts-sso/signon-ui
 Source:         %{url}/-/archive/%{commit0}/%{name}-%{shortcommit0}.tar.gz
 Patch:          fake-user-agent.patch
 Patch:          flags.patch
+Patch:          https://gitlab.com/accounts-sso/signon-ui/-/merge_requests/6.patch
 
-BuildRequires: desktop-file-utils
+BuildRequires:  desktop-file-utils
 BuildRequires:  make
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtwebengine-devel

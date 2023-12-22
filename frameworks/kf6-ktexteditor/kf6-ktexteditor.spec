@@ -1,7 +1,7 @@
 %global framework ktexteditor
 
 Name:    kf6-%{framework}
-Version: 5.246.0
+Version: 5.247.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 with advanced embeddable text editor
 
@@ -22,7 +22,9 @@ BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Parts)
+BuildRequires:  cmake(KF6Sonnet)
 BuildRequires:  cmake(KF6SyntaxHighlighting)
+BuildRequires:  cmake(KF6TextWidgets)
 
 BuildRequires:  cmake(Qt6PrintSupport)
 BuildRequires:  cmake(Qt6Qml)
@@ -73,9 +75,9 @@ rm -f %{buildroot}%{_kf6_datadir}/katepart5/script/README.md
 %dir %{_kf6_plugindir}/parts/
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_datadir}/dbus-1/system-services/org.kde.ktexteditor.katetextbuffer.service
-%{_kf6_datadir}/dbus-1/system.d/org.kde.ktexteditor.katetextbuffer.conf
-%{_kf6_datadir}/polkit-1/actions/org.kde.ktexteditor.katetextbuffer.policy
+%{_kf6_datadir}/dbus-1/system-services/org.kde.ktexteditor6.katetextbuffer.service
+%{_kf6_datadir}/dbus-1/system.d/org.kde.ktexteditor6.katetextbuffer.conf
+%{_kf6_datadir}/polkit-1/actions/org.kde.ktexteditor6.katetextbuffer.policy
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6TextEditor.so.*
 %{_kf6_libexecdir}/kauth/kauth_ktexteditor_helper

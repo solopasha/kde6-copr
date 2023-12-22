@@ -1,13 +1,12 @@
 Name:    bluedevil
 Summary: Bluetooth stack for KDE
-Version: 5.90.0
+Version: 5.91.0
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
-URL:     https://cgit.kde.org/%{name}.git
+URL:     https://invent.kde.org/plasma/bluedevil
 
 %plasma_source
-
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
@@ -15,18 +14,16 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6BluezQt)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DBusAddons)
-BuildRequires:  cmake(KF6Declarative)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6IconThemes)
+BuildRequires:  cmake(KF6JobWidgets)
 BuildRequires:  cmake(KF6KCMUtils)
-BuildRequires:  cmake(KF6KDED)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Notifications)
-BuildRequires:  cmake(Plasma)
 BuildRequires:  cmake(KF6Svg)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6WindowSystem)
+BuildRequires:  cmake(Plasma)
 
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtdeclarative-devel
@@ -35,18 +32,12 @@ BuildRequires:  desktop-file-utils
 
 Provides:       dbus-bluez-pin-helper
 
-Obsoletes:      kbluetooth < 0.4.2-3
-Obsoletes:      bluedevil-devel < 2.0.0-0.10
-
 Requires:       bluez >= 5
 Requires:       bluez-obexd
 Requires:       kf6-kded
 Requires:       pulseaudio-module-bluetooth
 
 Requires:       kf6-kirigami2
-
-# When -autostart was removed
-Obsoletes:      bluedevil-autostart < 5.2.95
 
 %description
 BlueDevil is the bluetooth stack for KDE.
@@ -68,13 +59,11 @@ BlueDevil is the bluetooth stack for KDE.
 
 
 %check
-desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.bluedevilsendfile.desktop
-desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.bluedevilwizard.desktop
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 
 %files -f %{name}.lang
 %doc README
-%{_datadir}/mime/packages/bluedevil-mime.xml
 %{_kf6_bindir}/bluedevil-sendfile
 %{_kf6_bindir}/bluedevil-wizard
 %{_kf6_datadir}/applications/kcm_bluetooth.desktop
@@ -82,6 +71,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.bluedevil
 %{_kf6_datadir}/applications/org.kde.bluedevilwizard.desktop
 %{_kf6_datadir}/bluedevilwizard/
 %{_kf6_datadir}/knotifications6/bluedevil.notifyrc
+%{_kf6_datadir}/mime/packages/bluedevil-mime.xml
 %{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.bluetooth
 %{_kf6_datadir}/qlogging-categories6/bluedevil.categories
 %{_kf6_datadir}/remoteview/bluetooth-network.desktop

@@ -1,7 +1,7 @@
 
 Name:    ksystemlog
 Summary: System Log Viewer for KDE
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -65,15 +65,15 @@ and less commands.
 
 
 %check
-desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.desktop
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.desktop
 
 
 %files -f %{name}.lang
 %license LICENSES/GPL-2.0-or-later.txt
-%{_kf5_bindir}/ksystemlog
-%{_kf5_datadir}/applications/org.kde.ksystemlog.desktop
-%{_kf5_datadir}/qlogging-categories6/ksystemlog.categories
-%{_kf5_metainfodir}/org.kde.ksystemlog.appdata.xml
+%{_kf6_bindir}/ksystemlog
+%{_kf6_datadir}/applications/org.kde.ksystemlog.desktop
+%{_kf6_datadir}/qlogging-categories6/ksystemlog.categories
+%{_kf6_metainfodir}/org.kde.ksystemlog.appdata.xml
 
 
 %changelog

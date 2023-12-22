@@ -1,9 +1,9 @@
 Name:    plasma-workspace-wallpapers
-Version: 5.90.0
+Version: 5.91.0
 Release: 1%{?dist}
 Summary: Additional wallpapers for Plasma workspace
 License: LGPLv3
-URL:     https://cgit.kde.org/%{name}.git
+URL:     https://invent.kde.org/plasma/plasma-workspace-wallpapers
 
 %plasma_source
 BuildArch: noarch
@@ -13,13 +13,6 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  qt6-qtbase-devel
 
 Requires:       kde-filesystem
-
-# Elarun moved here
-Conflicts:      kde-wallpapers < 15.08.3-10
-
-# when we went noarch
-Obsoletes:      plasma-workspace-wallpapers < 5.2.0-2
-
 
 %description
 %{summary}.

@@ -4,8 +4,8 @@
 
 Name:           ark
 Summary:        Archive manager
-Version:        24.01.80
-Release:        1.4%{?dist}
+Version:        24.01.85
+Release:        1%{?dist}
 
 License:        GPL-2.0-or-later AND BSD-2-Clause
 URL:            https://www.kde.org/applications/utilities/ark/

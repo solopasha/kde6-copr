@@ -1,6 +1,6 @@
 Name:    kpipewire
 Summary: Set of convenient classes to use PipeWire in Qt projects
-Version: 5.90.0
+Version: 5.91.0
 Release: 1%{?dist}
 
 License: LGPL-2.0-or-later

@@ -1,0 +1,13 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 03b3904..3e2ca0b 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -59,7 +59,7 @@ find_package(Leptonica)
+ 
+ if (LEPTONICA_FOUND AND TESSERACT_FOUND)
+    set(OCR_AVAILABLE 1)
+-   set(CMAKE_CXX_FLAGS "-fopenmp")
++   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
+ else()
+    message(STATUS "Skanpage will be built without OCR as libraries are missing.")
+ endif()

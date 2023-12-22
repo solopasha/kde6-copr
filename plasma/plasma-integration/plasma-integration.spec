@@ -1,7 +1,7 @@
 Name:    plasma-integration
 Summary: Qt Platform Theme integration plugin for Plasma
-Version: 5.90.0
-Release: 1.1%{?dist}
+Version: 5.91.0
+Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
@@ -34,6 +34,7 @@ BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(KWayland)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6StatusNotifierItem)
+BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  cmake(Qt5WaylandClient)
 BuildRequires:  cmake(Qt5Widgets)
@@ -95,7 +96,6 @@ Summary:        Qt5 support for %{name}
 %doc README.md
 %license LICENSES
 %{_qt6_plugindir}/platformthemes/KDEPlasmaPlatformTheme6.so
-%{_kf6_datadir}/kconf_update/fonts_*
 
 %files qt5
 %{_qt5_plugindir}/platformthemes/KDEPlasmaPlatformTheme5.so

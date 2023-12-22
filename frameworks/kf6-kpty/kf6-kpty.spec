@@ -1,7 +1,7 @@
 %global framework kpty
 
 Name:           kf6-%{framework}
-Version:        5.246.0
+Version:        5.247.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 module providing Pty abstraction
 

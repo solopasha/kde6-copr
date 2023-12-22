@@ -2,7 +2,7 @@
 
 Name:           markdownpart
 Summary:        Markdown KPart
-Version:        24.01.80
+Version:        24.01.85
 Release:        %autorelease
 License:        LGPL-2.1-or-later
 URL:            https://apps.kde.org/categories/utilities/
@@ -16,6 +16,8 @@ BuildRequires:  cmake(KF6Parts)
 BuildRequires:  gcc-c++
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
+
+Recommends:     %{name}-qt5
 
 %description
 A Markdown viewer KParts plugin, which allows KParts-using applications to

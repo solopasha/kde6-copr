@@ -6,7 +6,7 @@ Summary: QML bindings for libaccounts-qt + libsignon-qt
 Version: 0.7^1.git%{shortcommit0}
 Release: 1%{?dist}
 
-License: LGPLv2 
+License: LGPLv2
 URL:     https://gitlab.com/accounts-sso/accounts-qml-module
 Source:  %{url}/-/archive/%{commit0}/%{name}-%{shortcommit0}.tar.gz
 
@@ -14,15 +14,24 @@ BuildRequires: qt6-doctools
 BuildRequires: cmake(AccountsQt6)
 BuildRequires: cmake(Qt6Qml)
 BuildRequires: cmake(SignOnQt6)
-BuildRequires: make
+
+BuildRequires: qt5-doctools
+BuildRequires: cmake(AccountsQt5)
+BuildRequires: cmake(Qt5Qml)
+BuildRequires: cmake(SignOnQt5)
 
 %description
 This QML module provides an API to manage the user's online accounts and get
 their authentication data. It's a tiny wrapper around the Qt-based APIs of
 libaccounts-qt and libsignon-qt.
 
+%package        qt5
+Summary:        Qt5 support for %{name}
+%description    qt5
+%{summary}.
+
 %package doc
-Summary: Documentation for %{name} 
+Summary: Documentation for %{name}
 BuildArch: noarch
 %description doc
 This package contains the developer documentation for accounts-qml-module.
@@ -33,8 +42,8 @@ This package contains the developer documentation for accounts-qml-module.
 
 
 %build
-mkdir %{_target_platform}
-pushd %{_target_platform}
+mkdir %{_target_platform}-qt6
+pushd %{_target_platform}-qt6
 %{qmake_qt6} \
   CONFIG+=release \
   PREFIX=%{_prefix} \
@@ -42,11 +51,22 @@ pushd %{_target_platform}
   ..
 popd
 
-%make_build -C %{_target_platform}
+%make_build -C %{_target_platform}-qt6
 
+mkdir %{_target_platform}-qt5
+pushd %{_target_platform}-qt5
+%{qmake_qt5} \
+  CONFIG+=release \
+  PREFIX=%{_prefix} \
+  LIBDIR=%{_libdir} \
+  ..
+popd
+
+%make_build -C %{_target_platform}-qt5
 
 %install
-make install INSTALL_ROOT=%{buildroot} -C %{_target_platform}
+make install INSTALL_ROOT=%{buildroot} -C %{_target_platform}-qt6
+make install INSTALL_ROOT=%{buildroot} -C %{_target_platform}-qt5
 
 ## unpackaged files
 # remove tests
@@ -59,6 +79,11 @@ rm -fv %{buildroot}/%{_datadir}/%{name}/doc/html/.gitignore
 %license COPYING
 %doc README.md
 %{_qt6_archdatadir}/qml/SSO/
+
+%files qt5
+%license COPYING
+%doc README.md
+%{_qt5_archdatadir}/qml/SSO/
 
 %files doc
 %doc %{_datadir}/%{name}/
@@ -93,6 +118,6 @@ rm -fv %{buildroot}/%{_datadir}/%{name}/doc/html/.gitignore
 * Mon Jul 27 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.7-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
-* Tue Feb 11 2020 Rex Dieter <rdieter@fedoraproject.org> - 0.7-1 
+* Tue Feb 11 2020 Rex Dieter <rdieter@fedoraproject.org> - 0.7-1
 - first try, inspiration from opensuse packaging
 

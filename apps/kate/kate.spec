@@ -2,8 +2,8 @@
 
 Name:    kate
 Summary: Advanced Text Editor
-Version: 24.01.80
-Release: 1.1.2%{?dist}
+Version: 24.01.85
+Release: 1%{?dist}
 
 # kwrite LGPLv2+
 # kate: app LGPLv2, plugins, LGPLv2 and LGPLv2+ and GPLv2+
@@ -31,6 +31,7 @@ BuildRequires: cmake(KF6KIO)
 BuildRequires: cmake(KF6Parts)
 BuildRequires: cmake(KF6SyntaxHighlighting)
 BuildRequires: cmake(KF6TextEditor)
+BuildRequires: cmake(KF6TextWidgets)
 BuildRequires: cmake(KF6WindowSystem)
 BuildRequires: cmake(KF6XmlGui)
 

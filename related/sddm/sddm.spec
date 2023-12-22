@@ -1,5 +1,5 @@
-%bcond wayland_default 1
-%bcond sddm_wayland_default 1
+# Disable X11 for RHEL 10+
+%bcond x11 %[%{undefined rhel} || 0%{?rhel} < 10]
 
 #global commit e6524335a54ca469401ee9487adc4ae973860aad
 #global commitdate 20230404
@@ -7,7 +7,7 @@
 
 Name:           sddm
 Version:        0.20.0%{?commitdate:^git%{commitdate}.%{shortcommit}}
-Release:        6%{?dist}
+Release:        7%{?dist}
 License:        GPLv2+
 Summary:        QML based desktop and login manager
 
@@ -27,9 +27,6 @@ Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 Patch1: 1797.patch
 
 ## upstreamable patches
-# Fix the keyboard with layer-shell and Qt6
-# https://github.com/sddm/sddm/pull/1831
-Patch5:         0001-Correctly-integrate-the-greeter-with-layer-shell.patch
 
 # Fix race with logind restart, and start seat0 if !CanGraphical on timer
 # https://bugzilla.redhat.com/show_bug.cgi?id=2011991
@@ -80,7 +77,6 @@ BuildRequires:  /usr/bin/rst2man
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtdeclarative-devel
 BuildRequires:  qt6-qttools-devel
-BuildRequires:  cmake(LayerShellQt)
 # verify presence to pull defaults from /etc/login.defs
 BuildRequires:  shadow-utils
 BuildRequires:  systemd
@@ -97,18 +93,16 @@ Requires: desktop-backgrounds-compat
 Requires: system-logos
 %endif
 Requires: systemd
+%if %{with x11}
 Requires: xorg-x11-xinit
+%endif
 %{?systemd_requires}
 
 Requires(pre): shadow-utils
 
 # Virtual dependency for sddm greeter setup
 Requires: sddm-greeter-displayserver
-%if ! %{with sddm_wayland_default}
-Suggests: sddm-x11
-%else
 Suggests: sddm-wayland-generic
-%endif
 
 %description
 SDDM is a modern graphical display manager aiming to be fast, simple and
@@ -130,18 +124,22 @@ to use Weston for the greeter display server.
 This is the generic default Wayland configuration provided
 by SDDM.
 
+%if %{with x11}
 %package x11
 Summary: X11 SDDM greeter configuration
 Provides: sddm-greeter-displayserver
 Conflicts: sddm-greeter-displayserver
+# This will eventually go away...
+Provides: deprecated()
 Requires: xorg-x11-server-Xorg
 Requires: %{name} = %{version}-%{release}
-Suggests: qt6-qtvirtualkeyboard%{?_isa}
+Recommends: qt6-qtvirtualkeyboard%{?_isa}
 BuildArch: noarch
 
 %description x11
 This package contains configuration and dependencies for SDDM
 to use X11 for the greeter display server.
+%endif
 
 %package themes
 Summary: SDDM Themes
@@ -188,7 +186,9 @@ install -Dpm 644 %{SOURCE12} %{buildroot}%{_sysconfdir}/pam.d/sddm-autologin
 install -Dpm 644 %{SOURCE13} %{buildroot}%{_sysconfdir}/sddm.conf
 install -Dpm 644 %{SOURCE14} %{buildroot}%{_datadir}/sddm/scripts/README.scripts
 install -Dpm 644 %{SOURCE15} %{buildroot}%{_sysconfdir}/sysconfig/sddm
+%if %{with x11}
 install -Dpm 644 %{SOURCE16} %{buildroot}%{_prefix}/lib/sddm/sddm.conf.d/x11.conf
+%endif
 mkdir -p %{buildroot}/run/sddm
 mkdir -p %{buildroot}%{_localstatedir}/lib/sddm
 mkdir -p %{buildroot}%{_sysconfdir}/sddm/
@@ -214,28 +214,6 @@ rm -fv %{buildroot}%{_sysconfdir}/sddm/Xsession
    -e 's|^\[WaylandDisplay\]$|\[Wayland\]|' \
    %{_sysconfdir}/sddm.conf
 ) ||:
-
-%if %{with wayland_default}
-%triggerun -- plasma-workspace < 5.20.90-2
-# When upgrading, handle session filename changes
-if [ -f %{_sharedstatedir}/sddm/state.conf ]; then
-   sed \
-       -e "s|%{_datadir}/xsessions/plasma.desktop|%{_datadir}/xsessions/plasmax11.desktop|g" \
-       -e "s|%{_datadir}/xsessions/plasmaxorg.desktop|%{_datadir}/xsessions/plasmax11.desktop|g" \
-       -e "s|%{_datadir}/wayland-sessions/plasmawayland.desktop|%{_datadir}/wayland-sessions/plasma.desktop|g" \
-       -i %{_sharedstatedir}/sddm/state.conf
-fi
-
-%triggerun -- fedora-release < 34
-# When upgrading to Fedora 34, transition to Plasma Wayland by default
-if [ -f %{_sharedstatedir}/sddm/state.conf ]; then
-   sed \
-       -e "s|%{_datadir}/xsessions/plasma.desktop|%{_datadir}/wayland-sessions/plasma.desktop|g" \
-       -e "s|%{_datadir}/xsessions/plasmax11.desktop|%{_datadir}/wayland-sessions/plasma.desktop|g" \
-       -e "s|%{_datadir}/wayland-sessions/plasmawayland.desktop|%{_datadir}/wayland-sessions/plasma.desktop|g" \
-       -i %{_sharedstatedir}/sddm/state.conf
-fi
-%endif
 
 %preun
 %systemd_preun sddm.service
@@ -283,8 +261,10 @@ fi
 %files wayland-generic
 # No files since default configuration
 
+%if %{with x11}
 %files x11
 %{_prefix}/lib/sddm/sddm.conf.d/x11.conf
+%endif
 
 %files themes
 %{_datadir}/sddm/themes/elarun/
@@ -293,6 +273,10 @@ fi
 
 
 %changelog
+* Thu Nov 23 2023 Neal Gompa <ngompa@fedoraproject.org> - 0.20.0-7
+- Disable X11 subpackage in RHEL 10+
+- Drop unneeded scriptlets
+
 * Mon Nov 20 2023 Alessandro Astone <ales.astone@gmail.com> - 0.20.0-6
 - Backport patch to fix the keyboard with layer-shell
 

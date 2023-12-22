@@ -1,6 +1,6 @@
 Name:    libplasma
-Version: 5.90.0
-Release: 1.2.1%{?dist}
+Version: 5.91.0
+Release: 1%{?dist}
 Summary: Plasma is the foundation of the KDE user interface (v6)
 
 # LicenseRef-QtCommercial is also in the licenses, but is being omitted as it is optional.
@@ -8,7 +8,6 @@ License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-
 URL:     https://invent.kde.org/plasma/plasma-framework
 
 %plasma_source
-Patch:  https://invent.kde.org/plasma/libplasma/-/commit/aac8aeab553f902cd4b963bafd0bae5da92736a3.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++

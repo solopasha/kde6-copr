@@ -2,8 +2,8 @@
 
 Name:    kf6-audiocd-kio
 Summary: KIO worker for accessing audio CDs
-Version: 24.01.80
-Release: 1.2%{?dist}
+Version: 24.01.85
+Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-3.0-or-later
 URL:     https://www.kde.org/applications/multimedia/

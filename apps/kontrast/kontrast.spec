@@ -1,5 +1,5 @@
 Name:          kontrast
-Version:       24.01.80
+Version:       24.01.85
 Release:       1%{?dist}
 Summary:       Color contrast checker
 # BSD, CC0 are only for build files

@@ -8,7 +8,7 @@
 
 Name:    libkeduvocdocument
 Summary: Library to parse, convert, and manipulate KVTML files
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 
 License: GPLv2+

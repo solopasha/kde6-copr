@@ -1,16 +1,10 @@
-%global commit0 59c3b37240e95b1cd1c6176bdd1e76b9dbe2dcdf
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
-
 Name:    kaccounts-providers
-Version: 24.01.80%{?bumpver:^%{bumpver}.git%{shortcommit0}}
-Release: 1.1%{?dist}
+Version: 24.01.85
+Release: 1%{?dist}
 Summary: Additional service providers for KAccounts framework
 License: GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/network/%{name}
 %apps_source
-
-
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  intltool
@@ -31,7 +25,7 @@ Requires:       signon-ui
 Requires:       kf6-kirigami
 
 # https://pagure.io/fedora-kde/SIG/issue/66
-Supplements:    kaccounts-integration
+Supplements:    kaccounts-integration-qt6
 
 %description
 %{summary}.

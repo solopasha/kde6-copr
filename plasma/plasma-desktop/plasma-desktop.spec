@@ -5,8 +5,8 @@
 
 Name:    plasma-desktop
 Summary: Plasma Desktop shell
-Version: 5.90.0
-Release: 1.1%{?dist}
+Version: 5.91.0
+Release: 2%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
@@ -74,6 +74,8 @@ BuildRequires:  cmake(KF6Plasma5Support)
 BuildRequires:  cmake(KF6ItemModels)
 BuildRequires:  cmake(KF6KDED)
 BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Auth)
+BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  cmake(KSysGuard)
 BuildRequires:  kscreenlocker-devel
@@ -85,7 +87,9 @@ BuildRequires:  plasma-workspace-devel
 %if 0%{?fedora}
 BuildRequires:  cmake(AppStreamQt)
 %endif
-#BuildRequires:  cmake(KAccounts) intltool
+BuildRequires:  cmake(KAccounts6)
+BuildRequires:  cmake(AccountsQt6)
+BuildRequires:  intltool
 BuildRequires:  cmake(KF6UserFeedback)
 BuildRequires:  PackageKit-Qt6-devel
 BuildRequires:  cmake(PlasmaActivities)
@@ -240,6 +244,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/kaccess.desktop
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/*.so
 %{_kf6_qtplugindir}/plasma/kcminit/kcm_touchpad_init.so
 %{_kf6_qtplugindir}/plasma5support/dataengine/plasma_engine_touchpad.so
+%{_kf6_qtplugindir}/attica_kde.so
 %{_kf6_plugindir}/kded/*.so
 %{_kf6_plugindir}/krunner/krunner*.so
 %{_kf6_qmldir}/org/kde/plasma/activityswitcher
@@ -264,6 +269,8 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/kaccess.desktop
 %{_kf6_datadir}/solid/devices/*.desktop
 %{_kf6_datadir}/dbus-1/system.d/*.conf
 %{_kf6_datadir}/knotifications6/*.notifyrc
+%{_kf6_datadir}/accounts/services/kde/opendesktop-rating.service
+%{_kf6_datadir}/accounts/providers/kde/opendesktop.provider
 %{_datadir}/icons/hicolor/*/*/*
 %{_kf6_metainfodir}/*.xml
 %{_datadir}/applications/*.desktop

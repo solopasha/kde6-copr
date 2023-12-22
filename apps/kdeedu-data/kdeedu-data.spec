@@ -3,7 +3,7 @@
 
 Name:    kdeedu-data
 Summary: Shared icons, artwork and data files for educational applications
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 License: GPLv2
 URL:     https://invent.kde.org/education/%{name}

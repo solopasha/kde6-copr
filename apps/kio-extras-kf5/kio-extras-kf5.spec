@@ -8,7 +8,7 @@
 %global srcname kio-extras
 
 Name:    kio-extras-kf5
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 Summary: Additional components to increase the functionality of KIO Framework
 

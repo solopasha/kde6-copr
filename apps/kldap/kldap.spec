@@ -1,6 +1,6 @@
 Name:    kldap
-Version: 24.01.80
-Release: 1.1%{?dist}
+Version: 24.01.85
+Release: 1%{?dist}
 Summary: The KLDAP Library
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND MIT

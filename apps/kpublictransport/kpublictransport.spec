@@ -1,15 +1,16 @@
 Name:           kpublictransport
-Version:        24.01.80
+Version:        24.01.85
 Release:        1%{?dist}
 License:        BSD and CC0-1.0 and LGPLv2+ and MIT and ODbL-1.0
 Summary:        Library to assist with accessing public transport timetables and other data
-Url:            https://invent.kde.org/libraries/kpublictransport
-Source:         https://download.kde.org/%{stable_kf6}/release-service/%{version}/src/kpublictransport-%{version}.tar.xz
+URL:            https://invent.kde.org/libraries/kpublictransport
+%apps_source
 
 BuildRequires: extra-cmake-modules
 BuildRequires: gcc-c++
 BuildRequires: kf6-rpm-macros
 BuildRequires: zlib-devel
+BuildRequires: protobuf-devel
 
 BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6Quick)
@@ -22,6 +23,7 @@ BuildRequires: qt6-qtbase-private-devel
 %{summary}.
 
 %prep
+%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -p1
 
 %build
@@ -32,15 +34,13 @@ BuildRequires: qt6-qtbase-private-devel
 %cmake_install
 
 %files
-%{_kf6_datadir}/qlogging-categories6/org_kde_kpublictransport.categories
-
-%{_kf6_libdir}/libKPublicTransport.so.1
-%{_kf6_libdir}/libKPublicTransport.so.%{version}
-%{_kf6_libdir}/libKPublicTransportOnboard.so.1
-%{_kf6_libdir}/libKPublicTransportOnboard.so.%{version}
-
-%{_kf6_qmldir}/org/kde/kpublictransport/*
 %{_kf6_datadir}/qlogging-categories6/org_kde_kpublictransport_onboard.categories
+%{_kf6_datadir}/qlogging-categories6/org_kde_kpublictransport.categories
+%{_kf6_libdir}/libKPublicTransport.so.%{version}
+%{_kf6_libdir}/libKPublicTransport.so.1
+%{_kf6_libdir}/libKPublicTransportOnboard.so.%{version}
+%{_kf6_libdir}/libKPublicTransportOnboard.so.1
+%{_kf6_qmldir}/org/kde/kpublictransport/
 
 %package devel
 Summary: Development files for %{name}
@@ -51,9 +51,8 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 %{summary}.
 
 %files devel
-%{_includedir}/*
-
-%{_kf6_libdir}/cmake/*
+%{_includedir}/KPublicTransport/
+%{_kf6_libdir}/cmake/KPublicTransport/
 %{_kf6_libdir}/*.so
 
 %changelog

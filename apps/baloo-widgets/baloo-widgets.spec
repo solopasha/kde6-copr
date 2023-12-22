@@ -1,7 +1,7 @@
 
 Name:    baloo-widgets
 Summary: Widgets for Baloo
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 
 # # KDE e.V. may determine that future LGPL versions are accepted

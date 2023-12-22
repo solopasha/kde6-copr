@@ -1,5 +1,5 @@
 Name:    plasma-sdk
-Version: 5.90.0
+Version: 5.91.0
 Release: 1%{?dist}
 Summary: Development tools for Plasma 6
 

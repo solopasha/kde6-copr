@@ -1,5 +1,5 @@
 Name:           ghostwriter
-Version:        24.01.80
+Version:        24.01.85
 Release:        1%{?dist}
 
 License:        GPL-3.0-or-later AND Apache-2.0 AND CC-BY-4.0 AND CC-BY-SA-4.0 AND MPL-1.1 AND BSD AND LGPL-3.0-only AND MIT AND ISC

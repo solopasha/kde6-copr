@@ -11,13 +11,11 @@
 
 Name:    extra-cmake-modules
 Summary: Additional modules for CMake build system
-Version: 5.246.1
+Version: 5.247.0
 Release: 1%{?dist}
 License: BSD
 URL:     https://api.kde.org/ecm/
-Source0: https://download.kde.org/unstable/frameworks/5.246.0/extra-cmake-modules-5.246.1.tar.xz
-Source1: https://download.kde.org/unstable/frameworks/5.246.0/extra-cmake-modules-5.246.1.tar.xz.sig
-Source2: kde-frameworks-signing-keys.pgp
+%frameworks_source
 
 BuildArch:      noarch
 

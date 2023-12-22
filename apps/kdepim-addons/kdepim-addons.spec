@@ -1,7 +1,7 @@
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
 
 Name:    kdepim-addons
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 Summary: Additional plugins for KDE PIM applications
 
@@ -165,7 +165,6 @@ Supplements:    korganizer
 %dir %{_datadir}/qtcreator
 %dir %{_datadir}/qtcreator/templates
 %{_datadir}/qtcreator/templates/kmaileditorconvertertextplugins/
-%{_datadir}/qtcreator/templates/kmaileditorplugins/
 
 
 %changelog

@@ -1,7 +1,7 @@
 Name:    spectacle
 Summary: Screenshot capture utility
-Version: 24.01.80
-Release: 1.1%{?dist}
+Version: 24.01.85
+Release: 1%{?dist}
 
 License: GPLv2
 URL:     https://www.kde.org/applications/graphics/spectacle/

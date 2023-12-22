@@ -6,13 +6,12 @@
 
 Name:    akonadi
 Summary: PIM Storage Service
-Version: 24.01.80
-Release: 2.1%{?dist}
+Version: 24.01.85
+Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-KDE-Accepted-GPL AND MIT
 URL:     https://invent.kde.org/pim/akonadi
 %apps_source
-Patch:   https://invent.kde.org/pim/akonadi/-/commit/857e22ecef960652f26e2793f57fc4fdb44dea20.patch
 
 ## mysql config
 Source10:       akonadiserverrc.mysql

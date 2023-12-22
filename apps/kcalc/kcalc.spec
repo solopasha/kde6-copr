@@ -1,6 +1,6 @@
 Name:           kcalc
 Summary:        Scientific Calculator
-Version:        24.01.80
+Version:        24.01.85
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later

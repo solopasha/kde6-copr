@@ -1,6 +1,6 @@
 Name:    kmailtransport
-Version: 24.01.80
-Release: 1.2%{?dist}
+Version: 24.01.85
+Release: 1%{?dist}
 Summary: The KMailTransport Library
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later

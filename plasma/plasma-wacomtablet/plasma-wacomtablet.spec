@@ -2,8 +2,8 @@
 
 Name:    plasma-wacomtablet
 Summary: KDE Control module for Wacom Graphictablets
-Version: 5.90.0
-Release: 1.1%{?dist}
+Version: 5.91.0
+Release: 1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/wacomtablet
@@ -87,13 +87,13 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 %{_kf6_datadir}/applications/kcm_wacomtablet.desktop
 %{_kf6_datadir}/knotifications6/wacomtablet.notifyrc
 %{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.wacomtablet/
-%{_kf6_datadir}/plasma/services/wacomtablet.operations
+%{_kf6_datadir}/plasma5support/services/wacomtablet.operations
 %{_kf6_datadir}/qlogging-categories6/wacomtablet.categories
 %{_kf6_datadir}/wacomtablet/
 %{_kf6_metainfodir}/org.kde.plasma.wacomtablet.appdata.xml
 %{_kf6_metainfodir}/org.kde.wacomtablet.metainfo.xml
 %{_kf6_plugindir}/kded/wacomtablet.so
-%{_qt6_plugindir}/plasma/dataengine/plasma_engine_wacomtablet.so
+%{_qt6_plugindir}/plasma5support/dataengine/plasma_engine_wacomtablet.so
 %{_qt6_plugindir}/plasma/kcms/systemsettings_qwidgets/kcm_wacomtablet.so
 
 

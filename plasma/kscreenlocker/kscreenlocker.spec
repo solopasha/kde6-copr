@@ -1,6 +1,6 @@
 Name:    kscreenlocker
-Version: 5.90.0
-Release: 1.1%{?dist}
+Version: 5.91.0
+Release: 1%{?dist}
 Summary: Library and components for secure lock screen architecture
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -34,7 +34,7 @@ BuildRequires:  cmake(PlasmaQuick)
 BuildRequires:  cmake(KF6Screen)
 BuildRequires:  cmake(KF6Svg)
 BuildRequires:  cmake(KF6XmlGui)
-BuildRequires:  cmake(KF6KIO) 
+BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Solid)
 
 BuildRequires:  libX11-devel
@@ -76,7 +76,6 @@ developing applications that use %{name}.
 %license COPYING
 %{_kf6_libdir}/libKScreenLocker.so.*
 %{_kf6_datadir}/knotifications6/*.notifyrc
-%{_kf6_datadir}/kconf_update/*
 %{_libexecdir}/kscreenlocker_greet
 %dir %{_kf6_datadir}/ksmserver/
 %{_kf6_datadir}/ksmserver/screenlocker/

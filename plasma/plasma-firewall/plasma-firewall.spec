@@ -7,7 +7,7 @@
 %endif
 
 Name:    plasma-firewall
-Version: 5.90.0
+Version: 5.91.0
 Release: 1%{?dist}
 Summary: Control Panel for your system firewall
 
@@ -22,15 +22,20 @@ BuildRequires: cmake
 
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
-BuildRequires: cmake(KF6KCMUtils)
+BuildRequires: cmake(KF6Auth)
+BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6CoreAddons)
-BuildRequires: cmake(KF6Declarative)
 BuildRequires: cmake(KF6I18n)
+BuildRequires: cmake(KF6KCMUtils)
+
+BuildRequires: cmake(Qt6Core)
+BuildRequires: cmake(Qt6DBus)
+BuildRequires: cmake(Qt6Qml)
+BuildRequires: cmake(Qt6Quick)
+BuildRequires: cmake(Qt6Test)
 
 BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib
-
-BuildRequires: qt6-qtbase-devel
 
 # Owns KCM directories
 Requires: kf6-kcmutils%{?_isa}

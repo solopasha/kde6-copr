@@ -30,7 +30,9 @@ layer-shell-qt
 libkscreen
 libksysguard
 libplasma
+libquotient
 merkuro
+neochat
 plasma-desktop
 plasma-drkonqi
 plasma-integration

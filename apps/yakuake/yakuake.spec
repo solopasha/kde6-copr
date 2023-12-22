@@ -1,6 +1,6 @@
 Name:    yakuake
-Version: 24.01.80
-Release: 1.1%{?dist}
+Version: 24.01.85
+Release: 1%{?dist}
 Summary: A drop-down terminal emulator
 
 # KDE e.V. may determine that future GPL versions are accepted

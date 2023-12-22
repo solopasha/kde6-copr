@@ -1,10 +1,6 @@
-%global commit0 fe713c756d9f17713f017888492bbe989e923ac6
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
-
 Name:    kaccounts-integration
-Version: 24.01.80%{?bumpver:^%{bumpver}.git%{shortcommit0}}
-Release: 1.1%{?dist}
+Version: 24.01.85
+Release: 1%{?dist}
 Summary: Small system to administer web accounts across the KDE desktop
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LicenseRef-KDE-Accepted-GPL
 URL:     https://invent.kde.org/network/%{name}
@@ -47,26 +43,39 @@ BuildRequires:  cmake(AccountsQt5)
 BuildRequires:  cmake(SignOnQt5)
 BuildRequires:  cmake(QCoro5Core)
 
-Requires:       accounts-qml-module%{?_isa}
-Requires:       signon-plugin-oauth2%{?_isa}
-Requires:       kf6-kirigami%{?_isa}
 
 %description
 Small system to administer web accounts for the sites and services
 across the KDE desktop.
 
-%package        devel
+%package        qt6
+Summary:        Qt6 support for %{name}
+Requires:       accounts-qml-module%{?_isa}
+Requires:       signon-plugin-oauth2%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
+Obsoletes:      kaccounts-integration < 24.01.85
+Provides:       kaccounts-integration = %{version}-%{release}
+Provides:       kaccounts-integration%{?_isa} = %{version}-%{release}
+%description    qt6
+%{summary}.
+
+%package        qt6-devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(Qt6Widgets)
 Requires:       cmake(AccountsQt6)
 Requires:       cmake(KF6CoreAddons)
 Requires:       cmake(SignOnQt6)
-%description    devel
+Obsoletes:      kaccounts-integration-devel < 24.01.85
+Provides:       kaccounts-integration-devel = %{version}-%{release}
+%description    qt6-devel
 Headers, development libraries and documentation for %{name}.
 
 %package        qt5
 Summary:        Qt5 support for %{name}
+Requires:       accounts-qml-module-qt5%{?_isa}
+Requires:       signon-plugin-oauth2%{?_isa}
+Requires:       kf5-kirigami2%{?_isa}
 %description    qt5
 %{summary}.
 
@@ -104,25 +113,27 @@ Requires:       cmake(SignOnQt5)
 %find_lang %{name} --all-name --with-html
 
 
-%files -f %{name}.lang
+%files qt6 -f %{name}.lang
 %doc README*
 %license LICENSES/*
 %{_kf6_datadir}/applications/kcm_kaccounts.desktop
 %{_kf6_libdir}/libkaccounts6.so.2
-%{_kf6_libdir}/libkaccounts6.so.%{lua: print((macros.version:gsub('%^.*', '')))}
+%{_kf6_libdir}/libkaccounts6.so.%{version}
 %{_kf6_plugindir}/kded/kded_accounts.so
 %{_kf6_qmldir}/org/kde/kaccounts/
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_kaccounts.so
 %{_qt6_plugindir}/kaccounts/daemonplugins/kaccounts_kio_webdav_plugin.so
 
-%files devel
+%files qt6-devel
 %{_includedir}/KAccounts6/
 %{_kf6_libdir}/cmake/KAccounts6/
 %{_kf6_libdir}/libkaccounts6.so
 
 %files qt5
+%doc README*
+%license LICENSES/*
 %{_kf5_libdir}/libkaccounts.so.2
-%{_kf5_libdir}/libkaccounts.so.%{lua: print((macros.version:gsub('%^.*', '')))}
+%{_kf5_libdir}/libkaccounts.so.%{version}
 %{_kf5_qmldir}/org/kde/kaccounts/
 
 %files qt5-devel

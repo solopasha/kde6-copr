@@ -1,5 +1,5 @@
 Name:    plasma-pa
-Version: 5.90.0
+Version: 5.91.0
 Release: 1%{?dist}
 Summary: Plasma applet for audio volume management using PulseAudio
 
@@ -61,7 +61,6 @@ Requires: pulseaudio-daemon
 %{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.volume/
 %{_kf6_qmldir}/org/kde/plasma/private/volume/
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_pulseaudio.so
-%{_kf6_datadir}/kconf_update/*
 %{_kf6_datadir}/applications/kcm_pulseaudio.desktop
 %{_kf6_metainfodir}/org.kde.plasma.volume.appdata.xml
 

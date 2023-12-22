@@ -2,7 +2,7 @@
 
 Name:    krfb
 Summary: Desktop sharing
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 
 License: GPL-2.0-only AND LGPL-2.1-only AND GFDL-1.2-no-invariants-only

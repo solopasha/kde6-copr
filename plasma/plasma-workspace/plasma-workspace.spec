@@ -3,14 +3,13 @@
 
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
-Version: 5.90.0
-Release: 1.2.1%{?dist}
+Version: 5.91.0
+Release: 5%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
 
 %plasma_source
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/6ba616781cbbfe09d6e85d22536cccf92c9393fa.patch
 
 Source11:       startkderc
 Source15:       fedora-lookandfeel.json
@@ -136,6 +135,7 @@ BuildRequires:  cmake(KF6KDED)
 BuildRequires:  cmake(KF6NetworkManagerQt)
 BuildRequires:  cmake(KF6Screen)
 BuildRequires:  cmake(KF6KirigamiAddons)
+BuildRequires:  cmake(KF6Auth)
 Requires:       kirigami-addons
 BuildRequires:  wayland-devel >= 1.3.0
 BuildRequires:  libksysguard-devel
@@ -188,8 +188,6 @@ Requires:       libkworkspace6%{?_isa} = %{version}-%{release}
 # for selinux settings
 Requires:       (policycoreutils if selinux-policy)
 
-# for libkdeinit5_*
-%{?kf6_kinit_requires}
 Requires:       kactivitymanagerd%{?_isa}
 Requires:       ksystemstats%{?_isa}
 Requires:       kf6-baloo
@@ -197,6 +195,7 @@ Requires:       kf6-kded
 Requires:       kf6-kdoctools
 Requires:       kf6-kglobalaccel
 Requires:       kf6-kquickcharts
+Requires:       qqc2-breeze-style
 
 # The new volume control for PulseAudio
 %if 0%{?fedora} || 0%{?rhel} > 7
@@ -247,8 +246,8 @@ Requires:       plasma-lookandfeel-fedora = %{version}-%{release}
 
 Requires:       systemd
 
-# Oxygen
-Requires:       oxygen-sounds
+# Default sound theme
+Requires:       ocean-sound-theme
 
 # PolicyKit authentication agent
 Requires:        polkit-kde
@@ -500,10 +499,10 @@ ln -sr %{buildroot}%{_kf6_bindir}/startplasma-wayland %{buildroot}%{_kf6_bindir}
 cp -alf %{buildroot}%{_datadir}/sddm/themes/breeze/ \
         %{buildroot}%{_datadir}/sddm/themes/01-breeze-fedora
 # replace items
-# ln -sf  %{_datadir}/backgrounds/default.png \
-#         %{buildroot}%{_datadir}/sddm/themes/01-breeze-fedora/components/artwork/background.png
 install -m644 -p breeze-fedora/* \
         %{buildroot}%{_datadir}/sddm/themes/01-breeze-fedora/
+# Set Fedora background
+sed -i -e 's|^background=.*$|background=/usr/share/backgrounds/default.png|g' %{buildroot}%{_datadir}/sddm/themes/01-breeze-fedora/theme.conf
 # Set Fedora distro vendor logo
 sed -i -e 's|^showlogo=.*$|showlogo=shown|g' %{buildroot}%{_datadir}/sddm/themes/01-breeze-fedora/theme.conf
 sed -i -e 's|^logo=.*$|logo=%{_datadir}/pixmaps/fedora_whitelogo.svg|g' %{buildroot}%{_datadir}/sddm/themes/01-breeze-fedora/theme.conf
@@ -533,6 +532,9 @@ mkdir -p %{buildroot}%{_userunitdir}/plasma-workspace@.target.d/
 install -m644 -p -D %{SOURCE40} %{buildroot}%{_userunitdir}/plasma-core.target.d/ssh-agent.conf
 install -m644 -p -D %{SOURCE41} %{buildroot}%{_userunitdir}/plasma-core.target.d/spice-vdagent.conf
 
+echo "export QML_DISABLE_DISK_CACHE=1" | install -Dpm0644 /dev/stdin %{buildroot}%{_sysconfdir}/profile.d/disable-qml-cache.sh
+sed '/GreeterEnvironment=/s/$/\,QML_DISABLE_DISK_CACHE=1/' -i %{buildroot}%{_prefix}/lib/sddm/sddm.conf.d/plasma-wayland.conf
+
 %find_lang all --with-html --all-name
 
 grep "%{_kf6_docdir}" all.lang > %{name}-doc.lang
@@ -553,6 +555,7 @@ fi
 %license LICENSES
 
 %files -f %{name}.lang
+%config(noreplace) %{_sysconfdir}/profile.d/disable-qml-cache.sh
 %{_sysconfdir}/xdg/menus/plasma-applications.menu
 %{_kf6_bindir}/gmenudbusmenuproxy
 %{_kf6_bindir}/kcminit
@@ -611,14 +614,9 @@ fi
 %{_kf6_datadir}/config.kcfg/*
 %{_kf6_datadir}/kio_desktop/
 %{_kf6_datadir}/plasma5support/services/*.operations
-%{_kf6_datadir}/kconf_update/delete_cursor_old_default_size.pl
-%{_kf6_datadir}/kconf_update/delete_cursor_old_default_size.upd
-%{_kf6_datadir}/kconf_update/icons_remove_effects.upd
-%{_kf6_datadir}/kconf_update/style_widgetstyle_default_breeze.pl
-%{_kf6_datadir}/kconf_update/style_widgetstyle_default_breeze.upd
+%{_kf6_datadir}/kconf_update/plasma6.0-remove-dpi-settings.upd
 %{_kf6_datadir}/kconf_update/plasma6.0-remove-old-shortcuts.upd
 %{_kf6_datadir}/kconf_update/plasmashell-6.0-keep-default-floating-setting-for-plasma-5-panels.upd
-%{_kf6_datadir}/kconf_update/plasmashell-6.0-migrate-panel-hiding-setting.upd
 %{_kf6_metainfodir}/*.xml
 %{_kf6_datadir}/applications/kcm_*
 %{_kf6_datadir}/applications/org.kde.plasmashell.desktop
@@ -638,6 +636,7 @@ fi
 %{_userunitdir}/plasma-workspace.target
 %{_userunitdir}/plasma-workspace-wayland.target
 %{_userunitdir}/plasma-workspace-x11.target
+%{zsh_completions_dir}/_krunner
 %dir %{_userunitdir}/plasma-workspace@.target.d/
 # PAM
 %config(noreplace) %{_sysconfdir}/pam.d/kde
@@ -669,9 +668,6 @@ fi
 %{_kf6_plugindir}/kded/*.so
 %{_kf6_plugindir}/krunner/*
 %{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_*.so
-%{_libdir}/kconf_update_bin/krunnerhistory
-%{_libdir}/kconf_update_bin/krunnerglobalshortcuts
-%{_libdir}/kconf_update_bin/plasmashell-5.27-use-panel-thickness-in-default-group
 %{_kf6_qtplugindir}/kf6/parts/kfontviewpart.so
 %{_kf6_qtplugindir}/kf6/thumbcreator/fontthumbnail.so
 %{_kf6_qtplugindir}/kf6/kfileitemaction/wallpaperfileitemaction.so
@@ -689,12 +685,9 @@ fi
 %{_kf6_qtplugindir}/plasma/kcminit/kcm_style_init.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/kcm_fontinst.so
 %{_libexecdir}/plasma-sourceenv.sh
-%{_kf6_datadir}/kconf_update/krunnerhistory.upd
-%{_kf6_datadir}/kconf_update/krunnerglobalshortcuts2.upd
-%{_kf6_datadir}/kconf_update/plasmashell-5.27-use-panel-thickness-in-default-group.upd
 %{_libdir}/kconf_update_bin/plasma6.0-remove-old-shortcuts
 %{_libdir}/kconf_update_bin/plasmashell-6.0-keep-default-floating-setting-for-plasma-5-panels
-%{_libdir}/kconf_update_bin/plasmashell-6.0-migrate-panel-hiding-setting
+%{_libdir}/kconf_update_bin/plasma6.0-remove-dpi-settings
 %{_kf6_datadir}/kglobalaccel/org.kde.krunner.desktop
 
 %files geolocation

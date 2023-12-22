@@ -2,7 +2,7 @@
 %global         base_name breeze-plymouth
 
 Name:    plymouth-theme-breeze
-Version: 5.90.0
+Version: 5.91.0
 Release: 1%{?dist}
 Summary: Breeze theme for Plymouth
 

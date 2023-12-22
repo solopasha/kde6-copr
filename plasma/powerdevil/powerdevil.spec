@@ -1,6 +1,6 @@
 Name:    powerdevil
-Version: 5.90.0
-Release: 1.1%{?dist}
+Version: 5.91.0
+Release: 1%{?dist}
 Summary: Manages the power consumption settings of a Plasma Shell
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -31,6 +31,7 @@ BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6NotifyConfig)
 BuildRequires:  cmake(KF6Solid)
 BuildRequires:  cmake(KF6WindowSystem)
+BuildRequires:  cmake(KF6XmlGui)
 BuildRequires:  cmake(LayerShellQt)
 
 BuildRequires:  qt6-qtbase-devel
@@ -54,6 +55,9 @@ BuildRequires:  libddcutil-devel
 %else
 %global DDCUTIL OFF
 %endif
+
+Requires:       kf6-kitemmodels
+Requires:       kf6-kirigami
 
 Recommends: power-profiles-daemon
 
@@ -105,10 +109,8 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevil{configcommonprivate,core,ui}.so
 %{_kf6_plugindir}/powerdevil/
 %{_kf6_qtplugindir}/powerdevil/
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_powerdevilprofilesconfig.so
-%{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/kcm_powerdevilglobalconfig.so
 %{_kf6_datadir}/knotifications6/powerdevil.notifyrc
 %{_kf6_datadir}/applications/kcm_powerdevilprofilesconfig.desktop
-%{_kf6_datadir}/applications/kcm_powerdevilglobalconfig.desktop
 %{_userunitdir}/plasma-powerdevil.service
 %{_userunitdir}/plasma-powerprofile-osd.service
 

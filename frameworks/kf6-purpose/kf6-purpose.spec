@@ -2,8 +2,8 @@
 
 Name:    kf6-purpose
 Summary: Framework for providing abstractions to get the developer's purposes fulfilled
-Version: 5.246.0
-Release: 1%{?dist}
+Version: 5.247.0
+Release: 2%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later
 URL:     https://invent.kde.org/frameworks/%{framework}
@@ -24,7 +24,7 @@ BuildRequires: cmake(KF6Kirigami)
 BuildRequires: cmake(KF6Notifications)
 BuildRequires: cmake(KF6Prison)
 BuildRequires: cmake(KF6Declarative)
-# BuildRequires: cmake(KAccounts6)
+BuildRequires: cmake(KAccounts6)
 BuildRequires: pkgconfig(Qt6Network)
 BuildRequires: pkgconfig(Qt6Qml)
 
@@ -59,6 +59,10 @@ Requires: cmake(KF6CoreAddons)
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
+%{_kf6_datadir}/accounts/services/kde/google-youtube.service
+%{_kf6_datadir}/accounts/services/kde/nextcloud-upload.service
+%{_kf6_datadir}/icons/hicolor/*/apps/*-purpose6.*
+%{_kf6_datadir}/kf6/purpose/
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6Purpose.so.5*
 %{_kf6_libdir}/libKF6Purpose.so.6
@@ -69,12 +73,10 @@ Requires: cmake(KF6CoreAddons)
 %{_kf6_libdir}/libReviewboardHelpers.so.5*
 %{_kf6_libdir}/libReviewboardHelpers.so.6
 %{_kf6_libexecdir}/purposeprocess
-%{_kf6_datadir}/kf6/purpose/
-%{_kf6_plugindir}/purpose/
-%dir %{_kf6_plugindir}/kfileitemaction/
+%dir %{_kf6_plugindir}/kfileitemaction
 %{_kf6_plugindir}/kfileitemaction/sharefileitemaction.so
+%{_kf6_plugindir}/purpose/
 %{_kf6_qmldir}/org/kde/purpose/
-%{_datadir}/icons/hicolor/*/apps/*-purpose.*
 
 %files devel
 %{_kf6_libdir}/libKF6Purpose.so

@@ -1,6 +1,6 @@
 Name:    kbounce
 Summary: Ball bouncing game
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 
 License: LGPLv2+ and GFDL

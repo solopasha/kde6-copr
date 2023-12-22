@@ -1,19 +1,14 @@
 Name:    gwenview
 Summary: An image viewer
 Epoch:   1
-Version: 24.01.80
-Release: 1.3.1%{?dist}
+Version: 24.01.85
+Release: 1%{?dist}
 
 # app: GPLv2+
 # lib:  IJG and (LGPLv2 or LGPLv3 or LGPLv3+ (KDE e.V.)) and LGPLv2+ and GPLv2+
 License: GPL-2.0-or-later
-URL:     https://www.kde.org/applications/graphics/gwenview/
+URL:     https://apps.kde.org/gwenview/
 %apps_source
-
-
-## upstream patches
-
-## upstreamable patches
 Patch:         Activities.patch
 
 BuildRequires: desktop-file-utils
@@ -31,12 +26,7 @@ BuildRequires: cmake(KF6WidgetsAddons)
 BuildRequires: cmake(PlasmaActivities)
 BuildRequires: cmake(KF6Purpose)
 BuildRequires: cmake(KF6Baloo)
-#if "%{?copr_projectname}" == "digikam"
-# LibRaw not in all arches of RHEL8
-%if !(0%{?rhel} == 8 && ( "%{_arch}" == "aarch64" || "%{_arch}" == "s390x" ))
 BuildRequires: cmake(KDcrawQt6)
-%endif
-#endif
 BuildRequires: libappstream-glib
 BuildRequires: libjpeg-devel
 BuildRequires: pkgconfig(exiv2)
@@ -66,12 +56,6 @@ Requires: %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Recommends: qt6-qtimageformats%{?_isa}
 # eps, etc...
 Recommends: kf6-kimageformats%{?_isa}
-
-# when split occurred
-Conflicts: kdegraphics < 7:4.6.95-10
-
-# translations moved here
-Conflicts: kde-l10n < 17.03
 
 %description
 %{summary}.
@@ -111,8 +95,8 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.gwenview.
 %license COPYING
 %{_kf6_bindir}/gwenview
 %{_kf6_bindir}/gwenview_importer
-%{_kf6_datadir}/applications/org.kde.gwenview.desktop
 %{_kf6_datadir}/applications/org.kde.gwenview_importer.desktop
+%{_kf6_datadir}/applications/org.kde.gwenview.desktop
 %{_kf6_datadir}/gwenview/
 %{_kf6_datadir}/icons/hicolor/*/*/*
 %{_kf6_datadir}/qlogging-categories6/gwenview.categories
@@ -121,8 +105,8 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.gwenview.
 
 %files libs
 %{_kf6_libdir}/libgwenviewlib.so.*
-%{_kf6_plugindir}/parts/gvpart.so
 %{_kf6_plugindir}/kfileitemaction/slideshowfileitemaction.so
+%{_kf6_plugindir}/parts/gvpart.so
 
 %changelog
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 1:23.08.2-1

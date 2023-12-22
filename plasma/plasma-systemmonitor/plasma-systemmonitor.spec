@@ -1,5 +1,5 @@
 Name:    plasma-systemmonitor
-Version: 5.90.0
+Version: 5.91.0
 Release: 1%{?dist}
 Summary: An application for monitoring system resources
 
@@ -13,7 +13,6 @@ URL:     https://invent.kde.org/plasma/%{name}
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
 BuildRequires: cmake(KF6Kirigami)
-Requires: kf6-kirigami2%{?_isa}
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6Declarative)
 BuildRequires: cmake(KF6I18n)
@@ -25,12 +24,14 @@ BuildRequires: cmake(KF6KIO)
 BuildRequires: cmake(KF6DBusAddons)
 BuildRequires: cmake(KF6NewStuff)
 BuildRequires: cmake(KF6KirigamiAddons)
+BuildRequires: cmake(KF6Package)
 
 BuildRequires: libksysguard-devel
 
 BuildRequires: qt6-qtbase-devel
 BuildRequires: qt6-qtdeclarative-devel
 
+Requires: kf6-kirigami2%{?_isa}
 Requires: ksystemstats%{?_isa}
 
 %description

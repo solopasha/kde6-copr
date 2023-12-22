@@ -1,11 +1,10 @@
 Name:           kweather
-Version:        24.01.80
+Version:        24.01.85
 Release:        1%{?dist}
 License:        GPLv2+
 Summary:        Convergent KDE weather application
-URL:            https://invent.kde.org/plasma-mobile/kweather
+URL:            https://invent.kde.org/utilities/kweather
 %apps_source
-Patch:          851d28f0f7cee27aecd40a949436e4b73a3afb0f.patch
 
 BuildRequires:  cmake
 BuildRequires:  desktop-file-utils

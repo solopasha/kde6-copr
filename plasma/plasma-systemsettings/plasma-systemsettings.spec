@@ -2,8 +2,8 @@
 
 Name:    plasma-%{base_name}
 Summary: KDE System Settings application
-Version: 5.90.0
-Release: 1.1%{?dist}
+Version: 5.91.0
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-or-later AND (GPL-2.0-only OR GPL-3.0-only)
 URL:     https://invent.kde.org/plasma/%{base_name}
@@ -31,6 +31,7 @@ BuildRequires: cmake(PlasmaActivities)
 BuildRequires: cmake(KF6ItemModels)
 BuildRequires: cmake(KF6GuiAddons)
 BuildRequires: cmake(KF6Runner)
+BuildRequires: cmake(KF6Auth)
 
 BuildRequires: cmake(Qt6Qml)
 BuildRequires: cmake(Qt6Quick)

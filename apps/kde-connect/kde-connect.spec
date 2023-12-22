@@ -1,12 +1,8 @@
-%global commit0 9533213d15b4b3cdf6bed4a15df7e804631a7939
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
-
 %global base_name kdeconnect-kde
 
 Name:    kde-connect
-Version: 24.01.80%{?bumpver:^%{bumpver}.git%{shortcommit0}}
-Release: 1.1.1%{?dist}
+Version: 24.01.85
+Release: 1%{?dist}
 License: GPLv2+
 Summary: KDE Connect client for communication with smartphones
 URL:     https://community.kde.org/KDEConnect

@@ -3,8 +3,8 @@
 Name:    kdepim-runtime
 Summary: KDE PIM Runtime Environment
 Epoch:   1
-Version: 24.01.80
-Release: 1.1%{?dist}
+Version: 24.01.85
+Release: 1%{?dist}
 
 License: GPLv2
 URL:     https://invent.kde.org/pim/%{name}

@@ -1,14 +1,11 @@
 Name:    eventviews
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 Summary: KDE PIM library for displaying events and calendars
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/pim/%{framework}
 %apps_source
-Patch:   https://invent.kde.org/pim/eventviews/-/commit/601f88f1d05f00e621976be58d170355caa29fdd.patch
-
-
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros

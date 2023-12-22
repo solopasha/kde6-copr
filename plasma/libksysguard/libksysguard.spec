@@ -1,8 +1,8 @@
 
 Name:    libksysguard
 Summary: Library for managing processes running on the system
-Version: 5.90.0
-Release: 1.1%{?dist}
+Version: 5.91.0
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
@@ -12,20 +12,21 @@ URL:     https://invent.kde.org/plasma/%{name}
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 # kf6 required
-BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Auth)
-BuildRequires:  cmake(KF6WidgetsAddons)
-BuildRequires:  cmake(KF6IconThemes)
+BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
-BuildRequires:  cmake(KF6Service)
+BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6GlobalAccel)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6IconThemes)
+BuildRequires:  cmake(KF6JobWidgets)
 BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(KF6Declarative)
 BuildRequires:  cmake(KF6NewStuff)
+BuildRequires:  cmake(KF6Package)
+BuildRequires:  cmake(KF6Service)
+BuildRequires:  cmake(KF6Solid)
+BuildRequires:  cmake(KF6WidgetsAddons)
+BuildRequires:  cmake(KF6WindowSystem)
 # qt6 required
 BuildRequires:  qt6-qttools-devel
 BuildRequires:  cmake(Qt6DBus)
@@ -48,6 +49,7 @@ BuildRequires:  libcap-devel
 BuildRequires:  libXres-devel
 BuildRequires:  lm_sensors-devel
 BuildRequires:  zlib-devel
+BuildRequires:  pkgconfig(x11)
 
 Obsoletes:      kf5-ksysguard < 5.1.95
 Provides:       kf5-ksysguard = %{version}-%{release}
@@ -115,7 +117,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKSysGuardSystemStats.so.*
 %{_qt6_plugindir}/ksysguard/
 %{_libexecdir}/ksysguard/
-%{_kf6_datadir}/dbus-1/interfaces/org.kde.ksystemstats.xml
+%{_kf6_datadir}/dbus-1/interfaces/org.kde.ksystemstats1.xml
 %{_qt6_plugindir}/kf6/packagestructure/ksysguard_sensorface.so
 
 %files common

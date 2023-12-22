@@ -1,11 +1,12 @@
 Name:     skanpage
-Version:  24.01.80
+Version:  24.01.85
 Release:  1%{?dist}
 Summary:  Utility to scan images and multi-page documents
 # For a breakdown of the licensing, see PACKAGE-LICENSING
 License:  GPLv3 and GPLv2 and CC0-1.0 and BSD
 URL:      https://invent.kde.org/utilities/%{name}
 %apps_source
+Patch:    flags.patch
 
 BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
@@ -22,6 +23,9 @@ BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6Purpose)
 BuildRequires:  cmake(KF6XmlGui)
 
+BuildRequires:  cmake(KQuickImageEditor)
+BuildRequires:  cmake(KSaneCore6)
+
 BuildRequires:  cmake(Qt6Concurrent)
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6PrintSupport)
@@ -29,6 +33,13 @@ BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6Widgets)
+
+BuildRequires:  cmake(Tesseract)
+BuildRequires:  cmake(Leptonica)
+
+Requires: qt6-qtquickcontrols2
+Requires: kf6-kirigami
+Requires: kquickimageeditor-qt6
 
 Recommends: sane-backends-drivers-scanners
 

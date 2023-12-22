@@ -1,5 +1,5 @@
 Name:    kitinerary
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 Summary: A library containing itinerary data model and itinerary extraction code
 

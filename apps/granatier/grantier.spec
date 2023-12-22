@@ -1,6 +1,6 @@
 Name:    granatier
 Summary: Place bombs to kill enemies and remove obstacles
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 License: GPL-2.0-or-later AND GFDL-1.2-or-later
 URL:     https://invent.kde.org/games/%{name}

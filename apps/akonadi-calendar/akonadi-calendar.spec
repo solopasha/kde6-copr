@@ -1,8 +1,8 @@
 %global tests 1
 
 Name:    akonadi-calendar
-Version: 24.01.80
-Release: 1.1%{?dist}
+Version: 24.01.85
+Release: 1%{?dist}
 Summary: The Akonadi Calendar Library
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later
@@ -92,6 +92,7 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_datadir}/akonadi/plugins/serializer/
 %{_kf6_datadir}/dbus-1/services/org.kde.kalendarac.service
 %{_kf6_datadir}/knotifications6/kalendarac.notifyrc
+%{_kf6_datadir}/knotifications6/notification_gui.notifyrc
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
 %{_kf6_datadir}/qlogging-categories6/org_kde_kalendarac.categories
 %{_kf6_libdir}/libKPim6AkonadiCalendar.so.*

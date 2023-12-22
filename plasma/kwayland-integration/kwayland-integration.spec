@@ -1,5 +1,5 @@
 Name:    kwayland-integration
-Version: 5.90.0
+Version: 5.91.0
 Release: 1%{?dist}
 Summary: Provides integration plugins for various KDE Frameworks for Wayland
 

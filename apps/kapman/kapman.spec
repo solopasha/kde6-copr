@@ -1,6 +1,6 @@
 Name:    kapman
 Summary: A collecting game
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

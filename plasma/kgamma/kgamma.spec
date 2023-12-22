@@ -1,11 +1,11 @@
 Name:    kgamma
 Summary: A monitor calibration tool
 Epoch:   1
-Version: 5.90.0
+Version: 5.91.0
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later
-URL:     https://cgit.kde.org/%{base_name}.git
+URL:     https://invent.kde.org/plasma/kgamma
 %plasma_source
 
 BuildRequires: gcc-c++
@@ -21,11 +21,6 @@ BuildRequires: pkgconfig(xxf86vm)
 BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6Gui)
 BuildRequires: cmake(Qt6Widgets)
-
-
-# when split occurred
-Conflicts: kdegraphics < 7:4.6.95-10
-
 
 %description
 %{summary}.

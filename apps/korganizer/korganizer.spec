@@ -2,7 +2,7 @@
 
 Name:    korganizer
 Summary: Personal Organizer
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL

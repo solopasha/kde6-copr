@@ -1,6 +1,6 @@
 Name:    kbrickbuster
 Summary: Destroy bricks with a ball
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

@@ -1,10 +1,6 @@
-%global commit ec6143f8e044b85ad3fae72734d64aa25e8d4d83
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-#global bumpver 1
-
 Name:    kdenetwork-filesharing
 Summary: Network filesharing
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 
 # KDE e.V. may determine that future GPL versions are accepted

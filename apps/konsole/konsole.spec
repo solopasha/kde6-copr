@@ -2,14 +2,13 @@
 
 Name:    konsole
 Summary: KDE Terminal emulator
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 
 # sources: MIT and LGPLv2 and LGPLv2+ and GPLv2+
 License: GPL-2.0-only AND GFDL-1.1-or-later
 URL:     https://apps.kde.org/konsole/
 %apps_source
-Patch:   https://invent.kde.org/utilities/konsole/-/commit/53c51e09ef68debd43a1977b2c2c31ba9e290f9a.patch
 
 Patch200: konsole-history_location_default.patch
 # custom konsolerc that sets default to cache as well

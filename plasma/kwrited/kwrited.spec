@@ -1,6 +1,6 @@
 Name:    kwrited
 Summary: KDE Write Daemon
-Version: 5.90.0
+Version: 5.91.0
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later
@@ -42,7 +42,7 @@ Conflicts:      kde-workspace < 5.0.0-1
 %files
 %license LICENSES/*
 %{_qt6_plugindir}/kf6/kded/kwrited.so
-%{_kf5_datadir}/knotifications6/kwrited.notifyrc
+%{_kf6_datadir}/knotifications6/kwrited.notifyrc
 
 %changelog
 * Sat Nov 11 2023 Steve Cossette <farchord@gmail.com> - 5.27.80-1

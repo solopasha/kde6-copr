@@ -2,7 +2,7 @@
 
 Name:    kmail-account-wizard
 Summary: KMail Account Wizard
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 
 License: GPLv2+
@@ -78,7 +78,8 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_bindir}/accountwizard
 %{_kf6_datadir}/applications/org.kde.accountwizard.desktop
 %{_kf6_datadir}/qlogging-categories6/*accountwizard.*
-%{_kf6_libdir}/libaccountwizard.so
+%{_kf6_libdir}/libaccountwizard.so.6
+%{_kf6_libdir}/libaccountwizard.so.5.*
 %{_kf6_qmldir}/org/kde/pim/accountwizard/
 
 %changelog

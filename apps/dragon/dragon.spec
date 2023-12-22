@@ -1,6 +1,6 @@
 Name:    dragon
 Summary: Media player
-Version: 24.01.80
+Version: 24.01.85
 Release: 1%{?dist}
 
 # code: KDE e.V. may determine that future GPL versions are accepted

@@ -1,5 +1,5 @@
 Name:    kinfocenter
-Version: 5.90.0
+Version: 5.91.0
 Release: 1%{?dist}
 Summary: KDE Info Center
 
@@ -29,6 +29,7 @@ BuildRequires:  cmake(KF6XmlGui)
 BuildRequires:  cmake(KF6Declarative)
 BuildRequires:  cmake(KF6Package)
 BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6Auth)
 BuildRequires:  mesa-libGL-devel
 BuildRequires:  mesa-libGLES-devel
 BuildRequires:  mesa-libEGL-devel

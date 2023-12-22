@@ -5,15 +5,13 @@
 %global kpmcoremin 24.01
 
 Name:           kde-partitionmanager
-Version:        24.01.80
-Release:        %autorelease -b2.1
+Version:        24.01.85
+Release:        %autorelease
 Summary:        KDE Partition Manager
 
 License:        GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND CC-BY-4.0 AND CC0-1.0 AND GFDL-1.2-or-later
 URL:            https://apps.kde.org/partitionmanager/
 %apps_source
-
-Patch:          https://invent.kde.org/system/partitionmanager/-/commit/0dc1b43db3c768e95273d47979e78836ebe65120.patch
 
 BuildRequires:  cmake >= 3.16
 BuildRequires:  desktop-file-utils

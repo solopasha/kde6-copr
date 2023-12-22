@@ -1,7 +1,7 @@
 %global		framework kitemviews
 
 Name:		kf6-%{framework}
-Version:	5.246.0
+Version:	5.247.0
 Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with item views
 License:	CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later

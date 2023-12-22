@@ -2,8 +2,8 @@
 
 Name:    plasma-drkonqi
 Summary: DrKonqi crash handler for KF6/Plasma6
-Version: 5.90.0
-Release: 1.1%{?dist}
+Version: 5.91.0
+Release: 1%{?dist}
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{base_name}
 %plasma_source
@@ -35,6 +35,7 @@ BuildRequires:  cmake(KF6StatusNotifierItem)
 BuildRequires:  cmake(KF6SyntaxHighlighting)
 BuildRequires:  systemd-devel
 BuildRequires:  git-core
+BuildRequires:  cmake(PolkitQt6-1)
 
 Requires:       kf6-kirigami2
 Requires:       kf6-kitemmodels
@@ -97,25 +98,29 @@ fi
 %files -f plasma-drkonqi.lang
 %license LICENSES/*
 %{_bindir}/drkonqi-coredump-gui
+%{_bindir}/drkonqi-sentry-data
+%{_datadir}/dbus-1/system-services/org.kde.drkonqi.service
+%{_datadir}/dbus-1/system.d/org.kde.drkonqi.conf
+%{_datadir}/polkit-1/actions/org.kde.drkonqi.policy
+%{_kf6_datadir}/applications/org.kde.*.desktop
+%{_kf6_datadir}/drkonqi/
+%{_kf6_datadir}/qlogging-categories6/drkonqi.categories
 %{_libexecdir}/drkonqi
-%{_libexecdir}/installdbgsymbols.sh
 %{_libexecdir}/drkonqi-coredump-cleanup
 %{_libexecdir}/drkonqi-coredump-launcher
 %{_libexecdir}/drkonqi-coredump-processor
-%{_kf6_datadir}/drkonqi/
-%{_kf6_datadir}/applications/org.kde.*.desktop
-%{_kf6_datadir}/qlogging-categories6/drkonqi.categories
-%{_userunitdir}/drkonqi-coredump-*
-%{_unitdir}/drkonqi-coredump-processor@.service
+%{_libexecdir}/drkonqi-sentry-postman
+%{_libexecdir}/installdbgsymbols.sh
+%{_libexecdir}/kf6/drkonqi-polkit-helper
 %{_qt6_plugindir}/drkonqi/KDECoredumpNotifierTruck.so
-%{_bindir}/drkonqi-sentry-data
+%{_unitdir}/drkonqi-coredump-processor@.service
 %{_unitdir}/systemd-coredump@.service.wants/drkonqi-coredump-processor@.service
 %{_userunitdir}/default.target.wants/*
+%{_userunitdir}/drkonqi-coredump-*
 %{_userunitdir}/drkonqi-sentry-postman.*
 %{_userunitdir}/plasma-core.target.wants/drkonqi-*
 %{_userunitdir}/sockets.target.wants/drkonqi-coredump-launcher.socket
 %{_userunitdir}/timers.target.wants/drkonqi-*
-%{_libexecdir}/drkonqi-sentry-postman
 
 %changelog
 * Sat Nov 18 2023 Alessandro Astone <ales.astone@gmail.com> - 5.27.80-2
