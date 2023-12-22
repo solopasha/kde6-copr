@@ -2,7 +2,7 @@
 
 Name:    plasma-%{base_name}
 Version: 5.91.0
-Release: 1%{?dist}
+Release: 1.1%{?dist}
 Summary: Plasma and Qt widget style and window decorations for Plasma
 
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only) AND MIT
@@ -80,6 +80,7 @@ Provides:       qt5-style-oxygen = %{version}-%{release}
 
 %package        qt6
 Summary:        Oxygen widget style for Qt 6
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 %description    qt6
 %{summary}.
 

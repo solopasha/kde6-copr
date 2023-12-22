@@ -33,6 +33,7 @@ libplasma
 libquotient
 merkuro
 neochat
+okular
 plasma-desktop
 plasma-drkonqi
 plasma-integration
@@ -40,6 +41,7 @@ plasma-oxygen
 plasma-wacomtablet
 plasma-workspace
 powerdevil
+qcoro
 qt6-qtbase
 qt6-qtwayland
 spectacle
