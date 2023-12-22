@@ -38,9 +38,11 @@ BuildRequires:  python3-ytmusicapi
 BuildRequires:  yt-dlp
 
 Requires:       hicolor-icon-theme
-Requires:       kf6-kirigami2
-Requires:       kirigami-addons
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-purpose%{?_isa}
+Requires:       kirigami-addons%{?_isa}
 Requires:       python3-ytmusicapi
+Requires:       qt6-qt5compat%{?_isa}
 Requires:       yt-dlp
 
 %description
