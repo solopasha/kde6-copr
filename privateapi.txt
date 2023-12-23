@@ -19,6 +19,7 @@ kf6-kxmlgui
 kf6-qqc2-desktop-style
 kglobalacceld
 koko
+konqueror
 kontactinterface
 kpmcore
 kruler
