@@ -1,0 +1,116 @@
+From 80ee42ffbc64b7e0ff025bf5ee036e44f1358f26 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?M=C3=A9ven=20Car?= <meven@kde.org>
+Date: Fri, 22 Dec 2023 12:08:35 +0100
+Subject: [PATCH] StatsPlugin: Also clear corresponding ResourceInfo
+
+when cleaning resources.
+
+BUG: 478876
+---
+ src/service/plugins/sqlite/StatsPlugin.cpp | 41 ++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+
+diff --git a/src/service/plugins/sqlite/StatsPlugin.cpp b/src/service/plugins/sqlite/StatsPlugin.cpp
+index d42553c7..288bed2f 100644
+--- a/src/service/plugins/sqlite/StatsPlugin.cpp
++++ b/src/service/plugins/sqlite/StatsPlugin.cpp
+@@ -408,6 +408,15 @@ void StatsPlugin::DeleteRecentStats(const QString &activity, int count, const QS
+         // Instantiating these every time is not a big overhead
+         // since this method is rarely executed.
+ 
++        auto removeResourceInfoQuery = resourcesDatabase()->createQuery();
++        removeResourceInfoQuery.prepare(
++            "DELETE FROM ResourceInfo "
++            "WHERE ResourceInfo.targettedResource IN ("
++            "   SELECT ResourceEvent.targettedResource "
++            "   FROM ResourceEvent "
++            "   WHERE usedActivity = COALESCE(:usedActivity, usedActivity)"
++            ")");
++
+         auto removeEventsQuery = resourcesDatabase()->createQuery();
+         removeEventsQuery.prepare(
+             "DELETE FROM ResourceEvent "
+@@ -418,6 +427,7 @@ void StatsPlugin::DeleteRecentStats(const QString &activity, int count, const QS
+             "DELETE FROM ResourceScoreCache "
+             "WHERE usedActivity = COALESCE(:usedActivity, usedActivity)");
+ 
++        Utils::exec(*resourcesDatabase(), Utils::FailOnError, removeResourceInfoQuery, ":usedActivity", usedActivity);
+         Utils::exec(*resourcesDatabase(), Utils::FailOnError, removeEventsQuery, ":usedActivity", usedActivity);
+         Utils::exec(*resourcesDatabase(), Utils::FailOnError, removeScoreCachesQuery, ":usedActivity", usedActivity);
+ 
+@@ -436,6 +446,16 @@ void StatsPlugin::DeleteRecentStats(const QString &activity, int count, const QS
+         // if something was accessed before, and the user did not
+         // remove the history, it is not really a secret.
+ 
++        auto removeResourceInfoQuery = resourcesDatabase()->createQuery();
++        removeResourceInfoQuery.prepare(
++            "DELETE FROM ResourceInfo "
++            "WHERE ResourceInfo.targettedResource IN ("
++            "   SELECT ResourceEvent.targettedResource "
++            "   FROM ResourceEvent "
++            "   WHERE usedActivity = COALESCE(:usedActivity, usedActivity) "
++            "   AND end > :since"
++            ")");
++
+         auto removeEventsQuery = resourcesDatabase()->createQuery();
+         removeEventsQuery.prepare(
+             "DELETE FROM ResourceEvent "
+@@ -448,6 +468,8 @@ void StatsPlugin::DeleteRecentStats(const QString &activity, int count, const QS
+             "WHERE usedActivity = COALESCE(:usedActivity, usedActivity) "
+             "AND firstUpdate > :since");
+ 
++        Utils::exec(*resourcesDatabase(), Utils::FailOnError, removeResourceInfoQuery, ":usedActivity", usedActivity, ":since", since.toSecsSinceEpoch());
++
+         Utils::exec(*resourcesDatabase(), Utils::FailOnError, removeEventsQuery, ":usedActivity", usedActivity, ":since", since.toSecsSinceEpoch());
+ 
+         Utils::exec(*resourcesDatabase(), Utils::FailOnError, removeScoreCachesQuery, ":usedActivity", usedActivity, ":since", since.toSecsSinceEpoch());
+@@ -469,6 +491,16 @@ void StatsPlugin::DeleteEarlierStats(const QString &activity, int months)
+     const auto time = QDateTime::currentDateTime().addMonths(-months);
+     const auto usedActivity = activity.isEmpty() ? QVariant() : QVariant(activity);
+ 
++    auto removeResourceInfoQuery = resourcesDatabase()->createQuery();
++    removeResourceInfoQuery.prepare(
++        "DELETE FROM ResourceInfo "
++        "WHERE ResourceInfo.targettedResource IN ("
++        "   SELECT ResourceEvent.targettedResource "
++        "   FROM ResourceEvent "
++        "   WHERE usedActivity = COALESCE(:usedActivity, usedActivity) "
++        "   AND start < :time"
++        ")");
++
+     auto removeEventsQuery = resourcesDatabase()->createQuery();
+     removeEventsQuery.prepare(
+         "DELETE FROM ResourceEvent "
+@@ -481,6 +513,8 @@ void StatsPlugin::DeleteEarlierStats(const QString &activity, int months)
+         "WHERE usedActivity = COALESCE(:usedActivity, usedActivity) "
+         "AND lastUpdate < :time");
+ 
++    Utils::exec(*resourcesDatabase(), Utils::FailOnError, removeResourceInfoQuery, ":usedActivity", usedActivity, ":time", time.toSecsSinceEpoch());
++
+     Utils::exec(*resourcesDatabase(), Utils::FailOnError, removeEventsQuery, ":usedActivity", usedActivity, ":time", time.toSecsSinceEpoch());
+ 
+     Utils::exec(*resourcesDatabase(), Utils::FailOnError, removeScoreCachesQuery, ":usedActivity", usedActivity, ":time", time.toSecsSinceEpoch());
+@@ -506,6 +540,11 @@ void StatsPlugin::DeleteStatsForResource(const QString &activity, const QString
+ 
+     const auto clientFilter = client == ANY_AGENT_TAG ? " 1 " : QStringLiteral(" initiatingAgent = '%1' ").arg(client);
+ 
++    auto removeResourceInfoQuery = resourcesDatabase()->createQuery();
++    removeResourceInfoQuery.prepare(
++        "DELETE FROM ResourceInfo "
++        "WHERE targettedResource LIKE :targettedResource ESCAPE '\\'");
++
+     auto removeEventsQuery = resourcesDatabase()->createQuery();
+     removeEventsQuery.prepare(
+         "DELETE FROM ResourceEvent "
+@@ -520,6 +559,8 @@ void StatsPlugin::DeleteStatsForResource(const QString &activity, const QString
+ 
+     const auto pattern = Common::starPatternToLike(resource);
+ 
++    Utils::exec(*resourcesDatabase(), Utils::FailOnError, removeResourceInfoQuery, ":targettedResource", pattern);
++
+     Utils::exec(*resourcesDatabase(), Utils::FailOnError, removeEventsQuery, ":targettedResource", pattern);
+ 
+     Utils::exec(*resourcesDatabase(), Utils::FailOnError, removeScoreCachesQuery, ":targettedResource", pattern);
+-- 
+GitLab
+

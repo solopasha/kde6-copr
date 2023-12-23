@@ -1,0 +1,30 @@
+From e42bc4ccccb4c65df58bd6d2a925c2618b16a630 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?M=C3=A9ven=20Car?= <meven@kde.org>
+Date: Fri, 22 Dec 2023 11:52:56 +0100
+Subject: [PATCH] StatsPlugin: allow local files to be added to ResourceCache
+
+hasMatch has diferrent semantics between QRegeyp and QRegularExpression.
+We want the old exactMatch behavior matching on the entirety of the
+string.
+
+BUG: 478397
+---
+ src/common/database/Database.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/common/database/Database.h b/src/common/database/Database.h
+index 606d25e5..0e868158 100644
+--- a/src/common/database/Database.h
++++ b/src/common/database/Database.h
+@@ -132,7 +132,7 @@ inline QString starPatternToLike(const QString &pattern)
+ 
+ inline QRegularExpression starPatternToRegex(const QString &pattern)
+ {
+-    return QRegularExpression(parseStarPattern(pattern, QStringLiteral(".*"), [](QString pattern) { return QRegularExpression::escape(pattern); }));
++    return QRegularExpression(parseStarPattern(pattern, QStringLiteral(".*"), [](QString pattern) { return QRegularExpression::escape(QRegularExpression::anchoredPattern(pattern)); }));
+ }
+ 
+ } // namespace Common
+-- 
+GitLab
+
