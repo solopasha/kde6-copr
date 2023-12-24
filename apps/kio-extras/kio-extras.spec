@@ -1,6 +1,6 @@
 Name:    kio-extras
 Version: 24.01.85
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Additional components to increase the functionality of KIO Framework
 
 License: GPLv2+
@@ -93,7 +93,6 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %install
 %cmake_install
-rm %{buildroot}%{_datadir}/applications/kcm_trash.desktop
 %find_lang kio-extras --all-name --with-html
 
 

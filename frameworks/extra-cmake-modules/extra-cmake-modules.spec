@@ -12,7 +12,7 @@
 Name:    extra-cmake-modules
 Summary: Additional modules for CMake build system
 Version: 5.247.0
-Release: 1%{?dist}
+Release: 1.2%{?dist}
 License: BSD
 URL:     https://api.kde.org/ecm/
 %frameworks_source
@@ -33,10 +33,11 @@ BuildRequires: python3-sphinxcontrib-qthelp
 BuildRequires: pkgconfig(Qt5Core)
 BuildRequires: pkgconfig(Qt6Core)
 Requires: (kf5-rpm-macros if qt5-qtbase-devel)
-Requires: kf6-rpm-macros
+Requires: (kf6-rpm-macros if qt6-qtbase-devel)
 Recommends: appstream
 # /usr/share/ECM/modules/ECMPoQmTools.cmake
-Requires: cmake(Qt6LinguistTools)
+Requires: (cmake(Qt6LinguistTools) if qt6-qtbase-devel)
+Requires: (cmake(Qt5LinguistTools) if qt5-qtbase-devel)
 
 %description
 Additional modules for CMake build system needed by KDE Frameworks.

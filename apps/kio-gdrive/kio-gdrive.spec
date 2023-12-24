@@ -1,6 +1,6 @@
 Name:           kio-gdrive
 Version:        24.01.85
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An Google Drive KIO slave for KDE
 
 License:        GPL-2.0-or-later
@@ -57,6 +57,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -p1
+sed -i 's/Ubuntu\.OnlineAccounts/SSO.OnlineAccounts/' purpose/purpose_gdrive_config.qml
 
 
 %build
@@ -105,7 +106,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml ||:
 %{_kf5_plugindir}/kio/gdrive.so
 %{_kf5_plugindir}/propertiesdialog/gdrivepropertiesplugin.so
 %{_kf5_plugindir}/purpose/purpose_gdrive.so
-%{_kf6_datadir}/knotifications5/gdrive.notifyrc
+%{_kf5_datadir}/knotifications5/gdrive.notifyrc
 %{_qt5_plugindir}/kaccounts/daemonplugins/gdrive.so
 
 
