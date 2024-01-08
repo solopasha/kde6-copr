@@ -1,14 +1,16 @@
 %global tests 1
 %global __ctest xvfb-run -a %{__ctest}
 
-Name:    kdiagram-qt6
+Name:    kdiagram
 Summary: Powerful libraries (KChart, KGantt) for creating business diagrams
-Version: 3.0.0
+Version: 3.0.1
 Release: 1%{?dist}
 
 License: GPLv2+
 Url:     https://invent.kde.org/graphics/kdiagram
 Source0: http://download.kde.org/stable/kdiagram/%{version}/kdiagram-%{version}.tar.xz
+Source1: http://download.kde.org/stable/kdiagram/%{version}/kdiagram-%{version}.tar.xz.sig
+Source2: kde-frameworks-signing-keys.pgp
 
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
@@ -23,6 +25,8 @@ BuildRequires: cmake(Qt6Test)
 BuildRequires: xorg-x11-server-Xvfb
 %endif
 
+Obsoletes:     kdiagram-qt6 < 3.0.1
+Provides:      kdiagram-qt6 = %{version}-%{release}
 
 %description
 Powerful libraries (KChart, KGantt) for creating business diagrams.
@@ -30,6 +34,8 @@ Powerful libraries (KChart, KGantt) for creating business diagrams.
 
 %package        devel
 Summary:        Development files for %{name}
+Obsoletes:      kdiagram-qt6-devel < 3.0.1
+Provides:       kdiagram-qt6-devel = %{version}-%{release}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(Qt6Svg)
 Requires:       cmake(Qt6Widgets)
@@ -39,7 +45,8 @@ Requires:       cmake(Qt6PrintSupport)
 
 
 %prep
-%autosetup -n kdiagram-%{version} -p1
+%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
+%autosetup -p1
 
 
 %build
