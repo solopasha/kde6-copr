@@ -1,0 +1,24 @@
+[Channel 0]
+Name=#fedora
+
+[Channel 1]
+Name=#fedora-kde
+
+[Channel 2]
+Name=#kde
+
+[Channel 3]
+Name=#konversation
+
+[Server 0]
+Port=6697
+SSLEnabled=true
+Server=irc.libera.chat
+
+[ServerGroup 0]
+AutoConnect=false
+AutoJoinChannels=Channel 0,Channel 1,Channel 2,Channel 3
+EnableNotifications=true
+Expanded=false
+Name=Libera Chat
+ServerList=Server 0

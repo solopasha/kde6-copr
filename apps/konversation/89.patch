@@ -1,0 +1,4624 @@
+From 552195d4d11022fba81a2a521ade81290e14e389 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Sun, 1 Oct 2023 09:30:03 +0200
+Subject: [PATCH 01/35] Move CMake to Qt6
+
+---
+ CMakeLists.txt       | 11 ++++++++---
+ src/CMakeLists.txt   | 42 ++++++++++++++++++++++--------------------
+ tests/CMakeLists.txt |  2 +-
+ 3 files changed, 31 insertions(+), 24 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index c7e4b385a..e9db10c31 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -35,9 +35,12 @@ include(FeatureSummary)
+ find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED Core Multimedia Network Widgets)
+ if (QT_MAJOR_VERSION STREQUAL "6")
+     find_package(Qt6Core5Compat ${QT_MIN_VERSION} CONFIG REQUIRED) # QTextCodec
++    set(KF_MAJOR_VERSION "6")
++else()
++    set(KF_MAJOR_VERSION "5")
+ endif()
+ 
+-find_package(KF5 ${KF5_MIN_VERSION} REQUIRED
++find_package(KF${KF_MAJOR_VERSION} ${KF5_DEP_VERSION} REQUIRED COMPONENTS
+     Archive
+     Bookmarks
+     Config
+@@ -55,14 +58,16 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED
+     DBusAddons
+     NewStuff
+     Notifications
++    StatusNotifierItem
++    TextWidgets
+     WindowSystem
+     ItemViews
+ )
+ 
+ if(NOT WIN32)
+-    find_package(KF5 REQUIRED GlobalAccel)
++    find_package(KF${KF_MAJOR_VERSION} REQUIRED GlobalAccel)
+ endif()
+-set(HAVE_KGLOBALACCEL ${KF5GlobalAccel_FOUND})
++set(HAVE_KGLOBALACCEL ${KF${KF_MAJOR_VERSION}GlobalAccel_FOUND})
+ 
+ find_package(Qca-qt${QT_MAJOR_VERSION} 2.2.0)
+ set_package_properties(Qca-qt${QT_MAJOR_VERSION} PROPERTIES DESCRIPTION "Support for encryption"
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 76b38883c..4a776faee 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -328,31 +328,33 @@ target_link_libraries(konversation
+     Qt::Multimedia
+     Qt::Network
+     Qt::Widgets
+-    KF5::Archive
+-    KF5::Bookmarks
+-    KF5::ConfigWidgets
+-    KF5::Crash
+-    KF5::I18n
+-    KF5::IdleTime
+-    KF5::NotifyConfig
+-    KF5::KIOFileWidgets
+-    KF5::KIOWidgets
+-    KF5::Parts
+-    KF5::Wallet
+-    KF5::WidgetsAddons
+-    KF5::DBusAddons
+-    KF5::CoreAddons
+-    KF5::Notifications
+-    KF5::WindowSystem
+-    KF5::ItemViews
+-    KF5::NewStuffWidgets
++    KF${KF_MAJOR_VERSION}::Archive
++    KF${KF_MAJOR_VERSION}::Bookmarks
++    KF${KF_MAJOR_VERSION}::ConfigWidgets
++    KF${KF_MAJOR_VERSION}::Crash
++    KF${KF_MAJOR_VERSION}::I18n
++    KF${KF_MAJOR_VERSION}::IdleTime
++    KF${KF_MAJOR_VERSION}::NotifyConfig
++    KF${KF_MAJOR_VERSION}::KIOFileWidgets
++    KF${KF_MAJOR_VERSION}::KIOWidgets
++    KF${KF_MAJOR_VERSION}::Parts
++    KF${KF_MAJOR_VERSION}::Wallet
++    KF${KF_MAJOR_VERSION}::WidgetsAddons
++    KF${KF_MAJOR_VERSION}::DBusAddons
++    KF${KF_MAJOR_VERSION}::CoreAddons
++    KF${KF_MAJOR_VERSION}::Notifications
++    KF${KF_MAJOR_VERSION}::StatusNotifierItem
++    KF${KF_MAJOR_VERSION}::TextWidgets
++    KF${KF_MAJOR_VERSION}::WindowSystem
++    KF${KF_MAJOR_VERSION}::ItemViews
++    KF${KF_MAJOR_VERSION}::NewStuffWidgets
+ )
+ if (QT_MAJOR_VERSION STREQUAL "6")
+     target_link_libraries(konversation Qt6::Core5Compat)  # QTextCodec
+ endif()
+ 
+-if(TARGET KF5::GlobalAccel)
+-    target_link_libraries(konversation KF5::GlobalAccel)
++if(TARGET KF${KF_MAJOR_VERSION}::GlobalAccel)
++    target_link_libraries(konversation KF${KF_MAJOR_VERSION}::GlobalAccel)
+ endif()
+ 
+ if (Qca-qt${QT_MAJOR_VERSION}_FOUND)
+diff --git a/tests/CMakeLists.txt b/tests/CMakeLists.txt
+index 8689d2709..863e01c21 100644
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -7,6 +7,6 @@ ecm_add_test(
+     ../src/common.cpp
+     config/preferences.cpp
+     TEST_NAME testcommon
+-    LINK_LIBRARIES KF5::I18n Qt::Test
++    LINK_LIBRARIES KF${KF_MAJOR_VERSION}::I18n Qt::Test
+ )
+ target_include_directories(testcommon PRIVATE ${CMAKE_SOURCE_DIR}/src)
+-- 
+GitLab
+
+
+From aed38d08e563c85e33b314400a29edb1ac7fb25b Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Sun, 1 Oct 2023 09:30:35 +0200
+Subject: [PATCH 02/35] Braces around if
+
+This code is broken on KF6, but I braces allows me to think
+correctly. so first  I'm fixing the style, then, I'll fix the code.
+---
+ src/mainwindow.cpp | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/src/mainwindow.cpp b/src/mainwindow.cpp
+index 992882ffe..b484e1c8d 100644
+--- a/src/mainwindow.cpp
++++ b/src/mainwindow.cpp
+@@ -940,10 +940,11 @@ void MainWindow::toggleVisibility()
+ {
+     if (isActiveWindow())
+     {
+-        if (Preferences::self()->showTrayIcon())
++        if (Preferences::self()->showTrayIcon()) {
+             m_trayIcon->hideWindow();
+-        else
++        } else {
+             KWindowSystem::minimizeWindow(winId());
++        }
+     }
+     else
+     {
+-- 
+GitLab
+
+
+From 422d7b884d18629ad4fbf08a197bc72fe0be8283 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Sun, 1 Oct 2023 10:50:55 +0200
+Subject: [PATCH 03/35] Remove unused include
+
+---
+ src/config/theme_config.cpp | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/src/config/theme_config.cpp b/src/config/theme_config.cpp
+index c6c2c57e5..b6441b0da 100644
+--- a/src/config/theme_config.cpp
++++ b/src/config/theme_config.cpp
+@@ -22,7 +22,6 @@
+ #include <KIO/DeleteJob>
+ #include <KIO/CopyJob>
+ #include <KSharedConfig>
+-#include <KNSCore/DownloadManager>
+ 
+ #include <QStringList>
+ #include <QUrl>
+-- 
+GitLab
+
+
+From 870e082da05e6072e657392a2077d6170230cf94 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Sun, 1 Oct 2023 10:51:17 +0200
+Subject: [PATCH 04/35] Link directly to Codecs
+
+---
+ CMakeLists.txt     | 1 +
+ src/CMakeLists.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index e9db10c31..01a608d30 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -58,6 +58,7 @@ find_package(KF${KF_MAJOR_VERSION} ${KF5_DEP_VERSION} REQUIRED COMPONENTS
+     DBusAddons
+     NewStuff
+     Notifications
++    Codecs
+     StatusNotifierItem
+     TextWidgets
+     WindowSystem
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 4a776faee..b0a3f102c 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -347,6 +347,7 @@ target_link_libraries(konversation
+     KF${KF_MAJOR_VERSION}::TextWidgets
+     KF${KF_MAJOR_VERSION}::WindowSystem
+     KF${KF_MAJOR_VERSION}::ItemViews
++    KF${KF_MAJOR_VERSION}::Codecs
+     KF${KF_MAJOR_VERSION}::NewStuffWidgets
+ )
+ if (QT_MAJOR_VERSION STREQUAL "6")
+-- 
+GitLab
+
+
+From 1435c8af136f0b4724d86776a795d49ba70372bb Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Sun, 1 Oct 2023 10:51:36 +0200
+Subject: [PATCH 05/35] Fix API Call
+
+---
+ src/bookmarkhandler.cpp | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/src/bookmarkhandler.cpp b/src/bookmarkhandler.cpp
+index 63bc81c82..6d48ce2ca 100644
+--- a/src/bookmarkhandler.cpp
++++ b/src/bookmarkhandler.cpp
+@@ -31,8 +31,7 @@ m_mainWindow(mainWindow)
+     if ( m_file.isEmpty() )
+         m_file = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + QStringLiteral("konversation/bookmarks.xml") ;
+ 
+-    KBookmarkManager *manager = KBookmarkManager::managerForFile( m_file, QStringLiteral("konversation"));
+-    manager->setEditorOptions(i18n("Konversation Bookmarks Editor"), false);
++    KBookmarkManager *manager = KBookmarkManager::managerForFile( m_file);
+     manager->setUpdate( true );
+ 
+     m_bookmarkMenu = new KBookmarkMenu(manager, this, menu);
+-- 
+GitLab
+
+
+From 6217d14fedf2b46665ef2f0c6c49a4e879031d91 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Sun, 1 Oct 2023 10:51:46 +0200
+Subject: [PATCH 06/35] Revert to default Qt6 for deprecated KF5 code
+
+---
+ src/irc/irccharsets.cpp | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/src/irc/irccharsets.cpp b/src/irc/irccharsets.cpp
+index 00d3b3495..d001925c0 100644
+--- a/src/irc/irccharsets.cpp
++++ b/src/irc/irccharsets.cpp
+@@ -107,12 +107,17 @@ namespace Konversation
+ 
+     QTextCodec* IRCCharsets::codecForName(const QString& shortName) const
+     {
++#if 0
++        KF6 Removed those functions and I have no idea what to do.
++        Going back to Qt only.
+         // Qt 5 / KCharsets seem to no longer support jis7 in common builds, but we have
+         // to assume existing user config.
+         if (shortName == QLatin1String("jis7"))
+-            return KCharsets::charsets()->codecForName(QStringLiteral("ISO-2022-JP"));
+-        else
+-            return KCharsets::charsets()->codecForName(shortName);
++            return KCodecs::Codec::codecForName("ISO-2022-JP");
++
++        return KCodecs::Codec::codecForName(shortName.toByteArray());
++#endif
++        return QTextCodec::codecForName(shortName.toLocal8Bit());
+     }
+ 
+     IRCCharsets::IRCCharsets()
+-- 
+GitLab
+
+
+From fff182b3db8622f1e4c7f5082d75ee633b75afe4 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Sun, 1 Oct 2023 10:52:09 +0200
+Subject: [PATCH 07/35] Update X11 code to KX11Extras
+
+---
+ CMakeLists.txt              |  4 ++++
+ config-konversation.h.cmake |  1 +
+ src/mainwindow.cpp          | 33 ++++++++++++++++++++++++---------
+ 3 files changed, 29 insertions(+), 9 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 01a608d30..028f70606 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -70,6 +70,10 @@ if(NOT WIN32)
+ endif()
+ set(HAVE_KGLOBALACCEL ${KF${KF_MAJOR_VERSION}GlobalAccel_FOUND})
+ 
++if (UNIX AND NOT APPLE)
++    set(HAVE_X11 TRUE)
++endif()
++
+ find_package(Qca-qt${QT_MAJOR_VERSION} 2.2.0)
+ set_package_properties(Qca-qt${QT_MAJOR_VERSION} PROPERTIES DESCRIPTION "Support for encryption"
+                        URL "https://download.kde.org/stable/qca/"
+diff --git a/config-konversation.h.cmake b/config-konversation.h.cmake
+index 293fb2bf2..e735fb62d 100644
+--- a/config-konversation.h.cmake
++++ b/config-konversation.h.cmake
+@@ -1,3 +1,4 @@
+ #cmakedefine01 HAVE_QCA2
+ #cmakedefine01 HAVE_STROPTS_H
+ #cmakedefine01 HAVE_KGLOBALACCEL
++#cmakedefine01 HAVE_X11
+diff --git a/src/mainwindow.cpp b/src/mainwindow.cpp
+index b484e1c8d..c5a7d2259 100644
+--- a/src/mainwindow.cpp
++++ b/src/mainwindow.cpp
+@@ -53,6 +53,10 @@
+ #include <KGlobalAccel>
+ #endif
+ 
++#if HAVE_X11
++#include <KX11Extras>
++#endif
++
+ MainWindow::MainWindow() : KXmlGuiWindow(nullptr)
+ {
+     setStateConfigGroup(QStringLiteral("MainWindow"));
+@@ -942,9 +946,12 @@ void MainWindow::toggleVisibility()
+     {
+         if (Preferences::self()->showTrayIcon()) {
+             m_trayIcon->hideWindow();
+-        } else {
+-            KWindowSystem::minimizeWindow(winId());
+         }
++#if HAVE_X11
++        else {
++            KX11Extras::minimizeWindow(winId());
++        }
++#endif
+     }
+     else
+     {
+@@ -959,21 +966,29 @@ void MainWindow::activateAndRaiseWindow()
+ 
+ void MainWindow::activateRaiseAndMoveToDesktop(MoveToDesktopMode moveToDesktop)
+ {
+-    if (isMinimized())
+-        KWindowSystem::unminimizeWindow(winId());
+-    else if (Preferences::self()->showTrayIcon() && !isVisible())
++#if HAVE_X11
++    if (isMinimized()) {
++        KX11Extras::unminimizeWindow(winId());
++    } else if (Preferences::self()->showTrayIcon() && !isVisible()) {
++        m_trayIcon->restoreWindow();
++    }
++#else
++    if (Preferences::self()->showTrayIcon() && !isVisible()) {
+         m_trayIcon->restoreWindow();
++    }
++#endif
+ 
+     if (!isActiveWindow())
+     {
+         raise();
+-        if (moveToDesktop == MoveToDesktop)
+-        {
++#if HAVE_X11
++        if (moveToDesktop == MoveToDesktop) {
+             KWindowInfo info(winId(), NET::WMDesktop);
+             if (!info.onAllDesktops())
+-                KWindowSystem::setOnDesktop(winId(), KWindowSystem::currentDesktop());
++                KX11Extras::setOnDesktop(winId(), KX11Extras::currentDesktop());
+         }
+-        KWindowSystem::activateWindow(winId());
++        KX11Extras::activateWindow(winId());
++#endif
+     }
+ }
+ 
+-- 
+GitLab
+
+
+From ee3c923c7f31a6760113ce20c2a7d84f968434a3 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Sun, 1 Oct 2023 10:53:02 +0200
+Subject: [PATCH 08/35] Fix calls to KNotification
+
+We don't need to provide a widget anymore, neither an empty Pixmap
+---
+ src/notificationhandler.cpp | 52 +++++++++++++++++++------------------
+ 1 file changed, 27 insertions(+), 25 deletions(-)
+
+diff --git a/src/notificationhandler.cpp b/src/notificationhandler.cpp
+index b33634a73..e51584a5a 100644
+--- a/src/notificationhandler.cpp
++++ b/src/notificationhandler.cpp
+@@ -49,7 +49,10 @@ namespace Konversation
+ 
+         if (message.isEmpty())
+         {
+-            msg = KNotification::event(QStringLiteral("message"), eventTitle, QStringLiteral("&lt;%1&gt;").arg(fromNick), QPixmap(), m_mainWindow);
++            msg = KNotification::event(
++                QStringLiteral("message"),
++                eventTitle,
++                QStringLiteral("&lt;%1&gt;").arg(fromNick));
+ 
+             if (osd)
+             {
+@@ -63,7 +66,7 @@ namespace Konversation
+             QString cleanedMessage = removeIrcMarkup(message);
+             QString forKNotify = cleanedMessage.toHtmlEscaped();
+ 
+-            msg = KNotification::event(QStringLiteral("message"), eventTitle, QStringLiteral("&lt;%1&gt; %2").arg(fromNick, forKNotify), QPixmap(), m_mainWindow);
++            msg = KNotification::event(QStringLiteral("message"), eventTitle, QStringLiteral("&lt;%1&gt; %2").arg(fromNick, forKNotify));
+ 
+             if (osd)
+             {
+@@ -102,7 +105,7 @@ namespace Konversation
+         KNotification* msg;
+         if (message.isEmpty())
+         {
+-            msg = KNotification::event(QStringLiteral("nick"), eventTitle, QStringLiteral("&lt;%1&gt;").arg(fromNick), QPixmap(), m_mainWindow);
++            msg = KNotification::event(QStringLiteral("nick"), eventTitle, QStringLiteral("&lt;%1&gt;").arg(fromNick));
+ 
+             if (osd)
+             {
+@@ -116,7 +119,7 @@ namespace Konversation
+             QString cleanedMessage = removeIrcMarkup(message);
+             QString forKNotify = cleanedMessage.toHtmlEscaped();
+ 
+-            msg = KNotification::event(QStringLiteral("nick"), eventTitle, QStringLiteral("&lt;%1&gt; %2").arg(fromNick, forKNotify), QPixmap(), m_mainWindow);
++            msg = KNotification::event(QStringLiteral("nick"), eventTitle, QStringLiteral("&lt;%1&gt; %2").arg(fromNick, forKNotify));
+ 
+             if (osd)
+             {
+@@ -152,7 +155,7 @@ namespace Konversation
+         KNotification* msg;
+         if (message.isEmpty()) // TODO document how this can happen, seems nonsensical
+         {
+-            msg = KNotification::event(QStringLiteral("queryMessage"), eventTitle, QStringLiteral("&lt;%1&gt;").arg(fromNick), QPixmap(), m_mainWindow);
++            msg = KNotification::event(QStringLiteral("queryMessage"), eventTitle, QStringLiteral("&lt;%1&gt;").arg(fromNick));
+ 
+             if (osd)
+             {
+@@ -166,7 +169,7 @@ namespace Konversation
+             QString cleanedMessage = removeIrcMarkup(message);
+             QString forKNotify = cleanedMessage.toHtmlEscaped();
+ 
+-            msg = KNotification::event(QStringLiteral("queryMessage"), eventTitle, QStringLiteral("&lt;%1&gt; %2").arg(fromNick, forKNotify), QPixmap(), m_mainWindow);
++            msg = KNotification::event(QStringLiteral("queryMessage"), eventTitle, QStringLiteral("&lt;%1&gt; %2").arg(fromNick, forKNotify));
+ 
+             if (osd)
+             {
+@@ -206,7 +209,7 @@ namespace Konversation
+         if (Preferences::self()->disableNotifyWhileAway() && chatWin->getServer() && chatWin->getServer()->isAway())
+             return;
+ 
+-        KNotification::event(QStringLiteral("join"), i18n("%1 joined %2",nick, chatWin->getName()), QPixmap(), m_mainWindow);
++        KNotification::event(QStringLiteral("join"), i18n("%1 joined %2",nick, chatWin->getName()));
+ 
+         // OnScreen Message
+         if(Preferences::self()->oSDShowChannelEvent() &&
+@@ -225,7 +228,7 @@ namespace Konversation
+         if (Preferences::self()->disableNotifyWhileAway() && chatWin->getServer() && chatWin->getServer()->isAway())
+             return;
+ 
+-        KNotification::event(QStringLiteral("part"), i18n("%1 parted %2",nick, chatWin->getName()), QPixmap(), m_mainWindow);
++        KNotification::event(QStringLiteral("part"), i18n("%1 parted %2",nick, chatWin->getName()));
+ 
+         // OnScreen Message
+         if(Preferences::self()->oSDShowChannelEvent() &&
+@@ -244,7 +247,7 @@ namespace Konversation
+         if (Preferences::self()->disableNotifyWhileAway() && chatWin->getServer() && chatWin->getServer()->isAway())
+             return;
+ 
+-        KNotification::event(QStringLiteral("part"), i18n("%1 quit %2",nick, chatWin->getServer()->getServerName()), QPixmap(), m_mainWindow);
++        KNotification::event(QStringLiteral("part"), i18n("%1 quit %2",nick, chatWin->getServer()->getServerName()));
+     }
+ 
+     void NotificationHandler::nickChange(ChatWindow* chatWin, const QString& oldNick, const QString& newNick)
+@@ -255,7 +258,7 @@ namespace Konversation
+         if (Preferences::self()->disableNotifyWhileAway() && chatWin->getServer() && chatWin->getServer()->isAway())
+             return;
+ 
+-        KNotification::event(QStringLiteral("nickchange"), i18n("%1 changed nickname to %2",oldNick, newNick), QPixmap(), m_mainWindow);
++        KNotification::event(QStringLiteral("nickchange"), i18n("%1 changed nickname to %2",oldNick, newNick));
+     }
+ 
+     void NotificationHandler::dccIncoming(ChatWindow* chatWin, const QString& fromNick)
+@@ -266,7 +269,7 @@ namespace Konversation
+         if (Preferences::self()->disableNotifyWhileAway() && chatWin->getServer() && chatWin->getServer()->isAway())
+             return;
+ 
+-        KNotification::event(QStringLiteral("dcc_incoming"), i18n("%1 wants to send a file to you",fromNick), QPixmap(), m_mainWindow);
++        KNotification::event(QStringLiteral("dcc_incoming"), i18n("%1 wants to send a file to you",fromNick));
+     }
+ 
+     void NotificationHandler::dccError(ChatWindow* chatWin, const QString& error)
+@@ -277,7 +280,7 @@ namespace Konversation
+         if (Preferences::self()->disableNotifyWhileAway() && chatWin->getServer() && chatWin->getServer()->isAway())
+             return;
+ 
+-        KNotification::event(QStringLiteral("dcc_error"), i18n("An error has occurred in a DCC transfer: %1",error), QPixmap(), m_mainWindow);
++        KNotification::event(QStringLiteral("dcc_error"), i18n("An error has occurred in a DCC transfer: %1",error));
+     }
+ 
+     void NotificationHandler::dccTransferDone(ChatWindow* chatWin, const QString& file, DCC::Transfer* transfer)
+@@ -290,15 +293,14 @@ namespace Konversation
+ 
+         if (transfer->getType() == DCC::Transfer::Send)
+         {
+-            KNotification::event(QStringLiteral("dcctransfer_done"), i18nc("%1 - filename","%1 File Transfer is complete",file), QPixmap(), m_mainWindow);
++            KNotification::event(QStringLiteral("dcctransfer_done"), i18nc("%1 - filename","%1 File Transfer is complete",file));
+         }
+         else
+         {
+             auto *notification = new KNotification(QStringLiteral("dcctransfer_done"));
+-            notification->setWidget(m_mainWindow);
+             notification->setText(i18nc("%1 - filename","%1 File Transfer is complete", file));
+-            //notification->setPixmap( QPixmap() );
+             notification->setActions(QStringList(i18nc("Opens the file from the finished dcc transfer", "Open")));
++            notification->setWindow(m_mainWindow->windowHandle());
+             connect(notification, QOverload<unsigned int>::of(&KNotification::activated), transfer, &DCC::Transfer::runFile);
+             notification->sendEvent();
+         }
+@@ -313,8 +315,8 @@ namespace Konversation
+             return;
+ 
+         auto *ev=new KNotification(QStringLiteral("mode"));
+-        ev->setWidget(m_mainWindow);
+         ev->setText(i18n("%1 changed modes in %2: %3", nick, subject, change));
++        ev->setWindow(m_mainWindow->windowHandle());
+         ev->sendEvent();
+     }
+ 
+@@ -329,8 +331,8 @@ namespace Konversation
+         startTrayNotification(chatWin);
+ 
+         auto *ev=new KNotification(QStringLiteral("query"));
+-        ev->setWidget(m_mainWindow);
+         ev->setText(i18n("%1 has started a conversation (query) with you.",fromNick));
++        ev->setWindow(m_mainWindow->windowHandle());
+         ev->sendEvent();
+     }
+ 
+@@ -343,8 +345,8 @@ namespace Konversation
+             return;
+ 
+         auto *ev=new KNotification(QStringLiteral("notify"));
+-        ev->setWidget(m_mainWindow);
+         ev->setText(i18n("%1 is online (%2).", nick, chatWin->getServer()->getServerName()));
++        ev->setWindow(m_mainWindow->windowHandle());
+         ev->sendEvent();
+ 
+     }
+@@ -358,8 +360,8 @@ namespace Konversation
+             return;
+ 
+         auto *ev=new KNotification(QStringLiteral("notify"));
+-        ev->setWidget(m_mainWindow);
+         ev->setText(i18n("%1 went offline (%2).", nick, chatWin->getServer()->getServerName()));
++        ev->setWindow(m_mainWindow->windowHandle());
+         ev->sendEvent();
+ 
+     }
+@@ -373,8 +375,8 @@ namespace Konversation
+             return;
+ 
+         auto *ev=new KNotification(QStringLiteral("kick"));
+-        ev->setWidget(m_mainWindow);
+         ev->setText(i18n("You are kicked by %1 from %2", nick, channel));
++        ev->setWindow(m_mainWindow->windowHandle());
+         ev->sendEvent();
+ 
+     }
+@@ -388,8 +390,8 @@ namespace Konversation
+             return;
+ 
+         auto *ev=new KNotification(QStringLiteral("dccChat"));
+-        ev->setWidget(m_mainWindow);
+         ev->setText(i18n("%1 started a DCC chat with you", nick));
++        ev->setWindow(m_mainWindow->windowHandle());
+         ev->sendEvent();
+ 
+     }
+@@ -410,12 +412,12 @@ namespace Konversation
+         if(fromNick.isEmpty()) // TODO document this one too
+         {
+             QString eventTitle = i18nc("Notification title; see Event/highlight in konversation.notifyrc", "Highlight triggered in %1", chatWin->getName());
+-            KNotification::event(QStringLiteral("highlight"), eventTitle, QStringLiteral("(%1) *** %2").arg(chatWin->getName(), forKNotify), QPixmap(), m_mainWindow);
++            KNotification::event(QStringLiteral("highlight"), eventTitle, QStringLiteral("(%1) *** %2").arg(chatWin->getName(), forKNotify));
+         }
+         else
+         {
+             QString eventTitle = i18nc("Notification title; see Event/highlight in konversation.notifyrc", "Highlight triggered by %2 in %1", chatWin->getName(), fromNick);
+-            KNotification::event(QStringLiteral("highlight"), eventTitle, QStringLiteral("(%1) &lt;%2&gt; %3").arg(chatWin->getName(), fromNick, forKNotify), QPixmap(), m_mainWindow);
++            KNotification::event(QStringLiteral("highlight"), eventTitle, QStringLiteral("(%1) &lt;%2&gt; %3").arg(chatWin->getName(), fromNick, forKNotify));
+         }
+ 
+         if(Preferences::self()->oSDShowOwnNick() &&
+@@ -438,8 +440,8 @@ namespace Konversation
+             return;
+ 
+         auto *ev=new KNotification(QStringLiteral("connectionFailure"));
+-        ev->setWidget(m_mainWindow);
+         ev->setText(i18n("Failed to connect to %1", server));
++        ev->setWindow(m_mainWindow->windowHandle());
+         ev->sendEvent();
+ 
+     }
+@@ -452,7 +454,7 @@ namespace Konversation
+         if (Preferences::self()->disableNotifyWhileAway() && chatWin->getServer() && chatWin->getServer()->isAway())
+             return;
+ 
+-        KNotification::event(QStringLiteral("channelJoin"), i18n("You have joined %1.",channel), QPixmap(), m_mainWindow);
++        KNotification::event(QStringLiteral("channelJoin"), i18n("You have joined %1.",channel));
+     }
+ 
+ }
+-- 
+GitLab
+
+
+From 28a16b283791dca06635ecd20499a69ea4a1f69f Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Sun, 1 Oct 2023 10:53:48 +0200
+Subject: [PATCH 09/35] Fix API Call
+
+---
+ src/viewer/topichistoryview.cpp | 2 +-
+ src/viewer/topichistoryview.h   | 4 +---
+ 2 files changed, 2 insertions(+), 4 deletions(-)
+
+diff --git a/src/viewer/topichistoryview.cpp b/src/viewer/topichistoryview.cpp
+index 28133a825..844fe5f8f 100644
+--- a/src/viewer/topichistoryview.cpp
++++ b/src/viewer/topichistoryview.cpp
+@@ -145,7 +145,7 @@ QList<QWidget*> TopicHistoryItemDelegate::createItemWidgets(const QModelIndex& i
+     return widgets;
+ }
+ 
+-void TopicHistoryItemDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem& option,
++void TopicHistoryItemDelegate::updateItemWidgets(const QList<QWidget*> &widgets, const QStyleOptionViewItem& option,
+     const QPersistentModelIndex& index) const
+ {
+     if (widgets.isEmpty()) return;
+diff --git a/src/viewer/topichistoryview.h b/src/viewer/topichistoryview.h
+index 6036eb30f..2b5ea6069 100644
+--- a/src/viewer/topichistoryview.h
++++ b/src/viewer/topichistoryview.h
+@@ -79,9 +79,7 @@ class TopicHistoryItemDelegate : public KWidgetItemDelegate
+ 
+     protected:
+         QList<QWidget*> createItemWidgets (const QModelIndex& index) const override;
+-        void updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem& option,
+-            const QPersistentModelIndex& index) const override;
+-
++        void updateItemWidgets(const QList<QWidget *> &widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const override;
+ 
+     private:
+         TopicHistoryLabel* m_hiddenLabel;
+-- 
+GitLab
+
+
+From 21509129f5e4b55708b236afb500d2c42e515354 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Sun, 1 Oct 2023 12:57:34 +0200
+Subject: [PATCH 10/35] Fix trayIcon integration
+
+---
+ src/viewer/trayicon.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/viewer/trayicon.cpp b/src/viewer/trayicon.cpp
+index 6cb5e4c95..ecce96681 100644
+--- a/src/viewer/trayicon.cpp
++++ b/src/viewer/trayicon.cpp
+@@ -34,7 +34,7 @@ namespace Konversation
+ 
+     void TrayIcon::restoreWindow()
+     {
+-        if (associatedWidget()->isVisible())
++        if (associatedWindow()->isVisible())
+             return;
+         activate(QPoint());
+     }
+-- 
+GitLab
+
+
+From 0699c5d6b89b55bab7c886cd0642bff0bde217f8 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Sun, 1 Oct 2023 17:22:07 +0200
+Subject: [PATCH 11/35] Port konsole loading to kf6
+
+---
+ src/konsolepanel.cpp | 12 +++++-------
+ 1 file changed, 5 insertions(+), 7 deletions(-)
+
+diff --git a/src/konsolepanel.cpp b/src/konsolepanel.cpp
+index 1b59616b5..4f4678554 100644
+--- a/src/konsolepanel.cpp
++++ b/src/konsolepanel.cpp
+@@ -48,16 +48,14 @@ KonsolePanel::KonsolePanel(QWidget *p) : ChatWindow( p ), k_part (nullptr)
+     headerWidgetLayout->addWidget(m_konsoleLabel);
+     m_konsoleLabel->setSizePolicy(QSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum));
+ 
+-    KPluginFactory* fact = nullptr;
+-    KService::Ptr service = KService::serviceByDesktopName(QStringLiteral("konsolepart"));
+-    if( service )
+-    {
+-        fact = KPluginFactory::loadFactory(KPluginMetaData(service->library())).plugin;
++    const QString konsolePart = QStringLiteral("kf6/parts/konsolepart");
++    KPluginFactory *factory = KPluginFactory::loadFactory(konsolePart).plugin;
++    if (!factory) {
++        return;
+     }
+ 
+-    if (!fact) return;
++    k_part = factory->create<KParts::ReadOnlyPart>(m_headerSplitter);
+ 
+-    k_part = fact->create<KParts::ReadOnlyPart>(m_headerSplitter);
+     if (!k_part) return;
+ 
+     m_headerSplitter->setStretchFactor(m_headerSplitter->indexOf(k_part->widget()), 1);
+-- 
+GitLab
+
+
+From 5748c0b27e4cb4076b19af713708b41fb76c6506 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Mon, 2 Oct 2023 19:44:26 +0200
+Subject: [PATCH 12/35] Adapt CI for Qt6
+
+---
+ .gitlab-ci.yml |  1 +
+ .kde-ci.yml    | 32 ++++++++++++++++++++++++++++++--
+ 2 files changed, 31 insertions(+), 2 deletions(-)
+
+diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
+index 96be27dea..baa79937b 100644
+--- a/.gitlab-ci.yml
++++ b/.gitlab-ci.yml
+@@ -4,6 +4,7 @@
+ include:
+   - project: sysadmin/ci-utilities
+     file:
++      - /gitlab-templates/linux-qt6.yml
+       - /gitlab-templates/linux.yml
+       - /gitlab-templates/freebsd.yml
+       - /gitlab-templates/windows.yml
+diff --git a/.kde-ci.yml b/.kde-ci.yml
+index 37590e392..2e444a02b 100644
+--- a/.kde-ci.yml
++++ b/.kde-ci.yml
+@@ -2,7 +2,31 @@
+ # SPDX-License-Identifier: CC0-1.0
+ 
+ Dependencies:
+-- 'on': ['@all']
++- 'on':['linux/Qt6', 'FreeBSD/Qt6', 'Windows/Qt6', 'macOS/Qt6']
++  'require':
++    'frameworks/extra-cmake-modules': '@latest-kf6'
++    'frameworks/karchive': '@latest-kf6'
++    'frameworks/kbookmarks': '@latest-kf6'
++    'frameworks/kconfig': '@latest-kf6'
++    'frameworks/kconfigwidgets': '@latest-kf6'
++    'frameworks/kcoreaddons': '@latest-kf6'
++    'frameworks/kcrash': '@latest-kf6'
++    'frameworks/kdoctools': '@latest-kf6'
++    'frameworks/ki18n': '@latest-kf6'
++    'frameworks/kidletime': '@latest-kf6'
++    'frameworks/knotifyconfig': '@latest-kf6'
++    'frameworks/kio': '@latest-kf6'
++    'frameworks/kparts': '@latest-kf6'
++    'frameworks/kwallet': '@latest-kf6'
++    'frameworks/kwidgetsaddons': '@latest-kf6'
++    'frameworks/kdbusaddons': '@latest-kf6'
++    'frameworks/knewstuff': '@latest-kf6'
++    'frameworks/knotifications': '@latest-kf6'
++    'frameworks/kwindowsystem': '@latest-kf6'
++    'frameworks/kitemviews': '@latest-kf6'
++    'frameworks/kstatusnotifieritem': '@latest-kf6'
++
++- 'on': ['linux/Qt5', 'FreeBSD/Qt5', 'Windows/Qt5', 'macOS/Qt5']
+   'require':
+     'frameworks/extra-cmake-modules': '@stable'
+     'frameworks/karchive': '@stable'
+@@ -25,6 +49,10 @@ Dependencies:
+     'frameworks/kwindowsystem': '@stable'
+     'frameworks/kitemviews': '@stable'
+ 
+-- 'on': ['Linux', 'FreeBSD']
++- 'on': ['Linux/Qt6', 'FreeBSD/Qt6']
++  'require':
++    'frameworks/kglobalaccel': '@latest-kf6'
++
++- 'on': ['Linux/Qt5', 'FreeBSD/Qt5']
+   'require':
+     'frameworks/kglobalaccel': '@stable'
+-- 
+GitLab
+
+
+From 18ab1f41bce260bceb1c0b4892e1c1a1851675a0 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Mon, 2 Oct 2023 19:44:36 +0200
+Subject: [PATCH 13/35] Move StatusNotifierItem to Qt6/KF6 only
+
+---
+ CMakeLists.txt | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 028f70606..371c36620 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -59,12 +59,15 @@ find_package(KF${KF_MAJOR_VERSION} ${KF5_DEP_VERSION} REQUIRED COMPONENTS
+     NewStuff
+     Notifications
+     Codecs
+-    StatusNotifierItem
+     TextWidgets
+     WindowSystem
+     ItemViews
+ )
+ 
++if (KF_MAJOR_VERSION STREQUAL "6")
++    find_package(KF${KF_MAJOR_VERSION} ${KF5_DEP_VERSION} REQUIRED COMPONENTS  StatusNotifierItem)
++endif()
++
+ if(NOT WIN32)
+     find_package(KF${KF_MAJOR_VERSION} REQUIRED GlobalAccel)
+ endif()
+-- 
+GitLab
+
+
+From 3894ae6d316d31a5582db7dea09faa105ea157c5 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Mon, 2 Oct 2023 19:59:27 +0200
+Subject: [PATCH 14/35] Fix spacing on .kde-ci.yml
+
+---
+ .kde-ci.yml        | 2 +-
+ src/CMakeLists.txt | 7 +++++--
+ 2 files changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/.kde-ci.yml b/.kde-ci.yml
+index 2e444a02b..aa7debeca 100644
+--- a/.kde-ci.yml
++++ b/.kde-ci.yml
+@@ -2,7 +2,7 @@
+ # SPDX-License-Identifier: CC0-1.0
+ 
+ Dependencies:
+-- 'on':['linux/Qt6', 'FreeBSD/Qt6', 'Windows/Qt6', 'macOS/Qt6']
++- 'on': ['linux/Qt6', 'FreeBSD/Qt6', 'Windows/Qt6', 'macOS/Qt6']
+   'require':
+     'frameworks/extra-cmake-modules': '@latest-kf6'
+     'frameworks/karchive': '@latest-kf6'
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index b0a3f102c..494aadae3 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -343,15 +343,18 @@ target_link_libraries(konversation
+     KF${KF_MAJOR_VERSION}::DBusAddons
+     KF${KF_MAJOR_VERSION}::CoreAddons
+     KF${KF_MAJOR_VERSION}::Notifications
+-    KF${KF_MAJOR_VERSION}::StatusNotifierItem
+     KF${KF_MAJOR_VERSION}::TextWidgets
+     KF${KF_MAJOR_VERSION}::WindowSystem
+     KF${KF_MAJOR_VERSION}::ItemViews
+     KF${KF_MAJOR_VERSION}::Codecs
+     KF${KF_MAJOR_VERSION}::NewStuffWidgets
+ )
++
+ if (QT_MAJOR_VERSION STREQUAL "6")
+-    target_link_libraries(konversation Qt6::Core5Compat)  # QTextCodec
++    target_link_libraries(konversation
++        Qt6::Core5Compat
++        KF${KF_MAJOR_VERSION}::StatusNotifierItem
++    )  # QTextCodec
+ endif()
+ 
+ if(TARGET KF${KF_MAJOR_VERSION}::GlobalAccel)
+-- 
+GitLab
+
+
+From 5a6a19e52b36f39354154a9477433bfd7550a77d Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Mon, 2 Oct 2023 20:14:21 +0200
+Subject: [PATCH 15/35] KF5/KF6 Buildability
+
+---
+ src/bookmarkhandler.cpp     |  5 +++++
+ src/notificationhandler.cpp | 28 ++++++++++++++++++++++++++++
+ 2 files changed, 33 insertions(+)
+
+diff --git a/src/bookmarkhandler.cpp b/src/bookmarkhandler.cpp
+index 6d48ce2ca..17b030f0f 100644
+--- a/src/bookmarkhandler.cpp
++++ b/src/bookmarkhandler.cpp
+@@ -31,7 +31,12 @@ m_mainWindow(mainWindow)
+     if ( m_file.isEmpty() )
+         m_file = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + QStringLiteral("konversation/bookmarks.xml") ;
+ 
++#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+     KBookmarkManager *manager = KBookmarkManager::managerForFile( m_file);
++#else
++    KBookmarkManager *manager = KBookmarkManager::managerForFile( m_file, QStringLiteral("konversation"));
++#endif
++
+     manager->setUpdate( true );
+ 
+     m_bookmarkMenu = new KBookmarkMenu(manager, this, menu);
+diff --git a/src/notificationhandler.cpp b/src/notificationhandler.cpp
+index e51584a5a..681454821 100644
+--- a/src/notificationhandler.cpp
++++ b/src/notificationhandler.cpp
+@@ -316,7 +316,11 @@ namespace Konversation
+ 
+         auto *ev=new KNotification(QStringLiteral("mode"));
+         ev->setText(i18n("%1 changed modes in %2: %3", nick, subject, change));
++#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+         ev->setWindow(m_mainWindow->windowHandle());
++#else
++        ev->setWidget(m_mainWindow);
++#endif
+         ev->sendEvent();
+     }
+ 
+@@ -332,7 +336,11 @@ namespace Konversation
+ 
+         auto *ev=new KNotification(QStringLiteral("query"));
+         ev->setText(i18n("%1 has started a conversation (query) with you.",fromNick));
++#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+         ev->setWindow(m_mainWindow->windowHandle());
++#else
++        ev->setWidget(m_mainWindow);
++#endif
+         ev->sendEvent();
+     }
+ 
+@@ -346,7 +354,11 @@ namespace Konversation
+ 
+         auto *ev=new KNotification(QStringLiteral("notify"));
+         ev->setText(i18n("%1 is online (%2).", nick, chatWin->getServer()->getServerName()));
++#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+         ev->setWindow(m_mainWindow->windowHandle());
++#else
++        ev->setWidget(m_mainWindow);
++#endif
+         ev->sendEvent();
+ 
+     }
+@@ -361,7 +373,11 @@ namespace Konversation
+ 
+         auto *ev=new KNotification(QStringLiteral("notify"));
+         ev->setText(i18n("%1 went offline (%2).", nick, chatWin->getServer()->getServerName()));
++#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+         ev->setWindow(m_mainWindow->windowHandle());
++#else
++        ev->setWidget(m_mainWindow);
++#endif
+         ev->sendEvent();
+ 
+     }
+@@ -376,7 +392,11 @@ namespace Konversation
+ 
+         auto *ev=new KNotification(QStringLiteral("kick"));
+         ev->setText(i18n("You are kicked by %1 from %2", nick, channel));
++#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+         ev->setWindow(m_mainWindow->windowHandle());
++#else
++        ev->setWidget(m_mainWindow);
++#endif
+         ev->sendEvent();
+ 
+     }
+@@ -391,7 +411,11 @@ namespace Konversation
+ 
+         auto *ev=new KNotification(QStringLiteral("dccChat"));
+         ev->setText(i18n("%1 started a DCC chat with you", nick));
++#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+         ev->setWindow(m_mainWindow->windowHandle());
++#else
++        ev->setWidget(m_mainWindow);
++#endif
+         ev->sendEvent();
+ 
+     }
+@@ -441,7 +465,11 @@ namespace Konversation
+ 
+         auto *ev=new KNotification(QStringLiteral("connectionFailure"));
+         ev->setText(i18n("Failed to connect to %1", server));
++#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+         ev->setWindow(m_mainWindow->windowHandle());
++#else
++        ev->setWidget(m_mainWindow);
++#endif
+         ev->sendEvent();
+ 
+     }
+-- 
+GitLab
+
+
+From 2f69b9d161f3f46343c2ff34345e89d64aacda25 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Mon, 2 Oct 2023 20:20:07 +0200
+Subject: [PATCH 16/35] Add missing check for Qt5/6
+
+---
+ src/notificationhandler.cpp | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/notificationhandler.cpp b/src/notificationhandler.cpp
+index 681454821..efc8339ba 100644
+--- a/src/notificationhandler.cpp
++++ b/src/notificationhandler.cpp
+@@ -300,7 +300,11 @@ namespace Konversation
+             auto *notification = new KNotification(QStringLiteral("dcctransfer_done"));
+             notification->setText(i18nc("%1 - filename","%1 File Transfer is complete", file));
+             notification->setActions(QStringList(i18nc("Opens the file from the finished dcc transfer", "Open")));
++#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+             notification->setWindow(m_mainWindow->windowHandle());
++#else
++            notification->setWidget(m_mainWindow);
++#endif
+             connect(notification, QOverload<unsigned int>::of(&KNotification::activated), transfer, &DCC::Transfer::runFile);
+             notification->sendEvent();
+         }
+-- 
+GitLab
+
+
+From 30b10f93c7429f97d44032e3e8bd62dbadcee2ed Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Sun, 8 Oct 2023 11:10:50 +0200
+Subject: [PATCH 17/35] Use KBookmarkWidgets
+
+---
+ src/CMakeLists.txt             | 1 +
+ src/urlcatcher.cpp             | 3 ++-
+ src/viewer/irccontextmenus.cpp | 2 +-
+ 3 files changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 494aadae3..e8c6aae46 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -354,6 +354,7 @@ if (QT_MAJOR_VERSION STREQUAL "6")
+     target_link_libraries(konversation
+         Qt6::Core5Compat
+         KF${KF_MAJOR_VERSION}::StatusNotifierItem
++        KF${KF_MAJOR_VERSION}::BookmarksWidgets
+     )  # QTextCodec
+ endif()
+ 
+diff --git a/src/urlcatcher.cpp b/src/urlcatcher.cpp
+index 752ffd945..c5a1dde25 100644
+--- a/src/urlcatcher.cpp
++++ b/src/urlcatcher.cpp
+@@ -277,7 +277,8 @@ void UrlCatcher::bookmarkSelectedUrls()
+ {
+     const QModelIndexList selectedIndexes = m_urlTree->selectionModel()->selectedRows(1);
+ 
+-    KBookmarkManager* manager = KBookmarkManager::userBookmarksManager();
++    //TODO: Use the user-configured browser for this.
++    KBookmarkManager* manager = KBookmarkManager::managerForFile(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/konqueror/bookmarks.xml"));
+     auto* dialog = new KBookmarkDialog(manager, this);
+ 
+     if (selectedIndexes.count() > 1)
+diff --git a/src/viewer/irccontextmenus.cpp b/src/viewer/irccontextmenus.cpp
+index bdc07e024..dc8c31b7b 100644
+--- a/src/viewer/irccontextmenus.cpp
++++ b/src/viewer/irccontextmenus.cpp
+@@ -742,7 +742,7 @@ void IrcContextMenus::processLinkAction(int  actionId, const QString& link)
+         }
+         case LinkBookmark:
+         {
+-            KBookmarkManager* manager = KBookmarkManager::userBookmarksManager();
++            KBookmarkManager* manager = KBookmarkManager::managerForFile(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/konqueror/bookmarks.xml"));
+             auto* dialog = new KBookmarkDialog(manager, Application::instance()->getMainWindow());
+ 
+             dialog->addBookmark(link, QUrl(link), QString());
+-- 
+GitLab
+
+
+From f6158fad49b952f2fe4353b88c3f99e65b515cc9 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Sun, 8 Oct 2023 11:11:10 +0200
+Subject: [PATCH 18/35] Be more explicit of the issue with missing codec
+
+---
+ src/irc/irccharsets.cpp | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
+
+diff --git a/src/irc/irccharsets.cpp b/src/irc/irccharsets.cpp
+index d001925c0..bc1acadd7 100644
+--- a/src/irc/irccharsets.cpp
++++ b/src/irc/irccharsets.cpp
+@@ -11,6 +11,7 @@
+ #include <QTextCodec>
+ 
+ #include <KCharsets>
++#include <kcodecs.h>
+ 
+ 
+ namespace Konversation
+@@ -107,17 +108,24 @@ namespace Konversation
+ 
+     QTextCodec* IRCCharsets::codecForName(const QString& shortName) const
+     {
+-#if 0
+-        KF6 Removed those functions and I have no idea what to do.
+-        Going back to Qt only.
++#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+         // Qt 5 / KCharsets seem to no longer support jis7 in common builds, but we have
+         // to assume existing user config.
+         if (shortName == QLatin1String("jis7"))
+             return KCodecs::Codec::codecForName("ISO-2022-JP");
+ 
+         return KCodecs::Codec::codecForName(shortName.toByteArray());
+-#endif
++#else
++        // KF6 removed `KCodecs::Codec::codecForName`. assuming that this
++        // exists on Qt. Someone with better understanding of codecs, what 
++        // should I do here?
++        //
++        // a KCodec is not convertible to a QTextCodec
++        // KCodecs::Codec *codec = KCodecs::Codec::codecForName("ISO-2022-JP");
++        // return ???
++
+         return QTextCodec::codecForName(shortName.toLocal8Bit());
++#endif
+     }
+ 
+     IRCCharsets::IRCCharsets()
+-- 
+GitLab
+
+
+From ef98cbb2c8caac092df45edd5400c6a83e1cbace Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Sun, 8 Oct 2023 11:59:32 +0200
+Subject: [PATCH 19/35] Fix build on Qt5
+
+---
+ src/irc/irccharsets.cpp | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/irc/irccharsets.cpp b/src/irc/irccharsets.cpp
+index bc1acadd7..6ff1f6659 100644
+--- a/src/irc/irccharsets.cpp
++++ b/src/irc/irccharsets.cpp
+@@ -112,9 +112,9 @@ namespace Konversation
+         // Qt 5 / KCharsets seem to no longer support jis7 in common builds, but we have
+         // to assume existing user config.
+         if (shortName == QLatin1String("jis7"))
+-            return KCodecs::Codec::codecForName("ISO-2022-JP");
+-
+-        return KCodecs::Codec::codecForName(shortName.toByteArray());
++            return KCharsets::charsets()->codecForName(QStringLiteral("ISO-2022-JP"));
++        else
++            return KCharsets::charsets()->codecForName(shortName);
+ #else
+         // KF6 removed `KCodecs::Codec::codecForName`. assuming that this
+         // exists on Qt. Someone with better understanding of codecs, what 
+-- 
+GitLab
+
+
+From 6132c5cb55e81a38e092cab40a98caa96b7678d0 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Sun, 8 Oct 2023 13:42:17 +0200
+Subject: [PATCH 20/35] Add if-guards for Qt5/Qf6
+
+---
+ src/urlcatcher.cpp             | 4 ++++
+ src/viewer/irccontextmenus.cpp | 5 +++++
+ 2 files changed, 9 insertions(+)
+
+diff --git a/src/urlcatcher.cpp b/src/urlcatcher.cpp
+index c5a1dde25..7f343c1e5 100644
+--- a/src/urlcatcher.cpp
++++ b/src/urlcatcher.cpp
+@@ -278,7 +278,11 @@ void UrlCatcher::bookmarkSelectedUrls()
+     const QModelIndexList selectedIndexes = m_urlTree->selectionModel()->selectedRows(1);
+ 
+     //TODO: Use the user-configured browser for this.
++#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+     KBookmarkManager* manager = KBookmarkManager::managerForFile(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/konqueror/bookmarks.xml"));
++#else
++    KBookmarkManager* manager = KBookmarkManager::userBookmarksManager();
++#endif
+     auto* dialog = new KBookmarkDialog(manager, this);
+ 
+     if (selectedIndexes.count() > 1)
+diff --git a/src/viewer/irccontextmenus.cpp b/src/viewer/irccontextmenus.cpp
+index dc8c31b7b..999b83224 100644
+--- a/src/viewer/irccontextmenus.cpp
++++ b/src/viewer/irccontextmenus.cpp
+@@ -742,7 +742,12 @@ void IrcContextMenus::processLinkAction(int  actionId, const QString& link)
+         }
+         case LinkBookmark:
+         {
++#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+             KBookmarkManager* manager = KBookmarkManager::managerForFile(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/konqueror/bookmarks.xml"));
++#else
++            KBookmarkManager* manager = KBookmarkManager::userBookmarksManager();
++#endif
++
+             auto* dialog = new KBookmarkDialog(manager, Application::instance()->getMainWindow());
+ 
+             dialog->addBookmark(link, QUrl(link), QString());
+-- 
+GitLab
+
+
+From 9c119e396ed633dae202ecba921398c495ba4319 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Sun, 8 Oct 2023 17:21:41 +0200
+Subject: [PATCH 21/35] Fix typo (Linux instead of linux) for the CI
+
+---
+ .kde-ci.yml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/.kde-ci.yml b/.kde-ci.yml
+index aa7debeca..6c29e146b 100644
+--- a/.kde-ci.yml
++++ b/.kde-ci.yml
+@@ -2,7 +2,7 @@
+ # SPDX-License-Identifier: CC0-1.0
+ 
+ Dependencies:
+-- 'on': ['linux/Qt6', 'FreeBSD/Qt6', 'Windows/Qt6', 'macOS/Qt6']
++- 'on': ['Linux/Qt6', 'FreeBSD/Qt6', 'Windows/Qt6', 'macOS/Qt6']
+   'require':
+     'frameworks/extra-cmake-modules': '@latest-kf6'
+     'frameworks/karchive': '@latest-kf6'
+@@ -26,7 +26,7 @@ Dependencies:
+     'frameworks/kitemviews': '@latest-kf6'
+     'frameworks/kstatusnotifieritem': '@latest-kf6'
+ 
+-- 'on': ['linux/Qt5', 'FreeBSD/Qt5', 'Windows/Qt5', 'macOS/Qt5']
++- 'on': ['Linux/Qt5', 'FreeBSD/Qt5', 'Windows/Qt5', 'macOS/Qt5']
+   'require':
+     'frameworks/extra-cmake-modules': '@stable'
+     'frameworks/karchive': '@stable'
+-- 
+GitLab
+
+
+From 53a165d90f9c79d7664cabc4b1b5201f0bb86271 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Mon, 9 Oct 2023 10:04:33 +0200
+Subject: [PATCH 22/35] Qt5/6 Buildability
+
+---
+ src/viewer/topichistoryview.cpp | 7 +++++--
+ src/viewer/topichistoryview.h   | 5 ++++-
+ src/viewer/trayicon.cpp         | 6 ++++++
+ 3 files changed, 15 insertions(+), 3 deletions(-)
+
+diff --git a/src/viewer/topichistoryview.cpp b/src/viewer/topichistoryview.cpp
+index 844fe5f8f..2911ca079 100644
+--- a/src/viewer/topichistoryview.cpp
++++ b/src/viewer/topichistoryview.cpp
+@@ -145,8 +145,11 @@ QList<QWidget*> TopicHistoryItemDelegate::createItemWidgets(const QModelIndex& i
+     return widgets;
+ }
+ 
+-void TopicHistoryItemDelegate::updateItemWidgets(const QList<QWidget*> &widgets, const QStyleOptionViewItem& option,
+-    const QPersistentModelIndex& index) const
++#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
++void TopicHistoryItemDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem& option, const QPersistentModelIndex& index) const
++#else
++void TopicHistoryItemDelegate::updateItemWidgets(const QList<QWidget *> &widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const
++#endif
+ {
+     if (widgets.isEmpty()) return;
+ 
+diff --git a/src/viewer/topichistoryview.h b/src/viewer/topichistoryview.h
+index 2b5ea6069..c05007cb7 100644
+--- a/src/viewer/topichistoryview.h
++++ b/src/viewer/topichistoryview.h
+@@ -79,8 +79,11 @@ class TopicHistoryItemDelegate : public KWidgetItemDelegate
+ 
+     protected:
+         QList<QWidget*> createItemWidgets (const QModelIndex& index) const override;
++#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
++        void updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem& option, const QPersistentModelIndex& index) const override;
++#else
+         void updateItemWidgets(const QList<QWidget *> &widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const override;
+-
++#endif
+     private:
+         TopicHistoryLabel* m_hiddenLabel;
+         bool m_shownBefore;
+diff --git a/src/viewer/trayicon.cpp b/src/viewer/trayicon.cpp
+index ecce96681..c71e17321 100644
+--- a/src/viewer/trayicon.cpp
++++ b/src/viewer/trayicon.cpp
+@@ -34,8 +34,14 @@ namespace Konversation
+ 
+     void TrayIcon::restoreWindow()
+     {
++#if QT_VERSION <QT_VERSION_CHECK(6,0,0)
++        if (associatedWidget()->isVisible())
++            return;
++#else
+         if (associatedWindow()->isVisible())
+             return;
++
++#endif
+         activate(QPoint());
+     }
+ 
+-- 
+GitLab
+
+
+From 801adb9b417ac80a9ae54e984613949da6ba8dd5 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Thu, 12 Oct 2023 09:50:37 +0200
+Subject: [PATCH 23/35] Removed KF5, the program is now KF6 only
+
+---
+ .gitlab-ci.yml                      |  7 ++--
+ .kde-ci.yml                         | 27 -------------
+ CMakeLists.txt                      | 51 +++++++++---------------
+ src/CMakeLists.txt                  | 62 ++++++++++++++---------------
+ src/application.cpp                 | 25 +-----------
+ src/application.h                   | 11 -----
+ src/bookmarkhandler.cpp             |  4 --
+ src/config/dcc_config.cpp           | 18 ---------
+ src/connectionmanager.cpp           |  6 ---
+ src/connectionmanager.h             |  6 ---
+ src/dcc/chat.cpp                    |  8 ----
+ src/dcc/transfer.cpp                |  8 ----
+ src/dcc/transferpanel.cpp           |  8 ----
+ src/identitydialog.cpp              |  4 --
+ src/irc/channellistpanel.cpp        | 12 ------
+ src/irc/irccharsets.cpp             |  9 -----
+ src/main.cpp                        |  6 ---
+ src/notificationhandler.cpp         | 32 ---------------
+ src/sound.cpp                       | 23 -----------
+ src/sound.h                         |  8 ----
+ src/urlcatcher.cpp                  |  4 --
+ src/viewer/channeloptionsdialog.cpp |  4 --
+ src/viewer/chatwindow.cpp           |  6 ---
+ src/viewer/irccontextmenus.cpp      | 12 ------
+ src/viewer/ircinput.cpp             | 12 ------
+ src/viewer/ircview.cpp              |  8 ----
+ src/viewer/logfilereader.cpp        |  3 --
+ src/viewer/topichistoryview.cpp     |  4 --
+ src/viewer/topichistoryview.h       |  5 +--
+ src/viewer/trayicon.cpp             |  6 ---
+ src/viewer/viewcontainer.cpp        | 10 +----
+ tests/CMakeLists.txt                |  4 +-
+ 32 files changed, 56 insertions(+), 357 deletions(-)
+
+diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
+index baa79937b..5516f295d 100644
+--- a/.gitlab-ci.yml
++++ b/.gitlab-ci.yml
+@@ -5,7 +5,6 @@ include:
+   - project: sysadmin/ci-utilities
+     file:
+       - /gitlab-templates/linux-qt6.yml
+-      - /gitlab-templates/linux.yml
+-      - /gitlab-templates/freebsd.yml
+-      - /gitlab-templates/windows.yml
+-      - /gitlab-templates/flatpak.yml
++      - /gitlab-templates/freebsd-qt6.yml
++      - /gitlab-templates/windows-qt6.yml
++      - /gitlab-templates/flatpak-qt6.yml
+diff --git a/.kde-ci.yml b/.kde-ci.yml
+index 6c29e146b..fd0909e3e 100644
+--- a/.kde-ci.yml
++++ b/.kde-ci.yml
+@@ -26,33 +26,6 @@ Dependencies:
+     'frameworks/kitemviews': '@latest-kf6'
+     'frameworks/kstatusnotifieritem': '@latest-kf6'
+ 
+-- 'on': ['Linux/Qt5', 'FreeBSD/Qt5', 'Windows/Qt5', 'macOS/Qt5']
+-  'require':
+-    'frameworks/extra-cmake-modules': '@stable'
+-    'frameworks/karchive': '@stable'
+-    'frameworks/kbookmarks': '@stable'
+-    'frameworks/kconfig': '@stable'
+-    'frameworks/kconfigwidgets': '@stable'
+-    'frameworks/kcoreaddons': '@stable'
+-    'frameworks/kcrash': '@stable'
+-    'frameworks/kdoctools': '@stable'
+-    'frameworks/ki18n': '@stable'
+-    'frameworks/kidletime': '@stable'
+-    'frameworks/knotifyconfig': '@stable'
+-    'frameworks/kio': '@stable'
+-    'frameworks/kparts': '@stable'
+-    'frameworks/kwallet': '@stable'
+-    'frameworks/kwidgetsaddons': '@stable'
+-    'frameworks/kdbusaddons': '@stable'
+-    'frameworks/knewstuff': '@stable'
+-    'frameworks/knotifications': '@stable'
+-    'frameworks/kwindowsystem': '@stable'
+-    'frameworks/kitemviews': '@stable'
+-
+ - 'on': ['Linux/Qt6', 'FreeBSD/Qt6']
+   'require':
+     'frameworks/kglobalaccel': '@latest-kf6'
+-
+-- 'on': ['Linux/Qt5', 'FreeBSD/Qt5']
+-  'require':
+-    'frameworks/kglobalaccel': '@stable'
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 371c36620..c38a170cc 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -7,13 +7,13 @@ set (RELEASE_SERVICE_VERSION_MICRO "85")
+ set (RELEASE_SERVICE_COMPACT_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}${RELEASE_SERVICE_VERSION_MINOR}${RELEASE_SERVICE_VERSION_MICRO}")
+ 
+ # Bump KONVERSATION_BASE_VERSION once new features are added
+-set(KONVERSATION_BASE_VERSION "1.9")
++set(KONVERSATION_BASE_VERSION "1.10")
+ set(KONVERSATION_VERSION "${KONVERSATION_BASE_VERSION}.${RELEASE_SERVICE_COMPACT_VERSION}")
+ 
+ project(konversation VERSION ${KONVERSATION_VERSION})
+ 
+-set(QT_MIN_VERSION "5.15.2")
+-set(KF5_MIN_VERSION "5.91.0")
++set(QT_MIN_VERSION "6.4.0")
++set(KF5_MIN_VERSION "5.240.0")
+ set(KDE_COMPILERSETTINGS_LEVEL "5.85")
+ 
+ find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
+@@ -32,67 +32,54 @@ include(ECMQtDeclareLoggingCategory)
+ include(CheckIncludeFile)
+ include(FeatureSummary)
+ 
+-find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED Core Multimedia Network Widgets)
+-if (QT_MAJOR_VERSION STREQUAL "6")
+-    find_package(Qt6Core5Compat ${QT_MIN_VERSION} CONFIG REQUIRED) # QTextCodec
+-    set(KF_MAJOR_VERSION "6")
+-else()
+-    set(KF_MAJOR_VERSION "5")
+-endif()
++find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED Core Multimedia Network Widgets)
++find_package(Qt6Core5Compat ${QT_MIN_VERSION} CONFIG REQUIRED) # QTextCodec
+ 
+-find_package(KF${KF_MAJOR_VERSION} ${KF5_DEP_VERSION} REQUIRED COMPONENTS
++find_package(KF6 REQUIRED COMPONENTS
+     Archive
+     Bookmarks
++    Codecs
+     Config
+     ConfigWidgets
+     CoreAddons
+     Crash
++    DBusAddons
+     DocTools
+     I18n
+     IdleTime
+-    NotifyConfig
++    ItemViews
+     KIO
+-    Parts
+-    Wallet
+-    WidgetsAddons
+-    DBusAddons
+     NewStuff
+     Notifications
+-    Codecs
++    NotifyConfig
++    Parts
++    StatusNotifierItem
+     TextWidgets
++    Wallet
++    WidgetsAddons
+     WindowSystem
+-    ItemViews
+ )
+ 
+-if (KF_MAJOR_VERSION STREQUAL "6")
+-    find_package(KF${KF_MAJOR_VERSION} ${KF5_DEP_VERSION} REQUIRED COMPONENTS  StatusNotifierItem)
+-endif()
+-
+ if(NOT WIN32)
+-    find_package(KF${KF_MAJOR_VERSION} REQUIRED GlobalAccel)
++    find_package(KF6 REQUIRED GlobalAccel)
+ endif()
+-set(HAVE_KGLOBALACCEL ${KF${KF_MAJOR_VERSION}GlobalAccel_FOUND})
++set(HAVE_KGLOBALACCEL ${KF6GlobalAccel_FOUND})
+ 
+ if (UNIX AND NOT APPLE)
+     set(HAVE_X11 TRUE)
+ endif()
+ 
+-find_package(Qca-qt${QT_MAJOR_VERSION} 2.2.0)
+-set_package_properties(Qca-qt${QT_MAJOR_VERSION} PROPERTIES DESCRIPTION "Support for encryption"
++find_package(Qca-qt6 2.2.0)
++set_package_properties(Qca-qt6 PROPERTIES DESCRIPTION "Support for encryption"
+                        URL "https://download.kde.org/stable/qca/"
+                        TYPE OPTIONAL)
+ check_include_file("stropts.h" HAVE_STROPTS_H)
+ 
+-set(HAVE_QCA2 ${Qca-qt${QT_MAJOR_VERSION}_FOUND})
++set(HAVE_QCA2 ${Qca-qt6_FOUND})
+ 
+ configure_file(config-konversation.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-konversation.h )
+ include_directories(${CMAKE_CURRENT_BINARY_DIR})
+ 
+-ecm_set_disabled_deprecation_versions(
+-    QT 5.15.2
+-    KF 5.100.0
+-)
+-
+ add_subdirectory(src)
+ add_subdirectory(data)
+ add_subdirectory(doc)
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index e8c6aae46..38ce18f21 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -282,7 +282,7 @@ ki18n_wrap_ui(konversation
+      dcc/whiteboardfontchooserui.ui
+ )
+ 
+-if (Qca-qt${QT_MAJOR_VERSION}_FOUND)
++if (Qca-qt6_FOUND)
+     target_sources(konversation PRIVATE
+         cipher.cpp)
+ endif ()
+@@ -328,42 +328,38 @@ target_link_libraries(konversation
+     Qt::Multimedia
+     Qt::Network
+     Qt::Widgets
+-    KF${KF_MAJOR_VERSION}::Archive
+-    KF${KF_MAJOR_VERSION}::Bookmarks
+-    KF${KF_MAJOR_VERSION}::ConfigWidgets
+-    KF${KF_MAJOR_VERSION}::Crash
+-    KF${KF_MAJOR_VERSION}::I18n
+-    KF${KF_MAJOR_VERSION}::IdleTime
+-    KF${KF_MAJOR_VERSION}::NotifyConfig
+-    KF${KF_MAJOR_VERSION}::KIOFileWidgets
+-    KF${KF_MAJOR_VERSION}::KIOWidgets
+-    KF${KF_MAJOR_VERSION}::Parts
+-    KF${KF_MAJOR_VERSION}::Wallet
+-    KF${KF_MAJOR_VERSION}::WidgetsAddons
+-    KF${KF_MAJOR_VERSION}::DBusAddons
+-    KF${KF_MAJOR_VERSION}::CoreAddons
+-    KF${KF_MAJOR_VERSION}::Notifications
+-    KF${KF_MAJOR_VERSION}::TextWidgets
+-    KF${KF_MAJOR_VERSION}::WindowSystem
+-    KF${KF_MAJOR_VERSION}::ItemViews
+-    KF${KF_MAJOR_VERSION}::Codecs
+-    KF${KF_MAJOR_VERSION}::NewStuffWidgets
+-)
++    Qt6::Core5Compat
+ 
+-if (QT_MAJOR_VERSION STREQUAL "6")
+-    target_link_libraries(konversation
+-        Qt6::Core5Compat
+-        KF${KF_MAJOR_VERSION}::StatusNotifierItem
+-        KF${KF_MAJOR_VERSION}::BookmarksWidgets
+-    )  # QTextCodec
+-endif()
++    KF6::Archive
++    KF6::Bookmarks
++    KF6::ConfigWidgets
++    KF6::Crash
++    KF6::I18n
++    KF6::IdleTime
++    KF6::NotifyConfig
++    KF6::KIOFileWidgets
++    KF6::KIOWidgets
++    KF6::Parts
++    KF6::Wallet
++    KF6::WidgetsAddons
++    KF6::DBusAddons
++    KF6::CoreAddons
++    KF6::Notifications
++    KF6::TextWidgets
++    KF6::WindowSystem
++    KF6::ItemViews
++    KF6::Codecs
++    KF6::NewStuffWidgets
++    KF6::StatusNotifierItem
++    KF6::BookmarksWidgets
++)
+ 
+-if(TARGET KF${KF_MAJOR_VERSION}::GlobalAccel)
+-    target_link_libraries(konversation KF${KF_MAJOR_VERSION}::GlobalAccel)
++if(TARGET KF6::GlobalAccel)
++    target_link_libraries(konversation KF6::GlobalAccel)
+ endif()
+ 
+-if (Qca-qt${QT_MAJOR_VERSION}_FOUND)
+-    target_link_libraries(konversation qca-qt${QT_MAJOR_VERSION})
++if (Qca-qt6_FOUND)
++    target_link_libraries(konversation qca-qt6)
+ endif ()
+ if (WIN32)
+   target_link_libraries(konversation ws2_32) # for symbols from winsock2.h: ntohl, etc.
+diff --git a/src/application.cpp b/src/application.cpp
+index c5e53b565..bb3afc257 100644
+--- a/src/application.cpp
++++ b/src/application.cpp
+@@ -31,11 +31,7 @@
+ #include "konversation_state.h"
+ 
+ #include <kio_version.h>
+-#if KIO_VERSION >= QT_VERSION_CHECK(5, 98, 0)
+ #include <KIO/JobUiDelegateFactory>
+-#else
+-#include <KIO/JobUiDelegate>
+-#endif
+ #include <KIO/OpenUrlJob>
+ #include <KConfig>
+ #include <KShell>
+@@ -54,9 +50,7 @@
+ #include <QTextCursor>
+ #include <QDesktopServices>
+ #include <QCommandLineParser>
+-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+ #include <QNetworkInformation>
+-#endif
+ 
+ using namespace Konversation;
+ 
+@@ -105,9 +99,6 @@ Application::~Application()
+     delete m_osd;
+     m_osd = nullptr;
+     closeWallet();
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-    delete m_networkConfigurationManager;
+-#endif
+     if (m_restartScheduled) implementRestart();
+ }
+ 
+@@ -158,18 +149,8 @@ void Application::createMainWindow(AutoConnectMode autoConnectMode, WindowRestor
+     connect(m_connectionManager, &ConnectionManager::identityOffline, m_awayManager, &AwayManager::identityOffline);
+     connect(m_connectionManager, &ConnectionManager::connectionChangedAwayState, m_awayManager, &AwayManager::updateGlobalAwayAction);
+ 
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-// Silence deprecation warnings as long as there is no known substitute for QNetworkConfigurationManager
+-QT_WARNING_PUSH
+-QT_WARNING_DISABLE_CLANG("-Wdeprecated-declarations")
+-QT_WARNING_DISABLE_GCC("-Wdeprecated-declarations")
+-    m_networkConfigurationManager = new QNetworkConfigurationManager();
+-    connect(m_networkConfigurationManager, &QNetworkConfigurationManager::onlineStateChanged, m_connectionManager, &ConnectionManager::onOnlineStateChanged);
+-QT_WARNING_POP
+-#else
+     QNetworkInformation::loadBackendByFeatures(QNetworkInformation::Feature::Reachability);
+     connect(QNetworkInformation::instance(), &QNetworkInformation::reachabilityChanged, m_connectionManager, &ConnectionManager::onOnlineStateChanged);
+-#endif
+ 
+     m_scriptLauncher = new ScriptLauncher(this);
+ 
+@@ -1212,14 +1193,10 @@ void Application::openUrl(const QString& url)
+ #else
+         auto *job = new KIO::OpenUrlJob(QUrl(url));
+         job->setFollowRedirections(false);
+-#if KIO_VERSION >= QT_VERSION_CHECK(5, 98, 0)
+         job->setUiDelegate(KIO::createDefaultJobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, Application::instance()->getMainWindow()));
+-#else
+-        job->setUiDelegate(new KIO::JobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, Application::instance()->getMainWindow()));
+-#endif
+         job->start();
+-#endif
+         return;
++#endif
+     }
+ 
+     // Use custom browser
+diff --git a/src/application.h b/src/application.h
+index 1aa7e29b9..3d96dd1d4 100644
+--- a/src/application.h
++++ b/src/application.h
+@@ -20,9 +20,6 @@
+ #include "ircqueue.h"
+ 
+ #include <QApplication>
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-#include <QNetworkConfigurationManager>
+-#endif
+ 
+ class ConnectionManager;
+ class AwayManager;
+@@ -204,14 +201,6 @@ class Application : public QApplication
+         Konversation::LauncherEntryHandler* m_launcherEntryHandler;
+ 
+         KWallet::Wallet* m_wallet;
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-// Silence deprecation warnings as long as there is no known substitute for QNetworkConfigurationManager
+-QT_WARNING_PUSH
+-QT_WARNING_DISABLE_CLANG("-Wdeprecated-declarations")
+-QT_WARNING_DISABLE_GCC("-Wdeprecated-declarations")
+-        QNetworkConfigurationManager* m_networkConfigurationManager = nullptr;
+-QT_WARNING_POP
+-#endif
+         QCommandLineParser *m_commandLineParser;
+         QStringList m_restartArguments;
+ 
+diff --git a/src/bookmarkhandler.cpp b/src/bookmarkhandler.cpp
+index 17b030f0f..3ef1bc213 100644
+--- a/src/bookmarkhandler.cpp
++++ b/src/bookmarkhandler.cpp
+@@ -31,11 +31,7 @@ m_mainWindow(mainWindow)
+     if ( m_file.isEmpty() )
+         m_file = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + QStringLiteral("konversation/bookmarks.xml") ;
+ 
+-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+     KBookmarkManager *manager = KBookmarkManager::managerForFile( m_file);
+-#else
+-    KBookmarkManager *manager = KBookmarkManager::managerForFile( m_file, QStringLiteral("konversation"));
+-#endif
+ 
+     manager->setUpdate( true );
+ 
+diff --git a/src/config/dcc_config.cpp b/src/config/dcc_config.cpp
+index 7ccc73121..f66b3d84d 100644
+--- a/src/config/dcc_config.cpp
++++ b/src/config/dcc_config.cpp
+@@ -10,12 +10,7 @@
+ #include "application.h"
+ #include "transfermanager.h"
+ 
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-#include <QNetworkConfiguration>
+-#include <QNetworkConfigurationManager>
+-#else
+ #include <QNetworkInterface>
+-#endif
+ 
+ using namespace Konversation;
+ 
+@@ -34,23 +29,10 @@ DCC_Config::DCC_Config(QWidget *parent, const char* name) :
+     kcfg_DccBufferSize->setSuffix(ki18np(" byte", " bytes"));
+     kcfg_DccSendTimeout->setSuffix(ki18np(" second", " seconds"));
+ 
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-// Silence deprecation warnings as long as there is no known substitute for QNetworkConfigurationManager
+-QT_WARNING_PUSH
+-QT_WARNING_DISABLE_CLANG("-Wdeprecated-declarations")
+-QT_WARNING_DISABLE_GCC("-Wdeprecated-declarations")
+-    QNetworkConfigurationManager manager;
+-    const auto configurations = manager.allConfigurations();
+-    for (const QNetworkConfiguration& conf : configurations) {
+-        kcfg_DccIPv4FallbackIface->addItem(conf.name());
+-    }
+-QT_WARNING_POP
+-#else
+     const QList<QNetworkInterface> interfaces = QNetworkInterface::allInterfaces();
+     for (const QNetworkInterface& interface : interfaces) {
+         kcfg_DccIPv4FallbackIface->addItem(interface.humanReadableName());
+     }
+-#endif
+ 
+ #ifdef Q_OS_WIN
+     //This option does nothing under windows, it just confuses the user
+diff --git a/src/connectionmanager.cpp b/src/connectionmanager.cpp
+index 4f3f3a94c..a9d5f4dfd 100644
+--- a/src/connectionmanager.cpp
++++ b/src/connectionmanager.cpp
+@@ -674,15 +674,9 @@ void ConnectionManager::reconnectInvoluntary()
+     }
+ }
+ 
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-void ConnectionManager::onOnlineStateChanged(bool isOnline)
+-{
+-    if (isOnline) {
+-#else
+ void ConnectionManager::onOnlineStateChanged(QNetworkInformation::Reachability reachability)
+ {
+     if (reachability == QNetworkInformation::Reachability::Online) {
+-#endif
+         reconnectInvoluntary();
+     } else {
+ 
+diff --git a/src/connectionmanager.h b/src/connectionmanager.h
+index deb93a05d..45e8de992 100644
+--- a/src/connectionmanager.h
++++ b/src/connectionmanager.h
+@@ -12,9 +12,7 @@
+ 
+ #include <QObject>
+ #include <QSet>
+-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+ #include <QNetworkInformation>
+-#endif
+ 
+ class ConnectionSettings;
+ 
+@@ -82,11 +80,7 @@ class ConnectionManager : public QObject
+         void handleConnectionStateChange(Server* server, Konversation::ConnectionState state);
+ 
+         void handleReconnect(Server* server);
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-        void onOnlineStateChanged(bool isOnline);
+-#else
+         void onOnlineStateChanged(QNetworkInformation::Reachability reachability);
+-#endif
+ 
+     private:
+         void enlistConnection(int connectionId, Server* server);
+diff --git a/src/dcc/chat.cpp b/src/dcc/chat.cpp
+index 72c29faa0..4301c4a57 100644
+--- a/src/dcc/chat.cpp
++++ b/src/dcc/chat.cpp
+@@ -144,22 +144,14 @@ namespace Konversation
+             {
+                 if (!Preferences::self()->dccChatAutoAccept())
+                 {
+-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+                     int ret = KMessageBox::questionTwoActions(nullptr,
+-#else
+-                    int ret = KMessageBox::questionYesNo(nullptr,
+-#endif
+                                                          i18nc("%1=partnerNick, %2=Servername, %3=dcc extension as chat or wboard", "%1 (on %2) offers to DCC %3 with you", m_partnerNick, server->getServerName(), localizedExtensionString()),
+                                                          i18nc("%1=dcc extension as Chat or Whiteboard, %2=partnerNick", "DCC %1 offer from %2", localizedExtensionString(), m_partnerNick),
+                                                          KGuiItem(i18n("Accept"), QStringLiteral("dialog-ok")),
+                                                          KGuiItem(i18n("Reject"), QStringLiteral("dialog-cancel"))
+                                                          );
+ 
+-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+                     if (ret == KMessageBox::SecondaryAction)
+-#else
+-                    if (ret == KMessageBox::No)
+-#endif
+                     {
+                         setStatus(Aborted, i18nc("%1=dcc extension like Chat or Whiteboard",
+                                                  "You rejected the DCC %1 offer.",
+diff --git a/src/dcc/transfer.cpp b/src/dcc/transfer.cpp
+index 234eeac03..39ceecf19 100644
+--- a/src/dcc/transfer.cpp
++++ b/src/dcc/transfer.cpp
+@@ -18,11 +18,7 @@
+ #include <config-konversation.h>
+ 
+ #include <kio_version.h>
+-#if KIO_VERSION >= QT_VERSION_CHECK(5, 98, 0)
+ #include <KIO/JobUiDelegateFactory>
+-#else
+-#include <KIO/JobUiDelegate>
+-#endif
+ 
+ #include <KIO/OpenUrlJob>
+ 
+@@ -108,11 +104,7 @@ namespace Konversation
+             if (getType() == Transfer::Send || getStatus() == Transfer::Done)
+             {
+                 auto *job = new KIO::OpenUrlJob(getFileURL());
+-#if KIO_VERSION >= QT_VERSION_CHECK(5, 98, 0)
+                 job->setUiDelegate(KIO::createDefaultJobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, nullptr));
+-#else
+-                job->setUiDelegate(new KIO::JobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, nullptr));
+-#endif
+                 job->setRunExecutables(false);
+                 job->start();
+             }
+diff --git a/src/dcc/transferpanel.cpp b/src/dcc/transferpanel.cpp
+index 26c26669e..777a3bde2 100644
+--- a/src/dcc/transferpanel.cpp
++++ b/src/dcc/transferpanel.cpp
+@@ -419,11 +419,7 @@ namespace Konversation
+             const int selectedRows = m_transferView->selectedRows().count();
+             if (selectedRows > 3)
+             {
+-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+                 int ret = KMessageBox::questionTwoActions(this,
+-#else
+-                int ret = KMessageBox::questionYesNo(this,
+-#endif
+                                                      i18np("You have selected %1 file to execute, are you sure you want to continue?",
+                                                            "You have selected %1 files to execute, are you sure you want to continue?",
+                                                            selectedRows),
+@@ -433,11 +429,7 @@ namespace Konversation
+                                                      KStandardGuiItem::cancel()
+                                                      );
+ 
+-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+                 if (ret == KMessageBox::SecondaryAction)
+-#else
+-                if (ret == KMessageBox::No)
+-#endif
+                 {
+                     return;
+                 }
+diff --git a/src/identitydialog.cpp b/src/identitydialog.cpp
+index 09f277ebf..dd62b86cb 100644
+--- a/src/identitydialog.cpp
++++ b/src/identitydialog.cpp
+@@ -104,11 +104,7 @@ namespace Konversation
+ 
+         m_authPasswordEdit->setRevealPasswordAvailable(KAuthorized::authorize(QStringLiteral("lineedit_reveal_password")));
+ 
+-#if KIO_VERSION >= QT_VERSION_CHECK(5, 108, 0)
+         m_pemClientCertFile->setNameFilter(QStringLiteral("*.pem"));
+-#else
+-        m_pemClientCertFile->setFilter(QStringLiteral("*.pem"));
+-#endif
+ 
+         // set values for the widgets
+         updateIdentity(0);
+diff --git a/src/irc/channellistpanel.cpp b/src/irc/channellistpanel.cpp
+index 30839dc38..23221aab4 100644
+--- a/src/irc/channellistpanel.cpp
++++ b/src/irc/channellistpanel.cpp
+@@ -99,11 +99,7 @@ bool ChannelListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &s
+     QModelIndex index1 = sourceModel()->index(sourceRow, 1, sourceParent);
+     QModelIndex index2 = sourceModel()->index(sourceRow, 2, sourceParent);
+ 
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-    const QRegExp filter = filterRegExp();
+-#else
+     const QRegularExpression filter = filterRegularExpression();
+-#endif
+     return (((m_filterChannel && sourceModel()->data(index0).toString().contains(filter))
+         || (m_filterTopic && sourceModel()->data(index2).toString().contains(filter))
+         || (!m_filterChannel && !m_filterTopic))
+@@ -277,19 +273,11 @@ void ChannelListPanel::updateFilter()
+ 
+     bool change = false;
+ 
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-    if (m_proxyModel->filterRegExp().pattern() != text || regexChanged)
+-#else
+     if (m_proxyModel->filterRegularExpression().pattern() != text || regexChanged)
+-#endif
+     {
+         change = true;
+         if(m_regexState)
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-            m_proxyModel->setFilterRegExp(text);
+-#else
+             m_proxyModel->setFilterRegularExpression(text);
+-#endif
+         else
+             m_proxyModel->setFilterWildcard(text);
+     }
+diff --git a/src/irc/irccharsets.cpp b/src/irc/irccharsets.cpp
+index 6ff1f6659..5d9b6bb90 100644
+--- a/src/irc/irccharsets.cpp
++++ b/src/irc/irccharsets.cpp
+@@ -108,14 +108,6 @@ namespace Konversation
+ 
+     QTextCodec* IRCCharsets::codecForName(const QString& shortName) const
+     {
+-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+-        // Qt 5 / KCharsets seem to no longer support jis7 in common builds, but we have
+-        // to assume existing user config.
+-        if (shortName == QLatin1String("jis7"))
+-            return KCharsets::charsets()->codecForName(QStringLiteral("ISO-2022-JP"));
+-        else
+-            return KCharsets::charsets()->codecForName(shortName);
+-#else
+         // KF6 removed `KCodecs::Codec::codecForName`. assuming that this
+         // exists on Qt. Someone with better understanding of codecs, what 
+         // should I do here?
+@@ -125,7 +117,6 @@ namespace Konversation
+         // return ???
+ 
+         return QTextCodec::codecForName(shortName.toLocal8Bit());
+-#endif
+     }
+ 
+     IRCCharsets::IRCCharsets()
+diff --git a/src/main.cpp b/src/main.cpp
+index ad77e0473..c95787af0 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -12,9 +12,6 @@
+ 
+ #include <KAboutData>
+ #include <KCrash>
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-#include <Kdelibs4ConfigMigrator>
+-#endif
+ #include <KDBusService>
+ 
+ #include <chrono>
+@@ -22,9 +19,6 @@
+ 
+ int main(int argc, char* argv[])
+ {
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-    QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+-#endif
+     Application app(argc, argv);
+ 
+     KLocalizedString::setApplicationDomain("konversation");
+diff --git a/src/notificationhandler.cpp b/src/notificationhandler.cpp
+index efc8339ba..e51584a5a 100644
+--- a/src/notificationhandler.cpp
++++ b/src/notificationhandler.cpp
+@@ -300,11 +300,7 @@ namespace Konversation
+             auto *notification = new KNotification(QStringLiteral("dcctransfer_done"));
+             notification->setText(i18nc("%1 - filename","%1 File Transfer is complete", file));
+             notification->setActions(QStringList(i18nc("Opens the file from the finished dcc transfer", "Open")));
+-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+             notification->setWindow(m_mainWindow->windowHandle());
+-#else
+-            notification->setWidget(m_mainWindow);
+-#endif
+             connect(notification, QOverload<unsigned int>::of(&KNotification::activated), transfer, &DCC::Transfer::runFile);
+             notification->sendEvent();
+         }
+@@ -320,11 +316,7 @@ namespace Konversation
+ 
+         auto *ev=new KNotification(QStringLiteral("mode"));
+         ev->setText(i18n("%1 changed modes in %2: %3", nick, subject, change));
+-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+         ev->setWindow(m_mainWindow->windowHandle());
+-#else
+-        ev->setWidget(m_mainWindow);
+-#endif
+         ev->sendEvent();
+     }
+ 
+@@ -340,11 +332,7 @@ namespace Konversation
+ 
+         auto *ev=new KNotification(QStringLiteral("query"));
+         ev->setText(i18n("%1 has started a conversation (query) with you.",fromNick));
+-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+         ev->setWindow(m_mainWindow->windowHandle());
+-#else
+-        ev->setWidget(m_mainWindow);
+-#endif
+         ev->sendEvent();
+     }
+ 
+@@ -358,11 +346,7 @@ namespace Konversation
+ 
+         auto *ev=new KNotification(QStringLiteral("notify"));
+         ev->setText(i18n("%1 is online (%2).", nick, chatWin->getServer()->getServerName()));
+-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+         ev->setWindow(m_mainWindow->windowHandle());
+-#else
+-        ev->setWidget(m_mainWindow);
+-#endif
+         ev->sendEvent();
+ 
+     }
+@@ -377,11 +361,7 @@ namespace Konversation
+ 
+         auto *ev=new KNotification(QStringLiteral("notify"));
+         ev->setText(i18n("%1 went offline (%2).", nick, chatWin->getServer()->getServerName()));
+-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+         ev->setWindow(m_mainWindow->windowHandle());
+-#else
+-        ev->setWidget(m_mainWindow);
+-#endif
+         ev->sendEvent();
+ 
+     }
+@@ -396,11 +376,7 @@ namespace Konversation
+ 
+         auto *ev=new KNotification(QStringLiteral("kick"));
+         ev->setText(i18n("You are kicked by %1 from %2", nick, channel));
+-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+         ev->setWindow(m_mainWindow->windowHandle());
+-#else
+-        ev->setWidget(m_mainWindow);
+-#endif
+         ev->sendEvent();
+ 
+     }
+@@ -415,11 +391,7 @@ namespace Konversation
+ 
+         auto *ev=new KNotification(QStringLiteral("dccChat"));
+         ev->setText(i18n("%1 started a DCC chat with you", nick));
+-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+         ev->setWindow(m_mainWindow->windowHandle());
+-#else
+-        ev->setWidget(m_mainWindow);
+-#endif
+         ev->sendEvent();
+ 
+     }
+@@ -469,11 +441,7 @@ namespace Konversation
+ 
+         auto *ev=new KNotification(QStringLiteral("connectionFailure"));
+         ev->setText(i18n("Failed to connect to %1", server));
+-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+         ev->setWindow(m_mainWindow->windowHandle());
+-#else
+-        ev->setWidget(m_mainWindow);
+-#endif
+         ev->sendEvent();
+ 
+     }
+diff --git a/src/sound.cpp b/src/sound.cpp
+index 67b525f85..c8659b384 100644
+--- a/src/sound.cpp
++++ b/src/sound.cpp
+@@ -6,31 +6,20 @@
+ 
+ #include "sound.h"
+ 
+-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+ #include <QAudioOutput>
+-#endif
+ 
+ namespace Konversation
+ {
+     Sound::Sound(QObject* parent, const QString& name)
+         : QObject(parent)
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-        , m_mediaObject(new QMediaPlayer(this, QMediaPlayer::LowLatency))
+-#else
+         , m_mediaObject(new QMediaPlayer(this))
+         , m_audioOutput(new QAudioOutput(this))
+-#endif
+         , m_played(false)
+     {
+         setObjectName(name);
+ 
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-        m_mediaObject->setAudioRole(QAudio::NotificationRole);
+-        connect(m_mediaObject, &QMediaPlayer::stateChanged, this, &Sound::tryPlayNext);
+-#else
+         m_mediaObject->setAudioOutput(m_audioOutput);
+         connect(m_mediaObject, &QMediaPlayer::playbackStateChanged, this, &Sound::tryPlayNext);
+-#endif
+     }
+ 
+     Sound::~Sound()
+@@ -38,11 +27,7 @@ namespace Konversation
+ 
+     void Sound::play(const QUrl &url)
+     {
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-        if (m_played && (m_mediaObject->state() == QMediaPlayer::PlayingState || !m_playQueue.isEmpty())) {
+-#else
+         if (m_played && (m_mediaObject->playbackState() == QMediaPlayer::PlayingState || !m_playQueue.isEmpty())) {
+-#endif
+             if (m_currentUrl != url) {
+                 m_playQueue.enqueue(url);
+             }
+@@ -54,11 +39,7 @@ namespace Konversation
+         playSound(url);
+     }
+ 
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-    void Sound::tryPlayNext(QMediaPlayer::State newState)
+-#else
+     void Sound::tryPlayNext(QMediaPlayer::PlaybackState newState)
+-#endif
+     {
+         if (newState == QMediaPlayer::StoppedState && !m_playQueue.isEmpty()) {
+             playSound(m_playQueue.dequeue());
+@@ -68,11 +49,7 @@ namespace Konversation
+     void Sound::playSound(const QUrl &url)
+     {
+         m_currentUrl = url;
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-        m_mediaObject->setMedia(url);
+-#else
+         m_mediaObject->setSource(url);
+-#endif
+         m_mediaObject->play();
+     }
+ }
+diff --git a/src/sound.h b/src/sound.h
+index d0d1de9db..1e25580ab 100644
+--- a/src/sound.h
++++ b/src/sound.h
+@@ -12,9 +12,7 @@
+ #include <QQueue>
+ #include <QUrl>
+ 
+-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+ class QAudioOutput;
+-#endif
+ 
+ namespace Konversation
+ {
+@@ -34,20 +32,14 @@ namespace Konversation
+             void play(const QUrl &url);
+ 
+         private Q_SLOTS:
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-            void tryPlayNext(QMediaPlayer::State newState);
+-#else
+             void tryPlayNext(QMediaPlayer::PlaybackState newState);
+-#endif
+ 
+         private:
+             void playSound(const QUrl &url);
+ 
+         private:
+             QMediaPlayer *const m_mediaObject;
+-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+             QAudioOutput *const m_audioOutput;
+-#endif
+ 
+             QQueue<QUrl> m_playQueue;
+             QUrl m_currentUrl;
+diff --git a/src/urlcatcher.cpp b/src/urlcatcher.cpp
+index 7f343c1e5..c5a1dde25 100644
+--- a/src/urlcatcher.cpp
++++ b/src/urlcatcher.cpp
+@@ -278,11 +278,7 @@ void UrlCatcher::bookmarkSelectedUrls()
+     const QModelIndexList selectedIndexes = m_urlTree->selectionModel()->selectedRows(1);
+ 
+     //TODO: Use the user-configured browser for this.
+-#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+     KBookmarkManager* manager = KBookmarkManager::managerForFile(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/konqueror/bookmarks.xml"));
+-#else
+-    KBookmarkManager* manager = KBookmarkManager::userBookmarksManager();
+-#endif
+     auto* dialog = new KBookmarkDialog(manager, this);
+ 
+     if (selectedIndexes.count() > 1)
+diff --git a/src/viewer/channeloptionsdialog.cpp b/src/viewer/channeloptionsdialog.cpp
+index 1cb6de17e..742ad05f9 100644
+--- a/src/viewer/channeloptionsdialog.cpp
++++ b/src/viewer/channeloptionsdialog.cpp
+@@ -366,11 +366,7 @@ namespace Konversation
+                     break;
+                 case 'l':
+                     m_ui.userLimitChBox->setChecked(true);
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-                    m_ui.userLimitEdit->setValue(currentMode.midRef(1).toInt());
+-#else
+                     m_ui.userLimitEdit->setValue(QStringView(currentMode).mid(1).toInt());
+-#endif
+                     break;
+                 case 'i':
+                     m_ui.inviteModeChBox->setChecked(true);
+diff --git a/src/viewer/chatwindow.cpp b/src/viewer/chatwindow.cpp
+index dea46b019..6636221a4 100644
+--- a/src/viewer/chatwindow.cpp
++++ b/src/viewer/chatwindow.cpp
+@@ -392,9 +392,6 @@ void ChatWindow::setLogfileName(const QString& name)
+                 qint64 filePosition;
+ 
+                 QTextStream backlog(&logfile);
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-                backlog.setCodec(QTextCodec::codecForName("UTF-8"));
+-#endif
+                 backlog.setAutoDetectUnicode(true);
+ 
+                 QStringList firstColumns;
+@@ -505,9 +502,6 @@ void ChatWindow::logText(const QString& text)
+             // wrap the file into a stream
+             QTextStream logStream(&logfile);
+             // write log in utf8 to help i18n
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-            logStream.setCodec(QTextCodec::codecForName("UTF-8"));
+-#endif
+             logStream.setAutoDetectUnicode(true);
+ 
+             if(firstLog)
+diff --git a/src/viewer/irccontextmenus.cpp b/src/viewer/irccontextmenus.cpp
+index 999b83224..6f6096532 100644
+--- a/src/viewer/irccontextmenus.cpp
++++ b/src/viewer/irccontextmenus.cpp
+@@ -20,11 +20,7 @@
+ #include <KIO/CopyJob>
+ #include <KIO/ApplicationLauncherJob>
+ #include <kio_version.h>
+-#if KIO_VERSION >= QT_VERSION_CHECK(5, 98, 0)
+ #include <KIO/JobUiDelegateFactory>
+-#else
+-#include <KIO/JobUiDelegate>
+-#endif
+ #include <QMenu>
+ #include <KMessageBox>
+ #include <KStandardAction>
+@@ -742,11 +738,7 @@ void IrcContextMenus::processLinkAction(int  actionId, const QString& link)
+         }
+         case LinkBookmark:
+         {
+-#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+             KBookmarkManager* manager = KBookmarkManager::managerForFile(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/konqueror/bookmarks.xml"));
+-#else
+-            KBookmarkManager* manager = KBookmarkManager::userBookmarksManager();
+-#endif
+ 
+             auto* dialog = new KBookmarkDialog(manager, Application::instance()->getMainWindow());
+ 
+@@ -760,11 +752,7 @@ void IrcContextMenus::processLinkAction(int  actionId, const QString& link)
+         {
+             // ApplicationLauncherJob ctor without args will invoke the open-with dialog
+             auto *job = new KIO::ApplicationLauncherJob();
+-#if KIO_VERSION >= QT_VERSION_CHECK(5, 98, 0)
+             job->setUiDelegate(KIO::createDefaultJobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, Application::instance()->getMainWindow()));
+-#else
+-            job->setUiDelegate(new KIO::JobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, Application::instance()->getMainWindow()));
+-#endif
+             job->setUrls({ QUrl(link) });
+             job->start();
+ 
+diff --git a/src/viewer/ircinput.cpp b/src/viewer/ircinput.cpp
+index e0e01e0c3..aa25545cb 100644
+--- a/src/viewer/ircinput.cpp
++++ b/src/viewer/ircinput.cpp
+@@ -474,11 +474,7 @@ bool IRCInput::checkPaste(QString& text)
+     QString bytesString = i18np("1 byte", "%1 bytes", text.length());
+     QString linesString = i18np("1 line", "%1 lines", lines+1);
+ 
+-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+     const int reply = KMessageBox::warningTwoActionsCancel(
+-#else
+-    const int reply = KMessageBox::warningYesNoCancel(
+-#endif
+         this,
+         i18nc(
+         "%1 is, for instance, '200 bytes'.  %2 is, for instance, '7 lines'.  Both are localised (see the two previous messages).",
+@@ -492,11 +488,7 @@ bool IRCInput::checkPaste(QString& text)
+         QStringLiteral("LargePaste"),
+         KMessageBox::Dangerous);
+ 
+-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+     if (reply == KMessageBox::SecondaryAction)
+-#else
+-    if (reply == KMessageBox::No)
+-#endif
+     {
+         QString ret(PasteEditor::edit(this,text));
+         if (ret.isEmpty())
+@@ -505,11 +497,7 @@ bool IRCInput::checkPaste(QString& text)
+         return true;
+     }
+ 
+-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+     return (reply==KMessageBox::PrimaryAction);
+-#else
+-    return (reply==KMessageBox::Yes);
+-#endif
+ }
+ 
+ void IRCInput::showCompletionList(const QStringList& nicks)
+diff --git a/src/viewer/ircview.cpp b/src/viewer/ircview.cpp
+index 0286cba7a..63a5ce0ae 100644
+--- a/src/viewer/ircview.cpp
++++ b/src/viewer/ircview.cpp
+@@ -239,11 +239,7 @@ public:
+     QStringList formats() const override;
+ 
+ protected:
+-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+-    QVariant retrieveData(const QString &mimeType, QVariant::Type type) const override;
+-#else
+     QVariant retrieveData(const QString &mimeType, QMetaType type) const override;
+-#endif
+ 
+ private:
+     mutable QTextDocumentFragment fragment;
+@@ -256,11 +252,7 @@ QStringList IrcViewMimeData::formats() const
+     else
+         return QMimeData::formats();
+ }
+-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+-QVariant IrcViewMimeData::retrieveData(const QString &mimeType, QVariant::Type type) const
+-#else
+ QVariant IrcViewMimeData::retrieveData(const QString &mimeType, QMetaType type) const
+-#endif
+ {
+     if (!fragment.isEmpty())
+     {
+diff --git a/src/viewer/logfilereader.cpp b/src/viewer/logfilereader.cpp
+index 135491867..7a5c8636e 100644
+--- a/src/viewer/logfilereader.cpp
++++ b/src/viewer/logfilereader.cpp
+@@ -105,9 +105,6 @@ void LogfileReader::updateView()
+     if(file.open(QIODevice::ReadOnly))
+     {
+         QTextStream stream(&file);
+-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+-        stream.setCodec(QTextCodec::codecForName("UTF-8"));
+-#endif
+         stream.setAutoDetectUnicode(true);
+ 
+         // Set file pointer to <pos> bytes from the end
+diff --git a/src/viewer/topichistoryview.cpp b/src/viewer/topichistoryview.cpp
+index 2911ca079..6f5ba6c65 100644
+--- a/src/viewer/topichistoryview.cpp
++++ b/src/viewer/topichistoryview.cpp
+@@ -145,11 +145,7 @@ QList<QWidget*> TopicHistoryItemDelegate::createItemWidgets(const QModelIndex& i
+     return widgets;
+ }
+ 
+-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+-void TopicHistoryItemDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem& option, const QPersistentModelIndex& index) const
+-#else
+ void TopicHistoryItemDelegate::updateItemWidgets(const QList<QWidget *> &widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const
+-#endif
+ {
+     if (widgets.isEmpty()) return;
+ 
+diff --git a/src/viewer/topichistoryview.h b/src/viewer/topichistoryview.h
+index c05007cb7..2b5ea6069 100644
+--- a/src/viewer/topichistoryview.h
++++ b/src/viewer/topichistoryview.h
+@@ -79,11 +79,8 @@ class TopicHistoryItemDelegate : public KWidgetItemDelegate
+ 
+     protected:
+         QList<QWidget*> createItemWidgets (const QModelIndex& index) const override;
+-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+-        void updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem& option, const QPersistentModelIndex& index) const override;
+-#else
+         void updateItemWidgets(const QList<QWidget *> &widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const override;
+-#endif
++
+     private:
+         TopicHistoryLabel* m_hiddenLabel;
+         bool m_shownBefore;
+diff --git a/src/viewer/trayicon.cpp b/src/viewer/trayicon.cpp
+index c71e17321..ecce96681 100644
+--- a/src/viewer/trayicon.cpp
++++ b/src/viewer/trayicon.cpp
+@@ -34,14 +34,8 @@ namespace Konversation
+ 
+     void TrayIcon::restoreWindow()
+     {
+-#if QT_VERSION <QT_VERSION_CHECK(6,0,0)
+-        if (associatedWidget()->isVisible())
+-            return;
+-#else
+         if (associatedWindow()->isVisible())
+             return;
+-
+-#endif
+         activate(QPoint());
+     }
+ 
+diff --git a/src/viewer/viewcontainer.cpp b/src/viewer/viewcontainer.cpp
+index fb06fc366..5c2aa0ce6 100644
+--- a/src/viewer/viewcontainer.cpp
++++ b/src/viewer/viewcontainer.cpp
+@@ -39,11 +39,7 @@
+ #include <KMessageBox>
+ #include <KIO/OpenUrlJob>
+ #include <kio_version.h>
+-#if KIO_VERSION >= QT_VERSION_CHECK(5, 98, 0)
+ #include <KIO/JobUiDelegateFactory>
+-#else
+-#include <KIO/JobUiDelegate>
+-#endif
+ #include <QUrl>
+ #include <KXMLGUIFactory>
+ #include <KActionCollection>
+@@ -101,7 +97,7 @@ void TabWidget::mouseReleaseEvent(QMouseEvent* event)
+     if(event->button() == Qt::MiddleButton)
+     {
+         event->accept();
+-        QPoint pos = event->globalPos();
++        QPoint pos = event->globalPosition().toPoint();
+         int tabIndex = tabBar()->tabAt(tabBar()->mapFromGlobal(pos));
+ 
+         if(tabIndex != -1)
+@@ -2594,11 +2590,7 @@ void ViewContainer::openLogFile(const QString& caption, const QString& file)
+     if(Preferences::self()->useExternalLogViewer())
+     {
+         auto *job = new KIO::OpenUrlJob(QUrl::fromLocalFile(file), QStringLiteral("text/plain"));
+-#if KIO_VERSION >= QT_VERSION_CHECK(5, 98, 0)
+         job->setUiDelegate(KIO::createDefaultJobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, m_window));
+-#else
+-        job->setUiDelegate(new KIO::JobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, m_window));
+-#endif
+         job->start();
+         return;
+     }
+diff --git a/tests/CMakeLists.txt b/tests/CMakeLists.txt
+index 863e01c21..f97d7972c 100644
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-find_package(Qt${QT_MAJOR_VERSION}Test ${QT_MIN_VERSION} CONFIG REQUIRED)
++find_package(Qt6Test ${QT_MIN_VERSION} CONFIG REQUIRED)
+ 
+ include(ECMAddTests)
+ 
+@@ -7,6 +7,6 @@ ecm_add_test(
+     ../src/common.cpp
+     config/preferences.cpp
+     TEST_NAME testcommon
+-    LINK_LIBRARIES KF${KF_MAJOR_VERSION}::I18n Qt::Test
++    LINK_LIBRARIES KF6::I18n Qt::Test
+ )
+ target_include_directories(testcommon PRIVATE ${CMAKE_SOURCE_DIR}/src)
+-- 
+GitLab
+
+
+From 655bf8eefe319fcda92a57f195e385f643b2bbdb Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Thu, 12 Oct 2023 12:31:29 +0200
+Subject: [PATCH 24/35] ifdef KStartupInfo from out of X11
+
+---
+ src/application.cpp | 7 ++++++-
+ src/mainwindow.cpp  | 4 +++-
+ 2 files changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/src/application.cpp b/src/application.cpp
+index bb3afc257..5e0335ee9 100644
+--- a/src/application.cpp
++++ b/src/application.cpp
+@@ -39,9 +39,12 @@
+ #include <KWallet>
+ #include <KTextEdit>
+ #include <KSharedConfig>
+-#include <KStartupInfo>
+ #include <KWindowSystem>
+ 
++#if HAVE_X11
++#include <KStartupInfo>
++#endif
++
+ #include <QRegularExpression>
+ #include <QDBusConnection>
+ #include <QNetworkProxy>
+@@ -203,7 +206,9 @@ void Application::createMainWindow(AutoConnectMode autoConnectMode, WindowRestor
+     else if (Preferences::self()->showTrayIcon() && Preferences::self()->hideToTrayOnStartup())
+     {
+         mainWindow->systemTrayIcon()->hideWindow();
++#if HAVE_X11
+         KStartupInfo::appStarted();
++#endif
+     }
+     else
+         mainWindow->show();
+diff --git a/src/mainwindow.cpp b/src/mainwindow.cpp
+index c5a7d2259..b34eaf845 100644
+--- a/src/mainwindow.cpp
++++ b/src/mainwindow.cpp
+@@ -45,7 +45,6 @@
+ #include <KShortcutsDialog>
+ #include <KStandardShortcut>
+ #include <KNotifyConfigWidget>
+-#include <KStartupInfo>
+ 
+ #include "config-konversation.h"
+ 
+@@ -54,6 +53,7 @@
+ #endif
+ 
+ #if HAVE_X11
++#include <KStartupInfo>
+ #include <KX11Extras>
+ #endif
+ 
+@@ -688,9 +688,11 @@ bool MainWindow::restore()
+ 
+     // TODO: also save & restore any TrayIcon state, needs API in KStatusNotifierItem
+ 
++#if HAVE_X11
+     // in case no window is shown & registered, the window manager needs to be told directly the start is done
+     if (!show)
+         KStartupInfo::appStarted();
++#endif
+ 
+     return KXmlGuiWindow::restore(1, show);
+ }
+-- 
+GitLab
+
+
+From 8ec75a963dcbda91652061a39bc7a731336d2aae Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Mon, 16 Oct 2023 08:48:31 +0200
+Subject: [PATCH 25/35] Try to fix windows build
+
+---
+ src/dcc/transferrecv.cpp | 4 ++--
+ src/dcc/transfersend.cpp | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/dcc/transferrecv.cpp b/src/dcc/transferrecv.cpp
+index d55f309e2..f50992bbe 100644
+--- a/src/dcc/transferrecv.cpp
++++ b/src/dcc/transferrecv.cpp
+@@ -389,8 +389,8 @@ namespace Konversation
+ 
+             //Now we create the directories
+ 
+-            for (const QUrl& dir : qAsConst(dirList)) {
+-                KIO::StatJob* statJob = KIO::statDetails(dir, KIO::StatJob::SourceSide, KIO::StatNoDetails);
++            for (const QUrl& dir : std::as_const(dirList)) {
++                KIO::StatJob* statJob = KIO::stat(dir, KIO::StatJob::SourceSide, KIO::StatNoDetails);
+                 statJob->exec();
+                 if (statJob->error())
+                 {
+diff --git a/src/dcc/transfersend.cpp b/src/dcc/transfersend.cpp
+index 0891a6186..b4d958af8 100644
+--- a/src/dcc/transfersend.cpp
++++ b/src/dcc/transfersend.cpp
+@@ -178,7 +178,7 @@ namespace Konversation
+             qCDebug(KONVERSATION_LOG) << "Fast DCC send: " << m_fastSend;
+ 
+             //Check the file exists
+-            KIO::StatJob* statJob = KIO::statDetails(m_fileURL, KIO::StatJob::SourceSide, KIO::StatNoDetails);
++            KIO::StatJob* statJob = KIO::stat(m_fileURL, KIO::StatJob::SourceSide, KIO::StatNoDetails);
+             statJob->exec();
+             if (statJob->error())
+             {
+-- 
+GitLab
+
+
+From 7171cab1c882fd602b5ec8bde551c5cf5eb678db Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Fri, 20 Oct 2023 09:45:07 +0200
+Subject: [PATCH 26/35] use std::as_const
+
+---
+ src/application.cpp                 |  4 ++--
+ src/config/configdialog.cpp         |  2 +-
+ src/config/highlight_config.cpp     |  2 +-
+ src/config/preferences.cpp          |  6 +++---
+ src/config/settingsdialog.cpp       |  8 ++++----
+ src/config/theme_config.cpp         |  2 +-
+ src/connectionmanager.cpp           | 16 +++++++--------
+ src/dcc/transfermanager.cpp         | 14 +++++++-------
+ src/dcc/transferpanel.cpp           | 20 +++++++++----------
+ src/dcc/whiteboardtoolbar.cpp       |  2 +-
+ src/irc/channel.cpp                 | 22 ++++++++++-----------
+ src/irc/inputfilter.cpp             |  2 +-
+ src/irc/outputfilter.cpp            |  2 +-
+ src/irc/query.cpp                   |  2 +-
+ src/irc/server.cpp                  | 30 ++++++++++++++---------------
+ src/irc/servergroupdialog.cpp       |  4 ++--
+ src/irc/servergroupsettings.cpp     |  2 +-
+ src/irc/serverison.cpp              |  2 +-
+ src/irc/serverlistdialog.cpp        |  2 +-
+ src/irc/serverlistview.cpp          |  2 +-
+ src/upnp/upnprouter.cpp             |  4 ++--
+ src/urlcatcher.cpp                  |  6 +++---
+ src/viewer/channeloptionsdialog.cpp |  4 ++--
+ src/viewer/images.cpp               |  4 ++--
+ src/viewer/irccontextmenus.cpp      | 28 +++++++++++++--------------
+ src/viewer/viewcontainer.cpp        |  6 +++---
+ 26 files changed, 99 insertions(+), 99 deletions(-)
+
+diff --git a/src/application.cpp b/src/application.cpp
+index 5e0335ee9..6235cc2d3 100644
+--- a/src/application.cpp
++++ b/src/application.cpp
+@@ -233,7 +233,7 @@ void Application::createMainWindow(AutoConnectMode autoConnectMode, WindowRestor
+             return left->sortIndex() < right->sortIndex();
+         });
+ 
+-        for (const auto& server : qAsConst(serversToAutoconnect)) {
++        for (const auto& server : std::as_const(serversToAutoconnect)) {
+             m_connectionManager->connectTo(Konversation::CreateNewConnection, server->id());
+         }
+     }
+@@ -793,7 +793,7 @@ void Application::saveOptions(bool updateGUI)
+     QStringList channelHistory;
+     QHash<int, int> sgKeys;
+ 
+-    for (const auto& serverGroup : qAsConst(sortedServerGroupMap)) {
++    for (const auto& serverGroup : std::as_const(sortedServerGroupMap)) {
+         const Konversation::ServerList serverList = serverGroup->serverList();
+         servers.clear();
+         servers.reserve(serverList.size());
+diff --git a/src/config/configdialog.cpp b/src/config/configdialog.cpp
+index 2f6ddf565..115b0c7ef 100644
+--- a/src/config/configdialog.cpp
++++ b/src/config/configdialog.cpp
+@@ -325,7 +325,7 @@ void ConfigDialog::showEvent(QShowEvent *e)
+     if (!d->shown) {
+         updateWidgets();
+         d->manager->updateWidgets();
+-        for (KConfigDialogManager* manager : qAsConst(d->managerForPage)) {
++        for (KConfigDialogManager* manager : std::as_const(d->managerForPage)) {
+             manager->updateWidgets();
+         }
+ 
+diff --git a/src/config/highlight_config.cpp b/src/config/highlight_config.cpp
+index 2d7e014c8..8635ac9df 100644
+--- a/src/config/highlight_config.cpp
++++ b/src/config/highlight_config.cpp
+@@ -40,7 +40,7 @@ Highlight_Config::Highlight_Config(QWidget* parent, const QString& name)
+     {
+         QDir dir;
+         dir.setFilter( QDir::Files | QDir::Readable );
+-        for (const QString& soundDir : qAsConst(soundDirs)) {
++        for (const QString& soundDir : std::as_const(soundDirs)) {
+             dir.setPath(soundDir);
+             if ( dir.isReadable() && dir.count() > 2 )
+             {
+diff --git a/src/config/preferences.cpp b/src/config/preferences.cpp
+index 78eeab7ad..5eebbdfc5 100644
+--- a/src/config/preferences.cpp
++++ b/src/config/preferences.cpp
+@@ -247,7 +247,7 @@ void Preferences::addIgnore(const QString &newIgnore)
+ 
+ bool Preferences::removeIgnore(const QString &oldIgnore)
+ {
+-    for (Ignore *ignore : qAsConst(self()->mIgnoreList)) {
++    for (Ignore *ignore : std::as_const(self()->mIgnoreList)) {
+         if (ignore->getName().toLower() == oldIgnore.toLower())
+         {
+             self()->mIgnoreList.removeOne(ignore);
+@@ -261,7 +261,7 @@ bool Preferences::removeIgnore(const QString &oldIgnore)
+ 
+ bool Preferences::isIgnored(const QString &nickname)
+ {
+-    for (Ignore *ignore : qAsConst(self()->mIgnoreList)) {
++    for (Ignore *ignore : std::as_const(self()->mIgnoreList)) {
+         if (ignore->getName().section(QLatin1Char('!'),0,0).toLower()==nickname.toLower())
+         {
+             return true;
+@@ -398,7 +398,7 @@ QStringList Preferences::defaultAliasList()
+ 
+     QStringList aliasList;
+ 
+-    for (const QString& script : qAsConst(scripts)) {
++    for (const QString& script : std::as_const(scripts)) {
+         aliasList.append(QStringLiteral("%1 /exec %1").arg(script));
+ 
+         // FIXME: Historically, defaultAliasList() is primarily used to dynamically
+diff --git a/src/config/settingsdialog.cpp b/src/config/settingsdialog.cpp
+index 83fa02643..ffb084562 100644
+--- a/src/config/settingsdialog.cpp
++++ b/src/config/settingsdialog.cpp
+@@ -194,7 +194,7 @@ void KonviSettingsDialog::modifiedSlot()
+   // something or went back to the old settings
+ // qCDebug(KONVERSATION_LOG) << __FUNCTION__;
+   m_modified = false;
+-  for (KonviSettingsPage *page : qAsConst(m_pages)) {
++  for (KonviSettingsPage *page : std::as_const(m_pages)) {
+     if (page->hasChanged())
+     {
+       m_modified = true;
+@@ -211,7 +211,7 @@ KonviSettingsDialog::~KonviSettingsDialog()
+ 
+ void KonviSettingsDialog::updateSettings()
+ {
+-  for (KonviSettingsPage *page : qAsConst(m_pages)) {
++  for (KonviSettingsPage *page : std::as_const(m_pages)) {
+     // this is for the non KConfigXT parts to update the UI (like quick buttons)
+     page->saveSettings();
+   }
+@@ -221,7 +221,7 @@ void KonviSettingsDialog::updateSettings()
+ 
+ void KonviSettingsDialog::updateWidgets()
+ {
+-  for (KonviSettingsPage *page : qAsConst(m_pages)) {
++  for (KonviSettingsPage *page : std::as_const(m_pages)) {
+     page->loadSettings();
+   }
+   m_modified = false;
+@@ -229,7 +229,7 @@ void KonviSettingsDialog::updateWidgets()
+ 
+ void KonviSettingsDialog::updateWidgetsDefault()
+ {
+-  for (KonviSettingsPage *page : qAsConst(m_pages)) {
++  for (KonviSettingsPage *page : std::as_const(m_pages)) {
+     page->restorePageToDefaults();
+   }
+   m_modified = true;
+diff --git a/src/config/theme_config.cpp b/src/config/theme_config.cpp
+index b6441b0da..f063a3d0b 100644
+--- a/src/config/theme_config.cpp
++++ b/src/config/theme_config.cpp
+@@ -90,7 +90,7 @@ void Theme_Config::loadSettings()
+         // initialize index counter
+         int i = 0;
+         // iterate through all found theme directories
+-        for (const QString& dir : qAsConst(m_dirs)) {
++        for (const QString& dir : std::as_const(m_dirs)) {
+             KDesktopFile themeRC(dir);
+             // get the name and comment from the theme
+             themeName = themeRC.readName();
+diff --git a/src/connectionmanager.cpp b/src/connectionmanager.cpp
+index a9d5f4dfd..1310c211a 100644
+--- a/src/connectionmanager.cpp
++++ b/src/connectionmanager.cpp
+@@ -278,14 +278,14 @@ void ConnectionManager::handleReconnect(Server* server)
+ 
+ void ConnectionManager::quitServers()
+ {
+-    for (Server* server : qAsConst(m_connectionList)) {
++    for (Server* server : std::as_const(m_connectionList)) {
+         server->quitServer();
+     }
+ }
+ 
+ void ConnectionManager::reconnectServers()
+ {
+-    for (Server* server : qAsConst(m_connectionList)) {
++    for (Server* server : std::as_const(m_connectionList)) {
+         server->reconnectServer();
+     }
+ }
+@@ -481,7 +481,7 @@ bool ConnectionManager::reuseExistingConnection(ConnectionSettings& settings, bo
+     Application* konvApp = Application::instance();
+     MainWindow* mainWindow = konvApp->getMainWindow();
+ 
+-    for (Server* server : qAsConst(m_connectionList)) {
++    for (Server* server : std::as_const(m_connectionList)) {
+         if (server->getServerGroup() && settings.serverGroup()
+             && server->getServerGroup() == settings.serverGroup())
+         {
+@@ -494,7 +494,7 @@ bool ConnectionManager::reuseExistingConnection(ConnectionSettings& settings, bo
+ 
+     if (!dupe)
+     {
+-        for (Server* server : qAsConst(m_connectionList)) {
++        for (Server* server : std::as_const(m_connectionList)) {
+             if (server->getConnectionSettings().server() == settings.server()) {
+                 dupe = server;
+                 dupeType = SameServer;
+@@ -617,7 +617,7 @@ QList<Server*> ConnectionManager::getServerList() const
+     QList<Server*> serverList;
+ 
+     serverList.reserve(m_connectionList.size());
+-    for (Server* server : qAsConst(m_connectionList)) {
++    for (Server* server : std::as_const(m_connectionList)) {
+         serverList.append(server);
+     }
+ 
+@@ -647,7 +647,7 @@ Server* ConnectionManager::getServerByName(const QString& name, NameMatchFlags f
+         }
+     }
+ 
+-    for (Server* server : qAsConst(m_connectionList)) {
++    for (Server* server : std::as_const(m_connectionList)) {
+         if (server->getDisplayName() == name || server->getServerName() == name) {
+             return server;
+         }
+@@ -660,7 +660,7 @@ void ConnectionManager::involuntaryQuitServers()
+ {
+     m_overrideAutoReconnect = true;
+ 
+-    for (Server* server : qAsConst(m_connectionList)) {
++    for (Server* server : std::as_const(m_connectionList)) {
+         server->involuntaryQuit();
+     }
+ }
+@@ -669,7 +669,7 @@ void ConnectionManager::reconnectInvoluntary()
+ {
+     m_overrideAutoReconnect = false;
+ 
+-    for (Server* server : qAsConst(m_connectionList)) {
++    for (Server* server : std::as_const(m_connectionList)) {
+         server->reconnectInvoluntary();
+     }
+ }
+diff --git a/src/dcc/transfermanager.cpp b/src/dcc/transfermanager.cpp
+index ea369a954..d8e6d4552 100644
+--- a/src/dcc/transfermanager.cpp
++++ b/src/dcc/transfermanager.cpp
+@@ -126,7 +126,7 @@ namespace Konversation
+             TransferSend* transfer = nullptr;
+ 
+             // find applicable one
+-            for (TransferSend* it : qAsConst(m_sendItems)) {
++            for (TransferSend* it : std::as_const(m_sendItems)) {
+                 if ( ( it->getStatus() == Transfer::Queued || it->getStatus() == Transfer::WaitingRemote ) &&
+                     it->getConnectionId() == connectionId &&
+                     it->getPartnerNick() == partnerNick &&
+@@ -149,7 +149,7 @@ namespace Konversation
+             Chat* chat = nullptr;
+ 
+             // find applicable one
+-            for (Chat* it : qAsConst(m_chatItems)) {
++            for (Chat* it : std::as_const(m_chatItems)) {
+                 if (it->status() == Chat::WaitingRemote &&
+                     it->connectionId() == connectionId &&
+                     it->partnerNick() == partnerNick)
+@@ -170,7 +170,7 @@ namespace Konversation
+             TransferRecv* transfer = nullptr;
+ 
+             // find applicable one
+-            for (TransferRecv* it : qAsConst(m_recvItems)) {
++            for (TransferRecv* it : std::as_const(m_recvItems)) {
+                 if ( ( it->getStatus() == Transfer::Queued || it->getStatus() == Transfer::WaitingRemote ) &&
+                     it->getConnectionId() == connectionId &&
+                     it->getPartnerNick() == partnerNick &&
+@@ -198,7 +198,7 @@ namespace Konversation
+             TransferSend* transfer = nullptr;
+ 
+             // find applicable one
+-            for (TransferSend* it : qAsConst(m_sendItems)) {
++            for (TransferSend* it : std::as_const(m_sendItems)) {
+                 if ( ( it->getStatus() == Transfer::Queued || it->getStatus() == Transfer::WaitingRemote ) &&
+                     it->getConnectionId() == connectionId &&
+                     it->getPartnerNick() == partnerNick &&
+@@ -227,7 +227,7 @@ namespace Konversation
+             TransferSend* transfer = nullptr;
+ 
+             // find applicable one
+-            for (TransferSend* it : qAsConst(m_sendItems)) {
++            for (TransferSend* it : std::as_const(m_sendItems)) {
+                 if (
+                     it->getStatus() == Transfer::WaitingRemote &&
+                     it->getConnectionId() == connectionId &&
+@@ -255,7 +255,7 @@ namespace Konversation
+             Chat* chat = nullptr;
+ 
+             // find applicable one
+-            for (Chat* it :qAsConst(m_chatItems)) {
++            for (Chat* it :std::as_const(m_chatItems)) {
+                 if (
+                     it->status() == Chat::WaitingRemote &&
+                     it->connectionId() == connectionId &&
+@@ -361,7 +361,7 @@ namespace Konversation
+             // update the default incoming directory for already existed DCCRECV items
+             if ( Preferences::self()->dccPath() != m_defaultIncomingFolder )
+             {
+-                for (TransferRecv* it : qAsConst(m_recvItems)) {
++                for (TransferRecv* it : std::as_const(m_recvItems)) {
+                     if ( it->getStatus() == Transfer::Queued &&
+                          it->getFileURL().adjusted(QUrl::RemoveFilename) == m_defaultIncomingFolder.adjusted(QUrl::RemoveFilename))
+                     {
+diff --git a/src/dcc/transferpanel.cpp b/src/dcc/transferpanel.cpp
+index 777a3bde2..128b24584 100644
+--- a/src/dcc/transferpanel.cpp
++++ b/src/dcc/transferpanel.cpp
+@@ -261,7 +261,7 @@ namespace Konversation
+                 }
+             }
+ 
+-            for (Transfer* transfer : qAsConst(transferList)) {
++            for (Transfer* transfer : std::as_const(transferList)) {
+                 TransferSend *newTransfer = Application::instance()->getDccTransferManager()->newUpload();
+ 
+                 newTransfer->setConnectionId(transfer->getConnectionId());
+@@ -296,7 +296,7 @@ namespace Konversation
+             QModelIndexList indexes = m_transferView->selectedRows();
+             QModelIndexList indexesToRemove;
+ 
+-            for (const QModelIndex &index : qAsConst(indexes)) {
++            for (const QModelIndex &index : std::as_const(indexes)) {
+                 if (index.data(TransferListModel::TransferStatus).toInt() >= Transfer::Done)
+                 {
+                     indexesToRemove.append(index);
+@@ -308,7 +308,7 @@ namespace Konversation
+             std::sort(indexesToRemove.begin(), indexesToRemove.end(), rowGreaterThan);
+ 
+             //remove from last to first item, to keep a valid row
+-            for (const QModelIndex &index : qAsConst(indexesToRemove)) {
++            for (const QModelIndex &index : std::as_const(indexesToRemove)) {
+                 m_transferView->model()->removeRow(index.row(), QModelIndex());
+                 //needed, otherwise valid rows "can be treated" as invalid,
+                 //proxymodel does not keep up with changes
+@@ -316,7 +316,7 @@ namespace Konversation
+             }
+ 
+             //remove all gone items
+-            for (const QModelIndex &index : qAsConst(indexesToRemove)) {
++            for (const QModelIndex &index : std::as_const(indexesToRemove)) {
+                 indexes.removeOne(index);
+             }
+ 
+@@ -324,9 +324,9 @@ namespace Konversation
+             QList<int> toSelectList;
+             toSelectList.reserve(indexes.size());
+             //select everything that got not removed
+-            for (const QModelIndex &index : qAsConst(indexes)) {
++            for (const QModelIndex &index : std::as_const(indexes)) {
+                 int offset = 0;
+-                for (const QModelIndex &removedIndex : qAsConst(indexesToRemove)) {
++                for (const QModelIndex &removedIndex : std::as_const(indexesToRemove)) {
+                     if (removedIndex.row() < index.row())
+                     {
+                         ++offset;
+@@ -374,7 +374,7 @@ namespace Konversation
+             std::sort(indexesToRemove.begin(), indexesToRemove.end(), rowGreaterThan);
+ 
+             //remove from last to first item, to keep a valid row
+-            for (const QModelIndex &index : qAsConst(indexesToRemove)) {
++            for (const QModelIndex &index : std::as_const(indexesToRemove)) {
+                 m_transferView->model()->removeRow(index.row(), QModelIndex());
+                 //needed, otherwise valid rows "can be treated" as invalid,
+                 //proxymodel does not keep up with changes
+@@ -382,7 +382,7 @@ namespace Konversation
+             }
+ 
+             //remove all gone items
+-            for (const QModelIndex &index : qAsConst(indexesToRemove)) {
++            for (const QModelIndex &index : std::as_const(indexesToRemove)) {
+                 selectedIndexes.removeOne(index);
+             }
+ 
+@@ -390,9 +390,9 @@ namespace Konversation
+             QList<int> toSelectList;
+             toSelectList.reserve(selectedIndexes.size());
+             //select everything that got not removed
+-            for (const QModelIndex &index : qAsConst(selectedIndexes)) {
++            for (const QModelIndex &index : std::as_const(selectedIndexes)) {
+                 int offset = 0;
+-                for (const QModelIndex &removedIndex : qAsConst(indexesToRemove)) {
++                for (const QModelIndex &removedIndex : std::as_const(indexesToRemove)) {
+                     if (removedIndex.row() < index.row())
+                     {
+                         ++offset;
+diff --git a/src/dcc/whiteboardtoolbar.cpp b/src/dcc/whiteboardtoolbar.cpp
+index 50ee9552c..c19d3ea63 100644
+--- a/src/dcc/whiteboardtoolbar.cpp
++++ b/src/dcc/whiteboardtoolbar.cpp
+@@ -349,7 +349,7 @@ namespace Konversation
+ 
+         void WhiteBoardToolBar::unCheckOtherButtons(QPushButton* button)
+         {
+-            for (QPushButton* pushButton : qAsConst(m_toggleButtonHash)) {
++            for (QPushButton* pushButton : std::as_const(m_toggleButtonHash)) {
+                 if (pushButton != button && pushButton->isChecked())
+                 {
+                     pushButton->setChecked(false);
+diff --git a/src/irc/channel.cpp b/src/irc/channel.cpp
+index b7e6a43c3..f86332fc8 100644
+--- a/src/irc/channel.cpp
++++ b/src/irc/channel.cpp
+@@ -577,7 +577,7 @@ void Channel::completeNick()
+                     uint timeStamp = 0;
+                     int listPosition = 0;
+ 
+-                    for (Nick* nick : qAsConst(nicknameList)) {
++                    for (Nick* nick : std::as_const(nicknameList)) {
+                         if(nick->getChannelNick()->getNickname().startsWith(pattern, Preferences::self()->nickCompletionCaseSensitive() ? Qt::CaseSensitive : Qt::CaseInsensitive) &&
+                           (nick->getChannelNick()->timeStamp() > timeStamp))
+                         {
+@@ -709,7 +709,7 @@ void Channel::setAutoJoin(bool autojoin)
+             }
+ 
+             if (!channelMap.isEmpty()) {
+-                for (Channel* channel : qAsConst(channelMap)) {
++                for (Channel* channel : std::as_const(channelMap)) {
+                     if (channel->autoJoin())
+                     {
+                         before = channel->channelSettings();
+@@ -821,7 +821,7 @@ void Channel::sendText(const QString& sendLine)
+         else if (!result.outputList.isEmpty()) {
+             if (result.type == Konversation::Message)
+             {
+-                for (const QString& out : qAsConst(result.outputList)) {
++                for (const QString& out : std::as_const(result.outputList)) {
+                     append(m_server->getNickname(), out);
+                 }
+             }
+@@ -854,7 +854,7 @@ QStringList Channel::getSelectedNickList() const
+ {
+     QStringList selectedNicks;
+ 
+-    for (Nick* nick : qAsConst(nicknameList)) {
++    for (Nick* nick : std::as_const(nicknameList)) {
+         if (nick->isSelected())
+             selectedNicks << nick->getChannelNick()->getNickname();
+     }
+@@ -930,7 +930,7 @@ void Channel::addNickname(ChannelNickPtr channelnick)
+ 
+     Nick* nick=nullptr;
+ 
+-    for (Nick* lookNick : qAsConst(nicknameList)) {
++    for (Nick* lookNick : std::as_const(nicknameList)) {
+         if(lookNick->getChannelNick()->loweredNickname() == nickname)
+         {
+             nick = lookNick;
+@@ -1828,7 +1828,7 @@ void Channel::clearModeList()
+     QString k;
+ 
+     // Keep channel password in the backing store, for rejoins.
+-    for (const QString& mode : qAsConst(m_modeList)) {
++    for (const QString& mode : std::as_const(m_modeList)) {
+         if (mode[0] == QLatin1Char('k'))
+             k = mode;
+     }
+@@ -2226,7 +2226,7 @@ void Channel::autoUserhost()
+ 
+         QString nickString;
+ 
+-        for (Nick* nick : qAsConst(nicknameList)) {
++        for (Nick* nick : std::as_const(nicknameList)) {
+             if(nick->getChannelNick()->getHostmask().isEmpty())
+             {
+                 if(limit--) nickString = nickString + nick->getChannelNick()->getNickname() + QLatin1Char(' ');
+@@ -2365,7 +2365,7 @@ void Channel::updateAutoWho()
+ 
+ void Channel::fadeActivity()
+ {
+-    for (Nick *nick : qAsConst(nicknameList)) {
++    for (Nick *nick : std::as_const(nicknameList)) {
+         nick->getChannelNick()->lessActive();
+     }
+ }
+@@ -2751,7 +2751,7 @@ Konversation::Cipher* Channel::getCipher() const
+ 
+ void Channel::updateNickInfos()
+ {
+-    for (Nick* nick : qAsConst(nicknameList)) {
++    for (Nick* nick : std::as_const(nicknameList)) {
+         if(nick->getChannelNick()->getNickInfo()->isChanged())
+         {
+             nick->refresh();
+@@ -2764,7 +2764,7 @@ void Channel::updateChannelNicks(const QString& channel)
+     if(channel != name.toLower())
+         return;
+ 
+-    for (Nick* nick : qAsConst(nicknameList)) {
++    for (Nick* nick : std::as_const(nicknameList)) {
+         if(nick->getChannelNick()->isChanged())
+         {
+             nick->refresh();
+@@ -2831,7 +2831,7 @@ QString NickList::completeNick(const QString& pattern, bool& complete, QStringLi
+     std::sort(foundNicks.begin(), foundNicks.end(), nickTimestampLessThan);
+ 
+     found.reserve(found.size() + foundNicks.size());
+-    for (Nick *nick : qAsConst(foundNicks)) {
++    for (Nick *nick : std::as_const(foundNicks)) {
+         found.append(nick->getChannelNick()->getNickname());
+     }
+ 
+diff --git a/src/irc/inputfilter.cpp b/src/irc/inputfilter.cpp
+index 9fa6464ca..2d0a48b80 100644
+--- a/src/irc/inputfilter.cpp
++++ b/src/irc/inputfilter.cpp
+@@ -1952,7 +1952,7 @@ void InputFilter::parseNumeric(const QString &prefix, int command, QStringList &
+                 channelList.sort();
+ 
+                 // split up the list in channels where they are operator / user / voice
+-                for (const QString& lookChannel : qAsConst(channelList)) {
++                for (const QString& lookChannel : std::as_const(channelList)) {
+                     if (lookChannel.startsWith(QLatin1Char('*')) || lookChannel.startsWith(QLatin1Char('&')))
+                     {
+                         adminChannels.append(lookChannel.mid(1));
+diff --git a/src/irc/outputfilter.cpp b/src/irc/outputfilter.cpp
+index 67deff62f..6eaa90f4e 100644
+--- a/src/irc/outputfilter.cpp
++++ b/src/irc/outputfilter.cpp
+@@ -1528,7 +1528,7 @@ namespace Konversation
+             // were there enough parameters?
+             if (parameterList.count() >= 1)
+             {
+-                for (QString parameter : qAsConst(parameterList)) {
++                for (QString parameter : std::as_const(parameterList)) {
+                     if (!parameter.contains(QLatin1Char('!')))
+                         parameter += QLatin1String("!*");
+ 
+diff --git a/src/irc/query.cpp b/src/irc/query.cpp
+index f7e2c0c31..cba9ee356 100644
+--- a/src/irc/query.cpp
++++ b/src/irc/query.cpp
+@@ -244,7 +244,7 @@ void Query::sendText(const QString& sendLine)
+         else if (!result.outputList.isEmpty()) {
+             if (result.type == Konversation::Message)
+             {
+-                for (const QString& out : qAsConst(result.outputList)) {
++                for (const QString& out : std::as_const(result.outputList)) {
+                     appendQuery(m_server->getNickname(), out);
+                 }
+             }
+diff --git a/src/irc/server.cpp b/src/irc/server.cpp
+index 63e88c4e5..c9bb08e15 100644
+--- a/src/irc/server.cpp
++++ b/src/irc/server.cpp
+@@ -180,7 +180,7 @@ Server::~Server()
+         Konversation::ChannelList channelList;
+ 
+         channelList.reserve(m_channelList.size());
+-        for (Channel* channel : qAsConst(m_channelList)) {
++        for (Channel* channel : std::as_const(m_channelList)) {
+             channelList << channel->channelSettings();
+         }
+ 
+@@ -833,7 +833,7 @@ void Server::capDel(const QString &unavailableCaps)
+ {
+     const QStringList capsList = unavailableCaps.split(QLatin1Char(' '), Qt::SkipEmptyParts);
+ 
+-    for (const QString &capString : qAsConst(capsList))
++    for (const QString &capString : std::as_const(capsList))
+     {
+         if (m_capabilityNames.contains(capString))
+             m_capabilities &= ~(m_capabilityNames.value(capString));
+@@ -1197,7 +1197,7 @@ void Server::notifyResponse(const QString& nicksOnline)
+     QString lcPrevISON = QLatin1Char(' ') + (m_prevISONList.join(QLatin1Char(' '))) + QLatin1Char(' ');
+ 
+     //Are any nicks gone offline
+-    for (const QString& nick : qAsConst(m_prevISONList)) {
++    for (const QString& nick : std::as_const(m_prevISONList)) {
+         if (!lcActual.contains(QLatin1Char(' ') + nick + QLatin1Char(' '), Qt::CaseInsensitive)) {
+             setNickOffline(nick);
+             nicksOnlineChanged = true;
+@@ -1276,7 +1276,7 @@ void Server::autoCommandsAndChannels()
+ 
+     if (getAutoJoin())
+     {
+-        for (const QString& command : qAsConst(m_autoJoinCommands)) {
++        for (const QString& command : std::as_const(m_autoJoinCommands)) {
+             queue(command);
+         }
+     }
+@@ -2995,7 +2995,7 @@ Query* Server::getQueryByName(const QString& name) const
+     QString wanted = name.toLower();
+ 
+     // Traverse through list to find the query with "name"
+-    for (Query* lookQuery : qAsConst(m_queryList)) {
++    for (Query* lookQuery : std::as_const(m_queryList)) {
+         if(lookQuery->getName().toLower()==wanted) return lookQuery;
+     }
+     // No query by that name found? Must be a new query request. Return 0
+@@ -3501,7 +3501,7 @@ void Server::nickWasKickedFromChannel(const QString &channelName, const QString
+ 
+ void Server::removeNickFromServer(const QString &nickname,const QString &reason, const QHash<QString, QString> &messageTags)
+ {
+-    for (Channel* channel : qAsConst(m_channelList)) {
++    for (Channel* channel : std::as_const(m_channelList)) {
+         channel->flushNickQueue();
+         // Check if nick is in this channel or not.
+         if(channel->getNickByName(nickname))
+@@ -3541,7 +3541,7 @@ void Server::renameNick(const QString &nickname, const QString &newNick, const Q
+         //The rest of the code below allows the channels to echo to the user to tell them that the nick has changed.
+ 
+         // Rename the nick in every channel they are in
+-        for (Channel* channel : qAsConst(m_channelList)) {
++        for (Channel* channel : std::as_const(m_channelList)) {
+             channel->flushNickQueue();
+ 
+             // All we do is notify that the nick has been renamed.. we haven't actually renamed it yet
+@@ -3801,7 +3801,7 @@ const QString& inputLineText
+ void Server::sendToAllChannels(const QString &text)
+ {
+     // Send a message to all channels we are in
+-    for (Channel* channel : qAsConst(m_channelList)) {
++    for (Channel* channel : std::as_const(m_channelList)) {
+         channel->sendText(text);
+     }
+ }
+@@ -3909,7 +3909,7 @@ void Server::updateAutoJoin(Konversation::ChannelList channels)
+     if (!channels.isEmpty())
+     {
+         tmpList.reserve(channels.size());
+-        for (const ChannelSettings& cs : qAsConst(channels)) {
++        for (const ChannelSettings& cs : std::as_const(channels)) {
+             tmpList << cs;
+         }
+     }
+@@ -3918,7 +3918,7 @@ void Server::updateAutoJoin(Konversation::ChannelList channels)
+     else
+     {
+         tmpList.reserve(m_channelList.size());
+-        for (Channel* channel : qAsConst(m_channelList)) {
++        for (Channel* channel : std::as_const(m_channelList)) {
+             tmpList << channel->channelSettings();
+         }
+     }
+@@ -4028,12 +4028,12 @@ void Server::executeMultiServerCommand(const QString& command, const QString& pa
+ void Server::sendToAllChannelsAndQueries(const QString& text)
+ {
+     // Send a message to all channels we are in
+-    for (Channel* channel : qAsConst(m_channelList)) {
++    for (Channel* channel : std::as_const(m_channelList)) {
+         channel->sendText(text);
+     }
+ 
+     // Send a message to all queries we are in
+-    for (Query* query : qAsConst(m_queryList)) {
++    for (Query* query : std::as_const(m_queryList)) {
+         query->sendText(text);
+     }
+ }
+@@ -4359,7 +4359,7 @@ void Server::sendNickInfoChangedSignals()
+ {
+     Q_EMIT nickInfoChanged();
+ 
+-    for (NickInfoPtr nickInfo : qAsConst(m_allNicks)) {
++    for (NickInfoPtr nickInfo : std::as_const(m_allNicks)) {
+         if(nickInfo->isChanged())
+         {
+             Q_EMIT nickInfoChanged(this, nickInfo);
+@@ -4378,12 +4378,12 @@ void Server::startChannelNickChangedTimer(const QString& channel)
+ 
+ void Server::sendChannelNickChangedSignals()
+ {
+-    for (const QString& channel : qAsConst(m_changedChannels)) {
++    for (const QString& channel : std::as_const(m_changedChannels)) {
+         if (m_joinedChannels.contains (channel))
+         {
+             Q_EMIT channelNickChanged(channel);
+ 
+-            for (ChannelNickPtr nick : qAsConst(*m_joinedChannels[channel])) {
++            for (ChannelNickPtr nick : std::as_const(*m_joinedChannels[channel])) {
+                 if(nick->isChanged())
+                 {
+                     nick->setChanged(false);
+diff --git a/src/irc/servergroupdialog.cpp b/src/irc/servergroupdialog.cpp
+index cd887f197..ff91901a4 100644
+--- a/src/irc/servergroupdialog.cpp
++++ b/src/irc/servergroupdialog.cpp
+@@ -114,13 +114,13 @@ namespace Konversation
+         m_channelHistory = settings->channelHistory();
+         m_mainWidget->m_serverLBox->clear();
+ 
+-        for (const auto& server : qAsConst(m_serverList)) {
++        for (const auto& server : std::as_const(m_serverList)) {
+             m_mainWidget->m_serverLBox->addItem(server.host());
+         }
+ 
+         m_channelList = settings->channelList();
+ 
+-        for (const auto& channel : qAsConst(m_channelList)) {
++        for (const auto& channel : std::as_const(m_channelList)) {
+             m_mainWidget->m_channelLBox->addItem(channel.name());
+         }
+     }
+diff --git a/src/irc/servergroupsettings.cpp b/src/irc/servergroupsettings.cpp
+index 9de20772e..13dbe844f 100644
+--- a/src/irc/servergroupsettings.cpp
++++ b/src/irc/servergroupsettings.cpp
+@@ -163,7 +163,7 @@ namespace Konversation
+ 
+     ChannelSettings ServerGroupSettings::channelByNameFromHistory(const QString& channelName)
+     {
+-        for (const auto& channel : qAsConst(m_channelHistory)) {
++        for (const auto& channel : std::as_const(m_channelHistory)) {
+             if (channelName == channel.name()) {
+                 return channel;
+             }
+diff --git a/src/irc/serverison.cpp b/src/irc/serverison.cpp
+index f8ddc2ba8..487964b04 100644
+--- a/src/irc/serverison.cpp
++++ b/src/irc/serverison.cpp
+@@ -62,7 +62,7 @@ void ServerISON::recalculateAddressees()
+         // in doing an ISON on such nicks.
+         m_ISONList.clear();
+ 
+-        for (const QString& nickName : qAsConst(m_watchList)) {
++        for (const QString& nickName : std::as_const(m_watchList)) {
+             if (m_server->getNickJoinedChannels(nickName).isEmpty()) {
+                 m_ISONList.append(nickName);
+             }
+diff --git a/src/irc/serverlistdialog.cpp b/src/irc/serverlistdialog.cpp
+index 7589913d0..81c484f1f 100644
+--- a/src/irc/serverlistdialog.cpp
++++ b/src/irc/serverlistdialog.cpp
+@@ -234,7 +234,7 @@ namespace Konversation
+ 
+         // Have fun deleting
+         QTreeWidgetItem* rootItem = m_serverList->invisibleRootItem();
+-        for (QTreeWidgetItem* item : qAsConst(selectedItems)) {
++        for (QTreeWidgetItem* item : std::as_const(selectedItems)) {
+             if (item == m_selectedItemPtr)
+                 m_selectedItemPtr = nullptr;
+ 
+diff --git a/src/irc/serverlistview.cpp b/src/irc/serverlistview.cpp
+index b6cccdf6c..8cf029272 100644
+--- a/src/irc/serverlistview.cpp
++++ b/src/irc/serverlistview.cpp
+@@ -61,7 +61,7 @@ bool ServerListView::badDropSelection()
+                 children.append(item);
+                 parent = children.at(0)->parent();
+                 // make sure all the children have the same parent
+-                for (QTreeWidgetItem* child : qAsConst(children)) {
++                for (QTreeWidgetItem* child : std::as_const(children)) {
+                     if (child->parent() != parent)
+                         return true;
+                 }
+diff --git a/src/upnp/upnprouter.cpp b/src/upnp/upnprouter.cpp
+index 6e2169d86..f93fa3d6a 100644
+--- a/src/upnp/upnprouter.cpp
++++ b/src/upnp/upnprouter.cpp
+@@ -93,7 +93,7 @@ namespace Konversation
+ 
+         UPnPRouter::~UPnPRouter()
+         {
+-            for (Forwarding *check : qAsConst(forwards)) {
++            for (Forwarding *check : std::as_const(forwards)) {
+                 undoForward(check->port, check->proto);
+             }
+ 
+@@ -228,7 +228,7 @@ namespace Konversation
+             {
+                 Forwarding *forward = nullptr;
+ 
+-                for (Forwarding *check : qAsConst(forwards)) {
++                for (Forwarding *check : std::as_const(forwards)) {
+                     if (check->port == port && check->proto == proto)
+                         forward = check;
+                 }
+diff --git a/src/urlcatcher.cpp b/src/urlcatcher.cpp
+index c5a1dde25..d412717ed 100644
+--- a/src/urlcatcher.cpp
++++ b/src/urlcatcher.cpp
+@@ -194,7 +194,7 @@ void UrlCatcher::updateItemActionStates()
+ {
+     bool enable = m_urlTree->selectionModel()->hasSelection();
+ 
+-    for (QAction* action : qAsConst(m_itemActions))
++    for (QAction* action : std::as_const(m_itemActions))
+         action->setEnabled(enable);
+ }
+ 
+@@ -203,7 +203,7 @@ void UrlCatcher::updateListActionStates()
+     Application* konvApp = Application::instance();
+     bool enable = konvApp->getUrlModel()->rowCount();
+ 
+-    for (QAction* action : qAsConst(m_listActions))
++    for (QAction* action : std::as_const(m_listActions))
+         action->setEnabled(enable);
+ }
+ 
+@@ -325,7 +325,7 @@ void UrlCatcher::deleteSelectedUrls()
+ 
+     Application* konvApp = Application::instance();
+ 
+-    for (const QPersistentModelIndex& index : qAsConst(selectedIndices))
++    for (const QPersistentModelIndex& index : std::as_const(selectedIndices))
+         if (index.isValid()) konvApp->getUrlModel()->removeRow(index.row());
+ }
+ 
+diff --git a/src/viewer/channeloptionsdialog.cpp b/src/viewer/channeloptionsdialog.cpp
+index 742ad05f9..5a8189a1a 100644
+--- a/src/viewer/channeloptionsdialog.cpp
++++ b/src/viewer/channeloptionsdialog.cpp
+@@ -275,7 +275,7 @@ namespace Konversation
+                 QList<QStandardItem*> items = model->findItems(QStringLiteral("*"), Qt::MatchWildcard, 0);
+                 items += model->findItems(QStringLiteral("*"), Qt::MatchWildcard, 1);
+ 
+-                for (QStandardItem* item : qAsConst(items))
++                for (QStandardItem* item : std::as_const(items))
+                     item->setEnabled(m_isAnyTypeOfOp);
+             }
+ 
+@@ -312,7 +312,7 @@ namespace Konversation
+         modesModel->clear();
+         modesModel->setHorizontalHeaderLabels(QStringList { i18n("Mode"), i18n("Parameter") });
+ 
+-        for (const QChar mode : qAsConst(modeString)) {
++        for (const QChar mode : std::as_const(modeString)) {
+             const QString modeAsString(mode);
+ 
+             QStandardItem *item = nullptr;
+diff --git a/src/viewer/images.cpp b/src/viewer/images.cpp
+index 129f9461f..f915d782e 100644
+--- a/src/viewer/images.cpp
++++ b/src/viewer/images.cpp
+@@ -184,7 +184,7 @@ void Images::initializeNickIcons()
+     QStringList dirs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QLatin1String("konversation/themes/") + iconTheme, QStandardPaths::LocateDirectory);
+     const bool isDefaultTheme = (iconTheme == QLatin1String("default"));
+ 
+-    for (const QString& dir : qAsConst(dirs)) {
++    for (const QString& dir : std::as_const(dirs)) {
+         if (nickIconSet->load(dir)) {
+             break;
+         }
+@@ -194,7 +194,7 @@ void Images::initializeNickIcons()
+     if (nickIconSet->isNull() && !isDefaultTheme) {
+         dirs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("konversation/themes/default"), QStandardPaths::LocateDirectory);
+ 
+-        for (const QString& dir : qAsConst(dirs)) {
++        for (const QString& dir : std::as_const(dirs)) {
+             if (nickIconSet->load(dir)) {
+                 break;
+             }
+diff --git a/src/viewer/irccontextmenus.cpp b/src/viewer/irccontextmenus.cpp
+index 6f6096532..81bd3dde7 100644
+--- a/src/viewer/irccontextmenus.cpp
++++ b/src/viewer/irccontextmenus.cpp
+@@ -160,7 +160,7 @@ void IrcContextMenus::setupTextMenu()
+ 
+     m_textActionsSeparator = m_textMenu->addSeparator();
+ 
+-    for (QAction* action : qAsConst(m_sharedBasicNickActions))
++    for (QAction* action : std::as_const(m_sharedBasicNickActions))
+         m_textMenu->addAction(action);
+ 
+     m_textMenu->addSeparator();
+@@ -169,12 +169,12 @@ void IrcContextMenus::setupTextMenu()
+ 
+     m_textMenu->addSeparator();
+ 
+-    for (QAction* action : qAsConst(m_sharedNickSettingsActions))
++    for (QAction* action : std::as_const(m_sharedNickSettingsActions))
+         m_textMenu->addAction(action);
+ 
+     m_textMenu->addSeparator();
+ 
+-    for (QAction* action : qAsConst(m_sharedDccActions))
++    for (QAction* action : std::as_const(m_sharedDccActions))
+         m_textMenu->addAction(action);
+ 
+     m_textMenu->addSeparator();
+@@ -194,7 +194,7 @@ int IrcContextMenus::textMenu(const QPoint& pos, MenuOptions options, Server* se
+ 
+     bool showLinkActions = options.testFlag(ShowLinkActions);
+ 
+-    for (QAction* action : qAsConst(self()->m_linkActions))
++    for (QAction* action : std::as_const(self()->m_linkActions))
+         action->setVisible(showLinkActions);
+ 
+     self()->m_textCopyAction->setEnabled(!selectedText.isEmpty());
+@@ -203,7 +203,7 @@ int IrcContextMenus::textMenu(const QPoint& pos, MenuOptions options, Server* se
+ 
+     bool showNickActions = options.testFlag(ShowNickActions);
+ 
+-    for (QAction* action : qAsConst(self()->m_sharedBasicNickActions))
++    for (QAction* action : std::as_const(self()->m_sharedBasicNickActions))
+         action->setVisible(showNickActions);
+ 
+     self()->m_quickButtonMenu->menuAction()->setVisible(showNickActions && self()->shouldShowQuickButtonMenu());
+@@ -212,21 +212,21 @@ int IrcContextMenus::textMenu(const QPoint& pos, MenuOptions options, Server* se
+     {
+         bool connected = server->isConnected();
+ 
+-        for (QAction* action : qAsConst(self()->m_sharedBasicNickActions))
++        for (QAction* action : std::as_const(self()->m_sharedBasicNickActions))
+             action->setEnabled(connected);
+ 
+         updateSharedNickSettingsActions(server, QStringList { nick });
+ 
+-        for (QAction* action : qAsConst(self()->m_sharedDccActions))
++        for (QAction* action : std::as_const(self()->m_sharedDccActions))
+             action->setEnabled(connected);
+     }
+     else
+     {
+-        for (QAction* action : qAsConst(self()->m_sharedNickSettingsActions))
++        for (QAction* action : std::as_const(self()->m_sharedNickSettingsActions))
+             action->setVisible(false);
+     }
+ 
+-    for (QAction* action : qAsConst(self()->m_sharedDccActions))
++    for (QAction* action : std::as_const(self()->m_sharedDccActions))
+         action->setVisible(showNickActions);
+ 
+     if (options.testFlag(ShowFindAction))
+@@ -381,7 +381,7 @@ void IrcContextMenus::setupNickMenu()
+ 
+     m_nickMenu->addSeparator();
+ 
+-    for (QAction* action : qAsConst(m_sharedBasicNickActions))
++    for (QAction* action : std::as_const(m_sharedBasicNickActions))
+         m_nickMenu->addAction(action);
+ 
+     m_nickMenu->addSeparator();
+@@ -417,12 +417,12 @@ void IrcContextMenus::setupNickMenu()
+ 
+     m_nickMenu->addSeparator();
+ 
+-    for (QAction* action : qAsConst(m_sharedNickSettingsActions))
++    for (QAction* action : std::as_const(m_sharedNickSettingsActions))
+         m_nickMenu->addAction(action);
+ 
+     m_nickMenu->addSeparator();
+ 
+-    for (QAction* action : qAsConst(m_sharedDccActions))
++    for (QAction* action : std::as_const(m_sharedDccActions))
+         m_nickMenu->addAction(action);
+ }
+ 
+@@ -473,10 +473,10 @@ void IrcContextMenus::nickMenu(const QPoint& pos, MenuOptions options, Server* s
+ 
+     bool connected = server->isConnected();
+ 
+-    for (QAction* action : qAsConst(self()->m_sharedBasicNickActions))
++    for (QAction* action : std::as_const(self()->m_sharedBasicNickActions))
+         action->setEnabled(connected);
+ 
+-    for (QAction* action : qAsConst(self()->m_sharedDccActions))
++    for (QAction* action : std::as_const(self()->m_sharedDccActions))
+         action->setEnabled(connected);
+ 
+     self()->m_modesMenu->menuAction()->setEnabled(connected);
+diff --git a/src/viewer/viewcontainer.cpp b/src/viewer/viewcontainer.cpp
+index 5c2aa0ce6..75fd069a3 100644
+--- a/src/viewer/viewcontainer.cpp
++++ b/src/viewer/viewcontainer.cpp
+@@ -1691,11 +1691,11 @@ void ViewContainer::unclutterTabs()
+         m_tabWidget->removeTab(0);
+     }
+ 
+-    for (ChatWindow *view : qAsConst(topLevelViews)) {
++    for (ChatWindow *view : std::as_const(topLevelViews)) {
+         m_tabWidget->insertTab(insertIndex(view), view, QIcon(), view->getName().replace(QLatin1Char('&'), QLatin1String("&&")));
+     }
+ 
+-    for (ChatWindow *view : qAsConst(nonTopLevelViews)) {
++    for (ChatWindow *view : std::as_const(nonTopLevelViews)) {
+         m_tabWidget->insertTab(insertIndex(view), view, QIcon(), view->getName().replace(QLatin1Char('&'), QLatin1String("&&")));
+     }
+ 
+@@ -1814,7 +1814,7 @@ void ViewContainer::showNextActiveView()
+         ChatWindow* prev = m_activeViewOrderList.first();
+         ChatWindow* view = prev;
+ 
+-        for (ChatWindow* activeView : qAsConst(m_activeViewOrderList)) {
++        for (ChatWindow* activeView : std::as_const(m_activeViewOrderList)) {
+             if (activeView->currentTabNotification() < prev->currentTabNotification()) {
+                 view = activeView;
+             }
+-- 
+GitLab
+
+
+From ad4901b0a9414ed63bc5ef4a176fa9518926e2ec Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Mon, 23 Oct 2023 11:41:46 +0200
+Subject: [PATCH 27/35] Adapt to new API
+
+---
+ src/bookmarkhandler.cpp        | 2 +-
+ src/urlcatcher.cpp             | 6 ++----
+ src/viewer/irccontextmenus.cpp | 7 ++-----
+ 3 files changed, 5 insertions(+), 10 deletions(-)
+
+diff --git a/src/bookmarkhandler.cpp b/src/bookmarkhandler.cpp
+index 3ef1bc213..1e0a579a2 100644
+--- a/src/bookmarkhandler.cpp
++++ b/src/bookmarkhandler.cpp
+@@ -31,7 +31,7 @@ m_mainWindow(mainWindow)
+     if ( m_file.isEmpty() )
+         m_file = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + QStringLiteral("konversation/bookmarks.xml") ;
+ 
+-    KBookmarkManager *manager = KBookmarkManager::managerForFile( m_file);
++    auto *manager = new KBookmarkManager( m_file, this);
+ 
+     manager->setUpdate( true );
+ 
+diff --git a/src/urlcatcher.cpp b/src/urlcatcher.cpp
+index d412717ed..f42ff4c4e 100644
+--- a/src/urlcatcher.cpp
++++ b/src/urlcatcher.cpp
+@@ -278,8 +278,8 @@ void UrlCatcher::bookmarkSelectedUrls()
+     const QModelIndexList selectedIndexes = m_urlTree->selectionModel()->selectedRows(1);
+ 
+     //TODO: Use the user-configured browser for this.
+-    KBookmarkManager* manager = KBookmarkManager::managerForFile(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/konqueror/bookmarks.xml"));
+-    auto* dialog = new KBookmarkDialog(manager, this);
++    auto manager =  std::make_unique<KBookmarkManager>(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/konqueror/bookmarks.xml"));
++    auto dialog = std::make_unique<KBookmarkDialog>(manager.get(), this);
+ 
+     if (selectedIndexes.count() > 1)
+     {
+@@ -297,8 +297,6 @@ void UrlCatcher::bookmarkSelectedUrls()
+ 
+         dialog->addBookmark(url, QUrl(url), QString());
+     }
+-
+-    delete dialog;
+ }
+ 
+ void UrlCatcher::copySelectedUrls()
+diff --git a/src/viewer/irccontextmenus.cpp b/src/viewer/irccontextmenus.cpp
+index 81bd3dde7..0a02a8123 100644
+--- a/src/viewer/irccontextmenus.cpp
++++ b/src/viewer/irccontextmenus.cpp
+@@ -738,14 +738,11 @@ void IrcContextMenus::processLinkAction(int  actionId, const QString& link)
+         }
+         case LinkBookmark:
+         {
+-            KBookmarkManager* manager = KBookmarkManager::managerForFile(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/konqueror/bookmarks.xml"));
+-
+-            auto* dialog = new KBookmarkDialog(manager, Application::instance()->getMainWindow());
++            auto manager = std::make_unique<KBookmarkManager>(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/konqueror/bookmarks.xml"));
++            auto dialog = std::make_unique<KBookmarkDialog>(manager.get(), Application::instance()->getMainWindow());
+ 
+             dialog->addBookmark(link, QUrl(link), QString());
+ 
+-            delete dialog;
+-
+             break;
+         }
+         case LinkOpenWith:
+-- 
+GitLab
+
+
+From 55e6af9271bcfeedecf816e72888dcdd5f6519e0 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Mon, 23 Oct 2023 13:05:01 +0200
+Subject: [PATCH 28/35] Move KWindowInfo to X11
+
+---
+ src/mainwindow.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/mainwindow.cpp b/src/mainwindow.cpp
+index b34eaf845..a3651363d 100644
+--- a/src/mainwindow.cpp
++++ b/src/mainwindow.cpp
+@@ -41,7 +41,6 @@
+ #include <QIcon>
+ #include <QMenu>
+ #include <KWindowSystem>
+-#include <KWindowInfo>
+ #include <KShortcutsDialog>
+ #include <KStandardShortcut>
+ #include <KNotifyConfigWidget>
+@@ -53,6 +52,7 @@
+ #endif
+ 
+ #if HAVE_X11
++#include <KWindowInfo>
+ #include <KStartupInfo>
+ #include <KX11Extras>
+ #endif
+-- 
+GitLab
+
+
+From 3e07c15b77c87d08f108e59a99fa5d54cb8cc508 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Mon, 30 Oct 2023 09:25:20 +0100
+Subject: [PATCH 29/35] Adapt to KF6 API change
+
+---
+ src/mainwindow.cpp             | 4 ++--
+ src/viewer/irccontextmenus.cpp | 4 ++--
+ src/viewer/searchbar.cpp       | 4 ++--
+ 3 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/src/mainwindow.cpp b/src/mainwindow.cpp
+index a3651363d..c1a029b5a 100644
+--- a/src/mainwindow.cpp
++++ b/src/mainwindow.cpp
+@@ -778,8 +778,8 @@ void MainWindow::updateTrayIcon()
+             m_trayIcon = new Konversation::TrayIcon(this);
+             connect(this, &MainWindow::endNotification, m_trayIcon, &Konversation::TrayIcon::endNotification);
+             QMenu *trayMenu = m_trayIcon->contextMenu();
+-            trayMenu->addAction(actionCollection()->action(QString::fromLatin1(KStandardAction::name(KStandardAction::Preferences))));
+-            trayMenu->addAction(actionCollection()->action(QString::fromLatin1(KStandardAction::name(KStandardAction::ConfigureNotifications))));
++            trayMenu->addAction(actionCollection()->action(KStandardAction::name(KStandardAction::Preferences)));
++            trayMenu->addAction(actionCollection()->action(KStandardAction::name(KStandardAction::ConfigureNotifications)));
+             trayMenu->addAction(actionCollection()->action(QStringLiteral("toggle_away")));
+         }
+ 
+diff --git a/src/viewer/irccontextmenus.cpp b/src/viewer/irccontextmenus.cpp
+index 0a02a8123..c02c0ea63 100644
+--- a/src/viewer/irccontextmenus.cpp
++++ b/src/viewer/irccontextmenus.cpp
+@@ -230,7 +230,7 @@ int IrcContextMenus::textMenu(const QPoint& pos, MenuOptions options, Server* se
+         action->setVisible(showNickActions);
+ 
+     if (options.testFlag(ShowFindAction))
+-        textMenu->insertAction(self()->m_textActionsSeparator, actionCollection->action(QString::fromLatin1(KStandardAction::name(KStandardAction::Find))));
++        textMenu->insertAction(self()->m_textActionsSeparator, actionCollection->action(KStandardAction::name(KStandardAction::Find)));
+ 
+     if (options.testFlag(ShowLogAction))
+         textMenu->addAction(actionCollection->action(QStringLiteral("open_logfile")));
+@@ -249,7 +249,7 @@ int IrcContextMenus::textMenu(const QPoint& pos, MenuOptions options, Server* se
+         processQuickButtonAction(action, server, nick, QStringList { nick });
+ 
+     textMenu->removeAction(toggleMenuBarAction);
+-    textMenu->removeAction(actionCollection->action(QString::fromLatin1(KStandardAction::name(KStandardAction::Find))));
++    textMenu->removeAction(actionCollection->action(KStandardAction::name(KStandardAction::Find)));
+     textMenu->removeAction(actionCollection->action(QStringLiteral("open_logfile")));
+     textMenu->removeAction(actionCollection->action(QStringLiteral("channel_settings")));
+ 
+diff --git a/src/viewer/searchbar.cpp b/src/viewer/searchbar.cpp
+index a94d9ca76..ae464bbe8 100644
+--- a/src/viewer/searchbar.cpp
++++ b/src/viewer/searchbar.cpp
+@@ -41,8 +41,8 @@ SearchBar::SearchBar(QWidget* parent)
+     m_findNextButton->setIcon(m_goUpSearch);
+     m_findPreviousButton->setIcon(m_goDownSearch);
+     Application* konvApp = Application::instance();
+-    konvApp->getMainWindow()->actionCollection()->action(QString::fromLatin1(KStandardAction::name(KStandardAction::FindNext)))->setIcon(m_goUpSearch);
+-    konvApp->getMainWindow()->actionCollection()->action(QString::fromLatin1(KStandardAction::name(KStandardAction::FindPrev)))->setIcon(m_goDownSearch);
++    konvApp->getMainWindow()->actionCollection()->action(KStandardAction::name(KStandardAction::FindNext))->setIcon(m_goUpSearch);
++    konvApp->getMainWindow()->actionCollection()->action(KStandardAction::name(KStandardAction::FindPrev))->setIcon(m_goDownSearch);
+     m_optionsButton->setIcon(QIcon::fromTheme(QStringLiteral("settings-configure")));
+ 
+     m_timer = new QTimer(this);
+-- 
+GitLab
+
+
+From 7f453bb52516a0cca172eec6306aec81405c0b22 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Mon, 6 Nov 2023 11:27:27 +0100
+Subject: [PATCH 30/35] Adapt to KNotification change
+
+---
+ src/notificationhandler.cpp | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/src/notificationhandler.cpp b/src/notificationhandler.cpp
+index e51584a5a..78f5ff07d 100644
+--- a/src/notificationhandler.cpp
++++ b/src/notificationhandler.cpp
+@@ -76,8 +76,8 @@ namespace Konversation
+             }
+         }
+ 
+-        msg->setDefaultAction(i18n("Open"));
+-        connect(msg, &KNotification::defaultActivated, chatWin, [msg, chatWin]{
++        KNotificationAction* action = msg->addDefaultAction(i18n("Open"));
++        connect(action, &KNotificationAction::activated, chatWin, [msg, chatWin]{
+             KWindowSystem::setCurrentXdgActivationToken(msg->xdgActivationToken());
+             chatWin->activateView();
+         });
+@@ -129,8 +129,8 @@ namespace Konversation
+             }
+         }
+ 
+-        msg->setDefaultAction(i18n("Open"));
+-        connect(msg, &KNotification::defaultActivated, chatWin, [msg, chatWin]{
++        KNotificationAction* action = msg->addDefaultAction(i18n("Open"));
++        connect(action, &KNotificationAction::activated, chatWin, [msg, chatWin]{
+             KWindowSystem::setCurrentXdgActivationToken(msg->xdgActivationToken());
+             chatWin->activateView();
+         });
+@@ -179,8 +179,8 @@ namespace Konversation
+             }
+         }
+ 
+-        msg->setDefaultAction(i18n("Open"));
+-        connect(msg, &KNotification::defaultActivated, chatWin, [msg, chatWin]{
++        KNotificationAction* action = msg->addDefaultAction(i18n("Open"));
++        connect(action, &KNotificationAction::activated, chatWin, [msg, chatWin]{
+             KWindowSystem::setCurrentXdgActivationToken(msg->xdgActivationToken());
+             chatWin->activateView();
+         });
+@@ -299,9 +299,9 @@ namespace Konversation
+         {
+             auto *notification = new KNotification(QStringLiteral("dcctransfer_done"));
+             notification->setText(i18nc("%1 - filename","%1 File Transfer is complete", file));
+-            notification->setActions(QStringList(i18nc("Opens the file from the finished dcc transfer", "Open")));
++            KNotificationAction* action = notification->addAction(i18nc("Opens the file from the finished dcc transfer", "Open"));
+             notification->setWindow(m_mainWindow->windowHandle());
+-            connect(notification, QOverload<unsigned int>::of(&KNotification::activated), transfer, &DCC::Transfer::runFile);
++            connect(action, &KNotificationAction::activated, transfer, &DCC::Transfer::runFile);
+             notification->sendEvent();
+         }
+     }
+-- 
+GitLab
+
+
+From 1da6d613a39cd639fdf5c091f56aa88bc5a81eff Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Mon, 20 Nov 2023 10:26:06 +0100
+Subject: [PATCH 31/35] Remove many deprecated warnings
+
+---
+ src/application.cpp                 | 71 +++++++++++++++++++++--------
+ src/config/autoreplace_config.cpp   |  4 +-
+ src/config/quickbuttons_config.cpp  |  4 +-
+ src/config/theme_config.cpp         |  2 +-
+ src/config/warnings_config.cpp      |  4 +-
+ src/dcc/recipientdialog.cpp         |  4 +-
+ src/dcc/transferpanel.cpp           |  4 +-
+ src/irc/invitedialog.cpp            |  8 ++--
+ src/irc/nicklistview.cpp            |  2 +-
+ src/irc/nicksonlineitem.cpp         |  2 +-
+ src/irc/serverlistdialog.cpp        | 13 ++----
+ src/irc/serverlistview.cpp          |  2 +-
+ src/viewer/channeloptionsdialog.cpp |  6 +--
+ src/viewer/ircview.cpp              |  2 +-
+ src/viewer/osd.cpp                  |  6 +--
+ src/viewer/rawlog.cpp               |  2 +-
+ src/viewer/viewcontainer.cpp        |  4 +-
+ src/viewer/viewspringloader.cpp     |  2 +-
+ tests/testcommon.cpp                |  2 +-
+ 19 files changed, 87 insertions(+), 57 deletions(-)
+
+diff --git a/src/application.cpp b/src/application.cpp
+index 6235cc2d3..a07af4dc4 100644
+--- a/src/application.cpp
++++ b/src/application.cpp
+@@ -386,7 +386,7 @@ void Application::dbusInfo(const QString& string)
+ void Application::readOptions()
+ {
+     // read nickname sorting order for channel nick lists
+-    KConfigGroup cgSortNicknames(KSharedConfig::openConfig()->group("Sort Nicknames"));
++    KConfigGroup cgSortNicknames(KSharedConfig::openConfig()->group(QStringLiteral("Sort Nicknames")));
+ 
+     QString sortOrder=cgSortNicknames.readEntry("SortOrder");
+     QStringList sortOrderList=sortOrder.split(QString());
+@@ -466,7 +466,14 @@ void Application::readOptions()
+         m_osd->setPalette(p);
+     }
+ 
++<<<<<<< HEAD
+     // Server list
++=======
++    // Check if there is old server list config //TODO FIXME why are we doing this here?
++    KConfigGroup cgServerList(KSharedConfig::openConfig()->group(QStringLiteral("Server List")));
++
++    // Read the new server settings
++>>>>>>> c449b5e2 (Remove many deprecated warnings)
+     const QStringList groups = KSharedConfig::openConfig()->groupList().filter(
+                                         QRegularExpression(QStringLiteral("ServerGroup [0-9]+")));
+     QMap<int,QStringList> notifyList;
+@@ -551,10 +558,11 @@ void Application::readOptions()
+     // Quick Buttons List
+ 
+     // if there are button definitions in the config file, remove default buttons
+-    if (KSharedConfig::openConfig()->hasGroup("Button List"))
++    if (KSharedConfig::openConfig()->hasGroup(QStringLiteral("Button List"))) {
+         Preferences::clearQuickButtonList();
++    }
+ 
+-    KConfigGroup cgQuickButtons(KSharedConfig::openConfig()->group("Button List"));
++    KConfigGroup cgQuickButtons(KSharedConfig::openConfig()->group(QStringLiteral("Button List")));
+     // Read all default buttons
+     QStringList buttonList(Preferences::quickButtonList());
+     // Read all quick buttons
+@@ -569,10 +577,11 @@ void Application::readOptions()
+     // Autoreplace List
+ 
+     // if there are autoreplace definitions in the config file, remove default entries
+-    if (KSharedConfig::openConfig()->hasGroup("Autoreplace List"))
++    if (KSharedConfig::openConfig()->hasGroup(QStringLiteral("Autoreplace List"))) {
+         Preferences::clearAutoreplaceList();
++    }
+ 
+-    KConfigGroup cgAutoreplace(KSharedConfig::openConfig()->group("Autoreplace List"));
++    KConfigGroup cgAutoreplace(KSharedConfig::openConfig()->group(QStringLiteral("Autoreplace List")));
+     // Read all default entries
+     QList<QStringList> autoreplaceList(Preferences::autoreplaceList());
+     // Read all entries
+@@ -610,13 +619,15 @@ void Application::readOptions()
+         QString replace = cgAutoreplace.readEntry(replaceString + indexString, QString());
+         if (!replace.isEmpty()) {
+             int repLen=replace.length()-1;
+-            if (replace.at(repLen)==QLatin1Char('#'))
++            if (replace.at(repLen)==QLatin1Char('#')) {
+                 replace.truncate(repLen);
++            }
+         }
+         if (!pattern.isEmpty()) {
+             int patLen=pattern.length()-1;
+-            if (pattern.at(patLen)==QLatin1Char('#'))
++            if (pattern.at(patLen)==QLatin1Char('#')) {
+                 pattern.truncate(patLen);
++                }
+         }
+         index++;
+         indexString = QString::number(index);
+@@ -626,8 +637,13 @@ void Application::readOptions()
+     Preferences::setAutoreplaceList(autoreplaceList);
+ 
+     // Highlight List
++<<<<<<< HEAD
+     index = 0;
+     while (KSharedConfig::openConfig()->hasGroup(QStringLiteral("Highlight%1").arg(index)))
++=======
++    KConfigGroup cgDefault(KSharedConfig::openConfig()->group(QStringLiteral("<default>")));
++    if (cgDefault.hasKey("Highlight")) // Stay compatible with versions < 0.14
++>>>>>>> c449b5e2 (Remove many deprecated warnings)
+     {
+         KConfigGroup cgHighlight (KSharedConfig::openConfig()->group(QStringLiteral("Highlight%1").arg(index)));
+         Preferences::addHighlight(
+@@ -643,7 +659,7 @@ void Application::readOptions()
+     }
+ 
+     // Ignore List
+-    KConfigGroup cgIgnoreList(KSharedConfig::openConfig()->group("Ignore List"));
++    KConfigGroup cgIgnoreList(KSharedConfig::openConfig()->group(QStringLiteral("Ignore List")));
+     // Remove all default entries if there is at least one Ignore in the Preferences::file
+     if (cgIgnoreList.hasKey("Ignore0"))
+         Preferences::clearIgnoreList();
+@@ -655,13 +671,32 @@ void Application::readOptions()
+     }
+ 
+     // Aliases
+-    KConfigGroup cgAliases(KSharedConfig::openConfig()->group("Aliases"));
++    KConfigGroup cgAliases(KSharedConfig::openConfig()->group(QStringLiteral("Aliases")));
+     QStringList newList=cgAliases.readEntry("AliasList", QStringList());
+     if (!newList.isEmpty())
+         Preferences::self()->setAliasList(newList);
+ 
+     // Channel Encodings
++<<<<<<< HEAD
+     KConfigGroup cgEncodings(KSharedConfig::openConfig()->group("Encodings"));
++=======
++
++    //Legacy channel encodings read in Jun. 29, 2009
++    KConfigGroup cgChannelEncodings(KSharedConfig::openConfig()->group(QStringLiteral("Channel Encodings")));
++    const QMap<QString,QString> channelEncodingEntries = cgChannelEncodings.entryMap();
++    const QRegularExpression re(QStringLiteral("^(.+) ([^\\s]+)$"));
++
++    for (auto it = channelEncodingEntries.begin(), end = channelEncodingEntries.end(); it != end; ++it) {
++        const QRegularExpressionMatch match = re.match(it.key());
++        if(match.hasMatch())
++        {
++            Preferences::setChannelEncoding(match.captured(1), match.captured(2), it.value());
++        }
++    }
++    //End legacy channel encodings read in Jun 29, 2009
++
++    KConfigGroup cgEncodings(KSharedConfig::openConfig()->group(QStringLiteral("Encodings")));
++>>>>>>> c449b5e2 (Remove many deprecated warnings)
+     const QMap<QString,QString> encodingEntries = cgEncodings.entryMap();
+ 
+     const QRegularExpression reg(QStringLiteral("^([^\\s]+) ([^\\s]+)\\s?([^\\s]*)$"));
+@@ -677,7 +712,7 @@ void Application::readOptions()
+     }
+ 
+     // Spell Checking Languages
+-    KConfigGroup cgSpellCheckingLanguages(KSharedConfig::openConfig()->group("Spell Checking Languages"));
++    KConfigGroup cgSpellCheckingLanguages(KSharedConfig::openConfig()->group(QStringLiteral("Spell Checking Languages")));
+     const QMap<QString, QString> spellCheckingLanguageEntries = cgSpellCheckingLanguages.entryMap();
+ 
+     for (auto it = spellCheckingLanguageEntries.begin(), end = spellCheckingLanguageEntries.end(); it != end; ++it) {
+@@ -855,11 +890,11 @@ void Application::saveOptions(bool updateGUI)
+         index++;
+     }
+ 
+-    KSharedConfig::openConfig()->deleteGroup("Server List");
++    KSharedConfig::openConfig()->deleteGroup(QStringLiteral("Server List"));
+ 
+     // Ignore List
+-    KSharedConfig::openConfig()->deleteGroup("Ignore List");
+-    KConfigGroup cgIgnoreList(KSharedConfig::openConfig()->group("Ignore List"));
++    KSharedConfig::openConfig()->deleteGroup(QStringLiteral("Ignore List"));
++    KConfigGroup cgIgnoreList(KSharedConfig::openConfig()->group(QStringLiteral("Ignore List")));
+     QList<Ignore*> ignoreList=Preferences::ignoreList();
+     for (int i = 0; i < ignoreList.size(); ++i) {
+         cgIgnoreList.writeEntry(QStringLiteral("Ignore%1").arg(i), QStringLiteral("%1,%2").arg(ignoreList.at(i)->getName()).arg(ignoreList.at(i)->getFlags()));
+@@ -867,9 +902,9 @@ void Application::saveOptions(bool updateGUI)
+ 
+     // Channel Encodings
+     // remove all entries once
+-    KSharedConfig::openConfig()->deleteGroup("Channel Encodings"); // legacy Jun 29, 2009
+-    KSharedConfig::openConfig()->deleteGroup("Encodings");
+-    KConfigGroup cgEncoding(KSharedConfig::openConfig()->group("Encodings"));
++    KSharedConfig::openConfig()->deleteGroup(QStringLiteral("Channel Encodings")); // legacy Jun 29, 2009
++    KSharedConfig::openConfig()->deleteGroup(QStringLiteral("Encodings"));
++    KConfigGroup cgEncoding(KSharedConfig::openConfig()->group(QStringLiteral("Encodings")));
+     const QList<int> encServers = Preferences::channelEncodingsServerGroupIdList();
+     //i have no idea these would need to be sorted //encServers.sort();
+     for (int encServer : encServers) {
+@@ -892,8 +927,8 @@ void Application::saveOptions(bool updateGUI)
+     }
+ 
+     // Spell Checking Languages
+-    KSharedConfig::openConfig()->deleteGroup("Spell Checking Languages");
+-    KConfigGroup cgSpellCheckingLanguages(KSharedConfig::openConfig()->group("Spell Checking Languages"));
++    KSharedConfig::openConfig()->deleteGroup(QStringLiteral("Spell Checking Languages"));
++    KConfigGroup cgSpellCheckingLanguages(KSharedConfig::openConfig()->group(QStringLiteral("Spell Checking Languages")));
+ 
+     QHashIterator<Konversation::ServerGroupSettingsPtr, QHash<QString, QString> > i(Preferences::serverGroupSpellCheckingLanguages());
+ 
+diff --git a/src/config/autoreplace_config.cpp b/src/config/autoreplace_config.cpp
+index 438e460ee..6400e762e 100644
+--- a/src/config/autoreplace_config.cpp
++++ b/src/config/autoreplace_config.cpp
+@@ -98,10 +98,10 @@ void Autoreplace_Config::saveSettings()
+   KSharedConfigPtr config=KSharedConfig::openConfig();
+ 
+   // delete all patterns
+-  config->deleteGroup("Autoreplace List");
++  config->deleteGroup(QStringLiteral("Autoreplace List"));
+   // create new empty autoreplace group
+ 
+-  KConfigGroup grp = config->group("Autoreplace List");
++  KConfigGroup grp = config->group(QStringLiteral("Autoreplace List"));
+ 
+   // create empty list
+   QList<QStringList> newList=currentAutoreplaceList();
+diff --git a/src/config/quickbuttons_config.cpp b/src/config/quickbuttons_config.cpp
+index ae5f40def..b82f99b5a 100644
+--- a/src/config/quickbuttons_config.cpp
++++ b/src/config/quickbuttons_config.cpp
+@@ -69,9 +69,9 @@ void QuickButtons_Config::saveSettings()
+   KSharedConfigPtr config=KSharedConfig::openConfig();
+ 
+   // delete all buttons
+-  config->deleteGroup("Button List");
++  config->deleteGroup(QStringLiteral("Button List"));
+   // create new empty button group
+-  KConfigGroup grp = config->group("Button List");
++  KConfigGroup grp = config->group(QStringLiteral("Button List"));
+ 
+   // create empty list
+   QStringList newList=currentButtonList();
+diff --git a/src/config/theme_config.cpp b/src/config/theme_config.cpp
+index f063a3d0b..39eff1269 100644
+--- a/src/config/theme_config.cpp
++++ b/src/config/theme_config.cpp
+@@ -149,7 +149,7 @@ void Theme_Config::saveSettings()
+         {
+             // save icon theme name
+             KSharedConfigPtr config = KSharedConfig::openConfig();
+-            KConfigGroup grp = config->group("Themes");
++            KConfigGroup grp = config->group(QStringLiteral("Themes"));
+             grp.writeEntry("IconTheme",m_currentTheme);
+             // set in-memory theme to the saved theme
+             Preferences::self()->setIconTheme(m_currentTheme);
+diff --git a/src/config/warnings_config.cpp b/src/config/warnings_config.cpp
+index 19c3a1211..240836966 100644
+--- a/src/config/warnings_config.cpp
++++ b/src/config/warnings_config.cpp
+@@ -60,7 +60,7 @@ void Warnings_Config::restorePageToDefaults()
+ void Warnings_Config::saveSettings()
+ {
+     KSharedConfigPtr config = KSharedConfig::openConfig();
+-    KConfigGroup grp = config->group("Notification Messages");
++    KConfigGroup grp = config->group(QStringLiteral("Notification Messages"));
+ 
+     // prepare list
+     QString warningsChecked;
+@@ -204,7 +204,7 @@ void Warnings_Config::loadSettings()
+     dialogListView->clear();
+ 
+     KSharedConfigPtr config = KSharedConfig::openConfig();
+-    KConfigGroup grp =  config->group("Notification Messages");
++    KConfigGroup grp =  config->group(QStringLiteral("Notification Messages"));
+ 
+     for (const auto& warningDialogDefinition : warningDialogDefinitions) {
+         const QLatin1String flagName(warningDialogDefinition.flagName);
+diff --git a/src/dcc/recipientdialog.cpp b/src/dcc/recipientdialog.cpp
+index 1a2b72314..a879e9cc5 100644
+--- a/src/dcc/recipientdialog.cpp
++++ b/src/dcc/recipientdialog.cpp
+@@ -60,7 +60,7 @@ namespace Konversation
+             button->setToolTip(i18n("Close the window without changes"));
+             button->setIcon(QIcon::fromTheme(QStringLiteral("dialog-cancel")));
+ 
+-            KWindowConfig::restoreWindowSize(windowHandle(), KConfigGroup(KSharedConfig::openStateConfig(), "DCCRecipientDialog"));
++            KWindowConfig::restoreWindowSize(windowHandle(), KConfigGroup(KSharedConfig::openStateConfig(), QStringLiteral("DCCRecipientDialog")));
+ 
+             connect(buttonBox, &QDialogButtonBox::accepted, this, &RecipientDialog::slotOk);
+             connect(buttonBox, &QDialogButtonBox::rejected, this, &RecipientDialog::slotCancel);
+@@ -68,7 +68,7 @@ namespace Konversation
+ 
+         RecipientDialog::~RecipientDialog()
+         {
+-            KConfigGroup config(KSharedConfig::openStateConfig(), "DCCRecipientDialog");
++            KConfigGroup config(KSharedConfig::openStateConfig(), QStringLiteral("DCCRecipientDialog"));
+             KWindowConfig::saveWindowSize(windowHandle(), config);
+         }
+ 
+diff --git a/src/dcc/transferpanel.cpp b/src/dcc/transferpanel.cpp
+index 128b24584..5bc13cba1 100644
+--- a/src/dcc/transferpanel.cpp
++++ b/src/dcc/transferpanel.cpp
+@@ -43,7 +43,7 @@ namespace Konversation
+ 
+         TransferPanel::~TransferPanel()
+         {
+-            KConfigGroup config(KSharedConfig::openConfig(), "DCC Settings");
++            KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("DCC Settings"));
+             const QByteArray state = m_splitter->saveState();
+             config.writeEntry(QStringLiteral("PanelSplitter"), state.toBase64());
+         }
+@@ -104,7 +104,7 @@ namespace Konversation
+             m_toolBar->addAction(m_open);
+             m_toolBar->addAction(m_openLocation);
+ 
+-            KConfigGroup config(KSharedConfig::openConfig(), "DCC Settings");
++            KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("DCC Settings"));
+             QByteArray state;
+             if (config.hasKey("PanelSplitter"))
+             {
+diff --git a/src/irc/invitedialog.cpp b/src/irc/invitedialog.cpp
+index 7af1c6b20..b8d5a3eeb 100644
+--- a/src/irc/invitedialog.cpp
++++ b/src/irc/invitedialog.cpp
+@@ -56,7 +56,7 @@ void InviteDialog::slotOk()
+     if(!channels.isEmpty())
+         Q_EMIT joinChannelsRequested(channels);
+     KConfigGroup::WriteConfigFlags flags = KConfig::Persistent;
+-    KConfigGroup cg(KSharedConfig::openConfig().data(), "Notification Messages");
++    KConfigGroup cg(KSharedConfig::openConfig().data(), QStringLiteral("Notification Messages"));
+     cg.writeEntry("Invitation", m_joinPreferences->currentIndex(), flags);
+     cg.sync();
+ 
+@@ -65,7 +65,7 @@ void InviteDialog::slotOk()
+ 
+ bool InviteDialog::shouldBeShown(QDialogButtonBox::StandardButton& buttonCode)
+ {
+-    KConfigGroup cg(KSharedConfig::openConfig().data(), "Notification Messages");
++    KConfigGroup cg(KSharedConfig::openConfig().data(), QStringLiteral("Notification Messages"));
+     cg.sync();
+     const QString dontAsk = cg.readEntry("Invitation", QString()).toLower();
+ 
+@@ -144,8 +144,10 @@ QVariant InviteChannelListModel::data(const QModelIndex& index, int role) const
+     }
+     if(role == Qt::SizeHintRole)
+     {
++        QFontMetricsF fntMetrics(qApp->font());
++
+         return QSize(0, qMax(qApp->style()->sizeFromContents(QStyle::CT_CheckBox, nullptr, QSize(0, 0), nullptr).height(),
+-                             qApp->fontMetrics().height()));
++                             static_cast<int>(fntMetrics.height())));
+     }
+     else if((role == Qt::CheckStateRole) && (index.column() == 0))
+     {
+diff --git a/src/irc/nicklistview.cpp b/src/irc/nicklistview.cpp
+index 538731fbc..464f2aaf9 100644
+--- a/src/irc/nicklistview.cpp
++++ b/src/irc/nicklistview.cpp
+@@ -305,7 +305,7 @@ void NickListView::dragMoveEvent(QDragMoveEvent *event)
+ {
+     QTreeWidget::dragMoveEvent(event);
+ 
+-    if (!indexAt(event->pos()).isValid())
++    if (!indexAt(event->position().toPoint()).isValid())
+     {
+         event->ignore();
+         return;
+diff --git a/src/irc/nicksonlineitem.cpp b/src/irc/nicksonlineitem.cpp
+index 953e4bc2c..b670ce18d 100644
+--- a/src/irc/nicksonlineitem.cpp
++++ b/src/irc/nicksonlineitem.cpp
+@@ -32,7 +32,7 @@ bool NicksOnlineItem::operator<(const QTreeWidgetItem &item) const
+ {
+   // make sure that offline items are always at the bottom
+   QVariant itemState = item.data(0, Qt::UserRole);
+-  if (itemState.type() == QVariant::Bool)
++  if (itemState.typeId() == QVariant::Bool)
+   {
+     bool itemOffline = itemState.toBool();
+     // we are online but other item is offline
+diff --git a/src/irc/serverlistdialog.cpp b/src/irc/serverlistdialog.cpp
+index 81c484f1f..4235301b1 100644
+--- a/src/irc/serverlistdialog.cpp
++++ b/src/irc/serverlistdialog.cpp
+@@ -37,14 +37,7 @@ namespace Konversation
+         int column = treeWidget()->sortColumn();
+         if (column==0)
+         {
+-            if (data(0,SortIndex).toInt() >= other.data(0,SortIndex).toInt())
+-            {
+-                return false;
+-            }
+-            else
+-            {
+-                return true;
+-            }
++            return !(data(0,SortIndex).toInt() >= other.data(0,SortIndex).toInt());
+         }
+         return text(column) < other.text(column);
+     }
+@@ -85,7 +78,7 @@ namespace Konversation
+ 
+         updateButtons();
+ 
+-        KConfigGroup config(KSharedConfig::openConfig(), "ServerListDialog");
++        KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("ServerListDialog"));
+         QSize newSize = size();
+         newSize = config.readEntry("Size", newSize);
+         resize(newSize);
+@@ -99,7 +92,7 @@ namespace Konversation
+ 
+     ServerListDialog::~ServerListDialog()
+     {
+-        KConfigGroup config(KSharedConfig::openConfig(), "ServerListDialog");
++        KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("ServerListDialog"));
+         config.writeEntry("Size", size());
+         config.writeEntry("ServerListHeaderState", m_serverList->header()->saveState());
+     }
+diff --git a/src/irc/serverlistview.cpp b/src/irc/serverlistview.cpp
+index 8cf029272..79904e213 100644
+--- a/src/irc/serverlistview.cpp
++++ b/src/irc/serverlistview.cpp
+@@ -17,7 +17,7 @@ ServerListView::~ServerListView()
+ }
+ void ServerListView::dragMoveEvent(QDragMoveEvent *e)
+ {
+-    QTreeWidgetItem* item = this->itemAt(e->pos());
++    QTreeWidgetItem* item = this->itemAt(e->position().toPoint());
+     QTreeWidgetItem* sItem = this->currentItem();
+     bool bad;
+     //  bad selection || dropping on viewport must be a toplevelitem || children of the same parent (or lack thereof)
+diff --git a/src/viewer/channeloptionsdialog.cpp b/src/viewer/channeloptionsdialog.cpp
+index 5a8189a1a..52e109009 100644
+--- a/src/viewer/channeloptionsdialog.cpp
++++ b/src/viewer/channeloptionsdialog.cpp
+@@ -133,7 +133,7 @@ namespace Konversation
+             if (!m_ui.topicEdit->isReadOnly())
+                 m_ui.topicEdit->setFocus();
+ 
+-            KConfigGroup config(KSharedConfig::openConfig(), "ChannelOptionsDialog");
++            KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("ChannelOptionsDialog"));
+ 
+             resize(config.readEntry("Size", sizeHint()));
+ 
+@@ -150,7 +150,7 @@ namespace Konversation
+ 
+     void ChannelOptionsDialog::hideEvent(QHideEvent* event)
+     {
+-        KConfigGroup config(KSharedConfig::openConfig(), "ChannelOptionsDialog");
++        KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("ChannelOptionsDialog"));
+ 
+         config.writeEntry("Size", size());
+         config.writeEntry("SplitterSizes", m_ui.splitter->sizes());
+@@ -592,7 +592,7 @@ namespace Konversation
+         if (treeWidget()->sortColumn() == 2)
+         {
+             QVariant userdata = item.data(2, Qt::UserRole);
+-            if (userdata.isValid() && userdata.type() == QVariant::DateTime)
++            if (userdata.isValid() && userdata.typeId() == QVariant::DateTime)
+             {
+               return m_timestamp < userdata.toDateTime();
+             }
+diff --git a/src/viewer/ircview.cpp b/src/viewer/ircview.cpp
+index 63a5ce0ae..43d0e8d4f 100644
+--- a/src/viewer/ircview.cpp
++++ b/src/viewer/ircview.cpp
+@@ -1961,7 +1961,7 @@ void IRCView::adjustUrlRanges(QList< QPair<int, int> >& urlRanges, const QString
+             }
+             else
+             {
+-                QRegularExpressionMatch match = colorRegExp.match(richtext, i, QRegularExpression::NormalMatch, QRegularExpression::AnchoredMatchOption);
++                QRegularExpressionMatch match = colorRegExp.match(richtext, i, QRegularExpression::NormalMatch, QRegularExpression::AnchorAtOffsetMatchOption);
+                 if (match.hasMatch())
+                 {
+                     // forward to the last matched position
+diff --git a/src/viewer/osd.cpp b/src/viewer/osd.cpp
+index a0082abc5..3c6911137 100644
+--- a/src/viewer/osd.cpp
++++ b/src/viewer/osd.cpp
+@@ -373,10 +373,10 @@ void OSDPreviewWidget::mouseMoveEvent( QMouseEvent *e )
+ 
+         const QRect screen     = QApplication::screens()[m_screen]->geometry();
+         const int  hcenter     = screen.width() / 2;
+-        const int  eGlobalPosX = e->globalPos().x() - screen.left();
++        const int  eGlobalPosX = e->globalPosition().x() - screen.left();
+         const int  snapZone    = screen.width() / 24;
+ 
+-        QPoint destination = e->globalPos() - m_dragOffset - screen.topLeft();
++        QPoint destination = e->globalPosition().toPoint() - m_dragOffset - screen.topLeft();
+         int maxY = screen.height() - height() - MARGIN;
+         if( destination.y() < MARGIN )
+             destination.ry() = MARGIN;
+@@ -394,7 +394,7 @@ void OSDPreviewWidget::mouseMoveEvent( QMouseEvent *e )
+             destination.rx() = screen.width() - MARGIN - width();
+         }
+         else {
+-            const int eGlobalPosY = e->globalPos().y() - screen.top();
++            const int eGlobalPosY = e->globalPosition().y() - screen.top();
+             const int vcenter     = screen.height() / 2;
+ 
+             destination.rx() = hcenter - width() / 2;
+diff --git a/src/viewer/rawlog.cpp b/src/viewer/rawlog.cpp
+index 7d8558acf..787c8aa77 100644
+--- a/src/viewer/rawlog.cpp
++++ b/src/viewer/rawlog.cpp
+@@ -56,7 +56,7 @@ static const char tr16[] = "0123456789ABCDEF";
+ 
+ static QString toPercentEncoding(const QByteArray& input, QString output=QString()) // Do NOT 'fix' this for krazy, I want to see the EBN --argonel
+ {
+-    int len = input.count();
++    int len = input.size();
+     const char *inputData = input.constData();
+ 
+     // skip a few allocations - most of my raw log is more than 200 characters with "&nbsp;" replaced
+diff --git a/src/viewer/viewcontainer.cpp b/src/viewer/viewcontainer.cpp
+index 75fd069a3..d4bfff62f 100644
+--- a/src/viewer/viewcontainer.cpp
++++ b/src/viewer/viewcontainer.cpp
+@@ -123,8 +123,8 @@ ViewContainer::ViewContainer(MainWindow* window) : QAbstractItemModel(window)
+ , m_queryViewCount(0)
+ {
+     // move existing entries to their new location
+-    KConfigGroup appearanceStateConfig = KSharedConfig::openStateConfig()->group("Appearance");
+-    KConfigGroup appearanceGrp = KSharedConfig::openConfig()->group("Appearance");
++    KConfigGroup appearanceStateConfig = KSharedConfig::openStateConfig()->group(QStringLiteral("Appearance"));
++    KConfigGroup appearanceGrp = KSharedConfig::openConfig()->group(QStringLiteral("Appearance"));
+     appearanceGrp.moveValuesTo({"TreeSplitterSizes", "TopicSplitterSizes", "ChannelSplitterSizes"}, appearanceStateConfig);
+ 
+     m_viewSpringLoader = new ViewSpringLoader(this);
+diff --git a/src/viewer/viewspringloader.cpp b/src/viewer/viewspringloader.cpp
+index 70ecc79c9..defaf20b3 100644
+--- a/src/viewer/viewspringloader.cpp
++++ b/src/viewer/viewspringloader.cpp
+@@ -46,7 +46,7 @@ bool ViewSpringLoader::eventFilter(QObject* watched, QEvent* event)
+ 
+         if (!dragMoveEvent->mimeData()->hasFormat(QStringLiteral("application/x-konversation-chatwindow")))
+         {
+-            ChatWindow* hoveredView = viewForPos(watched, dragMoveEvent->pos());
++            ChatWindow* hoveredView = viewForPos(watched, dragMoveEvent->position().toPoint());
+ 
+             if (hoveredView != m_hoveredView)
+             {
+diff --git a/tests/testcommon.cpp b/tests/testcommon.cpp
+index 8a9e41328..5d685666f 100644
+--- a/tests/testcommon.cpp
++++ b/tests/testcommon.cpp
+@@ -85,7 +85,7 @@ void TestCommon::testMatchLength()
+     QFETCH(int, expectedLength);
+ 
+     int length = 0;
+-    QRegularExpressionMatch match = Konversation::colorRegExp.match(ircText, 0, QRegularExpression::NormalMatch, QRegularExpression::AnchoredMatchOption);
++    QRegularExpressionMatch match = Konversation::colorRegExp.match(ircText, 0, QRegularExpression::NormalMatch, QRegularExpression::AnchorAtOffsetMatchOption);
+     if (match.hasMatch()) {
+         length = match.capturedLength();
+     }
+-- 
+GitLab
+
+
+From d55aa3265b19c632f1dd1872bc1924d97e235fa7 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Tue, 28 Nov 2023 13:50:46 +0100
+Subject: [PATCH 32/35] fix bad rebase
+
+---
+ src/application.cpp | 32 --------------------------------
+ 1 file changed, 32 deletions(-)
+
+diff --git a/src/application.cpp b/src/application.cpp
+index a07af4dc4..6d2289dc6 100644
+--- a/src/application.cpp
++++ b/src/application.cpp
+@@ -466,14 +466,6 @@ void Application::readOptions()
+         m_osd->setPalette(p);
+     }
+ 
+-<<<<<<< HEAD
+-    // Server list
+-=======
+-    // Check if there is old server list config //TODO FIXME why are we doing this here?
+-    KConfigGroup cgServerList(KSharedConfig::openConfig()->group(QStringLiteral("Server List")));
+-
+-    // Read the new server settings
+->>>>>>> c449b5e2 (Remove many deprecated warnings)
+     const QStringList groups = KSharedConfig::openConfig()->groupList().filter(
+                                         QRegularExpression(QStringLiteral("ServerGroup [0-9]+")));
+     QMap<int,QStringList> notifyList;
+@@ -637,13 +629,8 @@ void Application::readOptions()
+     Preferences::setAutoreplaceList(autoreplaceList);
+ 
+     // Highlight List
+-<<<<<<< HEAD
+     index = 0;
+     while (KSharedConfig::openConfig()->hasGroup(QStringLiteral("Highlight%1").arg(index)))
+-=======
+-    KConfigGroup cgDefault(KSharedConfig::openConfig()->group(QStringLiteral("<default>")));
+-    if (cgDefault.hasKey("Highlight")) // Stay compatible with versions < 0.14
+->>>>>>> c449b5e2 (Remove many deprecated warnings)
+     {
+         KConfigGroup cgHighlight (KSharedConfig::openConfig()->group(QStringLiteral("Highlight%1").arg(index)));
+         Preferences::addHighlight(
+@@ -677,26 +664,7 @@ void Application::readOptions()
+         Preferences::self()->setAliasList(newList);
+ 
+     // Channel Encodings
+-<<<<<<< HEAD
+-    KConfigGroup cgEncodings(KSharedConfig::openConfig()->group("Encodings"));
+-=======
+-
+-    //Legacy channel encodings read in Jun. 29, 2009
+-    KConfigGroup cgChannelEncodings(KSharedConfig::openConfig()->group(QStringLiteral("Channel Encodings")));
+-    const QMap<QString,QString> channelEncodingEntries = cgChannelEncodings.entryMap();
+-    const QRegularExpression re(QStringLiteral("^(.+) ([^\\s]+)$"));
+-
+-    for (auto it = channelEncodingEntries.begin(), end = channelEncodingEntries.end(); it != end; ++it) {
+-        const QRegularExpressionMatch match = re.match(it.key());
+-        if(match.hasMatch())
+-        {
+-            Preferences::setChannelEncoding(match.captured(1), match.captured(2), it.value());
+-        }
+-    }
+-    //End legacy channel encodings read in Jun 29, 2009
+-
+     KConfigGroup cgEncodings(KSharedConfig::openConfig()->group(QStringLiteral("Encodings")));
+->>>>>>> c449b5e2 (Remove many deprecated warnings)
+     const QMap<QString,QString> encodingEntries = cgEncodings.entryMap();
+ 
+     const QRegularExpression reg(QStringLiteral("^([^\\s]+) ([^\\s]+)\\s?([^\\s]*)$"));
+-- 
+GitLab
+
+
+From 0f12be1ca7f472920f3387e8b26813b87763a930 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Mon, 11 Dec 2023 06:44:24 +0100
+Subject: [PATCH 33/35] Adapt to new api
+
+---
+ src/application.cpp | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
+
+diff --git a/src/application.cpp b/src/application.cpp
+index 6d2289dc6..76a171e1f 100644
+--- a/src/application.cpp
++++ b/src/application.cpp
+@@ -685,17 +685,19 @@ void Application::readOptions()
+ 
+     for (auto it = spellCheckingLanguageEntries.begin(), end = spellCheckingLanguageEntries.end(); it != end; ++it) {
+         const QRegularExpressionMatch match = reg.match(it.key());
+-        if (match.hasMatch())
++        if (!match.hasMatch()) {
++            continue;
++        }
++        if (match.captured(1) == QLatin1String("ServerGroup") && !match.captured(3).isEmpty())
+         {
+-            if (match.captured(1) == QLatin1String("ServerGroup") && !match.captured(3).isEmpty())
+-            {
+-                ServerGroupSettingsPtr serverGroup = Preferences::serverGroupById(sgKeys.at(match.captured(2).toInt()));
++            ServerGroupSettingsPtr serverGroup = Preferences::serverGroupById(sgKeys.at(match.captured(2).toInt()));
+ 
+-                if (serverGroup)
+-                    Preferences::setSpellCheckingLanguage(serverGroup, match.captured(3), it.value());
++            if (serverGroup) {
++                Preferences::setSpellCheckingLanguage(serverGroup, match.captured(3), it.value());
+             }
+-            else
+-                Preferences::setSpellCheckingLanguage(match.captured(1), match.captured(2), it.value());
++        }
++        else {
++            Preferences::setSpellCheckingLanguage(match.captured(1), match.captured(2), it.value());
+         }
+     }
+ 
+-- 
+GitLab
+
+
+From 83dfd53960e2d6b6f5c749e485a4466dbfa5684b Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Mon, 11 Dec 2023 07:15:39 +0100
+Subject: [PATCH 34/35] Remove flatpal-qt6
+
+---
+ .gitlab-ci.yml | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
+index 5516f295d..f57a00bdb 100644
+--- a/.gitlab-ci.yml
++++ b/.gitlab-ci.yml
+@@ -7,4 +7,3 @@ include:
+       - /gitlab-templates/linux-qt6.yml
+       - /gitlab-templates/freebsd-qt6.yml
+       - /gitlab-templates/windows-qt6.yml
+-      - /gitlab-templates/flatpak-qt6.yml
+-- 
+GitLab
+
+
+From 3859367346a3dcff22ac562893bef019737f57f7 Mon Sep 17 00:00:00 2001
+From: Tomaz Canabrava <tcanabrava@kde.org>
+Date: Mon, 8 Jan 2024 10:35:57 +0100
+Subject: [PATCH 35/35] Adapt to API changes on KF6
+
+---
+ src/bookmarkhandler.cpp     | 6 ++----
+ src/config/theme_config.cpp | 2 +-
+ src/dcc/transferrecv.cpp    | 3 +++
+ src/dcc/transfersend.cpp    | 6 ++++--
+ 4 files changed, 10 insertions(+), 7 deletions(-)
+
+diff --git a/src/bookmarkhandler.cpp b/src/bookmarkhandler.cpp
+index 1e0a579a2..6a2ec36f4 100644
+--- a/src/bookmarkhandler.cpp
++++ b/src/bookmarkhandler.cpp
+@@ -28,13 +28,11 @@ m_mainWindow(mainWindow)
+ 
+     m_file = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("konversation/bookmarks.xml") );
+ 
+-    if ( m_file.isEmpty() )
++    if ( m_file.isEmpty() ) {
+         m_file = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + QStringLiteral("konversation/bookmarks.xml") ;
++    }
+ 
+     auto *manager = new KBookmarkManager( m_file, this);
+-
+-    manager->setUpdate( true );
+-
+     m_bookmarkMenu = new KBookmarkMenu(manager, this, menu);
+     m_mainWindow->actionCollection()->addActions(menu->actions());
+ }
+diff --git a/src/config/theme_config.cpp b/src/config/theme_config.cpp
+index 39eff1269..3fb9eb860 100644
+--- a/src/config/theme_config.cpp
++++ b/src/config/theme_config.cpp
+@@ -194,7 +194,7 @@ void Theme_Config::installTheme()
+         tmpFile.close(); // no need to keep the file open, it isn't deleted until the destructor is called
+ 
+         QUrl tmpUrl = QUrl::fromLocalFile(tmpFile.fileName());
+-        KIO::FileCopyJob *fileCopyJob = KIO::file_copy(themeURL, tmpUrl, -1, KIO::Overwrite);
++        KIO::CopyJob *fileCopyJob = KIO::copy(themeURL, tmpUrl, KIO::Overwrite);
+         if (!fileCopyJob->exec())
+         {
+             int errorCode = fileCopyJob->error();
+diff --git a/src/dcc/transferrecv.cpp b/src/dcc/transferrecv.cpp
+index f50992bbe..d32a7b5b9 100644
+--- a/src/dcc/transferrecv.cpp
++++ b/src/dcc/transferrecv.cpp
+@@ -33,6 +33,9 @@
+ #include <KUser>
+ #include <KAuthorized>
+ #include <KIO/Job>
++#include <KIO/StatJob>
++#include <KIO/MkdirJob>
++#include <KIO/StoredTransferJob>
+ 
+ /*
+  *flow chart*
+diff --git a/src/dcc/transfersend.cpp b/src/dcc/transfersend.cpp
+index b4d958af8..405a4116b 100644
+--- a/src/dcc/transfersend.cpp
++++ b/src/dcc/transfersend.cpp
+@@ -35,6 +35,8 @@
+ #include <KAuthorized>
+ 
+ #include <KIO/Job>
++#include <KIO/StatJob>
++#include <KIO/CopyJob>
+ 
+ using namespace Konversation::UPnP;
+ 
+@@ -216,9 +218,9 @@ namespace Konversation
+                 m_tmpFile->close(); // no need to keep the file open, it isn't deleted until the destructor is called
+ 
+                 QUrl tmpUrl = QUrl::fromLocalFile(m_tmpFile->fileName());
+-                KIO::FileCopyJob *fileCopyJob = KIO::file_copy(m_fileURL, tmpUrl, -1, KIO::Overwrite);
++                KIO::CopyJob *fileCopyJob = KIO::copy(m_fileURL, tmpUrl, KIO::Overwrite);
+ 
+-                connect(fileCopyJob, &KIO::FileCopyJob::result, this, &TransferSend::slotLocalCopyReady);
++                connect(fileCopyJob, &KIO::CopyJob::result, this, &TransferSend::slotLocalCopyReady);
+                 fileCopyJob->start();
+                 setStatus(Preparing);
+                 return false; // not ready to send yet
+-- 
+GitLab
+
