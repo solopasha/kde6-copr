@@ -1,6 +1,6 @@
-%global commit0 36f5625141cbb4e1707e0f4ed9ece0ce0c2c0cc9
+%global commit0 f8ef220e6a08b047c31c19faa52c197d58910a5d
 %global shortcommit %(c=%{commit0}; echo ${c:0:7})
-%global gitdate 20231120.081305
+%global gitdate 20240108
 
 Name:    pulseaudio-qt
 Summary: Qt bindings for PulseAudio
