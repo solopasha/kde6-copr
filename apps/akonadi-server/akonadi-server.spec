@@ -4,7 +4,7 @@
 %global database_backend SQLITE
 %endif
 
-Name:    akonadi
+Name:    akonadi-server
 Summary: PIM Storage Service
 Version: 24.01.85
 Release: 1%{?dist}
@@ -60,12 +60,18 @@ Recommends:     %{name}-mysql = %{version}-%{release}
 
 Conflicts: kf5-akonadi-server < 23.08.3-2
 
+Obsoletes:      akonadi < 24.01.85-2
+Provides:       akonadi = %{version}-%{release}
+Provides:       akonadi%{?_isa} = %{version}-%{release}
+
 %description
 %{summary}.
 
 %package devel
 Summary:        Developer files for %{name}
 Conflicts:      kf5-akonadi-server-devel < 23.08.3-2
+Obsoletes:      akonadi-devel < 24.01.85-2
+Provides:       akonadi-devel = %{version}-%{release}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6Config)
 Requires:       cmake(KF6ConfigWidgets)
@@ -86,6 +92,8 @@ Requires:       cmake(Qt6Xml)
 Summary:        Akonadi MySQL backend support
 Obsoletes:      kf5-akonadi-server-mysql < 24.01.75
 Provides:       kf5-akonadi-server-mysql = %{version}-%{release}
+Obsoletes:      akonadi-mysql < 24.01.85-2
+Provides:       akonadi-mysql = %{version}-%{release}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       %{mysql}-server
 %if "%{?mysql}" != "mariadb" && 0%{?fedora} > 20
@@ -121,9 +129,9 @@ See also: %{_sysconfdir}/akonadi/mysql-global.conf
 %install
 %cmake_install
 
-%find_lang libakonadi5
+%find_lang libakonadi6
 %find_lang akonadi_knut_resource
-cat akonadi_knut_resource.lang >> libakonadi5.lang
+cat akonadi_knut_resource.lang >> libakonadi6.lang
 
 install -p -m644 -D %{SOURCE10} %{buildroot}%{_sysconfdir}/xdg/akonadi/akonadiserverrc.mysql
 install -p -m644 -D %{SOURCE11} %{buildroot}%{_sysconfdir}/xdg/akonadi/akonadiserverrc.sqlite

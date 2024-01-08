@@ -1,12 +1,10 @@
-%global base_name audiocd-kio
-
-Name:    kf6-audiocd-kio
+Name:    audiocd-kio
 Summary: KIO worker for accessing audio CDs
 Version: 24.01.85
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-3.0-or-later
-URL:     https://www.kde.org/applications/multimedia/
+URL:     https://invent.kde.org/multimedia/audiocd-kio
 %apps_source
 
 BuildRequires: desktop-file-utils
@@ -38,6 +36,8 @@ Recommends:    lame
 Recommends:    opus-tools
 
 Obsoletes:     kf5-audiocd-kio < 24.01.80
+Obsoletes:     kf6-audiocd-kio < 24.01.85-2
+Provides:      kf6-audiocd-kio = %{version}-%{release}
 
 
 %description
@@ -46,14 +46,16 @@ Obsoletes:     kf5-audiocd-kio < 24.01.80
 %package devel
 Summary:  Development files for %{name}
 Obsoletes: kf5-audiocd-kio-devel < 24.01.80
-# libaudiocdplugins.so symlink conflict
-Conflicts: audiocd-kio-devel
+Obsoletes: kf6-audiocd-kio-devel < 24.01.85-2
+Provides:  kf6-audiocd-kio-devel = %{version}-%{release}
 Requires: %{name}%{?_isa} = %{version}-%{release}
 %description devel
 %{summary}.
 
 %package doc
 Summary: Documentation for %{name}
+Obsoletes: kf6-audiocd-kio-doc < 24.01.85-2
+Provides:  kf6-audiocd-kio-doc = %{version}-%{release}
 Obsoletes: kf5-audiocd-kio-doc < 24.01.80
 License: GFDL
 Requires:  %{name} = %{version}-%{release}
@@ -64,7 +66,7 @@ Documentation for %{name}.
 
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n audiocd-kio-%{version}
+%autosetup -p1
 
 
 %build
@@ -81,7 +83,7 @@ Documentation for %{name}.
 
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
-appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.kio_audiocd.*.xml ||:
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 
 
 %files -f %{name}.lang
