@@ -1,69 +1,65 @@
+%global commit0 39c83720bf7241048ed695f94bf5405742708134
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    krfb
 Summary: Desktop sharing
-Version: 24.01.85
-Release: 2%{?dist}
+Version: 24.01.85%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 
 License: GPL-2.0-only AND LGPL-2.1-only AND GFDL-1.2-no-invariants-only
 URL:     https://www.kde.org/applications/network/krfb/
 
 %apps_source
 
-## upstreamable patches
-
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
-BuildRequires: gettext
-BuildRequires: kf5-kcompletion-devel
-BuildRequires: kf5-kconfig-devel
-BuildRequires: kf5-kcoreaddons-devel
-BuildRequires: kf5-kcrash-devel
-BuildRequires: kf5-kdoctools-devel
-BuildRequires: kf5-kdbusaddons-devel
-BuildRequires: kf5-kdnssd-devel
-BuildRequires: kf5-ki18n-devel
-BuildRequires: kf5-knotifications-devel
-BuildRequires: kf5-kwallet-devel
-BuildRequires: kf5-kwidgetsaddons
-BuildRequires: kf5-kxmlgui-devel
-BuildRequires: cmake(KF5Wayland)
-BuildRequires: cmake(KF5WindowSystem)
-BuildRequires: kpipewire5-devel
+BuildRequires: kf6-rpm-macros
+BuildRequires: libappstream-glib
 
+BuildRequires: cmake(KF6Config)
+BuildRequires: cmake(KF6CoreAddons)
+BuildRequires: cmake(KF6Crash)
+BuildRequires: cmake(KF6DBusAddons)
+BuildRequires: cmake(KF6DNSSD)
+BuildRequires: cmake(KF6DocTools)
+BuildRequires: cmake(KF6I18n)
+BuildRequires: cmake(KF6Notifications)
+BuildRequires: cmake(KF6StatusNotifierItem)
+BuildRequires: cmake(KF6Wallet)
+BuildRequires: cmake(KF6WidgetsAddons)
+BuildRequires: cmake(KF6WindowSystem)
+BuildRequires: cmake(KF6XmlGui)
+
+BuildRequires: cmake(Qt6Core)
+BuildRequires: cmake(Qt6DBus)
+BuildRequires: cmake(Qt6Widgets)
+BuildRequires: cmake(Qt6WaylandScannerTools)
+BuildRequires: qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
+
+BuildRequires: cmake(KPipeWire)
+BuildRequires: cmake(KWayland)
 BuildRequires: cmake(PlasmaWaylandProtocols)
 
-BuildRequires: cmake(Qt5DBus)
-BuildRequires: cmake(Qt5X11Extras)
-BuildRequires: cmake(Qt5WaylandClient)
-# /usr/lib64/libQt5XkbCommonSupport.a
-BuildRequires: qt5-qtbase-static
-
-BuildRequires: pipewire-devel
-BuildRequires: pkgconfig(zlib)
 BuildRequires: pkgconfig(libvncserver)
+BuildRequires: pkgconfig(wayland-client)
 BuildRequires: pkgconfig(x11)
-BuildRequires: pkgconfig(xcb)
 BuildRequires: pkgconfig(xcb-damage)
 BuildRequires: pkgconfig(xcb-image)
 BuildRequires: pkgconfig(xcb-render)
 BuildRequires: pkgconfig(xcb-shape)
 BuildRequires: pkgconfig(xcb-shm)
 BuildRequires: pkgconfig(xcb-xfixes)
+BuildRequires: pkgconfig(xcb)
 BuildRequires: pkgconfig(xdamage)
-BuildRequires: pkgconfig(wayland-client)
-
 BuildRequires: pkgconfig(xtst)
+BuildRequires: pkgconfig(zlib)
+
 BuildRequires: libjpeg-devel
 BuildRequires: libepoxy-devel
 
 Requires: %{name}-libs%{?_isa} = %{version}-%{release}
-
-# when split occurred
-Conflicts: kdenetwork-common < 7:4.10.80
-Obsoletes: kdenetwork-krfb < 7:4.10.80
-Provides:  kdenetwork-krfb = 7:%{version}-%{release}
-
-# translations moved here
-Conflicts: kde-l10n < 17.03
 
 %description
 %{summary}.
@@ -71,20 +67,17 @@ Conflicts: kde-l10n < 17.03
 %package libs
 Summary: Runtime libraries for %{name}
 Requires: %{name} = %{version}-%{release}
-Obsoletes: kdenetwork-krfb-libs < 7:4.10.80
-Provides:  kdenetwork-krfb-libs = 7:%{version}-%{release}
 %description libs
 %{summary}.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
-%cmake_kf5
-
+%cmake_kf6 -DQT_MAJOR_VERSION=6
 %cmake_build
 
 
@@ -95,25 +88,24 @@ Provides:  kdenetwork-krfb-libs = 7:%{version}-%{release}
 
 
 %check
-desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.krfb.desktop
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.krfb*.desktop
+appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.xml
 
 
 %files -f %{name}.lang
 %license COPYING*
 %doc README AUTHORS
-%{_kf5_bindir}/krfb
-# package seperately? -- rdieter
-%{_kf5_bindir}/krfb-virtualmonitor
-%{_kf5_datadir}/krfb/
-%{_kf5_datadir}/applications/org.kde.krfb.desktop
-%{_kf5_datadir}/applications/org.kde.krfb.virtualmonitor.desktop
-%{_kf5_metainfodir}/org.kde.krfb.appdata.xml
-%{_kf5_datadir}/qlogging-categories5/*categories
-%{_datadir}/icons/hicolor/*/apps/krfb.*
+%{_kf6_bindir}/krfb
+%{_kf6_bindir}/krfb-virtualmonitor
+%{_kf6_datadir}/applications/org.kde.krfb*.desktop
+%{_kf6_datadir}/icons/hicolor/*/apps/krfb.*
+%{_kf6_datadir}/krfb/
+%{_kf6_datadir}/qlogging-categories6/*categories
+%{_kf6_metainfodir}/org.kde.krfb.appdata.xml
 
 %files libs
-%{_kf5_libdir}/libkrfbprivate.so.5*
-%{_kf5_qtplugindir}/krfb/
+%{_kf6_libdir}/libkrfbprivate.so.5*
+%{_kf6_qtplugindir}/krfb/
 
 
 %changelog
