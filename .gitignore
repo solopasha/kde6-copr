@@ -2,5 +2,6 @@ deps.db
 *.rpm
 *.tar.xz*
 *.tar.gz*
+*.tar.bz*
 *.log
 results_*
