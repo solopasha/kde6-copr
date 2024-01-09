@@ -1,15 +1,13 @@
-%global commit0 f8ef220e6a08b047c31c19faa52c197d58910a5d
-%global shortcommit %(c=%{commit0}; echo ${c:0:7})
-%global gitdate 20240108
-
 Name:    pulseaudio-qt
 Summary: Qt bindings for PulseAudio
-Version: 1.3^%{gitdate}.%{shortcommit}
+Version: 1.4.0
 Release: 1%{?dist}
 
 License: CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/libraries/pulseaudio-qt
-Source:  https://invent.kde.org/libraries/pulseaudio-qt/-/archive/%{commit0}/pulseaudio-qt-%{commit0}.tar.gz
+Source:  https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz
+Source:  https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz.sig
+Source:  signing-key.pgp
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
@@ -31,7 +29,8 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 
 
 %prep
-%autosetup -n %{name}-%{commit0}
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -p1
 
 %build
 %cmake_kf6 -DQT_MAJOR_VERSION=6
@@ -45,7 +44,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 %license LICENSES/*.txt
 %doc README.md
 %{_kf6_libdir}/libKF6PulseAudioQt.so.4
-%{_kf6_libdir}/libKF6PulseAudioQt.so.1.3.0
+%{_kf6_libdir}/libKF6PulseAudioQt.so.%{version}
 
 %files devel
 %{_kf6_includedir}/KF6PulseAudioQt/
