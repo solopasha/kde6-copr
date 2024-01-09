@@ -55,7 +55,6 @@ BuildRequires: gcc
 BuildRequires: gcc-c++
 BuildRequires: kf6-rpm-macros
 BuildRequires: libappstream-glib
-BuildRequires: ninja-build
 
 Requires: breeze-icon-theme
 Requires: hicolor-icon-theme
@@ -94,8 +93,7 @@ notably Kirigami, KConfig and KI18n.
 %autosetup -p1
 
 %build
-%cmake_kf6 -G Ninja \
-    -DCMAKE_BUILD_TYPE=Release
+%cmake_kf6 -DCMAKE_BUILD_TYPE=Release
 %cmake_build
 
 %install

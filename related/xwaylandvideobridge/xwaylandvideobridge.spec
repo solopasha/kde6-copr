@@ -11,7 +11,6 @@ BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
-BuildRequires:  ninja-build
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  extra-cmake-modules
 BuildRequires:  qt6-qtbase-private-devel
@@ -46,7 +45,7 @@ but within the control of the user at all times.
 
 
 %build
-%cmake_kf6 -DBUILD_WITH_QT6=ON -GNinja
+%cmake_kf6 -DBUILD_WITH_QT6=ON
 %cmake_build
 
 

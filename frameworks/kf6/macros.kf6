@@ -16,16 +16,13 @@
 %_kf6_version @@kf6_VERSION@@
 
 %cmake_kf6 \\\
-  %undefine __cmake_in_source_build \
   QTDIR="%{_qt6_prefix}" ; export QTDIR ; \
   PATH="%{_qt6_bindir}:$PATH" ; export PATH ; \
-  CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-  CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-  FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
-  %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
+  %{set_build_flags} \
     %{__cmake} \\\
-    %{?__cmake_builddir:-S "%{_vpath_srcdir}"} \\\
-    %{?__cmake_builddir:-B "%{__cmake_builddir}"} \\\
+    -GNinja \\\
+    %{!?__cmake_in_source_build:-S "%{_vpath_srcdir}"} \\\
+    %{!?__cmake_in_source_build:-B "%{__cmake_builddir}"} \\\
     -DCMAKE_C_FLAGS_RELEASE:STRING="-DNDEBUG" \\\
     -DCMAKE_CXX_FLAGS_RELEASE:STRING="-DNDEBUG" \\\
     -DCMAKE_Fortran_FLAGS_RELEASE:STRING="-DNDEBUG" \\\

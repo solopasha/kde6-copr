@@ -1,5 +1,3 @@
-## experimental ninja support
-%global ninja 1
 ## FIXME: many tests require GLX, which doesn't appear to work as-is under koji
 #global tests 1
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
@@ -68,10 +66,6 @@ BuildRequires: cmake(KF6XmlGui)
 # sidebar
 BuildRequires: cmake(KF6JobWidgets)
 
-%if 0%{?ninja}
-BuildRequires:  ninja-build
-%endif
-
 %if 0%{?tests}
 BuildRequires: dbus-x11
 BuildRequires: time
@@ -118,7 +112,6 @@ browsing the web in Konqueror.
 %cmake_kf6 \
   -DQT_MAJOR_VERSION=6 \
   -Wno-dev \
-  %{?ninja:-G Ninja} \
   %{?tests:-DBUILD_TESTING:BOOL=ON}
 
 %cmake_build
