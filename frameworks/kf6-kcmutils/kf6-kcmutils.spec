@@ -8,7 +8,7 @@ Summary: KDE Frameworks 6 Tier 3 addon with extra API to write KConfigModules
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/frameworks/%{framework}
 
-%frameworks_source
+%frameworks_meta
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}

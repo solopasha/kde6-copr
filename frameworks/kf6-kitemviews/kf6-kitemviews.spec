@@ -6,7 +6,7 @@ Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with item views
 License:	CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later
 URL:		https://invent.kde.org/frameworks/%{framework}
-%frameworks_source
+%frameworks_meta
 
 BuildRequires:	fdupes
 BuildRequires:	cmake

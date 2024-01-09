@@ -6,7 +6,7 @@ Version:	5.247.0
 Release:	1%{?dist}
 License:	BSD-3-Clause AND CC0-1.0 AND MIT
 URL:		https://invent.kde.org/frameworks/%{framework}
-%frameworks_source
+%frameworks_meta
 
 BuildRequires:	cmake
 BuildRequires:	gcc-c++

@@ -14,6 +14,8 @@
 %_kf6_buildtype release
 %_kf6_qmldir %_kf6_archdatadir/qml
 %_kf6_version @@kf6_VERSION@@
+%_kf6_build_qch 0
+%_kf6_build_qch_flags %[0%{?_kf6_build_qch} ? "-DBUILD_QCH:BOOL=ON" : ""]
 
 %cmake_kf6 \\\
   QTDIR="%{_qt6_prefix}" ; export QTDIR ; \
@@ -28,6 +30,7 @@
     -DCMAKE_Fortran_FLAGS_RELEASE:STRING="-DNDEBUG" \\\
     -DBUILD_SHARED_LIBS:BOOL=ON \\\
     -DBUILD_TESTING:BOOL=FALSE \\\
+    %{_kf6_build_qch_flags} \\\
     -DCMAKE_BUILD_TYPE=%{_kf6_buildtype} \\\
     -DCMAKE_INSTALL_INCLUDEDIR_kf6:PATH=%{_kf6_includedir} \\\
     -DCMAKE_INSTALL_LIBEXECDIR_kf6:PATH=%{_kf6_libexecdir} \\\
@@ -95,7 +98,7 @@
     )
 # End of backwards compatible macros
 
-%frameworks_source %{lua:
+%frameworks_meta %{lua:
     if macros.bumpver or macros.gitdate then
         local fedora = require "fedora.common"
         fedora.zalias({"commit","shortcommit"}, false)
@@ -107,6 +110,11 @@
         print(rpm.expand("Source2: kde-frameworks-signing-keys.pgp").."\\n")
         macros.sourcerootdir = rpm.expand("%{framework}-%{version}")
     end
+
+    if macros._kf6_build_qch == "1" then
+        print("BuildRequires: doxygen qt6-doc-devel")
+    end
+
 }
 
 %plasma_source %{lua:

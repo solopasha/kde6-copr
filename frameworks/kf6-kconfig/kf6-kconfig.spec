@@ -1,12 +1,13 @@
 %global		framework kconfig
 
+
 Name:		  kf6-%{framework}
 Version:	5.247.0
 Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with advanced configuration system
 License:	BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND MIT
 URL:		  https://invent.kde.org/frameworks/%{framework}
-%frameworks_source
+%frameworks_meta
 
 BuildRequires:	cmake
 BuildRequires:	extra-cmake-modules >= %{version}

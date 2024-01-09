@@ -9,7 +9,7 @@ Release:        1%{?dist}
 Summary:        A Tier 1 KDE Frameworks 6 module that wraps NetworkManager DBus API
 License:        LGPL-2.0-or-later AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND CC0-1.0
 URL:            https://invent.kde.org/frameworks/%{framework}
-%frameworks_source
+%frameworks_meta
 
 # Compile Tools
 BuildRequires:  cmake

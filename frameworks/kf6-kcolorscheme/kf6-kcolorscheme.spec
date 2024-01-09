@@ -6,7 +6,7 @@ Release: 1%{?dist}
 Summary: Classes to read and interact with KColorScheme
 License: BSD-2-Clause and CC0-1.0 and LGPL-2.0-or-later and LGPL-2.1-only and LGPL-3.0-only and LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/frameworks/%{framework}
-%frameworks_source
+%frameworks_meta
 
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++

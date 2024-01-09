@@ -6,7 +6,7 @@ Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 integration module with classes for windows management
 License:	CC0-1.0 AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND MIT
 URL:		https://invent.kde.org/frameworks/%{framework}
-%frameworks_source
+%frameworks_meta
 
 BuildRequires:	cmake
 BuildRequires:	extra-cmake-modules >= %{version}

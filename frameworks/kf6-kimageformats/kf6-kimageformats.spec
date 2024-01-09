@@ -7,7 +7,7 @@ Summary:        KDE Frameworks 6 Tier 1 addon with additional image plugins for 
 License:        LGPLv2+
 URL:            https://invent.kde.org/frameworks/%{framework}
 
-%frameworks_source
+%frameworks_meta
 
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++

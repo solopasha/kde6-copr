@@ -7,7 +7,7 @@ Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/frameworks/%{framework}
-%frameworks_source
+%frameworks_meta
 
 BuildRequires: cmake
 BuildRequires: extra-cmake-modules >= %{version}

@@ -7,7 +7,7 @@ Release: 1%{?dist}
 
 License: MIT AND CC0-1.0 AND BSD-3-Clause
 URL:     https://invent.kde.org/frameworks/%{framework}
-%frameworks_source
+%frameworks_meta
 
 BuildRequires: cmake
 BuildRequires: desktop-file-utils

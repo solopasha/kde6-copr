@@ -6,7 +6,7 @@ Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with archive functions
 License:        LGPL-2.0-or-later AND BSD-2-Clause
 URL:            https://invent.kde.org/frameworks/%{framework}
-%frameworks_source
+%frameworks_meta
 
 # Compile Tools
 BuildRequires:  cmake

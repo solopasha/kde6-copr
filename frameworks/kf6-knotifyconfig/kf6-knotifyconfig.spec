@@ -8,7 +8,7 @@ Summary: KDE Frameworks 6 Tier 3 module for KNotify configuration
 License: CC0-1.0 AND LGPL-2.0-only
 URL:     https://invent.kde.org/frameworks/%{framework}
 
-%frameworks_source
+%frameworks_meta
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}

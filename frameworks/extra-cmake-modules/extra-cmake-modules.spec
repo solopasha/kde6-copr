@@ -15,7 +15,7 @@ Version: 5.247.0
 Release: 1.2%{?dist}
 License: BSD
 URL:     https://api.kde.org/ecm/
-%frameworks_source
+%frameworks_meta
 
 BuildArch:      noarch
 

@@ -8,7 +8,7 @@ Summary:        KDE Frameworks 6 Tier 2 addon with auto completion widgets and c
 License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later
 URL:            https://invent.kde.org/frameworks/%{framework}
 
-%frameworks_source
+%frameworks_meta
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}
