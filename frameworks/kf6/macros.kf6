@@ -11,7 +11,7 @@
 %_kf6_plugindir %_qt6_plugindir/kf6
 %_kf6_sysconfdir %_sysconfdir
 %_kf6_mandir %_kf6_datadir/man
-%_kf6_buildtype release
+%_kf6_buildtype Release
 %_kf6_qmldir %_kf6_archdatadir/qml
 %_kf6_version @@kf6_VERSION@@
 %_kf6_build_qch 0
@@ -102,17 +102,17 @@
     if macros.bumpver or macros.gitdate then
         local fedora = require "fedora.common"
         fedora.zalias({"commit","shortcommit"}, false)
-        print(rpm.expand("Source0: https://invent.kde.org/frameworks/%{framework}/-/archive/%{commit}/%{framework}-%{shortcommit}.tar.gz").."\\n")
+        print(rpm.expand("Source0: https://invent.kde.org/frameworks/%{framework}/-/archive/%{commit}/%{framework}-%{shortcommit}.tar.gz\\n"))
         macros.sourcerootdir = rpm.expand("%{framework}-%{commit}")
     else
-        print(rpm.expand("Source0: https://download.kde.org/%{stable_kf6}/frameworks/%{majmin_ver_kf6}/%{framework}-%{version}.tar.xz").."\\n")
-        print(rpm.expand("Source1: https://download.kde.org/%{stable_kf6}/frameworks/%{majmin_ver_kf6}/%{framework}-%{version}.tar.xz.sig").."\\n")
-        print(rpm.expand("Source2: kde-frameworks-signing-keys.pgp").."\\n")
+        print(rpm.expand("Source0: https://download.kde.org/%{stable_kf6}/frameworks/%{majmin_ver_kf6}/%{framework}-%{version}.tar.xz\\n" ..
+                         "Source1: https://download.kde.org/%{stable_kf6}/frameworks/%{majmin_ver_kf6}/%{framework}-%{version}.tar.xz.sig\\n" ..
+                         "Source2: kde-frameworks-signing-keys.pgp\\n"))
         macros.sourcerootdir = rpm.expand("%{framework}-%{version}")
     end
 
     if macros._kf6_build_qch == "1" then
-        print("BuildRequires: doxygen qt6-doc-devel")
+        print("BuildRequires: doxygen qt6-doc-devel\\n")
     end
 
 }
@@ -122,12 +122,12 @@
     if macros.bumpver or macros.gitdate then
         local fedora = require "fedora.common"
         fedora.zalias({"commit","shortcommit"}, false)
-        print(rpm.expand("Source0: https://invent.kde.org/plasma/"..pkgname.."/-/archive/%{commit}/"..pkgname.."-%{shortcommit}.tar.gz").."\\n")
+        print(rpm.expand("Source0: https://invent.kde.org/plasma/"..pkgname.."/-/archive/%{commit}/"..pkgname.."-%{shortcommit}.tar.gz\\n"))
         macros.sourcerootdir = rpm.expand(pkgname.."-%{commit}")
     else
-        print(rpm.expand("Source0: https://download.kde.org/%{stable_kf6}/plasma/%{version}/"..pkgname.."-%{version}.tar.xz").."\\n")
-        print(rpm.expand("Source1: https://download.kde.org/%{stable_kf6}/plasma/%{version}/"..pkgname.."-%{version}.tar.xz.sig").."\\n")
-        print(rpm.expand("Source2: kde-frameworks-signing-keys.pgp").."\\n")
+        print(rpm.expand("Source0: https://download.kde.org/%{stable_kf6}/plasma/%{version}/"..pkgname.."-%{version}.tar.xz\\n" ..
+                         "Source1: https://download.kde.org/%{stable_kf6}/plasma/%{version}/"..pkgname.."-%{version}.tar.xz.sig\\n" ..
+                         "Source2: kde-frameworks-signing-keys.pgp\\n"))
         macros.sourcerootdir = rpm.expand(pkgname.."-%{version}")
     end
 }
@@ -137,14 +137,21 @@
     if macros.bumpver or macros.gitdate then
         local fedora = require "fedora.common"
         fedora.zalias({"commit","shortcommit"}, false)
-        print(rpm.expand("Source0: https://github.com/KDE/"..pkgname.."/archive/%{commit}/"..pkgname.."-%{shortcommit}.tar.gz").."\\n")
+        print(rpm.expand("Source0: https://github.com/KDE/"..pkgname.."/archive/%{commit}/"..pkgname.."-%{shortcommit}.tar.gz\\n"))
         macros.sourcerootdir = rpm.expand(pkgname.."-%{commit}")
     else
-        print(rpm.expand("Source0: https://download.kde.org/%{stable_kf6}/release-service/%{version}/src/"..pkgname.."-%{version}.tar.xz").."\\n")
-        print(rpm.expand("Source1: https://download.kde.org/%{stable_kf6}/release-service/%{version}/src/"..pkgname.."-%{version}.tar.xz.sig").."\\n")
-        print(rpm.expand("Source2: kde-gear-signing-keys.pgp").."\\n")
+        print(rpm.expand("Source0: https://download.kde.org/%{stable_kf6}/release-service/%{version}/src/"..pkgname.."-%{version}.tar.xz\\n" ..
+                         "Source1: https://download.kde.org/%{stable_kf6}/release-service/%{version}/src/"..pkgname.."-%{version}.tar.xz.sig\\n" ..
+                         "Source2: kde-gear-signing-keys.pgp\\n"))
         macros.sourcerootdir = rpm.expand(pkgname.."-%{version}")
     end
 }
 
 
+%qch_package() \
+%package %{?1:%{1}-}doc\
+Summary: Developer Documentation files for %{name}\
+%description %{?1:%{1}-}doc\
+Developer Documentation files for %{name} for use with KDevelop or QtCreator.\
+%files %{?1:%{1}-}doc\
+%{_qt6_docdir}/*.qch
