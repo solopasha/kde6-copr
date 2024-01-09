@@ -4,9 +4,9 @@
 Name:    accounts-qml-module
 Summary: QML bindings for libaccounts-qt + libsignon-qt
 Version: 0.7^1.git%{shortcommit0}
-Release: 1%{?dist}
+Release: 2%{?dist}
 
-License: LGPLv2
+License: LGPL-2.1-only
 URL:     https://gitlab.com/accounts-sso/accounts-qml-module
 Source:  %{url}/-/archive/%{commit0}/%{name}-%{shortcommit0}.tar.gz
 
@@ -28,6 +28,14 @@ libaccounts-qt and libsignon-qt.
 %package        qt5
 Summary:        Qt5 support for %{name}
 %description    qt5
+%{summary}.
+
+%package        qt6
+Summary:        Qt6 build of %{name}
+Obsoletes:      %{name} < 0.7^1.git05e79eb-2
+Provides:       %{name} = %{version}-%{release}
+Provides:       %{name}%{?_isa} = %{version}-%{release}
+%description    qt6
 %{summary}.
 
 %package doc
@@ -75,7 +83,7 @@ rm %{buildroot}%{_bindir}/tst_plugin
 rm -fv %{buildroot}/%{_datadir}/%{name}/doc/html/.gitignore
 
 
-%files
+%files qt6
 %license COPYING
 %doc README.md
 %{_qt6_archdatadir}/qml/SSO/

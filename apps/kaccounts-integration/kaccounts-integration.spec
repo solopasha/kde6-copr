@@ -50,7 +50,7 @@ across the KDE desktop.
 
 %package        qt6
 Summary:        Qt6 support for %{name}
-Requires:       accounts-qml-module%{?_isa}
+Requires:       accounts-qml-module-qt6%{?_isa}
 Requires:       signon-plugin-oauth2%{?_isa}
 Requires:       kf6-kirigami%{?_isa}
 Obsoletes:      kaccounts-integration < 24.01.85

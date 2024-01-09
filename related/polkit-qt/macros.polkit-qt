@@ -1,2 +1,0 @@
-%_polkit_qt 1
-%_polkit_qt_policydir %{_datadir}/polkit-1/actions
