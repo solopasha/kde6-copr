@@ -1,3 +1,4 @@
+%global base_name akonadi
 %global mysql mysql
 
 %if 0%{?flatpak}
@@ -113,7 +114,7 @@ See also: %{_sysconfdir}/akonadi/mysql-global.conf
 
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
