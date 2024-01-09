@@ -1,8 +1,8 @@
-%global commit0 21fb316bea83e3374eafc7fbf1e25a0ccdda92cb
+%global commit0 d4f00e1d803038af4f245949d8c747a384117852
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Name:     xdg-utils
-Version:  1.1.3^1.git%{shortcommit0}
+Version:  1.1.3^2.git%{shortcommit0}
 Release:  1%{?dist}
 Summary:  Basic desktop integration functions
 License:  MIT
@@ -313,7 +313,7 @@ make man scripts %{?_smp_mflags} -C scripts
 - xdg-settings fixes (#580715, fdo#26284)
 
 * Mon Jan 18 2010 Rex Dieter <rdieter@fedoraproject.org> - 1.0.2-17.20100118cvs
-- xdg-screensaver resume activates the screensaver on KDE4 (fdo#26085) 
+- xdg-screensaver resume activates the screensaver on KDE4 (fdo#26085)
 
 * Thu Dec 17 2009 Rex Dieter <rdieter@fedoraproject.org> - 1.0.2-16.20091217cvs
 - xdg-mime: line 531: kde-config: command not found (#545702)
@@ -343,7 +343,7 @@ make man scripts %{?_smp_mflags} -C scripts
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
 
 * Thu Apr 09 2009 Rex Dieter <rdieter@fedoraproject.org> - 1.0.2-8.20081121cvs
-- revert.  kfmclient openURL is largely useless 
+- revert.  kfmclient openURL is largely useless
 
 * Wed Apr 08 2009 Rex Dieter <rdieter@fedoraproject.org> - 1.0.2-7.20081121cvs
 - xdg-open: s/kfmclient exec/kfmclient openURL/ (CVE-2009-0068, rh#472010, fdo#19377)
