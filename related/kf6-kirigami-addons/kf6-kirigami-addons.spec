@@ -1,12 +1,14 @@
 %global orig_name kirigami-addons
 
-Name:           kirigami-addons
+Name:           kf6-kirigami-addons
 Version:        0.11.76
-Release:        3.5%{?dist}
+Release:        2%{?dist}
 License:        BSD-2-Clause AND CC-BY-SA-4.0 AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND LicenseRef-KFQF-Accepted-GPL
 Summary:        Convergent visual components ("widgets") for Kirigami-based applications
 Url:            https://invent.kde.org/libraries/kirigami-addons
-Source:         https://invent.kde.org/libraries/%{orig_name}/-/archive/v%{version}/%{orig_name}-v%{version}.tar.gz
+Source:         https://download.kde.org/unstable/%{orig_name}/%{orig_name}-%{version}.tar.xz
+Source:         https://download.kde.org/unstable/%{orig_name}/%{orig_name}-%{version}.tar.xz.sig
+Source:         signing-key.pgp
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
@@ -21,18 +23,32 @@ BuildRequires:  cmake(Qt6QuickControls2)
 
 Requires:       kf6-kitemmodels
 
-Provides:       kf6-kirigami2-addons
-Provides:       kf6-kirigami2-addons%{?_isa}
-Provides:       kf6-kirigami2-addons-dateandtime
-Provides:       kf6-kirigami2-addons-dateandtime%{?_isa}
-Provides:       kf6-kirigami2-addons-treeview
-Provides:       kf6-kirigami2-addons-treeview%{?_isa}
-Provides:       kf6-kirigami-addons
-Provides:       kf6-kirigami-addons%{?_isa}
-Provides:       kf6-kirigami-addons-dateandtime
-Provides:       kf6-kirigami-addons-dateandtime%{?_isa}
-Provides:       kf6-kirigami-addons-treeview
-Provides:       kf6-kirigami-addons-treeview%{?_isa}
+Obsoletes:      kf6-kirigami2-addons < 1:0.11.76-5
+Provides:       kf6-kirigami2-addons = 1:%{version}-%{release}
+Provides:       kf6-kirigami2-addons%{?_isa} = 1:%{version}-%{release}
+
+Obsoletes:      kirigami-addons < 0.11.76-4
+Provides:       kirigami-addons = %{version}-%{release}
+Provides:       kirigami-addons%{?_isa} = %{version}-%{release}
+
+%package        dateandtime
+Summary:        Date and time add-on for the Kirigami framework
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Obsoletes:      kf6-kirigami2-addons-dateandtime < 1:0.11.76-5
+Provides:       kf6-kirigami2-addons-dateandtime = 1:%{version}-%{release}
+Provides:       kf6-kirigami2-addons-dateandtime%{?_isa} = 1:%{version}-%{release}
+%description    dateandtime
+Date and time Kirigami addons, which complements other
+software like Kclock.
+
+%package        treeview
+Summary:        Tree view add-on for the Kirigami framework
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Obsoletes:      kf6-kirigami2-addons-treeview < 1:0.11.76-5
+Provides:       kf6-kirigami2-addons-treeview = 1:%{version}-%{release}
+Provides:       kf6-kirigami2-addons-treeview%{?_isa} = 1:%{version}-%{release}
+%description    treeview
+Tree view Kirigami addon, which is useful for listing files.
 
 %description
 A set of "widgets" i.e visual end user components along with a
@@ -41,9 +57,9 @@ desktop experiences providing a native experience on both, and
 look native with any QQC2 style (qqc2-desktop-theme, Material
 or Plasma).
 
-
 %prep
-%autosetup -n %{orig_name}-v%{version}
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{orig_name}-%{version} -p1
 find ./po -type f -execdir mv {} kirigami-addons6.po \;
 
 %build
@@ -56,10 +72,9 @@ find ./po -type f -execdir mv {} kirigami-addons6.po \;
 
 %files -f %{orig_name}6.lang
 %doc README.md
-%license LICENSES/*
+%license LICENSES/
 %{_kf6_qmldir}/org/kde/kirigamiaddons/
 %{_kf6_libdir}/cmake/KF6KirigamiAddons/
-
 
 %changelog
 * Fri Aug 18 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 1:0.11.0-1
