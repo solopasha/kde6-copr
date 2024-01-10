@@ -2,7 +2,7 @@
 
 Name:           kf6-kirigami-addons
 Version:        0.11.76
-Release:        2%{?dist}
+Release:        4%{?dist}
 License:        BSD-2-Clause AND CC-BY-SA-4.0 AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND LicenseRef-KFQF-Accepted-GPL
 Summary:        Convergent visual components ("widgets") for Kirigami-based applications
 Url:            https://invent.kde.org/libraries/kirigami-addons
@@ -73,8 +73,15 @@ find ./po -type f -execdir mv {} kirigami-addons6.po \;
 %files -f %{orig_name}6.lang
 %doc README.md
 %license LICENSES/
-%{_kf6_qmldir}/org/kde/kirigamiaddons/
+%dir %{_kf6_qmldir}/org/kde/kirigamiaddons
+%{_kf6_qmldir}/org/kde/kirigamiaddons/*
 %{_kf6_libdir}/cmake/KF6KirigamiAddons/
+
+%files dateandtime
+%{_kf6_qmldir}/org/kde/kirigamiaddons/dateandtime/
+
+%files treeview
+%{_kf6_qmldir}/org/kde/kirigamiaddons/treeview/
 
 %changelog
 * Fri Aug 18 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 1:0.11.0-1
