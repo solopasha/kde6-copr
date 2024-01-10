@@ -5,7 +5,7 @@
 
 Name:    kf5-libkgapi
 Version: 23.08.4
-Release: 2%{?dist}
+Release: 5%{?dist}
 Summary: Library to access to Google services
 
 License: GPLv2+

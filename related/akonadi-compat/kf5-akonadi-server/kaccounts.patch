@@ -1,0 +1,12 @@
+diff --git a/src/agentbase/accountsintegration.cpp b/src/agentbase/accountsintegration.cpp
+index 2b48bd28e..283d05ffc 100644
+--- a/src/agentbase/accountsintegration.cpp
++++ b/src/agentbase/accountsintegration.cpp
+@@ -22,6 +22,7 @@
+ 
+ using namespace Akonadi;
+ using namespace std::chrono_literals;
++using namespace KAccounts;
+ 
+ AccountsIntegration::AccountsIntegration()
+ {

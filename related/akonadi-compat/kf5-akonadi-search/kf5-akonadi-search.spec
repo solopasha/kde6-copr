@@ -9,7 +9,7 @@
 
 Name:    kf5-%{framework}
 Version: 23.08.4
-Release: 2%{?dist}
+Release: 5%{?dist}
 Summary: The Akonadi Search library and indexing agent
 
 License: LGPLv2+

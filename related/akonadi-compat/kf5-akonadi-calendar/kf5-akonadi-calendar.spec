@@ -9,7 +9,7 @@
 
 Name:    kf5-%{base_name}
 Version: 23.08.4
-Release: 2%{?dist}
+Release: 5%{?dist}
 Summary: The Akonadi Calendar Library
 
 License: LGPLv2+
