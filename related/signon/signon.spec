@@ -6,7 +6,7 @@
 
 Name:           signon
 Version:        8.61^1.git%{shortcommit0}
-Release:        1%{?dist}
+Release:        3%{?dist}
 Summary:        Accounts framework for Linux and POSIX based platforms
 
 License:        LGPLv2
@@ -47,6 +47,16 @@ applications. It consists of a secure storage of login credentials (for example
 usernames and passwords), plugins for different authentication systems and a
 client library for applications to communicate with this system.
 
+%package qt5
+Summary:        Single Sign On client library for Qt5-based applications
+%description qt5
+%{summary}.
+
+%package qt6
+Summary:        Single Sign On client library for Qt6-based applications
+%description qt6
+%{summary}.
+
 %package devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
@@ -55,6 +65,16 @@ Provides:       signond-devel = %{version}-%{release}
 %description devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
+
+%package qt5-devel
+Summary:        Development files for %{name}-qt5
+%description qt5-devel
+%{summary}.
+
+%package qt6-devel
+Summary:        Development files for %{name}-qt6
+%description qt6-devel
+%{summary}.
 
 %package doc
 Summary:        Documentation for %{name}
@@ -109,30 +129,38 @@ mkdir -p %{buildroot}%{_libdir}/extensions/
 %{_libdir}/libsignon-extension.so.1*
 %{_libdir}/libsignon-plugins-common.so.1*
 %{_libdir}/libsignon-plugins.so.1*
-%{_libdir}/libsignon-qt5.so.1*
-%{_libdir}/libsignon-qt6.so.1*
 %{_libdir}/signon/
 %{_datadir}/dbus-1/services/*.service
+
+%files qt5
+%{_libdir}/libsignon-qt5.so.1{,.*}
+
+%files qt6
+%{_libdir}/libsignon-qt6.so.1{,.*}
 
 %files devel
 %{_includedir}/signon-extension/
 %{_includedir}/signon-plugins/
-%{_includedir}/signon-qt5/
-%{_includedir}/signon-qt6/
 %{_includedir}/signond/
-%{_libdir}/cmake/SignOnQt5/
-%{_libdir}/cmake/SignOnQt6/
 %{_libdir}/libsignon-extension.so
 %{_libdir}/libsignon-plugins-common.so
 %{_libdir}/libsignon-plugins.so
-%{_libdir}/libsignon-qt5.so
-%{_libdir}/libsignon-qt6.so
 %{_libdir}/pkgconfig/SignOnExtension.pc
-%{_libdir}/pkgconfig/libsignon-qt5.pc
-%{_libdir}/pkgconfig/libsignon-qt6.pc
 %{_libdir}/pkgconfig/signon-plugins-common.pc
 %{_libdir}/pkgconfig/signon-plugins.pc
 %{_libdir}/pkgconfig/signond.pc
+
+%files qt5-devel
+%{_includedir}/signon-qt5/
+%{_libdir}/cmake/SignOnQt5/
+%{_libdir}/pkgconfig/libsignon-qt5.pc
+%{_libdir}/libsignon-qt5.so
+
+%files qt6-devel
+%{_includedir}/signon-qt6/
+%{_libdir}/cmake/SignOnQt6/
+%{_libdir}/pkgconfig/libsignon-qt6.pc
+%{_libdir}/libsignon-qt6.so
 
 %files doc
 %{_docdir}/signon/
@@ -200,7 +228,7 @@ mkdir -p %{buildroot}%{_libdir}/extensions/
 - %%check: time checks
 
 * Tue Jun 07 2016 Rex Dieter <rdieter@fedoraproject.org> - 8.59-1
-- 8.59 (#1343792) 
+- 8.59 (#1343792)
 
 * Fri Feb 05 2016 Fedora Release Engineering <releng@fedoraproject.org> - 8.58-0.2.9fcfc9e
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
