@@ -1,5 +1,5 @@
 Name:    plasma-pa
-Version: 5.91.0
+Version: 5.92.0
 Release: 1%{?dist}
 Summary: Plasma applet for audio volume management using PulseAudio
 
@@ -31,7 +31,7 @@ BuildRequires:  qt6-qtbase-devel
 BuildRequires:  perl-generators
 
 Requires: kf6-kirigami2
-Requires: kirigami-addons
+Requires: kf6-kirigami-addons
 Requires: kf6-kitemmodels
 
 Requires: pulseaudio-daemon

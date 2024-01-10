@@ -1,10 +1,9 @@
-# X11 session is not shipped anymore
 %bcond x11 1
 
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
-Version: 5.91.0
-Release: 5%{?dist}
+Version: 5.92.0
+Release: 2%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
@@ -29,6 +28,7 @@ Source40:       ssh-agent.conf
 Source41:       spice-vdagent.conf
 
 ## upstreamable Patches
+Patch: https://invent.kde.org/plasma/plasma-workspace/-/commit/3ffc85aedc606f0d3c328a5190cd829751c97a48.patch
 
 ## downstream Patches
 # default to enable open terminal action
@@ -39,10 +39,6 @@ Patch107:       plasma-workspace-5.27.80-enable-lock-logout-action.patch
 # Do not remove this as it breaks Fedora's QA policy
 Patch108:       hide-virtual-keyboard-indicator-on-sddm.patch
 
-# Fix for build failing with a crypt error
-Patch109:        plasma-workspace-5.27.80-crypt-fix.patch
-
-# udev
 BuildRequires:  zlib-devel
 BuildRequires:  libGL-devel
 BuildRequires:  mesa-libGLES-devel
@@ -129,14 +125,14 @@ BuildRequires:  cmake(KF6QuickCharts)
 BuildRequires:  cmake(KF6StatusNotifierItem)
 BuildRequires:  cmake(KWayland)
 BuildRequires:  cmake(KF6Svg)
-BuildRequires:  cmake(KF6Plasma5Support)
+BuildRequires:  cmake(Plasma5Support)
 BuildRequires:  cmake(PlasmaActivitiesStats)
 BuildRequires:  cmake(KF6KDED)
 BuildRequires:  cmake(KF6NetworkManagerQt)
 BuildRequires:  cmake(KF6Screen)
 BuildRequires:  cmake(KF6KirigamiAddons)
 BuildRequires:  cmake(KF6Auth)
-Requires:       kirigami-addons
+Requires:       kf6-kirigami-addons
 BuildRequires:  wayland-devel >= 1.3.0
 BuildRequires:  libksysguard-devel
 BuildRequires:  kscreenlocker-devel
@@ -146,11 +142,6 @@ BuildRequires:  cmake(Phonon4Qt6)
 BuildRequires:  PackageKit-Qt6-devel
 BuildRequires:  cmake(KExiv2Qt6)
 
-# workaround for
-#   The imported target "Qt5::XkbCommonSupport" references the file
-#     "/usr/lib64/libQt5XkbCommonSupport.a"
-#  but this file does not exist.
-BuildRequires:  qt6-qtbase-static
 BuildRequires:  cmake(Qt6Core5Compat)
 BuildRequires:  pkgconfig(libxcrypt)
 
@@ -195,7 +186,6 @@ Requires:       kf6-kded
 Requires:       kf6-kdoctools
 Requires:       kf6-kglobalaccel
 Requires:       kf6-kquickcharts
-Requires:       qqc2-breeze-style
 
 # The new volume control for PulseAudio
 %if 0%{?fedora} || 0%{?rhel} > 7
@@ -212,7 +202,7 @@ Recommends:       plasma-milou
 Recommends: kde-inotify-survey
 
 # https://pagure.io/fedora-kde/SIG/issue/354
-Recommends: kf6-audiocd-kio
+Recommends: audiocd-kio
 
 # For a11y
 Recommends: orca
@@ -274,14 +264,9 @@ Provides:       plasmashell = %{version}
 Requires:       plasmashell
 %endif
 
-# when -common, libkworkspace5 was split out
-Obsoletes:      plasma-workspace < 5.4.2-2
-
 # plasmashell provides dbus service org.freedesktop.Notifications
 Provides: desktop-notification-daemon
 
-# upgrade path, when sddm-breeze was split out
-Obsoletes: plasma-workspace < 5.3.2-8
 
 # digitalclock applet
 %if ! 0%{?bootstrap}
@@ -477,7 +462,9 @@ EOL
 %build
 %cmake_kf6 \
   -DINSTALL_SDDM_WAYLAND_SESSION:BOOL=ON \
-  -DPLASMA_X11_DEFAULT_SESSION:BOOL=OFF
+  -DPLASMA_X11_DEFAULT_SESSION:BOOL=OFF \
+  -DGLIBC_LOCALE_PREGENERATED:BOOL=ON \
+  -DGLIBC_LOCALE_GEN:BOOL=OFF
 %cmake_build
 
 
@@ -568,7 +555,6 @@ fi
 %{_kf6_bindir}/plasma_session
 %{_kf6_bindir}/plasma-apply-*
 %{_kf6_bindir}/plasma-interactiveconsole
-%{_kf6_bindir}/plasma-localegen-helper
 %{_kf6_bindir}/plasma-shutdown
 %{_kf6_bindir}/plasma_waitforname
 %{_kf6_bindir}/xembedsniproxy
@@ -601,9 +587,7 @@ fi
 %{_datadir}/desktop-directories/*.directory
 %{_datadir}/dbus-1/services/*.service
 %{_datadir}/dbus-1/system-services/org.kde.fontinst.service
-%{_datadir}/dbus-1/system-services/org.kde.localegenhelper.service
 %{_datadir}/dbus-1/system.d/org.kde.fontinst.conf
-%{_datadir}/dbus-1/system.d/org.kde.localegenhelper.conf
 %{_datadir}/knsrcfiles/*.knsrc
 %{_datadir}/kfontinst/icons/hicolor/*/actions/*font*.png
 %{_datadir}/konqsidebartng/virtual_folders/services/fonts.desktop
@@ -627,7 +611,6 @@ fi
 %{_kf6_datadir}/qlogging-categories6/*.categories
 %{_sysconfdir}/xdg/plasmanotifyrc
 %{_kf6_datadir}/polkit-1/actions/org.kde.fontinst.policy
-%{_kf6_datadir}/polkit-1/actions/org.kde.localegenhelper.policy
 %{_userunitdir}/*.service
 %{_userunitdir}/plasma-core.target
 %dir %{_userunitdir}/plasma-core.target.d/

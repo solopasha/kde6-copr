@@ -1,7 +1,7 @@
 %global tests 0
 
 Name:           zanshin
-Version:        24.01.85
+Version:        24.01.90
 Release:        1%{?dist}
 Summary:        Todo/action management software
 

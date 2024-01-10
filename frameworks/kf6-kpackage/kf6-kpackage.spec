@@ -1,7 +1,7 @@
 %global framework kpackage
 
 Name:           kf6-%{framework}
-Version:        5.247.0
+Version:        5.248.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 library to load and install packages as plugins
 License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later

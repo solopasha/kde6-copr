@@ -1,5 +1,5 @@
 Name:    kosmindoormap
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 Summary: OSM multi-floor indoor map renderer
 

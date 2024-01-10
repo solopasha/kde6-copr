@@ -1,5 +1,5 @@
 Name:           isoimagewriter
-Version:        24.01.85
+Version:        24.01.90
 Release:        1%{?dist}
 Summary:        KDE ISO Image Writer, a tool to write a .iso file to a USB disk
 

@@ -1,5 +1,5 @@
 Name:		    merkuro
-Version:	    24.01.85
+Version:	    24.01.90
 Release:	    1%{?dist}
 Summary:	    A calendar application using Akonadi to sync with external services (Nextcloud, GMail, ...)
 
@@ -58,7 +58,7 @@ BuildRequires:  cmake(QGpgmeQt6)
 
 # QML module dependencies
 Requires:	kf6-kirigami2%{?_isa}
-Requires:	kirigami-addons%{?_isa}
+Requires: kf6-kirigami-addons%{?_isa}
 Requires:	kf6-kitemmodels%{?_isa}
 
 # kalendar has been renamed to merkuro

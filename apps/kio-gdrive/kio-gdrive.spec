@@ -1,12 +1,11 @@
 Name:           kio-gdrive
-Version:        24.01.85
-Release:        2%{?dist}
+Version:        24.01.90
+Release:        1%{?dist}
 Summary:        An Google Drive KIO slave for KDE
 
 License:        GPL-2.0-or-later
 URL:            https://community.kde.org/KIO_GDrive
 %apps_source
-Patch:          kf5.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules

@@ -1,5 +1,5 @@
 Name:           koko
-Version:        24.01.85
+Version:        24.01.90
 Release:        1%{?dist}
 License:        GPLv2+ and GPLv3 and LGPLv2 and LGPLv2+ and CC0 and BSD
 Summary:        An Image gallery application
@@ -42,7 +42,7 @@ BuildRequires: cmake(KQuickImageEditor)
 # QML module dependencies
 Requires:      kf6-kdeclarative%{?_isa}
 Requires:      kf6-kirigami2%{?_isa}
-Requires:      kirigami-addons%{?_isa}
+Requires:      kf6-kirigami-addons%{?_isa}
 Requires:      kf6-purpose%{?_isa}
 Requires:      kquickimageeditor-qt6%{?_isa}
 Requires:      qt6-qtmultimedia%{?_isa}

@@ -1,13 +1,12 @@
 %global base_name kdeconnect-kde
 
 Name:    kde-connect
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 License: GPLv2+
 Summary: KDE Connect client for communication with smartphones
 URL:     https://community.kde.org/KDEConnect
 %apps_source
-Patch:   https://invent.kde.org/network/kdeconnect-kde/-/merge_requests/611.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  firewalld-filesystem
@@ -61,10 +60,9 @@ Provides:       kdeconnect-kde = %{version}-%{release}
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       kdeconnectd = %{version}-%{release}
 
-Recommends:     kpeoplevcard%{?_isa} >= 0.1^1.git2d8ed99
 Requires:       fuse-sshfs
 Requires:       kf6-kirigami2%{?_isa}
-Requires:       kirigami-addons%{?_isa}
+Requires:       kf6-kirigami-addons%{?_isa}
 
 %description
 KDE Connect adds communication between KDE and your smartphone.

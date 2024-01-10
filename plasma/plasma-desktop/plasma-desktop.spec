@@ -5,8 +5,8 @@
 
 Name:    plasma-desktop
 Summary: Plasma Desktop shell
-Version: 5.91.0
-Release: 2%{?dist}
+Version: 5.92.0
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
@@ -70,7 +70,7 @@ BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6Sonnet)
 BuildRequires:  cmake(KF6Svg)
-BuildRequires:  cmake(KF6Plasma5Support)
+BuildRequires:  cmake(Plasma5Support)
 BuildRequires:  cmake(KF6ItemModels)
 BuildRequires:  cmake(KF6KDED)
 BuildRequires:  cmake(KF6KIO)
@@ -149,7 +149,7 @@ Requires:       kmenuedit
 BuildRequires:  cmake(KF6Kirigami)
 Requires:       kf6-kirigami2%{?_isa}
 BuildRequires:  cmake(KF6KirigamiAddons)
-Requires:       kirigami-addons%{?_isa}
+Requires:       kf6-kirigami-addons%{?_isa}
 BuildRequires:  kf6-qqc2-desktop-style
 Requires:       kf6-qqc2-desktop-style%{?_isa}
 

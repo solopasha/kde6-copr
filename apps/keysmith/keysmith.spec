@@ -1,5 +1,5 @@
 Name:           keysmith
-Version:        24.01.85
+Version:        24.01.90
 Release:        1%{?dist}
 License:        GPLv3+
 Summary:        Convergent OTP client
@@ -28,11 +28,9 @@ BuildRequires:  cmake(Qt6Svg)
 
 BuildRequires:  pkgconfig(libsodium)
 
-
 Requires:       hicolor-icon-theme
 Requires:       kf6-kirigami%{?_isa}
-Requires:       kirigami-addons%{?_isa}
-
+Requires:       kf6-kirigami-addons%{?_isa}
 
 %description
 OTP client for Plasma Mobile and Desktop

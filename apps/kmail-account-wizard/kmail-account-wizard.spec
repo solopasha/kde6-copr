@@ -2,7 +2,7 @@
 
 Name:    kmail-account-wizard
 Summary: KMail Account Wizard
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 
 License: GPLv2+
@@ -39,7 +39,7 @@ BuildRequires: cmake(Qt6Test)
 BuildRequires: cmake(Qt6Widgets)
 
 Requires:      kf6-kirigami2
-Requires:      kirigami-addons
+Requires:      kf6-kirigami-addons
 
 %if 0%{?tests}
 BuildRequires: dbus-x11

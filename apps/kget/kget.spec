@@ -1,10 +1,6 @@
-%global commit0 df5c660af1e4f5631768e83f0418930614e50131
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
-
 Name:    kget
 Summary: Download manager
-Version: 24.01.85%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 24.01.90
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
@@ -12,10 +8,9 @@ URL:     https://invent.kde.org/network/%{name}
 %apps_source
 
 BuildRequires: desktop-file-utils
-BuildRequires: libappstream-glib
-
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
+BuildRequires: libappstream-glib
 
 BuildRequires: cmake(KF6Completion)
 BuildRequires: cmake(KF6Config)

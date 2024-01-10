@@ -2,7 +2,7 @@
 
 
 Name:		  kf6-%{framework}
-Version:	5.247.0
+Version:	5.248.0
 Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with advanced configuration system
 License:	BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND MIT
@@ -38,12 +38,7 @@ developing applications that use %{name}.
 %autosetup -n %{framework}-%{version} -p1
 
 %build
-%cmake_kf6 \
-  %if 0%{?flatpak}
-  %{?docs:-DBUILD_QCH:BOOL=OFF} \
-  %else
-  %{?docs:-DBUILD_QCH:BOOL=ON} \
-  %endif
+%cmake_kf6
 %cmake_build
 
 %install

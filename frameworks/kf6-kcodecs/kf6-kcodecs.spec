@@ -1,7 +1,7 @@
 %global		framework kcodecs
 
 Name:		kf6-%{framework}
-Version:	5.247.0
+Version:	5.248.0
 Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with string manipulation methods
 License:	BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND MIT AND MPL-1.1

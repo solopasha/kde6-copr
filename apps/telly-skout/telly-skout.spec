@@ -1,6 +1,6 @@
 Name:           telly-skout
-Version:        24.01.85
-Release:        2%{?dist}
+Version:        24.01.90
+Release:        1%{?dist}
 Summary:        Convergent TV guide based on Kirigami
 License:        LGPL-2.1-or-later
 URL:            https://invent.kde.org/utilities/telly-skout

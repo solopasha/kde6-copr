@@ -1,5 +1,5 @@
 Name:           kbackup
-Version:        24.01.85
+Version:        24.01.90
 Release:        1%{?dist}
 Summary:        Back up your data in a simple, user friendly way
 

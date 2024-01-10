@@ -1,7 +1,7 @@
 %global framework attica
 
 Name:           kf6-%{framework}
-Version:        5.247.0
+Version:        5.248.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks Tier 1 Addon with Open Collaboration Services API
 License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL.txt

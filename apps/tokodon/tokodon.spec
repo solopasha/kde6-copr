@@ -1,5 +1,5 @@
 Name:           tokodon
-Version:        24.01.85
+Version:        24.01.90
 Release:        1%{?dist}
 License:        GPL-2.0-only OR GPL-3.0-only AND CC0-1.0 AND LGPL-2.1-or-later
 Summary:        Kirigami-based mastodon client
@@ -13,7 +13,6 @@ BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 BuildRequires:  cmake(MpvQt)
-BuildRequires:  cmake(KUnifiedPush)
 
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
@@ -43,7 +42,7 @@ BuildRequires:  qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 Requires:       kf6-kirigami2
-Requires:       kirigami-addons
+Requires:       kf6-kirigami-addons
 Requires:       kf6-kitemmodels
 Requires:       kf6-sonnet
 Requires:       hicolor-icon-theme
@@ -77,7 +76,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %license LICENSES/*
 %{_kf6_bindir}/%{name}
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
-%{_kf6_datadir}/dbus-1/services/org.kde.%{name}.service
 %{_kf6_datadir}/icons/hicolor/scalable/actions/%{name}*.svg
 %{_kf6_datadir}/icons/hicolor/scalable/apps/org.kde.%{name}.svg
 %{_kf6_datadir}/knotifications6/tokodon.notifyrc

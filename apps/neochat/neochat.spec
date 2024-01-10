@@ -1,7 +1,7 @@
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
 
 Name: neochat
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 
 License: GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND BSD-3-Clause
@@ -38,7 +38,6 @@ BuildRequires: cmake(KF6StatusNotifierItem)
 BuildRequires: cmake(KF6DBusAddons)
 BuildRequires: cmake(KF6DocTools)
 
-BuildRequires: cmake(KUnifiedPush)
 BuildRequires: cmake(KQuickImageEditor)
 BuildRequires: cmake(QuotientQt6)
 BuildRequires: cmake(QCoro6Core)
@@ -110,7 +109,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_bindir}/%{name}
 %{_datadir}/applications/*.desktop
 %{_datadir}/icons/hicolor/*/apps/*
-%{_kf6_datadir}/dbus-1/services/org.kde.neochat.service
 %{_kf6_datadir}/knotifications6/%{name}.notifyrc
 %{_kf6_datadir}/krunner/dbusplugins/*.desktop
 %{_kf6_datadir}/qlogging-categories6/neochat.categories

@@ -1,6 +1,6 @@
 
 Name:    signon-kwallet-extension
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 Summary: KWallet integration for Sign-on framework
 
@@ -13,6 +13,9 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6Wallet)
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(SignOnQt6)
+
+Supplements:    (kf6-kwallet and signon)
+
 %description
 %{summary}.
 

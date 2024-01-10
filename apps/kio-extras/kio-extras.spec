@@ -1,6 +1,6 @@
 Name:    kio-extras
-Version: 24.01.85
-Release: 2%{?dist}
+Version: 24.01.90
+Release: 1%{?dist}
 Summary: Additional components to increase the functionality of KIO Framework
 
 License: GPLv2+

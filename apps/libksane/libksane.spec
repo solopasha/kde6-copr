@@ -1,6 +1,6 @@
 Name:    libksane
 Summary: SANE Library interface for KDE
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 
 License: CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL

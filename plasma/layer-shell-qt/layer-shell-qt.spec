@@ -1,5 +1,5 @@
 Name:    layer-shell-qt
-Version: 5.91.0
+Version: 5.92.0
 Release: 1%{?dist}
 Summary: Library to easily use clients based on wlr-layer-shell
 
@@ -42,7 +42,6 @@ Requires: cmake(Qt6Gui)
 
 %build
 %cmake_kf6
-
 %cmake_build
 
 
@@ -52,7 +51,9 @@ Requires: cmake(Qt6Gui)
 
 %files
 %license LICENSES/*
-%{_libdir}/libLayerShellQtInterface.so.*
+%{_kf6_libdir}/libLayerShellQtInterface.so.%{version}
+%{_kf6_libdir}/libLayerShellQtInterface.so.6
+%{_kf6_qmldir}/org/kde/layershell/
 %{_qt6_plugindir}/wayland-shell-integration/
 
 %files devel

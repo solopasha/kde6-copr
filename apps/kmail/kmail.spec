@@ -2,7 +2,7 @@
 
 Name:    kmail
 Summary: Mail client
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL

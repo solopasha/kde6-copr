@@ -1,6 +1,6 @@
 Name:    kwayland-integration
-Version: 5.91.0
-Release: 1.1%{?dist}
+Version: 5.92.0
+Release: 1%{?dist}
 Summary: Provides integration plugins for various KDE Frameworks for Wayland
 
 License: CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only AND LGPL-3.0-only)

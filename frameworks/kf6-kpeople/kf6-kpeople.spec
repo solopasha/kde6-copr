@@ -1,7 +1,7 @@
 %global framework kpeople
 
 Name:    kf6-%{framework}
-Version: 5.247.0
+Version: 5.248.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 library for contact and people aggregation
 
@@ -19,8 +19,11 @@ BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6ItemViews)
 BuildRequires:  cmake(KF6WidgetsAddons)
+BuildRequires:  cmake(KF6Contacts)
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtdeclarative-devel
+
+Obsoletes:      kpeoplevcard < 0.1^1.git2d8ed99-2
 
 Requires:  kf6-filesystem
 
@@ -52,9 +55,10 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6People.so.*
-%{_kf6_libdir}/libKF6PeopleWidgets.so.*
 %{_kf6_libdir}/libKF6PeopleBackend.so.*
+%{_kf6_libdir}/libKF6PeopleWidgets.so.*
 %{_kf6_qmldir}/org/kde/people/
+%{_qt6_plugindir}/kpeople/datasource/KPeopleVCard.so
 
 %files devel
 %{_kf6_includedir}/KPeople/

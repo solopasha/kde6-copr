@@ -1,2 +1,2 @@
 [%General]
-Driver=QSQLITE3
+Driver=QSQLITE

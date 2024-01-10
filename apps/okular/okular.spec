@@ -13,7 +13,7 @@
 
 Name:    okular
 Summary: A document viewer
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 
 License: GPL-2.0-only
@@ -97,7 +97,7 @@ Conflicts: okular5
 Summary: Document viewer for plasma mobile
 Requires: %{name}-part%{?_isa} = %{version}-%{release}
 Requires: kf6-kirigami2%{_isa}
-Requires: kirigami-addons%{_isa}
+Requires: kf6-kirigami-addons%{_isa}
 Conflicts: okular5-mobile
 %description mobile
 %{summary}.
@@ -201,10 +201,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.ok
 #%%{_kf6_plugindir}/kio/kio_msits.so
 %endif
 %{_kf6_datadir}/config.kcfg/*.kcfg
-%dir %{_qt6_plugindir}/okular/
-%dir %{_qt6_plugindir}/okular/generators/
-%{_qt6_plugindir}/okular/generators/okularGenerator_*.so
-%{_qt6_plugindir}/okularpart.so
+%dir %{_qt6_plugindir}/okular_generators
+%{_qt6_plugindir}/okular_generators/okularGenerator_*.so
+%{_kf6_plugindir}/parts/okularpart.so
 
 
 %changelog

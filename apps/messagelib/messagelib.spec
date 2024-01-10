@@ -1,7 +1,7 @@
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
 
 Name:    messagelib
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 Summary: KDE Message libraries
 

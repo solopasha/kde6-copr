@@ -1,7 +1,7 @@
 %global		framework kwidgetsaddons
 
 Name:		kf6-%{framework}
-Version:	5.247.0
+Version:	5.248.0
 Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with various classes on top of QtWidgets
 License:	BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later
@@ -46,7 +46,6 @@ developing applications that use %{name}.
 %files -f kwidgetsaddons6_qt.lang
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_datadir}/kf6/kcharselect/
 %{_kf6_datadir}/qlogging-categories6/*categories
 %{_kf6_libdir}/libKF6WidgetsAddons.so.*
 %{_kf6_qtplugindir}/designer/*6widgets.so

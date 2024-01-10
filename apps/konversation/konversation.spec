@@ -1,5 +1,5 @@
 Name:           konversation
-Version:        24.01.85
+Version:        24.01.90
 Release:        1%{?dist}
 Summary:        A user friendly IRC client
 
@@ -7,7 +7,6 @@ License:        GPL-2.0-or-later
 URL:            https://invent.kde.org/network/konversation/
 %apps_source
 Source10:       konversationrc
-Patch:          https://invent.kde.org/network/konversation/-/merge_requests/89.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules

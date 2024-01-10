@@ -1,6 +1,6 @@
 Name:    plasma5support
 Summary: Support components for porting from KF5/Qt5 to KF6/Qt6
-Version: 5.91.0
+Version: 5.92.0
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -42,7 +42,7 @@ Provides:       kf6-plasma5support-devel = 1:%{version}-%{release}
 %{summary}.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -p1
 
 %build
@@ -56,18 +56,17 @@ Provides:       kf6-plasma5support-devel = 1:%{version}-%{release}
 %files -f libplasma5support.lang
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_libdir}/libKF6Plasma5Support.so.*
+%{_kf6_datadir}/plasma5support/
+%{_kf6_datadir}/qlogging-categories6/plasma5support.categories
+%{_kf6_datadir}/qlogging-categories6/plasma5support.renamecategories
+%{_kf6_libdir}/libPlasma5Support.so.%{version}
+%{_kf6_libdir}/libPlasma5Support.so.6
 %{_qt6_qmldir}/org/kde/plasma/plasma5support/
-%{_datadir}/plasma5support/
-%{_datadir}/qlogging-categories6/plasma5support.categories
-%{_datadir}/qlogging-categories6/plasma5support.renamecategories
 
 %files devel
-%{_kf6_includedir}/Plasma5Support/
-%{_kf6_libdir}/cmake/KF6Plasma5Support/
-%{_kf6_libdir}/libKF6Plasma5Support.so
-%{_kf6_includedir}/plasma5support/
-%{_kf6_includedir}/plasma5support_version.h
+%{_includedir}/Plasma5Support/
+%{_kf6_libdir}/cmake/Plasma5Support/
+%{_kf6_libdir}/libPlasma5Support.so
 
 %changelog
 * Sun Nov 12 2023 Alessandro Astone <ales.astone@gmail.com> - 5.27.80-2

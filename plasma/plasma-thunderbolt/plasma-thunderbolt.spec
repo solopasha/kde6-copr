@@ -2,7 +2,7 @@
 
 Name:    plasma-thunderbolt
 Summary: Plasma integration for controlling Thunderbolt devices
-Version: 5.91.0
+Version: 5.92.0
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LicenseRef-KDE-Accepted-GPL

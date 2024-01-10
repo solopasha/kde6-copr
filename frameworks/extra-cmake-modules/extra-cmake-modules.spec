@@ -11,8 +11,8 @@
 
 Name:    extra-cmake-modules
 Summary: Additional modules for CMake build system
-Version: 5.247.0
-Release: 1.2%{?dist}
+Version: 5.248.0
+Release: 1%{?dist}
 License: BSD
 URL:     https://api.kde.org/ecm/
 %frameworks_meta

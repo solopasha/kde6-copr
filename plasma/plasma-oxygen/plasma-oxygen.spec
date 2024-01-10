@@ -1,8 +1,8 @@
 %global         base_name oxygen
 
 Name:    plasma-%{base_name}
-Version: 5.91.0
-Release: 1.1%{?dist}
+Version: 5.92.0
+Release: 1%{?dist}
 Summary: Plasma and Qt widget style and window decorations for Plasma
 
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only) AND MIT
@@ -45,6 +45,7 @@ BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(KF6Service)
+BuildRequires:  cmake(Plasma)
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
@@ -131,6 +132,7 @@ popd
 %{_kf6_datadir}/icons/hicolor/*/apps/oxygen-settings.*
 %{_kf6_datadir}/kstyle/themes/oxygen.themerc
 %{_kf6_datadir}/plasma/look-and-feel/org.kde.oxygen/
+%{_kf6_metainfodir}/org.kde.oxygen.appdata.xml
 %{_kf6_qtplugindir}/kstyle_config/kstyle_oxygen_config.so
 %{_kf6_qtplugindir}/org.kde.kdecoration2.kcm/kcm_oxygendecoration.so
 %{_kf6_qtplugindir}/org.kde.kdecoration2/org.kde.oxygen.so

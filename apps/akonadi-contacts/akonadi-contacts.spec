@@ -1,7 +1,7 @@
 %global tests 1
 
 Name:    akonadi-contacts
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 Summary: The Akonadi Contacts Library
 

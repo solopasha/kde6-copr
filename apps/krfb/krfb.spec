@@ -1,10 +1,6 @@
-%global commit0 39c83720bf7241048ed695f94bf5405742708134
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
-
 Name:    krfb
 Summary: Desktop sharing
-Version: 24.01.85%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 24.01.90
 Release: 1%{?dist}
 
 License: GPL-2.0-only AND LGPL-2.1-only AND GFDL-1.2-no-invariants-only

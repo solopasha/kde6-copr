@@ -1,6 +1,6 @@
 Name:           dolphin
 Summary:        KDE File Manager
-Version:        24.01.85
+Version:        24.01.90
 Release:        1%{?dist}
 
 License:        GPLv2+

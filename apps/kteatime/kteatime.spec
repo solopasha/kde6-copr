@@ -1,6 +1,6 @@
 Name:    kteatime
 Summary: Handy timer for steeping tea
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 
 License: GPLv2+

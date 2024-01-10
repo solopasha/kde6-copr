@@ -2,8 +2,8 @@
 
 Name:    kf6-purpose
 Summary: Framework for providing abstractions to get the developer's purposes fulfilled
-Version: 5.247.0
-Release: 2%{?dist}
+Version: 5.248.0
+Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later
 URL:     https://invent.kde.org/frameworks/%{framework}
@@ -54,6 +54,9 @@ Requires: cmake(KF6CoreAddons)
 
 %install
 %cmake_install
+
+rm %{buildroot}%{_kf6_libdir}/libReviewboardHelpers.a
+
 %find_lang %{name} --all-name
 
 %files -f %{name}.lang
@@ -64,14 +67,10 @@ Requires: cmake(KF6CoreAddons)
 %{_kf6_datadir}/icons/hicolor/*/apps/*-purpose6.*
 %{_kf6_datadir}/kf6/purpose/
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6Purpose.so.5*
+%{_kf6_libdir}/libKF6Purpose.so.%{version}
 %{_kf6_libdir}/libKF6Purpose.so.6
-%{_kf6_libdir}/libKF6PurposeWidgets.so.5*
+%{_kf6_libdir}/libKF6PurposeWidgets.so.%{version}
 %{_kf6_libdir}/libKF6PurposeWidgets.so.6
-%{_kf6_libdir}/libPhabricatorHelpers.so.5*
-%{_kf6_libdir}/libPhabricatorHelpers.so.6
-%{_kf6_libdir}/libReviewboardHelpers.so.5*
-%{_kf6_libdir}/libReviewboardHelpers.so.6
 %{_kf6_libexecdir}/purposeprocess
 %dir %{_kf6_plugindir}/kfileitemaction
 %{_kf6_plugindir}/kfileitemaction/sharefileitemaction.so

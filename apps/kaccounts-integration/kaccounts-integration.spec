@@ -1,5 +1,5 @@
 Name:    kaccounts-integration
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 Summary: Small system to administer web accounts across the KDE desktop
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LicenseRef-KDE-Accepted-GPL
@@ -12,14 +12,13 @@ BuildRequires:  kf5-rpm-macros
 
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DBusAddons)
-BuildRequires:  cmake(KF6Declarative)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(KF6Package)
 BuildRequires:  cmake(KF6Wallet)
 
 BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
 
@@ -29,15 +28,14 @@ BuildRequires:  cmake(SignOnQt6)
 
 BuildRequires:  cmake(KF5CoreAddons)
 BuildRequires:  cmake(KF5DBusAddons)
-BuildRequires:  cmake(KF5Declarative)
 BuildRequires:  cmake(KF5I18n)
 BuildRequires:  cmake(KF5KCMUtils)
 BuildRequires:  cmake(KF5KIO)
-BuildRequires:  cmake(KF5Package)
 BuildRequires:  cmake(KF5Wallet)
 
 BuildRequires:  cmake(Qt5Core)
 BuildRequires:  cmake(Qt5Widgets)
+BuildRequires:  cmake(Qt5Qml)
 
 BuildRequires:  cmake(AccountsQt5)
 BuildRequires:  cmake(SignOnQt5)

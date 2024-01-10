@@ -1,6 +1,6 @@
 Name:    keditbookmarks
 Summary: Bookmark organizer and editor
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 
 # Documentation is GFDL, rest GPLv2 and GPLv3 (note: NOT any later version)

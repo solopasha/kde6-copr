@@ -1,5 +1,5 @@
 Name:    kleopatra
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 Summary: KDE certificate manager and unified crypto GUI
 License: GPLv2+ and GFDL

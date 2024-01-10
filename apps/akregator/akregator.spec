@@ -2,7 +2,7 @@
 
 Name:    akregator
 Summary: Feed Reader
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL

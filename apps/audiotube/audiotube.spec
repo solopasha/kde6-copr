@@ -1,5 +1,5 @@
 Name:           audiotube
-Version:        24.01.85
+Version:        24.01.90
 Release:        1%{?dist}
 License:        (GPL-2.0-only OR GPL-3.0-only) AND GPL-2.0-or-later AND LGPL-2.1-or-later AND CC0-1.0
 Summary:        AudioTube can search YouTube Music, list albums and artists, play automatically generated playlists, albums and allows to put your own playlist together.
@@ -40,7 +40,7 @@ BuildRequires:  yt-dlp
 Requires:       hicolor-icon-theme
 Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-purpose%{?_isa}
-Requires:       kirigami-addons%{?_isa}
+Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       python3-ytmusicapi
 Requires:       qt6-qt5compat%{?_isa}
 Requires:       yt-dlp

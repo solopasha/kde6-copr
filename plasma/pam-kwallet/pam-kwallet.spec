@@ -3,7 +3,7 @@
 
 Name:    pam-kwallet
 Summary: PAM module for KWallet
-Version: 5.91.0
+Version: 5.92.0
 Release: 1%{?dist}
 License: LGPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/%{base_name}.git

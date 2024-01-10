@@ -1,5 +1,5 @@
 Name:    plasma-workspace-wallpapers
-Version: 5.91.0
+Version: 5.92.0
 Release: 1%{?dist}
 Summary: Additional wallpapers for Plasma workspace
 License: LGPLv3

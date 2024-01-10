@@ -1,12 +1,11 @@
 Name:           libktorrent
 Summary:        Torrent downloading library for KDE 6 applications
-Version:        24.01.85
-Release:        2%{?dist}
+Version:        24.01.90
+Release:        1%{?dist}
 # CC0 is only for CI tooling, BSD3 for cmake macros, MIT for win32 support code
 License:        GPL-2.0-or-later
 URL:            https://invent.kde.org/network/%{name}
 %apps_source
-Patch:          qt5compat.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gettext

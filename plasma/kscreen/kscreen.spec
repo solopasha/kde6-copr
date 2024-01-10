@@ -1,6 +1,6 @@
 Name:    kscreen
 Epoch:   1
-Version: 5.91.0
+Version: 5.92.0
 Release: 1%{?dist}
 Summary: KDE Display Management software
 

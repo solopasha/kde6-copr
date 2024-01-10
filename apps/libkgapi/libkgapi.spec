@@ -2,7 +2,7 @@
 %global _lto_cflags %{nil}
 
 Name:    libkgapi
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 Summary: Library to access to Google services
 
@@ -52,10 +52,10 @@ resources.
 %install
 %cmake_install
 
-%find_lang_kf6 libkgapi_qt
+%find_lang_kf6 libkgapi6_qt
 
 
-%files -f libkgapi_qt.lang
+%files -f libkgapi6_qt.lang
 %doc README*
 %license LICENSES/*
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*

@@ -2,7 +2,7 @@
 
 Name:    plasma-print-manager
 Summary: Printer management for KDE
-Version: 5.91.0
+Version: 5.92.0
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -107,8 +107,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.PrintQueu
 
 
 %files libs
-# private unversioned library
-%{_libdir}/libkcupslib.so
+%{_kf6_libdir}/libkcupslib.so.%{version}
 %{_kf6_plugindir}/kded/printmanager.so
 
 

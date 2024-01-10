@@ -2,7 +2,7 @@
 
 Name:    kf6-%{framework}
 Summary: Framework for collecting user feedback for apps via telemetry and surveys
-Version: 5.247.0
+Version: 5.248.0
 Release: 1%{?dist}
 
 License: MIT AND CC0-1.0 AND BSD-3-Clause

@@ -1,5 +1,5 @@
 Name:    kopeninghours
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 Summary: Library for parsing and evaluating OSM opening hours expressions
 

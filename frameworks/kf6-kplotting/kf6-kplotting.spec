@@ -2,7 +2,7 @@
 %global framework kplotting
 
 Name:           kf6-%{framework}
-Version:        5.247.0
+Version:        5.248.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon for plotting
 License:        GPL-2.0-or-later AND LGPL-2.0-or-later

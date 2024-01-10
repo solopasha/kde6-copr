@@ -4,7 +4,7 @@
 
 Name:           ark
 Summary:        Archive manager
-Version:        24.01.85
+Version:        24.01.90
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later AND BSD-2-Clause
@@ -28,6 +28,7 @@ BuildRequires:  cmake(KF6Pty)
 BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6WindowSystem)
+BuildRequires:  cmake(KF6FileMetaData)
 
 BuildRequires:  cmake(Qt6Concurrent)
 BuildRequires:  cmake(Qt6Core)

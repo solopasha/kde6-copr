@@ -2,7 +2,7 @@
 
 Name:    plasma-wacomtablet
 Summary: KDE Control module for Wacom Graphictablets
-Version: 5.91.0
+Version: 5.92.0
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -37,7 +37,7 @@ BuildRequires: cmake(Plasma)
 BuildRequires: cmake(KF6WidgetsAddons)
 BuildRequires: cmake(KF6WindowSystem)
 BuildRequires: cmake(KF6XmlGui)
-BuildRequires: cmake(KF6Plasma5Support)
+BuildRequires: cmake(Plasma5Support)
 
 BuildRequires: pkgconfig(libwacom)
 BuildRequires: pkgconfig(xcb-xinput)

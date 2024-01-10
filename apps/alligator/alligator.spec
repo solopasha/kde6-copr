@@ -1,5 +1,5 @@
 Name:           alligator
-Version:        24.01.85
+Version:        24.01.90
 Release:        1%{?dist}
 License:        GPLv2 or GPLv3
 Summary:        Kirigami-based RSS reader
@@ -29,7 +29,7 @@ BuildRequires:  cmake(Qt6Test)
 Requires:       hicolor-icon-theme
 # QML module dependencies
 Requires:       kf6-kirigami2%{?_isa}
-Requires:       kirigami-addons%{?_isa}
+Requires:       kf6-kirigami-addons%{?_isa}
 
 %description
 Alligator is a convergent RSS/Atom feed reader.

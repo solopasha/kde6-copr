@@ -1,5 +1,5 @@
 Name:    plasma-sdk
-Version: 5.91.0
+Version: 5.92.0
 Release: 1%{?dist}
 Summary: Development tools for Plasma 6
 
@@ -36,7 +36,7 @@ BuildRequires:  cmake(KF6XmlGui)
 BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(KF6ItemModels)
 BuildRequires:  cmake(KF6Svg)
-BuildRequires:  cmake(KF6Plasma5Support)
+BuildRequires:  cmake(Plasma5Support)
 
 # Desktop file verification, and appstream validation
 BuildRequires:  desktop-file-utils

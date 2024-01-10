@@ -1,5 +1,5 @@
 Name:    mailimporter
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 Summary: Mail importer library
 

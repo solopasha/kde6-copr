@@ -1,12 +1,11 @@
 Name:           itinerary
-Version:        24.01.85
+Version:        24.01.90
 Release:        1%{?dist}
 Summary:        Itinerary and boarding pass management application
 
 License:        Apache-2.0 and BSD-3-Clause and LGPL-2.0-or-later AND CC0-1.0
 URL:            https://apps.kde.org/en-gb/itinerary/
 %apps_source
-Patch:          https://invent.kde.org/pim/itinerary/-/merge_requests/236.patch
 
 # Compile Tools
 BuildRequires:  cmake
@@ -23,6 +22,8 @@ BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 # KDE Frameworks
 BuildRequires:  extra-cmake-modules
@@ -65,7 +66,7 @@ Requires:       qt6-qtmultimedia
 Requires:       kf6-kitemmodels
 Requires:       kf6-prison
 Requires:       kf6-kirigami
-Requires:       kirigami-addons
+Requires:       kf6-kirigami-addons
 
 %description
 %summary.

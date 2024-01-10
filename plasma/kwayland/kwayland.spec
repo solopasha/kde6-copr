@@ -1,5 +1,5 @@
 Name:       kwayland
-Version:    5.91.0
+Version:    5.92.0
 Release:    1%{?dist}
 Summary:    KDE Frameworks 6 library that wraps Client and Server Wayland libraries
 
@@ -15,7 +15,6 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  make
 BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtbase-static
 BuildRequires:  qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  qt6-qttools-devel

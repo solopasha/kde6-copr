@@ -4,7 +4,7 @@
 
 Name:    pim-sieve-editor
 Summary: Sieve Editor
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -78,6 +78,7 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_bindir}/sieveeditor
 %{_kf6_datadir}/applications/org.kde.sieveeditor.desktop
 %{_kf6_datadir}/config.kcfg/sieveeditorglobalconfig.kcfg
+%{_kf6_datadir}/icons/hicolor/*/*/*
 %{_kf6_datadir}/qlogging-categories6/*sieveeditor.*
 %{_kf6_libdir}/libsieveeditor.so.5*
 %{_kf6_libdir}/libsieveeditor.so.6

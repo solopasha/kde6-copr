@@ -1,5 +1,5 @@
 Name:    kmouth
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 Summary: A program that speaks for you
 

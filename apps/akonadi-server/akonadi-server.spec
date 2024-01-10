@@ -7,7 +7,7 @@
 
 Name:    akonadi-server
 Summary: PIM Storage Service
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-KDE-Accepted-GPL AND MIT
@@ -132,7 +132,9 @@ See also: %{_sysconfdir}/akonadi/mysql-global.conf
 
 %find_lang libakonadi6
 %find_lang akonadi_knut_resource
+%find_lang akonadi-db-migrator
 cat akonadi_knut_resource.lang >> libakonadi6.lang
+cat akonadi-db-migrator.lang >> libakonadi6.lang
 
 install -p -m644 -D %{SOURCE10} %{buildroot}%{_sysconfdir}/xdg/akonadi/akonadiserverrc.mysql
 install -p -m644 -D %{SOURCE11} %{buildroot}%{_sysconfdir}/xdg/akonadi/akonadiserverrc.sqlite
@@ -171,7 +173,7 @@ if [ $1 -eq 0 ] ; then
 fi
 
 
-%files -f libakonadi5.lang
+%files -f libakonadi6.lang
 %license LICENSES/*
 %dir %{_sysconfdir}/xdg/akonadi/
 %ghost %config(missingok,noreplace) %{_sysconfdir}/xdg/akonadi/akonadiserverrc
@@ -182,6 +184,7 @@ fi
 %{_kf6_bindir}/akonadi_rds
 %{_kf6_bindir}/akonadictl
 %{_kf6_bindir}/akonadiserver
+%{_kf6_bindir}/akonadi-db-migrator
 %{_kf6_datadir}/akonadi/
 %{_kf6_datadir}/config.kcfg/resourcebase.kcfg
 %{_kf6_datadir}/dbus-1/interfaces/org.freedesktop.Akonadi.*.xml

@@ -1,7 +1,7 @@
 %global framework kdav
 
 Name:    kf6-%{framework}
-Version: 5.247.0
+Version: 5.248.0
 Release: 1%{?dist}
 Summary: A DAV protocol implementation with KJobs
 

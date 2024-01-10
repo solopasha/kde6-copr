@@ -1,7 +1,7 @@
 %global framework knotifications
 
 Name:    kf6-%{framework}
-Version: 5.247.0
+Version: 5.248.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 2 solution with abstraction for system notifications
 

@@ -1,6 +1,6 @@
 Name:    kmix
 Summary: KDE volume control
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later

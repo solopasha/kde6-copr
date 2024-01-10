@@ -1,6 +1,6 @@
 Name:    plasma-vault
 Summary: Plasma Vault offers strong encryption features in a user-friendly way
-Version: 5.91.0
+Version: 5.92.0
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL

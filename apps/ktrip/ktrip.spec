@@ -1,5 +1,5 @@
 Name:           ktrip
-Version:        24.01.85
+Version:        24.01.90
 Release:        1%{?dist}
 License:        GPLv2+
 Summary:        Public transport navigation, allows you to find journeys between specified locations, departures for a specific station and shows real-time delay and disruption information
@@ -30,7 +30,7 @@ BuildRequires: pkgconfig(zlib)
 
 # QML module dependencies
 Requires:      kf6-kirigami%{?_isa}
-Requires:      kirigami-addons%{?_isa}
+Requires:      kf6-kirigami-addons%{?_isa}
 
 %description
 %{summary}.

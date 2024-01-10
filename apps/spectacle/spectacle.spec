@@ -1,6 +1,6 @@
 Name:    spectacle
 Summary: Screenshot capture utility
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 
 License: GPLv2

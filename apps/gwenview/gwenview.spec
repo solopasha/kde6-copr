@@ -1,7 +1,7 @@
 Name:    gwenview
 Summary: An image viewer
 Epoch:   1
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 
 # app: GPLv2+
@@ -9,7 +9,6 @@ Release: 1%{?dist}
 License: GPL-2.0-or-later
 URL:     https://apps.kde.org/gwenview/
 %apps_source
-Patch:         Activities.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules

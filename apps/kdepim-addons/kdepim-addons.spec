@@ -1,7 +1,7 @@
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
 
 Name:    kdepim-addons
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 Summary: Additional plugins for KDE PIM applications
 
@@ -127,8 +127,8 @@ Supplements:    korganizer
 %{_kf6_libdir}/libkmailconfirmbeforedeleting.so.6
 %{_kf6_libdir}/libopenurlwithconfigure.so.5*
 %{_kf6_libdir}/libopenurlwithconfigure.so.6
-%{_kf6_libdir}/libscamconfiguresettings.so.5*
-%{_kf6_libdir}/libscamconfiguresettings.so.6
+#%%{_kf6_libdir}/libscamconfiguresettings.so.5*
+#%%{_kf6_libdir}/libscamconfiguresettings.so.6
 
 %{_kf6_qmldir}/org/kde/plasma/PimCalendars/
 %{_kf6_qtplugindir}/pim6/mailtransport/mailtransport_sendplugin.so

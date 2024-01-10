@@ -1,5 +1,5 @@
 Name:           kweather
-Version:        24.01.85
+Version:        24.01.90
 Release:        1%{?dist}
 License:        GPLv2+
 Summary:        Convergent KDE weather application
@@ -35,7 +35,7 @@ BuildRequires:  cmake(Qt6Widgets)
 
 Requires:       hicolor-icon-theme
 Requires:       kf6-kirigami2
-Requires:       kirigami-addons
+Requires:       kf6-kirigami-addons
 
 %description
 Weather application for Plasma Mobile

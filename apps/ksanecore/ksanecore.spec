@@ -1,6 +1,6 @@
 Name:    ksanecore
 Summary: Library providing logic to interface scanners
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 
 License: LGPL-2.1-only OR LGPL-3.0-only

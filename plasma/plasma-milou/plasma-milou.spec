@@ -1,7 +1,7 @@
 %define         base_name milou
 
 Name:    plasma-%{base_name}
-Version: 5.91.0
+Version: 5.92.0
 Release: 1%{?dist}
 Summary: A dedicated KDE search application built on top of Baloo
 

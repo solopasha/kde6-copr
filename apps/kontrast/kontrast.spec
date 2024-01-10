@@ -1,5 +1,5 @@
 Name:          kontrast
-Version:       24.01.85
+Version:       24.01.90
 Release:       1%{?dist}
 Summary:       Color contrast checker
 # BSD, CC0 are only for build files
@@ -32,7 +32,7 @@ Requires:      hicolor-icon-theme
 Requires:      kf6-filesystem
 # QML dependencies
 Requires:      kf6-kirigami2%{?_isa}
-Requires:      kf6-kirigami2-addons%{?_isa}
+Requires:      kf6-kirigami-addons%{?_isa}
 
 %description
 Kontrast is a color contrast checker and tell you if your color combinations

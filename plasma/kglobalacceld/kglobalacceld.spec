@@ -1,6 +1,6 @@
 Name:    kglobalacceld
 Summary: Daemon providing Global Keyboard Shortcut functionality
-Version: 5.91.0
+Version: 5.92.0
 Release: 1%{?dist}
 
 License: CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL

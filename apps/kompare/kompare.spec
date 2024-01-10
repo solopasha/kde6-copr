@@ -1,6 +1,6 @@
 Name:    kompare
 Summary: Diff tool
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 
 License: (GPL-2.0-only OR GPL-3.0-only) AND GPL-2.0-or-later and GFDL

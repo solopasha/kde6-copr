@@ -1,5 +1,5 @@
 Name:    kaccounts-providers
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 Summary: Additional service providers for KAccounts framework
 License: GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -10,7 +10,6 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  intltool
 BuildRequires:  kf6-rpm-macros
 
-BuildRequires:  cmake(KF6Declarative)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Package)

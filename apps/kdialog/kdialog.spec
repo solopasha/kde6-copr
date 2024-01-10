@@ -1,6 +1,6 @@
 Name:    kdialog
 Summary: Nice dialog boxes from shell scripts
-Version: 24.01.85
+Version: 24.01.90
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later

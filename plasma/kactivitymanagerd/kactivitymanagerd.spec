@@ -1,14 +1,12 @@
 Name:    kactivitymanagerd
 Summary: Plasma service to manage user's activities
-Version: 5.91.0
-Release: 2%{?dist}
+Version: 5.92.0
+Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
 
 %plasma_source
-Patch:   https://invent.kde.org/plasma/kactivitymanagerd/-/commit/e42bc4ccccb4c65df58bd6d2a925c2618b16a630.patch
-Patch:   https://invent.kde.org/plasma/kactivitymanagerd/-/commit/80ee42ffbc64b7e0ff025bf5ee036e44f1358f26.patch
 
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  systemd-rpm-macros
