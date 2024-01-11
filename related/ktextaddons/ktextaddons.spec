@@ -1,11 +1,13 @@
 Name:          ktextaddons
-Version:       1.5.2
-Release:       2.1%{?dist}
+Version:       1.5.3
+Release:       1%{?dist}
 Summary:       Various text handling addons
 
 License:       CC0-1.0 AND LGPL-2.0-or-later AND GPL-2.0-or-later AND BSD-3-Clause
 URL:           https://invent.kde.org/libraries/%{name}
 Source0:       http://download.kde.org/stable/ktextaddons/%{name}-%{version}.tar.xz
+Source1:       http://download.kde.org/stable/ktextaddons/%{name}-%{version}.tar.xz.sig
+Source2:       kde-frameworks-signing-keys.pgp
 
 BuildRequires: cmake
 BuildRequires: extra-cmake-modules
@@ -20,7 +22,6 @@ BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6KIO)
 BuildRequires: cmake(KF6Sonnet)
 BuildRequires: cmake(KF6SyntaxHighlighting)
-BuildRequires: cmake(KF6XmlGui)
 BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6Keychain)
 BuildRequires: cmake(Qt6MultimediaWidgets)
@@ -35,7 +36,6 @@ BuildRequires: cmake(KF5I18n)
 BuildRequires: cmake(KF5KIO)
 BuildRequires: cmake(KF5Sonnet)
 BuildRequires: cmake(KF5SyntaxHighlighting)
-BuildRequires: cmake(KF5XmlGui)
 BuildRequires: cmake(Qt5Core)
 BuildRequires: cmake(Qt5Keychain)
 BuildRequires: cmake(Qt5Network)
@@ -83,7 +83,9 @@ BuildArch:     noarch
 %description   docs
 %{summary}.
 
+
 %prep
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -p1
 
 

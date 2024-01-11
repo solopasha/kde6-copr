@@ -1,16 +1,13 @@
-%global commit0 a0405220a4b00324be6f083d21e1ab00ab32e671
+%global commit0 6c838a35d97c96af6e26f81c1b17fded97795c65
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Name:           kjots
 Summary:        KDE Notes application
-Version:        5.1.2~1.git%{shortcommit0}
+Version:        5.1.2~2.git%{shortcommit0}
 Release:        1%{?dist}
 License:        LGPL-2.0-or-later AND GPL-2.0-or-later
 URL:            https://invent.kde.org/pim/kjots
 Source:         %{url}/-/archive/%{commit0}/%{name}-%{shortcommit0}.tar.gz
-
-# handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
-%{?qt6_qtwebengine_arches:ExclusiveArch: %{qt6_qtwebengine_arches}}
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
@@ -60,8 +57,8 @@ KJots is an application for writing and organizing notes.
 
 
 %check
-desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/*.desktop
-appstream-util validate-relax --nonet %{buildroot}/%{_kf5_metainfodir}/*.xml
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
+appstream-util validate-relax --nonet %{buildroot}/%{_kf6_metainfodir}/*.xml
 
 
 %files -f kjots.lang
