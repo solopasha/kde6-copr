@@ -2,13 +2,14 @@ Name:    gwenview
 Summary: An image viewer
 Epoch:   1
 Version: 24.01.90
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 # app: GPLv2+
 # lib:  IJG and (LGPLv2 or LGPLv3 or LGPLv3+ (KDE e.V.)) and LGPLv2+ and GPLv2+
 License: GPL-2.0-or-later
 URL:     https://apps.kde.org/gwenview/
 %apps_source
+Patch:   https://invent.kde.org/graphics/gwenview/-/merge_requests/245.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
@@ -41,8 +42,7 @@ BuildRequires: pkgconfig(Qt6Concurrent)
 BuildRequires: pkgconfig(Qt6Svg)
 BuildRequires: pkgconfig(Qt6OpenGL)
 BuildRequires: pkgconfig(wayland-client)
-BuildRequires: cmake(kColorPicker)
-BuildRequires: cmake(kImageAnnotator)
+BuildRequires: cmake(kImageAnnotator-Qt6)
 
 BuildRequires: qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
