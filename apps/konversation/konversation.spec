@@ -59,6 +59,7 @@ to chat windows; configurable background colors and much more
 
 
 %prep
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -p1
 
 sed -i \

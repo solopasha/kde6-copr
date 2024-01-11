@@ -100,6 +100,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %prep
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -p1
 
 
