@@ -6,7 +6,7 @@
 
 Name:           signon
 Version:        8.61^1.git%{shortcommit0}
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Accounts framework for Linux and POSIX based platforms
 
 License:        LGPLv2
@@ -68,11 +68,13 @@ developing applications that use %{name}.
 
 %package qt5-devel
 Summary:        Development files for %{name}-qt5
+Requires:       %{name}-devel = %{version}-%{release}
 %description qt5-devel
 %{summary}.
 
 %package qt6-devel
 Summary:        Development files for %{name}-qt6
+Requires:       %{name}-devel = %{version}-%{release}
 %description qt6-devel
 %{summary}.
 
