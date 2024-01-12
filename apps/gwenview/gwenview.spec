@@ -2,7 +2,7 @@ Name:    gwenview
 Summary: An image viewer
 Epoch:   1
 Version: 24.01.90
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 # app: GPLv2+
 # lib:  IJG and (LGPLv2 or LGPLv3 or LGPLv3+ (KDE e.V.)) and LGPLv2+ and GPLv2+
@@ -13,40 +13,45 @@ Patch:   https://invent.kde.org/graphics/gwenview/-/merge_requests/245.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
-BuildRequires: gettext
-BuildRequires: cmake(KF6KIO)
-BuildRequires: cmake(KF6ItemModels)
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6Parts)
-BuildRequires: cmake(KF6WindowSystem)
-BuildRequires: cmake(KF6IconThemes)
-BuildRequires: cmake(KF6Notifications)
-BuildRequires: cmake(KF6GuiAddons)
-BuildRequires: cmake(KF6WidgetsAddons)
-BuildRequires: cmake(PlasmaActivities)
-BuildRequires: cmake(KF6Purpose)
-BuildRequires: cmake(KF6Baloo)
-BuildRequires: cmake(KDcrawQt6)
 BuildRequires: libappstream-glib
-BuildRequires: libjpeg-devel
-BuildRequires: pkgconfig(exiv2)
-BuildRequires: pkgconfig(lcms2)
-BuildRequires: pkgconfig(libpng)
-BuildRequires: pkgconfig(libtiff-4)
-BuildRequires: pkgconfig(cfitsio)
-BuildRequires: cmake(Phonon4Qt6)
-BuildRequires: pkgconfig(Qt6DBus)
-BuildRequires: pkgconfig(Qt6Widgets)
-BuildRequires: pkgconfig(Qt6Test)
-BuildRequires: pkgconfig(Qt6Concurrent)
-BuildRequires: pkgconfig(Qt6Svg)
-BuildRequires: pkgconfig(Qt6OpenGL)
-BuildRequires: pkgconfig(wayland-client)
-BuildRequires: cmake(kImageAnnotator-Qt6)
+BuildRequires: kf6-rpm-macros
 
+BuildRequires: cmake(KF6Baloo)
+BuildRequires: cmake(KF6DocTools)
+BuildRequires: cmake(KF6GuiAddons)
+BuildRequires: cmake(KF6I18n)
+BuildRequires: cmake(KF6IconThemes)
+BuildRequires: cmake(KF6ItemModels)
+BuildRequires: cmake(KF6KIO)
+BuildRequires: cmake(KF6Notifications)
+BuildRequires: cmake(KF6Parts)
+BuildRequires: cmake(KF6Purpose)
+BuildRequires: cmake(KF6WidgetsAddons)
+BuildRequires: cmake(KF6WindowSystem)
+BuildRequires: cmake(PlasmaActivities)
+
+BuildRequires: cmake(Qt6Concurrent)
+BuildRequires: cmake(Qt6Core)
+BuildRequires: cmake(Qt6DBus)
+BuildRequires: cmake(Qt6OpenGLWidgets)
+BuildRequires: cmake(Qt6PrintSupport)
+BuildRequires: cmake(Qt6Svg)
+BuildRequires: cmake(Qt6SvgWidgets)
+BuildRequires: cmake(Qt6WaylandClient)
+BuildRequires: cmake(Qt6Widgets)
 BuildRequires: qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
-BuildRequires: qt6-qtwayland-devel
+
+BuildRequires: cmake(KDcrawQt6)
+BuildRequires: cmake(kImageAnnotator-Qt6)
+BuildRequires: cmake(Phonon4Qt6)
+BuildRequires: pkgconfig(cfitsio)
+BuildRequires: pkgconfig(exiv2)
+BuildRequires: pkgconfig(lcms2)
+BuildRequires: pkgconfig(libjpeg)
+BuildRequires: pkgconfig(libpng)
+BuildRequires: pkgconfig(libtiff-4)
+BuildRequires: pkgconfig(wayland-client)
 BuildRequires: wayland-protocols-devel
 
 Requires: %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
@@ -63,7 +68,7 @@ Recommends: kf6-kimageformats%{?_isa}
 Summary:  Runtime files for %{name}
 # wrt (LGPLv2 or LGPLv3), KDE e.V. may determine that future GPL versions are accepted
 License:  IJG and LGPLv2+ and GPLv2+ and LGPLv2 or LGPLv3
-Requires: %{name} = %{epoch}:%{version}-%{release}
+Requires: %{name}%{?_isa} = %{epoch}:%{version}-%{release}
 %description libs
 %{summary}.
 
@@ -75,7 +80,6 @@ Requires: %{name} = %{epoch}:%{version}-%{release}
 
 %build
 %cmake_kf6 -DQT_MAJOR_VERSION=6
-
 %cmake_build
 
 
@@ -86,8 +90,8 @@ Requires: %{name} = %{epoch}:%{version}-%{release}
 
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.gwenview.appdata.xml
-desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.gwenview.desktop
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*xml
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 
 %files -f %{name}.lang
@@ -106,6 +110,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.gwenview.
 %{_kf6_libdir}/libgwenviewlib.so.*
 %{_kf6_plugindir}/kfileitemaction/slideshowfileitemaction.so
 %{_kf6_plugindir}/parts/gvpart.so
+
 
 %changelog
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 1:23.08.2-1
