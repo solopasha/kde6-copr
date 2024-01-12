@@ -7,7 +7,7 @@
 
 Name: kimageannotator
 Version: 0.6.1%{?bumpver:^%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: LGPL-3.0-or-later
 Summary: Library and a tool for annotating images
@@ -37,8 +37,6 @@ Library and a tool for annotating images. Part of KSnip project.
 %package        qt5
 Summary:        Qt5 support for %{name}
 Requires:       %{name}-common = %{version}-%{release}
-Obsoletes:      %{name} < 0.6.1-3
-Provides:       %{name} = %{version}-%{release}
 %description    qt5
 %{summary}.
 
@@ -50,6 +48,7 @@ Requires:       %{name}-qt5%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %package        qt6
 Summary:        Qt6 support for %{name}
+Obsoletes:      %{name} < 0.6.1-3
 Requires:       %{name}-common = %{version}-%{release}
 %description    qt6
 %{summary}.

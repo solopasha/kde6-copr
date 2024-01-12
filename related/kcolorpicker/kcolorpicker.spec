@@ -7,7 +7,7 @@
 
 Name: kcolorpicker
 Version: 0.2.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: LGPL-3.0-or-later
 Summary: QToolButton control with color popup menu
@@ -32,8 +32,6 @@ custom colors to the popup menu.
 
 %package        qt5
 Summary:        Qt5 support for %{name}
-Obsoletes:      kcolorpicker < 0.2.0-5
-Provides:       kcolorpicker = %{version}-%{release}
 %description    qt5
 %{summary}.
 
@@ -45,6 +43,7 @@ Requires:       %{name}-qt5%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %package        qt6
 Summary:        Qt6 support for %{name}
+Obsoletes:      kcolorpicker < 0.2.0-5
 %description    qt6
 %{summary}.
 
