@@ -1,38 +1,36 @@
 Name:    krdc
 Summary: Remote desktop client
 Version: 24.01.90
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/network/krdc
 %apps_source
 
-#Patch:   activities.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
-BuildRequires: kf6-rpm-macros
+BuildRequires: kf5-rpm-macros
 BuildRequires: libappstream-glib
 
-BuildRequires: cmake(KF6Bookmarks)
-BuildRequires: cmake(KF6Completion)
-BuildRequires: cmake(KF6Config)
-BuildRequires: cmake(KF6DNSSD)
-BuildRequires: cmake(KF6DocTools)
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6IconThemes)
-BuildRequires: cmake(KF6KCMUtils)
-BuildRequires: cmake(KF6KIO)
-BuildRequires: cmake(KF6Notifications)
-BuildRequires: cmake(KF6NotifyConfig)
-BuildRequires: cmake(KF6StatusNotifierItem)
-BuildRequires: cmake(KF6Wallet)
-BuildRequires: cmake(KF6WidgetsAddons)
-BuildRequires: cmake(KF6WindowSystem)
-BuildRequires: cmake(KF6XmlGui)
-BuildRequires: cmake(PlasmaActivities)
+BuildRequires: cmake(KF5Bookmarks)
+BuildRequires: cmake(KF5Completion)
+BuildRequires: cmake(KF5Config)
+BuildRequires: cmake(KF5DNSSD)
+BuildRequires: cmake(KF5DocTools)
+BuildRequires: cmake(KF5I18n)
+BuildRequires: cmake(KF5IconThemes)
+BuildRequires: cmake(KF5KCMUtils)
+BuildRequires: cmake(KF5KIO)
+BuildRequires: cmake(KF5Notifications)
+BuildRequires: cmake(KF5NotifyConfig)
+BuildRequires: cmake(KF5Wallet)
+BuildRequires: cmake(KF5WidgetsAddons)
+BuildRequires: cmake(KF5WindowSystem)
+BuildRequires: cmake(KF5XmlGui)
+BuildRequires: cmake(KF5Activities)
 
-BuildRequires: cmake(Qt6Core)
+BuildRequires: cmake(Qt5Core)
 
 BuildRequires: freerdp
 BuildRequires: cmake(freerdp)
@@ -67,7 +65,7 @@ Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 
 
 %build
-%cmake_kf6 -DBUILD_WITH_QT6:BOOL=TRUE
+%cmake_kf5
 %cmake_build
 
 
@@ -86,29 +84,29 @@ mv %{buildroot}%{_datadir}/icons/hicolor/base/* %{buildroot}%{_datadir}/icons/hi
 
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
-desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.desktop
+appstream-util validate-relax --nonet %{buildroot}%{_kf5_metainfodir}/org.kde.%{name}.appdata.xml
+desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.desktop
 
 
 %files -f %{name}.lang
 %license LICENSES/*
-%{_kf6_bindir}/krdc
-%{_kf6_datadir}/applications/org.kde.krdc.desktop
-%{_kf6_datadir}/config.kcfg/krdc.kcfg
-%{_kf6_datadir}/icons/hicolor/*/apps/krdc.*
-%{_kf6_datadir}/qlogging-categories6/krdc.categories
-%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
+%{_kf5_bindir}/krdc
+%{_kf5_datadir}/applications/org.kde.krdc.desktop
+%{_kf5_datadir}/config.kcfg/krdc.kcfg
+%{_kf5_datadir}/icons/hicolor/*/apps/krdc.*
+%{_kf5_datadir}/qlogging-categories5/krdc.categories
+%{_kf5_metainfodir}/org.kde.%{name}.appdata.xml
 
 
 %files libs
-%{_kf6_libdir}/libkrdccore.so.%{version}
-%{_kf6_libdir}/libkrdccore.so.5*
-%{_kf6_qtplugindir}/krdc/
+%{_kf5_libdir}/libkrdccore.so.%{version}
+%{_kf5_libdir}/libkrdccore.so.5*
+%{_kf5_qtplugindir}/krdc/
 
 %files devel
 %{_includedir}/krdc/
 %{_includedir}/krdccore_export.h
-%{_kf6_libdir}/libkrdccore.so
+%{_kf5_libdir}/libkrdccore.so
 
 
 %changelog
