@@ -14,11 +14,13 @@
 Name:    okular
 Summary: A document viewer
 Version: 24.01.90
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPL-2.0-only
 URL:     https://www.kde.org/applications/graphics/okular/
 %apps_source
+Patch:   https://invent.kde.org/graphics/okular/-/commit/53fb06d6b4a931b87364a87fcced459b5824b678.patch
+Patch:   https://invent.kde.org/graphics/okular/-/commit/478f6f24fbde4657b7bd13dbc4a58512cbd6eb2a.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib
