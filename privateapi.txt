@@ -1,4 +1,4 @@
-akonadi
+akonadi-server
 dolphin
 elisa-player
 gwenview
