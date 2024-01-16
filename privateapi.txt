@@ -2,6 +2,7 @@ akonadi-server
 dolphin
 elisa-player
 gwenview
+juk
 kactivitymanagerd
 kate
 kde-cli-tools
