@@ -42,6 +42,9 @@ Requires:       pkgconfig(libnm)
 Qt libraries and header files for developing applications
 that use NetworkManager.
 
+
+%qch_package
+
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{framework}-%{version} -p1
@@ -65,6 +68,7 @@ that use NetworkManager.
 %{_kf6_libdir}/qt6/qml/org/kde/networkmanager/qmldir
 
 %files devel
+%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/NetworkManagerQt/
 %{_kf6_libdir}/libKF6NetworkManagerQt.so
 %{_kf6_libdir}/cmake/KF6NetworkManagerQt/

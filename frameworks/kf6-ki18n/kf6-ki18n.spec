@@ -35,6 +35,9 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 
+
+%qch_package
+
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{framework}-%{version} -p1
@@ -75,6 +78,7 @@ developing applications that use %{name}.
 %lang(sr@latin) %{_datadir}/locale/sr@latin/LC_SCRIPTS/ki18n6/
 
 %files devel
+%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KI18n/
 %{_kf6_includedir}/KI18nLocaleData/
 %{_kf6_libdir}/cmake/KF6I18n/

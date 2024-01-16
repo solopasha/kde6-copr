@@ -39,6 +39,9 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 
+
+%qch_package
+
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -p1 -n %{framework}-%{version}
@@ -58,6 +61,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/qt6/qml/org/kde/ksvg/
 
 %files devel
+%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KSvg/
 %{_kf6_libdir}/cmake/KF6Svg/
 %{_kf6_libdir}/libKF6Svg.so

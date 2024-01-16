@@ -35,6 +35,9 @@ Requires:       qt6-qtbase-devel
 Development files for %{name}.
 
 
+
+%qch_package
+
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{framework}-%{version}
@@ -57,6 +60,7 @@ Development files for %{name}.
 %{_kf6_qmldir}/org/kde/bluezqt/
 
 %files devel
+%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/BluezQt/
 %{_kf6_libdir}/libKF6BluezQt.so
 %{_kf6_libdir}/cmake/KF6BluezQt/

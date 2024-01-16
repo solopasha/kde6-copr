@@ -33,6 +33,9 @@ Requires:	qt6-qtbase-devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
+
+%qch_package
+
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{framework}-%{version} -p1
@@ -60,6 +63,7 @@ cat *.lang > all.lang
 %{_kf6_qmldir}/org/kde/coreaddons/
 
 %files devel
+%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KCoreAddons/
 %{_kf6_libdir}/cmake/KF6CoreAddons/
 %{_kf6_libdir}/libKF6CoreAddons.so

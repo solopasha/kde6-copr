@@ -28,6 +28,9 @@ Requires:       cmake(KF6Config)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
+
+%qch_package
+
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{framework}-%{version} -p1
@@ -48,6 +51,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6ColorScheme.so.6
 
 %files devel
+%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KColorScheme/
 %{_kf6_libdir}/cmake/KF6ColorScheme/
 %{_kf6_libdir}/libKF6ColorScheme.so

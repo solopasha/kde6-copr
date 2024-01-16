@@ -30,6 +30,9 @@ Requires: 	cmake(Qt6Core)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
+
+%qch_package
+
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{framework}-%{version} -p1
@@ -50,6 +53,7 @@ developing applications that use %{name}.
 %{_kf6_qmldir}/org/kde/kholidays/
 
 %files devel
+%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KHolidays/
 %{_kf6_libdir}/cmake/KF6Holidays/
 %{_kf6_libdir}/libKF6Holidays.so

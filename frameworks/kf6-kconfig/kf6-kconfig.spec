@@ -33,6 +33,9 @@ Requires:	cmake(Qt6Qml)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
+
+%qch_package
+
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{framework}-%{version} -p1
@@ -62,6 +65,7 @@ developing applications that use %{name}.
 %{_kf6_libexecdir}/kconfig_compiler_kf6
 
 %files devel
+%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KConfig/
 %{_kf6_includedir}/KConfigCore/
 %{_kf6_includedir}/KConfigGui/

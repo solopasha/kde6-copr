@@ -41,6 +41,13 @@ BuildArch: noarch
 %description srpm-macros
 RPM macros for building KDE SRPM packages.
 
+%package qch
+Summary: QCH metapackage
+Recommends: qt6-doc
+BuildArch: noarch
+%description qch
+QCH metapackage
+
 %install
 # See macros.kf6 where the directories are specified
 mkdir -p %{buildroot}%{_prefix}/{lib,%{_lib}}/qt6/plugins/kf6/

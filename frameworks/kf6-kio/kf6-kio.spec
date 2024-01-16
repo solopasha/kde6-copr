@@ -138,6 +138,9 @@ Recommends:     switcheroo-control
 %description    gui
 %{summary}.
 
+
+%qch_package qch
+
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{framework}-%{version} -p1
@@ -195,6 +198,7 @@ Recommends:     switcheroo-control
 %{_kf6_libdir}/libKF6KIOFileWidgets.so.%{version}
 
 %files devel
+%{_qt6_docdir}/*.tags
 %{_kf6_datadir}/kdevappwizard/templates/kioworker6.tar.bz2
 %{_kf6_includedir}/KIO/
 %{_kf6_includedir}/KIOCore/

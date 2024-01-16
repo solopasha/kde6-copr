@@ -28,6 +28,8 @@ Requires:       qt6-qtbase-devel
 %{summary}.
 
 
+%qch_package
+
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{framework}-%{version} -p1
@@ -47,6 +49,7 @@ Requires:       qt6-qtbase-devel
 %{_kf6_libdir}/libKF6Attica.so.6
 
 %files devel
+%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/Attica/
 %{_kf6_libdir}/cmake/KF6Attica/
 %{_kf6_libdir}/libKF6Attica.so

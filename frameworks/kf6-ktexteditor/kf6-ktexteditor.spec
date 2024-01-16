@@ -55,6 +55,9 @@ Requires:       cmake(KF6SyntaxHighlighting)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
+
+%qch_package
+
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{framework}-%{version} -p1
@@ -86,6 +89,7 @@ rm -f %{buildroot}%{_kf6_datadir}/katepart5/script/README.md
 %{_kf6_qtplugindir}/ktexteditor/
 
 %files devel
+%{_qt6_docdir}/*.tags
 %{_kf6_datadir}/kdevappwizard/templates/ktexteditor6-plugin.tar.bz2
 %{_kf6_includedir}/KTextEditor/
 %{_kf6_libdir}/cmake/KF6TextEditor/

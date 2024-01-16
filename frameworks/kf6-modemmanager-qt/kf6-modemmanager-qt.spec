@@ -29,6 +29,9 @@ Requires:       qt6-qtbase-devel
 Qt 6 libraries and header files for developing applications
 that use ModemManager.
 
+
+%qch_package
+
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{framework}-%{version} -p1
@@ -49,6 +52,7 @@ that use ModemManager.
 %{_kf6_libdir}/libKF6ModemManagerQt.so.%{version}
 
 %files devel
+%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/ModemManagerQt/
 %{_kf6_libdir}/cmake/KF6ModemManagerQt/
 %{_kf6_libdir}/libKF6ModemManagerQt.so

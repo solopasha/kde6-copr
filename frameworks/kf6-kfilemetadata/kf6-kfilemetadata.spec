@@ -43,6 +43,9 @@ Requires:       qt6-qtbase-devel
 %description devel
 %{summary}.
 
+
+%qch_package
+
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{framework}-%{version} -p1
@@ -67,6 +70,7 @@ mkdir -p %{buildroot}%{_kf6_plugindir}/kfilemetadata/writers/
 %{_kf6_plugindir}/kfilemetadata/writers/kfilemetadata_taglibwriter.so
 
 %files devel
+%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KFileMetaData/
 %{_kf6_libdir}/cmake/KF6FileMetaData/
 %{_kf6_libdir}/libKF6FileMetaData.so

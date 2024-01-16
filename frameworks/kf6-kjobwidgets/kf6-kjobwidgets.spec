@@ -38,6 +38,9 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 
+
+%qch_package
+
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{framework}-%{version} -p1
@@ -60,6 +63,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6JobWidgets.so.%{version}
 
 %files devel
+%{_qt6_docdir}/*.tags
 %{_kf6_datadir}/dbus-1/interfaces/*.xml
 %{_kf6_includedir}/KJobWidgets/
 %{_kf6_libdir}/cmake/KF6JobWidgets/

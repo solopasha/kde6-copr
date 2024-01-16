@@ -57,6 +57,9 @@ Summary:        Runtime libraries for %{name}
 %{summary}.
 
 
+
+%qch_package
+
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{framework}-%{version} -p1
@@ -120,6 +123,7 @@ cat kio6_tags.lang kio6_baloosearch.lang kio6_timeline.lang \
 %{_kf6_qmldir}/org/kde/baloo
 
 %files devel
+%{_qt6_docdir}/*.tags
 %{_kf6_libdir}/libKF6Baloo.so
 %{_kf6_libdir}/cmake/KF6Baloo/
 %{_kf6_libdir}/pkgconfig/KF6Baloo.pc
