@@ -51,7 +51,7 @@ BuildRequires: cmake(Qt5Widgets)
 
 %package       qt6
 Summary:       Qt6 support for %{name}
-Requires:      %{name}-docs
+Requires:      %{name}-common = %{version}-%{release}
 %description   qt6
 %{summary}.
 
@@ -65,7 +65,7 @@ Requires:      %{name}-qt6%{?_isa} = %{version}-%{release}
 Summary:       Qt5 support for %{name}
 Obsoletes:     ktextaddons < 1.5.2
 Provides:      ktextaddons = %{version}-%{release}
-Requires:      %{name}-docs
+Requires:      %{name}-common = %{version}-%{release}
 %description   qt5
 %{summary}.
 
@@ -77,10 +77,11 @@ Provides:      ktextaddons-devel = %{version}-%{release}
 %description   qt5-devel
 %{summary}.
 
-%package       docs
+%package       common
 Summary:       Translations and documents for %{name}
+Obsoletes:     ktextaddons-docs < 1.5.3-1
 BuildArch:     noarch
-%description   docs
+%description   common
 %{summary}.
 
 
@@ -153,7 +154,6 @@ BuildArch:     noarch
 %{_kf6_includedir}/TextGrammarCheck/
 %{_kf6_includedir}/TextTranslator/
 %{_kf6_includedir}/TextUtils/
-%{_kf6_libdir}/qt6/mkspecs/modules/qt_*.pri
 %{_kf6_libdir}/libKF6TextAddonsWidgets.so
 %{_kf6_libdir}/libKF6TextAutoCorrectionCore.so
 %{_kf6_libdir}/libKF6TextAutoCorrectionWidgets.so
@@ -219,7 +219,6 @@ BuildArch:     noarch
 %{_kf5_includedir}/TextGrammarCheck/
 %{_kf5_includedir}/TextTranslator/
 %{_kf5_includedir}/TextUtils/
-%{_kf5_libdir}/qt5/mkspecs/modules/qt_*.pri
 %{_kf5_libdir}/libKF5TextAddonsWidgets.so
 %{_kf5_libdir}/libKF5TextAutoCorrectionCore.so
 %{_kf5_libdir}/libKF5TextAutoCorrectionWidgets.so
@@ -241,7 +240,7 @@ BuildArch:     noarch
 %{_kf5_libdir}/cmake/KF5TextTranslator/
 %{_kf5_libdir}/cmake/KF5TextUtils/
 
-%files docs -f %{name}.lang
+%files common -f %{name}.lang
 %doc README.md
 
 

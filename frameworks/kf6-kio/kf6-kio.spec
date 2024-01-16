@@ -171,24 +171,28 @@ Recommends:     switcheroo-control
 %{_datadir}/dbus-1/services/org.kde.*.service
 
 %files core-libs
-%{_kf6_libdir}/libKF6KIOCore.so.*
+%{_kf6_libdir}/libKF6KIOCore.so.6
+%{_kf6_libdir}/libKF6KIOCore.so.%{version}
 
 %files doc -f %{name}.lang
 
 %files gui
-%{_kf6_libdir}/libKF6KIOGui.so.*
+%{_kf6_libdir}/libKF6KIOGui.so.6
+%{_kf6_libdir}/libKF6KIOGui.so.%{version}
 
 %files widgets
 %dir %{_kf6_plugindir}/urifilters/
 %{_kf6_plugindir}/urifilters/*.so
 
 %files widgets-libs
-%{_kf6_libdir}/libKF6KIOWidgets.so.*
+%{_kf6_libdir}/libKF6KIOWidgets.so.6
+%{_kf6_libdir}/libKF6KIOWidgets.so.%{version}
 %{_kf6_libdir}/libkuriikwsfiltereng_private.so
 %{_kf6_qtplugindir}/designer/*6widgets.so
 
 %files file-widgets
-%{_kf6_libdir}/libKF6KIOFileWidgets.so.*
+%{_kf6_libdir}/libKF6KIOFileWidgets.so.6
+%{_kf6_libdir}/libKF6KIOFileWidgets.so.%{version}
 
 %files devel
 %{_kf6_datadir}/kdevappwizard/templates/kioworker6.tar.bz2

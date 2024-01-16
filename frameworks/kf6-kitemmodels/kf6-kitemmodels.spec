@@ -48,7 +48,8 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6ItemModels.so.*
+%{_kf6_libdir}/libKF6ItemModels.so.6
+%{_kf6_libdir}/libKF6ItemModels.so.%{version}
 %{_kf6_qmldir}/org/kde/kitemmodels/
 
 %files devel

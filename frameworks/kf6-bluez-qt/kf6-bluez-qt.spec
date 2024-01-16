@@ -52,7 +52,8 @@ Development files for %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*categories
-%{_libdir}/libKF6BluezQt.so.*
+%{_kf6_libdir}/libKF6BluezQt.so.6
+%{_kf6_libdir}/libKF6BluezQt.so.%{version}
 %{_kf6_qmldir}/org/kde/bluezqt/
 
 %files devel

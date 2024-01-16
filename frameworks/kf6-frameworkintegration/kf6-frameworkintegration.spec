@@ -72,7 +72,8 @@ The %{name}-devel package contains files to develop for %{name}.
 %{_kf6_libexecdir}/kpackagehandlers/knshandler
 
 %files libs
-%{_kf6_libdir}/libKF6Style.so.*
+%{_kf6_libdir}/libKF6Style.so.6
+%{_kf6_libdir}/libKF6Style.so.%{version}
 %{_kf6_plugindir}/FrameworkIntegrationPlugin.so
 # Version in fedora is too old, uncomment when it is updated
 #%%{_kf6_libexecdir}/kpackagehandlers/appstreamhandler

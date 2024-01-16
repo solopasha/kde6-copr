@@ -47,9 +47,9 @@ developing applications that use %{name}.
 %doc README*
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6Prison.so.5*
+%{_kf6_libdir}/libKF6Prison.so.%{version}
 %{_kf6_libdir}/libKF6Prison.so.6
-%{_kf6_libdir}/libKF6PrisonScanner.so.5*
+%{_kf6_libdir}/libKF6PrisonScanner.so.%{version}
 %{_kf6_libdir}/libKF6PrisonScanner.so.6
 %{_qt6_qmldir}/org/kde/prison/
 

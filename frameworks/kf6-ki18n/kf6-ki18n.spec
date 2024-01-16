@@ -53,8 +53,10 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*%{framework}*
-%{_kf6_libdir}/libKF6I18n.so.*
-%{_kf6_libdir}/libKF6I18nLocaleData.so.*
+%{_kf6_libdir}/libKF6I18n.so.6
+%{_kf6_libdir}/libKF6I18n.so.%{version}
+%{_kf6_libdir}/libKF6I18nLocaleData.so.6
+%{_kf6_libdir}/libKF6I18nLocaleData.so.%{version}
 %{_kf6_qmldir}/org/kde/i18n/localeData/
 %{_kf6_qtplugindir}/kf6/ktranscript.so
 %lang(ca) %{_datadir}/locale/ca/LC_SCRIPTS/ki18n6/

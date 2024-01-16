@@ -55,7 +55,7 @@ developing applications that use %{name}.
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_libdir}/libKF6DocTools.so.5*
+%{_kf6_libdir}/libKF6DocTools.so.%{version}
 %{_kf6_libdir}/libKF6DocTools.so.6
 %{_kf6_bindir}/checkXML6
 %{_kf6_bindir}/meinproc6

@@ -53,7 +53,8 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*
-%{_kf6_libdir}/libKF6Su.so.*
+%{_kf6_libdir}/libKF6Su.so.6
+%{_kf6_libdir}/libKF6Su.so.%{version}
 %{_kf6_libexecdir}/kdesu_stub
 %attr(2755,root,nobody) %{_kf6_libexecdir}/kdesud
 

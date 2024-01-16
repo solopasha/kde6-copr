@@ -53,7 +53,8 @@ developing applications that use %{name}.
 %files
 %license LICENSES/*
 %{_kf6_datadir}/qlogging-categories6/ksvg.categories
-%{_kf6_libdir}/libKF6Svg.so.*
+%{_kf6_libdir}/libKF6Svg.so.6
+%{_kf6_libdir}/libKF6Svg.so.%{version}
 %{_kf6_libdir}/qt6/qml/org/kde/ksvg/
 
 %files devel

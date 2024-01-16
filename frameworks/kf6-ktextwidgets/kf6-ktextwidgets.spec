@@ -56,7 +56,8 @@ developing applications that use %{name}.
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_libdir}/libKF6TextWidgets.so.*
+%{_kf6_libdir}/libKF6TextWidgets.so.6
+%{_kf6_libdir}/libKF6TextWidgets.so.%{version}
 %{_kf6_qtplugindir}/designer/*6widgets.so
 
 %files devel

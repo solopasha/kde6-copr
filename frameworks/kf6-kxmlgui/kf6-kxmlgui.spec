@@ -65,7 +65,8 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kxmlgui5/
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6XmlGui.so.*
+%{_kf6_libdir}/libKF6XmlGui.so.6
+%{_kf6_libdir}/libKF6XmlGui.so.%{version}
 %dir %{_kf6_datadir}/kxmlgui5/
 
 %files devel

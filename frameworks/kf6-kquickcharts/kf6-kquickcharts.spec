@@ -52,13 +52,15 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_qmldir}/org/kde/quickcharts/
-%{_libdir}/libQuickCharts.so.*
-%{_libdir}/libQuickChartsControls.so*
+%{_kf6_libdir}/libQuickCharts.so.1
+%{_kf6_libdir}/libQuickCharts.so.%{version}
+%{_kf6_libdir}/libQuickChartsControls.so.1
+%{_kf6_libdir}/libQuickChartsControls.so.%{version}
 
 %files devel
 %{_kf6_libdir}/cmake/KF6QuickCharts/
-%{_libdir}/libQuickCharts.so
-%{_libdir}/libQuickChartsControls.so
+%{_kf6_libdir}/libQuickCharts.so
+%{_kf6_libdir}/libQuickChartsControls.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

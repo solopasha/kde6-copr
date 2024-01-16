@@ -57,9 +57,12 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/kirigami.categories
-%{_kf6_libdir}/libKirigami.so.*
-%{_kf6_libdir}/libKirigamiDelegates.so.*
-%{_kf6_libdir}/libKirigamiPlatform.so.*
+%{_kf6_libdir}/libKirigami.so.%{version}
+%{_kf6_libdir}/libKirigami.so.6
+%{_kf6_libdir}/libKirigamiDelegates.so.%{version}
+%{_kf6_libdir}/libKirigamiDelegates.so.6
+%{_kf6_libdir}/libKirigamiPlatform.so.%{version}
+%{_kf6_libdir}/libKirigamiPlatform.so.6
 %{_kf6_qmldir}/org/kde/kirigami/
 
 %files devel
@@ -73,7 +76,6 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKirigami.so
 %{_kf6_libdir}/libKirigamiDelegates.so
 %{_kf6_libdir}/libKirigamiPlatform.so
-
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

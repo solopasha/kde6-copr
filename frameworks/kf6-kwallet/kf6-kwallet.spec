@@ -80,8 +80,10 @@ developing applications that use %{name}.
 %{_mandir}/man1/kwallet-query.1*
 
 %files libs
-%{_kf6_libdir}/libKF6Wallet.so.*
-%{_libdir}/libKF6WalletBackend.so.*
+%{_kf6_libdir}/libKF6Wallet.so.6
+%{_kf6_libdir}/libKF6Wallet.so.%{version}
+%{_kf6_libdir}/libKF6WalletBackend.so.6
+%{_kf6_libdir}/libKF6WalletBackend.so.%{version}
 
 %files devel
 %{_kf6_datadir}/dbus-1/interfaces/kf6_org.kde.KWallet.xml

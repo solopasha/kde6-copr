@@ -43,7 +43,8 @@ developing applications that use %{name}.
 %files
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_libdir}/libKF6Plotting.so.*
+%{_kf6_libdir}/libKF6Plotting.so.6
+%{_kf6_libdir}/libKF6Plotting.so.%{version}
 %{_kf6_qtplugindir}/designer/kplotting6widgets.so
 
 %files devel

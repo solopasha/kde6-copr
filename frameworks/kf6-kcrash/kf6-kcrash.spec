@@ -51,7 +51,8 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6Crash.so.*
+%{_kf6_libdir}/libKF6Crash.so.6
+%{_kf6_libdir}/libKF6Crash.so.%{version}
 
 %files devel
 

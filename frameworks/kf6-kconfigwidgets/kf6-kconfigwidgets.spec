@@ -62,7 +62,8 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
 %{_kf6_libdir}/qt6/plugins/designer/kconfigwidgets6widgets.so
-%{_kf6_libdir}/libKF6ConfigWidgets.so.*
+%{_kf6_libdir}/libKF6ConfigWidgets.so.6
+%{_kf6_libdir}/libKF6ConfigWidgets.so.%{version}
 %{_datadir}/locale/*/kf6_entry.desktop
 
 %files devel

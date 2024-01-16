@@ -57,7 +57,7 @@ that use NetworkManager.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*categories
-%{_kf6_libdir}/libKF6NetworkManagerQt.so.5*
+%{_kf6_libdir}/libKF6NetworkManagerQt.so.%{version}
 %{_kf6_libdir}/libKF6NetworkManagerQt.so.6
 %{_kf6_libdir}/qt6/qml/org/kde/networkmanager/kde-qmlmodule.version
 %{_kf6_libdir}/qt6/qml/org/kde/networkmanager/libnetworkmanagerqtqml.so

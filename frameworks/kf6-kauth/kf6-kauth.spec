@@ -52,7 +52,7 @@ developing applications that use %{name}.
 %{_kf6_datadir}/dbus-1/system.d/org.kde.kf6auth.conf
 %{_kf6_datadir}/kf6/kauth/
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6AuthCore.so.5*
+%{_kf6_libdir}/libKF6AuthCore.so.%{version}
 %{_kf6_libdir}/libKF6AuthCore.so.6
 %{_kf6_qtplugindir}/kf6/kauth/
 

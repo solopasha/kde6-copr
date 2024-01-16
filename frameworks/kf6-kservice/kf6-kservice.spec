@@ -62,8 +62,8 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kservicetypes6
 %{_kf6_datadir}/kservices6/
 %{_kf6_datadir}/kservicetypes6/
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6Service.so.5*
-%{_kf6_libdir}/libKF6Service.so.6*
+%{_kf6_libdir}/libKF6Service.so.%{version}
+%{_kf6_libdir}/libKF6Service.so.6
 %{_kf6_mandir}/man8/*.8*
 
 %files devel

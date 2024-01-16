@@ -53,7 +53,7 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6Pty.so.5*
+%{_kf6_libdir}/libKF6Pty.so.%{version}
 %{_kf6_libdir}/libKF6Pty.so.6
 
 %files devel

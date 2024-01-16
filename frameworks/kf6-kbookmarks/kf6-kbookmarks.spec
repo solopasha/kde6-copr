@@ -56,9 +56,10 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_datadir}/qlogging-categories6/%{framework}widgets.categories
-%{_kf6_libdir}/libKF6Bookmarks.so.*
-%{_kf6_libdir}/libKF6BookmarksWidgets.so.5*
-%{_kf6_libdir}/libKF6BookmarksWidgets.so.6*
+%{_kf6_libdir}/libKF6Bookmarks.so.6
+%{_kf6_libdir}/libKF6Bookmarks.so.%{version}
+%{_kf6_libdir}/libKF6BookmarksWidgets.so.%{version}
+%{_kf6_libdir}/libKF6BookmarksWidgets.so.6
 
 %files devel
 %{_kf6_includedir}/KBookmarks/

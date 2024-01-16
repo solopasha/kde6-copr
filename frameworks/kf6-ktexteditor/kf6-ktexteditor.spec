@@ -79,7 +79,8 @@ rm -f %{buildroot}%{_kf6_datadir}/katepart5/script/README.md
 %{_kf6_datadir}/dbus-1/system.d/org.kde.ktexteditor6.katetextbuffer.conf
 %{_kf6_datadir}/polkit-1/actions/org.kde.ktexteditor6.katetextbuffer.policy
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6TextEditor.so.*
+%{_kf6_libdir}/libKF6TextEditor.so.6
+%{_kf6_libdir}/libKF6TextEditor.so.%{version}
 %{_kf6_libexecdir}/kauth/kauth_ktexteditor_helper
 %{_kf6_plugindir}/parts/katepart.so
 %{_kf6_qtplugindir}/ktexteditor/

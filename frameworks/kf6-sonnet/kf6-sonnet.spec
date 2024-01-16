@@ -55,7 +55,8 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*categories
-%{_kf6_libdir}/libKF6SonnetCore.so.*
+%{_kf6_libdir}/libKF6SonnetCore.so.6
+%{_kf6_libdir}/libKF6SonnetCore.so.%{version}
 %{_kf6_bindir}/parsetrigrams6
 %{_kf6_qmldir}/org/kde/sonnet/
 %dir %{_kf6_plugindir}/sonnet
@@ -63,7 +64,8 @@ developing applications that use %{name}.
 %{_kf6_plugindir}/sonnet/sonnet_voikko.so
 %{_kf6_plugindir}/sonnet/sonnet_hspell.so
 %{_kf6_plugindir}/sonnet/sonnet_aspell.so
-%{_kf6_libdir}/libKF6SonnetUi.so.*
+%{_kf6_libdir}/libKF6SonnetUi.so.6
+%{_kf6_libdir}/libKF6SonnetUi.so.%{version}
 %{_kf6_qtplugindir}/designer/*6widgets.so
 
 %files devel

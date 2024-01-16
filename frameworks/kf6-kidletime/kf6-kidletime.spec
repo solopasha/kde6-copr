@@ -53,7 +53,8 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6IdleTime.so.*
+%{_kf6_libdir}/libKF6IdleTime.so.6
+%{_kf6_libdir}/libKF6IdleTime.so.%{version}
 %dir %{_kf6_plugindir}/org.kde.kidletime.platforms/
 %{_kf6_plugindir}/org.kde.kidletime.platforms/KF6IdleTimeWaylandPlugin.so
 %{_kf6_plugindir}/org.kde.kidletime.platforms/KF6IdleTimeXcbPlugin0.so

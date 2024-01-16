@@ -45,7 +45,8 @@ developing applications that use %{name}.
 %files -f kdnssd6_qt.lang
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_libdir}/libKF6DNSSD.so.*
+%{_kf6_libdir}/libKF6DNSSD.so.6
+%{_kf6_libdir}/libKF6DNSSD.so.%{version}
 
 %files devel
 %{_kf6_includedir}/KDNSSD/

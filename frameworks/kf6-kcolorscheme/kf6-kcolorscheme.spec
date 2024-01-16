@@ -44,12 +44,12 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*
 %{_kf6_datadir}/qlogging-categories6/kcolorscheme.categories
-%{_kf6_libdir}/libKF6ColorScheme.so.5*
-%{_kf6_libdir}/libKF6ColorScheme.so.6*
+%{_kf6_libdir}/libKF6ColorScheme.so.%{version}
+%{_kf6_libdir}/libKF6ColorScheme.so.6
 
 %files devel
-%{_kf6_includedir}/KColorScheme
-%{_kf6_libdir}/cmake/KF6ColorScheme
+%{_kf6_includedir}/KColorScheme/
+%{_kf6_libdir}/cmake/KF6ColorScheme/
 %{_kf6_libdir}/libKF6ColorScheme.so
 
 %changelog

@@ -56,7 +56,7 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_bindir}/ksyntaxhighlighter6
 %{_kf6_datadir}/qlogging-categories6/*categories
-%{_kf6_libdir}/libKF6SyntaxHighlighting.so.5*
+%{_kf6_libdir}/libKF6SyntaxHighlighting.so.%{version}
 %{_kf6_libdir}/libKF6SyntaxHighlighting.so.6
 %{_kf6_qmldir}/org/kde/syntaxhighlighting/
 

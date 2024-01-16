@@ -49,11 +49,12 @@ developing applications that use %{name}.
 %{_kf6_datadir}/dbus-1/interfaces/kf6_org.kde.StatusNotifierItem.xml
 %{_kf6_datadir}/dbus-1/interfaces/kf6_org.kde.StatusNotifierWatcher.xml
 %{_kf6_datadir}/qlogging-categories6/kstatusnotifieritem.categories
-%{_kf6_libdir}/libKF6StatusNotifierItem.so.*
+%{_kf6_libdir}/libKF6StatusNotifierItem.so.6
+%{_kf6_libdir}/libKF6StatusNotifierItem.so.%{version}
 
 %files devel
-%{_kf6_includedir}/KStatusNotifierItem
-%{_kf6_libdir}/cmake/KF6StatusNotifierItem
+%{_kf6_includedir}/KStatusNotifierItem/
+%{_kf6_libdir}/cmake/KF6StatusNotifierItem/
 %{_kf6_libdir}/libKF6StatusNotifierItem.so
 
 %changelog

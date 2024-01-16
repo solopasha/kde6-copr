@@ -45,7 +45,8 @@ developing applications that use %{name}.
 %files -f libkholidays6_qt.lang
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*categories
-%{_kf6_libdir}/libKF6Holidays.so.*
+%{_kf6_libdir}/libKF6Holidays.so.6
+%{_kf6_libdir}/libKF6Holidays.so.%{version}
 %{_kf6_qmldir}/org/kde/kholidays/
 
 %files devel

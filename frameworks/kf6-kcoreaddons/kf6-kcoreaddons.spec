@@ -55,7 +55,8 @@ cat *.lang > all.lang
 %{_kf6_datadir}/kf6/licenses/
 %{_kf6_datadir}/mime/packages/kde6.xml
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6CoreAddons.so.*
+%{_kf6_libdir}/libKF6CoreAddons.so.6
+%{_kf6_libdir}/libKF6CoreAddons.so.%{version}
 %{_kf6_qmldir}/org/kde/coreaddons/
 
 %files devel

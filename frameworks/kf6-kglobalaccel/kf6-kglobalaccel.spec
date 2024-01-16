@@ -54,7 +54,8 @@ rm -fv %{buildroot}%{_prefix}/lib/systemd/user/plasma-kglobalaccel.service
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
-%{_kf6_libdir}/libKF6GlobalAccel.so.*
+%{_kf6_libdir}/libKF6GlobalAccel.so.6
+%{_kf6_libdir}/libKF6GlobalAccel.so.%{version}
 
 %files devel
 %{_kf6_includedir}/KGlobalAccel/

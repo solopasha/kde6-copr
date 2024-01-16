@@ -170,9 +170,13 @@ Summary:        KWin runtime libraries
 Summary:        Development files for %{name}
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       %{name}-common%{?_isa} = %{version}-%{release}
-Requires:       kf6-kconfig-devel
-Requires:       kf6-kservice-devel
-Requires:       kf6-kwindowsystem-devel
+Requires:       cmake(Qt6Core)
+Requires:       cmake(Qt6Gui)
+Requires:       cmake(Qt6Quick)
+Requires:       cmake(KF6Config)
+Requires:       cmake(KF6CoreAddons)
+Requires:       cmake(KF6WindowSystem)
+Requires:       pkgconfig(wayland-server)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.

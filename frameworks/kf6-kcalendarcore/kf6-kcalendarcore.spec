@@ -42,7 +42,8 @@ developing applications that use %{name}.
 %files
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*kcalendarcore.*
-%{_kf6_libdir}/libKF6CalendarCore.so.*
+%{_kf6_libdir}/libKF6CalendarCore.so.6
+%{_kf6_libdir}/libKF6CalendarCore.so.%{version}
 
 %files devel
 %{_kf6_includedir}/KCalendarCore/

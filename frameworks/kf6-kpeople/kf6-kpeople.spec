@@ -54,9 +54,12 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6People.so.*
-%{_kf6_libdir}/libKF6PeopleBackend.so.*
-%{_kf6_libdir}/libKF6PeopleWidgets.so.*
+%{_kf6_libdir}/libKF6People.so.6
+%{_kf6_libdir}/libKF6People.so.%{version}
+%{_kf6_libdir}/libKF6PeopleBackend.so.6
+%{_kf6_libdir}/libKF6PeopleBackend.so.%{version}
+%{_kf6_libdir}/libKF6PeopleWidgets.so.6
+%{_kf6_libdir}/libKF6PeopleWidgets.so.%{version}
 %{_kf6_qmldir}/org/kde/people/
 %{_qt6_plugindir}/kpeople/datasource/KPeopleVCard.so
 

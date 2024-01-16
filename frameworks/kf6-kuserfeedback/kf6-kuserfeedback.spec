@@ -89,14 +89,16 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kuserfeedback
 %license LICENSES/*
 %dnl %{_kf6_bindir}/userfeedbackctl
 %{_kf6_datadir}/qlogging-categories6/org_kde_UserFeedback.categories
-%{_kf6_libdir}/libKF6UserFeedbackCore.so.*
-%{_kf6_libdir}/libKF6UserFeedbackWidgets.so.*
+%{_kf6_libdir}/libKF6UserFeedbackCore.so.6
+%{_kf6_libdir}/libKF6UserFeedbackCore.so.%{version}
+%{_kf6_libdir}/libKF6UserFeedbackWidgets.so.6
+%{_kf6_libdir}/libKF6UserFeedbackWidgets.so.%{version}
 %{_kf6_qmldir}/org/kde/userfeedback/
 
 
 %files devel
 %{_kf6_archdatadir}/mkspecs/modules/qt_KF6UserFeedback*.pri
-%{_kf6_includedir}/KUserFeedback
+%{_kf6_includedir}/KUserFeedback/
 %{_kf6_includedir}/KUserFeedbackCore/
 %{_kf6_includedir}/KUserFeedbackWidgets/
 %{_kf6_libdir}/cmake/KF6UserFeedback/

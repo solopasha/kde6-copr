@@ -62,7 +62,8 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6WindowSystem.so.*
+%{_kf6_libdir}/libKF6WindowSystem.so.6
+%{_kf6_libdir}/libKF6WindowSystem.so.%{version}
 %{_kf6_plugindir}/kwindowsystem/KF6WindowSystemX11Plugin.so
 %{_kf6_qmldir}/org/kde/kwindowsystem
 %dir %{_kf6_plugindir}/kwindowsystem/

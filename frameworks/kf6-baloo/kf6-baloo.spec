@@ -109,8 +109,10 @@ cat kio6_tags.lang kio6_baloosearch.lang kio6_timeline.lang \
 
 %files libs
 %license LICENSES/*
-%{_kf6_libdir}/libKF6Baloo.so.*
-%{_kf6_libdir}/libKF6BalooEngine.so.*
+%{_kf6_libdir}/libKF6Baloo.so.6
+%{_kf6_libdir}/libKF6Baloo.so.%{version}
+%{_kf6_libdir}/libKF6BalooEngine.so.6
+%{_kf6_libdir}/libKF6BalooEngine.so.%{version}
 %{_kf6_plugindir}/kio/baloosearch.so
 %{_kf6_plugindir}/kio/tags.so
 %{_kf6_plugindir}/kio/timeline.so

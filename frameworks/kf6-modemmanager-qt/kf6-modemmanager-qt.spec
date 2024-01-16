@@ -45,7 +45,8 @@ that use ModemManager.
 %license LICENSES/*
 %{_kf6_datadir}/qlogging-categories6/*.categories
 %{_kf6_datadir}/qlogging-categories6/*.renamecategories
-%{_kf6_libdir}/libKF6ModemManagerQt.so.*
+%{_kf6_libdir}/libKF6ModemManagerQt.so.6
+%{_kf6_libdir}/libKF6ModemManagerQt.so.%{version}
 
 %files devel
 %{_kf6_includedir}/ModemManagerQt/

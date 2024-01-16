@@ -55,7 +55,8 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kpackage/
 %{_kf6_bindir}/kpackagetool6
 %{_kf6_datadir}/kpackage/
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6Package.so.*
+%{_kf6_libdir}/libKF6Package.so.6
+%{_kf6_libdir}/libKF6Package.so.%{version}
 %{_kf6_qtplugindir}/kpackage/
 %{_mandir}/man1/kpackagetool6.1*
 

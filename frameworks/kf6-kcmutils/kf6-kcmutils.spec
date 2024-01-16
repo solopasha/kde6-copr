@@ -60,22 +60,24 @@ mkdir -p %{buildroot}%{_kf6_qtplugindir}/kcms
 %license LICENSES/*.txt
 %{_kf6_bindir}/kcmshell6
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6KCMUtils.so.*
-%{_kf6_libdir}/libKF6KCMUtilsCore.so.*
+%{_kf6_libdir}/libKF6KCMUtils.so.%{version}
+%{_kf6_libdir}/libKF6KCMUtils.so.6
+%{_kf6_libdir}/libKF6KCMUtilsCore.so.%{version}
+%{_kf6_libdir}/libKF6KCMUtilsCore.so.6
+%{_kf6_libdir}/libKF6KCMUtilsQuick.so.%{version}
+%{_kf6_libdir}/libKF6KCMUtilsQuick.so.6
 %{_kf6_qmldir}/org/kde/kcmutils/
 %{_kf6_qtplugindir}/kcms/
-%{_libdir}/libKF6KCMUtilsQuick.so.5*
-%{_libdir}/libKF6KCMUtilsQuick.so.6
 
 %files devel
 %{_kf6_includedir}/KCMUtils/
 %{_kf6_includedir}/KCMUtilsCore/
-%{_kf6_libdir}/libKF6KCMUtils.so
-%{_libdir}/libKF6KCMUtilsQuick.so
-%{_kf6_libdir}/libKF6KCMUtilsCore.so
+%{_kf6_includedir}/KCMUtilsQuick/
 %{_kf6_libdir}/cmake/KF6KCMUtils/
+%{_kf6_libdir}/libKF6KCMUtils.so
+%{_kf6_libdir}/libKF6KCMUtilsCore.so
+%{_kf6_libdir}/libKF6KCMUtilsQuick.so
 %{_kf6_libexecdir}/kcmdesktopfilegenerator
-%{_kf6_includedir}/KCMUtilsQuick
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

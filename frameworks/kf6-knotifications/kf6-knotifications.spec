@@ -54,7 +54,8 @@ mkdir -p %{buildroot}/%{_kf6_datadir}/knotifications6
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6Notifications.so.*
+%{_kf6_libdir}/libKF6Notifications.so.6
+%{_kf6_libdir}/libKF6Notifications.so.%{version}
 %{_kf6_qmldir}/org/kde/notification/
 %dir %{_kf6_datadir}/knotifications6
 

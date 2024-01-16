@@ -53,7 +53,8 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
-%{_kf6_libdir}/libKF6Runner.so.*
+%{_kf6_libdir}/libKF6Runner.so.6
+%{_kf6_libdir}/libKF6Runner.so.%{version}
 
 %files devel
 %{_kf6_datadir}/dbus-1/interfaces/*

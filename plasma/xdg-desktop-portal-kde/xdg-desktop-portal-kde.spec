@@ -12,23 +12,22 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  systemd-rpm-macros
 
-BuildRequires:  qt6-qtbase-devel
-# libQt6Gui.so.6(Qt_6.6_PRIVATE_API)(64bit)
-# libQt6PrintSupport.so.6(Qt_6.6_PRIVATE_API)(64bit)
+BuildRequires:  cmake(Qt6Concurrent)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6PrintSupport)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6QuickControls2)
+BuildRequires:  cmake(Qt6QuickWidgets)
+BuildRequires:  cmake(Qt6Test)
+BuildRequires:  cmake(Qt6WaylandClient)
+BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
-BuildRequires:  qt6-qtdeclarative-devel
-BuildRequires:  qt6-qtquickcontrols2-devel
-BuildRequires:  qt6-qtwayland-devel
-BuildRequires:  cmake(Qt6WaylandClient)
-
-BuildRequires:  plasma-wayland-protocols-devel
-BuildRequires:  wayland-protocols-devel
-BuildRequires:  wayland-devel
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6Declarative)
 BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
@@ -36,10 +35,15 @@ BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6Notifications)
+BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6StatusNotifierItem)
-BuildRequires:  cmake(KWayland)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6WindowSystem)
+
+BuildRequires:  cmake(KWayland)
+BuildRequires:  cmake(PlasmaWaylandProtocols)
+BuildRequires:  pkgconfig(wayland-client)
+BuildRequires:  pkgconfig(wayland-protocols)
 
 Requires:       xdg-desktop-portal
 # See https://bugzilla.redhat.com/show_bug.cgi?id=2240211
@@ -58,19 +62,18 @@ pieces of KDE infrastructure.
 
 %build
 %cmake_kf6
-
 %cmake_build
 
 
 %install
 %cmake_install
 
-%find_lang xdg-desktop-portal-kde
+%find_lang %{name}
 
 
-%files -f xdg-desktop-portal-kde.lang
+%files -f %{name}.lang
 %license LICENSES/*
-%{_libexecdir}/xdg-desktop-portal-kde
+%{_libexecdir}/%{name}
 %{_datadir}/dbus-1/services/org.freedesktop.impl.portal.desktop.kde.service
 %{_datadir}/xdg-desktop-portal/portals/kde.portal
 %{_datadir}/applications/org.freedesktop.impl.portal.desktop.kde.desktop
@@ -78,6 +81,7 @@ pieces of KDE infrastructure.
 %{_datadir}/qlogging-categories6/xdp-kde.categories
 %{_datadir}/xdg-desktop-portal/kde-portals.conf
 %{_userunitdir}/plasma-xdg-desktop-portal-kde.service
+
 
 %changelog
 * Sun Nov 12 2023 Alessandro Astone <ales.astone@gmail.com> - 5.27.80-1

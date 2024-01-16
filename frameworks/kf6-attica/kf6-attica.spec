@@ -27,31 +27,13 @@ Requires:       qt6-qtbase-devel
 %description    devel
 %{summary}.
 
-%if 0%{?docs}
-%package doc
-Summary: API documentation for %{name}
-BuildRequires: doxygen
-BuildRequires: qt6-qdoc
-BuildRequires: qt6-qhelpgenerator
-BuildRequires: qt6-qtbase-doc
-Requires: kf6-filesystem
-BuildArch: noarch
-%description doc
-%{summary}.
-%endif
 
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{framework}-%{version} -p1
 
 %build
-%cmake_kf6 \
-  %if 0%{?flatpak}
-  %{?docs:-DBUILD_QCH:BOOL=OFF} \
-  %else
-  %{?docs:-DBUILD_QCH:BOOL=ON} \
-  %endif
-
+%cmake_kf6
 %cmake_build
 
 %install
@@ -61,11 +43,12 @@ BuildArch: noarch
 %doc AUTHORS ChangeLog README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6Attica.so.*
+%{_kf6_libdir}/libKF6Attica.so.%{version}
+%{_kf6_libdir}/libKF6Attica.so.6
 
 %files devel
-%{_kf6_libdir}/cmake/KF6Attica/
 %{_kf6_includedir}/Attica/
+%{_kf6_libdir}/cmake/KF6Attica/
 %{_kf6_libdir}/libKF6Attica.so
 %{_kf6_libdir}/pkgconfig/KF6Attica.pc
 

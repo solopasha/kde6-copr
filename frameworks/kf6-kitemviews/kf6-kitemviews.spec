@@ -46,7 +46,8 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*categories
-%{_kf6_libdir}/libKF6ItemViews.so.*
+%{_kf6_libdir}/libKF6ItemViews.so.6
+%{_kf6_libdir}/libKF6ItemViews.so.%{version}
 %{_kf6_qtplugindir}/designer/*6widgets.so
 
 %files devel

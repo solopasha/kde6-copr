@@ -46,7 +46,8 @@ developing applications that use %{name}.
 %files
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_libdir}/libKF6ThreadWeaver.so.*
+%{_kf6_libdir}/libKF6ThreadWeaver.so.6
+%{_kf6_libdir}/libKF6ThreadWeaver.so.%{version}
 
 %files devel
 %{_kf6_includedir}/ThreadWeaver/

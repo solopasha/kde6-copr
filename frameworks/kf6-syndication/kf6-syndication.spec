@@ -46,7 +46,8 @@ developing applications that use %{name}.
 %files
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6Syndication.so.*
+%{_kf6_libdir}/libKF6Syndication.so.6
+%{_kf6_libdir}/libKF6Syndication.so.%{version}
 
 %files devel
 %{_kf6_includedir}/Syndication/

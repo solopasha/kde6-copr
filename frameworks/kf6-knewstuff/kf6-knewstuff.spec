@@ -63,8 +63,10 @@ developing applications that use %{name}.
 %{_kf6_bindir}/knewstuff*
 %{_kf6_datadir}/applications/org.kde.knewstuff-dialog6.desktop
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
-%{_kf6_libdir}/libKF6NewStuffCore.so.*
-%{_kf6_libdir}/libKF6NewStuffWidgets.so.*
+%{_kf6_libdir}/libKF6NewStuffCore.so.6
+%{_kf6_libdir}/libKF6NewStuffCore.so.%{version}
+%{_kf6_libdir}/libKF6NewStuffWidgets.so.6
+%{_kf6_libdir}/libKF6NewStuffWidgets.so.%{version}
 %{_kf6_qmldir}/org/kde/newstuff/
 
 %files devel

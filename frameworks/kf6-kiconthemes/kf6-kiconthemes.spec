@@ -60,15 +60,17 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_bindir}/kiconfinder6
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6IconThemes.so.*
-%{_kf6_libdir}/libKF6IconWidgets.so.*
+%{_kf6_libdir}/libKF6IconThemes.so.6
+%{_kf6_libdir}/libKF6IconThemes.so.%{version}
+%{_kf6_libdir}/libKF6IconWidgets.so.6
+%{_kf6_libdir}/libKF6IconWidgets.so.%{version}
 %{_kf6_libdir}/qt6/qml/org/kde/iconthemes/
 %{_kf6_qtplugindir}/designer/*6widgets.so
 %{_kf6_qtplugindir}/iconengines/KIconEnginePlugin.so
 
 %files devel
-%{_kf6_includedir}/KIconThemes
-%{_kf6_includedir}/KIconWidgets
+%{_kf6_includedir}/KIconThemes/
+%{_kf6_includedir}/KIconWidgets/
 %{_kf6_libdir}/cmake/KF6IconThemes/
 %{_kf6_libdir}/libKF6IconThemes.so
 %{_kf6_libdir}/libKF6IconWidgets.so

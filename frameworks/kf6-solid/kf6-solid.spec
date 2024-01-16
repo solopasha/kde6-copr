@@ -64,7 +64,7 @@ developing applications that use %{name}.
 %{_kf6_bindir}/solid-hardware6
 %{_kf6_bindir}/solid-power
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6Solid.so.5*
+%{_kf6_libdir}/libKF6Solid.so.%{version}
 %{_kf6_libdir}/libKF6Solid.so.6
 
 %files devel

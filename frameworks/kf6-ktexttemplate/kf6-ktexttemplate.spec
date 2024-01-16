@@ -43,14 +43,14 @@ developing applications that use %{name}.
 %files
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/ktexttemplate.categories
-%{_kf6_plugindir}/ktexttemplate
-%{_libdir}/libKF6TextTemplate.so.*
-
+%{_kf6_plugindir}/ktexttemplate/
+%{_kf6_libdir}/libKF6TextTemplate.so.6
+%{_kf6_libdir}/libKF6TextTemplate.so.%{version}
 
 %files devel
 %{_kf6_includedir}/KTextTemplate/
-%{_libdir}/cmake/KF6TextTemplate/
-%{_libdir}/libKF6TextTemplate.so
+%{_kf6_libdir}/cmake/KF6TextTemplate/
+%{_kf6_libdir}/libKF6TextTemplate.so
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1
