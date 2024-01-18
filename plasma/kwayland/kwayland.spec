@@ -62,7 +62,7 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*categories
-%{_kf6_libdir}/libKWaylandClient.so.5*
+%{_kf6_libdir}/libKWaylandClient.so.%{version}
 %{_kf6_libdir}/libKWaylandClient.so.6
 
 %files devel
