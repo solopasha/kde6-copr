@@ -2,12 +2,13 @@ Name:    kf6
 # This version MUST remain in sync with KF6 versions!
 # XXX: Yes, it's 5.x still, this is synced with the version set in extra-cmake-modules
 Version: 5.248.0
-Release: 1%{?dist}
+Release: 3%{?dist}
 Summary: Filesystem and RPM macros for KDE Frameworks 6
 License: BSD-3-Clause
 URL:     http://www.kde.org
 Source0: macros.kf6
 Source1: LICENSE
+Source2: macros.kf6-srpm
 
 %description
 Filesystem and RPM macros for KDE Frameworks 6
@@ -25,6 +26,7 @@ Filesystem for KDE Frameworks 6.
 Summary: RPM macros for KDE Frameworks 6
 Requires: cmake >= 3
 Requires: qt6-rpm-macros >= 6
+Requires: %{name}-srpm-macros = %{version}-%{release}
 # misc build environment dependencies
 Requires: gcc-c++
 Requires: gnupg2
@@ -32,6 +34,12 @@ Requires: ninja-build
 BuildArch: noarch
 %description rpm-macros
 RPM macros for building KDE Frameworks 6 packages.
+
+%package srpm-macros
+Summary: SRPM macros for KDE Frameworks 6
+BuildArch: noarch
+%description srpm-macros
+RPM macros for building KDE SRPM packages.
 
 %install
 # See macros.kf6 where the directories are specified
@@ -56,6 +64,7 @@ mkdir -p %{buildroot}%{_sysconfdir}/xdg/plasma-workspace/{env,shutdown}
 %endif
 
 install -Dpm644 %{_sourcedir}/macros.kf6 %{buildroot}%{_rpmconfigdir}/macros.d/macros.kf6
+install -Dpm644 %{_sourcedir}/macros.kf6-srpm %{buildroot}%{_rpmconfigdir}/macros.d/macros.kf6-srpm
 install -Dpm644 %{_sourcedir}/LICENSE %{buildroot}%{_datadir}/kf6/LICENSE
 sed -i \
   -e "s|@@kf6_VERSION@@|%{version}|g" \
@@ -89,6 +98,9 @@ sed -i \
 
 %files rpm-macros
 %{_rpmconfigdir}/macros.d/macros.kf6
+
+%files srpm-macros
+%{_rpmconfigdir}/macros.d/macros.kf6-srpm
 
 %changelog
 * Fri Nov 24 2023 Yaakov Selkowitz <yselkowi@redhat.com> - 5.245.0-2
