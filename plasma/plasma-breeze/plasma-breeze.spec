@@ -2,7 +2,7 @@
 
 Name:    plasma-breeze
 Version: 5.92.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Artwork, styles and assets for the Breeze visual style for the Plasma Desktop
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND MIT
@@ -104,18 +104,18 @@ popd
 
 
 %install
-pushd qt6build
+pushd qt5build
 %cmake_install
 popd
 
-pushd qt5build
+pushd qt6build
 %cmake_install
 popd
 
 %find_lang breeze --all-name
 
 
-%files
+%files -f breeze.lang
 %license LICENSES/*.txt
 %{_bindir}/breeze-settings6
 %{_kf6_datadir}/applications/breezestyleconfig.desktop
@@ -131,8 +131,7 @@ popd
 %files qt6
 %{_kf6_qtplugindir}/styles/breeze6.so
 
-%files common -f breeze.lang
-%license LICENSES/*.txt
+%files common
 %{_datadir}/color-schemes/*.colors
 %{_datadir}/kstyle/themes/breeze.themerc
 %{_datadir}/icons/hicolor/*/apps/breeze-settings.*
