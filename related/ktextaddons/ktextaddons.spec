@@ -5,8 +5,8 @@ Summary:       Various text handling addons
 
 License:       CC0-1.0 AND LGPL-2.0-or-later AND GPL-2.0-or-later AND BSD-3-Clause
 URL:           https://invent.kde.org/libraries/%{name}
-Source0:       http://download.kde.org/stable/ktextaddons/%{name}-%{version}.tar.xz
-Source1:       http://download.kde.org/stable/ktextaddons/%{name}-%{version}.tar.xz.sig
+Source0:       https://download.kde.org/stable/ktextaddons/%{name}-%{version}.tar.xz
+Source1:       https://download.kde.org/stable/ktextaddons/%{name}-%{version}.tar.xz.sig
 Source2:       kde-frameworks-signing-keys.pgp
 
 BuildRequires: cmake

@@ -8,8 +8,8 @@ Release: 1%{?dist}
 
 License: GPLv2+
 Url:     https://invent.kde.org/graphics/kdiagram
-Source0: http://download.kde.org/stable/kdiagram/%{version}/kdiagram-%{version}.tar.xz
-Source1: http://download.kde.org/stable/kdiagram/%{version}/kdiagram-%{version}.tar.xz.sig
+Source0: https://download.kde.org/stable/kdiagram/%{version}/kdiagram-%{version}.tar.xz
+Source1: https://download.kde.org/stable/kdiagram/%{version}/kdiagram-%{version}.tar.xz.sig
 Source2: kde-frameworks-signing-keys.pgp
 
 BuildRequires: extra-cmake-modules
