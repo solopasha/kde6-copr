@@ -1,7 +1,7 @@
 Name:    kdeplasma-addons
 Summary: Additional Plasmoids for Plasma 6
 Version: 5.92.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
@@ -60,14 +60,20 @@ Requires:       qt6-qtquick3d%{?_isa}
 %description
 %{summary}.
 
-%package devel
+%package -n     kate-krunner-plugin
+Summary:        KRunner plugin for searching Kate sessions
+Requires:       kate
+Supplements:    kate
+# Before the split
+Conflicts:      kdeplasma-addons < 5.92.0-2
+%description -n kate-krunner-plugin
+%{summary}.
+
+%package        devel
 Summary:        Development files for %{name}
-# headers only: fixme: confirm need for dep on main pkg? -- rdieter
-Requires: %{name} = %{version}-%{release}
-#find_dependency(Qt5Gui "5.12.0")
-#find_dependency(KF5CoreAddons "5.58.0")
-Requires: cmake(Qt6Gui)
-Requires: cmake(KF6CoreAddons)
+Requires:       %{name} = %{version}-%{release}
+Requires:       cmake(Qt6Gui)
+Requires:       cmake(KF6CoreAddons)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
@@ -98,7 +104,16 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 %{_kf6_datadir}/plasma/wallpapers/*
 %{_kf6_datadir}/qlogging-categories6/kdeplasma-addons.categories
 %{_kf6_qtplugindir}/plasma/applets/*.so
-%{_kf6_qtplugindir}/kf6/
+%{_kf6_plugindir}/krunner/kcms/kcm_krunner_charrunner.so
+%{_kf6_plugindir}/krunner/kcms/kcm_krunner_dictionary.so
+%{_kf6_plugindir}/krunner/kcms/kcm_krunner_spellcheck.so
+%{_kf6_plugindir}/krunner/krunner_charrunner.so
+%{_kf6_plugindir}/krunner/krunner_dictionary.so
+%{_kf6_plugindir}/krunner/krunner_konsoleprofiles.so
+%{_kf6_plugindir}/krunner/krunner_spellcheck.so
+%{_kf6_plugindir}/krunner/org.kde.datetime.so
+%{_kf6_plugindir}/krunner/unitconverter.so
+%{_kf6_plugindir}/packagestructure/*.so
 %{_kf6_qtplugindir}/plasmacalendarplugins/
 %{_kf6_qtplugindir}/kwin/effects/configs/kwin_cube_config.so
 %{_kf6_qtplugindir}/potd/
@@ -112,6 +127,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 %{_kf6_metainfodir}/*.appdata.xml
 %{_libdir}/qt6/qml/org/kde/plasmacalendar/astronomicaleventsconfig/*
 %{_libdir}/qt6/qml/org/kde/plasmacalendar/alternatecalendarconfig/*
+
+%files -n kate-krunner-plugin
+%{_kf6_plugindir}/krunner/krunner_katesessions.so
 
 %files devel
 %{_libdir}/cmake/PlasmaPotdProvider/
