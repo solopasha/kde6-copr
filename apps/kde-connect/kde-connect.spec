@@ -1,7 +1,7 @@
 %global base_name kdeconnect-kde
 
 Name:    kde-connect
-Version: 24.01.90
+Version: 24.01.95
 Release: 1%{?dist}
 License: GPLv2+
 Summary: KDE Connect client for communication with smartphones
@@ -144,7 +144,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop ||:
 %{_qt6_plugindir}/plasma/kcms/systemsettings_qwidgets/kcm_kdeconnect.so
 
 %files -n kdeconnectd
-%{_datadir}/applications/org.kde.kdeconnect.daemon.desktop
 %{_datadir}/dbus-1/services/org.kde.kdeconnect.service
 %{_libexecdir}/kdeconnectd
 %{_sysconfdir}/xdg/autostart/org.kde.kdeconnect.daemon.desktop

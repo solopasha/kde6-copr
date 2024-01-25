@@ -1,7 +1,7 @@
 %global framework syndication
 
 Name:    kf6-%{framework}
-Version: 5.248.0
+Version: 5.249.0
 Release: 1%{?dist}
 Summary: The Syndication Library
 

@@ -13,14 +13,12 @@
 
 Name:    okular
 Summary: A document viewer
-Version: 24.01.90
-Release: 2%{?dist}
+Version: 24.01.95
+Release: 1%{?dist}
 
 License: GPL-2.0-only
 URL:     https://www.kde.org/applications/graphics/okular/
 %apps_source
-Patch:   https://invent.kde.org/graphics/okular/-/commit/53fb06d6b4a931b87364a87fcced459b5824b678.patch
-Patch:   https://invent.kde.org/graphics/okular/-/commit/478f6f24fbde4657b7bd13dbc4a58512cbd6eb2a.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib
@@ -196,7 +194,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.ok
 %{_kf6_libdir}/libOkular6Core.so
 
 %files libs
-%{_kf6_libdir}/libOkular6Core.so.11*
+%{_kf6_libdir}/libOkular6Core.so.1{,.*}
 
 %files part -f okular-part.lang
 %if 0%{?fedora}

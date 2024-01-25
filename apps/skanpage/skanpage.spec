@@ -1,5 +1,5 @@
 Name:     skanpage
-Version:  24.01.90
+Version:  24.01.95
 Release:  1%{?dist}
 Summary:  Utility to scan images and multi-page documents
 # For a breakdown of the licensing, see PACKAGE-LICENSING

@@ -2,8 +2,8 @@
 
 Name:    kalarm
 Summary: Personal Alarm Scheduler
-Version: 24.01.90
-Release: 1%{?dist}
+Version: 24.01.95
+Release: 2%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/pim/kalarm
@@ -86,7 +86,7 @@ KAlarm is a personal alarm message, command and email scheduler.
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml
 %if 0%{?tests}
-xvfb-run -a bash -c "%ctest" || :
+xvfb-run -a bash -c "%ctest"
 %endif
 
 %files -f %{name}.lang
@@ -98,8 +98,7 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_datadir}/dbus-1/interfaces/org.kde.kalarm.kalarm.xml
 %{_kf6_datadir}/dbus-1/system-services/org.kde.kalarm.rtcwake.service
 %{_kf6_datadir}/dbus-1/system.d/org.kde.kalarm.rtcwake.conf
-%{_kf6_datadir}/icons/*/*/*/*.png
-%{_kf6_datadir}/icons/hicolor/*/apps/kalarm.*
+%{_kf6_datadir}/icons/hicolor/*/apps/kalarm.png
 %{_kf6_datadir}/kalarm/
 %{_kf6_datadir}/knotifications6/kalarm.notifyrc
 %{_kf6_datadir}/polkit-1/actions/org.kde.kalarm.rtcwake.policy

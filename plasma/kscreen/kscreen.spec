@@ -1,6 +1,6 @@
 Name:    kscreen
 Epoch:   1
-Version: 5.92.0
+Version: 5.93.0
 Release: 1%{?dist}
 Summary: KDE Display Management software
 
@@ -22,7 +22,6 @@ BuildRequires:  qt6-qtsensors-devel
 BuildRequires:  cmake(LayerShellQt)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6DBusAddons)
-BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(Plasma)
@@ -56,15 +55,16 @@ KCM and KDED modules for managing displays in KDE.
 
 %files -f %{name}.lang
 %license LICENSES
-%{_bindir}/kscreen-console
-%{_datadir}/metainfo/org.kde.kscreen.appdata.xml
-%{_datadir}/plasma/plasmoids/org.kde.kscreen/contents/ui/InhibitionHint.qml
-%{_datadir}/plasma/plasmoids/org.kde.kscreen/contents/ui/PresentationModeItem.qml
-%{_datadir}/plasma/plasmoids/org.kde.kscreen/contents/ui/ScreenLayoutSelection.qml
-%{_datadir}/plasma/plasmoids/org.kde.kscreen/contents/ui/main.qml
-%{_datadir}/plasma/plasmoids/org.kde.kscreen/metadata.json
+%{_kf6_bindir}/kscreen-console
 %{_kf6_datadir}/applications/kcm_kscreen.desktop
 %{_kf6_datadir}/dbus-1/services/org.kde.kscreen.osdService.service
+%{_kf6_datadir}/kglobalaccel/org.kde.kscreen.desktop
+%{_kf6_datadir}/metainfo/org.kde.kscreen.appdata.xml
+%{_kf6_datadir}/plasma/plasmoids/org.kde.kscreen/contents/ui/InhibitionHint.qml
+%{_kf6_datadir}/plasma/plasmoids/org.kde.kscreen/contents/ui/main.qml
+%{_kf6_datadir}/plasma/plasmoids/org.kde.kscreen/contents/ui/PresentationModeItem.qml
+%{_kf6_datadir}/plasma/plasmoids/org.kde.kscreen/contents/ui/ScreenLayoutSelection.qml
+%{_kf6_datadir}/plasma/plasmoids/org.kde.kscreen/metadata.json
 %{_kf6_datadir}/qlogging-categories6/kscreen.categories
 %{_kf6_plugindir}/kded/kscreen.so
 %{_kf6_qtplugindir}/plasma/applets/org.kde.kscreen.so

@@ -1,5 +1,5 @@
 Name:           skanlite
-Version:        24.01.90
+Version:        24.01.95
 Release:        1%{?dist}
 Summary:        Lightweight scanning program
 # Actually: GPLv2 or GPLv3 or any later Version approved by KDE e.V.

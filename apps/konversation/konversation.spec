@@ -1,5 +1,5 @@
 Name:           konversation
-Version:        24.01.90
+Version:        24.01.95
 Release:        1%{?dist}
 Summary:        A user friendly IRC client
 
@@ -63,7 +63,7 @@ to chat windows; configurable background colors and much more
 %autosetup -p1
 
 sed -i \
-  -e "s|^#!/usr/bin/env python$|#!%{__python3}|g" \
+  -e "s|^#!/usr/bin/env python$|#!%{python3}|g" \
   data/scripts/* \
   data/scripting_support/python/konversation/*.py
 

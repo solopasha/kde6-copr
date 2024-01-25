@@ -1,5 +1,5 @@
 Name:           kio-gdrive
-Version:        24.01.90
+Version:        24.01.95
 Release:        1%{?dist}
 Summary:        An Google Drive KIO slave for KDE
 
@@ -56,7 +56,6 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -p1
-sed -i 's/Ubuntu\.OnlineAccounts/SSO.OnlineAccounts/' purpose/purpose_gdrive_config.qml
 
 
 %build

@@ -1,5 +1,5 @@
 Name:           khealthcertificate
-Version:        24.01.90
+Version:        24.01.95
 Release:        1%{?dist}
 License:        Apache2.0 and BSD and CC-BY-4.0 and CC0-1.0 and EUPL-1.2 and LGPL-2.0 and MIT and W3C-20120513
 Summary:        Handling of digital vaccination, test and recovery certificates.

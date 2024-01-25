@@ -1,7 +1,7 @@
 Name:    juk
 Summary: Music player
-Version: 24.01.90
-Release: 2%{?dist}
+Version: 24.01.95
+Release: 1%{?dist}
 
 # code: KDE e.V. may determine that future GPL versions are accepted
 # handbook doc: GFDL

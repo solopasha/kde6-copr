@@ -1,5 +1,5 @@
 Name:    kosmindoormap
-Version: 24.01.90
+Version: 24.01.95
 Release: 1%{?dist}
 Summary: OSM multi-floor indoor map renderer
 
@@ -28,7 +28,7 @@ BuildRequires:  openssl-devel
 BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  protobuf-lite-devel
 
-BuildRequires:  cmake(KF6Kirigami2)
+BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Service)

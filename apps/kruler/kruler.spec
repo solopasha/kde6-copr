@@ -1,6 +1,6 @@
 Name:    kruler
 Summary: A screen ruler and color measurement tool 
-Version: 24.01.90
+Version: 24.01.95
 Release: 1%{?dist}
 
 License: GPLv2 and GFDL

@@ -2,7 +2,7 @@
 %bcond x11 1
 
 Name:    kwin
-Version: 5.92.0
+Version: 5.93.0
 Release: 1%{?dist}
 Summary: KDE Window manager
 
@@ -12,6 +12,7 @@ URL:     https://userbase.kde.org/KWin
 %plasma_source
 
 ## upstream patches
+Patch:   https://invent.kde.org/plasma/kwin/-/merge_requests/5079.patch
 ## proposed patches
 
 # Base
@@ -227,6 +228,7 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 %{_kf6_qtplugindir}/org.kde.kdecoration2/*.so
 %{_qt6_qmldir}/org/kde/kwin
 %{_kf6_libdir}/kconf_update_bin/kwin5_update_default_rules
+%{_kf6_libdir}/kconf_update_bin/kwin-6.0-delete-desktop-switching-shortcuts
 %{_libexecdir}/kwin_killer_helper
 %{_libexecdir}/kwin-applywindowdecoration
 %{_datadir}/kconf_update/kwin.upd

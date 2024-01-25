@@ -1,6 +1,6 @@
 
 Name:    kmousetool
-Version: 24.01.90
+Version: 24.01.95
 Release: 1%{?dist}
 Summary: A program that clicks the mouse for you
 

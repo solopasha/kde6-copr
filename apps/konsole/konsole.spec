@@ -2,7 +2,7 @@
 
 Name:    konsole
 Summary: KDE Terminal emulator
-Version: 24.01.90
+Version: 24.01.95
 Release: 1%{?dist}
 
 # sources: MIT and LGPLv2 and LGPLv2+ and GPLv2+

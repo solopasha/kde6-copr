@@ -1,7 +1,7 @@
 %global		framework kwindowsystem
 
 Name:		kf6-%{framework}
-Version:	5.248.0
+Version:	5.249.0
 Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 integration module with classes for windows management
 License:	CC0-1.0 AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND MIT
@@ -77,6 +77,7 @@ developing applications that use %{name}.
 %{_kf6_includedir}/KWindowSystem/
 %{_kf6_libdir}/cmake/KF6WindowSystem/
 %{_kf6_libdir}/libKF6WindowSystem.so
+%{_kf6_libdir}/pkgconfig/KF6WindowSystem.pc
 
 %changelog
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1

@@ -2,7 +2,7 @@
 
 Name:    kf6-purpose
 Summary: Framework for providing abstractions to get the developer's purposes fulfilled
-Version: 5.248.0
+Version: 5.249.0
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later
@@ -54,8 +54,6 @@ Requires: cmake(KF6CoreAddons)
 
 %install
 %cmake_install
-
-rm %{buildroot}%{_kf6_libdir}/libReviewboardHelpers.a
 
 %find_lang %{name} --all-name
 

@@ -1,5 +1,5 @@
 Name:    plasma-workspace-wallpapers
-Version: 5.92.0
+Version: 5.93.0
 Release: 1%{?dist}
 Summary: Additional wallpapers for Plasma workspace
 License: LGPLv3
@@ -46,8 +46,8 @@ Requires:       kde-filesystem
 %{_datadir}/wallpapers/Elarun/
 %{_datadir}/wallpapers/EveningGlow/
 %{_datadir}/wallpapers/FallenLeaf/
-%{_datadir}/wallpapers/FlyingKonqui/
 %{_datadir}/wallpapers/Flow/
+%{_datadir}/wallpapers/FlyingKonqui/
 %{_datadir}/wallpapers/Grey/
 %{_datadir}/wallpapers/Honeywave/
 %{_datadir}/wallpapers/IceCold/
@@ -55,6 +55,7 @@ Requires:       kde-filesystem
 %{_datadir}/wallpapers/Kite/
 %{_datadir}/wallpapers/Kokkini/
 %{_datadir}/wallpapers/MilkyWay/
+%{_datadir}/wallpapers/Mountain/
 %{_datadir}/wallpapers/OneStandsOut/
 %{_datadir}/wallpapers/Opal/
 %{_datadir}/wallpapers/PastelHills/

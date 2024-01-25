@@ -1,6 +1,6 @@
 Name:    kdegraphics-thumbnailers
 Summary: Thumbnailers for various graphic types
-Version: 24.01.90
+Version: 24.01.95
 Release: 1%{?dist}
 
 # most sources GPLv2+, dscparse.* GPL, gscreator.* LGPLv2+,

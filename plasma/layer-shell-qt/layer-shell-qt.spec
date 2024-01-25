@@ -1,5 +1,5 @@
 Name:    layer-shell-qt
-Version: 5.92.0
+Version: 5.93.0
 Release: 1%{?dist}
 Summary: Library to easily use clients based on wlr-layer-shell
 

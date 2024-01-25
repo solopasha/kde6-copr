@@ -2,8 +2,8 @@
 %global orig_name org.kde.kclock
 
 Name:           kclock
-Version:        24.01.90
-Release:        3%{?dist}
+Version:        24.01.95
+Release:        1%{?dist}
 License:        GPLv2+ and LGPLv2.1+ and CC-BY and GPLv3+
 Summary:        Clock app for Plasma Mobile
 URL:            https://apps.kde.org/kclock/
@@ -62,6 +62,7 @@ Requires:       libplasma%{?_isa}
 
 
 %prep
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -p1
 
 

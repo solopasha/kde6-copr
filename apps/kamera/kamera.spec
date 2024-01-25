@@ -1,6 +1,6 @@
 Name:    kamera
 Summary: Digital camera support for KDE 
-Version: 24.01.90
+Version: 24.01.95
 Release: 1%{?dist}
 
 License: GPLv2

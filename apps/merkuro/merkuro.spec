@@ -1,5 +1,5 @@
 Name:		    merkuro
-Version:	    24.01.90
+Version:	    24.01.95
 Release:	    1%{?dist}
 Summary:	    A calendar application using Akonadi to sync with external services (Nextcloud, GMail, ...)
 
@@ -58,7 +58,7 @@ BuildRequires:  cmake(QGpgmeQt6)
 
 # QML module dependencies
 Requires:	kf6-kirigami2%{?_isa}
-Requires: kf6-kirigami-addons%{?_isa}
+Requires:   kf6-kirigami-addons%{?_isa}
 Requires:	kf6-kitemmodels%{?_isa}
 
 # kalendar has been renamed to merkuro
@@ -106,16 +106,14 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 %{_kf6_datadir}/applications/org.kde.merkuro.calendar.desktop
 %{_kf6_datadir}/applications/org.kde.merkuro.contact.desktop
 %{_kf6_datadir}/applications/org.kde.merkuro.mail.desktop
-%{_kf6_datadir}/icons/hicolor/128x128/apps/org.kde.merkuro*.png
-%{_kf6_datadir}/icons/hicolor/256x256/apps/org.kde.merkuro*.png
-%{_kf6_datadir}/icons/hicolor/48x48/apps/org.kde.merkuro*.png
+%{_kf6_datadir}/icons/hicolor/*/apps/org.kde.merkuro*.png
+%{_kf6_datadir}/plasma/plasmoids/org.kde.merkuro.contact/
 %{_kf6_datadir}/qlogging-categories6/akonadi.quick.categories
 %{_kf6_datadir}/qlogging-categories6/merkuro.categories
 %{_kf6_datadir}/qlogging-categories6/merkuro.contact.categories
 %{_kf6_metainfodir}/org.kde.merkuro.*.xml
 %{_kf6_qmldir}/org/kde/akonadi/*
 %{_kf6_qmldir}/org/kde/merkuro/
-%{_kf6_datadir}/plasma/plasmoids/org.kde.merkuro.contact/
 
 
 %changelog

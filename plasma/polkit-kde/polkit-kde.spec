@@ -2,7 +2,7 @@
 
 Name:    polkit-kde
 Summary: PolicyKit integration for KDE Desktop
-Version: 5.92.0
+Version: 5.93.0
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later AND CC0-1.0

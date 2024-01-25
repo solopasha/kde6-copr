@@ -1,6 +1,6 @@
 Name:    kde-gtk-config
 Summary: Configure the appearance of GTK apps in KDE
-Version: 5.92.0
+Version: 5.93.0
 Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only)

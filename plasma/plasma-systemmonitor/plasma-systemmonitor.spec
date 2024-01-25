@@ -1,5 +1,5 @@
 Name:    plasma-systemmonitor
-Version: 5.92.0
+Version: 5.93.0
 Release: 1%{?dist}
 Summary: An application for monitoring system resources
 
@@ -55,17 +55,18 @@ resources.
 
 %files -f %{name}.lang
 %license LICENSES/*.txt
-%{_bindir}/plasma-systemmonitor
-%{_datadir}/applications/org.kde.plasma-systemmonitor.desktop
-%{_datadir}/plasma/kinfocenter/externalmodules/kcm_external_plasma-systemmonitor.desktop
-%{_datadir}/config.kcfg/systemmonitor.kcfg
+%{_kf6_bindir}/plasma-systemmonitor
+%{_kf6_datadir}/kglobalaccel/org.kde.plasma-systemmonitor.desktop
+%{_kf6_datadir}/applications/org.kde.plasma-systemmonitor.desktop
+%{_kf6_datadir}/config.kcfg/systemmonitor.kcfg
 %{_kf6_datadir}/knsrcfiles/
-%{_kf6_datadir}/metainfo/org.kde.plasma-systemmonitor.metainfo.xml
 %{_kf6_datadir}/ksysguard/sensorfaces/
+%{_kf6_datadir}/metainfo/org.kde.plasma-systemmonitor.metainfo.xml
 %{_kf6_datadir}/plasma-systemmonitor/
+%{_kf6_datadir}/plasma/kinfocenter/externalmodules/kcm_external_plasma-systemmonitor.desktop
+%{_kf6_libdir}/libPlasmaSystemMonitorPage.so
+%{_kf6_libdir}/libPlasmaSystemMonitorTable.so
 %{_kf6_qmldir}/org/kde/ksysguard/
-%{_libdir}/libPlasmaSystemMonitorPage.so
-%{_libdir}/libPlasmaSystemMonitorTable.so
 
 %changelog
 * Sat Nov 18 2023 Alessandro Astone <ales.astone@gmail.com> - 5.27.80-2

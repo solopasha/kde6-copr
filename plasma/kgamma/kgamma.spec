@@ -1,7 +1,7 @@
 Name:    kgamma
 Summary: A monitor calibration tool
 Epoch:   1
-Version: 5.92.0
+Version: 5.93.0
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later

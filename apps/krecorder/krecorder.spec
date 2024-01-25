@@ -1,30 +1,29 @@
 Name:           krecorder
-Version:        24.01.90
+Version:        24.01.95
 Release:        1%{?dist}
 License:        BSD-3-Clause AND CC-BY-4.0 AND CC0-1.0 AND GPL-3.0-or-later
 Summary:        Convergent KDE audio recording application
 URL:            https://invent.kde.org/plasma-mobile/krecorder
 %apps_source
 
-BuildRequires:  gcc-c++
 BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  desktop-file-utils
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Gui)
-BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6Multimedia)
 BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6QuickControls2)
-BuildRequires:  cmake(Qt6Multimedia)
 BuildRequires:  cmake(Qt6Svg)
+BuildRequires:  cmake(Qt6Widgets)
 
-BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  cmake(KF6Kirigami2)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6KirigamiAddons)
 
 Requires:       kf6-kirigami
@@ -57,8 +56,8 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %license LICENSES/*.txt
 %{_kf6_bindir}/%{name}
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
-%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 %{_kf6_datadir}/icons/hicolor/scalable/apps/org.kde.%{name}.svg
+%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %changelog
 * Thu Jan 11 2024 Steve Cossette <farchord@gmail.com> - 24.01.90-1

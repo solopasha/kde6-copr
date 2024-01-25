@@ -1,7 +1,7 @@
 Name:    krdc
 Summary: Remote desktop client
-Version: 24.01.90
-Release: 2%{?dist}
+Version: 24.01.95
+Release: 1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/network/krdc

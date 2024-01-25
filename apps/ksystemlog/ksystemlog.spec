@@ -1,7 +1,7 @@
 
 Name:    ksystemlog
 Summary: System Log Viewer for KDE
-Version: 24.01.90
+Version: 24.01.95
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later

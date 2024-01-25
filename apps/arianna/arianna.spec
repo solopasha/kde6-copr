@@ -1,5 +1,5 @@
 Name:          arianna
-Version:       24.01.90
+Version:       24.01.95
 Release:       1%{?dist}
 Summary:       EPub Reader for mobile devices
 # Complete license breakdown can be found in the "LICENSE-BREAKDOWN" file.

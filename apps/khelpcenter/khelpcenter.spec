@@ -2,7 +2,7 @@ Name:    khelpcenter
 Summary: Show documentation for KDE applications
 # Override khelpcenter subpackage from kde-runtime-15.04 (no longer built)
 Epoch:   1
-Version: 24.01.90
+Version: 24.01.95
 Release: 1%{?dist}
 
 License: (GPL-2.0-only OR GPL-3.0-only) AND GPL-2.0-or-later

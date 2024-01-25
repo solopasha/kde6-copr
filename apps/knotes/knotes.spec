@@ -2,7 +2,7 @@
 
 Name:    knotes
 Summary: Popup notes
-Version: 24.01.90
+Version: 24.01.95
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL

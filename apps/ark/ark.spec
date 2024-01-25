@@ -4,7 +4,7 @@
 
 Name:           ark
 Summary:        Archive manager
-Version:        24.01.90
+Version:        24.01.95
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later AND BSD-2-Clause

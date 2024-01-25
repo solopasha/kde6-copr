@@ -1,9 +1,9 @@
 diff --git a/containmentactions/contextmenu/menu.cpp b/containmentactions/contextmenu/menu.cpp
-index f04a55a612..42655801a2 100644
+index b93c8827..3a3a9091 100644
 --- a/containmentactions/contextmenu/menu.cpp
 +++ b/containmentactions/contextmenu/menu.cpp
-@@ -77,8 +77,6 @@ void ContextMenu::restore(const KConfigGroup &config)
-                       << QStringLiteral("_wallpaper");
+@@ -79,8 +79,6 @@ void ContextMenu::restore(const KConfigGroup &config)
+         disabled.insert(QStringLiteral("add panel"));
          disabled.insert(QStringLiteral("configure shortcuts"));
          disabled.insert(QStringLiteral("_run_command"));
 -        disabled.insert(QStringLiteral("_lock_screen"));

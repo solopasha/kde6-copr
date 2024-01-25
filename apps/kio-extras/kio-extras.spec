@@ -1,5 +1,5 @@
 Name:    kio-extras
-Version: 24.01.90
+Version: 24.01.95
 Release: 1%{?dist}
 Summary: Additional components to increase the functionality of KIO Framework
 

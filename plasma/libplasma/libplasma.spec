@@ -1,5 +1,5 @@
 Name:    libplasma
-Version: 5.92.0
+Version: 5.93.0
 Release: 1%{?dist}
 Summary: Plasma is the foundation of the KDE user interface (v6)
 

@@ -1,5 +1,5 @@
 Name:    kscreenlocker
-Version: 5.92.0
+Version: 5.93.0
 Release: 1%{?dist}
 Summary: Library and components for secure lock screen architecture
 

@@ -1,5 +1,5 @@
 Name:       kwayland
-Version:    5.92.0
+Version:    5.93.0
 Release:    1%{?dist}
 Summary:    KDE Frameworks 6 library that wraps Client and Server Wayland libraries
 

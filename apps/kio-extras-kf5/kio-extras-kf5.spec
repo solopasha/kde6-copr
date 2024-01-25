@@ -8,7 +8,7 @@
 %global srcname kio-extras
 
 Name:    kio-extras-kf5
-Version: 24.01.90
+Version: 24.01.95
 Release: 1%{?dist}
 Summary: Additional components to increase the functionality of KIO Framework
 
@@ -142,7 +142,7 @@ time make test -C %{_target_platform} ARGS="--output-on-failure --timeout 10" ||
 %{_kf5_datadir}/qlogging-categories5/%{srcname}*
 
 %{_kf5_libexecdir}/smbnotifier
-%{_kf6_libdir}/libkioarchive.so.5{,.*}
+%{_kf5_libdir}/libkioarchive.so.5{,.*}
 
 %{_kf5_plugindir}/kded/filenamesearchmodule.so
 %{_kf5_plugindir}/kded/recentdocumentsnotifier.so
@@ -173,7 +173,7 @@ time make test -C %{_target_platform} ARGS="--output-on-failure --timeout 10" ||
 
 %files devel
 %{_includedir}/KioArchive/*.h
-%{_kf6_libdir}/cmake/KioArchive/
+%{_kf5_libdir}/cmake/KioArchive/
 
 
 %changelog

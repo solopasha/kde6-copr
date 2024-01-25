@@ -2,7 +2,7 @@
 
 Name:    kf6-ksvg
 Summary: Components for handling SVGs
-Version: 5.248.0
+Version: 5.249.0
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later

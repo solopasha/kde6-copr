@@ -1,8 +1,8 @@
 %global  base_name breeze
 
 Name:    plasma-breeze
-Version: 5.92.0
-Release: 3%{?dist}
+Version: 5.93.0
+Release: 1%{?dist}
 Summary: Artwork, styles and assets for the Breeze visual style for the Plasma Desktop
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND MIT
@@ -86,7 +86,6 @@ Provides:       breeze-cursor-themes = %{version}-%{release}
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{base_name}-%{version} -p1
-sed -i 's/5\.91\.90/5.92.0/' CMakeLists.txt
 
 
 %build

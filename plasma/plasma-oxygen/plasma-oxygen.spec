@@ -1,7 +1,7 @@
 %global         base_name oxygen
 
 Name:    plasma-%{base_name}
-Version: 5.92.0
+Version: 5.93.0
 Release: 1%{?dist}
 Summary: Plasma and Qt widget style and window decorations for Plasma
 

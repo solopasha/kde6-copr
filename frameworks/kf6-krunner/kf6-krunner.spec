@@ -1,7 +1,7 @@
 %global framework krunner
 
 Name:    kf6-%{framework}
-Version: 5.248.0
+Version: 5.249.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 solution with parallelized query system
 

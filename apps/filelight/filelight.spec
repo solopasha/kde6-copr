@@ -1,7 +1,7 @@
 Name:    filelight
 Summary: Graphical disk usage statistics
 Epoch:   1
-Version: 24.01.90
+Version: 24.01.95
 Release: 1%{?dist}
 
 # KDE e.V. may determine that future GPL versions are accepted

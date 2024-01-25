@@ -2,8 +2,8 @@
 
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
-Version: 5.92.0
-Release: 3%{?dist}
+Version: 5.93.0
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
@@ -19,7 +19,7 @@ Source102:      kde-smartcard
 
 # breeze fedora sddm theme components
 # includes f25-based preview (better than breeze or nothing at least)
-Source20:       breeze-fedora-0.3.tar.gz
+Source20:       https://src.fedoraproject.org/lookaside/pkgs/plasma-workspace/breeze-fedora-0.3.tar.gz/sha512/8a3cafb61c5dc8944b71c8c8036e034d178a9384e0ca3b86847ad0caa91962b0f50e6615348cd32e116fe28a6befa5492dc5cc1c4ef0120617a1fbbf69ee0200/breeze-fedora-0.3.tar.gz
 
 ## systemd user service dependencies
 ## (debating whether these be owned here or somewhere better...
@@ -27,14 +27,13 @@ Source20:       breeze-fedora-0.3.tar.gz
 Source40:       ssh-agent.conf
 Source41:       spice-vdagent.conf
 
-## upstreamable Patches
-Patch: https://invent.kde.org/plasma/plasma-workspace/-/commit/3ffc85aedc606f0d3c328a5190cd829751c97a48.patch
+## upstream Patches
 
 ## downstream Patches
 # default to enable open terminal action
-Patch106:       plasma-workspace-5.27.80-enable-open-terminal-action.patch
+Patch106:       plasma-workspace-5.92.90-enable-open-terminal-action.patch
 # default to enable the lock/logout actions
-Patch107:       plasma-workspace-5.27.80-enable-lock-logout-action.patch
+Patch107:       plasma-workspace-5.92.90-enable-lock-logout-action.patch
 # Hide virtual keyboard indicator on sddm.
 # Do not remove this as it breaks Fedora's QA policy
 Patch108:       hide-virtual-keyboard-indicator-on-sddm.patch
@@ -600,6 +599,8 @@ fi
 %{_kf6_datadir}/kconf_update/plasma6.0-remove-dpi-settings.upd
 %{_kf6_datadir}/kconf_update/plasma6.0-remove-old-shortcuts.upd
 %{_kf6_datadir}/kconf_update/plasmashell-6.0-keep-default-floating-setting-for-plasma-5-panels.upd
+%{_kf6_datadir}/kconf_update/migrate-calendar-to-plugin-id.py
+%{_kf6_datadir}/kconf_update/migrate-calendar-to-plugin-id.upd
 %{_kf6_metainfodir}/*.xml
 %{_kf6_datadir}/applications/kcm_*
 %{_kf6_datadir}/applications/org.kde.plasmashell.desktop

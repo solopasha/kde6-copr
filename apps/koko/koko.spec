@@ -1,5 +1,5 @@
 Name:           koko
-Version:        24.01.90
+Version:        24.01.95
 Release:        1%{?dist}
 License:        GPLv2+ and GPLv3 and LGPLv2 and LGPLv2+ and CC0 and BSD
 Summary:        An Image gallery application
@@ -17,6 +17,7 @@ BuildRequires: kf6-rpm-macros
 BuildRequires: xcb-util-devel
 
 BuildRequires: cmake(KF6Config)
+BuildRequires: cmake(KF6ConfigWidgets)
 BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6DBusAddons)
 BuildRequires: cmake(KF6Declarative)

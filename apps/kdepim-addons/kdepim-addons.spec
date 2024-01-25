@@ -1,7 +1,7 @@
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
 
 Name:    kdepim-addons
-Version: 24.01.90
+Version: 24.01.95
 Release: 1%{?dist}
 Summary: Additional plugins for KDE PIM applications
 

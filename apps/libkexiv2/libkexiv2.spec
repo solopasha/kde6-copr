@@ -1,6 +1,6 @@
 Name:    libkexiv2
 Summary: A wrapper around Exiv2 library
-Version: 24.01.90
+Version: 24.01.95
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later
