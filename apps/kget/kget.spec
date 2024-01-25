@@ -1,6 +1,10 @@
+%global commit0 871ee654d5cb183f16b495daf55d70e95d3e29da
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    kget
 Summary: Download manager
-Version: 24.02.1
+Version: 24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
@@ -105,9 +109,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 

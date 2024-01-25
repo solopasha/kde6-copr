@@ -1,5 +1,9 @@
+%global commit0 08784ba6b028666e79a98ef9a3b3cb710e618efc
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:           qmlkonsole
-Version:        24.02.1
+Version:        24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPLv2+
 Summary:        Terminal app for Plasma Mobile
@@ -39,8 +43,8 @@ Recommends:     dejavu-fonts-all
 %{summary}.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -63,9 +67,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 %{_kf6_datadir}/config.kcfg/terminalsettings.kcfg
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Wed Feb 21 2024 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 24.02.0-1
 - 24.02.0
 

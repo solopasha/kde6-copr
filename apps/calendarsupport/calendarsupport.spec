@@ -1,5 +1,9 @@
+%global commit0 66682b344f1c8eca0c9dea48c6ed33f905d645f3
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    calendarsupport
-Version: 24.02.1
+Version: 24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: KDE PIM library for calendar and even handling
 
@@ -50,8 +54,8 @@ developing applications that use %{name}.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -78,9 +82,7 @@ developing applications that use %{name}.
 
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 

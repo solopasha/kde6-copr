@@ -1,7 +1,11 @@
+%global commit0 104a9a47975a4b15410be64d75c97a173c7578d4
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 2
+
 Name:    gwenview
 Summary: An image viewer
 Epoch:   1
-Version: 24.02.1
+Version: 24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # app: GPLv2+
@@ -74,8 +78,8 @@ Requires: %{name}%{?_isa} = %{epoch}:%{version}-%{release}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -113,9 +117,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 1:24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 1:23.08.2-1
 - 23.08.2
 

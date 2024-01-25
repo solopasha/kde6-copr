@@ -1,5 +1,9 @@
+%global commit0 c186e7f0ff685f3f15646826e57a2bff8bc86830
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:           plasmatube
-Version:        24.02.1
+Version:        24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPL-3.0-or-later AND GPL-2.0-or-later AND CC0-1.0 AND CC-BY-SA-4.0
 Summary:        YouTube video player based on QtMultimedia and youtube-dl
@@ -42,7 +46,7 @@ Requires:       yt-dlp
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -65,9 +69,7 @@ appstream-util validate-relax --nonet %{buildroot}/%{_metainfodir}/org.kde.%{nam
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 

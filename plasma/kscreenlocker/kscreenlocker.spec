@@ -1,6 +1,10 @@
+%global commit0 9937e7a5d3e7b59df1de94874c8710e765e949e0
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:           kscreenlocker
-Version:        6.0.2
-Release:        2%{?dist}
+Version:        6.0.2%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 Summary:        Library and components for secure lock screen architecture
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -52,8 +56,8 @@ developing applications that use %{name}.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -74,7 +78,7 @@ developing applications that use %{name}.
 %dir %{_kf6_datadir}/ksmserver/
 %{_kf6_datadir}/ksmserver/screenlocker/
 %{_kf6_datadir}/qlogging-categories6/kscreenlocker.categories
-%{_kf6_libdir}/libKScreenLocker.so.%{version}
+%{_kf6_libdir}/libKScreenLocker.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKScreenLocker.so.6
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_screenlocker.so
 %{_libexecdir}/kscreenlocker_greet
@@ -88,6 +92,7 @@ developing applications that use %{name}.
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

@@ -1,6 +1,10 @@
+%global commit0 fef2bea975639777c3991521ed490d4e67ae8444
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 2
+
 Name:    kcachegrind
 Summary: GUI to profilers such as Valgrind
-Version: 24.02.1
+Version: 24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2 and GFDL
@@ -48,8 +52,8 @@ QT-based browser for data produced by profiling tools (e.g. cachegrind).
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 # Avoid use of #!/usr/bin/env as interpeter
 sed -i.env -e "s|^#!/usr/bin/env python$|#!%{__python3}|g" converters/hotshot2calltree.in
@@ -111,9 +115,7 @@ cat kcachegrind_qt.lang >> kcachegrind.lang
 
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Wed Feb 21 2024 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 24.02.0-1
 - 24.02.0
 

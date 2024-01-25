@@ -1,9 +1,13 @@
+%global commit0 5d0838cee6effd169971590964a9370f4767e198
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global base_name    plymouth-kcm
 
 Name:    plymouth-kcm
 Summary: Plymouth configuration module for systemsettings
-Version: 6.0.2
-Release: 2%{?dist}
+Version: 6.0.2%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/%{base_name}
@@ -38,8 +42,8 @@ plymouth splash screen.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{base_name}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -65,6 +69,7 @@ plymouth splash screen.
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

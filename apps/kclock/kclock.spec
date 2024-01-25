@@ -1,8 +1,12 @@
+%global commit0 43bcd9b7704212c3f1ec106cdd29358f818a264c
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 2
+
 %global klockd_name org.kde.kclockd
 %global orig_name org.kde.kclock
 
 Name:           kclock
-Version:        24.02.1
+Version:        24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPLv2+ and LGPLv2.1+ and CC-BY and GPLv3+
 Summary:        Clock app for Plasma Mobile
@@ -63,7 +67,7 @@ Requires:       libplasma%{?_isa}
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -p1
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -100,9 +104,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
 - qmlcache rebuild
 

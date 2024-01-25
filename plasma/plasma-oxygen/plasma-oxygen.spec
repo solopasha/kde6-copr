@@ -1,8 +1,12 @@
+%global commit0 c0569dd85b20b99874f6492ed5d97216e45adc57
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global         base_name oxygen
 
 Name:    plasma-%{base_name}
-Version: 6.0.2
-Release: 2%{?dist}
+Version: 6.0.2%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 Summary: Plasma and Qt widget style and window decorations for Plasma
 
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only) AND MIT
@@ -93,8 +97,8 @@ Obsoletes:      plasma-oxygen-common < 5.1.1-2
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{base_name}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -158,6 +162,7 @@ popd
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

@@ -1,8 +1,12 @@
+%global commit0 1a38ffd5b94127e82b952c55f268017dad5f465c
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework kdeclarative
 
 Name:    kf6-%{framework}
-Version: 6.0.0
-Release: 2%{?dist}
+Version: 6.0.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 addon for Qt declarative
 
 License: CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-KDE-Accepted-GPL AND MIT
@@ -10,7 +14,7 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
@@ -41,8 +45,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -56,7 +60,7 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_libdir}/libKF6CalendarEvents.so.6
-%{_kf6_libdir}/libKF6CalendarEvents.so.%{version}
+%{_kf6_libdir}/libKF6CalendarEvents.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_qmldir}/org/kde/draganddrop/
 %{_kf6_qmldir}/org/kde/graphicaleffects/
 %{_kf6_qmldir}/org/kde/kquickcontrols/

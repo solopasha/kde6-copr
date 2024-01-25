@@ -1,6 +1,10 @@
+%global commit0 c271046d36391ad18f00609d03825d8e47d91995
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 
 Name:           colord-kde
-Version:        24.02.1
+Version:        24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Colord support for KDE
 
@@ -43,7 +47,7 @@ KDE support for colord including KDE Daemon module and System Settings module.
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -p1
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -68,9 +72,7 @@ KDE support for colord including KDE Daemon module and System Settings module.
 
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Mon Nov 27 2023 Neal Gompa <ngompa@fedoraproject.org> - 23.08.2-2
 - Add missing runtime dep on kf5-kirigami2-addons
 

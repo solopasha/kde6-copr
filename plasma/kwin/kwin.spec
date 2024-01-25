@@ -1,8 +1,12 @@
+%global commit0 9a029a423ee5f08c0222c251ddd94c24f2269723
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %bcond x11 1
 
 Name:    kwin
-Version: 6.0.2
-Release: 2%{?dist}
+Version: 6.0.2%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 Summary: KDE Window manager
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -10,6 +14,8 @@ URL:     https://userbase.kde.org/KWin
 %plasma_source
 
 ## upstream patches
+
+## proposed patches
 
 # Base
 BuildRequires:  extra-cmake-modules
@@ -105,7 +111,7 @@ Requires:       %{name}-common%{?_isa} = %{version}-%{release}
 Requires:       kscreenlocker%{?_isa}
 Requires:       kf6-kirigami2%{?_isa}
 Requires:       kf6-kdeclarative%{?_isa}
-Requires:       plasma-framework%{?_isa} >= %{version}
+Requires:       plasma-framework%{?_isa} >= %{lua: print((macros.version:gsub('[%^~].*', '~')))}
 Requires:       qt6-qtmultimedia%{?_isa}
 Requires:       qt6-qtdeclarative%{?_isa}
 
@@ -184,8 +190,8 @@ BuildArch:      noarch
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -250,9 +256,9 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 
 %files libs
 %{_kf6_datadir}/qlogging-categories6/org_kde_kwin.categories
-%{_kf6_libdir}/libkcmkwincommon.so.%{version}
+%{_kf6_libdir}/libkcmkwincommon.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libkcmkwincommon.so.6
-%{_kf6_libdir}/libkwin.so.%{version}
+%{_kf6_libdir}/libkwin.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libkwin.so.6
 
 %files devel
@@ -267,6 +273,7 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

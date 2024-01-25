@@ -1,6 +1,10 @@
+%global commit0 dbdbb16c0f2d65d418c28bc0a45f6a503d2bc686
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    krdc
 Summary: Remote desktop client
-Version: 24.02.1
+Version: 24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -60,8 +64,8 @@ Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -99,7 +103,7 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.d
 
 
 %files libs
-%{_kf5_libdir}/libkrdccore.so.%{version}
+%{_kf5_libdir}/libkrdccore.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf5_libdir}/libkrdccore.so.5*
 %{_kf5_qtplugindir}/krdc/
 
@@ -110,9 +114,7 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 

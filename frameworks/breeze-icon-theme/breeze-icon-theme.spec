@@ -1,3 +1,7 @@
+%global commit0 23cb48a329a932c8e595e0604115f9f55dab1820
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework breeze-icons
 
 # trim changelog included in binary rpms
@@ -5,8 +9,8 @@
 
 Name:    breeze-icon-theme
 Summary: Breeze icon theme
-Version: 6.0.0
-Release: 2%{?dist}
+Version: 6.0.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 
 # http://techbase.kde.org/Policies/Licensing_Policy
 License: LGPL-3.0-or-later
@@ -19,7 +23,7 @@ URL:     https://api.kde.org/frameworks-api/frameworks-apidocs/frameworks/breeze
 
 BuildArch: noarch
 
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  qt6-qtbase-devel
 
@@ -61,8 +65,8 @@ developing applications that use %{name}.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 # Fix FTI for -devel package
 sed -e 's|\${KDE_INSTALL_CMAKEPACKAGEDIR}|%{_datadir}/cmake|g' -i CMakeLists.txt

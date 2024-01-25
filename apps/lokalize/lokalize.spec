@@ -1,6 +1,10 @@
+%global commit0 b868f2aba01795da6fb156d925371b5d28459f34
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    lokalize
 Summary: Computer-aided translation system
-Version: 24.02.1
+Version: 24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND GFDL-1.2-or-later AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-or-later
@@ -62,8 +66,8 @@ Computer-aided translation system focusing on productivity and performance
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -93,19 +97,17 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.d
 %license LICENSES/*
 %doc README.md
 %{_kf5_bindir}/%{name}
-%{_kf5_datadir}/%{name}/
-%{_kf5_datadir}/applications/org.kde.%{name}.desktop
-%{_kf5_datadir}/config.kcfg/%{name}.kcfg
-%{_kf5_datadir}/icons/hicolor/*/apps/%{name}.*
-%{_kf5_datadir}/knotifications5/%{name}.notifyrc
 %{_kf5_datadir}/qlogging-categories5/%{name}*
+%{_kf5_datadir}/applications/org.kde.%{name}.desktop
 %{_kf5_metainfodir}/org.kde.%{name}.appdata.xml
+%{_kf5_datadir}/icons/hicolor/*/apps/%{name}.*
+%{_kf5_datadir}/%{name}/
+%{_kf5_datadir}/knotifications5/%{name}.notifyrc
+%{_kf5_datadir}/config.kcfg/%{name}.kcfg
 
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Wed Feb 21 2024 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 24.02.0-1
 - 24.02.0
 

@@ -1,8 +1,12 @@
+%global commit0 baffd574161ca64827b7a2e8776b443ef0438694
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global		framework kitemviews
 
 Name:		kf6-%{framework}
-Version:	6.0.0
-Release:	2%{?dist}
+Version:	6.0.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with item views
 License:	CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later
 URL:		https://invent.kde.org/frameworks/%{framework}
@@ -11,7 +15,7 @@ URL:		https://invent.kde.org/frameworks/%{framework}
 BuildRequires:	fdupes
 BuildRequires:	cmake
 BuildRequires:	gcc-c++
-BuildRequires:	extra-cmake-modules >= %{version}
+BuildRequires:	extra-cmake-modules
 BuildRequires:	kf6-rpm-macros
 BuildRequires:	qt6-qtbase-devel
 BuildRequires:	qt6-qttools-devel
@@ -33,8 +37,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -50,7 +54,7 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*categories
 %{_kf6_libdir}/libKF6ItemViews.so.6
-%{_kf6_libdir}/libKF6ItemViews.so.%{version}
+%{_kf6_libdir}/libKF6ItemViews.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_qtplugindir}/designer/*6widgets.so
 
 %files devel

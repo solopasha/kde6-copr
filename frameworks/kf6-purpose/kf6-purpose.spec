@@ -1,15 +1,19 @@
+%global commit0 b78a1ae9a2ddc78a8799181f708ee834c461465e
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework purpose
 
 Name:    kf6-purpose
 Summary: Framework for providing abstractions to get the developer's purposes fulfilled
-Version: 6.0.0
-Release: 2%{?dist}
+Version: 6.0.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires: extra-cmake-modules >= %{version}
+BuildRequires: extra-cmake-modules
 BuildRequires: gcc-c++
 BuildRequires: gettext
 BuildRequires: intltool
@@ -44,8 +48,8 @@ Requires: cmake(KF6CoreAddons)
 %{summary}.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -64,9 +68,9 @@ Requires: cmake(KF6CoreAddons)
 %{_kf6_datadir}/icons/hicolor/*/apps/*-purpose6.*
 %{_kf6_datadir}/kf6/purpose/
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6Purpose.so.%{version}
+%{_kf6_libdir}/libKF6Purpose.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKF6Purpose.so.6
-%{_kf6_libdir}/libKF6PurposeWidgets.so.%{version}
+%{_kf6_libdir}/libKF6PurposeWidgets.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKF6PurposeWidgets.so.6
 %{_kf6_libexecdir}/purposeprocess
 %dir %{_kf6_plugindir}/kfileitemaction

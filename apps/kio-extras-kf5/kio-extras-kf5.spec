@@ -1,3 +1,7 @@
+%global commit0 5fc658a7421100e268a39db667a0cbc0e764e480
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 2
+
 # uncomment to enable bootstrap mode
 #global bootstrap 1
 
@@ -6,9 +10,11 @@
 %endif
 
 %global srcname kio-extras
+%global base_name kio-extras
+%global branch kf5
 
 Name:    kio-extras-kf5
-Version: 24.02.1
+Version: 24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Additional components to increase the functionality of KIO Framework
 
@@ -101,7 +107,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -p1
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -177,9 +183,7 @@ time make test -C %{_target_platform} ARGS="--output-on-failure --timeout 10" ||
 
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Mon Nov 27 2023 Neal Gompa <ngompa@fedoraproject.org> - 23.08.2-5
 - Clean up useless obsoletes+provides and supplement kf5-kio
 

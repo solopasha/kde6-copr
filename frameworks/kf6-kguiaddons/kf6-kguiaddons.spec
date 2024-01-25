@@ -1,8 +1,12 @@
+%global commit0 b92d00d1742afdc4f54c5b3cb2922735de35366b
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework kguiaddons
 
 Name:		kf6-%{framework}
-Version:	6.0.0
-Release:	2%{?dist}
+Version:	6.0.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with various classes on top of QtGui
 
 License:	BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only
@@ -10,7 +14,7 @@ URL:		https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(Qt6DBus)
@@ -41,8 +45,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -58,7 +62,7 @@ developing applications that use %{name}.
 %{_kf6_datadir}/applications/*-handler.desktop
 %{_kf6_datadir}/qlogging-categories6/*categories
 %{_kf6_libdir}/libKF6GuiAddons.so.6
-%{_kf6_libdir}/libKF6GuiAddons.so.%{version}
+%{_kf6_libdir}/libKF6GuiAddons.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 
 %files devel
 %{_qt6_docdir}/*.tags

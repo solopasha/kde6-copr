@@ -1,5 +1,9 @@
+%global commit0 0d1ce6c2e9c093fd918702956cd56fffbe91b0f1
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 2
+
 Name:    kaccounts-integration
-Version: 24.02.1
+Version: 24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Small system to administer web accounts across the KDE desktop
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LicenseRef-KDE-Accepted-GPL
@@ -115,7 +119,7 @@ Requires:       cmake(SignOnQt5)
 %license LICENSES/*
 %{_kf6_datadir}/applications/kcm_kaccounts.desktop
 %{_kf6_libdir}/libkaccounts6.so.2
-%{_kf6_libdir}/libkaccounts6.so.%{version}
+%{_kf6_libdir}/libkaccounts6.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_plugindir}/kded/kded_accounts.so
 %{_kf6_qmldir}/org/kde/kaccounts/
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_kaccounts.so
@@ -130,7 +134,7 @@ Requires:       cmake(SignOnQt5)
 %doc README*
 %license LICENSES/*
 %{_kf5_libdir}/libkaccounts.so.2
-%{_kf5_libdir}/libkaccounts.so.%{version}
+%{_kf5_libdir}/libkaccounts.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf5_qmldir}/org/kde/kaccounts/
 
 %files qt5-devel
@@ -140,9 +144,7 @@ Requires:       cmake(SignOnQt5)
 
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
 - qmlcache rebuild
 

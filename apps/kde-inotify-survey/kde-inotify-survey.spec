@@ -1,5 +1,9 @@
+%global commit0 a2311bccb7023b013bd12142323fffd681e5f731
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:          kde-inotify-survey
-Version:       24.02.1
+Version:       24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:       1%{?dist}
 Summary:       Monitors inotify limits and lets the user know when exceeded
 
@@ -29,8 +33,8 @@ BuildRequires: cmake(KF6Auth)
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6 -DQT_MAJOR_VERSION=6
@@ -54,9 +58,7 @@ BuildRequires: cmake(KF6Auth)
 %{_datadir}/polkit-1/actions/org.kde.kded.inotify.policy
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Sun Nov 19 2023 Steve Cossette <farchord@gmail.com> - 24.01.75-1
 - 24.01.75
 

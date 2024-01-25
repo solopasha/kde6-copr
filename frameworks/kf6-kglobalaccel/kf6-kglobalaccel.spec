@@ -1,8 +1,12 @@
+%global commit0 5c5fd115d92e6f63331318f50be53209e0888411
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework kglobalaccel
 
 Name:    kf6-%{framework}
-Version: 6.0.0
-Release: 2%{?dist}
+Version: 6.0.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 integration module for global shortcuts
 
 # The following are in the LICENSES folder but go unused: LGPL-2.1-only, LGPL-3.0-only, LicenseRef-KDE-Accepted-LGPL
@@ -11,7 +15,7 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
@@ -35,8 +39,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -57,7 +61,7 @@ rm -fv %{buildroot}%{_prefix}/lib/systemd/user/plasma-kglobalaccel.service
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
 %{_kf6_libdir}/libKF6GlobalAccel.so.6
-%{_kf6_libdir}/libKF6GlobalAccel.so.%{version}
+%{_kf6_libdir}/libKF6GlobalAccel.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 
 %files devel
 %{_qt6_docdir}/*.tags

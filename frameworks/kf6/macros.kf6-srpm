@@ -61,6 +61,7 @@
                          "Source2: kde-frameworks-signing-keys.pgp\\n"))
         macros.sourcerootdir = rpm.expand(pkgname.."-%{version}")
     end
+    macros.optflags = macros.optflags:gsub("-g ", "-g1 ")
 }
 
 %apps_source(v:) %{lua:

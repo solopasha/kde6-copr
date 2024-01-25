@@ -1,8 +1,12 @@
+%global commit0 88f003a94fc8901c6720caeae383798d13a49d32
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework ktextwidgets
 
 Name:    kf6-%{framework}
-Version: 6.0.0
-Release: 2%{?dist}
+Version: 6.0.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 addon with advanced text editing widgets
 
 License: CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
@@ -10,7 +14,7 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
@@ -44,8 +48,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -59,7 +63,7 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_libdir}/libKF6TextWidgets.so.6
-%{_kf6_libdir}/libKF6TextWidgets.so.%{version}
+%{_kf6_libdir}/libKF6TextWidgets.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_qtplugindir}/designer/*6widgets.so
 
 %files devel

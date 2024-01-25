@@ -1,8 +1,12 @@
+%global commit0 e5a1635849c91f569f056713de9a66f3b022fdec
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global base_name kdev-python
 
 Name:           kdevelop-python
 Summary:        KDevelop Python language support
-Version:        24.02.1
+Version:        24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later
@@ -30,7 +34,7 @@ BuildRequires:  python3-devel
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir}
 
 

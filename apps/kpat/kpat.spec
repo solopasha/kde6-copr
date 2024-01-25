@@ -1,7 +1,11 @@
+%global commit0 8446eb49cfbd37a877b1b17c060e47e08f788096
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 
 Name:    kpat
 Summary: A selection of solitaire card games
-Version: 24.02.1
+Version: 24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
@@ -56,12 +60,13 @@ special order — moving, turning and reordering them.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
 %cmake_kf6
+
 %cmake_build
 
 
@@ -79,12 +84,16 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 %files -f %{name}.lang
 %license COPYING*
+#doc README
 %{_kf6_bindir}/%{name}
 %{_kf6_datadir}/knsrcfiles/*.knsrc
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 %{_kf6_datadir}/icons/hicolor/*/apps/%{name}.*
 %{_kf6_datadir}/%{name}/
+#{_kf6_datadir}/kconf_update/%{name}*
+#{_kf6_datadir}/kxmlgui5/%{name}/
+#{_kf6_datadir}/sounds/%{name}/
 %{_kf6_datadir}/config.kcfg/%{name}.kcfg
 %{_kf6_datadir}/qlogging-categories6/%{name}*
 %{_kf6_libdir}/libkcardgame.so
@@ -93,9 +102,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Wed Feb 21 2024 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 24.02.0-1
 - 24.02.0
 

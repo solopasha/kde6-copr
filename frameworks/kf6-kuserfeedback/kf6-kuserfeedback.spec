@@ -1,9 +1,13 @@
+%global commit0 b43f49f3ab8212d0e0289c197afcaa5f0f775dc9
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework kuserfeedback
 
 Name:    kf6-%{framework}
 Summary: Framework for collecting user feedback for apps via telemetry and surveys
-Version: 6.0.0
-Release: 2%{?dist}
+Version: 6.0.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 
 License: MIT AND CC0-1.0 AND BSD-3-Clause
 URL:     https://invent.kde.org/frameworks/%{framework}
@@ -58,8 +62,8 @@ Analytics and administration tool for UserFeedback servers.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1 -n %{framework}-%{version}
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -90,9 +94,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kuserfeedback
 %dnl %{_kf6_bindir}/userfeedbackctl
 %{_kf6_datadir}/qlogging-categories6/org_kde_UserFeedback.categories
 %{_kf6_libdir}/libKF6UserFeedbackCore.so.6
-%{_kf6_libdir}/libKF6UserFeedbackCore.so.%{version}
+%{_kf6_libdir}/libKF6UserFeedbackCore.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKF6UserFeedbackWidgets.so.6
-%{_kf6_libdir}/libKF6UserFeedbackWidgets.so.%{version}
+%{_kf6_libdir}/libKF6UserFeedbackWidgets.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_qmldir}/org/kde/userfeedback/
 
 

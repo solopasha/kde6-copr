@@ -1,15 +1,19 @@
+%global commit0 09db9b59e87d0b1067ea91aad0d2e4f5a1d7b544
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework kdesu
 
 Name:    kf6-%{framework}
-Version: 6.0.0
-Release: 2%{?dist}
+Version: 6.0.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 integration with su
 
 License: CC0-1.0 AND GPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
 BuildRequires:  kf6-rpm-macros
@@ -36,8 +40,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -56,7 +60,7 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*
 %{_kf6_libdir}/libKF6Su.so.6
-%{_kf6_libdir}/libKF6Su.so.%{version}
+%{_kf6_libdir}/libKF6Su.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libexecdir}/kdesu_stub
 %attr(2755,root,nobody) %{_kf6_libexecdir}/kdesud
 

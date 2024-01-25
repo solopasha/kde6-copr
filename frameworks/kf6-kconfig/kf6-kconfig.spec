@@ -1,16 +1,20 @@
+%global commit0 965f54ced5caed0e9263b94cb1ae4a56a7408576
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global		framework kconfig
 
 
 Name:		  kf6-%{framework}
-Version:	6.0.0
-Release:	2%{?dist}
+Version:	6.0.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with advanced configuration system
 License:	BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND MIT
 URL:		  https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules >= %{version}
+BuildRequires:	extra-cmake-modules
 BuildRequires:	gcc-c++
 BuildRequires:	kf6-rpm-macros
 BuildRequires:	cmake(Qt6DBus)
@@ -37,8 +41,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -54,11 +58,11 @@ developing applications that use %{name}.
 %{_kf6_bindir}/kreadconfig6
 %{_kf6_bindir}/kwriteconfig6
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
-%{_kf6_libdir}/libKF6ConfigCore.so.%{version}
+%{_kf6_libdir}/libKF6ConfigCore.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKF6ConfigCore.so.6
-%{_kf6_libdir}/libKF6ConfigGui.so.%{version}
+%{_kf6_libdir}/libKF6ConfigGui.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKF6ConfigGui.so.6
-%{_kf6_libdir}/libKF6ConfigQml.so.%{version}
+%{_kf6_libdir}/libKF6ConfigQml.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKF6ConfigQml.so.6
 %{_kf6_libdir}/qt6/qml/org/kde/config/
 %{_kf6_libexecdir}/kconf_update

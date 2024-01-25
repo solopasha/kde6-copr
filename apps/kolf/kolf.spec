@@ -1,6 +1,10 @@
+%global commit0 34be438f1e49b23c707da8a5151baa82dad67aba
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    kolf
 Summary: A miniature golf game
-Version: 24.02.1
+Version: 24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
@@ -39,18 +43,23 @@ BuildRequires: cmake(Qt6Widgets)
 BuildRequires: cmake(Qt6Svg)
 BuildRequires: cmake(Qt6Test)
 
+Conflicts: kde-l10n < 17.08.3-2
+
+Obsoletes: kolf-libs < 19.12
+
 %description
 Kolf is a miniature golf game with 2d top-down view. Courses are
 dynamic, and up to 10 people can play at once in competition.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
 %cmake_kf6
+
 %cmake_build
 
 
@@ -72,12 +81,11 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 %{_kf6_datadir}/%{name}/
 %{_kf6_datadir}/icons/hicolor/*/*/*
+#%%{_kf6_datadir}/kxmlgui6/%{name}*
 
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Wed Feb 21 2024 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 24.02.0-1
 - 24.02.0
 

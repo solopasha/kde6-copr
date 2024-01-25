@@ -1,9 +1,13 @@
+%global commit0 de46541b7c3a5dca2203461148b6e29d83058511
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 
 %global framework modemmanager-qt
 
 Name:    kf6-%{framework}
-Version: 6.0.0
-Release: 2%{?dist}
+Version: 6.0.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 Summary: A Tier 1 KDE Frameworks module wrapping ModemManager DBus API
 License: GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/frameworks/%{framework}
@@ -33,8 +37,8 @@ that use ModemManager.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -49,7 +53,7 @@ that use ModemManager.
 %{_kf6_datadir}/qlogging-categories6/*.categories
 %{_kf6_datadir}/qlogging-categories6/*.renamecategories
 %{_kf6_libdir}/libKF6ModemManagerQt.so.6
-%{_kf6_libdir}/libKF6ModemManagerQt.so.%{version}
+%{_kf6_libdir}/libKF6ModemManagerQt.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 
 %files devel
 %{_qt6_docdir}/*.tags

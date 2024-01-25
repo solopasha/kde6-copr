@@ -1,5 +1,9 @@
+%global commit0 49a04ae48b90b240f6ed9d88f80d4d19a196535a
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:           kpublictransport
-Version:        24.02.1
+Version:        24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        BSD and CC0-1.0 and LGPLv2+ and MIT and ODbL-1.0
 Summary:        Library to assist with accessing public transport timetables and other data
@@ -22,8 +26,8 @@ BuildRequires: cmake(KF6NetworkManagerQt)
 %{summary}.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6 -DQT_MAJOR_VERSION=6
@@ -35,9 +39,9 @@ BuildRequires: cmake(KF6NetworkManagerQt)
 %files
 %{_kf6_datadir}/qlogging-categories6/org_kde_kpublictransport_onboard.categories
 %{_kf6_datadir}/qlogging-categories6/org_kde_kpublictransport.categories
-%{_kf6_libdir}/libKPublicTransport.so.%{version}
+%{_kf6_libdir}/libKPublicTransport.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKPublicTransport.so.1
-%{_kf6_libdir}/libKPublicTransportOnboard.so.%{version}
+%{_kf6_libdir}/libKPublicTransportOnboard.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKPublicTransportOnboard.so.1
 %{_kf6_qmldir}/org/kde/kpublictransport/
 
@@ -55,9 +59,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 %{_kf6_libdir}/*.so
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
 - qmlcache rebuild
 

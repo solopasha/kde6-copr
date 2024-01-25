@@ -1,6 +1,10 @@
+%global commit0 2d7f0cd93d54a2e8536d2251af3b5a6c155094f8
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    kde-cli-tools
-Version: 6.0.2
-Release: 2%{?dist}
+Version: 6.0.2%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 Summary: Tools based on KDE Frameworks 5 to better interact with the system
 
 License: Artistic-2.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -27,8 +31,8 @@ BuildRequires:  cmake(KF6Su)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(KF6Parts)
-BuildRequires:  plasma-workspace-devel >= %{version}
-Requires:       libkworkspace6%{?_isa} >= %{version}
+BuildRequires:  plasma-workspace-devel
+Requires:       libkworkspace6%{?_isa} >= %{lua: print((macros.version:gsub('[%^~].*', '~')))}
 
 # upgrade path, from when this wasn't split out
 Requires:       kdesu = 1:%{version}-%{release}
@@ -52,8 +56,8 @@ Conflicts: kde-runtime-docs < 14.12.3-2
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -107,6 +111,7 @@ ln -s %{_kf6_libexecdir}/kdesu %{buildroot}%{_bindir}/kdesu
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

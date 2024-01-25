@@ -1,6 +1,10 @@
+%global commit0 e6f7f0ee608a28e3f1924666782bd2411acd297d
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 2
+
 Name:    kmix
 Summary: KDE volume control
-Version: 24.02.1
+Version: 24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later
@@ -8,7 +12,6 @@ URL:     https://invent.kde.org/multimedia/%{name}
 %apps_source
 
 ## upstream patches
-Patch:   https://invent.kde.org/multimedia/kmix/-/commit/7fb80bfd038c925f678f7519677dbac0ca118296.patch
 
 ## upstreamable patches
 # disable autostart by default (on newer plasma releases that use plasma-pa)
@@ -44,8 +47,8 @@ BuildRequires: pkgconfig(Qt5Gui)
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -86,14 +89,12 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kmix.desktop
 %{_kf5_datadir}/kservices5/kmixctrl_restore.desktop
 # -libs subpkg?
 %{_kf5_libdir}/libkmixcore.so.5*
-%{_kf5_libdir}/libkmixcore.so.%{version}
+%{_kf5_libdir}/libkmixcore.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf5_plugindir}/kded/kmixd.so
 
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Mon Jan 08 2024 Steve Cossette <farchord@gmail.com> - 24.01.85-1
 - 24.01.85 (Qt5)
 

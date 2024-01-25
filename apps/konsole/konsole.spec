@@ -1,8 +1,12 @@
+%global commit0 fad6f15f1f70f27b4057ba503740b487f52d0588
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 #global tests 1
 
 Name:    konsole
 Summary: KDE Terminal emulator
-Version: 24.02.1
+Version: 24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # sources: MIT and LGPLv2 and LGPLv2+ and GPLv2+
@@ -81,8 +85,8 @@ Provides:  konsole6-part%{?_isa} = %{version}-%{release}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -134,16 +138,14 @@ xvfb-run -a bash -c "%ctest" || :
 %files part
 %config(noreplace) %{_kf6_sysconfdir}/xdg/konsolerc
 %{_kf6_datadir}/konsole/
-%{_kf6_libdir}/libkonsoleapp.so.%{version}
-%{_kf6_libdir}/libkonsoleprivate.so.%{version}
+%{_kf6_libdir}/libkonsoleapp.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
+%{_kf6_libdir}/libkonsoleprivate.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_plugindir}/parts/konsolepart.so
 %{_kf6_qtplugindir}/konsoleplugins/
 
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 

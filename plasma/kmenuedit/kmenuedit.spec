@@ -1,7 +1,11 @@
+%global commit0 fa08458c76f7b645a48d6f54b9bf472c3fc1b27b
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:          kmenuedit
 Summary:       KDE menu editor
-Version:       6.0.2
-Release:       2%{?dist}
+Version:       6.0.2%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release:       1%{?dist}
 
 License:       GPL-2.0-or-later OR GPL-2.0-only
 URL:           https://invent.kde.org/plasma/%{name}
@@ -31,8 +35,8 @@ BuildRequires: cmake(KF6XmlGui)
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -61,6 +65,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kmenuedit.des
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

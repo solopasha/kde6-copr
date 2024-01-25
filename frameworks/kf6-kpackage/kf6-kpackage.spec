@@ -1,15 +1,19 @@
+%global commit0 18f49442f9f85b61a31e82547870ea903886c08b
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework kpackage
 
 Name:           kf6-%{framework}
-Version:        6.0.0
-Release:        2%{?dist}
+Version:        6.0.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 library to load and install packages as plugins
 License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6Archive)
@@ -36,8 +40,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -58,7 +62,7 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kpackage/
 %{_kf6_datadir}/kpackage/
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6Package.so.6
-%{_kf6_libdir}/libKF6Package.so.%{version}
+%{_kf6_libdir}/libKF6Package.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_qtplugindir}/kpackage/
 %{_mandir}/man1/kpackagetool6.1*
 

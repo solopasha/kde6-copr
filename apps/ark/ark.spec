@@ -1,10 +1,14 @@
+%global commit0 63dea2d95ce433bbd1657dc21fddf144e9361c8b
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %if 0%{?fedora}
 %global p7zip 1
 %endif
 
 Name:           ark
 Summary:        Archive manager
-Version:        24.02.1
+Version:        24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later AND BSD-2-Clause
@@ -74,8 +78,8 @@ Requires:       %{name} = %{version}-%{release}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -121,9 +125,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.ark.deskt
 
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Sat Oct 14 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-2
 - Add upstream patch to fi bzip2 format with shared-mime-info 2.3
 

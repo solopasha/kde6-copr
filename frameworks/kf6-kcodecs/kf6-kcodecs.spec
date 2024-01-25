@@ -1,8 +1,12 @@
+%global commit0 9b6f3c1fdb37825c552640eeb913086f4c657b4a
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global		framework kcodecs
 
 Name:		kf6-%{framework}
-Version:	6.0.0
-Release:	2%{?dist}
+Version:	6.0.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with string manipulation methods
 License:	BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND MIT AND MPL-1.1
 URL:		https://invent.kde.org/frameworks/%{framework}
@@ -12,7 +16,7 @@ BuildRequires:	fdupes
 BuildRequires:	cmake
 BuildRequires:	gcc-c++
 BuildRequires:	gperf
-BuildRequires:	extra-cmake-modules >= %{version}
+BuildRequires:	extra-cmake-modules
 BuildRequires:	kf6-rpm-macros
 BuildRequires:	qt6-qtbase-devel
 BuildRequires:	qt6-qttools-devel
@@ -34,8 +38,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -51,7 +55,7 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*categories
 %{_kf6_libdir}/libKF6Codecs.so.6
-%{_kf6_libdir}/libKF6Codecs.so.%{version}
+%{_kf6_libdir}/libKF6Codecs.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 
 %files devel
 %{_qt6_docdir}/*.tags

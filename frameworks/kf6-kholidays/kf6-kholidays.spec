@@ -1,8 +1,12 @@
+%global commit0 54eac0d7d6b475cb4e1c7bbbd28b93d7b561ae80
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global		framework kholidays
 
 Name:		kf6-%{framework}
-Version:	6.0.0
-Release:	2%{?dist}
+Version:	6.0.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release:	1%{?dist}
 Summary:	The KHolidays Library
 
 License:	BSD-2-Clause AND CC0-1.0 AND GPL-3.0-or-later AND LGPL-2.0-or-later WITH Bison-exception-2.2
@@ -10,7 +14,7 @@ URL:		https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules >= %{version}
+BuildRequires:	extra-cmake-modules
 BuildRequires:	gcc-c++
 BuildRequires:	kf6-rpm-macros
 
@@ -33,8 +37,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -48,7 +52,7 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*categories
 %{_kf6_libdir}/libKF6Holidays.so.6
-%{_kf6_libdir}/libKF6Holidays.so.%{version}
+%{_kf6_libdir}/libKF6Holidays.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_qmldir}/org/kde/kholidays/
 
 %files devel

@@ -1,15 +1,19 @@
+%global commit0 73b5f988fb3998cc0966afba1c4fef2090cd8988
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework kunitconversion
 
 Name:    kf6-%{framework}
-Version: 6.0.0
-Release: 2%{?dist}
+Version: 6.0.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 2 addon for unit conversions
 
 License: CC0-1.0 AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  cmake(KF6I18n)
@@ -33,8 +37,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -48,7 +52,7 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_libdir}/libKF6UnitConversion.so.6
-%{_kf6_libdir}/libKF6UnitConversion.so.%{version}
+%{_kf6_libdir}/libKF6UnitConversion.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 
 %files devel

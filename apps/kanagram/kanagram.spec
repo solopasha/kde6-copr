@@ -1,7 +1,11 @@
+%global commit0 162106aae68d57274caa235399a1579cd8b83b62
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    kanagram
 Summary: Letter Order Game
-Version: 24.02.1
-Release: 1%{?dist}
+Version: 24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release: 2%{?dist}
 
 License: GPLv2+
 URL:     https://invent.kde.org/edu/%{name}
@@ -40,8 +44,8 @@ Requires: qt6-qtmultimedia%{?_isa}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -75,9 +79,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Thu Mar 07 2024 Alessandro Astone <ales.astone@gmail.com> - 24.02.0-2
 - Rebuild respun sources
 

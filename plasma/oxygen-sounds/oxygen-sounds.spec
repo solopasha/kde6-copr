@@ -1,6 +1,10 @@
+%global commit0 bc4ef215af14263076552c2cdda7f3a2ccdc56cb
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:           oxygen-sounds
-Version:        6.0.2
-Release:        2%{?dist}
+Version:        6.0.2%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 Summary:        The Oxygen Sound Theme
 
 License:        LGPL-3.0-or-later AND CC0-1.0 AND CC-BY-3.0 AND BSD-2-Clause
@@ -22,8 +26,8 @@ BuildArch:      noarch
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %{cmake_kf6} -DBUILD_WITH_QT6=ON
@@ -40,6 +44,7 @@ BuildArch:      noarch
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

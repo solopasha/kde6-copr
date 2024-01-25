@@ -1,9 +1,13 @@
+%global commit0 a7d5db7c4d06e0cb744fb367ce0409038bcdcbf2
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 
 %global framework solid
 
 Name:           kf6-%{framework}
-Version:        6.0.0
-Release:        2%{?dist}
+Version:        6.0.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 integration module that provides hardware information
 License:        LGPL-2.1-or-later AND LGPL-2.1-only AND CCO-1.0 AND BSD-3-Clause AND LGPL-3.0-only
 URL:            https://solid.kde.org/
@@ -11,7 +15,7 @@ URL:            https://solid.kde.org/
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Qml)
@@ -47,8 +51,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6 \
@@ -67,7 +71,7 @@ developing applications that use %{name}.
 %{_kf6_bindir}/solid-hardware6
 %{_kf6_bindir}/solid-power
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6Solid.so.%{version}
+%{_kf6_libdir}/libKF6Solid.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKF6Solid.so.6
 
 %files devel

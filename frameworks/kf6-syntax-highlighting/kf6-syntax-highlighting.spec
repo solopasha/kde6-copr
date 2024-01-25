@@ -1,9 +1,13 @@
+%global commit0 e3e4b7767afea8c7336f402edefa40d70658200d
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 
 %global framework syntax-highlighting
 
 Name:           kf6-%{framework}
-Version:        6.0.0
-Release:        2%{?dist}
+Version:        6.0.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Syntax highlighting engine for Kate syntax definitions
 License:        MIT AND BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND LGPL-2.0-or-later
 URL:            https://invent.kde.org/frameworks/%{framework}
@@ -40,8 +44,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6 -DBUILD_TESTING:BOOL=ON
@@ -59,7 +63,7 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_bindir}/ksyntaxhighlighter6
 %{_kf6_datadir}/qlogging-categories6/*categories
-%{_kf6_libdir}/libKF6SyntaxHighlighting.so.%{version}
+%{_kf6_libdir}/libKF6SyntaxHighlighting.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKF6SyntaxHighlighting.so.6
 %{_kf6_qmldir}/org/kde/syntaxhighlighting/
 

@@ -1,7 +1,11 @@
+%global commit0 6b573b7884a3ffee28ed074d6823e82dd6e7bc0c
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global base_name elisa
 
 Name:       elisa-player
-Version:    24.02.1
+Version:    24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:    1%{?dist}
 Summary:    Elisa music player
 
@@ -67,8 +71,8 @@ Elisa is a simple music player aiming to provide a nice experience for its
 users.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n elisa-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -94,5 +98,5 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.el
 %{_kf6_libdir}/qt6/qml/org/kde/elisa/
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
+%{?kde_snapshot_changelog_entry}
+%autochangelog

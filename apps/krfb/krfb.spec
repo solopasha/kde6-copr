@@ -1,6 +1,10 @@
+%global commit0 3e058985e14d4a800deaa0ae7c738ac4f7acb5be
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    krfb
 Summary: Desktop sharing
-Version: 24.02.1
+Version: 24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-only AND LGPL-2.1-only AND GFDL-1.2-no-invariants-only
@@ -104,9 +108,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.xml
 
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Sun Nov 19 2023 Alessandro Astone <ales.astone@gmail.com> - 24.01.75-1
 - 24.01.75
 

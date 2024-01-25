@@ -1,15 +1,19 @@
+%global commit0 c334530b3afc4c58d02f37820ec1c0057ea5ccd2
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework baloo
 
 Name:    kf6-%{framework}
 Summary: A Tier 3 KDE Frameworks 6 module that provides indexing and search functionality
-Version: 6.0.0
-Release: 2%{?dist}
+Version: 6.0.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND bzip2-1.0.6
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
 BuildRequires:  cmake(KF6Config)
@@ -60,8 +64,8 @@ Summary:        Runtime libraries for %{name}
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -112,9 +116,9 @@ cat kio6_tags.lang kio6_baloosearch.lang kio6_timeline.lang \
 %files libs
 %license LICENSES/*
 %{_kf6_libdir}/libKF6Baloo.so.6
-%{_kf6_libdir}/libKF6Baloo.so.%{version}
+%{_kf6_libdir}/libKF6Baloo.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKF6BalooEngine.so.6
-%{_kf6_libdir}/libKF6BalooEngine.so.%{version}
+%{_kf6_libdir}/libKF6BalooEngine.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_plugindir}/kio/baloosearch.so
 %{_kf6_plugindir}/kio/tags.so
 %{_kf6_plugindir}/kio/timeline.so

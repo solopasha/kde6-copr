@@ -1,16 +1,19 @@
+%global commit0 a6a02162cd2c71fb986aadc77f3ce3cd32da7837
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework knewstuff
 
 Name:    kf6-%{framework}
-Version: 6.0.0
-Release: 3%{?dist}
+Version: 6.0.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 module for downloading application assets
 License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
-Patch:   https://invent.kde.org/frameworks/knewstuff/-/commit/49f2037a.patch
 
 BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
@@ -50,8 +53,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -68,9 +71,9 @@ developing applications that use %{name}.
 %{_kf6_datadir}/applications/org.kde.knewstuff-dialog6.desktop
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
 %{_kf6_libdir}/libKF6NewStuffCore.so.6
-%{_kf6_libdir}/libKF6NewStuffCore.so.%{version}
+%{_kf6_libdir}/libKF6NewStuffCore.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKF6NewStuffWidgets.so.6
-%{_kf6_libdir}/libKF6NewStuffWidgets.so.%{version}
+%{_kf6_libdir}/libKF6NewStuffWidgets.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_qmldir}/org/kde/newstuff/
 
 %files devel

@@ -1,3 +1,7 @@
+%global commit0 a1a32397949bbce21c3a4f08ff608f91987974b3
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global base_name akonadi
 %global mysql mysql
 
@@ -7,7 +11,7 @@
 
 Name:    akonadi-server
 Summary: PIM Storage Service
-Version: 24.02.1
+Version: 24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-KDE-Accepted-GPL AND MIT
@@ -113,7 +117,7 @@ See also: %{_sysconfdir}/akonadi/mysql-global.conf
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
 
@@ -245,9 +249,7 @@ fi
 
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Fri Oct 13 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-2
 - Rebuild (Qt5)
 

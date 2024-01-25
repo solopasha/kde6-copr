@@ -1,9 +1,13 @@
+%global commit0 4e0701fb336aff9c72cf4826e98c3e44c06b3976
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global kf6min 5.240.0
 %global qt6min 6.5.0
 %global sover 12
 
 Name:           kpmcore
-Version:        24.02.1
+Version:        24.02.1%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Library for managing partitions by KDE programs
 License:        GPL-3.0-or-later AND MIT AND CC-BY-4.0 AND CC0-1.0
@@ -60,8 +64,8 @@ developing applications that use %{name}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -78,7 +82,7 @@ developing applications that use %{name}
 %license LICENSES/*
 %doc README.md
 %{_kf6_libdir}/libkpmcore.so.%{sover}
-%{_kf6_libdir}/libkpmcore.so.%{version}
+%{_kf6_libdir}/libkpmcore.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_qtplugindir}/kpmcore
 %{_libexecdir}/kpmcore_externalcommand
 %{_datadir}/dbus-1/system.d/org.kde.kpmcore.*.conf
@@ -92,5 +96,5 @@ developing applications that use %{name}
 
 
 %changelog
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
+%{?kde_snapshot_changelog_entry}
+%autochangelog
