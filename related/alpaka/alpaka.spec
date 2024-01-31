@@ -1,10 +1,10 @@
-%global commit0 63a93c0fe9f25aab42ce32864fa309265e94c0f5
+%global commit0 0e81c1a53bb05ef983adeeae53e3b0f817ce010a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           alpaka
 Version:        0.1.1%{?bumpver:^%{bumpver}.git%{shortcommit0}}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Kirigami client for Ollama
 
 License:        CC0-1.0 AND GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
