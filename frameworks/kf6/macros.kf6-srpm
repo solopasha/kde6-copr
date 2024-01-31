@@ -19,6 +19,7 @@
     )
 
 %frameworks_meta %{lua:
+    macros._kf6_build_qch = "1"
     if macros.bumpver or macros.gitdate then
         local fedora = require "fedora.common"
         fedora.zalias({"commit","shortcommit"}, false)
