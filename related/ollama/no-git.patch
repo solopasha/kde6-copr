@@ -1,8 +1,8 @@
 diff --git a/llm/generate/gen_common.sh b/llm/generate/gen_common.sh
-index 0b7b2ae..846cc99 100644
+index b359936..7beb750 100644
 --- a/llm/generate/gen_common.sh
 +++ b/llm/generate/gen_common.sh
-@@ -51,8 +51,6 @@ git_module_setup() {
+@@ -54,8 +54,6 @@ git_module_setup() {
          echo "Cleaning up old submodule"
          rm -rf ${LLAMACPP_DIR}
      fi
@@ -11,24 +11,32 @@ index 0b7b2ae..846cc99 100644
  
  }
  
-@@ -64,12 +62,7 @@ apply_patches() {
- 
-     # apply temporary patches until fix is upstream
-     for patch in ../patches/*.diff; do
--        for file in $(grep "^+++ " ${patch} | cut -f2 -d' ' | cut -f2- -d/); do
--            (cd ${LLAMACPP_DIR}; git checkout ${file})
+@@ -68,12 +66,7 @@ apply_patches() {
+     if [ -n "$(ls -A ../patches/*.diff)" ]; then
+         # apply temporary patches until fix is upstream
+         for patch in ../patches/*.diff; do
+-            for file in $(grep "^+++ " ${patch} | cut -f2 -d' ' | cut -f2- -d/); do
+-                (cd ${LLAMACPP_DIR}; git checkout ${file})
+-            done
 -        done
--    done
--    for patch in ../patches/*.diff; do
--        (cd ${LLAMACPP_DIR} && git apply ${patch})
-+        (cd ${LLAMACPP_DIR} && patch -Np1 -i ${patch})
-     done
+-        for patch in ../patches/*.diff; do
+-            (cd ${LLAMACPP_DIR} && git apply ${patch})
++            (cd ${LLAMACPP_DIR} && patch -Np1 -i ${patch})
+         done
+     fi
  
-     # Avoid duplicate main symbols when we link into the cgo binary
-@@ -108,5 +101,5 @@ compress_libs() {
+@@ -113,13 +106,5 @@ compress_libs() {
  
  # Keep the local tree clean after we're done with the build
  cleanup() {
 -    (cd ${LLAMACPP_DIR}/examples/server/ && git checkout CMakeLists.txt server.cpp)
+-
+-    if [ -n "$(ls -A ../patches/*.diff)" ]; then
+-        for patch in ../patches/*.diff; do
+-            for file in $(grep "^+++ " ${patch} | cut -f2 -d' ' | cut -f2- -d/); do
+-                (cd ${LLAMACPP_DIR}; git checkout ${file})
+-            done
+-        done
+-    fi
 +    :
  }
