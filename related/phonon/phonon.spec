@@ -4,8 +4,9 @@ Version: 4.12.0
 Release: 2%{?dist}
 License: LGPLv2+
 URL:     https://community.kde.org/Phonon
-
 Source0: https://download.kde.org/stable/phonon/%{version}/phonon-%{version}.tar.xz
+Source1: https://download.kde.org/stable/phonon/%{version}/phonon-%{version}.tar.xz.sig
+Source2: kde-frameworks-signing-keys.pgp
 
 BuildRequires: cmake
 BuildRequires: gcc-c++
@@ -62,7 +63,8 @@ BuildArch: noarch
 %{summary}.
 
 %prep
-%autosetup -n phonon-%{version} -p1
+%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
+%autosetup -p1
 
 %build
 mkdir -p phononqt6
