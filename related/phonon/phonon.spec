@@ -1,7 +1,7 @@
 Summary: Multimedia framework api
 Name:    phonon
 Version: 4.12.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: LGPLv2+
 URL:     https://community.kde.org/Phonon
 
@@ -28,8 +28,9 @@ BuildRequires: pkgconfig(xcb)
 %package qt5
 Summary: Multimedia framework api for Qt5
 %{?_qt5:Requires: %{_qt5}%{?_isa} >= %{_qt5_version}}
-Recommends: phonon-qt5-backend-gstreamer%{?_isa}
 Requires: %{name}-common = %{version}-%{release}
+Requires: phonon-qt5-backend%{?_isa}
+Suggests: phonon-qt5-backend-vlc%{?_isa}
 %description qt5
 %{summary}.
 
@@ -43,7 +44,8 @@ Requires: %{name}-qt5%{?_isa} = %{version}-%{release}
 Summary: Multimedia framework api for Qt6
 %{?_qt6:Requires: %{_qt6}%{?_isa} >= %{_qt6_version}}
 Requires: %{name}-common = %{version}-%{release}
-Recommends: phonon-qt6-backend-vlc%{?_isa}
+Requires: phonon-qt6-backend%{?_isa}
+Suggests: phonon-qt6-backend-vlc%{?_isa}
 %description qt6
 %{summary}.
 
@@ -166,7 +168,7 @@ test "$(pkg-config --modversion phonon4qt6)" = "%{version}"
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
 * Tue Aug 11 2020 Rex Dieter <rdieter@fedoraproject.org> - 4.11.1-6
-- use new cmake macros 
+- use new cmake macros
 
 * Sat Aug 01 2020 Fedora Release Engineering <releng@fedoraproject.org> - 4.11.1-5
 - Second attempt - Rebuilt for
