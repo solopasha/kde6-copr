@@ -1,39 +1,40 @@
-Name:    pulseaudio-qt
-Summary: Qt bindings for PulseAudio
-Version: 1.4.0
-Release: 4%{?dist}
+Name:           pulseaudio-qt
+Summary:        Qt bindings for PulseAudio
+Version:        1.4.0
+Release:        4%{?dist}
 
-License: CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/libraries/pulseaudio-qt
-Source:  https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz
-Source:  https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz.sig
-Source:  signing-key.pgp
+License:        CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only
+URL:            https://invent.kde.org/libraries/pulseaudio-qt
+Source0:        https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz
+Source1:        https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz.sig
+Source2:        signing-key.pgp
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  pkgconfig(libpulse)
-BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Test)
-BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  pkgconfig(libpulse)
 
 %description
 Pulseaudio-Qt is a library providing Qt bindings to PulseAudio.
 
-%package qt6
-Summary: Qt6 bindings for PulseAudio
-Obsoletes: %{name} < 1.4.0-4
-%description qt6
+%package        qt6
+Summary:        Qt6 bindings for PulseAudio
+Obsoletes:      %{name} < 1.4.0-4
+Provides:       %{name} = %{version}-%{release}
+%description    qt6
 %{summary}.
 
-%package qt6-devel
-Summary: Development files for %{name}
-Obsoletes: %{name}-devel < 1.4.0-4
-Requires: %{name}%{?_isa} = %{version}-%{release}
-%description qt6-devel
+%package        qt6-devel
+Summary:        Development files for %{name}
+Obsoletes:      %{name}-devel < 1.4.0-4
+Provides:       %{name}-devel = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+%description    qt6-devel
 %{summary}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
@@ -46,18 +47,17 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 %install
 %cmake_install
 
-
 %files qt6
 %license LICENSES/*.txt
 %doc README.md
-%{_kf6_libdir}/libKF6PulseAudioQt.so.4
 %{_kf6_libdir}/libKF6PulseAudioQt.so.%{version}
+%{_kf6_libdir}/libKF6PulseAudioQt.so.4
 
 %files qt6-devel
 %{_kf6_includedir}/KF6PulseAudioQt/
-%{_kf6_libdir}/libKF6PulseAudioQt.so
 %{_kf6_includedir}/pulseaudioqt_version.h
 %{_kf6_libdir}/cmake/KF6PulseAudioQt/
+%{_kf6_libdir}/libKF6PulseAudioQt.so
 %{_kf6_libdir}/pkgconfig/KF6PulseAudioQt.pc
 
 %changelog
