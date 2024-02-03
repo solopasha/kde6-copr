@@ -3,7 +3,7 @@
 Name:    kmail
 Summary: Mail client
 Version: 24.01.95
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 # code (generally) GPLv2, docs GFDL
 License: GPLv2 and GFDL
