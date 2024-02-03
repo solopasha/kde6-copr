@@ -3,12 +3,17 @@
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
 Version: 5.93.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
-
 %plasma_source
+Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/05f7f26a17f988242cdb37dc3799487790423e51.patch
+Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/5de457e20163a87567971076daf2bb49b38af6ee.patch
+Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/28ab381a3347249532fce3645d380a0e5875ac61.patch
+Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/a40d7fdb93eb23fa7f6d006d30dc1cf0159c0316.patch
+Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/8009ac30d97176ef1d71fb9480650740d69bc1b5.patch
+Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/32eaa7e545536cef50950521d3ccffedd39f8629.patch
 
 Source11:       startkderc
 Source15:       fedora-lookandfeel.json
@@ -402,7 +407,6 @@ Requires:       qt6-qttools
 Requires:       xdg-desktop-portal-kde
 %if ! %{with x11}
 Obsoletes:      %{name}-x11 < %{version}-%{release}
-Conflicts:      %{name}-x11 < %{version}-%{release}
 %endif
 %description wayland
 %{summary}.
@@ -420,8 +424,6 @@ Requires:       %{name} = %{version}-%{release}
 Requires:       kwin-x11
 Requires:       xorg-x11-server-Xorg
 Requires:       xsetroot
-# Plasma X11 is deprecated and will be removed with Plasma 6.0
-Provides:       deprecated()
 %description x11
 %{summary}.
 %endif

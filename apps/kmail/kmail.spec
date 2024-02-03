@@ -9,8 +9,8 @@ Release: 1%{?dist}
 License: GPLv2 and GFDL
 URL:     https://www.kde.org/applications/internet/kmail
 %apps_source
-
-
+Patch:   https://invent.kde.org/pim/kmail/-/commit/d89cb8237eb991da9494d99df737f35982e78461.patch
+Patch:   https://invent.kde.org/pim/kmail/-/commit/8c694b32a4e435b8f12ea73c2bec42b457aa020f.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules

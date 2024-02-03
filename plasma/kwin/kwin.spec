@@ -3,7 +3,7 @@
 
 Name:    kwin
 Version: 5.93.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: KDE Window manager
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -13,6 +13,19 @@ URL:     https://userbase.kde.org/KWin
 
 ## upstream patches
 Patch:   https://invent.kde.org/plasma/kwin/-/merge_requests/5079.patch
+Patch:   https://invent.kde.org/plasma/kwin/-/commit/416ed6479d38cbc21da1278db3e52f3c4e67ed90.patch
+Patch:   https://invent.kde.org/plasma/kwin/-/commit/44325842b8f00cb89f68b27c556e487789b6e649.patch
+Patch:   https://invent.kde.org/plasma/kwin/-/commit/1cab899c5a3c3d9cafc86cc6881cc945b21f3476.patch
+Patch:   https://invent.kde.org/plasma/kwin/-/commit/9180693c50518e39f49c6eec34a5cdc918539ec9.patch
+Patch:   https://invent.kde.org/plasma/kwin/-/commit/8ed28586d933e20e14e4112b23666238a3eec14e.patch
+Patch:   https://invent.kde.org/plasma/kwin/-/commit/63868e4dd491da2e9cd28a0115566408d202ad8a.patch
+Patch:   https://invent.kde.org/plasma/kwin/-/commit/74ab969c7207ff90dcf9f83b6f677ed96cec86b5.patch
+Patch:   https://invent.kde.org/plasma/kwin/-/commit/e40366b750b6cf600d1ba3a4911cebf5341ad30c.patch
+Patch:   https://invent.kde.org/plasma/kwin/-/commit/e566bdfcd76c0690c6d294c76936407dc7f682c9.patch
+Patch:   https://invent.kde.org/plasma/kwin/-/commit/23fa0041aa0f5444000f34b1a72fa24c0ec3b1b7.patch
+Patch:   https://invent.kde.org/plasma/kwin/-/commit/aafce3b54e1c75f953f42f36d0f7f6bf762438d9.patch
+Patch:   https://invent.kde.org/plasma/kwin/-/commit/1688463cfb7c0439552898561df42c9078c9e492.patch
+Patch:   https://invent.kde.org/plasma/kwin/-/commit/d296e10803bc5b7ede453f015fbea0fd3ea91874.patch
 ## proposed patches
 
 # Base
@@ -134,7 +147,6 @@ Provides:       firstboot(windowmanager) = kwin_wayland
 %if ! %{with x11}
 # Obsolete kwin-x11 as we are dropping the package
 Obsoletes:      %{name}-x11 < %{version}-%{release}
-Conflicts:      %{name}-x11 < %{version}-%{release}
 %endif
 %description    wayland
 %{summary}.
@@ -145,8 +157,6 @@ Summary:        KDE Window Manager with X11 support
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       %{name}-common%{?_isa} = %{version}-%{release}
 Requires:       xorg-x11-server-Xorg
-# Plasma X11 is deprecated and will be removed with Plasma 6.0
-Provides:       deprecated()
 # http://bugzilla.redhat.com/605675
 Provides:       firstboot(windowmanager) = kwin_x11
 # KWinX11Platform (and others?)
