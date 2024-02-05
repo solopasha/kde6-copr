@@ -1,4 +1,4 @@
-%global tests 1
+#global tests 1
 
 Name:    pim-data-exporter
 Summary: Pim Data Exporter

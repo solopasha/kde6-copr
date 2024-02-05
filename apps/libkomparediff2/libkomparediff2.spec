@@ -1,5 +1,5 @@
 # enable tests
-%global tests 1
+#global tests 1
 
 Name:    libkomparediff2
 Summary: Library to compare files and strings

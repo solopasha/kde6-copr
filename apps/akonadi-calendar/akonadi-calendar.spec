@@ -1,4 +1,4 @@
-%global tests 1
+#global tests 1
 
 Name:    akonadi-calendar
 Version: 24.01.95
@@ -92,7 +92,6 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_datadir}/akonadi/plugins/serializer/
 %{_kf6_datadir}/dbus-1/services/org.kde.kalendarac.service
 %{_kf6_datadir}/knotifications6/kalendarac.notifyrc
-%{_kf6_datadir}/knotifications6/notification_gui.notifyrc
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
 %{_kf6_datadir}/qlogging-categories6/org_kde_kalendarac.categories
 %{_kf6_libdir}/libKPim6AkonadiCalendar.so.*

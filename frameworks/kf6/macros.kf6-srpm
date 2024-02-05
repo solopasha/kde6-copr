@@ -18,6 +18,12 @@
     fi
     )
 
+%kde_name2name_with_namespace %{lua:
+    local pkgname = macros.base_name or macros.name
+    local kde = require "fedora.srpm.kde"
+    print(kde.name2name_with_namespace(pkgname))
+}
+
 %frameworks_meta(v:) %{lua:
     macros.basever = (rpm.expand("%{-v}") ~= "") and rpm.expand("%{-v*}") or macros.majmin_ver_kf6
     macros._kf6_build_qch = "1"
@@ -61,7 +67,7 @@
     if macros.bumpver or macros.gitdate then
         local fedora = require "fedora.common"
         fedora.zalias({"commit","shortcommit"}, false)
-        print(rpm.expand("Source0: https://github.com/KDE/"..pkgname.."/archive/%{commit}/"..pkgname.."-%{shortcommit}.tar.gz\\n"))
+        print(rpm.expand("Source0: https://invent.kde.org/%{kde_name2name_with_namespace}/-/archive/%{commit}/"..pkgname.."-%{shortcommit}.tar.gz\\n"))
         macros.sourcerootdir = rpm.expand(pkgname.."-%{commit}")
     else
         print(rpm.expand("Source0: https://download.kde.org/%{stable_kf6}/release-service/%{basever}/src/"..pkgname.."-%{version}.tar.xz\\n" ..

@@ -18,6 +18,7 @@ BuildRequires:  sassc
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
+BuildRequires:  cmake(Qt6CoreTools)
 
 # not used directly, but is an indirect dep from ECMQueryQmake.cmake
 # probably should be fixed there -- rex

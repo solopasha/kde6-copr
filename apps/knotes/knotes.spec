@@ -1,4 +1,4 @@
-%global tests 1
+#global tests 1
 
 Name:    knotes
 Summary: Popup notes

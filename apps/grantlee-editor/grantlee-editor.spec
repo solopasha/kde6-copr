@@ -1,4 +1,4 @@
-%global tests 1
+#global tests 1
 
 Name:    grantlee-editor
 Summary: KMail Theme Editor

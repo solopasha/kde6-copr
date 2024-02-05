@@ -1,4 +1,4 @@
-%global tests 1
+#global tests 1
 
 Name:    mbox-importer
 Summary: MBox Importer

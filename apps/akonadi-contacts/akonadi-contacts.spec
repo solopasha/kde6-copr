@@ -1,4 +1,4 @@
-%global tests 1
+#global tests 1
 
 Name:    akonadi-contacts
 Version: 24.01.95

@@ -184,7 +184,7 @@ fi
 %{_kf6_bindir}/akonadi_rds
 %{_kf6_bindir}/akonadictl
 %{_kf6_bindir}/akonadiserver
-%{_kf6_bindir}/akonadi-db-migrator
+#%%{_kf6_bindir}/akonadi-db-migrator
 %{_kf6_datadir}/akonadi/
 %{_kf6_datadir}/config.kcfg/resourcebase.kcfg
 %{_kf6_datadir}/dbus-1/interfaces/org.freedesktop.Akonadi.*.xml

@@ -45,7 +45,6 @@ BuildRequires:  kf6-rpm-macros           >= %{kf6_min_version}
 # QML module dependencies
 Requires:  kf6-kirigami2%{?_isa}
 Requires:  kf6-kirigami-addons%{?_isa}
-Requires:  qt6-qt5compat%{?_isa}
 Requires:  qt6-qtmultimedia%{?_isa}
 
 %description

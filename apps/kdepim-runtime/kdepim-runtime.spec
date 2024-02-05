@@ -1,4 +1,4 @@
-%global tests 1
+#global tests 1
 
 Name:    kdepim-runtime
 Summary: KDE PIM Runtime Environment

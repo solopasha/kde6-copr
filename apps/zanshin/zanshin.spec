@@ -1,4 +1,4 @@
-%global tests 0
+#global tests 1
 
 Name:           zanshin
 Version:        24.01.95

@@ -4,7 +4,7 @@
 
 Name:           kpmcore
 Version:        24.01.95
-Release:        3%{?dist}
+Release:        1%{?dist}
 Summary:        Library for managing partitions by KDE programs
 License:        GPL-3.0-or-later AND MIT AND CC-BY-4.0 AND CC0-1.0
 URL:            https://github.com/KDE/kpmcore

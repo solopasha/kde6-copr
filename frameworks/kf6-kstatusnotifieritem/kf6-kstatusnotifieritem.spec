@@ -17,6 +17,8 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires:  pkgconfig(x11)
 

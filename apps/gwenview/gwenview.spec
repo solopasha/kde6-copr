@@ -9,7 +9,6 @@ Release: 2%{?dist}
 License: GPL-2.0-or-later
 URL:     https://apps.kde.org/gwenview/
 %apps_source
-Patch:   https://invent.kde.org/graphics/gwenview/-/merge_requests/245.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
@@ -44,6 +43,7 @@ BuildRequires: qt6-qtbase-private-devel
 
 BuildRequires: cmake(KDcrawQt6)
 BuildRequires: cmake(kImageAnnotator-Qt6)
+BuildRequires: cmake(kColorPicker-Qt6)
 BuildRequires: cmake(Phonon4Qt6)
 BuildRequires: pkgconfig(cfitsio)
 BuildRequires: pkgconfig(exiv2)

@@ -1,4 +1,4 @@
-%global tests 0
+#global tests 1
 
 Name:    kaddressbook
 Summary: Contact Manager

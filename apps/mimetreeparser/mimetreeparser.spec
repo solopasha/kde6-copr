@@ -61,10 +61,8 @@ developing applications that use %{name}.
 
 %files -f %{name}.lang
 %license LICENSES/*
-%{_kf6_libdir}/libKPim6MimeTreeParserCore.so.5.*
-%{_kf6_libdir}/libKPim6MimeTreeParserCore.so.6
-%{_kf6_libdir}/libKPim6MimeTreeParserWidgets.so.5.*
-%{_kf6_libdir}/libKPim6MimeTreeParserWidgets.so.6
+%{_kf6_libdir}/libKPim6MimeTreeParserCore.so.6{,.*}
+%{_kf6_libdir}/libKPim6MimeTreeParserWidgets.so.6{,.*}
 %{_kf6_qmldir}/org/kde/pim/mimetreeparser/
 %{_kf6_datadir}/qlogging-categories6/mimetreeparser2.categories
 
