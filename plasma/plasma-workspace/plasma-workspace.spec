@@ -3,7 +3,7 @@
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
 Version: 5.93.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
@@ -16,6 +16,9 @@ Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/8009ac30d97176e
 Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/32eaa7e545536cef50950521d3ccffedd39f8629.patch
 Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/5377fe60c566593825acee09a38c29dc3053c660.patch
 Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/936a589ef84e3b3d9919d971af05a4f8a32ef803.patch
+Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/45278c2f69dbaff597b28af845087fa967f86ebf.patch
+Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/00fc94f680f2947305c4843baa0ff8acc83cb45e.patch
+Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/13421017b0f66813f3994fe8805fb1ca12a2323e.patch
 
 Source11:       startkderc
 Source15:       fedora-lookandfeel.json
