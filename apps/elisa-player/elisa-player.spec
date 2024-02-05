@@ -1,8 +1,8 @@
 %global base_name elisa
 
 Name:       elisa-player
-Version:    24.01.95
-Release:    2%{?dist}
+Version:    24.02.0
+Release:    1%{?dist}
 Summary:    Elisa music player
 
 # Main program LGPLv3+

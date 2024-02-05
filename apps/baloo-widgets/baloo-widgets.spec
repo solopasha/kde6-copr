@@ -1,38 +1,31 @@
-
 Name:    baloo-widgets
 Summary: Widgets for Baloo
-Version: 24.01.95
+Version: 24.02.0
 Release: 1%{?dist}
 
 # # KDE e.V. may determine that future LGPL versions are accepted
 License: LGPL-2.0-only OR LGPL-3.0-only
-URL:     https://cgit.kde.org/%{name}.git/
+URL:     https://invent.kde.org/libraries/baloo-widgets
 %apps_source
 
-# translations moved here
-Conflicts: kde-l10n < 17.04.0-2
-
-Provides: kf6-baloo-widgets = %{version}-%{release}
-Provides: kf6-baloo-widgets%{?_isa} = %{version}-%{release}
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  extra-cmake-modules
 
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(Qt6Test)
 
-BuildRequires:  kf6-rpm-macros
-BuildRequires:  extra-cmake-modules >= 5.19
-BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6FileMetaData)
 BuildRequires:  cmake(KF6Baloo)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6FileMetaData)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Service)
 
 %description
 %{summary}.
 
 %package devel
 Summary:  Developer files for %{name}
-Provides: kf6-baloo-widgets-devel = %{version}-%{release}
-Provides: kf6-baloo-widgets-devel%{?_isa} = %{version}-%{release}
 Requires: %{name}%{?_isa} = %{version}-%{release}
 Requires: qt6-qtbase-devel
 Requires: kf6-kcoreaddons-devel
@@ -59,15 +52,16 @@ Requires: kf6-kio-devel
 
 %files -f %{name}.lang
 %doc LICENSES/*
-%{_kf6_libdir}/libKF6BalooWidgets.so.*
 %{_kf6_bindir}/baloo_filemetadata_temp_extractor
 %{_kf6_datadir}/qlogging-categories6/%{name}*
-%{_kf6_plugindir}/propertiesdialog/
-%{_kf6_plugindir}/kfileitemaction/
+%{_kf6_libdir}/libKF6BalooWidgets.so.%{version}
+%{_kf6_libdir}/libKF6BalooWidgets.so.6
+%{_kf6_plugindir}/kfileitemaction/tagsfileitemaction.so
+%{_kf6_plugindir}/propertiesdialog/baloofilepropertiesplugin.so
 
 %files devel
-%{_kf6_libdir}/cmake/KF6BalooWidgets/
 %{_kf6_includedir}/BalooWidgets/
+%{_kf6_libdir}/cmake/KF6BalooWidgets/
 %{_kf6_libdir}/libKF6BalooWidgets.so
 
 

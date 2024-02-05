@@ -1,14 +1,14 @@
 Name:    plasma-desktop
 Summary: Plasma Desktop shell
-Version: 5.93.0
-Release: 5%{?dist}
+Version: 6.0.0
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
-Patch:   https://invent.kde.org/plasma/plasma-desktop/-/commit/97b19215209ea00ce066503545cb9a3ffdf7352c.patch
-Patch:   https://invent.kde.org/plasma/plasma-desktop/-/commit/5cf23f9445c6b5e83e40500ee7ab58422d587bc2.patch
-Patch:   https://invent.kde.org/plasma/plasma-desktop/-/commit/f6bbffdf56438105b4e76ebdd6ce1eda2d47a67d.patch
+Patch:   https://invent.kde.org/plasma/plasma-desktop/-/commit/459ade071534de37f29bb1eedbacdb7b59f05f82.patch
+Patch:   https://invent.kde.org/plasma/plasma-desktop/-/commit/a2c763a16916dd154216174d9bf459c743f5e5d9.patch
+Patch:   https://invent.kde.org/plasma/plasma-desktop/-/commit/e306c63ddbeaccea72a03fbb2c3dbd8245addef5.patch
 
 ## downstream patches
 # default kickoff favorites: +konsole +apper
@@ -139,6 +139,10 @@ BuildRequires:  kf6-qqc2-desktop-style
 Requires:       kf6-qqc2-desktop-style%{?_isa}
 BuildRequires:  kpipewire
 Requires:       kpipewire%{?_isa}
+BuildRequires:  signon-plugin-oauth2-devel
+Requires:       signon-plugin-oauth2%{?_isa}
+
+Requires:       shared-mime-info
 
 # for kimpanel-ibus-panel and kimpanel-ibus-panel-launcher
 Recommends: ibus
@@ -146,6 +150,8 @@ Recommends: ibus
 # Virtual provides for plasma-workspace
 Provides:       plasmashell(desktop) = %{version}-%{release}
 Provides:       plasmashell = %{version}-%{release}
+
+Conflicts:      kde-settings < 39.1-2
 
 %description
 %{summary}.
@@ -167,6 +173,8 @@ BuildArch:      noarch
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -p1
+
+sed '/falkon\|debian/d' -i kde-mimeapps.list
 
 
 %build
@@ -206,7 +214,6 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/*.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/*.so
 %{_kf6_qtplugindir}/plasma/kcminit/kcm_touchpad_init.so
-%{_kf6_qtplugindir}/plasma5support/dataengine/plasma_engine_touchpad.so
 %{_kf6_qtplugindir}/attica_kde.so
 %{_kf6_plugindir}/kded/*.so
 %{_kf6_plugindir}/krunner/krunner*.so
@@ -237,6 +244,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_datadir}/icons/hicolor/*/*/*
 %{_kf6_metainfodir}/*.xml
 %{_datadir}/applications/*.desktop
+%{_datadir}/applications/kde-mimeapps.list
 %{_datadir}/dbus-1/system-services/*.service
 %{_datadir}/polkit-1/actions/org.kde.kcontrol.kcmclock.policy
 %{_sysconfdir}/xdg/autostart/*.desktop

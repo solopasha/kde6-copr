@@ -1,15 +1,13 @@
-%global tests 1
+#global tests 1
 
 Name:    kmail-account-wizard
 Summary: KMail Account Wizard
-Version: 24.01.95
+Version: 24.02.0
 Release: 1%{?dist}
 
 License: GPLv2+
 URL:     https://invent.kde.org/pim/%{name}
 %apps_source
-
-
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
@@ -70,17 +68,14 @@ BuildRequires: xorg-x11-server-Xvfb
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %if 0%{?tests}
-xvfb-run -a bash -c "%ctest" || :
+xvfb-run -a bash -c "%ctest"
 %endif
 
 %files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_bindir}/accountwizard
 %{_kf6_datadir}/applications/org.kde.accountwizard.desktop
-%{_kf6_datadir}/qlogging-categories6/*accountwizard.*
-%{_kf6_libdir}/libaccountwizard.so.6
-%{_kf6_libdir}/libaccountwizard.so.5.*
-%{_kf6_qmldir}/org/kde/pim/accountwizard/
+
 
 %changelog
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1

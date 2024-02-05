@@ -1,6 +1,6 @@
 Name:           itinerary
-Version:        24.01.95
-Release:        2%{?dist}
+Version:        24.02.0
+Release:        1%{?dist}
 Summary:        Itinerary and boarding pass management application
 
 License:        Apache-2.0 and BSD-3-Clause and LGPL-2.0-or-later AND CC0-1.0

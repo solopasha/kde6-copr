@@ -7,12 +7,13 @@
 
 Name:    akonadi-server
 Summary: PIM Storage Service
-Version: 24.01.95
-Release: 2%{?dist}
+Version: 24.02.0
+Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-KDE-Accepted-GPL AND MIT
 URL:     https://invent.kde.org/pim/akonadi
 %apps_source
+Patch:   https://invent.kde.org/pim/akonadi/-/commit/03a8362c3e499c07ca24eaa8fc75b5687e90a480.patch
 
 ## mysql config
 Source10:       akonadiserverrc.mysql
@@ -184,7 +185,7 @@ fi
 %{_kf6_bindir}/akonadi_rds
 %{_kf6_bindir}/akonadictl
 %{_kf6_bindir}/akonadiserver
-%{_kf6_bindir}/akonadi-db-migrator
+#%%{_kf6_bindir}/akonadi-db-migrator
 %{_kf6_datadir}/akonadi/
 %{_kf6_datadir}/config.kcfg/resourcebase.kcfg
 %{_kf6_datadir}/dbus-1/interfaces/org.freedesktop.Akonadi.*.xml

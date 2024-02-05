@@ -1,7 +1,7 @@
 %global kf6_min_version 5.240.0
 
 Name:           kasts
-Version:        24.01.95
+Version:        24.02.0
 Release:        1%{?dist}
 License:        GPLv2 and GPLv2+ and GPLv3+ and BSD and LGPLv3+
 Summary:        A mobile podcast application
@@ -45,7 +45,6 @@ BuildRequires:  kf6-rpm-macros           >= %{kf6_min_version}
 # QML module dependencies
 Requires:  kf6-kirigami2%{?_isa}
 Requires:  kf6-kirigami-addons%{?_isa}
-Requires:  qt6-qt5compat%{?_isa}
 Requires:  qt6-qtmultimedia%{?_isa}
 
 %description

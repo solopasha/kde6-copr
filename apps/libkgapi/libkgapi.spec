@@ -2,7 +2,7 @@
 %global _lto_cflags %{nil}
 
 Name:    libkgapi
-Version: 24.01.95
+Version: 24.02.0
 Release: 1%{?dist}
 Summary: Library to access to Google services
 

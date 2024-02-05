@@ -1,7 +1,7 @@
 Name:           dolphin
 Summary:        KDE File Manager
-Version:        24.01.95
-Release:        2%{?dist}
+Version:        24.02.0
+Release:        1%{?dist}
 
 License:        GPLv2+
 URL:            https://invent.kde.org/system/dolphin
@@ -133,6 +133,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %if 0%{?flatpak}
 %{_kf6_datadir}/icons/hicolor/*/apps/system-file-manager.*
 %endif
+%{_kf6_datadir}/icons/hicolor/scalable/apps/org.kde.dolphin.svg
 
 %files libs
 %{_kf6_libdir}/libdolphinprivate.so.*

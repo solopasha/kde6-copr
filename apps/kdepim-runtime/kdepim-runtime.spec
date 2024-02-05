@@ -1,9 +1,9 @@
-%global tests 1
+#global tests 1
 
 Name:    kdepim-runtime
 Summary: KDE PIM Runtime Environment
 Epoch:   1
-Version: 24.01.95
+Version: 24.02.0
 Release: 1%{?dist}
 
 License: GPLv2

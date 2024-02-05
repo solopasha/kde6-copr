@@ -2,31 +2,16 @@
 
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
-Version: 5.93.0
-Release: 9%{?dist}
+Version: 6.0.0
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/05f7f26a17f988242cdb37dc3799487790423e51.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/5de457e20163a87567971076daf2bb49b38af6ee.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/28ab381a3347249532fce3645d380a0e5875ac61.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/a40d7fdb93eb23fa7f6d006d30dc1cf0159c0316.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/8009ac30d97176ef1d71fb9480650740d69bc1b5.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/32eaa7e545536cef50950521d3ccffedd39f8629.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/5377fe60c566593825acee09a38c29dc3053c660.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/936a589ef84e3b3d9919d971af05a4f8a32ef803.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/45278c2f69dbaff597b28af845087fa967f86ebf.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/00fc94f680f2947305c4843baa0ff8acc83cb45e.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/13421017b0f66813f3994fe8805fb1ca12a2323e.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/db0ba010b943887652466cf2f1b8dec47ae47c75.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/e2b57011bcf7721e4ff94ed32e628ae8f70e5142.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/541056c8cd251a3efc2d13ab0638216253bd6ca4.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/ca375ac839514c9546e3183999d52931b1c79aec.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/d5549c4c1dc35ad6c2a6fcd8d8f643abb9116fc5.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/c5c8f1536185c31ff03f9d82df0b67a00b2c51c9.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/c0c629228b3e33aa826aa91e954184fe20677a82.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/8fa333fbac71c6e6068173198f8ccd92d2ba6df9.patch
+Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/58ef0c40b6fc098f9a02f816fc0470177a0d8f70.patch
+Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/d09d50c3664efacf3bf8c7f2effe338a05cb816c.patch
+Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/403431b1b801326cbca732dbcc759a719c1bb7f0.patch
+Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/8fc5105fec06e80cd2e6d1a3541bf0d8211d9c9f.patch
 
 Source11:       startkderc
 Source15:       fedora-lookandfeel.json
@@ -49,9 +34,9 @@ Source41:       spice-vdagent.conf
 
 ## downstream Patches
 # default to enable open terminal action
-Patch106:       plasma-workspace-5.92.90-enable-open-terminal-action.patch
+Patch106:       plasma-workspace-6.0.0-enable-open-terminal-action.patch
 # default to enable the lock/logout actions
-Patch107:       plasma-workspace-5.92.90-enable-lock-logout-action.patch
+Patch107:       plasma-workspace-6.0.0-enable-lock-logout-action.patch
 # Hide virtual keyboard indicator on sddm.
 # Do not remove this as it breaks Fedora's QA policy
 Patch108:       hide-virtual-keyboard-indicator-on-sddm.patch
@@ -616,6 +601,7 @@ fi
 %{_kf6_datadir}/kconf_update/plasmashell-6.0-keep-default-floating-setting-for-plasma-5-panels.upd
 %{_kf6_datadir}/kconf_update/migrate-calendar-to-plugin-id.py
 %{_kf6_datadir}/kconf_update/migrate-calendar-to-plugin-id.upd
+%{_kf6_datadir}/kconf_update/plasmashell-6.0-keep-custom-position-of-panels.upd
 %{_kf6_metainfodir}/*.xml
 %{_kf6_datadir}/applications/kcm_*
 %{_kf6_datadir}/applications/org.kde.plasmashell.desktop
@@ -686,6 +672,7 @@ fi
 %{_libdir}/kconf_update_bin/plasma6.0-remove-old-shortcuts
 %{_libdir}/kconf_update_bin/plasmashell-6.0-keep-default-floating-setting-for-plasma-5-panels
 %{_libdir}/kconf_update_bin/plasma6.0-remove-dpi-settings
+%{_libdir}/kconf_update_bin/plasmashell-6.0-keep-custom-position-of-panels
 %{_kf6_datadir}/kglobalaccel/org.kde.krunner.desktop
 
 %files geolocation

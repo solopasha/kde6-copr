@@ -13,6 +13,7 @@ kf6-kio
 kf6-kirigami
 kf6-kjobwidgets
 kf6-krunner
+kf6-kstatusnotifieritem
 kf6-kuserfeedback
 kf6-kwindowsystem
 kf6-kxmlgui

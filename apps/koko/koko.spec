@@ -1,6 +1,6 @@
 Name:           koko
-Version:        24.01.95
-Release:        2%{?dist}
+Version:        24.02.0
+Release:        1%{?dist}
 License:        GPLv2+ and GPLv3 and LGPLv2 and LGPLv2+ and CC0 and BSD
 Summary:        An Image gallery application
 URL:            https://apps.kde.org/koko/

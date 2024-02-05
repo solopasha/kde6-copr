@@ -1,7 +1,7 @@
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
 
 Name:    kdepim-addons
-Version: 24.01.95
+Version: 24.02.0
 Release: 1%{?dist}
 Summary: Additional plugins for KDE PIM applications
 
@@ -113,20 +113,13 @@ Supplements:    korganizer
 %license LICENSES/*
 %{_kf6_datadir}/icons/hicolor/scalable/status/moon-phase-*
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
-%{_kf6_libdir}/libadblockplugin.so.5*
-%{_kf6_libdir}/libadblockplugin.so.6
-%{_kf6_libdir}/libakonadidatasetools.so.5*
-%{_kf6_libdir}/libakonadidatasetools.so.6
-%{_kf6_libdir}/libdkimverifyconfigure.so.5*
-%{_kf6_libdir}/libdkimverifyconfigure.so.6
-%{_kf6_libdir}/libexpireaccounttrashfolderconfig.so.5*
-%{_kf6_libdir}/libexpireaccounttrashfolderconfig.so.6
-%{_kf6_libdir}/libfolderconfiguresettings.so.5*
-%{_kf6_libdir}/libfolderconfiguresettings.so.6
-%{_kf6_libdir}/libkmailconfirmbeforedeleting.so.5*
-%{_kf6_libdir}/libkmailconfirmbeforedeleting.so.6
-%{_kf6_libdir}/libopenurlwithconfigure.so.5*
-%{_kf6_libdir}/libopenurlwithconfigure.so.6
+%{_kf6_libdir}/libadblockplugin.so.6{,.*}
+%{_kf6_libdir}/libakonadidatasetools.so.6{,.*}
+%{_kf6_libdir}/libdkimverifyconfigure.so.6{,.*}
+%{_kf6_libdir}/libexpireaccounttrashfolderconfig.so.6{,.*}
+%{_kf6_libdir}/libfolderconfiguresettings.so.6{,.*}
+%{_kf6_libdir}/libkmailconfirmbeforedeleting.so.6{,.*}
+%{_kf6_libdir}/libopenurlwithconfigure.so.6{,.*}
 #%%{_kf6_libdir}/libscamconfiguresettings.so.5*
 #%%{_kf6_libdir}/libscamconfiguresettings.so.6
 

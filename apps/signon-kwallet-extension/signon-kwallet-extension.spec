@@ -1,11 +1,11 @@
 
 Name:    signon-kwallet-extension
-Version: 24.01.95
+Version: 24.02.0
 Release: 1%{?dist}
 Summary: KWallet integration for Sign-on framework
 
 License: GPLv2+
-URL:     https://cgit.kde.org/%{name}.git
+URL:     https://invent.kde.org/network/signon-kwallet-extension
 %apps_source
 
 BuildRequires:  extra-cmake-modules

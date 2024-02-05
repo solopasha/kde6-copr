@@ -1,8 +1,8 @@
-%global tests 0
+#global tests 1
 
 Name:           zanshin
-Version:        24.01.95
-Release:        2%{?dist}
+Version:        24.02.0
+Release:        1%{?dist}
 Summary:        Todo/action management software
 
 License:        GPLv2

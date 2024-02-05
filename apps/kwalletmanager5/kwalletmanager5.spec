@@ -5,8 +5,8 @@
 
 Name:    kwalletmanager5
 Summary: Manage KDE passwords
-Version: 24.01.95
-Release: 2%{?dist}
+Version: 24.02.0
+Release: 1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/utils/%{base_name}

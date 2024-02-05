@@ -1,6 +1,6 @@
 Name:    plasma-systemmonitor
-Version: 5.93.0
-Release: 2%{?dist}
+Version: 6.0.0
+Release: 1%{?dist}
 Summary: An application for monitoring system resources
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL

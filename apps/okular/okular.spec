@@ -13,8 +13,8 @@
 
 Name:    okular
 Summary: A document viewer
-Version: 24.01.95
-Release: 2%{?dist}
+Version: 24.02.0
+Release: 1%{?dist}
 
 License: GPL-2.0-only
 URL:     https://www.kde.org/applications/graphics/okular/

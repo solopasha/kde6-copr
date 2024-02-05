@@ -1,8 +1,8 @@
 
 Name:    libksysguard
 Summary: Library for managing processes running on the system
-Version: 5.93.0
-Release: 4%{?dist}
+Version: 6.0.0
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
@@ -92,10 +92,6 @@ developing applications that use %{name}.
 %{_kf6_datadir}/dbus-1/interfaces/org.kde.ksystemstats1.xml
 %{_kf6_datadir}/ksysguard/
 %{_kf6_datadir}/qlogging-categories6/libksysguard.categories
-%{_kf6_libdir}/libksgrd.so.%{version}
-%{_kf6_libdir}/libksgrd.so.10
-%{_kf6_libdir}/libksignalplotter.so.%{version}
-%{_kf6_libdir}/libksignalplotter.so.10
 %{_kf6_libdir}/libKSysGuardFormatter.so.%{version}
 %{_kf6_libdir}/libKSysGuardFormatter.so.2
 %{_kf6_libdir}/libKSysGuardSensorFaces.so.%{version}
@@ -104,15 +100,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKSysGuardSensors.so.2
 %{_kf6_libdir}/libKSysGuardSystemStats.so.%{version}
 %{_kf6_libdir}/libKSysGuardSystemStats.so.2
-%{_kf6_libdir}/liblsofui.so.%{version}
-%{_kf6_libdir}/liblsofui.so.10
 %{_kf6_libdir}/libprocesscore.so.%{version}
 %{_kf6_libdir}/libprocesscore.so.10
-%{_kf6_libdir}/libprocessui.so.%{version}
-%{_kf6_libdir}/libprocessui.so.10
 %{_libexecdir}/ksysguard/
-%{_qt6_plugindir}/designer/ksignalplotter5widgets.so
-%{_qt6_plugindir}/designer/ksysguard*.so
 %{_qt6_plugindir}/kf6/packagestructure/ksysguard_sensorface.so
 %{_qt6_plugindir}/ksysguard/
 %{_qt6_qmldir}/org/kde/ksysguard/
@@ -127,15 +117,11 @@ developing applications that use %{name}.
 %files devel
 %{_includedir}/ksysguard/
 %{_kf6_libdir}/cmake/KSysGuard/
-%{_kf6_libdir}/libksgrd.so
-%{_kf6_libdir}/libksignalplotter.so
 %{_kf6_libdir}/libKSysGuardFormatter.so
 %{_kf6_libdir}/libKSysGuardSensorFaces.so
 %{_kf6_libdir}/libKSysGuardSensors.so
 %{_kf6_libdir}/libKSysGuardSystemStats.so
-%{_kf6_libdir}/liblsofui.so
 %{_kf6_libdir}/libprocesscore.so
-%{_kf6_libdir}/libprocessui.so
 
 %changelog
 * Sun Nov 12 2023 Steve Cossette <farchord@gmail.com> - 5.27.80-1

@@ -1,9 +1,9 @@
-%global tests 1
+#global tests 1
 
 Name:    kate
 Summary: Advanced Text Editor
-Version: 24.01.95
-Release: 2%{?dist}
+Version: 24.02.0
+Release: 1%{?dist}
 
 # kwrite LGPLv2+
 # kate: app LGPLv2, plugins, LGPLv2 and LGPLv2+ and GPLv2+

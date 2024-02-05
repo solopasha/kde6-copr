@@ -1,8 +1,8 @@
 %bcond x11 1
 
 Name:    kwin
-Version: 5.93.0
-Release: 12%{?dist}
+Version: 6.0.0
+Release: 1%{?dist}
 Summary: KDE Window manager
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -10,45 +10,24 @@ URL:     https://userbase.kde.org/KWin
 %plasma_source
 
 ## upstream patches
-Patch:   https://invent.kde.org/plasma/kwin/-/merge_requests/5079.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/416ed6479d38cbc21da1278db3e52f3c4e67ed90.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/44325842b8f00cb89f68b27c556e487789b6e649.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/1cab899c5a3c3d9cafc86cc6881cc945b21f3476.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/9180693c50518e39f49c6eec34a5cdc918539ec9.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/8ed28586d933e20e14e4112b23666238a3eec14e.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/63868e4dd491da2e9cd28a0115566408d202ad8a.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/74ab969c7207ff90dcf9f83b6f677ed96cec86b5.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/e40366b750b6cf600d1ba3a4911cebf5341ad30c.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/e566bdfcd76c0690c6d294c76936407dc7f682c9.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/23fa0041aa0f5444000f34b1a72fa24c0ec3b1b7.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/aafce3b54e1c75f953f42f36d0f7f6bf762438d9.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/1688463cfb7c0439552898561df42c9078c9e492.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/d296e10803bc5b7ede453f015fbea0fd3ea91874.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/0e96bc341f8c1e24cde37dbe304f2c0bb47a8f0d.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/66df775a5336696c65ca250181e0a4c8fa158d54.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/9e4d6f438908f9e24dd7faa8cd1293052cddd988.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/1a6d8d265c19fac99f645b23fa0817e99d179409.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/e658d5ee02cbe1de37d3525ebff73c41e0e7a076.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/e29f7656357c91baf0dbe5668b7894635b5575b6.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/f94e4d16dda294fd11b7d68503daccc33ab3ff9b.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/bb7d2152ba453aba7ae48958e661672e54bb2275.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/7927351bcb908bb7017769560ea89608c40edfa2.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/8a932da1f4be2ce581c38c3d82a6646463fe72c2.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/c9f36137ecc8f7dbc0adaa4e58c0b490aa7f2407.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/b49eb3d39639b131acbb3e229da92e6cff7600c2.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/001865d37f411f6e921201e2a9457ef5b5ba1dc5.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/d174a6ba3341ff38fe737e560dc3d583adeaa89a.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/c3eb4ecd046a9c4cdeebce832df01dbb2edf243b.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/e4244c8056f563b4696c385927c30c890514b9ce.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/590055e8ff2bb216f57b698e14397c63d1d8bc4e.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/43f223afe2e894a47eb9f015381bcc161273797b.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/c34aec1c7bee25b822552df4cc873f827bf84892.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/dd54b03aaf58a0b41a10f60c63938213c2822dd3.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/8b73147fa96831b4f07b32f4550d4324db0c5be3.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/1ce25f713787abdc60003bacd14e48ecaef61ea3.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/deeb0672bf0e14f6a307be66e95119cd487a0236.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/c707ce77d7af549b74bb0b8140def6e69c8bd5a0.patch
-## proposed patches
+Patch: https://invent.kde.org/plasma/kwin/-/commit/47973b4f1cf0e720a969621b67847909163a204e.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/2f4480e60b3cac686642bad555ce5162a5dfad75.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/80e30821af7b1675f76dbcccf74eac4b61ff58d0.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/cb3dadf283fd7952a649b6d079ba244b74fd2bec.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/df4b12550680e8a2a6bf34bf13e932e5b815159c.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/111cd842f1d41c1ee0c9297eb2c796311433883c.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/515f60cb7f94b01311a81360a5884409eb2199f3.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/66af39ec9e46431ea7a4577ca1f5be5d6a890691.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/10eac23ed2941c1ce508bfccd57825164c3ca1e4.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/fbe35105acb5edc6a4a34bd710684c4265fef888.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/bd71e4832725afa2adc156d15b2cd4589d7e36f2.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/ebce0e3c3371fbc5a59955c91873edca1b6e4e79.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/7a3693867284cc72932ee8901e7e79a3681aee13.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/4ae0f0cd654ce3e2a4d885062bddf612f7579f97.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/5b263b41d5326109351f280430d21b8880509d5b.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/75b741128ebd662e832dae333a683dbd3a5317de.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/f20ce6244cc2b14145e5c543c6b8d5fdbb36bd66.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/018a1d35db4d799469b82be6c6b7d2551d4bf7d2.patch
 
 # Base
 BuildRequires:  extra-cmake-modules
@@ -257,13 +236,13 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 %{_kf6_datadir}/config.kcfg/nightcolorsettings.kcfg
 %{_kf6_datadir}/config.kcfg/virtualdesktopssettings.kcfg
 %{_kf6_datadir}/icons/hicolor/*/apps/kwin.*
-%{_kf6_datadir}/kconf_update/kwin-6.0-overview-activities-shortcuts.py
 %{_kf6_datadir}/kconf_update/kwin.upd
 %{_kf6_datadir}/knotifications6/kwin.notifyrc
 %{_kf6_datadir}/knsrcfiles/*.knsrc
 %{_kf6_datadir}/krunner/dbusplugins/kwin-runner-windows.desktop
 %{_kf6_datadir}/kwin/
 %{_kf6_libdir}/kconf_update_bin/kwin-6.0-delete-desktop-switching-shortcuts
+%{_kf6_libdir}/kconf_update_bin/kwin-6.0-reset-active-mouse-screen
 %{_kf6_libdir}/kconf_update_bin/kwin5_update_default_rules
 %{_kf6_qtplugindir}/kf6/packagestructure/kwin_*.so
 %{_kf6_qtplugindir}/kwin/

@@ -1,7 +1,7 @@
 %global framework kstatusnotifieritem
 
 Name:           kf6-%{framework}
-Version:        5.249.0
+Version:        6.0.0
 Release:        1%{?dist}
 Summary:        Implementation of Status Notifier Items
 
@@ -17,6 +17,8 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires:  pkgconfig(x11)
 

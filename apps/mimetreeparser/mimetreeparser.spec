@@ -1,6 +1,6 @@
 Name:    mimetreeparser
-Version: 24.01.95
-Release: 2%{?dist}
+Version: 24.02.0
+Release: 1%{?dist}
 Summary: Parser for MIME trees
 
 License: LGPL-2.0-or-later AND GPL-3.0-only AND GPL-2.0-only AND GPL-2.0-or-later AND (LGPL-2.1-only OR LGPL-3.0-only OR LicenseRef-KDE-Accepted-LGPL)
@@ -61,10 +61,8 @@ developing applications that use %{name}.
 
 %files -f %{name}.lang
 %license LICENSES/*
-%{_kf6_libdir}/libKPim6MimeTreeParserCore.so.5.*
-%{_kf6_libdir}/libKPim6MimeTreeParserCore.so.6
-%{_kf6_libdir}/libKPim6MimeTreeParserWidgets.so.5.*
-%{_kf6_libdir}/libKPim6MimeTreeParserWidgets.so.6
+%{_kf6_libdir}/libKPim6MimeTreeParserCore.so.6{,.*}
+%{_kf6_libdir}/libKPim6MimeTreeParserWidgets.so.6{,.*}
 %{_kf6_qmldir}/org/kde/pim/mimetreeparser/
 %{_kf6_datadir}/qlogging-categories6/mimetreeparser2.categories
 

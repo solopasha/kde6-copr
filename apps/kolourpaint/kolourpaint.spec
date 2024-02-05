@@ -1,6 +1,6 @@
 Name:    kolourpaint
 Summary: An easy-to-use paint program 
-Version: 24.01.95
+Version: 24.02.0
 Release: 1%{?dist}
 
 License: BSD 

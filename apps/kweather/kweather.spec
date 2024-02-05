@@ -1,5 +1,5 @@
 Name:           kweather
-Version:        24.01.95
+Version:        24.02.0
 Release:        1%{?dist}
 License:        GPLv2+
 Summary:        Convergent KDE weather application

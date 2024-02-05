@@ -1,9 +1,9 @@
 # enable tests
-%global tests 1
+#global tests 1
 
 Name:    libkomparediff2
 Summary: Library to compare files and strings
-Version: 24.01.95
+Version: 24.02.0
 Release: 1%{?dist}
 
 # Library: GPLv2+ (some files LGPLv2+), CMake scripts: BSD

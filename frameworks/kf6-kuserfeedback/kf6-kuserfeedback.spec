@@ -2,8 +2,8 @@
 
 Name:    kf6-%{framework}
 Summary: Framework for collecting user feedback for apps via telemetry and surveys
-Version: 5.249.0
-Release: 2%{?dist}
+Version: 6.0.0
+Release: 1%{?dist}
 
 License: MIT AND CC0-1.0 AND BSD-3-Clause
 URL:     https://invent.kde.org/frameworks/%{framework}

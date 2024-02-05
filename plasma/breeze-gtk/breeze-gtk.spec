@@ -1,5 +1,5 @@
 Name:    breeze-gtk
-Version: 5.93.0
+Version: 6.0.0
 Release: 1%{?dist}
 Summary: Breeze widget theme for GTK
 
@@ -18,6 +18,7 @@ BuildRequires:  sassc
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
+BuildRequires:  cmake(Qt6CoreTools)
 
 # not used directly, but is an indirect dep from ECMQueryQmake.cmake
 # probably should be fixed there -- rex

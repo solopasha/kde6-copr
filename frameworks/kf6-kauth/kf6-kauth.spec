@@ -1,14 +1,13 @@
 %global framework kauth
 
 Name:    kf6-%{framework}
-Version: 5.249.0
-Release: 2%{?dist}
+Version: 6.0.0
+Release: 1%{?dist}
 Summary: KDE Frameworks 6 module to perform actions as privileged user
 # LGPL-2.0-or-later is also in the project's LICENSES, but is unused according to reuse.
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-or-later
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
-Patch:   https://invent.kde.org/frameworks/kauth/-/commit/058d67927db046c08602590428209e503556443d.patch
 
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++

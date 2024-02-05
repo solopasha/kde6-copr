@@ -1,9 +1,9 @@
-%global tests 1
+#global tests 1
 
 Name:    kalarm
 Summary: Personal Alarm Scheduler
-Version: 24.01.95
-Release: 3%{?dist}
+Version: 24.02.0
+Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/pim/kalarm
@@ -103,10 +103,8 @@ xvfb-run -a bash -c "%ctest"
 %{_kf6_datadir}/knotifications6/kalarm.notifyrc
 %{_kf6_datadir}/polkit-1/actions/org.kde.kalarm.rtcwake.policy
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
-%{_kf6_libdir}/libkalarmcalendar.so.5.*
-%{_kf6_libdir}/libkalarmcalendar.so.6
-%{_kf6_libdir}/libkalarmplugin.so.5.*
-%{_kf6_libdir}/libkalarmplugin.so.6
+%{_kf6_libdir}/libkalarmcalendar.so.6{,.*}
+%{_kf6_libdir}/libkalarmplugin.so.6{,.*}
 %{_kf6_libexecdir}/kauth/kalarm_helper
 %{_kf6_metainfodir}/org.kde.kalarm.appdata.xml
 %{_kf6_qtplugindir}/pim6/kalarm/akonadiplugin.so

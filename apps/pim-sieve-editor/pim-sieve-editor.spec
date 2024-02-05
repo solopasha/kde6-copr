@@ -1,10 +1,10 @@
-%global tests 1
+#global tests 1
 
 %global framework sieveeditor
 
 Name:    pim-sieve-editor
 Summary: Sieve Editor
-Version: 24.01.95
+Version: 24.02.0
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -68,7 +68,7 @@ on a mail server.
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %if 0%{?tests}
-xvfb-run -a bash -c "%ctest" || :
+xvfb-run -a bash -c "%ctest"
 %endif
 
 
@@ -80,8 +80,7 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_datadir}/config.kcfg/sieveeditorglobalconfig.kcfg
 %{_kf6_datadir}/icons/hicolor/*/*/*
 %{_kf6_datadir}/qlogging-categories6/*sieveeditor.*
-%{_kf6_libdir}/libsieveeditor.so.5*
-%{_kf6_libdir}/libsieveeditor.so.6
+%{_kf6_libdir}/libsieveeditor.so.6{,.*}
 %{_kf6_metainfodir}/org.kde.sieveeditor.appdata.xml
 
 

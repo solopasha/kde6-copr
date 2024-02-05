@@ -1,5 +1,5 @@
 Name:           oxygen-sounds
-Version:        5.93.0
+Version:        6.0.0
 Release:        1%{?dist}
 Summary:        The Oxygen Sound Theme
 

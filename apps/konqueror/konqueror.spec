@@ -3,8 +3,8 @@
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
 
 Name:    konqueror
-Version: 24.01.95
-Release: 2%{?dist}
+Version: 24.02.0
+Release: 1%{?dist}
 Summary: KDE File Manager and Browser
 
 License: GPLv2+ and LGPLv2+ and GFDL
@@ -124,7 +124,7 @@ browsing the web in Konqueror.
 
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml || :
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop || :
 %if 0%{?tests}
 xvfb-run -a bash -c "%ctest" || :

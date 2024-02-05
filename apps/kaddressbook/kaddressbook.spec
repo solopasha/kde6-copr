@@ -1,8 +1,8 @@
-%global tests 0
+#global tests 1
 
 Name:    kaddressbook
 Summary: Contact Manager
-Version: 24.01.95
+Version: 24.02.0
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later

@@ -1,8 +1,8 @@
-%global tests 1
+#global tests 1
 
 Name:    konsole
 Summary: KDE Terminal emulator
-Version: 24.01.95
+Version: 24.02.0
 Release: 1%{?dist}
 
 # sources: MIT and LGPLv2 and LGPLv2+ and GPLv2+

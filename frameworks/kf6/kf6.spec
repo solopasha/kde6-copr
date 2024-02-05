@@ -1,14 +1,16 @@
 Name:    kf6
 # This version MUST remain in sync with KF6 versions!
 # XXX: Yes, it's 5.x still, this is synced with the version set in extra-cmake-modules
-Version: 5.249.0
-Release: 4%{?dist}
+Version: 6.0.0
+Release: 1%{?dist}
 Summary: Filesystem and RPM macros for KDE Frameworks 6
 License: BSD-3-Clause
 URL:     http://www.kde.org
 Source0: macros.kf6
 Source1: LICENSE
 Source2: macros.kf6-srpm
+Source3: kde_maps.lua
+Source4: kde.lua
 
 %description
 Filesystem and RPM macros for KDE Frameworks 6
@@ -77,6 +79,9 @@ sed -i \
   -e "s|@@kf6_VERSION@@|%{version}|g" \
   %{buildroot}%{_rpmconfigdir}/macros.d/macros.kf6
 
+install -Dpm0644 %{_sourcedir}/kde_maps.lua %{buildroot}%{_rpmluadir}/fedora/srpm/kde_maps.lua
+install -Dpm0644 %{_sourcedir}/kde.lua %{buildroot}%{_rpmluadir}/fedora/srpm/kde.lua
+
 %files filesystem
 %{_datadir}/kf6/
 %{_datadir}/kio/
@@ -108,6 +113,7 @@ sed -i \
 
 %files srpm-macros
 %{_rpmconfigdir}/macros.d/macros.kf6-srpm
+%{_rpmluadir}/fedora/srpm/kde*.lua
 
 %files qch
 
