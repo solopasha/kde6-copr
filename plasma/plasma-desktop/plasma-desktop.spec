@@ -1,8 +1,3 @@
-%global scim 1
-%if 0%{?rhel} && 0%{?rhel} > 7
-%undefine scim
-%endif
-
 Name:    plasma-desktop
 Summary: Plasma Desktop shell
 Version: 5.93.0
@@ -45,9 +40,7 @@ BuildRequires:  cmake(Phonon4Qt6)
 BuildRequires:  wayland-protocols-devel
 
 BuildRequires:  ibus-devel
-%if 0%{?scim}
 BuildRequires:  scim-devel
-%endif
 
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  extra-cmake-modules
@@ -84,10 +77,7 @@ BuildRequires:  kwin-devel
 BuildRequires:  plasma-breeze-qt6
 BuildRequires:  plasma-workspace-devel
 
-# Optional
-%if 0%{?fedora}
 BuildRequires:  cmake(AppStreamQt)
-%endif
 BuildRequires:  cmake(KAccounts6)
 BuildRequires:  cmake(AccountsQt6)
 BuildRequires:  intltool
@@ -96,19 +86,14 @@ BuildRequires:  PackageKit-Qt6-devel
 BuildRequires:  cmake(PlasmaActivities)
 BuildRequires:  cmake(PlasmaActivitiesStats)
 BuildRequires:  libcanberra-devel
-BuildRequires:  boost-devel
 BuildRequires:  pulseaudio-libs-devel
 BuildRequires:  SDL2-devel
-BuildRequires:  chrpath
 BuildRequires:  desktop-file-utils
 
 BuildRequires:  xdg-user-dirs
 
 # xorg-x11 doesn't have hw_server and disable for s390/s390x
 %ifnarch s390 s390x
-# KCM touchpad has been merged to plasma-desktop in 5.3
-Provides:       kcm_touchpad = %{version}-%{release}
-Obsoletes:      kcm_touchpad < 5.3.0
 # for xserver-properties
 BuildRequires:  xorg-x11-server-devel
 Requires:       kf6-kded
@@ -163,20 +148,6 @@ Recommends: ibus
 Provides:       plasmashell(desktop) = %{version}-%{release}
 Provides:       plasmashell = %{version}-%{release}
 
-Obsoletes:      kde-workspace < 5.0.0-1
-
-Obsoletes:      kactivities-workspace < 5.6.0
-Provides:       kactivities-workspace = %{version}-%{release}
-
-Obsoletes:      plasma-user-manager < 5.19.50
-Provides:       plasma-user-manager = %{version}-%{release}
-
-# kimpanel moved here from kdeplasma-addons-5.5.x
-Conflicts:      kdeplasma-addons < 5.6.0
-
-# kcm_activities.mo moved here (#1325724)
-Conflicts:      kde-l10n < 15.12.3-4
-
 %description
 %{summary}.
 
@@ -189,13 +160,7 @@ method framework.
 
 %package        doc
 Summary:        Documentation and user manuals for %{name}
-# when conflicting HTML docs were removed
-Conflicts:      kcm_colors < 1:4.11.16-10
-# when conflicting HTML docs were removed
-Conflicts:      kde-runtime-docs < 17.08.3-6
-# when made noarch
-Obsoletes: plasma-desktop-doc < 5.3.1-2
-BuildArch: noarch
+BuildArch:      noarch
 %description    doc
 %{summary}.
 
@@ -224,11 +189,7 @@ cat  %{name}.lang %{name}-doc.lang | sort | uniq -u > plasmadesktop6.lang
 
 
 %check
-desktop-file-validate %{buildroot}/%{_datadir}/applications/kcm_{keyboard,access,clock,splashscreen,landingpage,keys,smserver,desktoppaths,gamecontroller,activities,recentFiles,componentchooser,kded,krunnersettings,plasmasearch,qtquicksettings,tablet,touchscreen,workspace,baloofile,solid_actions,mouse,touchpad}.desktop
-desktop-file-validate %{buildroot}/%{_datadir}/applications/kcmspellchecking.desktop
-desktop-file-validate %{buildroot}/%{_datadir}/applications/org.kde.knetattach.desktop
-desktop-file-validate %{buildroot}/%{_datadir}/applications/org.kde.plasma.emojier.desktop
-desktop-file-validate %{buildroot}/%{_datadir}/applications/kaccess.desktop
+desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 
 %files -f plasmadesktop6.lang
 %license LICENSES
@@ -287,11 +248,8 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/kaccess.desktop
 %{_kf6_datadir}/locale/sr@ijekavianlatin/LC_SCRIPTS/kfontinst/kfontinst.js
 %{_kf6_datadir}/locale/sr@latin/LC_SCRIPTS/kfontinst/kfontinst.js
 
-
-%if 0%{?scim}
 %files kimpanel-scim
 %{_libexecdir}/kimpanel-scim-panel
-%endif
 
 %files doc -f %{name}-doc.lang
 

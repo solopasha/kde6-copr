@@ -1,4 +1,3 @@
-# X11 session is not shipped anymore
 %bcond x11 1
 
 Name:    kwin
