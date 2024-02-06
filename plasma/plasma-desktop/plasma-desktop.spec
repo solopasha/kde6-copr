@@ -6,12 +6,14 @@
 Name:    plasma-desktop
 Summary: Plasma Desktop shell
 Version: 5.93.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
 
 %plasma_source
+Patch:   https://invent.kde.org/plasma/plasma-desktop/-/commit/97b19215209ea00ce066503545cb9a3ffdf7352c.patch
+Patch:   https://invent.kde.org/plasma/plasma-desktop/-/commit/5cf23f9445c6b5e83e40500ee7ab58422d587bc2.patch
 
 ## upstream patches
 

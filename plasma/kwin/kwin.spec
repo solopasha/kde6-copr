@@ -3,7 +3,7 @@
 
 Name:    kwin
 Version: 5.93.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: KDE Window manager
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -31,6 +31,10 @@ Patch:   https://invent.kde.org/plasma/kwin/-/commit/66df775a5336696c65ca250181e
 Patch:   https://invent.kde.org/plasma/kwin/-/commit/9e4d6f438908f9e24dd7faa8cd1293052cddd988.patch
 Patch:   https://invent.kde.org/plasma/kwin/-/commit/1a6d8d265c19fac99f645b23fa0817e99d179409.patch
 Patch:   https://invent.kde.org/plasma/kwin/-/commit/e658d5ee02cbe1de37d3525ebff73c41e0e7a076.patch
+Patch:   https://invent.kde.org/plasma/kwin/-/commit/e29f7656357c91baf0dbe5668b7894635b5575b6.patch
+Patch:   https://invent.kde.org/plasma/kwin/-/commit/f94e4d16dda294fd11b7d68503daccc33ab3ff9b.patch
+Patch:   https://invent.kde.org/plasma/kwin/-/commit/bb7d2152ba453aba7ae48958e661672e54bb2275.patch
+Patch:   https://invent.kde.org/plasma/kwin/-/commit/7927351bcb908bb7017769560ea89608c40edfa2.patch
 ## proposed patches
 
 # Base
