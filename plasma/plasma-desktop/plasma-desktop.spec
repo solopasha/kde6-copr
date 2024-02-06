@@ -147,11 +147,13 @@ Requires:       kwin
 Requires:       kmenuedit
 
 BuildRequires:  cmake(KF6Kirigami)
-Requires:       kf6-kirigami2%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
 BuildRequires:  cmake(KF6KirigamiAddons)
 Requires:       kf6-kirigami-addons%{?_isa}
 BuildRequires:  kf6-qqc2-desktop-style
 Requires:       kf6-qqc2-desktop-style%{?_isa}
+BuildRequires:  kpipewire
+Requires:       kpipewire%{?_isa}
 
 # for kimpanel-ibus-panel and kimpanel-ibus-panel-launcher
 Recommends: ibus
@@ -336,7 +338,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/kaccess.desktop
 * Thu Feb 09 2023 Marc Deop <marcdeop@fedoraproject.org> - 5.27.0-1
 - 5.27.0
 
-* Thu Jan 19 2023 Marc Deop <marcdeop@fedoraproject.org> - 5.26.90-1
+* Fri Jan 20 2023 Marc Deop <marcdeop@fedoraproject.org> - 5.26.90-1
 - 5.26.90
 
 * Fri Jan 20 2023 Fedora Release Engineering <releng@fedoraproject.org> - 5.26.5-2
