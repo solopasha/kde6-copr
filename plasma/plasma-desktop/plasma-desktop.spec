@@ -203,7 +203,7 @@ BuildArch: noarch
 
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p0
+%autosetup -p1
 
 
 %build
