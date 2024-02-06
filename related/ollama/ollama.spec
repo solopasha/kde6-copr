@@ -22,7 +22,7 @@ locally.}
 %global godocs          README.md
 
 Name:           ollama
-Release:        %autorelease
+Release:        %autorelease -b2
 Summary:        Get up and running with Llama 2 and other large language models locally
 # License for github.com/jmorganca/ollama: MIT
 # License for github.com/bytedance/sonic: Apache-2.0
@@ -77,6 +77,7 @@ Source4:        ollama-sysusers.conf
 Source5:        ollama.service
 Source6:        ollama-tmpfiles.conf
 Patch:          no-git.patch
+Patch:          flags.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++

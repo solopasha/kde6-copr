@@ -1,0 +1,24 @@
+diff --git a/llm/generate/gen_common.sh b/llm/generate/gen_common.sh
+index 7beb750..1528ed7 100644
+--- a/llm/generate/gen_common.sh
++++ b/llm/generate/gen_common.sh
+@@ -77,16 +77,16 @@ apply_patches() {
+ 
+ build() {
+     cmake -S ${LLAMACPP_DIR} -B ${BUILD_DIR} ${CMAKE_DEFS}
+-    cmake --build ${BUILD_DIR} ${CMAKE_TARGETS} -j8
++    cmake --build ${BUILD_DIR} ${CMAKE_TARGETS} -j${RPM_BUILD_NCPUS} --verbose
+     mkdir -p ${BUILD_DIR}/lib/
+-    g++ -fPIC -g -shared -o ${BUILD_DIR}/lib/libext_server.${LIB_EXT} \
++    g++ -fPIC ${CXXFLAGS} ${LDFLAGS} -shared -o ${BUILD_DIR}/lib/libext_server.${LIB_EXT} \
+         ${GCC_ARCH} \
+         ${WHOLE_ARCHIVE} ${BUILD_DIR}/examples/server/libext_server.a ${NO_WHOLE_ARCHIVE} \
+         ${BUILD_DIR}/common/libcommon.a \
+         ${BUILD_DIR}/libllama.a \
+-        -Wl,-rpath,\$ORIGIN \
+         -lpthread -ldl -lm \
+         ${EXTRA_LIBS}
++    strip --strip-all ${BUILD_DIR}/lib/libext_server.${LIB_EXT}
+ }
+ 
+ compress_libs() {
