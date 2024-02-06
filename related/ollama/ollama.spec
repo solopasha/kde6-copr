@@ -22,7 +22,7 @@ locally.}
 %global godocs          README.md
 
 Name:           ollama
-Release:        %autorelease -b2
+Release:        %autorelease -b3
 Summary:        Get up and running with Llama 2 and other large language models locally
 # License for github.com/jmorganca/ollama: MIT
 # License for github.com/bytedance/sonic: Apache-2.0
@@ -100,7 +100,8 @@ export CGO_CFLAGS="$CFLAGS"
 export CGO_CPPFLAGS="$CPPFLAGS"
 export CGO_CXXFLAGS="$CXXFLAGS"
 export CGO_LDFLAGS="$LDFLAGS"
-export LDFLAGS="-X=github.com/jmorganca/ollama/version.Version=%{version}"
+export LDFLAGS="-X=github.com/jmorganca/ollama/version.Version=%{version} \
+                -X=github.com/jmorganca/ollama/server.mode=release"
 %gobuild -o %{gobuilddir}/bin/ollama %{goipath}
 
 %install
