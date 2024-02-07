@@ -280,7 +280,7 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 %{_kf6_datadir}/qlogging-categories6/org_kde_kwin.categories
 %{_kf6_libdir}/libkcmkwincommon.so.%{version}
 %{_kf6_libdir}/libkcmkwincommon.so.6
-%{_kf6_libdir}/libkwin.so.%{verision}
+%{_kf6_libdir}/libkwin.so.%{version}
 %{_kf6_libdir}/libkwin.so.6
 
 %files devel
