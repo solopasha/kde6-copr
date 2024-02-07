@@ -1,11 +1,11 @@
 Name:    kpipewire
 Summary: Set of convenient classes to use PipeWire in Qt projects
-Version: 5.93.0
+Version: 5.93.2
 Release: 1%{?dist}
 
-License: LGPL-2.0-or-later
+License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only
 URL:     https://invent.kde.org/plasma/%{name}
-%plasma_source
+%plasma_source -v 5.93.0
 
 # Compile Tools
 BuildRequires:  cmake
@@ -84,20 +84,21 @@ developing applications that use %{name}.
 
 %files -f %{name}.lang
 %license LICENSES/*
-%{_libdir}/libKPipeWire.so.*
-%{_libdir}/libKPipeWireRecord.so.*
-%{_libdir}/libKPipeWireDmaBuf.so.*
-%{_qt6_qmldir}/org/kde/pipewire/*
 %{_kf6_datadir}/qlogging-categories6/*.categories
+%{_kf6_libdir}/libKPipeWire.so.%{version}
+%{_kf6_libdir}/libKPipeWire.so.6
+%{_kf6_libdir}/libKPipeWireDmaBuf.so.%{version}
+%{_kf6_libdir}/libKPipeWireDmaBuf.so.6
+%{_kf6_libdir}/libKPipeWireRecord.so.%{version}
+%{_kf6_libdir}/libKPipeWireRecord.so.6
+%{_qt6_qmldir}/org/kde/pipewire/
 
 %files devel
-%{_libdir}/libKPipeWire.so
-%{_libdir}/libKPipeWireRecord.so
-%{_libdir}/libKPipeWireDmaBuf.so
-%dir %{_includedir}/KPipeWire
-%{_includedir}/KPipeWire/*
-%dir %{_libdir}/cmake/KPipeWire
-%{_libdir}/cmake/KPipeWire/*.cmake
+%{_includedir}/KPipeWire/
+%{_kf6_libdir}/cmake/KPipeWire/
+%{_kf6_libdir}/libKPipeWire.so
+%{_kf6_libdir}/libKPipeWireDmaBuf.so
+%{_kf6_libdir}/libKPipeWireRecord.so
 
 %changelog
 * Fri Nov 10 2023 Alessandro Astone <ales.astone@gmail.com> - 5.27.80-1
