@@ -2,7 +2,7 @@ Name:    kf6
 # This version MUST remain in sync with KF6 versions!
 # XXX: Yes, it's 5.x still, this is synced with the version set in extra-cmake-modules
 Version: 5.249.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Filesystem and RPM macros for KDE Frameworks 6
 License: BSD-3-Clause
 URL:     http://www.kde.org

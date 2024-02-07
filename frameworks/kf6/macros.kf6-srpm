@@ -18,7 +18,8 @@
     fi
     )
 
-%frameworks_meta %{lua:
+%frameworks_meta(v:) %{lua:
+    macros.basever = (rpm.expand("%{-v}") ~= "") and rpm.expand("%{-v*}") or macros.majmin_ver_kf6
     macros._kf6_build_qch = "1"
     if macros.bumpver or macros.gitdate then
         local fedora = require "fedora.common"
@@ -26,8 +27,8 @@
         print(rpm.expand("Source0: https://invent.kde.org/frameworks/%{framework}/-/archive/%{commit}/%{framework}-%{shortcommit}.tar.gz\\n"))
         macros.sourcerootdir = rpm.expand("%{framework}-%{commit}")
     else
-        print(rpm.expand("Source0: https://download.kde.org/%{stable_kf6}/frameworks/%{majmin_ver_kf6}/%{framework}-%{version}.tar.xz\\n" ..
-                         "Source1: https://download.kde.org/%{stable_kf6}/frameworks/%{majmin_ver_kf6}/%{framework}-%{version}.tar.xz.sig\\n" ..
+        print(rpm.expand("Source0: https://download.kde.org/%{stable_kf6}/frameworks/%{basever}/%{framework}-%{version}.tar.xz\\n" ..
+                         "Source1: https://download.kde.org/%{stable_kf6}/frameworks/%{basever}/%{framework}-%{version}.tar.xz.sig\\n" ..
                          "Source2: kde-frameworks-signing-keys.pgp\\n"))
         macros.sourcerootdir = rpm.expand("%{framework}-%{version}")
     end
@@ -38,7 +39,8 @@
 
 }
 
-%plasma_source %{lua:
+%plasma_source(v:) %{lua:
+    macros.basever = (rpm.expand("%{-v}") ~= "") and rpm.expand("%{-v*}") or macros.version
     local pkgname = macros.base_name or macros.name
     if macros.bumpver or macros.gitdate then
         local fedora = require "fedora.common"
@@ -46,14 +48,15 @@
         print(rpm.expand("Source0: https://invent.kde.org/plasma/"..pkgname.."/-/archive/%{commit}/"..pkgname.."-%{shortcommit}.tar.gz\\n"))
         macros.sourcerootdir = rpm.expand(pkgname.."-%{commit}")
     else
-        print(rpm.expand("Source0: https://download.kde.org/%{stable_kf6}/plasma/%{version}/"..pkgname.."-%{version}.tar.xz\\n" ..
-                         "Source1: https://download.kde.org/%{stable_kf6}/plasma/%{version}/"..pkgname.."-%{version}.tar.xz.sig\\n" ..
+        print(rpm.expand("Source0: https://download.kde.org/%{stable_kf6}/plasma/%{basever}/"..pkgname.."-%{version}.tar.xz\\n" ..
+                         "Source1: https://download.kde.org/%{stable_kf6}/plasma/%{basever}/"..pkgname.."-%{version}.tar.xz.sig\\n" ..
                          "Source2: kde-frameworks-signing-keys.pgp\\n"))
         macros.sourcerootdir = rpm.expand(pkgname.."-%{version}")
     end
 }
 
-%apps_source %{lua:
+%apps_source(v:) %{lua:
+    macros.basever = = (rpm.expand("%{-v}") ~= "") and rpm.expand("%{-v*}") or macros.version
     local pkgname = macros.base_name or macros.name
     if macros.bumpver or macros.gitdate then
         local fedora = require "fedora.common"
@@ -61,8 +64,8 @@
         print(rpm.expand("Source0: https://github.com/KDE/"..pkgname.."/archive/%{commit}/"..pkgname.."-%{shortcommit}.tar.gz\\n"))
         macros.sourcerootdir = rpm.expand(pkgname.."-%{commit}")
     else
-        print(rpm.expand("Source0: https://download.kde.org/%{stable_kf6}/release-service/%{version}/src/"..pkgname.."-%{version}.tar.xz\\n" ..
-                         "Source1: https://download.kde.org/%{stable_kf6}/release-service/%{version}/src/"..pkgname.."-%{version}.tar.xz.sig\\n" ..
+        print(rpm.expand("Source0: https://download.kde.org/%{stable_kf6}/release-service/%{basever}/src/"..pkgname.."-%{version}.tar.xz\\n" ..
+                         "Source1: https://download.kde.org/%{stable_kf6}/release-service/%{basever}/src/"..pkgname.."-%{version}.tar.xz.sig\\n" ..
                          "Source2: kde-gear-signing-keys.pgp\\n"))
         macros.sourcerootdir = rpm.expand(pkgname.."-%{version}")
     end
