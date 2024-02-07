@@ -4,7 +4,9 @@ Release:        1%{?dist}
 License:        LGPLv2+
 Summary:        Library to facilitate retrieval of weather information
 URL:            https://invent.kde.org/libraries/kweathercore
-Source:         https://download.kde.org/stable/kweathercore/%{version}/%{name}-%{version}.tar.xz
+Source0:        https://download.kde.org/stable/kweathercore/%{version}/%{name}-%{version}.tar.xz
+Source1:        https://download.kde.org/stable/kweathercore/%{version}/%{name}-%{version}.tar.xz.sig
+Source2:        kde-frameworks-signing-keys.pgp
 
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
@@ -30,6 +32,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %prep
+%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -p1
 
 
@@ -45,7 +48,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %files -f %{name}6.lang
 %license LICENSES/*.txt
-%{_kf6_libdir}/libKWeatherCore.so.0.*
+%{_kf6_libdir}/libKWeatherCore.so.%{version}
 %{_kf6_libdir}/libKWeatherCore.so.6
 
 %files devel
