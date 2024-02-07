@@ -7,7 +7,6 @@ Release: 1%{?dist}
 
 License: GPL-2.0-or-later AND CC0-1.0
 URL:     https://invent.kde.org/plasma/%{base_name}
-
 %plasma_source
 
 

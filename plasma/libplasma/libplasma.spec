@@ -6,7 +6,6 @@ Summary: Plasma is the foundation of the KDE user interface (v6)
 # LicenseRef-QtCommercial is also in the licenses, but is being omitted as it is optional.
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only) AND Qt-LGPL-exception-1.1
 URL:     https://invent.kde.org/plasma/plasma-framework
-
 %plasma_source
 
 BuildRequires:  extra-cmake-modules
@@ -107,8 +106,10 @@ mkdir -p %{buildroot}%{_kf6_qmldir}/org/kde/private
 %license LICENSES/*.txt
 %{_kf6_datadir}/plasma/
 %{_kf6_datadir}/qlogging-categories6/*plasma*
-%{_kf6_libdir}/libPlasma.so.*
-%{_kf6_libdir}/libPlasmaQuick.so.*
+%{_kf6_libdir}/libPlasma.so.%{version}
+%{_kf6_libdir}/libPlasma.so.6
+%{_kf6_libdir}/libPlasmaQuick.so.%{version}
+%{_kf6_libdir}/libPlasmaQuick.so.6
 %{_kf6_plugindir}/kirigami/
 %{_kf6_plugindir}/packagestructure
 %{_kf6_qmldir}/org/kde/plasma/

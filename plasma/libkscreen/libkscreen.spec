@@ -5,7 +5,6 @@ Release: 1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/%{name}
-
 %plasma_source
 
 # KDE Frameworks
@@ -62,23 +61,25 @@ developing applications that use %{name}.
 
 %files -f libkscreen6_qt.lang
 %license LICENSES/*
-%{_datadir}/dbus-1/services/org.kde.kscreen.service
-%{_datadir}/qlogging-categories6/libkscreen.categories
-%{_datadir}/zsh/site-functions/_kscreen-doctor
 %{_kf6_bindir}/kscreen-doctor
+%{_kf6_datadir}/dbus-1/services/org.kde.kscreen.service
+%{_kf6_datadir}/qlogging-categories6/libkscreen.categories
+%{_kf6_datadir}/zsh/site-functions/_kscreen-doctor
+%{_kf6_libdir}/libKF6Screen.so.%{version}
+%{_kf6_libdir}/libKF6Screen.so.8
+%{_kf6_libdir}/libKF6ScreenDpms.so.%{version}
+%{_kf6_libdir}/libKF6ScreenDpms.so.8
 %{_kf6_libexecdir}/kscreen_backend_launcher
-%{_kf6_libdir}/libKF6Screen.so.*
-%{_kf6_libdir}/libKF6ScreenDpms.so.*
 %{_kf6_plugindir}/kscreen/
 %{_userunitdir}/plasma-kscreen.service
 
 %files devel
-%{_kf6_includedir}/KScreen/
 %{_kf6_includedir}/kscreen_version.h
+%{_kf6_includedir}/KScreen/
 %{_kf6_libdir}/cmake/KF6Screen/
 %{_kf6_libdir}/libKF6Screen.so
 %{_kf6_libdir}/libKF6ScreenDpms.so
-%{_libdir}/pkgconfig/KF6Screen.pc
+%{_kf6_libdir}/pkgconfig/KF6Screen.pc
 
 %changelog
 * Sat Nov 11 2023 Alessandro Astone <ales.astone@gmail.com> - 5.27.80-1

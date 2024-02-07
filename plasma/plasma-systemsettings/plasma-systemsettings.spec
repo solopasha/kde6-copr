@@ -7,7 +7,6 @@ Release: 1%{?dist}
 
 License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-or-later AND (GPL-2.0-only OR GPL-3.0-only)
 URL:     https://invent.kde.org/plasma/%{base_name}
-
 %plasma_source
 
 BuildRequires: desktop-file-utils
@@ -40,17 +39,8 @@ BuildRequires: cmake(Qt6Widgets)
 
 BuildRequires: cmake(KF6Kirigami)
 BuildRequires: plasma-workspace-devel
-Requires:      kf6-kirigami2%{?_isa}
 
-# https://bugzilla.redhat.com/show_bug.cgi?id=1268493
-# doc/HTML/en/systemsettings conflicts
-Conflicts: kde-workspace < 5.0
-
-# /usr/share/kservices5/settings-system-administration.desktop file conflict
-Conflicts: kcm_systemd < 1.2.1-15
-
-Provides:  plasma-systemsettings-devel = %{version}-%{release}
-Obsoletes: plasma-systemsettings-devel < 5.20.90
+Requires:      kf6-kirigami%{?_isa}
 
 %description
 %{summary}.
@@ -73,22 +63,21 @@ Obsoletes: plasma-systemsettings-devel < 5.20.90
 
 
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/kdesystemsettings.desktop
-desktop-file-validate %{buildroot}%{_datadir}/applications/systemsettings.desktop
+desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %files -f systemsettings6.lang
 %license LICENSES/*
-%{_bindir}/systemsettings
-%{_datadir}/systemsettings/
-%{_datadir}/applications/kdesystemsettings.desktop
-%{_datadir}/applications/systemsettings.desktop
-%{_datadir}/metainfo/org.kde.systemsettings.metainfo.xml
-%{_datadir}/zsh/site-functions/_systemsettings
+%{_kf6_bindir}/systemsettings
+%{_kf6_datadir}/applications/kdesystemsettings.desktop
+%{_kf6_datadir}/applications/systemsettings.desktop
 %{_kf6_datadir}/kglobalaccel/systemsettings.desktop
+%{_kf6_datadir}/metainfo/org.kde.systemsettings.metainfo.xml
 %{_kf6_datadir}/qlogging-categories6/systemsettings.categories
+%{_kf6_datadir}/systemsettings/
+%{_kf6_datadir}/zsh/site-functions/_systemsettings
+%{_kf6_libdir}/libsystemsettingsview.so.3
 %{_kf6_plugindir}/krunner/krunner_systemsettings.so
-%{_kf6_libdir}/libsystemsettingsview.so.*
 
 
 %changelog

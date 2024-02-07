@@ -7,7 +7,6 @@ Summary: KDE Window manager
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://userbase.kde.org/KWin
-
 %plasma_source
 
 ## upstream patches
@@ -238,33 +237,33 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 %{_bindir}/kwin
 
 %files common -f kwin6.lang
-%{_datadir}/kwin
-%{_kf6_qtplugindir}/plasma/kcms/systemsettings/*.so
-%{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/*.so
-%{_kf6_qtplugindir}/kwin/
-%{_kf6_qtplugindir}/kf6/packagestructure/kwin_*.so
-%{_qt6_plugindir}/org.kde.kdecoration2.kcm/kcm_auroraedecoration.so
-%{_kf6_qtplugindir}/org.kde.kdecoration2/*.so
-%{_qt6_qmldir}/org/kde/kwin
-%{_kf6_libdir}/kconf_update_bin/kwin5_update_default_rules
-%{_kf6_libdir}/kconf_update_bin/kwin-6.0-delete-desktop-switching-shortcuts
-%{_libexecdir}/kwin_killer_helper
-%{_libexecdir}/kwin-applywindowdecoration
-%{_datadir}/kconf_update/kwin.upd
-%{_datadir}/kconf_update/kwin-6.0-overview-activities-shortcuts.py
-%{_kf6_datadir}/knotifications6/kwin.notifyrc
+%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/config.kcfg/kwin.kcfg
 %{_kf6_datadir}/config.kcfg/kwindecorationsettings.kcfg
-%{_kf6_datadir}/config.kcfg/virtualdesktopssettings.kcfg
 %{_kf6_datadir}/config.kcfg/nightcolorsettings.kcfg
-%{_datadir}/icons/hicolor/*/apps/kwin.*
-%{_datadir}/knsrcfiles/*.knsrc
-%{_datadir}/krunner/dbusplugins/kwin-runner-windows.desktop
-%{_datadir}/applications/*.desktop
+%{_kf6_datadir}/config.kcfg/virtualdesktopssettings.kcfg
+%{_kf6_datadir}/icons/hicolor/*/apps/kwin.*
+%{_kf6_datadir}/kconf_update/kwin-6.0-overview-activities-shortcuts.py
+%{_kf6_datadir}/kconf_update/kwin.upd
+%{_kf6_datadir}/knotifications6/kwin.notifyrc
+%{_kf6_datadir}/knsrcfiles/*.knsrc
+%{_kf6_datadir}/krunner/dbusplugins/kwin-runner-windows.desktop
+%{_kf6_datadir}/kwin/
+%{_kf6_libdir}/kconf_update_bin/kwin-6.0-delete-desktop-switching-shortcuts
+%{_kf6_libdir}/kconf_update_bin/kwin5_update_default_rules
+%{_kf6_qtplugindir}/kf6/packagestructure/kwin_*.so
+%{_kf6_qtplugindir}/kwin/
+%{_kf6_qtplugindir}/org.kde.kdecoration2/*.so
+%{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/*.so
+%{_kf6_qtplugindir}/plasma/kcms/systemsettings/*.so
+%{_libexecdir}/kwin_killer_helper
+%{_libexecdir}/kwin-applywindowdecoration
+%{_qt6_plugindir}/org.kde.kdecoration2.kcm/kcm_auroraedecoration.so
+%{_qt6_qmldir}/org/kde/kwin/
 
 %files wayland
-%{_bindir}/kwin_wayland_wrapper
 %{_kf6_bindir}/kwin_wayland
+%{_kf6_bindir}/kwin_wayland_wrapper
 %{_userunitdir}/plasma-kwin_wayland.service
 
 %if %{with x11}
@@ -275,15 +274,17 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 
 %files libs
 %{_kf6_datadir}/qlogging-categories6/org_kde_kwin.categories
-%{_libdir}/libkwin.so.*
-%{_libdir}/libkcmkwincommon.so.*
+%{_kf6_libdir}/libkcmkwincommon.so.%{version}
+%{_kf6_libdir}/libkcmkwincommon.so.6
+%{_kf6_libdir}/libkwin.so.%{verision}
+%{_kf6_libdir}/libkwin.so.6
 
 %files devel
-%{_datadir}/dbus-1/interfaces/*.xml
-%{_libdir}/cmake/KWinDBusInterface
-%{_includedir}/kwin
-%{_libdir}/cmake/KWin
-%{_libdir}/libkwin.so
+%{_includedir}/kwin/
+%{_kf6_datadir}/dbus-1/interfaces/*.xml
+%{_kf6_libdir}/cmake/KWin
+%{_kf6_libdir}/cmake/KWinDBusInterface
+%{_kf6_libdir}/libkwin.so
 
 %files doc -f %{name}-doc.lang
 %license LICENSES/*.txt

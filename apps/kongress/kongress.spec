@@ -3,7 +3,7 @@ Version:        24.01.95
 Release:        1%{?dist}
 License:        GPL-3.0-or-later AND BSD-2-Clause AND CC0-1.0
 Summary:        A companion application for conferences made by KDE
-Url:            https://apps.kde.org/kongress/
+URL:            https://apps.kde.org/kongress/
 %apps_source
 
 BuildRequires:  desktop-file-utils

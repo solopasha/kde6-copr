@@ -5,7 +5,6 @@ Summary: Manages the power consumption settings of a Plasma Shell
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
 URL:     https://invent.kde.org/plasma/%{name}
-
 %plasma_source
 
 # Plasma Dependencies
@@ -87,30 +86,32 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevil{configcommonprivate,core,ui}.so
 
 %files -f powerdevil6.lang
 %license LICENSES/*
-%{_datadir}/dbus-1/system.d/org.kde.powerdevil.backlighthelper.conf
-%{_datadir}/dbus-1/system.d/org.kde.powerdevil.discretegpuhelper.conf
-%{_datadir}/dbus-1/system-services/org.kde.powerdevil.backlighthelper.service
-%{_datadir}/dbus-1/system-services/org.kde.powerdevil.discretegpuhelper.service
-%{_datadir}/dbus-1/system-services/org.kde.powerdevil.chargethresholdhelper.service
-%{_datadir}/dbus-1/services/org.kde.powerdevil.powerProfileOsdService.service
-%{_datadir}/dbus-1/system.d/org.kde.powerdevil.chargethresholdhelper.conf
-%{_datadir}/polkit-1/actions/org.kde.powerdevil.backlighthelper.policy
-%{_datadir}/polkit-1/actions/org.kde.powerdevil.discretegpuhelper.policy
-%{_datadir}/polkit-1/actions/org.kde.powerdevil.chargethresholdhelper.policy
-%{_datadir}/qlogging-categories6/powerdevil.categories
+%{_kf6_datadir}/applications/kcm_powerdevilprofilesconfig.desktop
+%{_kf6_datadir}/dbus-1/services/org.kde.powerdevil.powerProfileOsdService.service
+%{_kf6_datadir}/dbus-1/system-services/org.kde.powerdevil.backlighthelper.service
+%{_kf6_datadir}/dbus-1/system-services/org.kde.powerdevil.chargethresholdhelper.service
+%{_kf6_datadir}/dbus-1/system-services/org.kde.powerdevil.discretegpuhelper.service
+%{_kf6_datadir}/dbus-1/system.d/org.kde.powerdevil.backlighthelper.conf
+%{_kf6_datadir}/dbus-1/system.d/org.kde.powerdevil.chargethresholdhelper.conf
+%{_kf6_datadir}/dbus-1/system.d/org.kde.powerdevil.discretegpuhelper.conf
+%{_kf6_datadir}/knotifications6/powerdevil.notifyrc
+%{_kf6_datadir}/polkit-1/actions/org.kde.powerdevil.backlighthelper.policy
+%{_kf6_datadir}/polkit-1/actions/org.kde.powerdevil.chargethresholdhelper.policy
+%{_kf6_datadir}/polkit-1/actions/org.kde.powerdevil.discretegpuhelper.policy
+%{_kf6_datadir}/qlogging-categories6/powerdevil.categories
+%{_kf6_libdir}/libpowerdevilconfigcommonprivate.so.%{version}
+%{_kf6_libdir}/libpowerdevilconfigcommonprivate.so.6
+%{_kf6_libdir}/libpowerdevilcore.so.%{version}
+%{_kf6_libdir}/libpowerdevilcore.so.2
 %{_kf6_libexecdir}/kauth/backlighthelper
-%{_kf6_libexecdir}/kauth/discretegpuhelper
 %{_kf6_libexecdir}/kauth/chargethresholdhelper
-%{_sysconfdir}/xdg/autostart/powerdevil.desktop
+%{_kf6_libexecdir}/kauth/discretegpuhelper
+%{_kf6_plugindir}/powerdevil/
+%{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_powerdevilprofilesconfig.so
+%{_kf6_qtplugindir}/powerdevil/
 %{_libexecdir}/org_kde_powerdevil
 %{_libexecdir}/power_profile_osd_service
-%{_kf6_libdir}/libpowerdevilconfigcommonprivate.so.*
-%{_kf6_libdir}/libpowerdevilcore.so.*
-%{_kf6_plugindir}/powerdevil/
-%{_kf6_qtplugindir}/powerdevil/
-%{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_powerdevilprofilesconfig.so
-%{_kf6_datadir}/knotifications6/powerdevil.notifyrc
-%{_kf6_datadir}/applications/kcm_powerdevilprofilesconfig.desktop
+%{_sysconfdir}/xdg/autostart/powerdevil.desktop
 %{_userunitdir}/plasma-powerdevil.service
 %{_userunitdir}/plasma-powerprofile-osd.service
 

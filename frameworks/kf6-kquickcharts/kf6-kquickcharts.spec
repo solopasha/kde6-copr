@@ -7,7 +7,6 @@ Release:	1%{?dist}
 
 License:	BSD-2-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only AND MIT
 URL:		https://invent.kde.org/frameworks/%{framework}
-
 %frameworks_meta
 
 BuildRequires:	cmake

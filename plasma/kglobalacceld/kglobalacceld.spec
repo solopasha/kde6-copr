@@ -5,7 +5,6 @@ Release: 1%{?dist}
 
 License: CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
-
 %plasma_source
 
 BuildRequires:  extra-cmake-modules
@@ -60,15 +59,16 @@ Requires:       qt6-qtbase-devel
 
 %files
 %license LICENSES/*.txt
+%{_kf6_libdir}/libKGlobalAccelD.so.%{version}
+%{_kf6_libdir}/libKGlobalAccelD.so.0
+%{_libexecdir}/kglobalacceld
+%{_qt6_plugindir}/org.kde.kglobalacceld.platforms/KGlobalAccelDXcb.so
 %{_sysconfdir}/xdg/autostart/kglobalacceld.desktop
 %{_userunitdir}/plasma-kglobalaccel.service
-%{_libdir}/libKGlobalAccelD.so.*
-%{_qt6_plugindir}/org.kde.kglobalacceld.platforms/KGlobalAccelDXcb.so
-%{_libexecdir}/kglobalacceld
 
 %files devel
 %{_includedir}/KGlobalAccelD/
-%{_libdir}/cmake/KGlobalAccelD/
+%{_kf6_libdir}/cmake/KGlobalAccelD/
 
 %changelog
 * Fri Nov 10 2023 Alessandro Astone <ales.astone@gmail.com> - 5.27.80-1

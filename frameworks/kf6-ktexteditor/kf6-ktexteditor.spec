@@ -7,7 +7,6 @@ Summary: KDE Frameworks 6 Tier 3 with advanced embeddable text editor
 
 License: BSD-2-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND MIT
 URL:     https://invent.kde.org/frameworks/%{framework}
-
 %frameworks_meta
 
 BuildRequires:  cmake

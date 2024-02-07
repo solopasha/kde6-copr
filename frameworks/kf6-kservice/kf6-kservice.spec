@@ -8,7 +8,6 @@ Release: 1%{?dist}
 # The following licenses are in the LICENSES folder but go unused: GPL-2.0-only, GPL-2.0-or-later, GPL-3.0-only, LicenseRef-KDE-Accepted-GPL
 License: CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/frameworks/%{framework}
-
 %frameworks_meta
 
 BuildRequires:  cmake

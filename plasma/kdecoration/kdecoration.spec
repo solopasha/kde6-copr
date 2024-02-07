@@ -1,32 +1,29 @@
-Name:    kdecoration
-Summary: A plugin-based library to create window decorations
-Version: 5.93.0
-Release: 1%{?dist}
+Name:           kdecoration
+Summary:        A plugin-based library to create window decorations
+Version:        5.93.0
+Release:        1%{?dist}
 
-License: LGPLv2
-URL:     https://invent.kde.org/plasma/kdecoration
-
+License:        LGPLv2
+URL:            https://invent.kde.org/plasma/kdecoration
 %plasma_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  qt6-qtbase-devel
 
-# For AutoReq cmake-filesystem
-BuildRequires: cmake
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6CoreAddons)
-BuildRequires: make
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6I18n)
 
 Requires:       kf6-filesystem
 
 %description
 %{summary}.
 
-%package devel
-Summary:  Developer files for %{name}
-Requires: %{name}%{?_isa} = %{version}-%{release}
-%description devel
+%package        devel
+Summary:        Developer files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+%description    devel
 %{summary}.
 
 %prep
@@ -39,22 +36,25 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %install
 %cmake_install
+
+%find_lang %{name}
 # create/own plugin dir
 mkdir -p %{buildroot}%{_kf6_qtplugindir}/org.kde.kdecoration2/
 
-%files
+%files -f %{name}.lang
 %license LICENSES/*.txt
-%{_kf6_libdir}/libkdecorations2.so.*
-%{_kf6_libdir}/libkdecorations2private.so.*
-%{_datadir}/locale/*/LC_MESSAGES/kdecoration.mo
+%{_kf6_libdir}/libkdecorations2.so.%{version}
+%{_kf6_libdir}/libkdecorations2.so.6
+%{_kf6_libdir}/libkdecorations2private.so.%{version}
+%{_kf6_libdir}/libkdecorations2private.so.11
 %dir %{_kf6_qtplugindir}/org.kde.kdecoration2/
 
 %files devel
+%{_includedir}/KDecoration2/
+%{_kf6_includedir}/kdecoration2_version.h
+%{_kf6_libdir}/cmake/KDecoration2/
 %{_kf6_libdir}/libkdecorations2.so
 %{_kf6_libdir}/libkdecorations2private.so
-%{_kf6_libdir}/cmake/KDecoration2/
-%{_kf6_includedir}/kdecoration2_version.h
-%{_includedir}/KDecoration2
 
 %changelog
 * Sat Nov 11 2023 Steve Cossette <farchord@gmail.com> - 5.27.80-1

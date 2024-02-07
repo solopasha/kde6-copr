@@ -6,7 +6,6 @@ Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with additional image plugins for QtGui
 License:        LGPLv2+
 URL:            https://invent.kde.org/frameworks/%{framework}
-
 %frameworks_meta
 
 BuildRequires:  extra-cmake-modules >= %{version}

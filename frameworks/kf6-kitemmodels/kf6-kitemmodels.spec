@@ -7,7 +7,6 @@ Summary:	KDE Frameworks 6 Tier 1 addon with item models
 
 License:	CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only
 URL:		https://invent.kde.org/frameworks/%{framework}
-
 %frameworks_meta
 
 BuildRequires:	gcc-c++

@@ -6,7 +6,6 @@ Release:	1%{?dist}
 Summary:	Separates the structure of documents from their data
 License:	CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later
 URL:		https://invent.kde.org/frameworks/%{framework}
-
 %frameworks_meta
 
 BuildRequires:	cmake

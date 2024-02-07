@@ -5,7 +5,6 @@ Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-3.0-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
-
 %plasma_source
 
 BuildRequires:  gcc-c++

@@ -11,7 +11,6 @@ Release: 1%{?dist}
 # http://techbase.kde.org/Policies/Licensing_Policy
 License: LGPL-3.0-or-later
 URL:     https://api.kde.org/frameworks-api/frameworks-apidocs/frameworks/breeze-icons/html/
-
 %frameworks_meta
 
 ## upstream patches

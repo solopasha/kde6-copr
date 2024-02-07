@@ -5,7 +5,6 @@ Summary: A ssh-add helper that uses kwallet and kpassworddialog
 
 License: GPLv2
 URL:     https://invent.kde.org/plasma/ksshaskpass
-
 %plasma_source
 
 BuildRequires:  extra-cmake-modules

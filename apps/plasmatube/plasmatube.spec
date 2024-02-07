@@ -3,7 +3,7 @@ Version:        24.01.95
 Release:        1%{?dist}
 License:        GPL-3.0-or-later AND GPL-2.0-or-later AND CC0-1.0 AND CC-BY-SA-4.0
 Summary:        YouTube video player based on QtMultimedia and youtube-dl
-Url:            https://apps.kde.org/plasmatube/
+URL:            https://apps.kde.org/plasmatube/
 %apps_source
 
 BuildRequires:  desktop-file-utils

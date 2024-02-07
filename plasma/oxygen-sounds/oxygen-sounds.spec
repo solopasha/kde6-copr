@@ -5,7 +5,6 @@ Summary:        The Oxygen Sound Theme
 
 License:        LGPL-3.0-or-later AND CC0-1.0 AND CC-BY-3.0 AND BSD-2-Clause
 URL:            https://invent.kde.org/plasma/oxygen-sounds
-
 %plasma_source
 
 Provides:       oxygen-sound-theme = %{version}-%{release}

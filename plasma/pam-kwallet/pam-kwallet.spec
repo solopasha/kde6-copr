@@ -7,7 +7,6 @@ Version: 5.93.0
 Release: 1%{?dist}
 License: LGPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/%{base_name}.git
-
 %plasma_source
 
 ## upstream patches

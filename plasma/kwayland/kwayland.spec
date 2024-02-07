@@ -5,7 +5,6 @@ Summary:    KDE Frameworks 6 library that wraps Client and Server Wayland librar
 
 License:    BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND MIT-CMU AND MIT
 URL:        https://invent.kde.org/plasma/%{name}
-
 %plasma_source
 
 BuildRequires:  cmake

@@ -5,7 +5,6 @@ Release: 1%{?dist}
 
 License: CC0-1.0, GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
-
 %plasma_source
 
 BuildRequires:  boost-devel
@@ -29,15 +28,15 @@ Provides:       kactivities-stats = %{version}-%{release}
 %description
 %{summary}.
 
-%package devel
-Summary:  Developer files for %{name}
-Requires: %{name}%{?_isa} = %{version}-%{release}
-Requires: qt6-qtbase-devel
+%package        devel
+Summary:        Developer files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       qt6-qtbase-devel
 Obsoletes:      kf6-kactivities-stats-devel < 1:%{version}-%{release}
 Provides:       kf6-kactivities-stats-devel = 1:%{version}-%{release}
 Obsoletes:      kactivities-stats-devel < %{version}-%{release}
 Provides:       kactivities-stats-devel = %{version}-%{release}
-%description devel
+%description    devel
 %{summary}.
 
 
@@ -58,7 +57,8 @@ Provides:       kactivities-stats-devel = %{version}-%{release}
 %doc MAINTAINER README.developers TODO
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{name}.*
-%{_kf6_libdir}/libPlasmaActivitiesStats.so.*
+%{_kf6_libdir}/libPlasmaActivitiesStats.so.%{version}
+%{_kf6_libdir}/libPlasmaActivitiesStats.so.1
 
 %files devel
 %{_includedir}/PlasmaActivitiesStats/

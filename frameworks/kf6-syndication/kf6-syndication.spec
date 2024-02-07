@@ -8,7 +8,6 @@ Summary: The Syndication Library
 # Qt-Commercial-exception-1.0 is also found in the LICENSES folder, but is unused except for tests which we don't use anyway
 License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/frameworks/%{framework}
-
 %frameworks_meta
 
 BuildRequires:  cmake

@@ -8,7 +8,6 @@ Summary: The KContacts Library
 # The following licenses are present in LICENSES but go unused: BSD-3-Clause, MIT, Unicode-DFS-2016
 License: CC0-1.0 AND LGPL-2.0-or-later
 URL:     https://projects.kde.org/%{framework}
-
 %frameworks_meta
 
 BuildRequires:  cmake

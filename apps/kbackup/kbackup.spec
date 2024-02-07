@@ -4,7 +4,7 @@ Release:        1%{?dist}
 Summary:        Back up your data in a simple, user friendly way
 
 License:        GPL-2.0-or-later
-Url:            https://github.com/KDE/kbackup
+URL:            https://github.com/KDE/kbackup
 %apps_source
 
 BuildRequires:  desktop-file-utils

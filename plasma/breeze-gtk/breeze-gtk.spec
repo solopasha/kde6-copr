@@ -5,7 +5,6 @@ Summary: Breeze widget theme for GTK
 
 License: BSD-3-Clause AND CC0-1.0
 URL:     https://invent.kde.org/plasma/%{name}
-
 %plasma_source
 
 BuildArch:      noarch

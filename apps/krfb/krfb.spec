@@ -5,7 +5,6 @@ Release: 1%{?dist}
 
 License: GPL-2.0-only AND LGPL-2.1-only AND GFDL-1.2-no-invariants-only
 URL:     https://www.kde.org/applications/network/krfb/
-
 %apps_source
 
 BuildRequires: desktop-file-utils

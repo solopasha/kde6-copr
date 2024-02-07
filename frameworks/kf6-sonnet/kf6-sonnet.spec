@@ -6,7 +6,6 @@ Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 solution for spell checking
 License:	BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later
 URL:		https://invent.kde.org/frameworks/%{framework}
-
 %frameworks_meta
 
 BuildRequires:	appstream

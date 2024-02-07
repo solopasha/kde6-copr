@@ -5,7 +5,6 @@ Release: 1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/bluedevil
-
 %plasma_source
 
 BuildRequires:  extra-cmake-modules

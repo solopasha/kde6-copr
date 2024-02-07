@@ -6,7 +6,6 @@ Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 library to load and install packages as plugins
 License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:            https://invent.kde.org/frameworks/%{framework}
-
 %frameworks_meta
 
 BuildRequires:  cmake

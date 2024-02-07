@@ -11,7 +11,7 @@ URL: https://kde.org/applications/system/org.kde.yakuake
 ## upstream fixes
 
 # konsolepart
-Requires:       konsole6-part
+Requires:       konsole-part
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules

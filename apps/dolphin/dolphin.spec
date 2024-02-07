@@ -54,9 +54,9 @@ BuildRequires:  cmake(Phonon4Qt6)
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
-Recommends:     konsole6-part%{?_isa}
+Recommends:     konsole-part%{?_isa}
 Recommends:     kio-fuse%{?_isa}
-Recommends:     kio-extras-kf6%{?_isa}
+Recommends:     kio-extras%{?_isa}
 Recommends:     %{name}-plugins
 
 %description

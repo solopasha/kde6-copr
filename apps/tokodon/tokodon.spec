@@ -3,7 +3,7 @@ Version:        24.01.95
 Release:        1%{?dist}
 License:        GPL-2.0-only OR GPL-3.0-only AND CC0-1.0 AND LGPL-2.1-or-later
 Summary:        Kirigami-based mastodon client
-Url:            https://invent.kde.org/network/tokodon
+URL:            https://invent.kde.org/network/tokodon
 %apps_source
 
 BuildRequires:  cmake

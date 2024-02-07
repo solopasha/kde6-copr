@@ -5,7 +5,6 @@ Summary: Provides integration plugins for various KDE Frameworks for Wayland
 
 License: CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only AND LGPL-3.0-only)
 URL:     https://invent.kde.org/plasma/%{name}
-
 %plasma_source
 
 BuildRequires:  qt5-qtbase-devel

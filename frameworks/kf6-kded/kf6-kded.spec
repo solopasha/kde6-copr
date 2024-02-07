@@ -7,7 +7,6 @@ Summary: KDE Frameworks 6 Tier 3 addon with extensible daemon for system-level s
 
 License: CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/frameworks/%{framework}
-
 %frameworks_meta
 
 BuildRequires:  cmake

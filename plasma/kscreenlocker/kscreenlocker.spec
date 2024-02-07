@@ -1,19 +1,14 @@
-Name:    kscreenlocker
-Version: 5.93.0
-Release: 1%{?dist}
-Summary: Library and components for secure lock screen architecture
+Name:           kscreenlocker
+Version:        5.93.0
+Release:        1%{?dist}
+Summary:        Library and components for secure lock screen architecture
 
-License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
-URL:     https://invent.kde.org/plasma/%{name}
+License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
+URL:            https://invent.kde.org/plasma/%{name}
 
 %plasma_source
 
-# help upgrades, split from plasma-workspace since 5.5
-Conflicts: plasma-workspace < 5.5
-
-## upstream patches
-
-BuildRequires: cmake(LayerShellQt)
+BuildRequires:  cmake(LayerShellQt)
 
 BuildRequires:  perl-generators
 BuildRequires:  qt6-qtbase-devel
@@ -74,21 +69,22 @@ developing applications that use %{name}.
 
 %files -f %{name}.lang
 %license COPYING
-%{_kf6_libdir}/libKScreenLocker.so.*
+%{_kf6_datadir}/applications/kcm_screenlocker.desktop
 %{_kf6_datadir}/knotifications6/*.notifyrc
-%{_libexecdir}/kscreenlocker_greet
 %dir %{_kf6_datadir}/ksmserver/
 %{_kf6_datadir}/ksmserver/screenlocker/
-%{_kf6_datadir}/applications/kcm_screenlocker.desktop
-%{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_screenlocker.so
 %{_kf6_datadir}/qlogging-categories6/kscreenlocker.categories
+%{_kf6_libdir}/libKScreenLocker.so.%{version}
+%{_kf6_libdir}/libKScreenLocker.so.6
+%{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_screenlocker.so
+%{_libexecdir}/kscreenlocker_greet
 
 %files devel
-%{_kf6_libdir}/libKScreenLocker.so
-%{_kf6_libdir}/cmake/ScreenSaverDBusInterface/
-%{_kf6_libdir}/cmake/KScreenLocker/
 %{_includedir}/KScreenLocker/
-%{_datadir}/dbus-1/interfaces/*.xml
+%{_kf6_datadir}/dbus-1/interfaces/*.xml
+%{_kf6_libdir}/cmake/KScreenLocker/
+%{_kf6_libdir}/cmake/ScreenSaverDBusInterface/
+%{_kf6_libdir}/libKScreenLocker.so
 
 
 %changelog

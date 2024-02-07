@@ -5,7 +5,6 @@ Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
-
 %plasma_source
 
 %ifarch %{qt6_qtwebengine_arches}
@@ -89,34 +88,32 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 
 %files -f kdeplasmaaddons5_qt.lang
 %license LICENSES/*.txt
-%{_kf6_datadir}/kwin/effects/cube/metadata.json
-%{_kf6_datadir}/kwin/effects/cube/contents/config/main.xml
-%{_kf6_datadir}/kwin/effects/cube/contents/ui/*
-%{_kf6_datadir}/plasma/plasmoids/*
-%{_kf6_datadir}/plasma/desktoptheme/default/widgets/*
+%{_kf6_datadir}/icons/hicolor/*/apps/fifteenpuzzle.*
+%{_kf6_datadir}/icons/hicolor/scalable/apps/accessories-dictionary.svgz
+%{_kf6_datadir}/knotifications6/plasma_applet_timer.notifyrc
+%{_kf6_datadir}/knsrcfiles/comic.knsrc
+%{_kf6_datadir}/kwin/effects/cube/
+%{_kf6_datadir}/kwin/tabbox/
 %{_kf6_datadir}/plasma/desktoptheme/default/weather/*
+%{_kf6_datadir}/plasma/desktoptheme/default/widgets/*
+%{_kf6_datadir}/plasma/plasmoids/*
 %{_kf6_datadir}/plasma/wallpapers/*
 %{_kf6_datadir}/qlogging-categories6/kdeplasma-addons.categories
-%{_kf6_qtplugindir}/plasma/applets/*.so
-%{_kf6_qtplugindir}/kf6/
-%{_kf6_qtplugindir}/plasmacalendarplugins/
-%{_kf6_qtplugindir}/kwin/effects/configs/kwin_cube_config.so
-%{_kf6_qtplugindir}/potd/
-%{_kf6_qmldir}/org/kde/plasma/*
-%{_kf6_datadir}/knotifications6/plasma_applet_timer.notifyrc
-%{_datadir}/kwin/tabbox/
-%{_datadir}/icons/hicolor/*/apps/fifteenpuzzle.*
-%{_datadir}/icons/hicolor/scalable/apps/accessories-dictionary.svgz
-%{_datadir}/knsrcfiles/comic.knsrc
-%{_kf6_libdir}/libplasmapotdprovidercore.so.*
+%{_kf6_libdir}/libplasmapotdprovidercore.so.2{,.*}
+%{_kf6_libdir}/qt6/qml/org/kde/plasmacalendar/alternatecalendarconfig/*
+%{_kf6_libdir}/qt6/qml/org/kde/plasmacalendar/astronomicaleventsconfig/*
 %{_kf6_metainfodir}/*.appdata.xml
-%{_libdir}/qt6/qml/org/kde/plasmacalendar/astronomicaleventsconfig/*
-%{_libdir}/qt6/qml/org/kde/plasmacalendar/alternatecalendarconfig/*
+%{_kf6_qmldir}/org/kde/plasma/*
+%{_kf6_qtplugindir}/kf6/
+%{_kf6_qtplugindir}/kwin/effects/configs/kwin_cube_config.so
+%{_kf6_qtplugindir}/plasma/applets/*.so
+%{_kf6_qtplugindir}/plasmacalendarplugins/
+%{_kf6_qtplugindir}/potd/
 
 %files devel
-%{_libdir}/cmake/PlasmaPotdProvider/
 %{_includedir}/plasma/potdprovider/
 %{_kf6_datadir}/kdevappwizard/templates/plasmapotdprovider.tar.bz2
+%{_kf6_libdir}/cmake/PlasmaPotdProvider/
 %{_kf6_libdir}/libplasmapotdprovidercore.so
 
 
