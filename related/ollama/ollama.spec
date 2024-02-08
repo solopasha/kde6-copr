@@ -1,4 +1,4 @@
-%global llama_commit d2f650cb5b04ee2726663e79b47da5efe196ce00
+%global llama_commit f57fadc009cbff741a1961cb7896c47d73978d2c
 %global llama_shortcommit %(c=%{llama_commit}; echo ${c:0:7})
 
 %global gomodulesmode GO111MODULE=on
@@ -8,7 +8,7 @@
 
 # https://github.com/jmorganca/ollama
 %global goipath         github.com/jmorganca/ollama
-Version:                0.1.23
+Version:                0.1.24
 
 %gometa -L -f
 
