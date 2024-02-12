@@ -1,6 +1,6 @@
-%global commit0 f0c3d0cfc3a3ca134068e89331afe4cadc7ef036
+%global commit0 721b2440f4c111a9a68672580d2cfac7c9934eab
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           kde-rounded-corners
 Version:        0.6.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
