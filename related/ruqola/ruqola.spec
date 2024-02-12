@@ -1,14 +1,14 @@
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
 
 Name:           ruqola
-Version:        2.0.81
-Release:        4%{?dist}
+Version:        2.1.0
+Release:        1%{?dist}
 Summary:        KDE client for Rocket Chat
 
 License:        LGPL-2.0-or-later
 URL:            https://invent.kde.org/network/ruqola
-Source:         https://download.kde.org/unstable/%{name}/%{name}-%{version}.tar.xz
-Source:         https://download.kde.org/unstable/%{name}/%{name}-%{version}.tar.xz.sig
+Source:         https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz
+Source:         https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz.sig
 Source:         kde-frameworks-signing-keys.pgp
 
 BuildRequires:  cmake
