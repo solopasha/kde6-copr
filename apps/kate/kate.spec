@@ -89,11 +89,11 @@ Requires: %{name}-libs = %{version}-%{release}
 
 
 %prep
-%autosetup -n kate-%{version} -p1
+%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
+%autosetup -p1
 
 
 %build
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %cmake_kf6 \
   -Wno-dev \
   -DBUILD_TESTING:BOOL=%{?tests:ON}%{!?tests:OFF}
