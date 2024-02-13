@@ -7,7 +7,7 @@
 
 Name:           krdp
 Version:        5.27.80~git%{commitdate}.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Library for creating an RDP server
 
 License:        LGPL-2.1-only OR LGPL-3.0-only
@@ -47,6 +47,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %package server
 Summary:        Simple RDP server using %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       /usr/bin/openssl
 
 %description server
 %{summary}.
