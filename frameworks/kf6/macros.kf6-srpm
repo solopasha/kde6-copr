@@ -56,7 +56,7 @@
 }
 
 %apps_source(v:) %{lua:
-    macros.basever = = (rpm.expand("%{-v}") ~= "") and rpm.expand("%{-v*}") or macros.version
+    macros.basever = (rpm.expand("%{-v}") ~= "") and rpm.expand("%{-v*}") or macros.version
     local pkgname = macros.base_name or macros.name
     if macros.bumpver or macros.gitdate then
         local fedora = require "fedora.common"
