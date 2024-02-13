@@ -2,14 +2,12 @@
 
 Name:           zanshin
 Version:        24.01.95
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Todo/action management software
 
 License:        GPLv2
 URL:            http://zanshin.kde.org/
 %apps_source
-
-
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  desktop-file-utils
@@ -40,6 +38,8 @@ BuildRequires:  time
 BuildRequires:  xorg-x11-server-Xvfb
 %endif
 
+Provides: zanshin-frontend = %{version}-%{release}
+Requires: zanshin-common = %{version}-%{release}
 Requires: kdepim-runtime
 
 %description
