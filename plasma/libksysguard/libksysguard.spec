@@ -2,7 +2,7 @@
 Name:    libksysguard
 Summary: Library for managing processes running on the system
 Version: 5.93.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
@@ -51,6 +51,9 @@ BuildRequires:  zlib-devel
 BuildRequires:  pkgconfig(x11)
 
 Requires:       %{name}-common = %{version}-%{release}
+
+Obsoletes:      ksysguard < 5.22.0-11
+Obsoletes:      ksysguardd < 5.22.0-11
 
 %description
 KSysGuard library provides API to read and manage processes
