@@ -52,9 +52,6 @@ BuildRequires:  pkgconfig(x11)
 
 Requires:       %{name}-common = %{version}-%{release}
 
-Obsoletes:      ksysguard < 5.22.0-11
-Obsoletes:      ksysguardd < 5.22.0-11
-
 %description
 KSysGuard library provides API to read and manage processes
 running on the system.
