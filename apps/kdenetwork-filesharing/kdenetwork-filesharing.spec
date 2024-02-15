@@ -1,7 +1,7 @@
 Name:    kdenetwork-filesharing
 Summary: Network filesharing
 Version: 24.01.95
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 # KDE e.V. may determine that future GPL versions are accepted
 License: GPL-2.0-only OR GPL-3.0-only
@@ -29,6 +29,7 @@ BuildRequires: cmake(QCoro6Core)
 
 # or gets pulled in via PK at runtime
 Recommends: samba
+Recommends: samba-usershares
 
 %description
 %{summary}.
