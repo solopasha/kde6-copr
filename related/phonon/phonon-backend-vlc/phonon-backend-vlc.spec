@@ -1,12 +1,12 @@
 Name:    phonon-backend-vlc
 Summary: VLC phonon backend
 Version: 0.12.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: LGPL-2.0-or-later
 URL:     https://invent.kde.org/libraries/phonon-vlc
 Source0: https://download.kde.org/stable/phonon/phonon-backend-vlc/%{version}/phonon-backend-vlc-%{version}.tar.xz
-
-## downstream patches
+Source1: https://download.kde.org/stable/phonon/phonon-backend-vlc/%{version}/phonon-backend-vlc-%{version}.tar.xz.sig
+Source2: kde-frameworks-signing-keys.pgp
 
 BuildRequires: cmake
 BuildRequires: extra-cmake-modules
@@ -31,6 +31,7 @@ BuildRequires: pkgconfig(xcb)
 
 %package -n phonon-qt5-backend-vlc
 Summary:  Vlc phonon-qt5 backend
+Obsoletes: phonon-qt5-backend-gstreamer < 4.12
 Provides: phonon-qt5-backend%{?_isa} = %{phonon_ver}
 Requires: %{name}-common = %{version}-%{release}
 Requires: vlc-plugins-base%{?_isa} >= %{vlc_ver}
@@ -55,10 +56,8 @@ BuildArch:      noarch
 
 
 %prep
+%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -p1
-
-# reset initial preference below (fedora's default) gstreamer
-sed -i -e 's|^InitialPreference=.*|InitialPreference=10|g' src/phonon-vlc.json.in
 
 
 %build
@@ -69,6 +68,7 @@ sed -i -e 's|^InitialPreference=.*|InitialPreference=10|g' src/phonon-vlc.json.i
 %global _vpath_builddir %{_target_platform}-qt6
 %cmake -DPHONON_BUILD_QT5=OFF
 %cmake_build
+
 
 %install
 %global _vpath_builddir %{_target_platform}-qt5
