@@ -19,7 +19,6 @@ BuildRequires:  cmake(KPim6Libkleo)
 BuildRequires:  cmake(KPim6Mbox)
 BuildRequires:  cmake(KPim6Mime)
 
-BuildRequires:  cmake(Qt6Core5Compat)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6PrintSupport)
 BuildRequires:  cmake(Qt6Quick)
@@ -39,7 +38,6 @@ Requires:  %{name}%{?_isa} = %{version}-%{release}
 Requires:  cmake(KF6I18n)
 Requires:  cmake(KPim6Mbox)
 Requires:  cmake(KPim6Mime)
-Requires:  cmake(Qt6Core5Compat)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
