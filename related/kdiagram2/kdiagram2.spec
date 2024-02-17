@@ -12,7 +12,7 @@ Release: 8%{?dist}
 
 License: GPLv2+
 Url:     https://invent.kde.org/graphics/kdiagram
-Source0: http://download.kde.org/stable/kdiagram/%{version}/kdiagram-%{version}.tar.xz
+Source0: https://download.kde.org/stable/kdiagram/%{version}/kdiagram-%{version}.tar.xz
 
 BuildRequires: extra-cmake-modules
 BuildRequires: kf5-rpm-macros

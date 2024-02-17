@@ -14,7 +14,7 @@ URL:     https://invent.kde.org/graphics/%{base_name}
 %else
 %global stable stable
 %endif
-Source0: http://download.kde.org/%{stable}/release-service/%{version}/src/%{base_name}-%{version}.tar.xz
+Source0: https://download.kde.org/%{stable}/release-service/%{version}/src/%{base_name}-%{version}.tar.xz
 
 BuildRequires: cmake(Qt5Widgets)
 BuildRequires: extra-cmake-modules

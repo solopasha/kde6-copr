@@ -5,7 +5,7 @@ Summary:        A libmpv wrapper for QtQuick2 and QML
 
 License:        LGPL-2.1-only OR LGPL-3.0-only OR LicenseRef-KDE-Accepted-LGPL
 URL:            https://invent.kde.org/libraries/mpvqt
-Source:         http://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz
+Source:         https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros

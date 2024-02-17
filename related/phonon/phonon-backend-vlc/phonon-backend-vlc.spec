@@ -4,7 +4,7 @@ Version: 0.12.0
 Release: 2%{?dist}
 License: LGPL-2.0-or-later
 URL:     https://invent.kde.org/libraries/phonon-vlc
-Source0: http://download.kde.org/stable/phonon/phonon-backend-vlc/%{version}/phonon-backend-vlc-%{version}.tar.xz
+Source0: https://download.kde.org/stable/phonon/phonon-backend-vlc/%{version}/phonon-backend-vlc-%{version}.tar.xz
 
 ## downstream patches
 
