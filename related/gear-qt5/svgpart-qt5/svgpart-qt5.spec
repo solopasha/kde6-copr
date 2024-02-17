@@ -2,7 +2,7 @@
 Name:    svgpart-qt5
 Summary: SVG KPart
 Version: 23.08.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPLv2+
 URL:     https://www.kde.org/applications/graphics/
@@ -20,6 +20,9 @@ BuildRequires: kf5-rpm-macros
 BuildRequires: cmake(Qt5Svg)
 BuildRequires: cmake(KF5CoreAddons)
 BuildRequires: cmake(KF5Parts)
+
+Supplements:   krusader
+Supplements:   kdevelop
 
 
 %description
