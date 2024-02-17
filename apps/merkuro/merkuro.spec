@@ -1,6 +1,6 @@
 Name:		    merkuro
 Version:	    24.01.95
-Release:	    1%{?dist}
+Release:	    2%{?dist}
 Summary:	    A calendar application using Akonadi to sync with external services (Nextcloud, GMail, ...)
 
 License:	    GPL-3.0-or-later

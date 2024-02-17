@@ -7,7 +7,7 @@
 
 Name:           krdp
 Version:        5.27.80~git%{commitdate}.%{shortcommit}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Library for creating an RDP server
 
 License:        LGPL-2.1-only OR LGPL-3.0-only

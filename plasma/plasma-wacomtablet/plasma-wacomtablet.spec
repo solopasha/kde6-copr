@@ -3,7 +3,7 @@
 Name:    plasma-wacomtablet
 Summary: KDE Control module for Wacom Graphictablets
 Version: 5.93.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/wacomtablet

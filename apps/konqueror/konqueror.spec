@@ -4,7 +4,7 @@
 
 Name:    konqueror
 Version: 24.01.95
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: KDE File Manager and Browser
 
 License: GPLv2+ and LGPLv2+ and GFDL

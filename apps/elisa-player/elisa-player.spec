@@ -2,7 +2,7 @@
 
 Name:       elisa-player
 Version:    24.01.95
-Release:    %autorelease
+Release:    2%{?dist}
 Summary:    Elisa music player
 
 # Main program LGPLv3+

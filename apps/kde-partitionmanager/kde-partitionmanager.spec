@@ -6,7 +6,7 @@
 
 Name:           kde-partitionmanager
 Version:        24.01.95
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        KDE Partition Manager
 
 License:        GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND CC-BY-4.0 AND CC0-1.0 AND GFDL-1.2-or-later

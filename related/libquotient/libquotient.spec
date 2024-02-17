@@ -8,7 +8,7 @@ older use the previous name - libQMatrixClient.}
 
 Name: libquotient
 Version: 0.8.1.2
-Release: 5.1%{?dist}
+Release: 6.1%{?dist}
 
 License: BSD-3-Clause AND LGPL-2.1-or-later
 URL: https://github.com/quotient-im/%{libname}

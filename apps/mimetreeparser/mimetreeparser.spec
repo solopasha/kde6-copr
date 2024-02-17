@@ -1,6 +1,6 @@
 Name:    mimetreeparser
 Version: 24.01.95
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Parser for MIME trees
 
 License: LGPL-2.0-or-later AND GPL-3.0-only AND GPL-2.0-only AND GPL-2.0-or-later AND (LGPL-2.1-only OR LGPL-3.0-only OR LicenseRef-KDE-Accepted-LGPL)

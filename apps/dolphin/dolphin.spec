@@ -1,7 +1,7 @@
 Name:           dolphin
 Summary:        KDE File Manager
 Version:        24.01.95
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 License:        GPLv2+
 URL:            https://invent.kde.org/system/dolphin
