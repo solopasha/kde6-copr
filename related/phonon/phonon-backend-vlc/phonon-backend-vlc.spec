@@ -1,7 +1,7 @@
 Name:    phonon-backend-vlc
 Summary: VLC phonon backend
 Version: 0.12.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: LGPL-2.0-or-later
 URL:     https://invent.kde.org/libraries/phonon-vlc
 Source0: https://download.kde.org/stable/phonon/phonon-backend-vlc/%{version}/phonon-backend-vlc-%{version}.tar.xz
@@ -31,7 +31,7 @@ BuildRequires: pkgconfig(xcb)
 
 %package -n phonon-qt5-backend-vlc
 Summary:  Vlc phonon-qt5 backend
-Obsoletes: phonon-qt5-backend-gstreamer < 4.12
+Obsoletes: phonon-qt5-backend-gstreamer < 2:4.12
 Provides: phonon-qt5-backend%{?_isa} = %{phonon_ver}
 Requires: %{name}-common = %{version}-%{release}
 Requires: vlc-plugins-base%{?_isa} >= %{vlc_ver}
