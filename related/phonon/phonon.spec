@@ -1,7 +1,7 @@
 Summary: Multimedia framework api
 Name:    phonon
 Version: 4.12.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: LGPLv2+
 URL:     https://community.kde.org/Phonon
 Source0: https://download.kde.org/stable/phonon/%{version}/phonon-%{version}.tar.xz
@@ -116,7 +116,6 @@ test "$(pkg-config --modversion phonon4qt6)" = "%{version}"
 
 %files qt5
 %license COPYING.LIB
-%{_bindir}/phononsettings
 %{_libdir}/libphonon4qt5.so.4*
 %{_libdir}/libphonon4qt5experimental.so.4*
 # own backends dir
@@ -132,6 +131,7 @@ test "$(pkg-config --modversion phonon4qt6)" = "%{version}"
 %{_qt5_libdir}/qt5/mkspecs/modules/qt_phonon4qt5.pri
 
 %files qt6
+%{_bindir}/phononsettings
 %{_libdir}/libphonon4qt6.so.4*
 %{_libdir}/libphonon4qt6experimental.so.4*
 # own backends dir
