@@ -1,31 +1,37 @@
 Name:    qaccessibilityclient
 Summary: Accessibility client library for Qt6
-Version: 0.5.0
+Version: 0.6.0
 Release: 1%{?dist}
 
 License: CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://cgit.kde.org/libkdeaccessibilityclient.git/
 Source0: https://download.kde.org/stable/libqaccessibilityclient/libqaccessibilityclient-%{version}.tar.xz
-
-## upstream patches
+Source1: https://download.kde.org/stable/libqaccessibilityclient/libqaccessibilityclient-%{version}.tar.xz.sig
+Source2: key.gpg
 
 BuildRequires: cmake
+BuildRequires: extra-cmake-modules
 BuildRequires: gcc-c++
+BuildRequires: kf6-rpm-macros
 BuildRequires: cmake(Qt6)
 BuildRequires: cmake(Qt6DBus)
 BuildRequires: cmake(Qt6Widgets)
-BuildRequires: extra-cmake-modules
-BuildRequires: kf6-rpm-macros
-BuildRequires: pkgconfig(xkbcommon)
 
 # upstream name
 Provides: libqaccessibilityclient = %{version}-%{release}
+
+Obsoletes:     %{name}-qt5 < 0.5.0-2
+Obsoletes:     %{name}-qt6 < 0.5.0-2
+Provides:      %{name}-qt6 = %{version}-%{release}
 
 %description
 %{summary}.
 
 %package devel
 Summary: Development files for %{name}
+Obsoletes: %{name}-qt5-devel < 0.5.0-2
+Obsoletes: %{name}-qt6-devel < 0.5.0-2
+Provides:  %{name}-qt6-devel = %{version}-%{release}
 Provides: libqaccessibilityclient-devel = %{version}-%{release}
 Requires: %{name}%{?_isa} = %{version}-%{release}
 Requires: qt6-qtbase-devel
@@ -33,6 +39,7 @@ Requires: qt6-qtbase-devel
 %{summary}.
 
 %prep
+%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n libqaccessibilityclient-%{version} -p1
 
 %build
@@ -45,12 +52,13 @@ Requires: qt6-qtbase-devel
 %files
 %doc AUTHORS README.md
 %license LICENSES/*
-%{_libdir}/libqaccessibilityclient-qt6.so.0*
+%{_kf6_datadir}/qlogging-categories6/libqaccessibilityclient.categories
+%{_kf6_libdir}/libqaccessibilityclient-qt6.so.0*
 
 %files devel
 %{_includedir}/QAccessibilityClient6/
-%{_libdir}/cmake/QAccessibilityClient6/
-%{_libdir}/libqaccessibilityclient-qt6.so
+%{_kf6_libdir}/cmake/QAccessibilityClient6/
+%{_kf6_libdir}/libqaccessibilityclient-qt6.so
 
 
 %changelog
