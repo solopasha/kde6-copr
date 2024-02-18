@@ -1,7 +1,7 @@
 %global framework pimcommon
 
 Name:    kf5-%{framework}
-Version: 23.08.4
+Version: 23.08.5
 Release: 5%{?dist}
 Summary: PIM common libraries
 

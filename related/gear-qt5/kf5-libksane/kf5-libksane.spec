@@ -3,7 +3,7 @@
 Name:    kf5-libksane
 Summary: SANE Library interface for KDE
 Epoch:   1
-Version: 23.08.4
+Version: 23.08.5
 Release: 1%{?dist}
 
 License: LGPLv2+

@@ -1,8 +1,8 @@
 
 Name:    svgpart-qt5
 Summary: SVG KPart
-Version: 23.08.4
-Release: 2%{?dist}
+Version: 23.08.5
+Release: 1%{?dist}
 
 License: GPLv2+
 URL:     https://www.kde.org/applications/graphics/

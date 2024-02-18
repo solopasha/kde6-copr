@@ -4,7 +4,7 @@
 %global _lto_cflags %{nil}
 
 Name:    kf5-libkgapi
-Version: 23.08.4
+Version: 23.08.5
 Release: 5%{?dist}
 Summary: Library to access to Google services
 
@@ -66,14 +66,13 @@ resources.
 
 
 %build
-%cmake_kf5
+%cmake_kf5 -DBUILD_SASL_PLUGIN:BOOL=OFF
 %cmake_build
 
 
 %install
 %cmake_install
 
-rm %{buildroot}%{_libdir}/sasl2/libkdexoauth2.so*
 rm -rf %{buildroot}%{_kf5_datadir}/locale
 
 

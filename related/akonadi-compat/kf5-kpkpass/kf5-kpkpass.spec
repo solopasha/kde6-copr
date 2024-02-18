@@ -8,7 +8,7 @@
 %endif
 
 Name:    kf5-%{framework}
-Version: 23.08.4
+Version: 23.08.5
 Release: 5%{?dist}
 Summary: Library to deal with Apple Wallet pass files
 

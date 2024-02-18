@@ -8,7 +8,7 @@
 %endif
 
 Name:    kf5-kcalendarutils
-Version: 23.08.4
+Version: 23.08.5
 Release: 5%{?dist}
 Summary: The KCalendarUtils Library
 

@@ -13,7 +13,7 @@
 
 Name:    okular5
 Summary: A document viewer
-Version: 23.08.4
+Version: 23.08.5
 Release: 6%{?dist}
 
 License: GPL-2.0-only
