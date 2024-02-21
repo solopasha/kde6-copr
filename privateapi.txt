@@ -11,7 +11,6 @@ kf6-kdbusaddons
 kf6-kiconthemes
 kf6-kio
 kf6-kirigami
-kf6-kirigami2
 kf6-kjobwidgets
 kf6-krunner
 kf6-kuserfeedback
@@ -45,8 +44,6 @@ plasma-wacomtablet
 plasma-workspace
 powerdevil
 qcoro
-qt6-qtbase
-qt6-qtwayland
 spectacle
 tokodon
 xdg-desktop-portal-kde
