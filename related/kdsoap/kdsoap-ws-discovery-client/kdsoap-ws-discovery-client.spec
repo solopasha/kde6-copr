@@ -1,16 +1,19 @@
 Name:           kdsoap-ws-discovery-client
-Version:        0.3.0
+Version:        0.4.0
 Release:        1%{?dist}
 Summary:        Library for finding WS-Discovery devices in the network using Qt6 and KDSoap
 
 License:        GPL-3.0-or-later AND LicenseRef-OASIS AND LicenseRef-WS-Addressing AND LicenseRef-Discovery AND W3C
 URL:            https://invent.kde.org/libraries/kdsoap-ws-discovery-client/
-Source0:        https://download.kde.org/unstable/%{name}/%{name}-%{version}.tar.xz
+Source0:        https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz
+Source1:        https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz.sig
+Source2:        kde-frameworks-signing-keys.pgp
 
 BuildRequires:  cmake
-BuildRequires:  gcc-c++
-
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KDSoap-qt6)
 BuildRequires:  cmake(Qt6)
 
@@ -26,10 +29,11 @@ Requires:       cmake(KDSoap-qt6)
 %{summary}.
 
 %prep
+%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -p1
 
 %build
-%cmake -DBUILD_WITH_QT6=ON
+%cmake_kf6 -DBUILD_WITH_QT6=ON
 %cmake_build
 
 %install
