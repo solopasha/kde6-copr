@@ -1,12 +1,12 @@
 Name:            polkit-qt-1
-Version:         0.175.0
+Version:         0.200.0
 Release:         1%{?dist}
 Summary:         Qt bindings for PolicyKit
 
 License:         BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:             https://api.kde.org/kdesupport-api/polkit-qt-1-apidocs/
-Source0:         https://download.kde.org/unstable/%{name}/polkit-qt-1-%{version}.tar.xz
-Source1:         https://download.kde.org/unstable/%{name}/polkit-qt-1-%{version}.tar.xz.sig
+Source0:         https://download.kde.org/stable/%{name}/polkit-qt-1-%{version}.tar.xz
+Source1:         https://download.kde.org/stable/%{name}/polkit-qt-1-%{version}.tar.xz.sig
 Source2:         kde-gear-signing-keys.pgp
 
 BuildRequires:   cmake
