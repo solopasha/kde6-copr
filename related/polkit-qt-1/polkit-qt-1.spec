@@ -11,6 +11,7 @@ Source2:         kde-gear-signing-keys.pgp
 
 BuildRequires:   cmake
 BuildRequires:   gcc-c++
+BuildRequires:   gnupg2
 BuildRequires:   pkgconfig(polkit-agent-1)
 BuildRequires:   pkgconfig(polkit-gobject-1)
 
