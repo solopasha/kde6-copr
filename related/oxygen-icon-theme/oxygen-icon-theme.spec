@@ -10,8 +10,8 @@ License: LGPL-3.0-or-later
 URL:     https://techbase.kde.org/Projects/Oxygen
 BuildArch: noarch
 
-Source0: http://download.kde.org/%{stable_kf6}/oxygen-icons/%{base_name}-%{version}.tar.xz
-Source1: http://download.kde.org/%{stable_kf6}/oxygen-icons/%{base_name}-%{version}.tar.xz.sig
+Source0: https://download.kde.org/%{stable_kf6}/oxygen-icons/%{base_name}-%{version}.tar.xz
+Source1: https://download.kde.org/%{stable_kf6}/oxygen-icons/%{base_name}-%{version}.tar.xz.sig
 Source2: kde-frameworks-signing-keys.pgp
 
 ## upstreamable patches
