@@ -1,6 +1,6 @@
 Name:           kio-admin
 Version:        24.01.95
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Manage files as administrator using the admin:// KIO protocol
 License:        (GPL-2.0-only or GPL-3.0-only) and BSD-3-Clause and CC0-1.0 and FSFAP
 URL:            https://invent.kde.org/system/kio-admin

@@ -1,6 +1,6 @@
 Name:    sddm-kcm
 Version: 5.93.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: SDDM KDE configuration module
 
 License: GPL-2.0-or-later AND GPL-3.0-only AND CC0-1.0 AND (GPL-2.0-only OR GPL-3.0-only)

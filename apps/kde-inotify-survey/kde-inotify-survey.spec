@@ -1,6 +1,6 @@
 Name:          kde-inotify-survey
 Version:       24.01.95
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       Monitors inotify limits and lets the user know when exceeded
 
 # Complete license breakdown can be found in the "LICENSE-BREAKDOWN" file
