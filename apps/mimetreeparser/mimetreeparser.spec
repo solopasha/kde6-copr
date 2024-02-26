@@ -23,7 +23,6 @@ BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6PrintSupport)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Widgets)
-BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(Gpgmepp)
 

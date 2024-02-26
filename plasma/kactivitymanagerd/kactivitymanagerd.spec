@@ -13,8 +13,6 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Core5Compat)
-BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6CoreAddons)

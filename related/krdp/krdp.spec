@@ -7,7 +7,7 @@
 
 Name:           krdp
 Version:        5.27.80~git%{commitdate}.%{shortcommit}
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Library for creating an RDP server
 
 License:        LGPL-2.1-only OR LGPL-3.0-only
@@ -18,6 +18,7 @@ BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  extra-cmake-modules >= %{kf6minver}
 BuildRequires:  qt6-qtbase-private-devel >= %{qt6minver}
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  cmake(Qt6Core) >= %{qt6minver}
 BuildRequires:  cmake(Qt6Gui) >= %{qt6minver}
 BuildRequires:  cmake(Qt6Network) >= %{qt6minver}

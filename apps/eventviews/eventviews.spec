@@ -30,7 +30,6 @@ BuildRequires:  cmake(KPim6Libkdepim)
 BuildRequires:  cmake(KPim6Mime)
 
 BuildRequires:  cmake(Qt6Widgets)
-# BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(KGantt6)
 

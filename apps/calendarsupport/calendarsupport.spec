@@ -30,7 +30,6 @@ BuildRequires:  cmake(KPim6Mime)
 BuildRequires:  cmake(Qt6PrintSupport)
 BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Qt6Widgets)
-BuildRequires:  qt6-qtbase-private-devel
 
 Obsoletes:      kf5-%{name} < 24.01.75
 

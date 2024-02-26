@@ -21,8 +21,6 @@ BuildRequires:  cmake(KF6ItemModels)
 
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtdeclarative-devel
-BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 Requires:  kf6-filesystem
 

@@ -20,7 +20,6 @@ BuildRequires:  cmake(KF6Wallet)
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Widgets)
-BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(QCoro6Core)
 BuildRequires:  cmake(AccountsQt6)

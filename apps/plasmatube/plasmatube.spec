@@ -30,7 +30,6 @@ BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Keychain)
-BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(MpvQt)
 

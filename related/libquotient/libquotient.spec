@@ -8,7 +8,7 @@ older use the previous name - libQMatrixClient.}
 
 Name: libquotient
 Version: 0.8.1.2
-Release: 6.1%{?dist}
+Release: 7%{?dist}
 
 License: BSD-3-Clause AND LGPL-2.1-or-later
 URL: https://github.com/quotient-im/%{libname}
@@ -59,7 +59,6 @@ Requires: pkgconfig(openssl)
 
 %package qt6
 Summary: Files for qt6
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 %description qt6 %_description
 
 %package qt6-devel
