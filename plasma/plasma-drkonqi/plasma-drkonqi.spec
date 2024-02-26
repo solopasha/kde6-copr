@@ -15,8 +15,6 @@ Patch52:        drkonqi-installdbgsymbols.patch
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  systemd-rpm-macros
 
 BuildRequires:  cmake(KF6CoreAddons)

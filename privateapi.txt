@@ -1,9 +1,6 @@
 akonadi-server
 dolphin
-elisa-player
 gwenview
-juk
-kactivitymanagerd
 kate
 kde-cli-tools
 kde-connect
@@ -12,7 +9,6 @@ kf6-kiconthemes
 kf6-kio
 kf6-kirigami
 kf6-kjobwidgets
-kf6-krunner
 kf6-kstatusnotifieritem
 kf6-kuserfeedback
 kf6-kwindowsystem
@@ -22,7 +18,6 @@ kglobalacceld
 koko
 konqueror
 kontactinterface
-kpmcore
 krfb
 kruler
 kscreen
@@ -33,12 +28,8 @@ layer-shell-qt
 libkscreen
 libksysguard
 libplasma
-libquotient
-merkuro
-neochat
 okular
 plasma-desktop
-plasma-drkonqi
 plasma-integration
 plasma-oxygen
 plasma-wacomtablet
@@ -46,7 +37,6 @@ plasma-workspace
 powerdevil
 qcoro
 spectacle
-tokodon
 xdg-desktop-portal-kde
 xwaylandvideobridge
 yakuake

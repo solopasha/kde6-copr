@@ -17,7 +17,6 @@ BuildRequires: cmake(Qt6Quick)
 
 BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6NetworkManagerQt)
-BuildRequires: qt6-qtbase-private-devel
 
 %description
 %{summary}.

@@ -41,8 +41,6 @@ BuildRequires: cmake(Qt6Svg)
 BuildRequires: cmake(Qt6Test)
 BuildRequires: cmake(Qt6Widgets)
 BuildRequires: cmake(Phonon4Qt6)
-BuildRequires: qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires: pkgconfig(taglib)
 

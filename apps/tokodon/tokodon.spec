@@ -38,8 +38,6 @@ BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Qt6WebSockets)
 BuildRequires:  cmake(Qt6WebView)
 BuildRequires:  cmake(Qt6Widgets)
-BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 Requires:       kf6-kirigami2
 Requires:       kf6-kirigami-addons
