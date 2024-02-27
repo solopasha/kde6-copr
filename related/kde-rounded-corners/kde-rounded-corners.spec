@@ -1,15 +1,11 @@
-%global commit0 721b2440f4c111a9a68672580d2cfac7c9934eab
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
-
 Name:           kde-rounded-corners
-Version:        0.6.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
-Release:        2%{?dist}
+Version:        0.6.1
+Release:        1%{?dist}
 Summary:        Rounds the corners of your windows in KDE Plasma
 
 License:        GPL-3.0-only
 URL:            https://github.com/matinlotfali/KDE-Rounded-Corners
-Source:         %{url}/archive/%{commit0}/%{name}-%{shortcommit0}.tar.gz
+Source:         %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
@@ -41,7 +37,7 @@ BuildRequires:  pkgconfig(xcb)
 %{summary}.
 
 %prep
-%autosetup -n KDE-Rounded-Corners-%{commit0} -p1
+%autosetup -n KDE-Rounded-Corners-%{version} -p1
 
 %build
 %cmake_kf6 -DQT_MAJOR_VERSION=6
