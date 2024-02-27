@@ -6,7 +6,7 @@
 
 Name:           signon
 Version:        8.61^1.git%{shortcommit0}
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Accounts framework for Linux and POSIX based platforms
 
 License:        LGPLv2
@@ -30,7 +30,6 @@ BuildRequires:  qt6-qtbase-devel
 
 # signon-qt5 was in ktp-5 COPR
 Obsoletes:      signon-qt5 < 8.57-5
-Provides:       signon-qt5 = %{version}-%{release}
 
 # upstream name: signond
 Provides:       signond = %{version}-%{release}
