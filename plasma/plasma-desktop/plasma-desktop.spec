@@ -214,7 +214,6 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/*.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/*.so
 %{_kf6_qtplugindir}/plasma/kcminit/kcm_touchpad_init.so
-%{_kf6_qtplugindir}/plasma5support/dataengine/plasma_engine_touchpad.so
 %{_kf6_qtplugindir}/attica_kde.so
 %{_kf6_plugindir}/kded/*.so
 %{_kf6_plugindir}/krunner/krunner*.so
@@ -245,7 +244,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_datadir}/icons/hicolor/*/*/*
 %{_kf6_metainfodir}/*.xml
 %{_datadir}/applications/*.desktop
-%{_datadir}/applications/mimeapps.list
+%{_datadir}/applications/kde-mimeapps.list
 %{_datadir}/dbus-1/system-services/*.service
 %{_datadir}/polkit-1/actions/org.kde.kcontrol.kcmclock.policy
 %{_sysconfdir}/xdg/autostart/*.desktop
