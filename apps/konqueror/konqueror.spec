@@ -3,8 +3,8 @@
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
 
 Name:    konqueror
-Version: 24.01.95
-Release: 2%{?dist}
+Version: 24.02.0
+Release: 1%{?dist}
 Summary: KDE File Manager and Browser
 
 License: GPLv2+ and LGPLv2+ and GFDL

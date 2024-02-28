@@ -1,7 +1,7 @@
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
 
 Name:    kpimtextedit
-Version: 24.01.95
+Version: 24.02.0
 Release: 1%{?dist}
 Summary: The KPimTextEdit Library
 

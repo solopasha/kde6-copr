@@ -1,7 +1,7 @@
 Name:    libkscreen
 Summary: KDE display configuration library
-Version: 5.93.0
-Release: 2%{?dist}
+Version: 6.0.0
+Release: 1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/%{name}

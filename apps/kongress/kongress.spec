@@ -1,5 +1,5 @@
 Name:           kongress
-Version:        24.01.95
+Version:        24.02.0
 Release:        1%{?dist}
 License:        GPL-3.0-or-later AND BSD-2-Clause AND CC0-1.0
 Summary:        A companion application for conferences made by KDE

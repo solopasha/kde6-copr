@@ -1,7 +1,7 @@
 %global		framework ktexttemplate
 
 Name:		kf6-%{framework}
-Version:	5.249.0
+Version:	6.0.0
 Release:	1%{?dist}
 Summary:	Separates the structure of documents from their data
 License:	CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later

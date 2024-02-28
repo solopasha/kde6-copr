@@ -1,5 +1,5 @@
 Name:    plasma-pa
-Version: 5.93.0
+Version: 6.0.0
 Release: 1%{?dist}
 Summary: Plasma applet for audio volume management using PulseAudio
 

@@ -1,6 +1,6 @@
 Name:    kget
 Summary: Download manager
-Version: 24.01.95
+Version: 24.02.0
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

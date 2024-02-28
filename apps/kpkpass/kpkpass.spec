@@ -1,5 +1,5 @@
 Name:    kpkpass
-Version: 24.01.95
+Version: 24.02.0
 Release: 1%{?dist}
 Summary: Library to deal with Apple Wallet pass files
 

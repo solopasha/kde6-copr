@@ -1,7 +1,7 @@
 %global		framework kholidays
 
 Name:		kf6-%{framework}
-Version:	5.249.0
+Version:	6.0.0
 Release:	1%{?dist}
 Summary:	The KHolidays Library
 

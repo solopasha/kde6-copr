@@ -1,7 +1,7 @@
 Name:    kcron
 Summary: Cron KDE configuration module
-Version: 24.01.95
-Release: 2%{?dist}
+Version: 24.02.0
+Release: 1%{?dist}
 
 License: GPLv2+
 URL:     https://invent.kde.org/system/%{name}

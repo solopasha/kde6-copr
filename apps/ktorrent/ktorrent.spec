@@ -1,5 +1,5 @@
 Name:    ktorrent
-Version: 24.01.95
+Version: 24.02.0
 Release: 1%{?dist}
 Summary: A BitTorrent program
 

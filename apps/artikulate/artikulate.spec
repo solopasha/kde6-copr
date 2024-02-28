@@ -1,6 +1,6 @@
 Name:           artikulate
 Summary:        Improve your pronunciation by listening to native speakers
-Version:        24.01.95
+Version:        24.02.0
 Release:        1%{?dist}
 
 # artwork: LGPL3

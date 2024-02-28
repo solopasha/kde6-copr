@@ -1,6 +1,6 @@
 Name:           kpublictransport
-Version:        24.01.95
-Release:        2%{?dist}
+Version:        24.02.0
+Release:        1%{?dist}
 License:        BSD and CC0-1.0 and LGPLv2+ and MIT and ODbL-1.0
 Summary:        Library to assist with accessing public transport timetables and other data
 URL:            https://invent.kde.org/libraries/kpublictransport

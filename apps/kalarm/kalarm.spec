@@ -2,8 +2,8 @@
 
 Name:    kalarm
 Summary: Personal Alarm Scheduler
-Version: 24.01.95
-Release: 3%{?dist}
+Version: 24.02.0
+Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/pim/kalarm

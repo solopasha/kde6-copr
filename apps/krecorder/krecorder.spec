@@ -1,5 +1,5 @@
 Name:           krecorder
-Version:        24.01.95
+Version:        24.02.0
 Release:        1%{?dist}
 License:        BSD-3-Clause AND CC-BY-4.0 AND CC0-1.0 AND GPL-3.0-or-later
 Summary:        Convergent KDE audio recording application

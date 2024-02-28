@@ -1,6 +1,6 @@
 Name:    dolphin-plugins
 Summary: Dolphin plugins
-Version: 24.01.95
+Version: 24.02.0
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later

@@ -1,6 +1,6 @@
 Name:    sweeper
 Summary: Clean unwanted traces the user leaves on the system
-Version: 24.01.95
+Version: 24.02.0
 Release: 1%{?dist}
 
 License: LGPLv2+

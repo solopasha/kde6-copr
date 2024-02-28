@@ -1,6 +1,6 @@
 Name:       kwayland
-Version:    5.93.0
-Release:    2%{?dist}
+Version:    6.0.0
+Release:    1%{?dist}
 Summary:    KDE Frameworks 6 library that wraps Client and Server Wayland libraries
 
 License:    BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND MIT-CMU AND MIT

@@ -1,5 +1,5 @@
 Name:    kaccounts-providers
-Version: 24.01.95
+Version: 24.02.0
 Release: 1%{?dist}
 Summary: Additional service providers for KAccounts framework
 License: GPL-2.0-or-later AND LGPL-2.0-or-later

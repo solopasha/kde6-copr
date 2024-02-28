@@ -1,5 +1,5 @@
 Name:           ktrip
-Version:        24.01.95
+Version:        24.02.0
 Release:        1%{?dist}
 License:        GPLv2+
 Summary:        Public transport navigation, allows you to find journeys between specified locations, departures for a specific station and shows real-time delay and disruption information
