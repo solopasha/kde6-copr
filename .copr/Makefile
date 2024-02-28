@@ -2,7 +2,7 @@
 specfile = $(notdir $(spec))
 
 prepare:
-	dnf install --nodocs --setopt=install_weak_deps=0 \
+	dnf install --nodocs --setopt=install_weak_deps=0 --disablerepo=\* \
 				--repofrompath 'kde6,https://download.copr.fedorainfracloud.org/results/solopasha/kde6/fedora-39-x86_64/devel' \
 				--setopt='kde6.gpgkey=https://download.copr.fedorainfracloud.org/results/solopasha/kde6/pubkey.gpg' kf6-srpm-macros
 
