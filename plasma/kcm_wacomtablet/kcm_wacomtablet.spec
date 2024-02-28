@@ -1,6 +1,6 @@
-%global  base_name wacomtablet
+%global base_name wacomtablet
 
-Name:    plasma-wacomtablet
+Name:    kcm_wacomtablet
 Summary: KDE Control module for Wacom Graphictablets
 Version: 6.0.0
 Release: 1%{?dist}
@@ -49,8 +49,8 @@ ExcludeArch: s390 s390x
 
 Obsoletes:     kcm-wacomtablet < 1.3.7-2
 Provides:      kcm-wacomtablet = %{version}-%{release}
-Obsoletes:     kcm_wacomtablet < 3.2.0-11
-Provides:      kcm_wacomtablet = %{version}-%{release}
+Obsoletes:     plasma-wacomtablet < 6.0.0-1
+Provides:      plasma-wacomtablet = %{version}-%{release}
 
 %description
 This module implements a GUI for the Wacom Linux Drivers and extends it
