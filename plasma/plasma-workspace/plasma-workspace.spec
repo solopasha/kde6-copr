@@ -10,7 +10,6 @@ URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
 Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/58ef0c40b6fc098f9a02f816fc0470177a0d8f70.patch
 Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/d09d50c3664efacf3bf8c7f2effe338a05cb816c.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/5b0fb6b8ef264c9acdfdebb43c6c67edb73f43d3.patch
 Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/403431b1b801326cbca732dbcc759a719c1bb7f0.patch
 Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/8fc5105fec06e80cd2e6d1a3541bf0d8211d9c9f.patch
 
