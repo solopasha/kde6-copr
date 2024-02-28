@@ -151,6 +151,8 @@ Recommends: ibus
 Provides:       plasmashell(desktop) = %{version}-%{release}
 Provides:       plasmashell = %{version}-%{release}
 
+Conflicts:      kde-settings < 39.1-2
+
 %description
 %{summary}.
 
