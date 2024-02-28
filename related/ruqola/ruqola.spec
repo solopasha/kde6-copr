@@ -2,7 +2,7 @@
 
 Name:           ruqola
 Version:        2.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        KDE client for Rocket Chat
 
 License:        LGPL-2.0-or-later

@@ -1,9 +1,9 @@
-%global commit0 99d20e08e30de55a1b969d01d9b68aefdc84239f
+%global commit0 cd4994dd6fb73652da68d2246acd4a5a1dd8eb24
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Name:           kjots
 Summary:        KDE Notes application
-Version:        5.1.2~3.git%{shortcommit0}
+Version:        5.1.2~4.git%{shortcommit0}
 Release:        1%{?dist}
 License:        LGPL-2.0-or-later AND GPL-2.0-or-later
 URL:            https://invent.kde.org/pim/kjots
