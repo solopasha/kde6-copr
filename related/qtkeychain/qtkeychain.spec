@@ -2,14 +2,13 @@
 %bcond_without qt6
 
 Name:           qtkeychain
-Version:        0.14.1
+Version:        0.14.2
 Release:        1%{?dist}
 Summary:        A password store library
 
 License:        BSD
 Url:            https://github.com/frankosterfeld/qtkeychain
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
-Patch:          https://github.com/frankosterfeld/qtkeychain/commit/c3ce62c142700d02432414c2452f62c986867b9e.patch
 # Fix qt6 detection broken by including ECMGeneratePriFile
 #Patch0:         qtkeychain-qt6.patch
 
