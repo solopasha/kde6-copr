@@ -35,6 +35,9 @@ BuildRequires: cmake(KF6XmlGui)
 
 BuildRequires: cmake(Phonon4Qt6)
 
+Recommends:    vlc-plugin-ffmpeg
+
+Provides:      dragonplayer = %{version}-%{release}
 
 %description
 %{summary}.
