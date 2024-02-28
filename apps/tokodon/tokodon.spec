@@ -1,6 +1,6 @@
 Name:           tokodon
 Version:        24.02.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-2.0-only OR GPL-3.0-only AND CC0-1.0 AND LGPL-2.1-or-later
 Summary:        Kirigami-based mastodon client
 URL:            https://invent.kde.org/network/tokodon
@@ -44,6 +44,7 @@ Requires:       kf6-kirigami-addons
 Requires:       kf6-kitemmodels
 Requires:       kf6-sonnet
 Requires:       hicolor-icon-theme
+Requires:       qt6-qt5compat
 
 %description
 Tokodon is a Mastodon client for Plasma and Plasma Mobile.
