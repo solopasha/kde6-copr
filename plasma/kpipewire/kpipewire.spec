@@ -5,7 +5,7 @@ Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only
 URL:     https://invent.kde.org/plasma/%{name}
-%plasma_source -v 5.93.0
+%plasma_source
 
 # Compile Tools
 BuildRequires:  cmake
