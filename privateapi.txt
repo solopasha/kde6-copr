@@ -2,6 +2,7 @@ akonadi-server
 dolphin
 gwenview
 kate
+kcm_wacomtablet
 kde-cli-tools
 kde-connect
 kf6-kdbusaddons
@@ -32,7 +33,6 @@ okular
 plasma-desktop
 plasma-integration
 plasma-oxygen
-plasma-wacomtablet
 plasma-workspace
 powerdevil
 qcoro
