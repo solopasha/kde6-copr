@@ -2,7 +2,7 @@
 
 Name:       elisa-player
 Version:    24.02.0
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Elisa music player
 
 # Main program LGPLv3+
@@ -53,10 +53,14 @@ BuildRequires:  cmake(Qt6QuickTest)
 BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6DBus)
 
+BuildRequires:  pkgconfig(libvlc)
+
 # Runtime Dependencies
 Requires:       hicolor-icon-theme
-Requires:       kf6-kirigami2
 Requires:       dbus-common
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-qqc2-desktop-style%{?_isa}
+Requires:       qt6-qt5compat%{?_isa}
 
 %description
 Elisa is a simple music player aiming to provide a nice experience for its
