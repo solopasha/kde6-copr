@@ -1,30 +1,17 @@
 # Disable X11 for RHEL 10+
 %bcond x11 %[%{undefined rhel} || 0%{?rhel} < 10]
 
-#global commit e6524335a54ca469401ee9487adc4ae973860aad
-#global commitdate 20230404
-#global shortcommit %(c=%{commit}; echo ${c:0:7})
-
 Name:           sddm
-Version:        0.20.0%{?commitdate:^git%{commitdate}.%{shortcommit}}
-Release:        7%{?dist}
+Version:        0.21.0
+Release:        1%{?dist}
 License:        GPLv2+
 Summary:        QML based desktop and login manager
 
-Url:            https://github.com/sddm/sddm
-%if 0%{?commitdate}
-Source0:        %{url}/archive/%{commit}/%{name}-%{commit}.tar.gz
-%else
+URL:            https://github.com/sddm/sddm
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
-# Broken: https://github.com/sddm/sddm/pull/1743
-#Source0:        %{url}/releases/download/v%{version}/%{name}-%{version}.tar.xz
-%endif
 
 ## upstream patches
-# Hide keyboard layout picker in the wayland greeter
-# https://bugzilla.redhat.com/show_bug.cgi?id=2239426
-# https://github.com/sddm/sddm/pull/1797
-Patch1: 1797.patch
+Patch1: https://github.com/sddm/sddm/pull/1876.patch
 
 ## upstreamable patches
 
@@ -77,6 +64,9 @@ BuildRequires:  /usr/bin/rst2man
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtdeclarative-devel
 BuildRequires:  qt6-qttools-devel
+BuildRequires:  qt5-qtbase-devel
+BuildRequires:  qt5-qtdeclarative-devel
+BuildRequires:  qt5-qttools-devel
 # verify presence to pull defaults from /etc/login.defs
 BuildRequires:  shadow-utils
 BuildRequires:  systemd
@@ -165,18 +155,28 @@ ls -sh src/greeter/theme/background.png
 
 
 %build
+%global _vpath_builddir %{_target_platform}-qt6
 %cmake \
   -DBUILD_WITH_QT6:BOOL=ON \
   -DBUILD_MAN_PAGES:BOOL=ON \
   -DCMAKE_BUILD_TYPE:STRING="Release" \
   -DENABLE_JOURNALD:BOOL=ON \
   -DSESSION_COMMAND:PATH=/etc/X11/xinit/Xsession \
-  -DWAYLAND_SESSION_COMMAND:PATH=/etc/sddm/wayland-session
+  -DWAYLAND_SESSION_COMMAND:PATH=/etc/sddm/wayland-session \
+  -DDBUS_CONFIG_DIR=/etc/dbus-1/system.d
 
 %cmake_build
 
+%global _vpath_builddir %{_target_platform}-qt5
+%cmake
+cmake --build "%{_vpath_builddir}/src/greeter" %{?_smp_mflags} --verbose
+cmake --build "%{_vpath_builddir}/components" %{?_smp_mflags} --verbose
 
 %install
+%global _vpath_builddir %{_target_platform}-qt5
+DESTDIR="%{buildroot}" cmake --install "%{_vpath_builddir}/src/greeter"
+DESTDIR="%{buildroot}" cmake --install "%{_vpath_builddir}/components"
+%global _vpath_builddir %{_target_platform}-qt6
 %cmake_install
 
 mkdir -p %{buildroot}%{_sysconfdir}/sddm.conf.d
@@ -236,7 +236,7 @@ rm -fv %{buildroot}%{_sysconfdir}/sddm/Xsession
 # it's under /etc, sure, but it's not a config file -- rex
 %{_sysconfdir}/dbus-1/system.d/org.freedesktop.DisplayManager.conf
 %{_bindir}/sddm
-%{_bindir}/sddm-greeter
+%{_bindir}/sddm-greeter*
 %{_libexecdir}/sddm-helper
 %{_libexecdir}/sddm-helper-start-wayland
 %{_libexecdir}/sddm-helper-start-x11user
@@ -246,13 +246,14 @@ rm -fv %{buildroot}%{_sysconfdir}/sddm/Xsession
 %attr(1770, sddm, sddm) %dir %{_localstatedir}/lib/sddm
 %{_unitdir}/sddm.service
 %{_qt6_archdatadir}/qml/SddmComponents/
+%{_qt5_archdatadir}/qml/SddmComponents/
 %dir %{_datadir}/sddm
 %{_datadir}/sddm/faces/
 %{_datadir}/sddm/flags/
 %{_datadir}/sddm/scripts/
 %dir %{_datadir}/sddm/themes/
 # %%lang'ify? they're small, probably not worth it -- rex
-%{_datadir}/sddm/translations/
+%{_datadir}/sddm/translations*/
 %{_mandir}/man1/sddm.1*
 %{_mandir}/man1/sddm-greeter.1*
 %{_mandir}/man5/sddm.conf.5*
