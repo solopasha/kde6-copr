@@ -36,8 +36,7 @@ Requires:       kde-cli-tools
 
 # runtime dep checked-for at buildtime
 BuildRequires:  xsettingsd
-# avoid hard dep for now -- rex
-Recommends:     xsettingsd
+Requires:     xsettingsd
 
 %description
 This is a System Settings configuration module for configuring the
