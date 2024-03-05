@@ -1,5 +1,5 @@
 Name:    kinfocenter
-Version: 6.0.0
+Version: 6.0.1
 Release: 1%{?dist}
 Summary: KDE Info Center
 

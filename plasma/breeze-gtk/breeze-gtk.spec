@@ -1,5 +1,5 @@
 Name:    breeze-gtk
-Version: 6.0.0
+Version: 6.0.1
 Release: 1%{?dist}
 Summary: Breeze widget theme for GTK
 

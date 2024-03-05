@@ -7,7 +7,7 @@
 %endif
 
 Name:    plasma-firewall
-Version: 6.0.0
+Version: 6.0.1
 Release: 1%{?dist}
 Summary: Control Panel for your system firewall
 

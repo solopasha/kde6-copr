@@ -1,5 +1,5 @@
 Name:    sddm-kcm
-Version: 6.0.0
+Version: 6.0.1
 Release: 1%{?dist}
 Summary: SDDM KDE configuration module
 

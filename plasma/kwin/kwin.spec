@@ -1,7 +1,7 @@
 %bcond x11 1
 
 Name:    kwin
-Version: 6.0.0
+Version: 6.0.1
 Release: 1%{?dist}
 Summary: KDE Window manager
 
@@ -10,24 +10,6 @@ URL:     https://userbase.kde.org/KWin
 %plasma_source
 
 ## upstream patches
-Patch: https://invent.kde.org/plasma/kwin/-/commit/47973b4f1cf0e720a969621b67847909163a204e.patch
-Patch: https://invent.kde.org/plasma/kwin/-/commit/2f4480e60b3cac686642bad555ce5162a5dfad75.patch
-Patch: https://invent.kde.org/plasma/kwin/-/commit/80e30821af7b1675f76dbcccf74eac4b61ff58d0.patch
-Patch: https://invent.kde.org/plasma/kwin/-/commit/cb3dadf283fd7952a649b6d079ba244b74fd2bec.patch
-Patch: https://invent.kde.org/plasma/kwin/-/commit/df4b12550680e8a2a6bf34bf13e932e5b815159c.patch
-Patch: https://invent.kde.org/plasma/kwin/-/commit/111cd842f1d41c1ee0c9297eb2c796311433883c.patch
-Patch: https://invent.kde.org/plasma/kwin/-/commit/515f60cb7f94b01311a81360a5884409eb2199f3.patch
-Patch: https://invent.kde.org/plasma/kwin/-/commit/66af39ec9e46431ea7a4577ca1f5be5d6a890691.patch
-Patch: https://invent.kde.org/plasma/kwin/-/commit/10eac23ed2941c1ce508bfccd57825164c3ca1e4.patch
-Patch: https://invent.kde.org/plasma/kwin/-/commit/fbe35105acb5edc6a4a34bd710684c4265fef888.patch
-Patch: https://invent.kde.org/plasma/kwin/-/commit/bd71e4832725afa2adc156d15b2cd4589d7e36f2.patch
-Patch: https://invent.kde.org/plasma/kwin/-/commit/ebce0e3c3371fbc5a59955c91873edca1b6e4e79.patch
-Patch: https://invent.kde.org/plasma/kwin/-/commit/7a3693867284cc72932ee8901e7e79a3681aee13.patch
-Patch: https://invent.kde.org/plasma/kwin/-/commit/4ae0f0cd654ce3e2a4d885062bddf612f7579f97.patch
-Patch: https://invent.kde.org/plasma/kwin/-/commit/5b263b41d5326109351f280430d21b8880509d5b.patch
-Patch: https://invent.kde.org/plasma/kwin/-/commit/75b741128ebd662e832dae333a683dbd3a5317de.patch
-Patch: https://invent.kde.org/plasma/kwin/-/commit/f20ce6244cc2b14145e5c543c6b8d5fdbb36bd66.patch
-Patch: https://invent.kde.org/plasma/kwin/-/commit/018a1d35db4d799469b82be6c6b7d2551d4bf7d2.patch
 
 # Base
 BuildRequires:  extra-cmake-modules
@@ -242,6 +224,7 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 %{_kf6_datadir}/krunner/dbusplugins/kwin-runner-windows.desktop
 %{_kf6_datadir}/kwin/
 %{_kf6_libdir}/kconf_update_bin/kwin-6.0-delete-desktop-switching-shortcuts
+%{_kf6_libdir}/kconf_update_bin/kwin-6.0-remove-breeze-tabbox-default
 %{_kf6_libdir}/kconf_update_bin/kwin-6.0-reset-active-mouse-screen
 %{_kf6_libdir}/kconf_update_bin/kwin5_update_default_rules
 %{_kf6_qtplugindir}/kf6/packagestructure/kwin_*.so

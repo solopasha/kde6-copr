@@ -1,5 +1,5 @@
 Name:          flatpak-kcm
-Version:       6.0.0
+Version:       6.0.1
 Release:       1%{?dist}
 License:       BSD-2-Clause and BSD-3-Clause and CC0-1.0 and GPL-2.0-or-later
 Summary:       Flatpak Permissions Management KCM

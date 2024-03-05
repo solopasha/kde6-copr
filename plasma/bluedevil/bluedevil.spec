@@ -1,6 +1,6 @@
 Name:    bluedevil
 Summary: Bluetooth stack for KDE
-Version: 6.0.0
+Version: 6.0.1
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later

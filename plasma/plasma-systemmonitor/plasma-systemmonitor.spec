@@ -1,5 +1,5 @@
 Name:    plasma-systemmonitor
-Version: 6.0.0
+Version: 6.0.1
 Release: 1%{?dist}
 Summary: An application for monitoring system resources
 

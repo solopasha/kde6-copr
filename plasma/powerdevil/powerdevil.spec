@@ -1,5 +1,5 @@
 Name:    powerdevil
-Version: 6.0.0
+Version: 6.0.1
 Release: 1%{?dist}
 Summary: Manages the power consumption settings of a Plasma Shell
 

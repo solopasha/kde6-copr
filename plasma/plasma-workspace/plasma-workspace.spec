@@ -2,16 +2,12 @@
 
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
-Version: 6.0.0
-Release: 2%{?dist}
+Version: 6.0.1
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/58ef0c40b6fc098f9a02f816fc0470177a0d8f70.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/d09d50c3664efacf3bf8c7f2effe338a05cb816c.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/403431b1b801326cbca732dbcc759a719c1bb7f0.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/8fc5105fec06e80cd2e6d1a3541bf0d8211d9c9f.patch
 
 Source11:       startkderc
 Source15:       fedora-lookandfeel.json
@@ -281,6 +277,14 @@ Obsoletes: plasma-workspace < 5.19.5-2
 
 # khotkeys was dropped
 Obsoletes: khotkeys < 6
+
+# Obsolete packages that are borked in Plasma 6
+Obsoletes: applet-window-buttons < 0.11.1-8
+Obsoletes: bismuth < 3.1.4-4
+Obsoletes: kommit < 1.3.0-2
+Obsoletes: latte-dock < 0.10.9-4
+Obsoletes: latte-dock-lang < 0.10.9-4
+Obsoletes: lightly < 0.4.1-7
 
 # Require Wayland sessions appropriately
 Requires:   %{name}-wayland = %{version}-%{release}

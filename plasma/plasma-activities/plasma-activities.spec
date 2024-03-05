@@ -1,6 +1,6 @@
 Name:    plasma-activities
 Summary: Core components for the KDE's Activities System
-Version: 6.0.0
+Version: 6.0.1
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND MIT

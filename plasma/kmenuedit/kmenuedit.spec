@@ -1,6 +1,6 @@
 Name:          kmenuedit
 Summary:       KDE menu editor
-Version:       6.0.0
+Version:       6.0.1
 Release:       1%{?dist}
 
 License:       GPL-2.0-or-later OR GPL-2.0-only

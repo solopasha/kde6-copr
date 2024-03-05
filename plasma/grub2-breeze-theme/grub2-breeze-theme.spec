@@ -1,7 +1,7 @@
 %global         base_name breeze-grub
 
 Name:           grub2-breeze-theme
-Version:        6.0.0
+Version:        6.0.1
 Release:        1%{?dist}
 Summary:        Breeze theme for GRUB
 License:        BSD-2-Clause AND CC-BY-SA-4.0 AND GPL-2.0-or-later WITH Font-exception-2.0 AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only)
