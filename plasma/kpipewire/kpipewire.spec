@@ -6,6 +6,7 @@ Release: 1%{?dist}
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
+Patch:   https://invent.kde.org/plasma/kpipewire/-/commit/df052bfa3c66d24109f40f18266ee057d1838b9b.patch
 
 # Compile Tools
 BuildRequires:  cmake
