@@ -2,11 +2,12 @@
 
 Name:    kde-connect
 Version: 24.02.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv2+
 Summary: KDE Connect client for communication with smartphones
 URL:     https://community.kde.org/KDEConnect
 %apps_source
+Patch:   https://invent.kde.org/network/kdeconnect-kde/-/commit/5a42e863728731f406bd3478bec330de16a739d6.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  firewalld-filesystem
