@@ -9,6 +9,7 @@ Summary: Breeze theme for Plymouth
 License: GPLv3
 URL:     https://invent.kde.org/plasma/breeze-plymouth
 %plasma_source
+Patch:   fix-build.patch
 
 Source10: plymouth-theme-breeze.conf
 
