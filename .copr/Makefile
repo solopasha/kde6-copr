@@ -7,7 +7,8 @@ prepare:
 				--setopt='kde6.gpgkey=https://download.copr.fedorainfracloud.org/results/solopasha/kde6/pubkey.gpg' kf6-srpm-macros
 
 goprep:
-	dnf install --nodocs -y golang git-core
+	dnf install --nodocs -y --repofrompath 'golang-rawhide,https://download.copr.fedorainfracloud.org/results/@go-sig/golang-rawhide/fedora-$$releasever-$$basearch/' \
+                --setopt='golang-rawhide.gpgkey=https://download.copr.fedorainfracloud.org/results/@go-sig/golang-rawhide/pubkey.gpg' golang git-core
 	go env -w GOPROXY=https://proxy.golang.org,direct
 	go env -w GOSUMDB=sum.golang.org
 	bash bundle_go_deps_for_rpm.sh $(specfile)
