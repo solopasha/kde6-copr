@@ -1,11 +1,12 @@
 Name:           dolphin
 Summary:        KDE File Manager
 Version:        24.02.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 License:        GPLv2+
 URL:            https://invent.kde.org/system/dolphin
 %apps_source
+Patch:          https://invent.kde.org/system/dolphin/-/commit/95551f44.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib

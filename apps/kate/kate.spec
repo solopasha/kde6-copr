@@ -3,7 +3,7 @@
 Name:    kate
 Summary: Advanced Text Editor
 Version: 24.02.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 # kwrite LGPLv2+
 # kate: app LGPLv2, plugins, LGPLv2 and LGPLv2+ and GPLv2+
@@ -13,6 +13,7 @@ URL:     https://apps.kde.org/kate/
 %apps_source
 
 ## upstream patches
+Patch:   https://invent.kde.org/utilities/kate/-/commit/1eb6fea0.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: gettext
