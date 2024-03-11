@@ -117,7 +117,7 @@ for test in "TestBasicGetGPUInfo" \
 ; do
 awk -i inplace '/^func.*'"$test"'\(/ { print; print "\tt.Skip(\"disabled failing test\")"; next}1' $(grep -rl $test)
 done
-%gocheck
+%gocheck -d vendor
 %endif
 
 %post
