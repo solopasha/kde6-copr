@@ -1,7 +1,7 @@
 %global  base_name breeze
 
 Name:    plasma-breeze
-Version: 6.0.1
+Version: 6.0.2
 Release: 1%{?dist}
 Summary: Artwork, styles and assets for the Breeze visual style for the Plasma Desktop
 

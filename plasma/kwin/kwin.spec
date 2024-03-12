@@ -1,7 +1,7 @@
 %bcond x11 1
 
 Name:    kwin
-Version: 6.0.1
+Version: 6.0.2
 Release: 1%{?dist}
 Summary: KDE Window manager
 

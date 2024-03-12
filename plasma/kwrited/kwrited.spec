@@ -1,6 +1,6 @@
 Name:    kwrited
 Summary: KDE Write Daemon
-Version: 6.0.1
+Version: 6.0.2
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later
