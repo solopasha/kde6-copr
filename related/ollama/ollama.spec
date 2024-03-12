@@ -1,4 +1,4 @@
-%global llama_commit 77d1ac7e00bf049b9f2bba1b5a310a78318c49c4
+%global llama_commit ceca1aef0738b57951cd12c603c3477e75312dec
 %global llama_shortcommit %(c=%{llama_commit}; echo ${c:0:7})
 
 %global gomodulesmode GO111MODULE=on
@@ -117,7 +117,7 @@ for test in "TestBasicGetGPUInfo" \
 ; do
 awk -i inplace '/^func.*'"$test"'\(/ { print; print "\tt.Skip(\"disabled failing test\")"; next}1' $(grep -rl $test)
 done
-%gocheck -d vendor
+%gocheck -t vendor
 %endif
 
 %post
