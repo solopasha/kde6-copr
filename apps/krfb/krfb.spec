@@ -6,7 +6,7 @@ Release: 2%{?dist}
 License: GPL-2.0-only AND LGPL-2.1-only AND GFDL-1.2-no-invariants-only
 URL:     https://www.kde.org/applications/network/krfb/
 %apps_source
-Patch:   https://invent.kde.org/network/krfb/-/commit/966ad6a1639732f882284ff6e708b0e37e624ca7.Patch
+Patch:   https://invent.kde.org/network/krfb/-/commit/966ad6a1639732f882284ff6e708b0e37e624ca7.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
