@@ -1,9 +1,9 @@
 %maj_ver_kf6 %(echo %{version} | cut -d. -f1)
 %min_ver_kf6 %(echo %{version} | cut -d. -f2)
-%bug_ver_kf6 %(echo %{version} | cut -d. -f3)
+%bug_ver_kf6 %(echo %{version} | cut -d. -f3 | sed 's/[\\^~].*//')
 
 %stable_kf6 %( \
-    if test %bug_ver_kf6 -ge 50 -o %maj_ver_kf6 -le 5 ; then
+    if test %bug_ver_kf6 -ge 50 ; then
         echo "unstable"
     else
         echo "stable"
@@ -11,7 +11,9 @@
     )
 
 %majmin_ver_kf6 %( \
-    if test %bug_ver_kf6 -ge 50 -o %maj_ver_kf6 -le 5 ; then
+    if [[ "%version" =~ (~|\\^) ]]; then
+        echo %{maj_ver_kf6}.%{min_ver_kf6}.%{bug_ver_kf6}${BASH_REMATCH}
+    elif test %bug_ver_kf6 -ge 50 ; then
         echo %{maj_ver_kf6}.%{min_ver_kf6}.%{bug_ver_kf6}
     else
         echo %{maj_ver_kf6}.%{min_ver_kf6}
