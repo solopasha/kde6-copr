@@ -21,7 +21,7 @@ Source:         %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 Patch:          configurable-libdir-support.patch
 
 BuildRequires:  cargo-rpm-macros >= 25
-BuildRequires:  kf6-rpm-macros
+BuildRequires:  kf6-srpm-macros
 BuildRequires:  pkgconfig(libsodium)
 BuildRequires:  pkgconfig(openssl)
 
