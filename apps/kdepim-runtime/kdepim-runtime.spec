@@ -4,13 +4,12 @@ Name:    kdepim-runtime
 Summary: KDE PIM Runtime Environment
 Epoch:   1
 Version: 24.02.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPLv2
 URL:     https://invent.kde.org/pim/%{name}
 %apps_source
-
-
+Patch:   https://invent.kde.org/pim/kdepim-runtime/-/commit/6f4914ac93e939e0f83b32a2eefe5d7f012a029f.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
@@ -48,6 +47,7 @@ BuildRequires:  cmake(KPim6MailTransport)
 BuildRequires:  cmake(KPim6Mbox)
 BuildRequires:  cmake(KPim6Mime)
 
+BuildRequires:  cmake(Qt6Concurrent)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Keychain)
 BuildRequires:  cmake(Qt6Network)
@@ -58,6 +58,7 @@ BuildRequires:  cmake(Qt6WebEngineWidgets)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  boost-devel
+BuildRequires:  cmake(Etebase)
 BuildRequires:  cmake(libkolabxml)
 BuildRequires:  cmake(Qca-qt6)
 BuildRequires:  pkgconfig(libical)
@@ -101,9 +102,6 @@ Requires: akonadi%{?_isa} >= %{version}
 %cmake_install
 
 %find_lang %{name} --all-name --with-html
-
-# unpackaged files
-rm -fv %{buildroot}%{_kf6_libdir}/lib{akonadi-filestore,folderarchivesettings,libakonadi-singlefileresource,kmindexreader,maildir}.so
 
 
 %check
