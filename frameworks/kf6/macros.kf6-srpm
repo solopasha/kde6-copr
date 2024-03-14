@@ -1,6 +1,6 @@
 %maj_ver_kf6 %(echo %{version} | cut -d. -f1)
 %min_ver_kf6 %(echo %{version} | cut -d. -f2)
-%bug_ver_kf6 %(echo %{version} | cut -d. -f3)
+%bug_ver_kf6 %(echo %{version} | cut -d. -f3 | sed 's/[\\^~].*//')
 
 %stable_kf6 %( \
     if test %bug_ver_kf6 -ge 50 -o %maj_ver_kf6 -le 5 ; then
@@ -11,8 +11,10 @@
     )
 
 %majmin_ver_kf6 %( \
-    if test %bug_ver_kf6 -ge 50 -o %maj_ver_kf6 -le 5 ; then
+    if test %bug_ver_kf6 -ge 50 ; then
         echo %{maj_ver_kf6}.%{min_ver_kf6}.%{bug_ver_kf6}
+    elif [[ "%version" =~ (~|\\^) ]]; then
+        echo %{maj_ver_kf6}.%{min_ver_kf6}.%{bug_ver_kf6}${BASH_REMATCH}
     else
         echo %{maj_ver_kf6}.%{min_ver_kf6}
     fi
@@ -75,6 +77,7 @@
                          "Source2: kde-gear-signing-keys.pgp\\n"))
         macros.sourcerootdir = rpm.expand(pkgname.."-%{version}")
     end
+    macros.optflags = macros.optflags:gsub("-g ", "-g1 ")
 }
 
 
