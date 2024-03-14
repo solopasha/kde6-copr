@@ -1,6 +1,6 @@
 Name:    kmix
 Summary: KDE volume control
-Version: 24.02.0
+Version: 24.02.1
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later
@@ -25,7 +25,6 @@ BuildRequires: extra-cmake-modules
 BuildRequires: kf5-rpm-macros
 BuildRequires: cmake(KF5Config)
 BuildRequires: cmake(KF5ConfigWidgets)
-BuildRequires: cmake(KF5Crash)
 BuildRequires: cmake(KF5DBusAddons)
 BuildRequires: cmake(KF5DocTools)
 BuildRequires: cmake(KF5GlobalAccel)
@@ -91,6 +90,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kmix.desktop
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Mon Jan 08 2024 Steve Cossette <farchord@gmail.com> - 24.01.85-1
 - 24.01.85 (Qt5)
 

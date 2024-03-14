@@ -1,6 +1,6 @@
 Name:    ktorrent
-Version: 24.02.0
-Release: 2%{?dist}
+Version: 24.02.1
+Release: 1%{?dist}
 Summary: A BitTorrent program
 
 License: GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND (GPL-2.0-only OR GPL-3.0-only)
@@ -8,7 +8,6 @@ URL:     https://www.kde.org/applications/internet/ktorrent/
 %apps_source
 
 ## upstream patches
-Patch:   https://invent.kde.org/network/ktorrent/-/commit/2189ace11b528f325352f70f81557f882c34714d.patch
 
 BuildRequires: boost-devel
 BuildRequires: cmake(KTorrent6)
@@ -115,6 +114,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.ktorrent.
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Sun Nov 26 2023 Alessandro Astone <ales.astone@gmail.com> - 24.01.75-1
 - 24.01.75
 

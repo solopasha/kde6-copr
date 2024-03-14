@@ -1,7 +1,7 @@
 Name:    kdenetwork-filesharing
 Summary: Network filesharing
-Version: 24.02.0
-Release: 2%{?dist}
+Version: 24.02.1
+Release: 1%{?dist}
 
 # KDE e.V. may determine that future GPL versions are accepted
 License: GPL-2.0-only OR GPL-3.0-only
@@ -65,6 +65,9 @@ Recommends: samba-usershares
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
 - qmlcache rebuild
 

@@ -1,5 +1,5 @@
 Name:           telly-skout
-Version:        24.02.0
+Version:        24.02.1
 Release:        1%{?dist}
 Summary:        Convergent TV guide based on Kirigami
 License:        LGPL-2.1-or-later
@@ -66,4 +66,5 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
-%autochangelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1

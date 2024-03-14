@@ -1,0 +1,24 @@
+diff -ur falkon-3.1.0/src/lib/preferences/preferences.cpp falkon-3.1.0-native-scrollbars/src/lib/preferences/preferences.cpp
+--- falkon-3.1.0/src/lib/preferences/preferences.cpp	2019-03-19 19:06:45.000000000 +0100
++++ falkon-3.1.0-native-scrollbars/src/lib/preferences/preferences.cpp	2019-03-22 01:54:08.007928070 +0100
+@@ -290,7 +290,7 @@
+     ui->wheelScroll->setValue(settings.value(QSL("wheelScrollLines"), qApp->wheelScrollLines()).toInt());
+     ui->xssAuditing->setChecked(settings.value(QSL("XSSAuditing"), false).toBool());
+     ui->printEBackground->setChecked(settings.value(QSL("PrintElementBackground"), true).toBool());
+-    ui->useNativeScrollbars->setChecked(settings.value(QSL("UseNativeScrollbars"), false).toBool());
++    ui->useNativeScrollbars->setChecked(settings.value(QSL("UseNativeScrollbars"), true).toBool());
+     ui->disableVideoAutoPlay->setChecked(settings.value(QSL("DisableVideoAutoPlay"), false).toBool());
+     ui->webRTCPublicIpOnly->setChecked(settings.value(QSL("WebRTCPublicIpOnly"), true).toBool());
+     ui->dnsPrefetch->setChecked(settings.value(QSL("DNSPrefetch"), true).toBool());
+diff -ur falkon-3.1.0/src/lib/webengine/webscrollbarmanager.cpp falkon-3.1.0-native-scrollbars/src/lib/webengine/webscrollbarmanager.cpp
+--- falkon-3.1.0/src/lib/webengine/webscrollbarmanager.cpp	2019-03-19 19:06:45.000000000 +0100
++++ falkon-3.1.0-native-scrollbars/src/lib/webengine/webscrollbarmanager.cpp	2019-03-22 01:54:08.007928070 +0100
+@@ -109,7 +109,7 @@
+ 
+ void WebScrollBarManager::loadSettings()
+ {
+-    m_enabled = Settings().value(QSL("Web-Browser-Settings/UseNativeScrollbars"), false).toBool();
++    m_enabled = Settings().value(QSL("Web-Browser-Settings/UseNativeScrollbars"), true).toBool();
+ 
+     if (!m_enabled) {
+         for (WebView *view : m_scrollbars.keys()) {

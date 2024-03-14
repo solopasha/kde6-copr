@@ -1,6 +1,6 @@
 Name:    ffmpegthumbs
-Version: 24.02.0
-Release: 2%{?dist}
+Version: 24.02.1
+Release: 1%{?dist}
 Summary: KDE ffmpegthumbnailer service
 
 License: GPL-2.0-or-later
@@ -67,6 +67,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 

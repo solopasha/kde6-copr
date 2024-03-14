@@ -1,7 +1,7 @@
 Name:           artikulate
 Summary:        Improve your pronunciation by listening to native speakers
-Version:        24.02.0
-Release:        2%{?dist}
+Version:        24.02.1
+Release:        1%{?dist}
 
 # artwork: LGPL3
 # code: KDE e.V. may determine that future GPL versions are accepted
@@ -84,6 +84,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
 - qmlcache rebuild
 

@@ -1,6 +1,6 @@
 Name:    ktimer
 Summary: Task Scheduler
-Version: 24.02.0
+Version: 24.02.1
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -59,6 +59,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Mon Nov 13 2023 Justin Zobel <justin.zobel@gmail.com> - 24.01.75-1
 - Update to 24.01.75
 

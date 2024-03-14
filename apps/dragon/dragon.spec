@@ -1,6 +1,6 @@
 Name:    dragon
 Summary: Media player
-Version: 24.02.0
+Version: 24.02.1
 Release: 1%{?dist}
 
 # code: KDE e.V. may determine that future GPL versions are accepted
@@ -79,6 +79,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.dragonpla
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 

@@ -1,6 +1,6 @@
 Name:     skanpage
-Version:  24.02.0
-Release:  2%{?dist}
+Version:  24.02.1
+Release:  1%{?dist}
 Summary:  Utility to scan images and multi-page documents
 # For a breakdown of the licensing, see PACKAGE-LICENSING
 License:  GPLv3 and GPLv2 and CC0-1.0 and BSD
@@ -81,6 +81,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
 - qmlcache rebuild
 

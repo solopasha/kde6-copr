@@ -2,14 +2,13 @@
 
 Name:    kmail
 Summary: Mail client
-Version: 24.02.0
-Release: 2%{?dist}
+Version: 24.02.1
+Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
 License: GPLv2 and GFDL
 URL:     https://www.kde.org/applications/internet/kmail
 %apps_source
-Patch:   https://invent.kde.org/pim/kmail/-/commit/6f61ea119e882b1221bd9ec7dcd0c88f77e3ac45.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
@@ -168,6 +167,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 

@@ -1,5 +1,5 @@
 Name:    kmag
-Version: 24.02.0
+Version: 24.02.1
 Release: 1%{?dist}
 Summary: A screen magnifier
 
@@ -60,6 +60,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Wed Jan 31 2024 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 24.01.95-1
 - 24.01.95
 

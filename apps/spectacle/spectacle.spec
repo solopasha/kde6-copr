@@ -1,14 +1,13 @@
 Name:    spectacle
 Summary: Screenshot capture utility
-Version: 24.02.0
-Release: 2%{?dist}
+Version: 24.02.1
+Release: 1%{?dist}
 
 License: GPLv2
 URL:     https://www.kde.org/applications/graphics/spectacle/
 %apps_source
 
 ## upstream patches
-Patch:   https://invent.kde.org/graphics/spectacle/-/commit/954d6d565d45ef8f2861ddacb55b43295cb3fb9b.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib
@@ -52,14 +51,6 @@ BuildRequires: pkgconfig(xcb-xfixes)
 # for systemd-related macros
 BuildRequires:  systemd-devel
 
-# f26+ upgrade path
-%if 0%{?fedora} > 25
-Obsoletes: ksnapshot <= 15.08.3
-%endif
-
-# translations moved here
-Conflicts: kde-l10n < 17.03
-
 %description
 %{summary}.
 
@@ -87,22 +78,25 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.spectacle
 %files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_bindir}/spectacle
-%{_kf6_datadir}/man/man1/spectacle.1*
-%{_kf6_metainfodir}/org.kde.spectacle.appdata.xml
 %{_kf6_datadir}/applications/org.kde.spectacle.desktop
 %{_kf6_datadir}/dbus-1/interfaces/org.kde.Spectacle.xml
-%{_kf6_datadir}/dbus-1/services/org.kde.Spectacle.service
 %{_kf6_datadir}/dbus-1/services/org.kde.spectacle.service
+%{_kf6_datadir}/dbus-1/services/org.kde.Spectacle.service
 %{_kf6_datadir}/icons/hicolor/*/apps/spectacle.*
+%{_kf6_datadir}/kconf_update/spectacle*
 %{_kf6_datadir}/kglobalaccel/org.kde.spectacle.desktop
 %{_kf6_datadir}/knotifications6/spectacle.notifyrc
+%{_kf6_datadir}/man/man1/spectacle.1*
 %{_kf6_datadir}/qlogging-categories6/%{name}*
 %{_kf6_libdir}/kconf_update_bin/spectacle*
-%{_kf6_datadir}/kconf_update/spectacle*
+%{_kf6_metainfodir}/org.kde.spectacle.appdata.xml
 %{_userunitdir}/app-org.kde.spectacle.service
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Sat Nov 18 2023 Alessandro Astone <ales.astone@gmail.com> - 24.01.75-1
 - 24.01.75
 

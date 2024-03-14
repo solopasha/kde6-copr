@@ -1,8 +1,8 @@
 %global kf6_min_version 5.240.0
 
 Name:           kasts
-Version:        24.02.0
-Release:        2%{?dist}
+Version:        24.02.1
+Release:        1%{?dist}
 License:        GPLv2 and GPLv2+ and GPLv3+ and BSD and LGPLv3+
 Summary:        A mobile podcast application
 URL:            https://apps.kde.org/%{name}
@@ -81,6 +81,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
 - qmlcache rebuild
 

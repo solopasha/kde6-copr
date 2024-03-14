@@ -2,8 +2,8 @@
 
 Name:    kate
 Summary: Advanced Text Editor
-Version: 24.02.0
-Release: 2%{?dist}
+Version: 24.02.1
+Release: 1%{?dist}
 
 # kwrite LGPLv2+
 # kate: app LGPLv2, plugins, LGPLv2 and LGPLv2+ and GPLv2+
@@ -13,7 +13,6 @@ URL:     https://apps.kde.org/kate/
 %apps_source
 
 ## upstream patches
-Patch:   https://invent.kde.org/utilities/kate/-/commit/1eb6fea0.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: gettext
@@ -177,6 +176,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 

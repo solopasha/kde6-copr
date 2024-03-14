@@ -1,0 +1,25 @@
+From 9429508cbd15039a1dee5286c1639542a55d51a5 Mon Sep 17 00:00:00 2001
+From: Justin Zobel <justin@1707.io>
+Date: Thu, 22 Dec 2022 21:11:08 +1030
+Subject: [PATCH] kajongg-20.04.1-KDEPython_paths
+
+---
+ cmake-modules/KDEPython.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cmake-modules/KDEPython.cmake b/cmake-modules/KDEPython.cmake
+index 4cb76166..18f45974 100644
+--- a/cmake-modules/KDEPython.cmake
++++ b/cmake-modules/KDEPython.cmake
+@@ -106,7 +106,7 @@ MACRO(KDE_ADD_PYTHON_EXECUTABLE _pyname _exename)
+     endif(NOT PROJECT_NAME)
+ 
+     set(TARGET ${CMAKE_INSTALL_PREFIX}/${KDE_INSTALL_DATADIR}/${PROJECT_NAME}/${_pyname})
+-    set(LINK_NAME ${CMAKE_INSTALL_PREFIX}/${KDE_INSTALL_BINDIR}/${_exename})
++    set(LINK_NAME ${KDE_INSTALL_BINDIR}/${_exename})
+ 
+     GET_FILENAME_COMPONENT(abs_link_name ${LINK_NAME} ABSOLUTE)
+     GET_FILENAME_COMPONENT(link_path ${LINK_NAME} PATH)
+-- 
+2.38.1
+

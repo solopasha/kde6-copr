@@ -1,6 +1,6 @@
 Name:    kaccounts-providers
-Version: 24.02.0
-Release: 2%{?dist}
+Version: 24.02.1
+Release: 1%{?dist}
 Summary: Additional service providers for KAccounts framework
 License: GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/network/%{name}
@@ -62,6 +62,9 @@ Supplements:    kaccounts-integration-qt6
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
 - qmlcache rebuild
 

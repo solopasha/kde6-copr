@@ -1,5 +1,5 @@
 Name:    calendarsupport
-Version: 24.02.0
+Version: 24.02.1
 Release: 1%{?dist}
 Summary: KDE PIM library for calendar and even handling
 
@@ -78,6 +78,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 

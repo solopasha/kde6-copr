@@ -1,6 +1,6 @@
 Name:    yakuake
-Version: 24.02.0
-Release: 2%{?dist}
+Version: 24.02.1
+Release: 1%{?dist}
 Summary: A drop-down terminal emulator
 
 # KDE e.V. may determine that future GPL versions are accepted
@@ -9,8 +9,6 @@ URL: https://kde.org/applications/system/org.kde.yakuake
 %apps_source
 
 ## upstream fixes
-Patch:   https://invent.kde.org/utilities/yakuake/-/commit/c31c373661edf6c60587cd4965fd76fb70ee32d2.patch
-Patch:   https://invent.kde.org/utilities/yakuake/-/commit/a185d9662519d7b81f3d8a2215d9e94cf81fe161.patch
 
 # konsolepart
 Requires:       konsole-part
@@ -89,6 +87,9 @@ desktop-file-validate  %{buildroot}%{_kf6_datadir}/applications/org.kde.yakuake.
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 

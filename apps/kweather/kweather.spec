@@ -1,6 +1,6 @@
 Name:           kweather
-Version:        24.02.0
-Release:        2%{?dist}
+Version:        24.02.1
+Release:        1%{?dist}
 License:        GPLv2+
 Summary:        Convergent KDE weather application
 URL:            https://invent.kde.org/utilities/kweather
@@ -69,6 +69,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_qtplugindir}/plasma/applets/plasma_applet_%{name}_1x4.so
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
 - qmlcache rebuild
 

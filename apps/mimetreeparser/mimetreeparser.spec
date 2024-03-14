@@ -1,6 +1,6 @@
 Name:    mimetreeparser
-Version: 24.02.0
-Release: 2%{?dist}
+Version: 24.02.1
+Release: 1%{?dist}
 Summary: Parser for MIME trees
 
 License: LGPL-2.0-or-later AND GPL-3.0-only AND GPL-2.0-only AND GPL-2.0-or-later AND (LGPL-2.1-only OR LGPL-3.0-only OR LicenseRef-KDE-Accepted-LGPL)
@@ -76,6 +76,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
 - qmlcache rebuild
 

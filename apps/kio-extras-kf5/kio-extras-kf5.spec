@@ -8,7 +8,7 @@
 %global srcname kio-extras
 
 Name:    kio-extras-kf5
-Version: 24.02.0
+Version: 24.02.1
 Release: 1%{?dist}
 Summary: Additional components to increase the functionality of KIO Framework
 
@@ -177,6 +177,9 @@ time make test -C %{_target_platform} ARGS="--output-on-failure --timeout 10" ||
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Mon Nov 27 2023 Neal Gompa <ngompa@fedoraproject.org> - 23.08.2-5
 - Clean up useless obsoletes+provides and supplement kf5-kio
 

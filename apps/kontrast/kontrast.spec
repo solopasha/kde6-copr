@@ -1,6 +1,6 @@
 Name:          kontrast
-Version:       24.02.0
-Release:       2%{?dist}
+Version:       24.02.1
+Release:       1%{?dist}
 Summary:       Color contrast checker
 # BSD, CC0 are only for build files
 License:       GPL-3.0-only AND GPL-3.0-or-later AND CC-BY-SA-4.0
@@ -70,6 +70,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
 - qmlcache rebuild
 

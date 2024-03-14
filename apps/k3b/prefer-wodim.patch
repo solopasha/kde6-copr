@@ -1,0 +1,21 @@
+diff --git a/libk3b/core/k3bdefaultexternalprograms.cpp b/libk3b/core/k3bdefaultexternalprograms.cpp
+index 2ebf88367..fb7ac8390 100644
+--- a/libk3b/core/k3bdefaultexternalprograms.cpp
++++ b/libk3b/core/k3bdefaultexternalprograms.cpp
+@@ -141,13 +141,12 @@ QString K3b::AbstractCdrtoolsProgram::getProgramPath( const QString& dir ) const
+     QString cdrkitPath = ExternalProgram::buildProgramPath( dir, d->cdrkitAlt );
+ 
+     QString path;
+-    if( QFile::exists( cdrtoolsPath ) &&
++    if( QFile::exists( cdrkitPath ) ) {
++        path = cdrkitPath;
++    } else if( QFile::exists( cdrtoolsPath ) &&
+         QFileInfo(K3b::resolveLink( cdrtoolsPath )).baseName() != d->cdrkitAlt ) {
+         path = cdrtoolsPath;
+     }
+-    else if( QFile::exists( cdrkitPath ) ) {
+-        path = cdrkitPath;
+-    }
+ 
+ #ifndef Q_OS_WIN32
+     if ( !path.isEmpty() && name() == QLatin1String( "cdrecord" ) ) {

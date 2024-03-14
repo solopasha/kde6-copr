@@ -2,7 +2,7 @@
 
 Name:    konsole
 Summary: KDE Terminal emulator
-Version: 24.02.0
+Version: 24.02.1
 Release: 1%{?dist}
 
 # sources: MIT and LGPLv2 and LGPLv2+ and GPLv2+
@@ -34,6 +34,7 @@ BuildRequires: cmake(KF6ConfigWidgets)
 BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DBusAddons)
+BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6GlobalAccel)
 BuildRequires: cmake(KF6GuiAddons)
 BuildRequires: cmake(KF6I18n)
@@ -140,6 +141,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 

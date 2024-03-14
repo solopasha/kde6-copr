@@ -3,7 +3,7 @@
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
 
 Name:    konqueror
-Version: 24.02.0
+Version: 24.02.1
 Release: 1%{?dist}
 Summary: KDE File Manager and Browser
 
@@ -193,6 +193,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Wed Dec 06 2023 Yaakov Selkowitz <yselkowitz@fedoraproject.org> - 24.01.80-1
 - 24.01.80
 

@@ -1,5 +1,5 @@
 Name:    kmouth
-Version: 24.02.0
+Version: 24.02.1
 Release: 1%{?dist}
 Summary: A program that speaks for you
 
@@ -67,6 +67,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.kmouth.de
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Sun Dec 03 2023 Yaakov Selkowitz <yselkowitz@fedoraproject.org> - 24.01.80-1
 - 24.01.80
 

@@ -1,6 +1,6 @@
 Name:           kio-gdrive
-Version:        24.02.0
-Release:        3%{?dist}
+Version:        24.02.1
+Release:        1%{?dist}
 Summary:        An Google Drive KIO slave for KDE
 
 License:        GPL-2.0-or-later
@@ -103,6 +103,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml ||:
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-3
 - qmlcache rebuild
 

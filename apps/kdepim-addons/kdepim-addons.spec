@@ -1,8 +1,8 @@
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
 
 Name:    kdepim-addons
-Version: 24.02.0
-Release: 2%{?dist}
+Version: 24.02.1
+Release: 1%{?dist}
 Summary: Additional plugins for KDE PIM applications
 
 License: GPLv2 and LGPLv2+
@@ -161,6 +161,9 @@ Supplements:    korganizer
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
 - qmlcache rebuild
 

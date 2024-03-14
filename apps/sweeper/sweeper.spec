@@ -1,6 +1,6 @@
 Name:    sweeper
 Summary: Clean unwanted traces the user leaves on the system
-Version: 24.02.0
+Version: 24.02.1
 Release: 1%{?dist}
 
 License: LGPLv2+
@@ -11,8 +11,8 @@ BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
 
-BuildRequires: cmake(Qt6Core) 
-BuildRequires: cmake(Qt6DBus) 
+BuildRequires: cmake(Qt6Core)
+BuildRequires: cmake(Qt6DBus)
 BuildRequires: cmake(Qt6Widgets)
 
 BuildRequires: cmake(KF6Bookmarks)
@@ -20,10 +20,12 @@ BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6ConfigWidgets)
 BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6Crash)
+BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6KIO)
 BuildRequires: cmake(KF6TextWidgets)
 BuildRequires: cmake(KF6XmlGui)
+
 BuildRequires: cmake(PlasmaActivitiesStats)
 
 %description
@@ -60,6 +62,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.sweeper.d
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 

@@ -2,7 +2,7 @@
 
 Name:           markdownpart
 Summary:        Markdown KPart
-Version:        24.02.0
+Version:        24.02.1
 Release:        1%{?dist}
 License:        LGPL-2.1-or-later
 URL:            https://apps.kde.org/categories/utilities/
@@ -52,4 +52,5 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/%{app_id}.
 
 
 %changelog
-%autochangelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1

@@ -1,0 +1,22 @@
+--- cantor-21.04.3/cmake/FindJulia.cmake.nojuliainternal	2021-07-06 04:00:21.000000000 +0900
++++ cantor-21.04.3/cmake/FindJulia.cmake	2021-08-29 14:55:53.950965437 +0900
+@@ -118,7 +118,7 @@
+ else()
+     find_package_handle_standard_args(
+         Julia
+-        REQUIRED_VARS   JULIA_LIBRARY JULIA_INTERNAL_LIBRARY JULIA_INCLUDE_DIRS
++        REQUIRED_VARS   JULIA_LIBRARY JULIA_INCLUDE_DIRS
+         VERSION_VAR     JULIA_VERSION_STRING
+         FAIL_MESSAGE    "Julia not found"
+     )
+--- cantor-21.04.3/src/backends/julia/juliaserver/juliaserver.cpp.nojuliainternal	2021-08-29 14:14:27.795233180 +0900
++++ cantor-21.04.3/src/backends/julia/juliaserver/juliaserver.cpp	2021-08-29 14:50:14.781511654 +0900
+@@ -113,7 +113,7 @@
+ #else
+         jl_value_t *ex = jl_exception_in_transit;
+ #endif
+-        jl_printf(JL_STDERR, "error during run:\n");
++        jl_printf(jl_stderr_stream(), "error during run:\n");
+         jl_function_t *showerror =
+             jl_get_function(jl_base_module, "showerror");
+         jl_value_t *bt = static_cast<jl_value_t *>(

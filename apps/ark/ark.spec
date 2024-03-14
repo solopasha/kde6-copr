@@ -4,7 +4,7 @@
 
 Name:           ark
 Summary:        Archive manager
-Version:        24.02.0
+Version:        24.02.1
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later AND BSD-2-Clause
@@ -121,6 +121,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.ark.deskt
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Sat Oct 14 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-2
 - Add upstream patch to fi bzip2 format with shared-mime-info 2.3
 

@@ -1,5 +1,5 @@
 Name:           keysmith
-Version:        24.02.0
+Version:        24.02.1
 Release:        1%{?dist}
 License:        GPLv3+
 Summary:        Convergent OTP client
@@ -61,6 +61,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 

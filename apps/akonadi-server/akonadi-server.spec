@@ -7,13 +7,12 @@
 
 Name:    akonadi-server
 Summary: PIM Storage Service
-Version: 24.02.0
+Version: 24.02.1
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-KDE-Accepted-GPL AND MIT
 URL:     https://invent.kde.org/pim/akonadi
 %apps_source
-Patch:   https://invent.kde.org/pim/akonadi/-/commit/03a8362c3e499c07ca24eaa8fc75b5687e90a480.patch
 
 ## mysql config
 Source10:       akonadiserverrc.mysql
@@ -246,6 +245,9 @@ fi
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Fri Oct 13 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-2
 - Rebuild (Qt5)
 

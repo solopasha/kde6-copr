@@ -1,5 +1,5 @@
 Name:           skanlite
-Version:        24.02.0
+Version:        24.02.1
 Release:        1%{?dist}
 Summary:        Lightweight scanning program
 # Actually: GPLv2 or GPLv3 or any later Version approved by KDE e.V.
@@ -62,6 +62,9 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/org.kde.
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
+- Update to 24.02.1
+
 * Wed Dec 13 2023 Alessandro Astone <ales.astone@gmail.com> - 24.01.80-1
 - 24.01.80
 
