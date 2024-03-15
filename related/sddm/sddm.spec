@@ -3,7 +3,7 @@
 
 Name:           sddm
 Version:        0.21.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPLv2+
 Summary:        QML based desktop and login manager
 
@@ -176,6 +176,7 @@ cmake --build "%{_vpath_builddir}/components" %{?_smp_mflags} --verbose
 %global _vpath_builddir %{_target_platform}-qt5
 DESTDIR="%{buildroot}" cmake --install "%{_vpath_builddir}/src/greeter"
 DESTDIR="%{buildroot}" cmake --install "%{_vpath_builddir}/components"
+DESTDIR="%{buildroot}" cmake --install "%{_vpath_builddir}/data/translations"
 %global _vpath_builddir %{_target_platform}-qt6
 %cmake_install
 
