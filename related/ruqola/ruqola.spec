@@ -1,7 +1,5 @@
-%global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
-
 Name:           ruqola
-Version:        2.1.0
+Version:        2.1.1
 Release:        1%{?dist}
 Summary:        KDE client for Rocket Chat
 
