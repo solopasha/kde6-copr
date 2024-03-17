@@ -1,7 +1,7 @@
-Name:    kdegraphics-mobipocket 
-Summary: A collection of plugins to handle mobipocket files 
+Name:    kdegraphics-mobipocket
+Summary: A collection of plugins to handle mobipocket files
 Version: 24.02.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPLv2+
 URL:     https://www.kde.org/applications/graphics/
@@ -17,33 +17,18 @@ BuildRequires: kf5-rpm-macros
 BuildRequires: cmake(Qt5Gui)
 BuildRequires: cmake(KF5KIO)
 
+Obsoletes:     %{name}-qt5 < 24.02.1
+Provides:      %{name}-qt5 = %{version}-%{release}
 
 %description
 %{summary}.
 
 %package    devel
 Summary:    Development files for %{name}
+Obsoletes:  %{name}-qt5-devel < 24.02.1
+Provides:   %{name}-qt5-devel = %{version}-%{release}
 Requires:   %{name}%{?_isa} = %{version}-%{release}
 %description devel
-%{summary}.
-
-%package qt5
-Summary: A collection of plugins to handle mobipocket files
-Obsoletes: kdegraphics-mobipocket < 24.01.75
-Obsoletes: qmobipocket < 16.12.0
-Provides:  qmobipocket = %{version}-%{release}
-Provides:  qmobipocket%{?_isa} = %{version}-%{release}
-%description qt5
-%{summary}.
-
-%package qt5-devel
-Summary: Development files for %{name}
-Requires:  %{name}-qt5%{?_isa} = %{version}-%{release}
-Obsoletes: qmobipocket-devel < 16.12.0
-Obsoletes: kdegraphics-mobipocket-devel < 24.01.75
-Provides:  qmobipocket-devel = %{version}-%{release}
-Provides:  qmobipocket-devel%{?_isa} = %{version}-%{release}
-%description qt5-devel
 %{summary}.
 
 %prep
@@ -57,34 +42,30 @@ Provides:  qmobipocket-devel%{?_isa} = %{version}-%{release}
 %cmake_build
 
 %global _vpath_builddir %{_target_platform}-qt5
-%cmake_kf5
+%cmake_kf5 -DQT_MAJOR_VERSION=5
 %cmake_build
 
 
 %install
-%global _vpath_builddir %{_target_platform}-qt6
+%global _vpath_builddir %{_target_platform}-qt5
 %cmake_install
 
-%global _vpath_builddir %{_target_platform}-qt5
+%global _vpath_builddir %{_target_platform}-qt6
 %cmake_install
 
 
 %files
 %license COPYING
-%{_libdir}/libQMobipocket6.so.2*
+%{_kf6_libdir}/libQMobipocket6.so.2*
+%{_kf5_libdir}/libqmobipocket.so.2*
 
 %files devel
-%{_libdir}/libQMobipocket6.so
-%{_includedir}/QMobipocket6/
-%{_libdir}/cmake/QMobipocket6/
-
-%files qt5
-%{_libdir}/libqmobipocket.so.2*
-
-%files qt5-devel
-%{_libdir}/libqmobipocket.so
 %{_includedir}/QMobipocket/
-%{_libdir}/cmake/QMobipocket/
+%{_includedir}/QMobipocket6/
+%{_kf5_libdir}/cmake/QMobipocket/
+%{_kf5_libdir}/libqmobipocket.so
+%{_kf6_libdir}/cmake/QMobipocket6/
+%{_kf6_libdir}/libQMobipocket6.so
 
 
 %changelog

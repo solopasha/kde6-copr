@@ -1,16 +1,11 @@
-%global base_name libkdcraw
-
 Name:    libkdcraw
 Summary: A C++ interface around LibRaw library
 Version: 24.02.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later
-URL:     https://invent.kde.org/graphics/%{base_name}
+URL:     https://invent.kde.org/graphics/%{name}
 %apps_source
-
-
-## upstream patches
 
 BuildRequires: extra-cmake-modules
 BuildRequires: gettext
@@ -20,35 +15,22 @@ BuildRequires: pkgconfig(libraw) >= 0.15
 BuildRequires: cmake(Qt6Gui)
 BuildRequires: cmake(Qt5Gui)
 
-Provides:      kf6-libkdcraw
-
 Requires:      kf6-filesystem
+
+Obsoletes:     %{name}-qt5 < 24.02.1
+Provides:      %{name}-qt5 = %{version}-%{release}
 
 %description
 Libkdcraw is a C++ interface around LibRaw library used to decode RAW
 picture files. More information about LibRaw can be found at
 http://www.libraw.org.
 
-%package devel
-Summary:  Development files for %{name}
-Requires: %{name}%{?_isa} = %{version}-%{release}
-Requires: cmake(Qt6Gui)
-Provides: kf6-libkdcraw-devel
-%description devel
-%{summary}.
-
-%package qt5
-Summary: A collection of plugins to handle mobipocket files
-Requires: kf5-filesystem
-Obsoletes: libkdcraw < 24.01.75
-%description qt5
-%{summary}.
-
-%package qt5-devel
-Summary: Development files for %{name}
-Requires:  %{name}-qt5%{?_isa} = %{version}-%{release}
-Obsoletes: libkdcraw-devel < 24.01.75
-%description qt5-devel
+%package        devel
+Summary:        Development files for %{name}
+Obsoletes:      %{name}-qt5-devel < 24.02.1
+Provides:       %{name}-qt5-devel = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+%description    devel
 %{summary}.
 
 
@@ -63,15 +45,15 @@ Obsoletes: libkdcraw-devel < 24.01.75
 %cmake_build
 
 %global _vpath_builddir %{_target_platform}-qt5
-%cmake_kf5
+%cmake_kf5 -DQT_MAJOR_VERSION=5
 %cmake_build
 
 
 %install
-%global _vpath_builddir %{_target_platform}-qt6
+%global _vpath_builddir %{_target_platform}-qt5
 %cmake_install
 
-%global _vpath_builddir %{_target_platform}-qt5
+%global _vpath_builddir %{_target_platform}-qt6
 %cmake_install
 
 
@@ -79,18 +61,14 @@ Obsoletes: libkdcraw-devel < 24.01.75
 %doc AUTHORS
 %license LICENSES/*
 %{_kf6_libdir}/libKDcrawQt6.so.5*
-%{_kf6_datadir}/qlogging-categories6/*%{base_name}.*
+%{_kf6_datadir}/qlogging-categories6/*%{name}.*
+%{_kf5_libdir}/libKF5KDcraw.so.5*
+%{_kf5_datadir}/qlogging-categories5/*%{name}.*
 
 %files devel
 %{_kf6_libdir}/libKDcrawQt6.so
 %{_includedir}/KDcrawQt6/
 %{_kf6_libdir}/cmake/KDcrawQt6/
-
-%files qt5
-%{_kf5_libdir}/libKF5KDcraw.so.5*
-%{_kf5_datadir}/qlogging-categories5/*%{base_name}.*
-
-%files qt5-devel
 %{_kf5_libdir}/libKF5KDcraw.so
 %{_kf5_includedir}/KDCRAW/
 %{_kf5_libdir}/cmake/KF5KDcraw/

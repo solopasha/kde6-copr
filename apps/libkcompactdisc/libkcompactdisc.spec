@@ -1,14 +1,12 @@
 Name:    libkcompactdisc
 Version: 24.02.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: A KDE compact disc library
 
 # License for this library is very nebulous.
 License: GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://www.kde.org/applications/multimedia/
 %apps_source
-
-## upstreamable patches
 
 BuildRequires: extra-cmake-modules
 BuildRequires: kf5-rpm-macros
@@ -28,29 +26,22 @@ BuildRequires: cmake(Phonon4Qt5)
 
 BuildRequires: pkgconfig(alsa)
 
+Obsoletes:     kf5-libkcompactdisc < 24.01.75
+Provides:      kf5-libkcompactdisc = %{version}-%{release}
+Obsoletes:     %{name}-qt5 < 24.02.1
+Provides:      %{name}-qt5 = %{version}-%{release}
 
 %description
 %{summary}.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
-%description devel
-%{summary}.
-
-%package        qt5
-Summary:        Qt5 support for %{name}
-Obsoletes:      kf5-libkcompactdisc < 24.01.75
-Provides:       kf5-libkcompactdisc = %{version}-%{release}
-%description    qt5
-%{summary}.
-
-%package        qt5-devel
-Summary:        Development files for %{name}
-Requires:       %{name}-qt5%{?_isa} = %{version}-%{release}
 Obsoletes:      kf5-libkcompactdisc-devel < 24.01.75
 Provides:       kf5-libkcompactdisc-devel = %{version}-%{release}
-%description    qt5-devel
+Obsoletes:      %{name}-qt5-devel < 24.02.1
+Provides:       %{name}-qt5-devel = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+%description devel
 %{summary}.
 
 
@@ -65,35 +56,30 @@ Provides:       kf5-libkcompactdisc-devel = %{version}-%{release}
 %cmake_build
 
 %global _vpath_builddir %{_target_platform}-qt5
-%cmake_kf5
+%cmake_kf5 -DQT_MAJOR_VERSION=5
 %cmake_build
 
 
 %install
-%global _vpath_builddir %{_target_platform}-qt6
+%global _vpath_builddir %{_target_platform}-qt5
 %cmake_install
 
-%global _vpath_builddir %{_target_platform}-qt5
+%global _vpath_builddir %{_target_platform}-qt6
 %cmake_install
 
 %find_lang %{name} --all-name --with-html --with-man
 
 
-
 %files -f %{name}.lang
 %license COPYING*
 %{_kf6_libdir}/libKCompactDisc6.so.5*
+%{_kf5_libdir}/libKF5CompactDisc.so.5*
 
 %files devel
 %{_includedir}/KCompactDisc6/
 %{_kf6_libdir}/libKCompactDisc6.so
 %{_kf6_libdir}/cmake/KCompactDisc6/
 %{_qt6_archdatadir}/mkspecs/modules/qt_KCompactDisc.pri
-
-%files qt5
-%{_kf5_libdir}/libKF5CompactDisc.so.5*
-
-%files qt5-devel
 %{_kf5_includedir}/KCompactDisc/
 %{_kf5_libdir}/libKF5CompactDisc.so
 %{_kf5_libdir}/cmake/KF5CompactDisc/

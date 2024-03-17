@@ -1,7 +1,7 @@
 Name:    kdegraphics-thumbnailers
 Summary: Thumbnailers for various graphic types
 Version: 24.02.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 # most sources GPLv2+, dscparse.* GPL, gscreator.* LGPLv2+,
 License: GPLv2+
@@ -25,14 +25,10 @@ BuildRequires: cmake(QMobipocket)
 BuildRequires: cmake(Qt5Gui)
 BuildRequires: cmake(KF5KDcraw)
 
-Recommends:    %{name}-qt5
+Obsoletes:     %{name}-qt5 < 24.02.1
+Provides:      %{name}-qt5 = %{version}-%{release}
 
 %description
-%{summary}.
-
-%package        qt5
-Summary:        Qt5 support for %{name}
-%description    qt5
 %{summary}.
 
 
@@ -47,15 +43,15 @@ Summary:        Qt5 support for %{name}
 %cmake_build
 
 %global _vpath_builddir %{_target_platform}-qt5
-%cmake_kf5
+%cmake_kf5 -DQT_MAJOR_VERSION=5
 %cmake_build
 
 
 %install
-%global _vpath_builddir %{_target_platform}-qt6
+%global _vpath_builddir %{_target_platform}-qt5
 %cmake_install
 
-%global _vpath_builddir %{_target_platform}-qt5
+%global _vpath_builddir %{_target_platform}-qt6
 %cmake_install
 
 
@@ -66,8 +62,6 @@ Summary:        Qt5 support for %{name}
 %{_kf6_plugindir}/thumbcreator/gsthumbnail.so
 %{_kf6_plugindir}/thumbcreator/mobithumbnail.so
 %{_kf6_plugindir}/thumbcreator/rawthumbnail.so
-
-%files qt5
 %{_kf5_plugindir}/thumbcreator/blenderthumbnail.so
 %{_kf5_plugindir}/thumbcreator/gsthumbnail.so
 %{_kf5_plugindir}/thumbcreator/mobithumbnail.so

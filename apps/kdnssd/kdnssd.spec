@@ -3,7 +3,7 @@
 Name:    kdnssd
 Summary: KDE Network Monitor for DNS-SD services (Zeroconf)
 Version: 24.02.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 # KDE e.V. may determine that future GPL versions are accepted
 License: GPLv2 or GPLv3
@@ -27,8 +27,10 @@ BuildRequires:  cmake(KF5KIO)
 BuildRequires:  cmake(Qt5Core)
 BuildRequires:  kf5-rpm-macros
 
-Requires:       %{name}-common
-Recommends:     %{name}-qt5
+Obsoletes:      %{name}-common < 24.02.1
+Provides:       %{name}-common = %{version}-%{release}
+Obsoletes:      %{name}-qt5 < 24.02.1
+Provides:       %{name}-qt5 = %{version}-%{release}
 
 # new upstream name in 4.12.95
 Provides: kio-zeroconf = %{version}-%{release}
@@ -40,21 +42,7 @@ Conflicts: kdenetwork-common <= 22.04.3
 Obsoletes: kdenetwork-kdnssd <= 22.04.3
 Provides:  kdenetwork-kdnssd = 7:%{version}-%{release}
 
-
 %description
-%{summary}.
-
-%package        common
-Summary:        KIO worker to discover file systems by DNS-SD
-Conflicts:      %{name} < 24.01.75
-BuildArch:      noarch
-%description    common
-%{summary}.
-
-%package        qt5
-Summary:        KIO worker to discover file systems by DNS-SD
-Requires:       %{name}-common
-%description    qt5
 %{summary}.
 
 
@@ -69,15 +57,15 @@ Requires:       %{name}-common
 %cmake_build
 
 %global _vpath_builddir %{_target_platform}-qt5
-%cmake_kf5
+%cmake_kf5 -DQT_MAJOR_VERSION=5
 %cmake_build
 
 
 %install
-%global _vpath_builddir %{_target_platform}-qt6
+%global _vpath_builddir %{_target_platform}-qt5
 %cmake_install
 
-%global _vpath_builddir %{_target_platform}-qt5
+%global _vpath_builddir %{_target_platform}-qt6
 %cmake_install
 
 %find_lang kio5-zeroconf --all-name
@@ -87,20 +75,15 @@ Requires:       %{name}-common
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.kio_zeroconf.metainfo.xml
 
 
-%files
+%files -f kio5-zeroconf.lang
+%license LICENSES/*
+%{_kf6_datadir}/dbus-1/interfaces/org.kde.kdnssd.xml
+%{_kf6_datadir}/remoteview/zeroconf.desktop
+%{_kf6_metainfodir}/org.kde.kio_zeroconf.metainfo.xml
 %{_kf6_plugindir}/kded/dnssdwatcher.so
 %{_kf6_plugindir}/kio/zeroconf.so
-
-%files qt5
 %{_kf5_plugindir}/kded/dnssdwatcher.so
 %{_kf5_plugindir}/kio/zeroconf.so
-
-%files common -f kio5-zeroconf.lang
-%license LICENSES/*
-%{_kf5_datadir}/dbus-1/interfaces/org.kde.kdnssd.xml
-%{_kf6_metainfodir}/org.kde.kio_zeroconf.metainfo.xml
-%{_kf5_datadir}/remoteview/zeroconf.desktop
-
 
 
 %changelog

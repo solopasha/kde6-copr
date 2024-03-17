@@ -1,6 +1,6 @@
 Name:           libkcddb
 Version:        24.02.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CDDB retrieval library
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -32,6 +32,15 @@ BuildRequires:  cmake(Qt5Widgets)
 
 BuildRequires:  pkgconfig(libmusicbrainz5)
 
+Obsoletes:      kf5-%{name} < 24.01.75
+Provides:       kf5-%{name} = %{version}-%{release}
+Obsoletes:      %{name}-qt5 < 24.02.1
+Provides:       %{name}-qt5 = %{version}-%{release}
+Obsoletes:      %{name}-qt6 < 24.02.1
+Provides:       %{name}-qt6 = %{version}-%{release}
+Obsoletes:      %{name}-common < 24.02.1
+Provides:       %{name}-common = %{version}-%{release}
+
 %description
 %{summary}.
 
@@ -44,38 +53,17 @@ BuildArch:      noarch
 %description    doc
 Documentation for %{name}.
 
-%package        qt5
-Summary:        Qt5 support for %{name}
-Requires:       %{name}-common = %{version}-%{release}
-Obsoletes:      kf5-%{name} < 24.01.75
-Provides:       kf5-%{name} = %{version}-%{release}
-%description    qt5
-%{summary}.
 
-%package        qt5-devel
+%package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}-qt5%{?_isa} = %{version}-%{release}
+Obsoletes:      %{name}-qt5-devel < 24.02.1
+Provides:       %{name}-qt5-devel = %{version}-%{release}
+Obsoletes:      %{name}-qt6-devel < 24.02.1
+Provides:       %{name}-qt6-devel = %{version}-%{release}
 Obsoletes:      kf5-%{name}-devel < 24.01.75
 Provides:       kf5-%{name}-devel = %{version}-%{release}
-%description    qt5-devel
-%{summary}.
-
-%package        qt6
-Requires:       %{name}-common = %{version}-%{release}
-Summary:        Qt6 support for %{name}
-%description    qt6
-%{summary}.
-
-%package        qt6-devel
-Summary:        Development files for %{name}
-Requires:       %{name}-qt6%{?_isa} = %{version}-%{release}
-%description    qt6-devel
-%{summary}.
-
-%package        common
-Summary:        Common files for %{name}
-BuildArch:      noarch
-%description    common
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+%description    devel
 %{summary}.
 
 %prep
@@ -89,48 +77,42 @@ BuildArch:      noarch
 %cmake_build
 
 %global _vpath_builddir %{_target_platform}-qt5
-%cmake_kf5
+%cmake_kf5 -DQT_MAJOR_VERSION=5
 %cmake_build
 
 
 %install
-%global _vpath_builddir %{_target_platform}-qt6
+%global _vpath_builddir %{_target_platform}-qt5
 %cmake_install
 
-%global _vpath_builddir %{_target_platform}-qt5
+%global _vpath_builddir %{_target_platform}-qt6
 %cmake_install
 
 %find_lang %{name} --all-name --with-man
 %find_lang %{name}-doc --all-name --with-html --without-mo
 
-%files qt6
+
+%files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_libdir}/libKCddb6.so.5*
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/kcm_cddb.so
 %{_kf6_datadir}/qlogging-categories6/%{name}*
-
-%files qt6-devel
-%{_kf6_libdir}/libKCddb6.so
-%{_includedir}/KCddb6/
-%{_kf6_libdir}/cmake/KCddb6/
-%{_qt6_archdatadir}/mkspecs/modules/qt_KCddb.pri
-
-%files qt5
-%license LICENSES/*
+%{_kf6_datadir}/applications/kcm_cddb.desktop
+%{_kf6_datadir}/config.kcfg/libkcddb5.kcfg
 %{_kf5_libdir}/libKF5Cddb.so.5*
 %{_kf5_qtplugindir}/plasma/kcms/systemsettings_qwidgets/kcm_cddb.so
 %{_kf5_datadir}/qlogging-categories5/%{name}*
 
-%files qt5-devel
+%files devel
+%{_kf6_libdir}/libKCddb6.so
+%{_includedir}/KCddb6/
+%{_kf6_libdir}/cmake/KCddb6/
+%{_qt6_archdatadir}/mkspecs/modules/qt_KCddb.pri
 %{_kf5_libdir}/libKF5Cddb.so
 %{_kf5_includedir}/KCddb/
 %{_includedir}/KCddb5/
 %{_kf5_libdir}/cmake/KF5Cddb/
 %{_qt5_archdatadir}/mkspecs/modules/qt_KCddb.pri
-
-%files common -f %{name}.lang
-%{_kf6_datadir}/applications/kcm_cddb.desktop
-%{_kf6_datadir}/config.kcfg/libkcddb5.kcfg
 
 %files doc -f %{name}-doc.lang
 
