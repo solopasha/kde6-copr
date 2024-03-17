@@ -1,7 +1,7 @@
 Name:    libkdcraw
 Summary: A C++ interface around LibRaw library
 Version: 24.02.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later
 URL:     https://invent.kde.org/graphics/%{name}
@@ -19,6 +19,8 @@ Requires:      kf6-filesystem
 
 Obsoletes:     %{name}-qt5 < 24.02.1
 Provides:      %{name}-qt5 = %{version}-%{release}
+Obsoletes:     kf5-%{name} < 24.02.1
+Provides:      kf5-%{name} = %{version}-%{release}
 
 %description
 Libkdcraw is a C++ interface around LibRaw library used to decode RAW
@@ -27,6 +29,8 @@ http://www.libraw.org.
 
 %package        devel
 Summary:        Development files for %{name}
+Obsoletes:      kf5-%{name}-devel < 24.02.1
+Provides:       kf5-%{name}-devel = %{version}-%{release}
 Obsoletes:      %{name}-qt5-devel < 24.02.1
 Provides:       %{name}-qt5-devel = %{version}-%{release}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
