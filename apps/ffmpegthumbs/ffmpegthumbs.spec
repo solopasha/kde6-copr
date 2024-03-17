@@ -1,20 +1,25 @@
 Name:    ffmpegthumbs
 Version: 24.02.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: KDE ffmpegthumbnailer service
 
 License: GPL-2.0-or-later
 URL:     https://apps.kde.org/%{name}/
 %apps_source
 
-BuildRequires: gcc-c++
 BuildRequires: cmake
 BuildRequires: desktop-file-utils
+BuildRequires: extra-cmake-modules
+BuildRequires: gcc-c++
+BuildRequires: kf5-rpm-macros
+BuildRequires: kf6-rpm-macros
 BuildRequires: libappstream-glib
 
-BuildRequires: extra-cmake-modules
 BuildRequires: cmake(KF6KIO)
 BuildRequires: cmake(KF6Config)
+
+BuildRequires: cmake(KF5KIO)
+BuildRequires: cmake(KF5Config)
 BuildRequires: ffmpeg-free-devel
 
 Provides: kffmpegthumbnailer = %{version}-%{release}
@@ -30,11 +35,20 @@ Provides: kdemultimedia-extras-freeworld = %{version}-%{release}
 
 
 %build
+%global _vpath_builddir %{_target_platform}-qt6
 %cmake_kf6 -DQT_MAJOR_VERSION=6
+%cmake_build
+
+%global _vpath_builddir %{_target_platform}-qt5
+%cmake_kf5
 %cmake_build
 
 
 %install
+%global _vpath_builddir %{_target_platform}-qt5
+%cmake_install
+
+%global _vpath_builddir %{_target_platform}-qt6
 %cmake_install
 
 
@@ -44,10 +58,12 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{
 
 %files
 %license LICENSES/GPL-2.0-or-later.txt
-%{_kf6_qtplugindir}/kf6/thumbcreator/ffmpegthumbs.so
 %{_kf6_datadir}/config.kcfg/ffmpegthumbnailersettings5.kcfg
+%{_kf6_datadir}/qlogging-categories5/ffmpegthumbs.categories
 %{_kf6_datadir}/qlogging-categories6/ffmpegthumbs.categories
 %{_kf6_metainfodir}/org.kde.%{name}.metainfo.xml
+%{_kf6_plugindir}/thumbcreator/ffmpegthumbs.so
+%{_kf5_plugindir}/thumbcreator/ffmpegthumbs.so
 
 
 %changelog
