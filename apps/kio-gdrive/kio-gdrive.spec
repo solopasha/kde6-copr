@@ -1,6 +1,6 @@
 Name:           kio-gdrive
 Version:        24.02.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An Google Drive KIO slave for KDE
 
 License:        GPL-2.0-or-later
@@ -42,16 +42,11 @@ BuildRequires:  cmake(Qt5Gui)
 BuildRequires:  cmake(Qt5Network)
 BuildRequires:  cmake(Qt5Widgets)
 
-Recommends:     (kio-gdrive-qt5 if kf5-kio-core)
+Obsoletes:      kio-gdrive-qt5 < 24.02.0-2
 
 %description
 Provides KIO Access to Google Drive using the gdrive:/// protocol.
 
-%package        qt5
-Summary:        Qt5 support for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
-%description    qt5
-%{summary}.
 
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
@@ -98,7 +93,6 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml ||:
 %{_kf6_plugindir}/purpose/purpose_gdrive.so
 %{_qt6_plugindir}/kaccounts/daemonplugins/gdrive.so
 
-%files qt5
 %dir %{_kf5_plugindir}/kfileitemaction/
 %{_kf5_plugindir}/kfileitemaction/gdrivecontextmenuaction.so
 %{_kf5_plugindir}/kio/gdrive.so
