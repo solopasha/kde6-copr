@@ -3,12 +3,13 @@
 Name:    kmail
 Summary: Mail client
 Version: 24.02.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 # code (generally) GPLv2, docs GFDL
 License: GPLv2 and GFDL
 URL:     https://www.kde.org/applications/internet/kmail
 %apps_source
+Patch:   https://invent.kde.org/pim/kmail/-/commit/6f61ea119e882b1221bd9ec7dcd0c88f77e3ac45.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
