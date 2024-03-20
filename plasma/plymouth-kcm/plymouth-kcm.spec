@@ -3,7 +3,7 @@
 Name:    plymouth-kcm
 Summary: Plymouth configuration module for systemsettings
 Version: 6.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/%{base_name}
@@ -65,6 +65,9 @@ plymouth splash screen.
 
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
+- qmlcache rebuild
+
 * Sat Nov 11 2023 Steve Cossette <farchord@gmail.com> - 5.27.80-1
 - 5.27.80
 

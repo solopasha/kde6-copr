@@ -1,6 +1,6 @@
 Name:    breeze-gtk
 Version: 6.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Breeze widget theme for GTK
 
 License: BSD-3-Clause AND CC0-1.0
@@ -100,6 +100,9 @@ Supplements:    (plasma-breeze and gtk4)
 
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
+- qmlcache rebuild
+
 * Tue Nov 14 2023 Steve Cossette <farchord@gmail.com> - 5.27.80-1
 - 5.27.80
 

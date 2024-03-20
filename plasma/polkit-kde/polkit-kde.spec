@@ -3,7 +3,7 @@
 Name:    polkit-kde
 Summary: PolicyKit integration for KDE Desktop
 Version: 6.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPL-2.0-or-later AND CC0-1.0
 URL:     https://invent.kde.org/plasma/%{base_name}
@@ -71,6 +71,9 @@ Provides Policy Kit Authentication Agent that nicely fits to KDE.
 
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
+- qmlcache rebuild
+
 * Sun Nov 12 2023 Alessandro Astone <ales.astone@gmail.com> - 5.27.80-1
 - 5.27.80
 

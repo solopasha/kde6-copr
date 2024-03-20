@@ -3,7 +3,7 @@
 
 Name:    plymouth-theme-breeze
 Version: 6.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Breeze theme for Plymouth
 
 License: GPLv3
@@ -52,6 +52,9 @@ install -D -m644 -p %{SOURCE10} \
 
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
+- qmlcache rebuild
+
 * Fri Nov 10 2023 Alessandro Astone <ales.astone@gmail.com> - 5.27.80-1
 - 5.27.80
 

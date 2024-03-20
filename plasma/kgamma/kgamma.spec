@@ -2,7 +2,7 @@ Name:    kgamma
 Summary: A monitor calibration tool
 Epoch:   1
 Version: 6.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/kgamma
@@ -55,6 +55,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 1:6.0.2-2
+- qmlcache rebuild
+
 * Tue Oct 24 2023 Steve Cossette <farchord@gmail.com> - 1:5.27.9-1
 - 5.27.9
 

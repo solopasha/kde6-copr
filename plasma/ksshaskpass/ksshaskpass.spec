@@ -1,6 +1,6 @@
 Name:    ksshaskpass
 Version: 6.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: A ssh-add helper that uses kwallet and kpassworddialog
 
 License: GPLv2
@@ -53,6 +53,9 @@ EOF
 
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
+- qmlcache rebuild
+
 * Fri Nov 10 2023 Alessandro Astone <ales.astone@gmail.com> - 5.27.80-1
 - 5.27.80
 

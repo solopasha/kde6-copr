@@ -1,7 +1,7 @@
 Name:    libkscreen
 Summary: KDE display configuration library
 Version: 6.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/%{name}
@@ -82,6 +82,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/pkgconfig/KF6Screen.pc
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
+- qmlcache rebuild
+
 * Sat Nov 11 2023 Alessandro Astone <ales.astone@gmail.com> - 5.27.80-1
 - Renamed from libkscreen-qt5
 - 5.27.80

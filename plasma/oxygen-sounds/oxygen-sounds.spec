@@ -1,6 +1,6 @@
 Name:           oxygen-sounds
 Version:        6.0.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        The Oxygen Sound Theme
 
 License:        LGPL-3.0-or-later AND CC0-1.0 AND CC-BY-3.0 AND BSD-2-Clause
@@ -40,6 +40,9 @@ BuildArch:      noarch
 
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
+- qmlcache rebuild
+
 * Sat Nov 11 2023 Alessandro Astone <ales.astone@gmail.com> - 5.27.80-1
 - 5.27.80
 
