@@ -1,6 +1,6 @@
 Name:           alligator
 Version:        24.02.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPLv2 or GPLv3
 Summary:        Kirigami-based RSS reader
 URL:            https://invent.kde.org/plasma-mobile/alligator
@@ -61,6 +61,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
+- qmlcache rebuild
+
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 

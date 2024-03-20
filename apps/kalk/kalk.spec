@@ -1,6 +1,6 @@
 Name:           kalk
 Version:        24.02.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND GPL-3.0-or-later
 Summary:        %{name} is a convergent calculator for Plasma.
 URL:            https://apps.kde.org/%{name}/
@@ -59,6 +59,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{
 %license LICENSES/*
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
+- qmlcache rebuild
+
 * Mon Nov 13 2023 Justin Zobel <justin.zobel@gmail.com> - 24.01.75-1
 - Update to 24.01.75
 

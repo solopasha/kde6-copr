@@ -1,6 +1,6 @@
 Name:		    merkuro
 Version:	    24.02.0
-Release:	    1%{?dist}
+Release:	    2%{?dist}
 Summary:	    A calendar application using Akonadi to sync with external services (Nextcloud, GMail, ...)
 
 License:	    GPL-3.0-or-later
@@ -115,6 +115,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
+- qmlcache rebuild
+
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 

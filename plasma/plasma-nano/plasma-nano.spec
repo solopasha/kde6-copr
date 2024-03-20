@@ -2,7 +2,7 @@
 
 Name:    plasma-nano
 Version: 6.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND MIT
 URL:     https://invent.kde.org/plasma/plasma-nano
 %plasma_source
@@ -71,6 +71,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.pl
 
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
+- qmlcache rebuild
+
 * Fri Nov 17 2023 Steve Cossette <farchord@gmail.com> - 5.27.80-1
 - 5.27.80
 

@@ -1,7 +1,7 @@
 Name:    kscreen
 Epoch:   1
 Version: 6.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: KDE Display Management software
 
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later (GPL-2.0-only OR GPL-3.0-only)
@@ -73,6 +73,9 @@ KCM and KDED modules for managing displays in KDE.
 
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 1:6.0.2-2
+- qmlcache rebuild
+
 * Mon Nov 13 2023 Alessandro Astone <ales.astone@gmail.com> - 1:5.27.80-1
 - 5.27.80
 

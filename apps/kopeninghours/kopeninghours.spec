@@ -1,6 +1,6 @@
 Name:    kopeninghours
 Version: 24.02.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Library for parsing and evaluating OSM opening hours expressions
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later
@@ -63,6 +63,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKOpeningHours.so
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
+- qmlcache rebuild
+
 * Mon Dec 18 2023 Steve Cossette <farchord@gmail.com> - 24.01.80-1
 - 24.01.80
 

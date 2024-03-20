@@ -3,7 +3,7 @@
 
 Name:           sddm
 Version:        0.21.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 License:        GPLv2+
 Summary:        QML based desktop and login manager
 
@@ -275,6 +275,9 @@ rm -fv %{buildroot}%{_sysconfdir}/sddm/Xsession
 
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 0.21.0-3
+- qmlcache rebuild
+
 * Thu Nov 23 2023 Neal Gompa <ngompa@fedoraproject.org> - 0.20.0-7
 - Disable X11 subpackage in RHEL 10+
 - Drop unneeded scriptlets

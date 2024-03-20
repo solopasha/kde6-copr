@@ -8,7 +8,7 @@
 
 Name:    plasma-firewall
 Version: 6.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Control Panel for your system firewall
 
 License: BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL
@@ -125,6 +125,9 @@ rm -rfv %{buildroot}%{_kf6_libexecdir}/kauth/kde_ufw_plugin_helper
 
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
+- qmlcache rebuild
+
 * Sun Nov 12 2023 Steve Cossette <farchord@gmail.com> - 5.27.80-1
 - 5.27.80
 

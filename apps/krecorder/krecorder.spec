@@ -1,6 +1,6 @@
 Name:           krecorder
 Version:        24.02.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        BSD-3-Clause AND CC-BY-4.0 AND CC0-1.0 AND GPL-3.0-or-later
 Summary:        Convergent KDE audio recording application
 URL:            https://invent.kde.org/plasma-mobile/krecorder
@@ -60,6 +60,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
+- qmlcache rebuild
+
 * Thu Jan 11 2024 Steve Cossette <farchord@gmail.com> - 24.01.90-1
 - 24.01.90 (Qt6)
 

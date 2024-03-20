@@ -1,7 +1,7 @@
 Name:           pulseaudio-qt
 Summary:        Qt bindings for PulseAudio
 Version:        1.4.0
-Release:        5%{?dist}
+Release:        6%{?dist}
 
 License:        CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only
 URL:            https://invent.kde.org/libraries/pulseaudio-qt
@@ -61,6 +61,9 @@ Requires:       %{name}-qt6%{?_isa} = %{version}-%{release}
 %{_kf6_libdir}/pkgconfig/KF6PulseAudioQt.pc
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 1.4.0-6
+- qmlcache rebuild
+
 * Tue Nov 21 2023 Steve Cossette <farchord@gmail.com> - 1.3^20231120.081305.36f5625-1
 - Qt6 Build
 

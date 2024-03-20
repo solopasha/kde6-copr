@@ -1,6 +1,6 @@
 Name:    neochat
 Version: 24.02.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND BSD-3-Clause
 URL: https://invent.kde.org/network/%{name}
@@ -115,6 +115,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_metainfodir}/*.appdata.xml
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-3
+- qmlcache rebuild
+
 * Thu Dec 07 2023 Yaakov Selkowitz <yselkowi@redhat.com> - 24.01.80-2
 - Fix QML module dependencies
 - Build without webview on unsupported arches

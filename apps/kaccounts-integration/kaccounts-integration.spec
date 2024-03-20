@@ -1,6 +1,6 @@
 Name:    kaccounts-integration
 Version: 24.02.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Small system to administer web accounts across the KDE desktop
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LicenseRef-KDE-Accepted-GPL
 URL:     https://invent.kde.org/network/%{name}
@@ -140,6 +140,9 @@ Requires:       cmake(SignOnQt5)
 
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
+- qmlcache rebuild
+
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 
