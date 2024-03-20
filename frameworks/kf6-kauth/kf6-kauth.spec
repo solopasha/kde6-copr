@@ -2,7 +2,7 @@
 
 Name:    kf6-%{framework}
 Version: 6.0.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: KDE Frameworks 6 module to perform actions as privileged user
 # LGPL-2.0-or-later is also in the project's LICENSES, but is unused according to reuse.
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-or-later
@@ -67,6 +67,9 @@ developing applications that use %{name}.
 %{_kf6_libexecdir}/kauth/
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-2
+- qmlcache rebuild
+
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1
 - 5.245.0
 

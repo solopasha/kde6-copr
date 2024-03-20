@@ -2,7 +2,7 @@
 
 Name:           kf6-%{framework}
 Version:        6.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with archive functions
 License:        LGPL-2.0-or-later AND BSD-2-Clause
 URL:            https://invent.kde.org/frameworks/%{framework}
@@ -68,6 +68,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Archive.so
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-2
+- qmlcache rebuild
+
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1
 - 5.245.0
 

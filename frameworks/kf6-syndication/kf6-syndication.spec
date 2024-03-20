@@ -2,7 +2,7 @@
 
 Name:    kf6-%{framework}
 Version: 6.0.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: The Syndication Library
 
 # Qt-Commercial-exception-1.0 is also found in the LICENSES folder, but is unused except for tests which we don't use anyway
@@ -58,6 +58,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Syndication.so
 
 %changelog
+* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-2
+- qmlcache rebuild
+
 * Thu Nov 09 2023 Steve Cossette <farchord@gmail.com> - 5.245.0-1
 - 5.245.0
 
