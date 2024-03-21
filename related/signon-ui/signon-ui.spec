@@ -3,7 +3,7 @@
 
 Name:           signon-ui
 Version:        0.17^1.git%{shortcommit0}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Online Accounts Sign-on Ui
 
 License:        GPLv3
@@ -69,6 +69,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_sysconfdir}/signon-ui/
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 0.17^1.giteef943f-3
+- qmlcache rebuild
+
 * Sat Jul 22 2023 Fedora Release Engineering <releng@fedoraproject.org> - 0.15-20
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
 
