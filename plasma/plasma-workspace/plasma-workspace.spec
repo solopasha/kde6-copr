@@ -3,7 +3,7 @@
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
 Version: 6.0.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
@@ -522,9 +522,6 @@ mkdir -p %{buildroot}%{_userunitdir}/plasma-workspace@.target.d/
 install -m644 -p -D %{SOURCE40} %{buildroot}%{_userunitdir}/plasma-core.target.d/ssh-agent.conf
 install -m644 -p -D %{SOURCE41} %{buildroot}%{_userunitdir}/plasma-core.target.d/spice-vdagent.conf
 
-echo "export QML_DISABLE_DISK_CACHE=1" | install -Dpm0644 /dev/stdin %{buildroot}%{_sysconfdir}/profile.d/disable-qml-cache.sh
-sed '/GreeterEnvironment=/s/$/\,QML_DISABLE_DISK_CACHE=1/' -i %{buildroot}%{_prefix}/lib/sddm/sddm.conf.d/plasma-wayland.conf
-
 %find_lang all --with-html --all-name
 
 grep "%{_kf6_docdir}" all.lang > %{name}-doc.lang
@@ -545,7 +542,6 @@ fi
 %license LICENSES
 
 %files -f %{name}.lang
-%config(noreplace) %{_sysconfdir}/profile.d/disable-qml-cache.sh
 %{_sysconfdir}/xdg/menus/plasma-applications.menu
 %{_kf6_bindir}/gmenudbusmenuproxy
 %{_kf6_bindir}/kcminit
@@ -735,6 +731,9 @@ fi
 
 
 %changelog
+* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-3
+- re-enable qml cache
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 
