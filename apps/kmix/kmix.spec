@@ -8,6 +8,7 @@ URL:     https://invent.kde.org/multimedia/%{name}
 %apps_source
 
 ## upstream patches
+Patch:   https://invent.kde.org/multimedia/kmix/-/commit/7fb80bfd038c925f678f7519677dbac0ca118296.patch
 
 ## upstreamable patches
 # disable autostart by default (on newer plasma releases that use plasma-pa)
