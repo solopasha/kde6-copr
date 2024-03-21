@@ -1,6 +1,6 @@
-%global commit0 64ef70f062920e2d62b5a9337485ccbf0eb86b97
+%global commit0 b0a0606ca99f0e03abde6e5a277b28e02c061018
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:           alpaka
 Version:        0.1.1%{?bumpver:^%{bumpver}.git%{shortcommit0}}
@@ -81,5 +81,4 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_kf6_libdir}/libkllmwidgets.so
 
 %changelog
-* Fri Jan 12 2024 Pavel Solovev <daron439@gmail.com>
-- Initial build
+%autochangelog
