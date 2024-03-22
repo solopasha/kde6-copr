@@ -10,8 +10,6 @@ Release: 1%{?dist}
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
-Patch:   https://invent.kde.org/plasma/plasma-nm/-/commit/9dd7b54936b76e6e06ca1318c2932bb7ea42007a.patch
-
 
 %ifarch %{qt6_qtwebengine_arches}
 %bcond openconnect 1
