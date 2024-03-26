@@ -1,9 +1,9 @@
 %global commit0 0ae2f5a6b21d475253969558fe7a2397ef3ad6e0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    plasma-sdk
-Version: 6.0.2%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.0.3%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Development tools for Plasma 6
 

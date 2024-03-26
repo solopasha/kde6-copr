@@ -1,12 +1,12 @@
 %global commit0 f07dec0d34faee49730fe1046758e34508023194
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 %global         base_name polkit-kde-agent-1
 
 Name:    polkit-kde
 Summary: PolicyKit integration for KDE Desktop
-Version: 6.0.2%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.0.3%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later AND CC0-1.0

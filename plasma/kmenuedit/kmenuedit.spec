@@ -1,10 +1,10 @@
 %global commit0 4320fbed5cbb23112074814284a080e1c16b9487
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:          kmenuedit
 Summary:       KDE menu editor
-Version:       6.0.2%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:       6.0.3%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:       1%{?dist}
 
 License:       GPL-2.0-or-later OR GPL-2.0-only

@@ -1,11 +1,11 @@
 %global commit0 501ab3067769b806e376d7026d25d28a7c73d1ef
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 1
 
 %bcond x11 1
 
 Name:    kwin
-Version: 6.0.2%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.0.3%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: KDE Window manager
 

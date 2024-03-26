@@ -1,6 +1,6 @@
 %global commit0 abbcc2c3f4f7c1183821068979c7f06161aa2a18
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 
 # Disable ufw for RHEL
@@ -11,7 +11,7 @@
 %endif
 
 Name:    plasma-firewall
-Version: 6.0.2%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.0.3%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Control Panel for your system firewall
 
