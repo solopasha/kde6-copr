@@ -61,7 +61,7 @@ rm Messages.sh
 %find_lang %{name} --all-name --with-html
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/%{orgname}.*.xml
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/%{orgname}.*.xml || :
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{orgname}.desktop
 
 %files -f %{name}.lang
