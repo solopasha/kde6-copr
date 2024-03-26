@@ -623,6 +623,8 @@ fi
 %{_userunitdir}/plasma-workspace.target
 %{_userunitdir}/plasma-workspace-wayland.target
 %{_userunitdir}/plasma-workspace-x11.target
+%dir %{_userunitdir}/plasma-plasmashell.service.d
+%{_userunitdir}/plasma-plasmashell.service.d/waitforkded.conf
 %{zsh_completions_dir}/_krunner
 %dir %{_userunitdir}/plasma-workspace@.target.d/
 # PAM
