@@ -1,6 +1,6 @@
 Name:    plasma-sdk
-Version: 6.0.2
-Release: 2%{?dist}
+Version: 6.0.3
+Release: 1%{?dist}
 Summary: Development tools for Plasma 6
 
 License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later
@@ -104,6 +104,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.plasmoidviewe
 %{_mandir}/man1/kqml.1.gz
 
 %changelog
+* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
+- Update to 6.0.3
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

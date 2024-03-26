@@ -1,6 +1,6 @@
 Name:       kwayland
-Version:    6.0.2
-Release:    2%{?dist}
+Version:    6.0.3
+Release:    1%{?dist}
 Summary:    KDE Frameworks 6 library that wraps Client and Server Wayland libraries
 
 License:    BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND MIT-CMU AND MIT
@@ -73,6 +73,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/pkgconfig/KWaylandClient.pc
 
 %changelog
+* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
+- Update to 6.0.3
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

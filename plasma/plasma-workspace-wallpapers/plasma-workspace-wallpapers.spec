@@ -1,6 +1,6 @@
 Name:    plasma-workspace-wallpapers
-Version: 6.0.2
-Release: 2%{?dist}
+Version: 6.0.3
+Release: 1%{?dist}
 Summary: Additional wallpapers for Plasma workspace
 License: LGPLv3
 URL:     https://invent.kde.org/plasma/plasma-workspace-wallpapers
@@ -66,6 +66,9 @@ Requires:       kde-filesystem
 %{_datadir}/wallpapers/Volna/
 
 %changelog
+* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
+- Update to 6.0.3
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

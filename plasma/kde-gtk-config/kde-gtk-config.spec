@@ -1,14 +1,13 @@
 Name:    kde-gtk-config
 Summary: Configure the appearance of GTK apps in KDE
-Version: 6.0.2
-Release: 3%{?dist}
+Version: 6.0.3
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only)
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
 
 # upstream patches
-Patch:   https://invent.kde.org/plasma/kde-gtk-config/-/commit/0760b1fd5f16a19475a25084be6e935a9ce7cbb5.patch
 
 ## upstreamable patches
 
@@ -73,6 +72,9 @@ appearance of GTK apps in KDE.
 
 
 %changelog
+* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
+- Update to 6.0.3
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-3
 - qmlcache rebuild
 

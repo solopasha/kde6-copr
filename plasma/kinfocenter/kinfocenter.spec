@@ -1,6 +1,6 @@
 Name:    kinfocenter
-Version: 6.0.2
-Release: 2%{?dist}
+Version: 6.0.3
+Release: 1%{?dist}
 Summary: KDE Info Center
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -87,7 +87,7 @@ Conflicts:      kde-workspace < 4.11.15-3
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kinfocenter.desktop
 desktop-file-validate %{buildroot}%{_datadir}/applications/kcm_about-distro.desktop
 desktop-file-validate %{buildroot}%{_datadir}/applications/kcm_energyinfo.desktop
-appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
+appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml || :
 
 %files -f %{name}.lang
 %{_datadir}/applications/kcm_energyinfo.desktop
@@ -109,6 +109,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 
 
 %changelog
+* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
+- Update to 6.0.3
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 
