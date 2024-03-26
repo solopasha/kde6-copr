@@ -25,6 +25,7 @@ Source20:       https://src.fedoraproject.org/lookaside/pkgs/plasma-workspace/br
 ## in the repective pkgs themselves? -- rdieter)
 Source40:       ssh-agent.conf
 Source41:       spice-vdagent.conf
+Source42:       waitforkded.conf
 
 ## upstream Patches
 
@@ -521,6 +522,7 @@ mkdir -p %{buildroot}%{_userunitdir}/plasma-workspace@.target.d/
 
 install -m644 -p -D %{SOURCE40} %{buildroot}%{_userunitdir}/plasma-core.target.d/ssh-agent.conf
 install -m644 -p -D %{SOURCE41} %{buildroot}%{_userunitdir}/plasma-core.target.d/spice-vdagent.conf
+install -m644 -p -D %{SOURCE42} %{buildroot}%{_userunitdir}/plasma-plasmashell.service.d/waitforkded.conf
 
 %find_lang all --with-html --all-name
 
