@@ -1,6 +1,6 @@
-%global commit0 61ab30924b9b26dafbad9f4eb3aa6e2cefe73fc1
+%global commit0 ee1f6a01049a84c436f799530b27478bbab16e42
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    sddm-kcm
 Version: 6.0.2%{?bumpver:^%{bumpver}.git%{shortcommit0}}

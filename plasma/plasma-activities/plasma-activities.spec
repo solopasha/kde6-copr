@@ -1,6 +1,6 @@
-%global commit0 d6e6f42cc5652900cf6f01aa9c08649035ed3c10
+%global commit0 6eb178b4ab464078f898a2343382fa7c1ce0d1db
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    plasma-activities
 Summary: Core components for the KDE's Activities System

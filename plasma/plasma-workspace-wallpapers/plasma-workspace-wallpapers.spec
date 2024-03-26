@@ -1,6 +1,6 @@
-%global commit0 dfd240f39a95eb7f60ff4a13cc120cc8be77a20f
+%global commit0 82df851a4ea829ff3473a99a9c885f0a2c20c0fd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    plasma-workspace-wallpapers
 Version: 6.0.2%{?bumpver:^%{bumpver}.git%{shortcommit0}}

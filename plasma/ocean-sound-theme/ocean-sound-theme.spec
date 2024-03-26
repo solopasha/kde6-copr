@@ -1,6 +1,6 @@
-%global commit0 517cc4d86be6c02f52f3eb140a3fa40d982510c3
+%global commit0 351246f5371b2241c72e28ce904b41dab9a6f38e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           ocean-sound-theme
 Summary:        Ocean Sound Theme for Plasma

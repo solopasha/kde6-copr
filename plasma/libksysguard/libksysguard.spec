@@ -1,6 +1,6 @@
-%global commit0 4ffdf9133972711f06f336ebc31bff7f154d546c
+%global commit0 fa94722a6b95244ec05433d9cea79944bfbd808a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 
 Name:    libksysguard
