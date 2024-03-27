@@ -1,6 +1,6 @@
 Name:          ktextaddons
-Version:       1.5.3
-Release:       1.2%{?dist}
+Version:       1.5.4
+Release:       1%{?dist}
 Summary:       Various text handling addons
 
 License:       CC0-1.0 AND LGPL-2.0-or-later AND GPL-2.0-or-later AND BSD-3-Clause
@@ -245,6 +245,9 @@ BuildArch:     noarch
 
 
 %changelog
+* Wed Mar 27 2024 Pavel Solovev <daron439@gmail.com> - 1.5.4-1
+- Update to 1.5.4
+
 * Sun Sep 24 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 1.5.1-1
 - Update to 1.5.1
 
