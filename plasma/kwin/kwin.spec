@@ -2,7 +2,7 @@
 
 Name:    kwin
 Version: 6.0.3.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: KDE Window manager
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -105,7 +105,7 @@ Requires:       %{name}-common%{?_isa} = %{version}-%{release}
 Requires:       kscreenlocker%{?_isa}
 Requires:       kf6-kirigami2%{?_isa}
 Requires:       kf6-kdeclarative%{?_isa}
-Requires:       plasma-framework%{?_isa} >= %{version}
+Requires:       plasma-framework%{?_isa} >= %{basever}
 Requires:       qt6-qtmultimedia%{?_isa}
 Requires:       qt6-qtdeclarative%{?_isa}
 
