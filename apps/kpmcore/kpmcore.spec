@@ -4,7 +4,7 @@
 
 Name:           kpmcore
 Version:        24.02.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Library for managing partitions by KDE programs
 License:        GPL-3.0-or-later AND MIT AND CC-BY-4.0 AND CC0-1.0
 URL:            https://github.com/KDE/kpmcore
@@ -19,7 +19,6 @@ BuildRequires:  cmake(Qt6Core) >= %{qt6min}
 BuildRequires:  cmake(Qt6DBus) >= %{qt6min}
 BuildRequires:  cmake(Qt6Gui) >= %{qt6min}
 BuildRequires:  cmake(Qt6Widgets) >= %{qt6min}
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires:  cmake(KF6CoreAddons) >= %{kf6min}
 BuildRequires:  cmake(KF6I18n) >= %{kf6min}
