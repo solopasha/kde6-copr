@@ -2,11 +2,12 @@
 
 Name:		kf6-%{framework}
 Version:	6.0.0
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	QtQuick plugins to build user interfaces based on the KDE UX guidelines
 License:	BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:		https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
+Patch:    https://invent.kde.org/frameworks/kirigami/-/commit/9eaf9709cbbb1c179981b6060ad1c9837c96b9f1.patch
 
 BuildRequires:	cmake
 BuildRequires:	gcc-c++
@@ -82,6 +83,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKirigamiPlatform.so
 
 %changelog
+* Fri Mar 29 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-3
+- fix assert
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-2
 - qmlcache rebuild
 
