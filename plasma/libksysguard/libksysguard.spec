@@ -1,8 +1,7 @@
-
 Name:    libksysguard
 Summary: Library for managing processes running on the system
 Version: 6.0.3
-Release: 1%{?dist}
+Release: 3%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
@@ -39,9 +38,6 @@ BuildRequires:  cmake(Qt6WebEngineWidgets)
 BuildRequires:  cmake(Qt6WebChannel)
 %endif
 
-BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
-
 BuildRequires:  pkgconfig(libpcap)
 BuildRequires:  pkgconfig(libnl-3.0) pkgconfig(libnl-route-3.0)
 BuildRequires:  libcap-devel
@@ -64,7 +60,6 @@ Requires:       cmake(Qt6Network)
 Requires:       cmake(Qt6Widgets)
 Requires:       cmake(KF6Config)
 Requires:       cmake(KF6I18n)
-Requires:       cmake(KF6IconThemes)
 
 %package        common
 Summary:        Runtime data files shared by libksysguard and ksysguard-libs
@@ -124,6 +119,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libprocesscore.so
 
 %changelog
+* Fri Mar 29 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-3
+- remove unneeded deps
+
 * Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
 - Update to 6.0.3
 
