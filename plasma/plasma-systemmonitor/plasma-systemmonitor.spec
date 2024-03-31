@@ -1,6 +1,6 @@
 Name:    plasma-systemmonitor
 Version: 6.0.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: An application for monitoring system resources
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -33,8 +33,8 @@ BuildRequires: qt6-qtdeclarative-devel
 Requires: kf6-kirigami2%{?_isa}
 Requires: ksystemstats%{?_isa}
 
-Obsoletes:     ksysguard < 5.23
-Obsoletes:     ksysguardd < 5.23
+Obsoletes:     ksysguard < 5.22.0-11
+Obsoletes:     ksysguardd < 5.22.0-11
 
 %description
 An interface for monitoring system sensors, process information and other system
@@ -71,6 +71,9 @@ resources.
 %{_kf6_qmldir}/org/kde/ksysguard/
 
 %changelog
+* Sun Mar 31 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-2
+- relax obsoletes
+
 * Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
 - Update to 6.0.3
 
