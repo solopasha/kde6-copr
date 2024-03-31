@@ -129,6 +129,7 @@ done
 %systemd_postun_with_restart %{name}.service
 
 %files
+%license vendor/modules.txt
 %license LICENSE
 %doc README.md
 %{_bindir}/%{name}
