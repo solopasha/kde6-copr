@@ -5,7 +5,7 @@ Summary: KDE Process Management application
 
 License: GPLv2
 URL:     https://invent.kde.org/plasma/%{name}
-Source:  http://download.kde.org/stable/%{name}/%{version}/%{name}-%{version}.tar.xz
+Source:  https://download.kde.org/stable/%{name}/%{version}/%{name}-%{version}.tar.xz
 # Upstream
 # https://invent.kde.org/plasma/ksysguard/-/commit/cb52be2f743a6717355445889dd3e2e265ad75fa
 Patch0:        0001-lmsensors_fix_buffer_size_passed_to_snprintf.patch
@@ -106,6 +106,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.ksysguard
 
 
 %changelog
+* Sun Mar 31 2024 Pavel Solovev <daron439@gmail.com> - 5.22.0-11
+- rebuilt
+
 * Thu Jul 20 2023 Fedora Release Engineering <releng@fedoraproject.org> - 5.22.0-10
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
 
