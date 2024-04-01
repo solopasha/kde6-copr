@@ -1,5 +1,5 @@
 Name:           marknote
-Version:        1.0.0
+Version:        1.1.1
 Release:        1%{?dist}
 License:        GPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.0-only OR LGPL-3.0-only) AND BSD-3-Clause AND GPL-2.0-or-later
 Summary:        A simple markdown note management app
@@ -15,10 +15,12 @@ BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Kirigami2)
+BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Gui)
@@ -26,6 +28,9 @@ BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Widgets)
+
+BuildRequires:  cmake(KF6KirigamiAddons)
+BuildRequires:  pkgconfig(md4c)
 
 Requires:       qt6qml(org.kde.iconthemes)
 Requires:       qt6qml(org.kde.kirigami)
@@ -61,5 +66,8 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_metainfodir}/org.kde.%{name}.metainfo.xml
 
 %changelog
+* Mon Apr 01 2024 Pavel Solovev <daron439@gmail.com> - 1.1.1-1
+- Update to 1.1.1
+
 * Sat Mar 30 2024 Pavel Solovev <daron439@gmail.com> - 1.0.0-1
 - Initial build
