@@ -2,8 +2,8 @@
 
 Name:           kf6-%{framework}
 Summary:        A Qt wrapper for Bluez
-Version:        6.0.0
-Release:        2%{?dist}
+Version:        6.1.0
+Release:        1%{?dist}
 
 License:        CC0-1.0 AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only
 URL:            https://invent.kde.org/frameworks/%{framework}
@@ -66,6 +66,9 @@ Development files for %{name}.
 %{_kf6_libdir}/pkgconfig/KF6BluezQt.pc
 
 %changelog
+* Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
+- Update to 6.1.0
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-2
 - qmlcache rebuild
 

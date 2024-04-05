@@ -1,8 +1,8 @@
 %global framework kdesu
 
 Name:    kf6-%{framework}
-Version: 6.0.0
-Release: 2%{?dist}
+Version: 6.1.0
+Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 integration with su
 
 License: CC0-1.0 AND GPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
@@ -67,6 +67,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6Su/
 
 %changelog
+* Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
+- Update to 6.1.0
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-2
 - qmlcache rebuild
 

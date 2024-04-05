@@ -1,15 +1,13 @@
 %global framework kwallet
 
 Name:    kf6-%{framework}
-Version: 6.0.0
-Release: 3%{?dist}
+Version: 6.1.0
+Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 solution for password management
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-or-later
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
-Patch:   https://invent.kde.org/frameworks/kwallet/-/commit/9e570705b15d9aa0af3fe8b606aed63744ab089b.patch
-Patch:   https://invent.kde.org/frameworks/kwallet/-/commit/be09140e627cb804e4e0c4345eac9ef53d44edd9.patch
 
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
@@ -98,6 +96,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
+- Update to 6.1.0
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-2
 - qmlcache rebuild
 

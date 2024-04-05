@@ -1,8 +1,8 @@
 %global framework qqc2-desktop-style
 
 Name:    kf6-%{framework}
-Version: 6.0.0
-Release: 2%{?dist}
+Version: 6.1.0
+Release: 1%{?dist}
 Summary: QtQuickControls2 style for consistency between QWidget and QML apps
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KFQF-Accepted-GPL
 URL:     https://invent.kde.org/frameworks/%{framework}
@@ -44,8 +44,9 @@ between QWidget-based and QML-based apps.
 
 %install
 %cmake_install
+%find_lang_kf6 qqc2desktopstyle_qt
 
-%files
+%files -f qqc2desktopstyle_qt.lang
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_libdir}/cmake/KF6QQC2DesktopStyle/
@@ -54,6 +55,9 @@ between QWidget-based and QML-based apps.
 %{_qt6_qmldir}/org/kde/qqc2desktopstyle/
 
 %changelog
+* Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
+- Update to 6.1.0
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-2
 - qmlcache rebuild
 

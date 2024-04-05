@@ -2,8 +2,8 @@
 
 Name:		kf6-%{framework}
 Summary:	KDE Frameworks 6 Tier 1 barcode library
-Version:	6.0.0
-Release:	2%{?dist}
+Version:	6.1.0
+Release:	1%{?dist}
 License:	BSD-3-Clause AND CC0-1.0 AND MIT
 URL:		https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
@@ -65,6 +65,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6Prison/
 
 %changelog
+* Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
+- Update to 6.1.0
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-2
 - qmlcache rebuild
 
