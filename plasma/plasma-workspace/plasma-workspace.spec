@@ -132,6 +132,7 @@ BuildRequires:  cmake(KF6NetworkManagerQt)
 BuildRequires:  cmake(KF6Screen)
 BuildRequires:  cmake(KF6KirigamiAddons)
 BuildRequires:  cmake(KF6Auth)
+BuildRequires:  cmake(KF6IconThemes)
 Requires:       kf6-kirigami-addons
 BuildRequires:  wayland-devel >= 1.3.0
 BuildRequires:  libksysguard-devel
