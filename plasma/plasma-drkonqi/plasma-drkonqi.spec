@@ -3,10 +3,11 @@
 Name:    plasma-drkonqi
 Summary: DrKonqi crash handler for KF6/Plasma6
 Version: 6.0.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{base_name}
 %plasma_source
+Patch:   https://invent.kde.org/plasma/drkonqi/-/commit/45fcd31c993cfa518e5957f4dcff51ffeb0d7405.patch
 
 ## upstreamable Patches
 # dnf debuginfo-install
@@ -16,6 +17,7 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  systemd-rpm-macros
+BuildRequires:  desktop-file-utils
 
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Declarative)
@@ -61,7 +63,7 @@ Requires: polkit
 %autosetup -n %{base_name}-%{version} -p1
 
 %build
-%cmake_kf6 -DWITH_PYTHON_VENDORING=OFF
+%cmake_kf6 -DWITH_PYTHON_VENDORING=OFF -DWITH_GDB12=ON
 %cmake_build
 
 %install
@@ -81,6 +83,9 @@ grep drkonqi.mo all.lang > plasma-drkonqi.lang
 
 %postun
 %systemd_user_postun drkonqi-sentry-postman.service
+
+%check
+desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 
 %files -f plasma-drkonqi.lang
 %license LICENSES/*
