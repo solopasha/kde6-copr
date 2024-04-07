@@ -1,13 +1,14 @@
 Summary: Config files for KDE
 Name:    kde-settings
 Version: 39.1
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: MIT
 Url:     https://pagure.io/fedora-kde/kde-settings
 Source0: https://pagure.io/fedora-kde/kde-settings/archive/%{version}/kde-settings-%{version}.tar.gz
 Source1: COPYING
 Patch1:  0001-Revert-kwinrc-Disable-the-Blur-plugin-in-kwin-by-def.patch
+Patch2:  https://pagure.io/fedora-kde/kde-settings/c/0cdfac2a2dc46c038660272e1a4bf9873c55607c.patch
 
 BuildArch: noarch
 
