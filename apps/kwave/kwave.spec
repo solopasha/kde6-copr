@@ -3,7 +3,7 @@
 %undefine _include_frame_pointers
 
 Name:           kwave
-Version: 24.02.1
+Version: 24.02.2
 Release: 1%{?dist}
 Summary:        Sound Editor for KDE
 Summary(de):    Sound-Editor für KDE
@@ -109,6 +109,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.d
 %{_kf5_docdir}/HTML/*/%{name}
 
 %changelog
+* Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
+- Update to 24.02.2
+
 * Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
 - Update to 24.02.1
 

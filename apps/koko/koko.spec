@@ -1,5 +1,5 @@
 Name:           koko
-Version:        24.02.1
+Version:        24.02.2
 Release:        1%{?dist}
 License:        GPLv2+ and GPLv3 and LGPLv2 and LGPLv2+ and CC0 and BSD
 Summary:        An Image gallery application
@@ -89,6 +89,9 @@ cp %{SOURCE12} src/
 %{_kf6_libdir}/libkokocommon.so
 
 %changelog
+* Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
+- Update to 24.02.2
+
 * Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
 - Update to 24.02.1
 

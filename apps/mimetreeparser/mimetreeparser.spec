@@ -1,5 +1,5 @@
 Name:    mimetreeparser
-Version: 24.02.1
+Version: 24.02.2
 Release: 1%{?dist}
 Summary: Parser for MIME trees
 
@@ -76,6 +76,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
+- Update to 24.02.2
+
 * Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
 - Update to 24.02.1
 

@@ -1,5 +1,5 @@
 Name:          kde-inotify-survey
-Version:       24.02.1
+Version:       24.02.2
 Release:       1%{?dist}
 Summary:       Monitors inotify limits and lets the user know when exceeded
 
@@ -54,6 +54,9 @@ BuildRequires: cmake(KF6Auth)
 %{_datadir}/polkit-1/actions/org.kde.kded.inotify.policy
 
 %changelog
+* Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
+- Update to 24.02.2
+
 * Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
 - Update to 24.02.1
 

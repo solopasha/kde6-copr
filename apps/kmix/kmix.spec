@@ -1,6 +1,6 @@
 Name:    kmix
 Summary: KDE volume control
-Version: 24.02.1
+Version: 24.02.2
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later
@@ -8,7 +8,6 @@ URL:     https://invent.kde.org/multimedia/%{name}
 %apps_source
 
 ## upstream patches
-Patch:   https://invent.kde.org/multimedia/kmix/-/commit/7fb80bfd038c925f678f7519677dbac0ca118296.patch
 
 ## upstreamable patches
 # disable autostart by default (on newer plasma releases that use plasma-pa)
@@ -91,6 +90,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kmix.desktop
 
 
 %changelog
+* Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
+- Update to 24.02.2
+
 * Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
 - Update to 24.02.1
 

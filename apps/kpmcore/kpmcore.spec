@@ -3,8 +3,8 @@
 %global sover 12
 
 Name:           kpmcore
-Version:        24.02.1
-Release:        2%{?dist}
+Version:        24.02.2
+Release:        1%{?dist}
 Summary:        Library for managing partitions by KDE programs
 License:        GPL-3.0-or-later AND MIT AND CC-BY-4.0 AND CC0-1.0
 URL:            https://github.com/KDE/kpmcore
@@ -91,5 +91,8 @@ developing applications that use %{name}
 
 
 %changelog
+* Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
+- Update to 24.02.2
+
 * Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
 - Update to 24.02.1

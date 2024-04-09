@@ -1,7 +1,7 @@
 %global base_name kdesdk-kio
 Name:    kdesdk-kioslaves
 Summary: KDESDK KIOslaves
-Version: 24.02.1
+Version: 24.02.2
 Release: 1%{?dist}
 
 License: GPLv2 and GPLv2+
@@ -53,6 +53,9 @@ KDE SDK kioslaves:
 
 
 %changelog	
+* Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
+- Update to 24.02.2
+
 * Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
 - Update to 24.02.1
 

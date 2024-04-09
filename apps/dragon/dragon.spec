@@ -1,6 +1,6 @@
 Name:    dragon
 Summary: Media player
-Version: 24.02.1
+Version: 24.02.2
 Release: 1%{?dist}
 
 # code: KDE e.V. may determine that future GPL versions are accepted
@@ -65,20 +65,23 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.dragonpla
 
 %files -f %{name}.lang
 %license LICENSES/*
-%{_kf6_datadir}/solid/actions/dragonplayer-opendvd.desktop
-%{_kf6_datadir}/solid/actions/dragonplayer-openaudiocd.desktop
 %{_kf6_bindir}/dragon
-%{_sysconfdir}/xdg/dragonplayerrc
-%{_kf6_datadir}/kio/servicemenus/dragonplayer_play_dvd.desktop
-%{_kf6_metainfodir}/org.kde.dragonplayer.appdata.xml
 %{_kf6_datadir}/applications/org.kde.dragonplayer.desktop
 %{_kf6_datadir}/icons/hicolor/*/apps/dragonplayer.*
 %{_kf6_datadir}/icons/oxygen/*/actions/player-volume-muted.*
-# -libs subpkg ? --rex
+%{_kf6_datadir}/kio/servicemenus/dragonplayer_play_dvd.desktop
+%{_kf6_datadir}/solid/actions/dragonplayer-openaudiocd.desktop
+%{_kf6_datadir}/solid/actions/dragonplayer-opendvd.desktop
+%{_kf6_mandir}/man1/dragon.1.*
+%{_kf6_metainfodir}/org.kde.dragonplayer.appdata.xml
 %{_kf6_plugindir}/parts/dragonpart.so
+%{_sysconfdir}/xdg/dragonplayerrc
 
 
 %changelog
+* Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
+- Update to 24.02.2
+
 * Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
 - Update to 24.02.1
 
