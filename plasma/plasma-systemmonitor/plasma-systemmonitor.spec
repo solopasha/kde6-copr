@@ -1,6 +1,10 @@
+%global commit0 b586a34e677a165e1f66c93bd9d8487382adcfd3
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    plasma-systemmonitor
-Version: 6.0.5
-Release: 1%{?dist}.1
+Version: 6.0.4%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 Summary: An application for monitoring system resources
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -42,8 +46,8 @@ resources.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -71,20 +75,9 @@ resources.
 %{_kf6_qmldir}/org/kde/ksysguard/
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1.1
-- rebuild for f40
-
-* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
-- Update to 6.0.5
-
-* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
-- Update to 6.0.4
-
+%{?kde_snapshot_changelog_entry}
 * Sun Mar 31 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-2
 - relax obsoletes
-
-* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
-- Update to 6.0.3
 
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild

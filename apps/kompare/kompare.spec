@@ -1,6 +1,10 @@
+%global commit0 2ae81ed5d0f1ce4036f7cd66709a13a49724369b
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    kompare
 Summary: Diff tool
-Version: 24.05.0
+Version: 24.05.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: (GPL-2.0-only OR GPL-3.0-only) AND GPL-2.0-or-later and GFDL
@@ -53,8 +57,8 @@ developing applications that use %{name}.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -95,18 +99,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kompare.deskt
 
 
 %changelog
-* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
-- Update to 24.05.0
-
-* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
-- Update to 24.04.80
-
-* Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
-- Update to 24.02.2
-
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 

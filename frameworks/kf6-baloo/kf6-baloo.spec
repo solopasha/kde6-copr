@@ -1,17 +1,19 @@
+%global commit0 ab30b9d5f6a13bca6071cd4ba6b373b2aebceac6
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework baloo
 
 Name:    kf6-%{framework}
 Summary: A Tier 3 KDE Frameworks 6 module that provides indexing and search functionality
-Version: 6.2.0
-Release: 2%{?dist}.1
+Version: 6.3.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND bzip2-1.0.6
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-Patch100: baloo-5.67.0-baloofile_config.patch
-
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
 BuildRequires:  cmake(KF6Config)
@@ -63,8 +65,8 @@ Summary:        Runtime libraries for %{name}
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -109,9 +111,9 @@ cat baloo_file6.lang baloo_file_extractor6.lang \
 %files libs
 %license LICENSES/*
 %{_kf6_libdir}/libKF6Baloo.so.6
-%{_kf6_libdir}/libKF6Baloo.so.%{version}
+%{_kf6_libdir}/libKF6Baloo.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKF6BalooEngine.so.6
-%{_kf6_libdir}/libKF6BalooEngine.so.%{version}
+%{_kf6_libdir}/libKF6BalooEngine.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_plugindir}/kio/baloosearch.so
 %{_kf6_plugindir}/kio/tags.so
 %{_kf6_plugindir}/kio/timeline.so
@@ -129,18 +131,7 @@ cat baloo_file6.lang baloo_file_extractor6.lang \
 
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-2.1
-- rebuild for f40
-
-* Sat Jun 01 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-2
-- Obsolete kf5-baloo-file
-
-* Sun May 12 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
-- Update to 6.2.0
-
-* Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
-- Update to 6.1.0
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-2
 - qmlcache rebuild
 

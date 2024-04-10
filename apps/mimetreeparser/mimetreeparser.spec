@@ -1,5 +1,9 @@
+%global commit0 49b41228dffce0947a47fb8442f8fcecaf4e3240
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    mimetreeparser
-Version: 24.05.0
+Version: 24.05.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Parser for MIME trees
 
@@ -43,8 +47,8 @@ developing applications that use %{name}.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -76,18 +80,7 @@ developing applications that use %{name}.
 
 
 %changelog
-* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
-- Update to 24.05.0
-
-* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
-- Update to 24.04.80
-
-* Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
-- Update to 24.02.2
-
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
 - qmlcache rebuild
 

@@ -1,3 +1,7 @@
+%global commit0 078fd8def24075acc768df91574562d01d99e75e
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 ## uncomment to enable bootstrap mode
 #global bootstrap 1
 
@@ -13,8 +17,8 @@
 
 Name:    okular
 Summary: A document viewer
-Version: 24.05.0
-Release: 2%{?dist}
+Version: 24.05.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 
 License: GPL-2.0-only
 URL:     https://www.kde.org/applications/graphics/okular/
@@ -130,8 +134,8 @@ Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %if ! 0%{?mobile}
 # disable/omit mobile, it doesn't work -- rex
@@ -206,21 +210,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.ok
 
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-2
-- don't recommend okular5-part
-
-* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
-- Update to 24.05.0
-
-* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
-- Update to 24.04.80
-
-* Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
-- Update to 24.02.2
-
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-3
 - qmlcache rebuild
 

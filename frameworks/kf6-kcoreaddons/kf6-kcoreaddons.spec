@@ -1,8 +1,12 @@
+%global commit0 eaa3544982e76452873e9535b5e1a1b6b99a35a0
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global		framework kcoreaddons
 
 Name:		kf6-%{framework}
-Version:	6.2.0
-Release:	1%{?dist}.1
+Version:	6.3.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with various classes on top of QtCore
 License:	BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND MPL-1.1 AND LGPL-2.0-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-2.1-only WITH Qt-LGPL-exception-1.1
 URL:		https://invent.kde.org/frameworks/%{framework}
@@ -10,7 +14,7 @@ URL:		https://invent.kde.org/frameworks/%{framework}
 
 BuildRequires:	cmake
 BuildRequires:	gcc-c++
-BuildRequires:	extra-cmake-modules >= %{version}
+BuildRequires:	extra-cmake-modules
 BuildRequires:	kf6-rpm-macros
 BuildRequires:	qt6-qtbase-devel
 BuildRequires:	qt6-qttools-devel
@@ -37,8 +41,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -59,7 +63,7 @@ cat *.lang > all.lang
 %{_kf6_datadir}/mime/packages/kde6.xml
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6CoreAddons.so.6
-%{_kf6_libdir}/libKF6CoreAddons.so.%{version}
+%{_kf6_libdir}/libKF6CoreAddons.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_qmldir}/org/kde/coreaddons/
 
 %files devel
@@ -69,15 +73,7 @@ cat *.lang > all.lang
 %{_kf6_libdir}/libKF6CoreAddons.so
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1.1
-- rebuild for f40
-
-* Sun May 12 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
-- Update to 6.2.0
-
-* Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
-- Update to 6.1.0
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-2
 - qmlcache rebuild
 

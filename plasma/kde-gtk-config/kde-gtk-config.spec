@@ -1,7 +1,11 @@
+%global commit0 a5e594603078e652909454cbbfcf978103b5fe9d
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    kde-gtk-config
 Summary: Configure the appearance of GTK apps in KDE
-Version: 6.0.5
-Release: 1%{?dist}.1
+Version: 6.0.4%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only)
 URL:     https://invent.kde.org/plasma/%{name}
@@ -44,8 +48,8 @@ appearance of GTK apps in KDE.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -72,18 +76,7 @@ appearance of GTK apps in KDE.
 
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1.1
-- rebuild for f40
-
-* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
-- Update to 6.0.5
-
-* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
-- Update to 6.0.4
-
-* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
-- Update to 6.0.3
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-3
 - qmlcache rebuild
 

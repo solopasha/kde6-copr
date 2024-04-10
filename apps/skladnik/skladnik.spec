@@ -1,5 +1,9 @@
+%global commit0 9e3073f999941cbb8a7e8c97fce2d6dbbfa78d45
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:           skladnik
-Version:        24.05.0
+Version:        24.05.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPL-3.0-or-later AND CC0-1.0 AND LGPL-2.1-or-later
 Summary:        Japanese warehouse keeper sokoban game
@@ -35,8 +39,8 @@ BuildRequires:  cmake(KDEGames6)
 %{summary}.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -62,8 +66,5 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 
 %changelog
-* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
-- Update to 24.05.0
-
 * Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
 - Initial build

@@ -1,6 +1,10 @@
+%global commit0 589183df372aba9e1fd049dca2aec82645435d87
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:           koko
-Version:        24.05.0
-Release:        1%{?dist}.1
+Version:        24.05.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 License:        GPLv2+ and GPLv3 and LGPLv2 and LGPLv2+ and CC0 and BSD
 Summary:        An Image gallery application
 URL:            https://apps.kde.org/koko/
@@ -55,8 +59,8 @@ Obsoletes:     %{name}-devel < 24.05.0-2
 %{summary}.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 # Copying these to src dir as per https://invent.kde.org/graphics/koko/-/blob/master/README.md Packaging section.
 cp %{SOURCE10} src/
 cp %{SOURCE11} src/
@@ -83,21 +87,7 @@ rm -r %{buildroot}%{_kf6_libdir}/libkokocommon.so
 
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1.1
-- remove devel package
-
-* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
-- Update to 24.05.0
-
-* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
-- Update to 24.04.80
-
-* Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
-- Update to 24.02.2
-
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
 - qmlcache rebuild
 

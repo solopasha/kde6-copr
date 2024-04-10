@@ -1,6 +1,10 @@
+%global commit0 30d6835e81e95bc3b3a3fd5c225463499dce94d2
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 2
+
 Name:    ktuberling
 Summary: Picture game for children
-Version: 24.05.0
+Version: 24.05.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later AND GFDL-1.2-or-later
@@ -47,12 +51,12 @@ terms of content and adds a surprising variety of different themes.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
-%cmake_kf6
+%{cmake_kf6}
 %cmake_build
 
 
@@ -73,22 +77,13 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/icons/hicolor/*/*/*
 %{_kf6_datadir}/%{name}/
+#{_kf6_datadir}/kconf_update/%{name}*
+#{_kf6_datadir}/knotifications6/%{name}.notifyrc
 %{_kf6_datadir}/qlogging-categories6/%{name}*
 
 
 %changelog
-* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
-- Update to 24.05.0
-
-* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
-- Update to 24.04.80
-
-* Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
-- Update to 24.02.2
-
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Wed Feb 21 2024 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 24.02.0-1
 - 24.02.0
 

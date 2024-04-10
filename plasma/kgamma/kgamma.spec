@@ -1,8 +1,12 @@
+%global commit0 d0fa7023d863f961278d3f76da03b7b043292a29
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    kgamma
 Summary: A monitor calibration tool
 Epoch:   1
-Version: 6.0.5
-Release: 1%{?dist}.1
+Version: 6.0.4%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/kgamma
@@ -27,8 +31,8 @@ BuildRequires: cmake(Qt6Widgets)
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{sourcerootdir}
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -55,18 +59,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 1:6.0.5-1.1
-- rebuild for f40
-
-* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 1:6.0.5-1
-- Update to 6.0.5
-
-* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 1:6.0.4-1
-- Update to 6.0.4
-
-* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 1:6.0.3-1
-- Update to 6.0.3
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 1:6.0.2-2
 - qmlcache rebuild
 

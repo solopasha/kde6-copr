@@ -1,6 +1,10 @@
+%global commit0 6d599d14561bfb62b55ba2bd95575b9c5bfae4ac
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    kmix
 Summary: KDE volume control
-Version: 24.05.0
+Version: 24.05.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later
@@ -43,8 +47,8 @@ BuildRequires: pkgconfig(Qt5Gui)
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -85,23 +89,12 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kmix.desktop
 %{_kf5_datadir}/kservices5/kmixctrl_restore.desktop
 # -libs subpkg?
 %{_kf5_libdir}/libkmixcore.so.5*
-%{_kf5_libdir}/libkmixcore.so.%{version}
+%{_kf5_libdir}/libkmixcore.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf5_plugindir}/kded/kmixd.so
 
 
 %changelog
-* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
-- Update to 24.05.0
-
-* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
-- Update to 24.04.80
-
-* Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
-- Update to 24.02.2
-
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Mon Jan 08 2024 Steve Cossette <farchord@gmail.com> - 24.01.85-1
 - 24.01.85 (Qt5)
 

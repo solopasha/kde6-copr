@@ -1,7 +1,11 @@
+%global commit0 ff0ff7d10259bbab42127685c3532fc08086ca59
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    kglobalacceld
 Summary: Daemon providing Global Keyboard Shortcut functionality
-Version: 6.0.5
-Release: 1%{?dist}.1
+Version: 6.0.4%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 
 License: CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
@@ -47,8 +51,8 @@ Requires:       qt6-qtbase-devel
 %{summary}.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -59,7 +63,7 @@ Requires:       qt6-qtbase-devel
 
 %files
 %license LICENSES/*.txt
-%{_kf6_libdir}/libKGlobalAccelD.so.%{version}
+%{_kf6_libdir}/libKGlobalAccelD.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKGlobalAccelD.so.0
 %{_libexecdir}/kglobalacceld
 %{_qt6_plugindir}/org.kde.kglobalacceld.platforms/KGlobalAccelDXcb.so
@@ -71,18 +75,7 @@ Requires:       qt6-qtbase-devel
 %{_kf6_libdir}/cmake/KGlobalAccelD/
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1.1
-- rebuild for f40
-
-* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
-- Update to 6.0.5
-
-* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
-- Update to 6.0.4
-
-* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
-- Update to 6.0.3
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

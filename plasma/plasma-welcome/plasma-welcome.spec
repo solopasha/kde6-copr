@@ -1,8 +1,12 @@
+%global commit0 c280f22c47dd17cd7341408b304bbe432f02b8e5
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global orgname org.kde.plasma-welcome
 
 Name:           plasma-welcome
-Version:        6.0.5
-Release:        1%{?dist}.1
+Version:        6.0.4%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 License:        GPL-2.0-or-later and BSD-3-Clause
 Summary:        Plasma Welcome
 Url:            https://invent.kde.org/plasma/%{name}
@@ -47,8 +51,8 @@ Obsoletes:      plasma-welcome-app < 5.27.0-2
 A Friendly onboarding wizard for Plasma.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 # It is for generate pot file for translate so we can ignore it.
 rm Messages.sh
 
@@ -74,18 +78,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{orgname}.deskto
 
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1.1
-- rebuild for f40
-
-* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
-- Update to 6.0.5
-
-* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
-- Update to 6.0.4
-
-* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
-- Update to 6.0.3
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

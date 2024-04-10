@@ -1,8 +1,12 @@
+%global commit0 abb11fd88d0679f2b1c7ab9712d9a65c175f4450
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework kconfigwidgets
 
 Name:    kf6-%{framework}
-Version: 6.2.0
-Release: 1%{?dist}.1
+Version: 6.3.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 addon for creating configuration dialogs
 
 # The following licenses are in LICENSES but go unused: BSD-3-Clause, MIT
@@ -11,7 +15,7 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
@@ -47,8 +51,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -65,7 +69,7 @@ developing applications that use %{name}.
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
 %{_kf6_libdir}/qt6/plugins/designer/kconfigwidgets6widgets.so
 %{_kf6_libdir}/libKF6ConfigWidgets.so.6
-%{_kf6_libdir}/libKF6ConfigWidgets.so.%{version}
+%{_kf6_libdir}/libKF6ConfigWidgets.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_datadir}/locale/*/kf6_entry.desktop
 
 %files devel
@@ -75,15 +79,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6ConfigWidgets/
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1.1
-- rebuild for f40
-
-* Sun May 12 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
-- Update to 6.2.0
-
-* Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
-- Update to 6.1.0
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-2
 - qmlcache rebuild
 

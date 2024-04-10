@@ -1,15 +1,19 @@
+%global commit0 7b64932740b23db73d7ee9b13f48ce80666ec57a
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework threadweaver
 
 Name:		kf6-%{framework}
-Version:	6.2.0
-Release:	1%{?dist}.1
+Version:	6.3.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon for advanced thread management
 License:	CC0-1.0 AND LGPL-2.0-or-later
 URL:		https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules >= %{version}
+BuildRequires:	extra-cmake-modules
 BuildRequires:	gcc-c++
 BuildRequires:	kf6-rpm-macros
 
@@ -33,8 +37,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -50,7 +54,7 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_libdir}/libKF6ThreadWeaver.so.6
-%{_kf6_libdir}/libKF6ThreadWeaver.so.%{version}
+%{_kf6_libdir}/libKF6ThreadWeaver.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 
 %files devel
 %{_qt6_docdir}/*.tags
@@ -60,15 +64,7 @@ developing applications that use %{name}.
 
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1.1
-- rebuild for f40
-
-* Sun May 12 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
-- Update to 6.2.0
-
-* Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
-- Update to 6.1.0
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-2
 - qmlcache rebuild
 

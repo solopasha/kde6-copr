@@ -1,8 +1,12 @@
+%global commit0 fe5089925a698230d8ea41303879c5605b7de9a9
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %bcond x11 1
 
 Name:    kwin
-Version: 6.0.5
-Release: 4%{?dist}.1
+Version: 6.0.4%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 Summary: KDE Window manager
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -10,6 +14,8 @@ URL:     https://userbase.kde.org/KWin
 %plasma_source
 Patch:   https://invent.kde.org/plasma/kwin/-/merge_requests/5733.patch
 Patch:   https://invent.kde.org/plasma/kwin/-/merge_requests/5776.patch
+
+## proposed patches
 
 # Base
 BuildRequires:  extra-cmake-modules
@@ -103,10 +109,8 @@ BuildRequires:  pkgconfig(fontconfig)
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       %{name}-common%{?_isa} = %{version}-%{release}
 Requires:       kf6-kdeclarative%{?_isa}
-Requires:       kf6-kirigami%{?_isa}
-Requires:       kscreenlocker%{?_isa} >= %{basever}
-Requires:       libplasma%{?_isa} >= %{basever}
-Requires:       qt6-qt5compat%{?_isa}
+Requires:       plasma-framework%{?_isa} >= %{lua: print((macros.version:gsub('[%^~].*', '~')))}
+Requires:       qt6-qtmultimedia%{?_isa}
 Requires:       qt6-qtdeclarative%{?_isa}
 Requires:       qt6-qtmultimedia%{?_isa}
 
@@ -185,8 +189,8 @@ BuildArch:      noarch
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -251,9 +255,9 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 
 %files libs
 %{_kf6_datadir}/qlogging-categories6/org_kde_kwin.categories
-%{_kf6_libdir}/libkcmkwincommon.so.%{basever}
+%{_kf6_libdir}/libkcmkwincommon.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libkcmkwincommon.so.6
-%{_kf6_libdir}/libkwin.so.%{basever}
+%{_kf6_libdir}/libkwin.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libkwin.so.6
 
 %files devel
@@ -268,36 +272,7 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-4.1
-- rebuild for f40
-
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-4
-- fix requires
-
-* Sat Jun 01 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-3
-- pick upstream commit
-
-* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-2
-- drop explicit sync
-
-* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
-- Update to 6.0.5
-
-* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4.1-3
-- backport explicit sync, fix dnd in chromium
-
-* Sat May 04 2024 Neal Gompa <ngompa@fedoraproject.org> - 6.0.4.1-2
-- Persist CAP_SYS_NICE capability for kwin_wayland binary
-
-* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
-- Update to 6.0.4
-
-* Wed Mar 27 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3.1-1
-- Update to 6.0.3.1
-
-* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
-- Update to 6.0.3
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

@@ -1,9 +1,13 @@
+%global commit0 88f60f1a079d4c62a85282fbdbfc0a9b7a6d3d6d
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 #global tests 1
 
 Name:    kdepim-runtime
 Summary: KDE PIM Runtime Environment
 Epoch:   1
-Version: 24.05.0
+Version: 24.05.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2
@@ -67,7 +71,7 @@ BuildRequires:  pkgconfig(shared-mime-info)
 
 %if 0%{?tests}
 BuildRequires:  dbus-x11
-BuildRequires:  akonadi-mysql
+BuildRequires:  akonadi
 BuildRequires:  xorg-x11-server-Xvfb
 %endif
 
@@ -80,14 +84,14 @@ Requires:       %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Summary: %{name} runtime libraries
 Obsoletes: kf5-kmailtransport-akonadi < 23.08.0
 Requires: %{name} = %{epoch}:%{version}-%{release}
-Requires: akonadi%{?_isa} >= %{version}
+Requires: akonadi%{?_isa} >= %{majmin_ver_kf6}
 %description libs
 %{summary}.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n kdepim-runtime-%{version}%{?pre} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -139,18 +143,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
-* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 1:24.05.0-1
-- Update to 24.05.0
-
-* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 1:24.04.80-1
-- Update to 24.04.80
-
-* Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 1:24.02.2-1
-- Update to 24.02.2
-
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 1:24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 1:23.08.2-1
 - 23.08.2
 

@@ -1,5 +1,9 @@
+%global commit0 8f969e410819405e6c8ac50a7a3c8cd653f83097
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:          kjournald
-Version:       24.05.0
+Version:       24.05.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:       1%{?dist}
 Summary:       Framework for interacting with systemd-journald
 
@@ -37,8 +41,8 @@ Requires:      %{name} = %{version}
 %description   libs
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -63,22 +67,11 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.kj
 %{_kf6_metainfodir}/org.kde.kjournaldbrowser.appdata.xml
 
 %files libs
-%{_kf6_libdir}/libkjournald.so.%{version}
+%{_kf6_libdir}/libkjournald.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libkjournald.so.0
 
 %changelog
-* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
-- Update to 24.05.0
-
-* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
-- Update to 24.04.80
-
-* Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
-- Update to 24.02.2
-
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
 - qmlcache rebuild
 

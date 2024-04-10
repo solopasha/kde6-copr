@@ -1,16 +1,20 @@
+%global commit0 27d9f4f07f9b41d8848cad73823d42ce3e032c4c
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework ksvg
 
 Name:    kf6-ksvg
 Summary: Components for handling SVGs
-Version: 6.2.0
-Release: 1%{?dist}.1
+Version: 6.3.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires: cmake
-BuildRequires: extra-cmake-modules >= %{version}
+BuildRequires: extra-cmake-modules
 BuildRequires: gcc-c++
 BuildRequires: kf6-rpm-macros
 
@@ -43,8 +47,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1 -n %{framework}-%{version}
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -57,7 +61,7 @@ developing applications that use %{name}.
 %license LICENSES/*
 %{_kf6_datadir}/qlogging-categories6/ksvg.categories
 %{_kf6_libdir}/libKF6Svg.so.6
-%{_kf6_libdir}/libKF6Svg.so.%{version}
+%{_kf6_libdir}/libKF6Svg.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/qt6/qml/org/kde/ksvg/
 
 %files devel
@@ -67,15 +71,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Svg.so
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1.1
-- rebuild for f40
-
-* Sun May 12 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
-- Update to 6.2.0
-
-* Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
-- Update to 6.1.0
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-2
 - qmlcache rebuild
 

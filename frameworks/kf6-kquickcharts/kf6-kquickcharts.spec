@@ -1,9 +1,13 @@
+%global commit0 2e6f188302381f997d8a0c7815fd57338ebc0026
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global		framework kquickcharts
 
 Name:		kf6-%{framework}
 Summary:	A QtQuick module providing high-performance charts
-Version:	6.2.0
-Release:	1%{?dist}.1
+Version:	6.3.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:	1%{?dist}
 
 License:	BSD-2-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only AND MIT
 URL:		https://invent.kde.org/frameworks/%{framework}
@@ -11,7 +15,7 @@ URL:		https://invent.kde.org/frameworks/%{framework}
 
 BuildRequires:	cmake
 BuildRequires:	gcc-c++
-BuildRequires:	extra-cmake-modules >= %{version}
+BuildRequires:	extra-cmake-modules
 BuildRequires:	cmake(Qt6Qml)
 BuildRequires:	cmake(Qt6Quick)
 BuildRequires:	cmake(Qt6QuickControls2)
@@ -35,8 +39,8 @@ developing applications that use %{name}.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -52,9 +56,9 @@ developing applications that use %{name}.
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_qmldir}/org/kde/quickcharts/
 %{_kf6_libdir}/libQuickCharts.so.1
-%{_kf6_libdir}/libQuickCharts.so.%{version}
+%{_kf6_libdir}/libQuickCharts.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libQuickChartsControls.so.1
-%{_kf6_libdir}/libQuickChartsControls.so.%{version}
+%{_kf6_libdir}/libQuickChartsControls.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 
 %files devel
 %{_kf6_libdir}/cmake/KF6QuickCharts/
@@ -62,15 +66,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libQuickChartsControls.so
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1.1
-- rebuild for f40
-
-* Sun May 12 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
-- Update to 6.2.0
-
-* Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
-- Update to 6.1.0
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-2
 - qmlcache rebuild
 

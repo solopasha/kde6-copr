@@ -1,16 +1,20 @@
+%global commit0 8d78055e117f258d33a4c1ade8faee69deb2115d
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global		framework kirigami
 
 Name:		kf6-%{framework}
-Version:	6.2.1
-Release:	1%{?dist}.1
+Version:	6.3.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:	1%{?dist}
 Summary:	QtQuick plugins to build user interfaces based on the KDE UX guidelines
 License:	BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:		https://invent.kde.org/frameworks/%{framework}
-%frameworks_meta -v 6.2
+%frameworks_meta
 
 BuildRequires:	cmake
 BuildRequires:	gcc-c++
-BuildRequires:	extra-cmake-modules >= %{basever}
+BuildRequires:	extra-cmake-modules
 BuildRequires:	kf6-rpm-macros
 BuildRequires:	qt6-linguist
 BuildRequires:	qt6-qtbase-devel
@@ -45,8 +49,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -60,11 +64,11 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/kirigami.categories
-%{_kf6_libdir}/libKirigami.so.%{version}
+%{_kf6_libdir}/libKirigami.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKirigami.so.6
-%{_kf6_libdir}/libKirigamiDelegates.so.%{version}
+%{_kf6_libdir}/libKirigamiDelegates.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKirigamiDelegates.so.6
-%{_kf6_libdir}/libKirigamiPlatform.so.%{version}
+%{_kf6_libdir}/libKirigamiPlatform.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKirigamiPlatform.so.6
 %{_kf6_qmldir}/org/kde/kirigami/
 
@@ -82,18 +86,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKirigamiPlatform.so
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1.1
-- rebuild for f40
-
-* Sun May 12 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
-- Update to 6.2.0
-
-* Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
-- Update to 6.1.0
-
-* Fri Mar 29 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-3
-- fix assert
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-2
 - qmlcache rebuild
 

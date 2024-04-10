@@ -1,8 +1,12 @@
+%global commit0 ac42697f6f23875592f675059f25ddb735899162
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework kio
 
 Name:    kf6-%{framework}
-Version: 6.2.0
-Release: 2%{?dist}.1
+Version: 6.3.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 solution for filesystem abstraction
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -19,7 +23,7 @@ Patch101: kio-no-help-protocol.patch
 %endif
 
 BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
@@ -145,8 +149,8 @@ Recommends:     switcheroo-control
 %qch_package qch
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -178,13 +182,13 @@ Recommends:     switcheroo-control
 
 %files core-libs
 %{_kf6_libdir}/libKF6KIOCore.so.6
-%{_kf6_libdir}/libKF6KIOCore.so.%{version}
+%{_kf6_libdir}/libKF6KIOCore.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 
 %files doc -f %{name}.lang
 
 %files gui
 %{_kf6_libdir}/libKF6KIOGui.so.6
-%{_kf6_libdir}/libKF6KIOGui.so.%{version}
+%{_kf6_libdir}/libKF6KIOGui.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 
 %files widgets
 %dir %{_kf6_plugindir}/urifilters/
@@ -192,14 +196,13 @@ Recommends:     switcheroo-control
 
 %files widgets-libs
 %{_kf6_libdir}/libKF6KIOWidgets.so.6
-%{_kf6_libdir}/libKF6KIOWidgets.so.%{version}
-%{_kf6_libdir}/libkuriikwsfiltereng_private.so.6
-%{_kf6_libdir}/libkuriikwsfiltereng_private.so.%{version}
+%{_kf6_libdir}/libKF6KIOWidgets.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
+%{_kf6_libdir}/libkuriikwsfiltereng_private.so
 %{_kf6_qtplugindir}/designer/*6widgets.so
 
 %files file-widgets
 %{_kf6_libdir}/libKF6KIOFileWidgets.so.6
-%{_kf6_libdir}/libKF6KIOFileWidgets.so.%{version}
+%{_kf6_libdir}/libKF6KIOFileWidgets.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 
 %files devel
 %{_qt6_docdir}/*.tags
@@ -217,15 +220,7 @@ Recommends:     switcheroo-control
 %{_kf6_libdir}/libkuriikwsfiltereng_private.so
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-2.1
-- rebuild for f40
-
-* Sun May 12 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
-- Update to 6.2.0
-
-* Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
-- Update to 6.1.0
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-3
 - qmlcache rebuild
 

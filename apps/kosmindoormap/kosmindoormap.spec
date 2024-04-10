@@ -1,5 +1,9 @@
+%global commit0 77f404e672fa42d3cb537059d40b43553b943ea0
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 3
+
 Name:    kosmindoormap
-Version: 24.05.0
+Version: 24.05.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: OSM multi-floor indoor map renderer
 
@@ -50,8 +54,8 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -68,9 +72,9 @@ developing applications that use %{name}.
 %doc README.md
 %{_kf6_datadir}/qlogging-categories6/org_kde_kosmindoormap.categories
 %{_kf6_libdir}/libKOSM.so.1
-%{_kf6_libdir}/libKOSM.so.%{version}
+%{_kf6_libdir}/libKOSM.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKOSMIndoorMap.so.1
-%{_kf6_libdir}/libKOSMIndoorMap.so.%{version}
+%{_kf6_libdir}/libKOSMIndoorMap.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_qt6_qmldir}/org/kde/kosmindoormap/
 %{_qt6_qmldir}/org/kde/osm/
 
@@ -85,18 +89,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKOSMIndoorMap.so
 
 %changelog
-* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
-- Update to 24.05.0
-
-* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
-- Update to 24.04.80
-
-* Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
-- Update to 24.02.2
-
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 24.02.0-2
 - qmlcache rebuild
 

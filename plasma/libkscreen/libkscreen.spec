@@ -1,7 +1,11 @@
+%global commit0 5694646465d96fbbc8d3378b8976a00a7d05fa91
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    libkscreen
 Summary: KDE display configuration library
-Version: 6.0.5
-Release: 1%{?dist}.1
+Version: 6.0.4%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/%{name}
@@ -48,8 +52,8 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -65,9 +69,9 @@ developing applications that use %{name}.
 %{_kf6_datadir}/dbus-1/services/org.kde.kscreen.service
 %{_kf6_datadir}/qlogging-categories6/libkscreen.categories
 %{_kf6_datadir}/zsh/site-functions/_kscreen-doctor
-%{_kf6_libdir}/libKF6Screen.so.%{version}
+%{_kf6_libdir}/libKF6Screen.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKF6Screen.so.8
-%{_kf6_libdir}/libKF6ScreenDpms.so.%{version}
+%{_kf6_libdir}/libKF6ScreenDpms.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKF6ScreenDpms.so.8
 %{_kf6_libexecdir}/kscreen_backend_launcher
 %{_kf6_plugindir}/kscreen/
@@ -82,18 +86,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/pkgconfig/KF6Screen.pc
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1.1
-- rebuild for f40
-
-* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
-- Update to 6.0.5
-
-* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
-- Update to 6.0.4
-
-* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
-- Update to 6.0.3
-
+%{?kde_snapshot_changelog_entry}
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

@@ -1,11 +1,18 @@
+%global commit0 861d703598691ec6e5944c99983c7f71d6b6d8c4
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    ksudoku
 Summary: A logic-based symbol placement puzzle
-Version: 24.05.0
+Version: 24.05.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
 URL:     https://invent.kde.org/games/%{name}
 %apps_source
+
+
+## upstream patches (lookaside cache)
 
 BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib
@@ -53,8 +60,8 @@ it is your job to fill in the rest.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -82,22 +89,13 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/icons/hicolor/*/*/*
 %{_kf6_datadir}/%{name}/
+#{_kf6_datadir}/config.kcfg/%{name}.kcfg
+#{_kf6_datadir}/knotifications6/%{name}.notifyrc
 %{_kf6_sysconfdir}/xdg/ksudokurc
 
 
 %changelog
-* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
-- Update to 24.05.0
-
-* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
-- Update to 24.04.80
-
-* Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
-- Update to 24.02.2
-
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Wed Feb 21 2024 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 24.02.0-1
 - 24.02.0
 
@@ -180,7 +178,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
 
 * Mon Jul 18 2022 Than Ngo <than@redhat.com> - 22.04.3-1
-- 22.04.3
+- 22.04.3 
 
 * Thu May 12 2022 Justin Zobel <justin@1707.io> - 22.04.1-1
 - Update to 22.04.1
@@ -246,7 +244,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 - 20.04.3
 
 * Sat Jun 13 2020 Marie Loise Nolden <loise@kde.org> - 20.04.2-2
-- build fix
+- build fix 
 
 * Fri Jun 12 2020 Rex Dieter <rdieter@fedoraproject.org> - 20.04.2-1
 - 20.04.2

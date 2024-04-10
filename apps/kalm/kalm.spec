@@ -1,5 +1,9 @@
+%global commit0 b62c6f8a6932f70282d90a88150d068648182dd1
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:           kalm
-Version:        24.05.0
+Version:        24.05.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        LGPL-2.1-or-later AND CC0-1.0
 Summary:        Kalm can teach you different breathing techniques
@@ -36,8 +40,8 @@ Requires:       kf6-qqc2-desktop-style%{?_isa}
 %{summary}.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -60,8 +64,5 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %changelog
-* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
-- Update to 24.05.0
-
 * Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
 - Initial build

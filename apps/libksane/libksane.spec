@@ -1,6 +1,10 @@
+%global commit0 88834844fd52a55b108ccc152f84132bfdb44687
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    libksane
 Summary: SANE Library interface for KDE
-Version: 24.05.0
+Version: 24.05.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
@@ -75,8 +79,8 @@ Provides internationalization files.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -107,7 +111,7 @@ Provides internationalization files.
 %doc AUTHORS
 %license COPYING*
 %license LICENSES/*
-%{_datadir}/icons/hicolor/*/actions/*
+%{_kf6_datadir}/icons/hicolor/*/actions/*
 
 %if %{fedora} >= 40
 %files qt5
@@ -121,27 +125,17 @@ Provides internationalization files.
 %endif
 
 %files qt6
-%{_libdir}/libKSaneWidgets6.so.{6,%{version}}
+%{_kf6_libdir}/libKSaneWidgets6.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
+%{_kf6_libdir}/libKSaneWidgets6.so.6
 
 %files qt6-devel
 %{_includedir}/KSaneWidgets6/
-%{_libdir}/cmake/KSaneWidgets6/
-%{_libdir}/libKSaneWidgets6.so
+%{_kf6_libdir}/cmake/KSaneWidgets6/
+%{_kf6_libdir}/libKSaneWidgets6.so
 
 
 %changelog
-* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
-- Update to 24.05.0
-
-* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
-- Update to 24.04.80
-
-* Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
-- Update to 24.02.2
-
-* Thu Mar 21 2024 Pavel Solovev <daron439@gmail.com> - 24.02.1-1
-- Update to 24.02.1
-
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 12 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-1
 - 23.08.2
 

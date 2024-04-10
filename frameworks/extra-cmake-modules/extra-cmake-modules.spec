@@ -1,3 +1,7 @@
+%global commit0 0eb01b5d116290340cd0d71c3bf731caa87a2393
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 
 %global framework extra-cmake-modules
 
@@ -11,8 +15,8 @@
 
 Name:    extra-cmake-modules
 Summary: Additional modules for CMake build system
-Version: 6.2.0
-Release: 1%{?dist}.1
+Version: 6.3.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 License: BSD
 URL:     https://api.kde.org/ecm/
 %frameworks_meta
@@ -43,8 +47,8 @@ Requires: (cmake(Qt5LinguistTools) if qt5-qtbase-devel)
 Additional modules for CMake build system needed by KDE Frameworks.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{name}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6 \
@@ -74,15 +78,7 @@ make test ARGS="--output-on-failure --timeout 300" -C %{_vpath_builddir} ||:
 
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1.1
-- rebuild for f40
-
-* Sun May 12 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
-- Update to 6.2.0
-
-* Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
-- Update to 6.1.0
-
+%{?kde_snapshot_changelog_entry}
 * Thu Nov 16 2023 Miro Hrončok <mhroncok@redhat.com> - 5.245.0-2
 - Explicitly BuildRequire python3-sphinxcontrib-qthelp
 
