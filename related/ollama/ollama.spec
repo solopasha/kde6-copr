@@ -8,7 +8,7 @@
 
 # https://github.com/jmorganca/ollama
 %global goipath         github.com/ollama/ollama
-Version:                0.1.30
+Version:                0.1.31
 
 %gometa -L -f
 
@@ -22,7 +22,7 @@ locally.}
 %global godocs          README.md
 
 Name:           ollama
-Release:        %autorelease -b2
+Release:        %autorelease
 Summary:        Get up and running with Llama 2 and other large language models locally
 # License for github.com/jmorganca/ollama: MIT
 # License for github.com/bytedance/sonic: Apache-2.0
