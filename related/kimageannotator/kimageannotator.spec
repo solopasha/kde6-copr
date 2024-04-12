@@ -7,7 +7,7 @@
 
 Name: kimageannotator
 Version: 0.6.1%{?bumpver:^%{bumpver}.git%{shortcommit0}}
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: LGPL-3.0-or-later
 Summary: Library and a tool for annotating images
@@ -31,24 +31,24 @@ BuildRequires: cmake
 BuildRequires: gcc-c++
 BuildRequires: ninja-build
 
+Requires:      %{name}-common = %{version}-%{release}
+
+Obsoletes:     %{name}-qt5 < 0.6.1^1.git4e94d04-3
+Provides:      %{name}-qt5 = %{version}-%{release}
+
 %description
 Library and a tool for annotating images. Part of KSnip project.
 
-%package        qt5
-Summary:        Qt5 support for %{name}
-Requires:       %{name}-common = %{version}-%{release}
-%description    qt5
-%{summary}.
-
-%package        qt5-devel
+%package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}-qt5%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-%description    qt5-devel
+Obsoletes:      %{name}-qt5-devel < 0.6.1^1.git4e94d04-3
+Provides:       %{name}-qt5-devel = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+%description    devel
 %{summary}.
 
 %package        qt6
 Summary:        Qt6 support for %{name}
-Obsoletes:      %{name} < 0.6.1-3
 Requires:       %{name}-common = %{version}-%{release}
 %description    qt6
 %{summary}.
@@ -91,25 +91,25 @@ Summary:        Common files for %{name}
 %cmake_install
 %find_lang %{appname} --with-qt
 
+%files
+%doc README.md
+%license LICENSE
+%{_libdir}/%{libname}-Qt5.so.0*
+
+%files devel
+%{_includedir}/%{appname}-Qt5/
+%{_libdir}/cmake/%{appname}-Qt5/
+%{_libdir}/%{libname}-Qt5.so
+
 %files qt6
 %doc README.md
 %license LICENSE
 %{_libdir}/%{libname}-Qt6.so.0*
 
-%files qt5
-%doc README.md
-%license LICENSE
-%{_libdir}/%{libname}-Qt5.so.0*
-
 %files qt6-devel
 %{_includedir}/%{appname}-Qt6/
 %{_libdir}/cmake/%{appname}-Qt6/
 %{_libdir}/%{libname}-Qt6.so
-
-%files qt5-devel
-%{_includedir}/%{appname}-Qt5/
-%{_libdir}/cmake/%{appname}-Qt5/
-%{_libdir}/%{libname}-Qt5.so
 
 %files common -f %{appname}.lang
 
