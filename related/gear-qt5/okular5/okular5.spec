@@ -43,6 +43,7 @@ BuildRequires: cmake(Qt5Test)
 BuildRequires: cmake(Qt5TextToSpeech)
 BuildRequires: cmake(Qt5Widgets)
 BuildRequires: cmake(Qt5X11Extras)
+BuildRequires: qt5-qtbase-private-devel
 
 BuildRequires: pkgconfig(phonon4qt5)
 BuildRequires: cmake(Qca-qt5)
