@@ -2,12 +2,13 @@
 
 Name:           kio-fuse
 Version:        5.1.0
-Release:        1.1%{?dist}
+Release:        2.1%{?dist}
 Summary:        KIO FUSE
 
 License:        GPL-3.0-or-later
 URL:            https://invent.kde.org/system/kio-fuse
 Source0:        %{url}/-/archive/v%{version}/%{name}-v%{version}.tar.bz2
+Patch:          https://invent.kde.org/system/kio-fuse/-/commit/830f5cb4784a2e584bbfadeabe93410f0005205c.patch
 
 ## upstream fixes
 
