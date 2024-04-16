@@ -66,6 +66,7 @@ BuildRequires:  cmake(KF6KDED)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6XmlGui)
+BuildRequires:  cmake(KF6IconThemes)
 
 BuildRequires:  cmake(KSysGuard)
 BuildRequires:  kscreenlocker-devel
