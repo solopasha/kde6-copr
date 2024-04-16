@@ -7,7 +7,6 @@ Release: 1%{?dist}
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{base_name}
 %plasma_source
-Patch:   https://invent.kde.org/plasma/drkonqi/-/commit/45fcd31c993cfa518e5957f4dcff51ffeb0d7405.patch
 
 ## upstreamable Patches
 # dnf debuginfo-install
