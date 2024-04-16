@@ -2,8 +2,8 @@
 
 Name:    plasma-drkonqi
 Summary: DrKonqi crash handler for KF6/Plasma6
-Version: 6.0.3
-Release: 2%{?dist}
+Version: 6.0.4
+Release: 1%{?dist}
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{base_name}
 %plasma_source
@@ -34,7 +34,6 @@ BuildRequires:  cmake(KF6IdleTime)
 BuildRequires:  cmake(KF6StatusNotifierItem)
 BuildRequires:  cmake(KF6SyntaxHighlighting)
 BuildRequires:  systemd-devel
-BuildRequires:  git-core
 BuildRequires:  cmake(PolkitQt6-1)
 
 Requires:       kf6-kirigami2
@@ -115,6 +114,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_userunitdir}/timers.target.wants/drkonqi-*
 
 %changelog
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
 * Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
 - Update to 6.0.3
 

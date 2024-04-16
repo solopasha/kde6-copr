@@ -1,6 +1,6 @@
 Name:    plasma-desktop
 Summary: Plasma Desktop shell
-Version: 6.0.3
+Version: 6.0.4
 Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -140,6 +140,7 @@ BuildRequires:  signon-plugin-oauth2-devel
 Requires:       signon-plugin-oauth2%{?_isa}
 
 Requires:       shared-mime-info
+Requires:       qt6-qt5compat%{?_isa}
 
 # for kimpanel-ibus-panel and kimpanel-ibus-panel-launcher
 Recommends: ibus
@@ -259,6 +260,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 
 
 %changelog
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
 * Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
 - Update to 6.0.3
 

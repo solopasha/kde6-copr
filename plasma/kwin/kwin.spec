@@ -1,13 +1,13 @@
 %bcond x11 1
 
 Name:    kwin
-Version: 6.0.3.1
-Release: 2%{?dist}
+Version: 6.0.4
+Release: 1%{?dist}
 Summary: KDE Window manager
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://userbase.kde.org/KWin
-%plasma_source -v 6.0.3
+%plasma_source
 
 ## upstream patches
 
@@ -102,12 +102,13 @@ BuildRequires:  pkgconfig(fontconfig)
 ## Runtime deps
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       %{name}-common%{?_isa} = %{version}-%{release}
-Requires:       kscreenlocker%{?_isa}
-Requires:       kf6-kirigami2%{?_isa}
 Requires:       kf6-kdeclarative%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kscreenlocker%{?_isa} >= %{basever}
 Requires:       plasma-framework%{?_isa} >= %{basever}
-Requires:       qt6-qtmultimedia%{?_isa}
+Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtdeclarative%{?_isa}
+Requires:       qt6-qtmultimedia%{?_isa}
 
 # http://bugzilla.redhat.com/605675
 # until initial-setup is fixed... (#1197135)
@@ -122,7 +123,7 @@ Requires:   %{name}-wayland = %{version}-%{release}
 Summary:        KDE Window Manager with Wayland support
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       %{name}-common%{?_isa} = %{version}-%{release}
-Requires:       kwayland-integration%{?_isa}
+Requires:       kwayland-integration%{?_isa} >= %{basever}
 BuildRequires:  pkgconfig(xwayland)
 Requires:       xorg-x11-server-Xwayland
 # http://bugzilla.redhat.com/605675
@@ -151,7 +152,7 @@ Provides:       firstboot(windowmanager) = kwin_x11
 %package        common
 Summary:        Common files for KWin X11 and KWin Wayland
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
-Requires:       kwayland%{?_isa}
+Requires:       kwayland%{?_isa} >= %{basever}
 %description    common
 %{summary}.
 
@@ -267,6 +268,9 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 
 
 %changelog
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
 * Wed Mar 27 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3.1-1
 - Update to 6.0.3.1
 

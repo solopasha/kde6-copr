@@ -1,5 +1,5 @@
 Name:    kde-cli-tools
-Version: 6.0.3
+Version: 6.0.4
 Release: 1%{?dist}
 Summary: Tools based on KDE Frameworks 5 to better interact with the system
 
@@ -107,6 +107,9 @@ ln -s %{_kf6_libexecdir}/kdesu %{buildroot}%{_bindir}/kdesu
 
 
 %changelog
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
 * Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
 - Update to 6.0.3
 

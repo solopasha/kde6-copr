@@ -1,6 +1,6 @@
 Name:    kwrited
 Summary: KDE Write Daemon
-Version: 6.0.3
+Version: 6.0.4
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later
@@ -14,7 +14,6 @@ BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  qt6-qtbase-devel
-BuildRequires:  git-core
 
 # Owns /usr/share/knotifications5
 Requires:       kf6-knotifications
@@ -44,6 +43,9 @@ Conflicts:      kde-workspace < 5.0.0-1
 %{_kf6_datadir}/knotifications6/kwrited.notifyrc
 
 %changelog
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
 * Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
 - Update to 6.0.3
 

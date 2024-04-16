@@ -1,5 +1,5 @@
 Name:    sddm-kcm
-Version: 6.0.3
+Version: 6.0.4
 Release: 1%{?dist}
 Summary: SDDM KDE configuration module
 
@@ -31,7 +31,7 @@ BuildRequires:  libxcb-devel
 BuildRequires:  xcb-util-image-devel
 
 Requires:       sddm
-
+Requires:       qt6-qt5compat%{?_isa}
 
 %description
 This is a System Settings configuration module for configuring the
@@ -64,6 +64,9 @@ SDDM Display Manager
 %{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_sddm.so
 
 %changelog
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
 * Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
 - Update to 6.0.3
 

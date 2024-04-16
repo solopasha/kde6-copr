@@ -2,8 +2,8 @@
 
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
-Version: 6.0.3
-Release: 2%{?dist}
+Version: 6.0.4
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
@@ -180,8 +180,8 @@ Requires:       libkworkspace6%{?_isa} = %{version}-%{release}
 # for selinux settings
 Requires:       (policycoreutils if selinux-policy)
 
-Requires:       kactivitymanagerd%{?_isa}
-Requires:       ksystemstats%{?_isa}
+Requires:       kactivitymanagerd%{?_isa} >= %{basever}
+Requires:       ksystemstats%{?_isa} >= %{basever}
 Requires:       kf6-baloo
 Requires:       kf6-kded
 Requires:       kf6-kdoctools
@@ -212,7 +212,7 @@ Recommends: orca
 # need to avoid this dep when bootstrapping
 %if ! 0%{?bootstrap}
 # Power management
-Requires:       powerdevil
+Requires:       powerdevil >= %{basever}
 %endif
 
 Requires:       dbus
@@ -228,6 +228,8 @@ Requires:       socat
 Requires:       xmessage
 Requires:       qt6-qttools
 
+Requires:       qt6-qt5compat%{?_isa}
+
 Requires:       iceauth xrdb xprop
 
 Requires:       kde-settings-plasma
@@ -241,15 +243,15 @@ Requires:       systemd
 Requires:       ocean-sound-theme
 
 # PolicyKit authentication agent
-Requires:        polkit-kde
+Requires:       polkit-kde
 
 # onscreen keyboard
-Requires:        maliit-keyboard
+Requires:       maliit-keyboard
 
 # lockscreen look-and-feel imports qml: QtQuick.VirtualKeyboard
-Requires:        qt6-qtvirtualkeyboard
+Requires:       qt6-qtvirtualkeyboard
 
-Requires:        (uresourced if systemd-oomd-defaults)
+Requires:       (uresourced if systemd-oomd-defaults)
 
 # needed for task manager thumbnails under wayland and for things like
 # screenshare portal
@@ -737,6 +739,9 @@ fi
 
 
 %changelog
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
 * Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
 - Update to 6.0.3
 

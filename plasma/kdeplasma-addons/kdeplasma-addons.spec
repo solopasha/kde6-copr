@@ -1,6 +1,6 @@
 Name:    kdeplasma-addons
 Summary: Additional Plasmoids for Plasma 6
-Version: 6.0.3
+Version: 6.0.4
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -54,19 +54,17 @@ Recommends:     kf6-purpose%{?_isa}
 
 Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-kitemmodels%{?_isa}
+Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtquick3d%{?_isa}
 
 %description
 %{summary}.
 
-%package devel
+%package        devel
 Summary:        Development files for %{name}
-# headers only: fixme: confirm need for dep on main pkg? -- rdieter
-Requires: %{name} = %{version}-%{release}
-#find_dependency(Qt5Gui "5.12.0")
-#find_dependency(KF5CoreAddons "5.58.0")
-Requires: cmake(Qt6Gui)
-Requires: cmake(KF6CoreAddons)
+Requires:       %{name} = %{version}-%{release}
+Requires:       cmake(Qt6Gui)
+Requires:       cmake(KF6CoreAddons)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
@@ -118,6 +116,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 
 
 %changelog
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
 * Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
 - Update to 6.0.3
 

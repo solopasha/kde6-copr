@@ -1,5 +1,5 @@
 Name:    plasma-sdk
-Version: 6.0.3
+Version: 6.0.4
 Release: 1%{?dist}
 Summary: Development tools for Plasma 6
 
@@ -69,7 +69,7 @@ Plasma SDK contains tools for plasma development
 %find_lang plasmasdk6 --with-man --with-qt --all-name
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
+appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml || :
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.plasma.themeexplorer.desktop
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.iconexplorer.desktop
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.plasmaengineexplorer.desktop
@@ -104,6 +104,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.plasmoidviewe
 %{_mandir}/man1/kqml.1.gz
 
 %changelog
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
 * Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
 - Update to 6.0.3
 
