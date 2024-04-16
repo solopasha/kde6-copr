@@ -1,14 +1,13 @@
-
-%global         base_name breeze-plymouth
+%global base_name breeze-plymouth
 
 Name:    plymouth-theme-breeze
-Version: 6.0.4
+Version: 6.0.4.1
 Release: 1%{?dist}
 Summary: Breeze theme for Plymouth
 
 License: GPLv3
 URL:     https://invent.kde.org/plasma/breeze-plymouth
-%plasma_source
+%plasma_source -v 6.0.4
 
 Source10: plymouth-theme-breeze.conf
 
