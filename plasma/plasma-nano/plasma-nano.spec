@@ -2,7 +2,7 @@
 
 Name:    plasma-nano
 Version: 6.0.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND MIT
 URL:     https://invent.kde.org/plasma/plasma-nano
 %plasma_source
@@ -35,7 +35,7 @@ BuildRequires:  cmake(Qt6Svg)
 Requires:       kf6-kcoreaddons%{?_isa}
 Requires:       kf6-kpackage%{?_isa}
 Requires:       kf6-kservice%{?_isa}
-Requires:       kf6-kwayland%{?_isa}
+Requires:       kwayland%{?_isa}
 Requires:       kf6-kwindowsystem%{?_isa}
 Requires:       kf6-plasma%{?_isa}
 Requires:       qt6-qt5compat%{?_isa}
