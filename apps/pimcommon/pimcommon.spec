@@ -1,13 +1,11 @@
 Name:    pimcommon
 Version: 24.02.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: PIM common libraries
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LicenseRef-KDE-Accepted-GPL
 URL:     https://invent.kde.org/pim/pimcommon
 %apps_source
-
-
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
@@ -45,23 +43,17 @@ BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(Qt6Xml)
 
-Conflicts:      kf5-%{name} < 23.08.3-2
+Conflicts:      kf5-%{name} < 23.08.5-5
+Conflicts:      kf5-%{name}-akonadi < 23.08.5-5
+Obsoletes:      %{name}-akonadi < 24.02.2-2
 
 %description
 %{summary}.
 
-%package        akonadi
-Summary:        The PimCommonAkondi runtime library
-Conflicts:      kf5-%{name}-akonadi < 23.08.3-2
-Requires:       %{name}%{?_isa} = %{version}-%{release}
-%description akonadi
-%{summary}.
-
 %package        devel
 Summary:        Development files for %{name}
-Conflicts:      kf5-%{name}-devel < 23.08.3-2
+Conflicts:      kf5-%{name}-devel < 23.08.5-5
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       %{name}-akonadi%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6Config)
 Requires:       cmake(KF6Contacts)
 Requires:       cmake(KF6KIO)
@@ -100,10 +92,8 @@ developing applications that use %{name}.
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
 %{_kf6_libdir}/libKPim6PimCommon.so.*
 %{_kf6_libdir}/libKPim6PimCommonAkonadi.so.*
-%{_qt6_plugindir}/designer/pimcommon6widgets.so
-
-%files akonadi
 %{_qt6_plugindir}/designer/pimcommon6akonadiwidgets.so
+%{_qt6_plugindir}/designer/pimcommon6widgets.so
 
 %files devel
 %{_includedir}/KPim6/PimCommon/
