@@ -3,7 +3,7 @@
 Name:    libksysguard5
 Summary: Library for managing processes running on the system
 Version: 5.27.11
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: GPLv2+
 URL:     https://invent.kde.org/plasma/%{name}
@@ -105,9 +105,9 @@ rm -rf %{buildroot}%{_libexecdir}/ksysguard/ksgrd_network_helper
 %{_kf5_datadir}/qlogging-categories5/libksysguard.categories
 %{_kf5_libdir}/libksgrd.so.*
 %{_kf5_libdir}/libksignalplotter.so.*
-%{_kf5_libdir}/libKSysGuardFormatter.so*
-%{_kf5_libdir}/libKSysGuardSensorFaces.so*
-%{_kf5_libdir}/libKSysGuardSensors.so*
+%{_kf5_libdir}/libKSysGuardFormatter.so.*
+%{_kf5_libdir}/libKSysGuardSensorFaces.so.*
+%{_kf5_libdir}/libKSysGuardSensors.so.*
 %{_kf5_libdir}/libKSysGuardSystemStats.so.*
 %{_kf5_libdir}/liblsofui.so.*
 %{_kf5_libdir}/libprocesscore.so.*
@@ -125,6 +125,9 @@ rm -rf %{buildroot}%{_libexecdir}/ksysguard/ksgrd_network_helper
 %{_kf5_libdir}/cmake/KSysGuard/
 %{_kf5_libdir}/libksgrd.so
 %{_kf5_libdir}/libksignalplotter.so
+%{_kf5_libdir}/libKSysGuardFormatter.so
+%{_kf5_libdir}/libKSysGuardSensorFaces.so
+%{_kf5_libdir}/libKSysGuardSensors.so
 %{_kf5_libdir}/libKSysGuardSystemStats.so
 %{_kf5_libdir}/liblsofui.so
 %{_kf5_libdir}/libprocesscore.so
