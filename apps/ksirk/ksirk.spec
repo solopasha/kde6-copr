@@ -1,6 +1,6 @@
 Name:    ksirk
 Summary: Conquer-the-world strategy game
-Version: 24.02.2
+Version: 24.05.0
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
@@ -16,6 +16,7 @@ BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6ConfigWidgets)
 BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6Crash)
+BuildRequires: cmake(KF6DBusAddons)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6IconThemes)
@@ -78,6 +79,12 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
+- Update to 24.05.0
+
+* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
+- Update to 24.04.80
+
 * Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
 - Update to 24.02.2
 

@@ -1,5 +1,5 @@
 Name:           khealthcertificate
-Version:        24.02.2
+Version:        24.05.0
 Release:        1%{?dist}
 License:        Apache2.0 and BSD and CC-BY-4.0 and CC0-1.0 and EUPL-1.2 and LGPL-2.0 and MIT and W3C-20120513
 Summary:        Handling of digital vaccination, test and recovery certificates.
@@ -56,6 +56,12 @@ Requires: cmake(Qt6Core)
 %{_kf6_libdir}/libKHealthCertificate.so
 
 %changelog
+* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
+- Update to 24.05.0
+
+* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
+- Update to 24.04.80
+
 * Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
 - Update to 24.02.2
 

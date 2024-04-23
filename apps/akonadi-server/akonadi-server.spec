@@ -7,7 +7,7 @@
 
 Name:    akonadi-server
 Summary: PIM Storage Service
-Version: 24.02.2
+Version: 24.05.0
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-KDE-Accepted-GPL AND MIT
@@ -184,7 +184,7 @@ fi
 %{_kf6_bindir}/akonadi_rds
 %{_kf6_bindir}/akonadictl
 %{_kf6_bindir}/akonadiserver
-#%%{_kf6_bindir}/akonadi-db-migrator
+%{_kf6_bindir}/akonadi-db-migrator
 %{_kf6_datadir}/akonadi/
 %{_kf6_datadir}/config.kcfg/resourcebase.kcfg
 %{_kf6_datadir}/dbus-1/interfaces/org.freedesktop.Akonadi.*.xml
@@ -245,6 +245,12 @@ fi
 
 
 %changelog
+* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
+- Update to 24.05.0
+
+* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
+- Update to 24.04.80
+
 * Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
 - Update to 24.02.2
 

@@ -1,0 +1,9 @@
+diff --git a/src/data/kaddressbook-view.desktop b/src/data/kaddressbook-view.desktop
+index b6ef2bff..dc6820e9 100755
+--- a/src/data/kaddressbook-view.desktop
++++ b/src/data/kaddressbook-view.desktop
+@@ -84,4 +84,3 @@ Categories=Qt;KDE;Office;ContactManagement;
+ NoDisplay=true
+ 
+ X-KDE-Protocols=akonadi
+-StartupNotify=true

@@ -1,33 +1,33 @@
 Name:    kolourpaint
-Summary: An easy-to-use paint program 
-Version: 24.02.2
+Summary: An easy-to-use paint program
+Version: 24.05.0
 Release: 1%{?dist}
 
-License: BSD 
-URL:     https://www.kde.org/applications/graphics/kolourpaint/
+License: BSD
+URL:     https://invent.kde.org/graphics/kolourpaint
 %apps_source
 
 BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib
 BuildRequires: extra-cmake-modules
-BuildRequires: kf5-rpm-macros
+BuildRequires: kf6-rpm-macros
 
-BuildRequires: cmake(KF5DocTools)
-BuildRequires: cmake(KF5GuiAddons)
-BuildRequires: cmake(KF5I18n)
-BuildRequires: cmake(KF5JobWidgets)
-BuildRequires: cmake(KF5KIO)
-BuildRequires: cmake(KF5TextWidgets)
-BuildRequires: cmake(KF5WidgetsAddons)
-BuildRequires: cmake(KF5XmlGui)
+BuildRequires: cmake(KF6DocTools)
+BuildRequires: cmake(KF6GuiAddons)
+BuildRequires: cmake(KF6I18n)
+BuildRequires: cmake(KF6JobWidgets)
+BuildRequires: cmake(KF6KIO)
+BuildRequires: cmake(KF6TextWidgets)
+BuildRequires: cmake(KF6WidgetsAddons)
+BuildRequires: cmake(KF6XmlGui)
 
-BuildRequires: cmake(Qt5Core)
-BuildRequires: cmake(Qt5PrintSupport)
-BuildRequires: cmake(Qt5Widgets)
+BuildRequires: cmake(Qt6Core)
+BuildRequires: cmake(Qt6PrintSupport)
+BuildRequires: cmake(Qt6Widgets)
 
-BuildRequires: cmake(KF5Sane)
+BuildRequires: cmake(KSaneWidgets6)
 
-Recommends:    qt5-qtimageformats%{?_isa}
+Recommends:    qt6-qtimageformats%{?_isa}
 
 Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 
@@ -47,7 +47,7 @@ Requires:       %{name} = %{version}-%{release}
 
 
 %build
-%cmake_kf5
+%cmake_kf6 -DQT_MAJOR_VERSION=6
 %cmake_build
 
 
@@ -57,28 +57,34 @@ Requires:       %{name} = %{version}-%{release}
 %find_lang %{name} --all-name --with-html
 
 ## unpackaged files
-rm -fv %{buildroot}%{_kf5_libdir}/libkolourpaint_lgpl.so
+rm -fv %{buildroot}%{_kf6_libdir}/libkolourpaint_lgpl.so
 
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf5_metainfodir}/org.kde.%{name}.appdata.xml ||:
-desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.desktop ||:
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml ||:
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.desktop ||:
 
 
 %files -f %{name}.lang
 %doc AUTHORS BUGS ChangeLog NEWS README.md
 %license COPYING*
-%{_kf5_bindir}/%{name}
-%{_kf5_datadir}/%{name}/
-%{_kf5_datadir}/applications/org.kde.%{name}.desktop
-%{_kf5_datadir}/icons/hicolor/*/*/*
-%{_kf5_metainfodir}/org.kde.%{name}.appdata.xml
+%{_kf6_bindir}/%{name}
+%{_kf6_datadir}/%{name}/
+%{_kf6_datadir}/applications/org.kde.%{name}.desktop
+%{_kf6_datadir}/icons/hicolor/*/*/*
+%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %files libs
-%{_kf5_libdir}/libkolourpaint_lgpl.so.5
+%{_kf6_libdir}/libkolourpaint_lgpl.so.5
 
 
 %changelog
+* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
+- Update to 24.05.0
+
+* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
+- Update to 24.04.80
+
 * Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
 - Update to 24.02.2
 

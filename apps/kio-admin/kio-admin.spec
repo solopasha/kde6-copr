@@ -1,5 +1,5 @@
 Name:           kio-admin
-Version:        24.02.2
+Version:        24.05.0
 Release:        1%{?dist}
 Summary:        Manage files as administrator using the admin:// KIO protocol
 License:        (GPL-2.0-only or GPL-3.0-only) and BSD-3-Clause and CC0-1.0 and FSFAP
@@ -9,6 +9,7 @@ URL:            https://invent.kde.org/system/kio-admin
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
+BuildRequires:  libatomic
 
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
@@ -19,11 +20,11 @@ BuildRequires:  cmake(PolkitQt6-1)
 
 
 %description
-kio-admin implements a new protocol "admin:///" 
+kio-admin implements a new protocol "admin:///"
 which gives administrative access
-to the entire system. This is achieved by talking, 
+to the entire system. This is achieved by talking,
 over dbus, with a root-level
-helper binary that in turn uses 
+helper binary that in turn uses
 existing KIO infrastructure to run file://
 operations in root-scope.
 
@@ -57,7 +58,13 @@ operations in root-scope.
 %{_kf6_datadir}/polkit-1/actions/org.kde.kio.admin.policy
 
 
-%changelog	
+%changelog
+* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
+- Update to 24.05.0
+
+* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
+- Update to 24.04.80
+
 * Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
 - Update to 24.02.2
 

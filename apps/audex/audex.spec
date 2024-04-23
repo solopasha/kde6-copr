@@ -1,10 +1,10 @@
 Name:           audex
-Version:        0.98
-Release:        3%{?dist}
+Version:        24.05.0
+Release:        1%{?dist}
 Summary:        Audio ripper
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-2.0-or-later
-URL:            https://userbase.kde.org/Audex
-Source:         https://invent.kde.org/multimedia/audex/-/archive/v%{version}/%{name}-v%{version}.tar.bz2
+URL:            https://invent.kde.org/multimedia/audex
+%apps_source
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
@@ -15,7 +15,6 @@ BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(Qt6Qml)
-BuildRequires:  cmake(Qt6Core5Compat)
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6Completion)
@@ -31,7 +30,7 @@ BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6XmlGui)
 BuildRequires:  cmake(KCddb6)
 
-BuildRequires:  cdparanoia-devel
+BuildRequires:  libcdio-paranoia-devel
 
 # encoder backends
 Recommends:     flac
@@ -42,10 +41,11 @@ Recommends:     vorbis-tools
 Audex is an audio grabber tool for CD-ROM drives built with KDE Frameworks.
 
 %prep
-%autosetup -n %{name}-v%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -p1
 
 %build
-%cmake_kf6 -DQT_MAJOR_VERSION=6
+%cmake_kf6
 %cmake_build
 
 %install
@@ -68,6 +68,12 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.au
 %{_kf6_metainfodir}/org.kde.audex.appdata.xml
 
 %changelog
+* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
+- Update to 24.05.0
+
+* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
+- new version
+
 * Sun Jan 07 2024 Steve Cossette <farchord@gmail.com> - 0.98-1
 - 0.98 (Qt6)
 

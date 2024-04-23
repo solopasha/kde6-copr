@@ -1,5 +1,5 @@
 Name:    neochat
-Version: 24.02.2
+Version: 24.05.0
 Release: 1%{?dist}
 
 License: GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND BSD-3-Clause
@@ -20,21 +20,24 @@ BuildRequires: cmake(Qt6WebView)
 BuildRequires: cmake(Qt6Widgets)
 BuildRequires: cmake(Qt6LinguistTools)
 
-BuildRequires: cmake(KF6Kirigami)
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6Notifications)
+BuildRequires: cmake(KF6ColorScheme)
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6CoreAddons)
-BuildRequires: cmake(KF6Sonnet)
-BuildRequires: cmake(KF6ItemModels)
-BuildRequires: cmake(KF6ColorScheme)
-BuildRequires: cmake(KF6KirigamiAddons)
-BuildRequires: cmake(KF6QQC2DesktopStyle)
-BuildRequires: cmake(KF6KIO)
-BuildRequires: cmake(KF6WindowSystem)
-BuildRequires: cmake(KF6StatusNotifierItem)
+BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DBusAddons)
 BuildRequires: cmake(KF6DocTools)
+BuildRequires: cmake(KF6I18n)
+BuildRequires: cmake(KF6ItemModels)
+BuildRequires: cmake(KF6KIO)
+BuildRequires: cmake(KF6Kirigami)
+BuildRequires: cmake(KF6KirigamiAddons)
+BuildRequires: cmake(KF6Notifications)
+BuildRequires: cmake(KF6Purpose)
+BuildRequires: cmake(KF6QQC2DesktopStyle)
+BuildRequires: cmake(KF6Sonnet)
+BuildRequires: cmake(KF6StatusNotifierItem)
+BuildRequires: cmake(KF6SyntaxHighlighting)
+BuildRequires: cmake(KF6WindowSystem)
 
 BuildRequires: cmake(KQuickImageEditor)
 BuildRequires: cmake(QuotientQt6)
@@ -110,10 +113,17 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_kf6_datadir}/knotifications6/%{name}.notifyrc
 %{_kf6_datadir}/krunner/dbusplugins/*.desktop
 %{_kf6_datadir}/qlogging-categories6/neochat.categories
+%{_kf6_plugindir}/purpose/neochatplugin.so
 %{_mandir}/man1/neochat.1*
 %{_metainfodir}/*.appdata.xml
 
 %changelog
+* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
+- Update to 24.05.0
+
+* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
+- Update to 24.04.80
+
 * Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
 - Update to 24.02.2
 

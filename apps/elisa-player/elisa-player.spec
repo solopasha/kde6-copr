@@ -1,7 +1,7 @@
 %global base_name elisa
 
 Name:       elisa-player
-Version:    24.02.2
+Version:    24.05.0
 Release:    1%{?dist}
 Summary:    Elisa music player
 
@@ -53,12 +53,14 @@ BuildRequires:  cmake(Qt6QuickTest)
 BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6DBus)
 
+BuildRequires:  cmake(KF6KirigamiAddons)
 BuildRequires:  pkgconfig(libvlc)
 
 # Runtime Dependencies
 Requires:       hicolor-icon-theme
 Requires:       dbus-common
 Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-qqc2-desktop-style%{?_isa}
 Requires:       qt6-qt5compat%{?_isa}
 
@@ -91,9 +93,14 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.el
 %{_kf6_datadir}/qlogging-categories6/elisa.categories
 %{_kf6_metainfodir}/org.kde.elisa.appdata.xml
 %{_kf6_libdir}/elisa/
-%{_kf6_libdir}/qt6/qml/org/kde/elisa/
 
 %changelog
+* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
+- Update to 24.05.0
+
+* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
+- Update to 24.04.80
+
 * Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
 - Update to 24.02.2
 

@@ -1,5 +1,5 @@
 Name:    kio-extras
-Version: 24.02.2
+Version: 24.05.0
 Release: 1%{?dist}
 Summary: Additional components to increase the functionality of KIO Framework
 
@@ -108,7 +108,6 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %{_datadir}/config.kcfg/jpegcreatorsettings5.kcfg
 %{_datadir}/dbus-1/services/org.kde.kmtpd5.service
 %{_datadir}/applications/kcm_*
-%{_datadir}/kio_docfilter/
 %{_datadir}/mime/packages/org.kde.kio.smb.xml
 %{_datadir}/remoteview/
 %{_datadir}/konqueror/
@@ -137,6 +136,12 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
+- Update to 24.05.0
+
+* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
+- Update to 24.04.80
+
 * Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
 - Update to 24.02.2
 

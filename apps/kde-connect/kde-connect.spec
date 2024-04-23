@@ -1,7 +1,7 @@
 %global base_name kdeconnect-kde
 
 Name:    kde-connect
-Version: 24.02.2
+Version: 24.05.0
 Release: 1%{?dist}
 License: GPLv2+
 Summary: KDE Connect client for communication with smartphones
@@ -131,21 +131,21 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop ||:
 %{_kf6_datadir}/icons/hicolor/*/apps/kdeconnect*
 %{_kf6_datadir}/icons/hicolor/*/status/*
 %{_kf6_datadir}/kdeconnect/kdeconnect_*.qml
-%{_kf6_datadir}/knotifications6/*
+%{_kf6_datadir}/knotifications6/kdeconnect.notifyrc
 %{_kf6_datadir}/plasma/plasmoids/org.kde.kdeconnect/
 %{_kf6_datadir}/qlogging-categories6/kdeconnect*
 %{_kf6_datadir}/Thunar/
-%{_kf6_datadir}/zsh/
 %{_kf6_metainfodir}/org.kde.kdeconnect.appdata.xml
 %{_kf6_metainfodir}/org.kde.kdeconnect.metainfo.xml
 %{_kf6_plugindir}/kfileitemaction/kdeconnectfileitemaction.so
 %{_kf6_plugindir}/kio/kdeconnect.so
 %{_qt6_archdatadir}/qml/org/kde/kdeconnect/
 %{_qt6_plugindir}/plasma/kcms/systemsettings_qwidgets/kcm_kdeconnect.so
+%{zsh_completions_dir}/_kdeconnect
 
 %files -n kdeconnectd
 %{_datadir}/dbus-1/services/org.kde.kdeconnect.service
-%{_libexecdir}/kdeconnectd
+%{_bindir}/kdeconnectd
 %{_sysconfdir}/xdg/autostart/org.kde.kdeconnect.daemon.desktop
 
 %files libs
@@ -158,6 +158,12 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop ||:
 
 
 %changelog
+* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
+- Update to 24.05.0
+
+* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
+- Update to 24.04.80
+
 * Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
 - Update to 24.02.2
 

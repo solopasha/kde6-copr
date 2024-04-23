@@ -1,6 +1,6 @@
 Name:           dolphin
 Summary:        KDE File Manager
-Version:        24.02.2
+Version:        24.05.0
 Release:        1%{?dist}
 
 License:        GPLv2+
@@ -125,6 +125,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %dir %{_kf6_datadir}/dolphin
 %{_kf6_datadir}/dolphin/dolphinpartactions.desktop
 %{_kf6_datadir}/kconf_update/dolphin_detailsmodesettings.upd
+%{_kf6_datadir}/kconf_update/dolphin_directorysizemode.*
 %dir %{_kf6_datadir}/kglobalaccel/
 %{_kf6_datadir}/kglobalaccel/org.kde.dolphin.desktop
 %{_kf6_datadir}/zsh/site-functions/_dolphin
@@ -149,6 +150,12 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
+- Update to 24.05.0
+
+* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
+- Update to 24.04.80
+
 * Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
 - Update to 24.02.2
 

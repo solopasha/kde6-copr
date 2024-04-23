@@ -1,14 +1,6 @@
-
-# uncomment to enable bootstrap mode
-#global bootstrap 1
-
-%if !0%{?bootstrap}
-%global tests %[!(0%{?rhel} >= 10)]
-%endif
-
 Name:    analitza
 Summary: Library of mathematical features
-Version: 24.02.2
+Version: 24.05.0
 Release: 1%{?dist}
 
 License: GPLv2+
@@ -30,10 +22,6 @@ BuildRequires: cmake(Qt6OpenGLWidgets)
 BuildRequires: cmake(Qt6LinguistTools)
 BuildRequires: cmake(Eigen3)
 
-%if 0%{?tests}
-BuildRequires: xorg-x11-server-Xvfb
-%endif
-
 %description
 %{summary}.
 
@@ -50,9 +38,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 
 
 %build
-%cmake_kf6 \
-  %{?tests:-DBUILD_TESTING:BOOL=ON}
-
+%cmake_kf6
 %cmake_build
 
 
@@ -62,24 +48,14 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 %find_lang_kf6 analitza_qt
 
 
-%check
-%if 0%{?tests}
-pushd "%{__cmake_builddir}"
-xvfb-run -a \
-ctest --output-on-failure --force-new-ctest-process %{?_smp_mflags} --timeout 300 ||:
-popd
-%endif
-
-
 %files -f analitza_qt.lang
-#doc TODO
 %license COPYING*
 %dir %{_datadir}/libanalitza/
 %{_datadir}/libanalitza/plots/
-%{_kf6_libdir}/libAnalitza.so.8*
-%{_kf6_libdir}/libAnalitzaGui.so.8*
-%{_kf6_libdir}/libAnalitzaPlot.so.8*
-%{_kf6_libdir}/libAnalitzaWidgets.so.8*
+%{_kf6_libdir}/libAnalitza.so.9*
+%{_kf6_libdir}/libAnalitzaGui.so.9*
+%{_kf6_libdir}/libAnalitzaPlot.so.9*
+%{_kf6_libdir}/libAnalitzaWidgets.so.9*
 %{_kf6_qmldir}/org/kde/analitza/
 
 %files devel
@@ -92,6 +68,12 @@ popd
 
 
 %changelog
+* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
+- Update to 24.05.0
+
+* Fri Apr 26 2024 Pavel Solovev <daron439@gmail.com> - 24.04.80-1
+- Update to 24.04.80
+
 * Thu Apr 11 2024 Pavel Solovev <daron439@gmail.com> - 24.02.2-1
 - Update to 24.02.2
 
