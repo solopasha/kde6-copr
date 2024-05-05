@@ -2,7 +2,7 @@
 
 Name:    kwin
 Version: 6.0.4.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: KDE Window manager
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -237,7 +237,7 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 %{_qt6_qmldir}/org/kde/kwin/
 
 %files wayland
-%{_kf6_bindir}/kwin_wayland
+%caps(cap_sys_nice=ep) %{_kf6_bindir}/kwin_wayland
 %{_kf6_bindir}/kwin_wayland_wrapper
 %{_userunitdir}/plasma-kwin_wayland.service
 
@@ -266,6 +266,9 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 
 
 %changelog
+* Sat May 04 2024 Neal Gompa <ngompa@fedoraproject.org> - 6.0.4.1-2
+- Persist CAP_SYS_NICE capability for kwin_wayland binary
+
 * Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
 - Update to 6.0.4
 
