@@ -1,5 +1,5 @@
 diff --git a/llm/generate/gen_common.sh b/llm/generate/gen_common.sh
-index 1186a06..fb49580 100644
+index da1b068..5c37e03 100644
 --- a/llm/generate/gen_common.sh
 +++ b/llm/generate/gen_common.sh
 @@ -54,8 +54,6 @@ git_module_setup() {
@@ -11,7 +11,7 @@ index 1186a06..fb49580 100644
  
  }
  
-@@ -68,29 +66,23 @@ apply_patches() {
+@@ -68,19 +66,15 @@ apply_patches() {
      if [ -n "$(ls -A ../patches/*.diff)" ]; then
          # apply temporary patches until fix is upstream
          for patch in ../patches/*.diff; do
@@ -30,22 +30,11 @@ index 1186a06..fb49580 100644
      cmake -S ${LLAMACPP_DIR} -B ${BUILD_DIR} ${CMAKE_DEFS}
 -    cmake --build ${BUILD_DIR} ${CMAKE_TARGETS} -j8
 +    cmake --build ${BUILD_DIR} ${CMAKE_TARGETS} -j${RPM_BUILD_NCPUS} --verbose
-     mkdir -p ${BUILD_DIR}/lib/
--    ls ${BUILD_DIR}
--    g++ -fPIC -g -shared -o ${BUILD_DIR}/lib/libext_server.${LIB_EXT} \
-+    g++ -fPIC ${CXXFLAGS} -shared ${LDFLAGS} -o ${BUILD_DIR}/lib/libext_server.${LIB_EXT} \
-         ${GCC_ARCH} \
-         ${WHOLE_ARCHIVE} ${BUILD_DIR}/ext_server/libext_server.a ${NO_WHOLE_ARCHIVE} \
-         ${BUILD_DIR}/common/libcommon.a \
-         ${BUILD_DIR}/libllama.a \
--        -Wl,-rpath,\$ORIGIN \
-         -lpthread -ldl -lm \
-         ${EXTRA_LIBS}
-+    strip --strip-all ${BUILD_DIR}/lib/libext_server.${LIB_EXT}
++    strip --strip-all ${BUILD_DIR}/bin/ollama_llama_server || :
  }
  
- compress_libs() {
-@@ -110,13 +102,5 @@ compress_libs() {
+ compress() {
+@@ -107,13 +101,5 @@ compress() {
  
  # Keep the local tree clean after we're done with the build
  cleanup() {
