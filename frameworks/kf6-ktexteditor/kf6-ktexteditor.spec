@@ -1,7 +1,7 @@
 %global framework ktexteditor
 
 Name:    kf6-%{framework}
-Version: 6.1.0
+Version: 6.2.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 with advanced embeddable text editor
 
@@ -95,6 +95,9 @@ rm -f %{buildroot}%{_kf6_datadir}/katepart5/script/README.md
 %{_kf6_libdir}/libKF6TextEditor.so
 
 %changelog
+* Sun May 12 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
 - Update to 6.1.0
 

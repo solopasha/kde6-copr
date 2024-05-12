@@ -5,7 +5,7 @@
 
 Name:    breeze-icon-theme
 Summary: Breeze icon theme
-Version: 6.1.0
+Version: 6.2.0
 Release: 1%{?dist}
 
 # http://techbase.kde.org/Policies/Licensing_Policy
@@ -133,6 +133,9 @@ gtk-update-icon-cache --force %{_datadir}/icons/breeze-dark &>/dev/null || :
 
 
 %changelog
+* Sun May 12 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
 - Update to 6.1.0
 

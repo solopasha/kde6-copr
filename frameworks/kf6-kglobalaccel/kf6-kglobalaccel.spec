@@ -1,7 +1,7 @@
 %global framework kglobalaccel
 
 Name:    kf6-%{framework}
-Version: 6.1.0
+Version: 6.2.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 integration module for global shortcuts
 
@@ -67,6 +67,9 @@ rm -fv %{buildroot}%{_prefix}/lib/systemd/user/plasma-kglobalaccel.service
 %{_kf6_datadir}/dbus-1/interfaces/*
 
 %changelog
+* Sun May 12 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
 - Update to 6.1.0
 

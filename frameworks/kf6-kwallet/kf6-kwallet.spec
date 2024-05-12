@@ -1,7 +1,7 @@
 %global framework kwallet
 
 Name:    kf6-%{framework}
-Version: 6.1.0
+Version: 6.2.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 solution for password management
 
@@ -79,6 +79,7 @@ developing applications that use %{name}.
 %{_kf6_datadir}/dbus-1/services/org.kde.kwalletd6.service
 %{_kf6_datadir}/knotifications6/kwalletd6.notifyrc
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
+%{_kf6_datadir}/xdg-desktop-portal/portals/kwallet.portal
 %{_mandir}/man1/kwallet-query.1*
 
 %files libs
@@ -96,6 +97,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Sun May 12 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
 - Update to 6.1.0
 

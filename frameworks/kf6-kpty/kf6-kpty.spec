@@ -1,7 +1,7 @@
 %global framework kpty
 
 Name:           kf6-%{framework}
-Version:        6.1.0
+Version:        6.2.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 module providing Pty abstraction
 
@@ -65,6 +65,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6Pty/
 
 %changelog
+* Sun May 12 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
 - Update to 6.1.0
 
