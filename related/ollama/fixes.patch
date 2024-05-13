@@ -1,5 +1,5 @@
 diff --git a/llm/generate/gen_common.sh b/llm/generate/gen_common.sh
-index da1b068..5c37e03 100644
+index da1b0688..5c37e03f 100644
 --- a/llm/generate/gen_common.sh
 +++ b/llm/generate/gen_common.sh
 @@ -54,8 +54,6 @@ git_module_setup() {
