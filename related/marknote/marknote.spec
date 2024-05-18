@@ -1,5 +1,5 @@
 Name:           marknote
-Version:        1.1.1
+Version:        1.2.0
 Release:        1%{?dist}
 License:        GPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.0-only OR LGPL-3.0-only) AND BSD-3-Clause AND GPL-2.0-or-later
 Summary:        A simple markdown note management app
@@ -18,6 +18,7 @@ BuildRequires:  libappstream-glib
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Kirigami2)
 BuildRequires:  cmake(KF6XmlGui)
@@ -36,6 +37,7 @@ Requires:       qt6qml(org.kde.iconthemes)
 Requires:       qt6qml(org.kde.kirigami)
 Requires:       qt6qml(org.kde.kirigamiaddons.delegates)
 Requires:       qt6qml(org.kde.kitemmodels)
+Requires:       qt6qml(org.kde.sonnet)
 
 %description
 Francis uses the well-known pomodoro technique to help you get more productive.
