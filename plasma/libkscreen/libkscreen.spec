@@ -1,6 +1,6 @@
 Name:    libkscreen
 Summary: KDE display configuration library
-Version: 6.0.4
+Version: 6.0.5
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -82,6 +82,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/pkgconfig/KF6Screen.pc
 
 %changelog
+* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
+- Update to 6.0.5
+
 * Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
 - Update to 6.0.4
 

@@ -1,11 +1,11 @@
 Name:    breeze-gtk
-Version: 6.0.4.1
+Version: 6.0.5
 Release: 1%{?dist}
 Summary: Breeze widget theme for GTK
 
 License: BSD-3-Clause AND CC0-1.0
 URL:     https://invent.kde.org/plasma/%{name}
-%plasma_source -v 6.0.4
+%plasma_source
 
 BuildArch:      noarch
 
@@ -100,6 +100,9 @@ Supplements:    (plasma-breeze and gtk4)
 
 
 %changelog
+* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
+- Update to 6.0.5
+
 * Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
 - Update to 6.0.4
 
