@@ -1,5 +1,5 @@
 Name:           marknote
-Version:        1.2.0
+Version:        1.2.1
 Release:        1%{?dist}
 License:        GPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.0-only OR LGPL-3.0-only) AND BSD-3-Clause AND GPL-2.0-or-later
 Summary:        A simple markdown note management app
@@ -68,6 +68,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_metainfodir}/org.kde.%{name}.metainfo.xml
 
 %changelog
+* Wed May 22 2024 Pavel Solovev <daron439@gmail.com> - 1.2.1-1
+- new version
+
 * Mon Apr 01 2024 Pavel Solovev <daron439@gmail.com> - 1.1.1-1
 - Update to 1.1.1
 
