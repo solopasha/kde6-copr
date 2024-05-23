@@ -1,6 +1,6 @@
 Name:           kde-rounded-corners
 Version:        0.6.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Rounds the corners of your windows in KDE Plasma
 
 License:        GPL-3.0-only
@@ -54,6 +54,9 @@ BuildRequires:  pkgconfig(xcb)
 %{_qt6_plugindir}/kwin/effects/plugins/kwin4_effect_shapecorners.so
 
 %changelog
+* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 0.6.5-2
+- rebuilt
+
 * Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 0.6.1-7
 - rebuilt
 
