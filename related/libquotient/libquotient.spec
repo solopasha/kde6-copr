@@ -7,8 +7,8 @@ the backbone of Quaternion, Spectral and other projects. Versions 0.5.x and
 older use the previous name - libQMatrixClient.}
 
 Name: libquotient
-Version: 0.8.1.2
-Release: 7%{?dist}
+Version: 0.8.2
+Release: 1%{?dist}
 
 License: BSD-3-Clause AND LGPL-2.1-or-later
 URL: https://github.com/quotient-im/%{libname}
@@ -139,6 +139,9 @@ rm -rf %{buildroot}%{_datadir}/ndk-modules
 %{_libdir}/pkgconfig/%{appname}Qt6.pc
 
 %changelog
+* Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 0.8.2-1
+- new version
+
 * Wed Dec 06 2023 Yaakov Selkowitz <yselkowitz@fedoraproject.org> - 0.8.1.2-5
 - Make headers parallel-installable
 
