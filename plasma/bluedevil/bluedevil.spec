@@ -1,11 +1,11 @@
 Name:    bluedevil
 Summary: Bluetooth stack for KDE
-Version: 6.0.5.1
+Version: 6.0.90
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/bluedevil
-%plasma_source -v 6.0.5
+%plasma_source
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
@@ -82,6 +82,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 
 %changelog
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
+
 * Wed May 22 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5.1-1
 - new version
 

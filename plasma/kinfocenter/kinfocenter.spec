@@ -1,5 +1,5 @@
 Name:    kinfocenter
-Version: 6.0.5
+Version: 6.0.90
 Release: 1%{?dist}
 Summary: KDE Info Center
 
@@ -109,6 +109,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 
 
 %changelog
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
+
 * Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
 - Update to 6.0.5
 

@@ -1,5 +1,5 @@
 Name:    plasma-sdk
-Version: 6.0.5
+Version: 6.0.90
 Release: 1%{?dist}
 Summary: Development tools for Plasma 6
 
@@ -104,6 +104,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.plasmoidviewe
 %{_mandir}/man1/kqml.1.gz
 
 %changelog
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
+
 * Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
 - Update to 6.0.5
 
