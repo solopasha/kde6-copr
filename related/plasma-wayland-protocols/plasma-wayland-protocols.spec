@@ -2,7 +2,7 @@
 %global debug_package %{nil}
 
 Name:           plasma-wayland-protocols
-Version:        1.12.0
+Version:        1.13.0
 Release:        1%{?dist}
 Summary:        Plasma Specific Protocols for Wayland
 
@@ -10,6 +10,8 @@ License:        LGPLv2+ and MIT and BSD
 URL:            https://invent.kde.org/libraries/%{name}
 
 Source0:        https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz
+Source1:        https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz.sig
+Source2:        signing-key.pgp
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  qt6-qtbase-devel
@@ -28,6 +30,7 @@ developing applications that use %{name}.
 
 
 %prep
+%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -p1
 
 %build
