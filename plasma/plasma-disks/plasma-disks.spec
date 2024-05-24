@@ -1,10 +1,10 @@
-%global commit0 a7a8025abdc51681e8803d12ac80a657819ecd54
+%global commit0 1ae42b2ef458368e6d4a976317337bc0497d23dc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    plasma-disks
 Summary: Hard disk health monitoring for KDE Plasma
-Version: 6.0.4%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.0.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-3.0-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -69,6 +69,18 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/kcm_disks.desktop
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
+
+* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
+- Update to 6.0.5
+
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
+* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
+- Update to 6.0.3
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

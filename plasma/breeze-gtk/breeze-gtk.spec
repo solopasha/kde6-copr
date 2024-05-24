@@ -1,9 +1,9 @@
-%global commit0 4477b67a645a141cbb32d50855ed0e4f2972ff4d
+%global commit0 9de9924a7005c2fa1d23b64a56cc7a891ea7fe8e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    breeze-gtk
-Version: 6.0.4%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.0.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Breeze widget theme for GTK
 
@@ -105,6 +105,18 @@ Supplements:    (plasma-breeze and gtk4)
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
+
+* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
+- Update to 6.0.5
+
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
+* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
+- Update to 6.0.3
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

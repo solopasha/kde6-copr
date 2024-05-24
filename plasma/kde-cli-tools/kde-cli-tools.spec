@@ -1,9 +1,9 @@
-%global commit0 0e26bd2e5669cb5a5d9a3949fec25beb75c2bb1e
+%global commit0 363386c07390d0aaec8fac2004f8f872030263b2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kde-cli-tools
-Version: 6.0.4%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.0.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Tools based on KDE Frameworks 5 to better interact with the system
 
@@ -112,6 +112,18 @@ ln -s %{_kf6_libexecdir}/kdesu %{buildroot}%{_bindir}/kdesu
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
+
+* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
+- Update to 6.0.5
+
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
+* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
+- Update to 6.0.3
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

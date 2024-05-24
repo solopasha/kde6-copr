@@ -1,10 +1,10 @@
-%global commit0 5694646465d96fbbc8d3378b8976a00a7d05fa91
+%global commit0 6411c3ea2511e072fb99dd6b965ce256e4f0cd50
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    libkscreen
 Summary: KDE display configuration library
-Version: 6.0.4%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.0.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -87,6 +87,18 @@ developing applications that use %{name}.
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
+
+* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
+- Update to 6.0.5
+
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
+* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
+- Update to 6.0.3
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

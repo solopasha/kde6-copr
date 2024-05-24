@@ -1,11 +1,11 @@
-%global commit0 08275289f891af2174f851d21411e7a5e882699d
+%global commit0 9c0dadd4b6af8ea8808a9df226d2dbfd1f53f667
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global  base_name breeze
 
 Name:    plasma-breeze
-Version: 6.0.4%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.0.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Artwork, styles and assets for the Breeze visual style for the Plasma Desktop
 
@@ -153,6 +153,18 @@ popd
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
+
+* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
+- Update to 6.0.5
+
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
+* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
+- Update to 6.0.3
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

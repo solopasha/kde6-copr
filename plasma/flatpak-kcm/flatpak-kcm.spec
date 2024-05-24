@@ -1,9 +1,9 @@
-%global commit0 db00a9ed8706681a1ecdf857465e72b96990c2aa
+%global commit0 3e8513404f6ca7ff6ae3c8e0d5f02b4a7716d2fe
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:          flatpak-kcm
-Version:       6.0.4%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:       6.0.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:       1%{?dist}
 License:       BSD-2-Clause and BSD-3-Clause and CC0-1.0 and GPL-2.0-or-later
 Summary:       Flatpak Permissions Management KCM
@@ -47,6 +47,18 @@ BuildRequires: pkgconfig(flatpak)
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
+
+* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
+- Update to 6.0.5
+
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
+* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
+- Update to 6.0.3
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

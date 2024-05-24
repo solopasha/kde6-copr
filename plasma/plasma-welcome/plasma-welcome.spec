@@ -1,11 +1,11 @@
-%global commit0 c280f22c47dd17cd7341408b304bbe432f02b8e5
+%global commit0 f1980fbb164f0fe67696b77fdab3fe2c6234c733
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global orgname org.kde.plasma-welcome
 
 Name:           plasma-welcome
-Version:        6.0.4%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.0.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPL-2.0-or-later and BSD-3-Clause
 Summary:        Plasma Welcome
@@ -51,10 +51,8 @@ Obsoletes:      plasma-welcome-app < 5.27.0-2
 A Friendly onboarding wizard for Plasma.
 
 %prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-# It is for generate pot file for translate so we can ignore it.
-rm Messages.sh
+%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
+%autosetup -p1
 
 %build
 %cmake_kf6
@@ -69,7 +67,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/%{orgname}
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{orgname}.desktop
 
 %files -f %{name}.lang
-%license src/LICENSES/{BSD-3-Clause.txt,GPL-2.0-or-later.txt,FSFAP.txt}
+%license LICENSES/{BSD-3-Clause.txt,GPL-2.0-or-later.txt,FSFAP.txt}
 %doc README.md
 %{_kf6_bindir}/plasma-welcome
 %{_kf6_datadir}/applications/%{orgname}.desktop
@@ -79,6 +77,18 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{orgname}.deskto
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
+
+* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
+- Update to 6.0.5
+
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
+* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
+- Update to 6.0.3
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

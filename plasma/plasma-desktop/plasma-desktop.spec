@@ -1,19 +1,25 @@
-%global commit0 f1549504e9002c3091f84db04e52275912fc81d2
+%global commit0 0d13188d78e35d1eac9e93dbc313e11956e44bb8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    plasma-desktop
 Summary: Plasma Desktop shell
-Version: 6.0.4%{?bumpver:^%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Version: 6.0.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Release: 0.1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
 
+# breeze fedora sddm theme components
+# includes f25-based preview (better than breeze or nothing at least)
+Source20:       https://src.fedoraproject.org/lookaside/pkgs/plasma-workspace/breeze-fedora-0.3.tar.gz/sha512/8a3cafb61c5dc8944b71c8c8036e034d178a9384e0ca3b86847ad0caa91962b0f50e6615348cd32e116fe28a6befa5492dc5cc1c4ef0120617a1fbbf69ee0200/breeze-fedora-0.3.tar.gz
+
 ## downstream patches
-# default kickoff/kicker favorites: +kwrite +konsole
-Patch100: plasma-desktop-5.90.0-default_favorites.patch
+# default kickoff favorites: +konsole +apper
+#Patch100: plasma-desktop-5.8-default_favorites.patch
+Patch100:       hide-virtual-keyboard-indicator-on-sddm.patch
+## upstreamable patches
 
 BuildRequires:  pkgconfig(libusb)
 BuildRequires:  fontconfig-devel
@@ -170,10 +176,23 @@ BuildArch:      noarch
 %description    doc
 %{summary}.
 
+%package        -n sddm-breeze
+Summary:        SDDM breeze theme
+Requires:       kde-settings-sddm
+Requires:       kf6-plasma
+# on-screen keyboard
+Recommends:     qt6-qtvirtualkeyboard
+Requires:       plasma-workspace >= %{version}
+# /usr/share/backgrounds/default.png}
+Requires:       desktop-backgrounds-compat
+BuildArch:      noarch
+%description -n sddm-breeze
+%{summary}.
+
 
 %prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
+%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
+%autosetup -p1 -a20
 
 sed '/falkon\|debian/d' -i kde-mimeapps.list
 
@@ -190,6 +209,20 @@ sed '/falkon\|debian/d' -i kde-mimeapps.list
 
 %install
 %cmake_install
+
+# make fedora-breeze sddm theme variant.
+cp -alf %{buildroot}%{_datadir}/sddm/themes/breeze/ \
+        %{buildroot}%{_datadir}/sddm/themes/01-breeze-fedora
+# replace items
+install -m644 -p breeze-fedora/* \
+        %{buildroot}%{_datadir}/sddm/themes/01-breeze-fedora/
+# Set Fedora background
+sed -i -e 's|^background=.*$|background=/usr/share/backgrounds/default.png|g' %{buildroot}%{_datadir}/sddm/themes/01-breeze-fedora/theme.conf
+# Set Fedora distro vendor logo
+sed -i -e 's|^showlogo=.*$|showlogo=shown|g' %{buildroot}%{_datadir}/sddm/themes/01-breeze-fedora/theme.conf
+sed -i -e 's|^logo=.*$|logo=%{_datadir}/pixmaps/fedora_whitelogo.svg|g' %{buildroot}%{_datadir}/sddm/themes/01-breeze-fedora/theme.conf
+
+
 %find_lang %{name} --with-html --all-name
 
 grep "%{_kf6_docdir}" %{name}.lang > %{name}-doc.lang
@@ -261,9 +294,24 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 
 %files doc -f %{name}-doc.lang
 
+%files -n sddm-breeze
+%{_datadir}/sddm/themes/breeze/
+%{_datadir}/sddm/themes/01-breeze-fedora/
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
+
+* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
+- Update to 6.0.5
+
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
+* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
+- Update to 6.0.3
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

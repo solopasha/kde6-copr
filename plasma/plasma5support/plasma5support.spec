@@ -1,10 +1,10 @@
-%global commit0 58a0747736e415cff6e695a031c5a4eed86b85dd
+%global commit0 6fb079e04b2c7a1c0c2e5284a8b71c79f9ab8088
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    plasma5support
 Summary: Support components for porting from KF5/Qt5 to KF6/Qt6
-Version: 6.0.4%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.0.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -16,15 +16,25 @@ BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  qt6-qtbase-devel
+
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Sql)
 BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Widgets)
+
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Notifications)
+BuildRequires:  cmake(KF6Service)
+BuildRequires:  cmake(KF6Solid)
+
+BuildRequires:  cmake(KSysGuard)
+BuildRequires:  cmake(Plasma)
+
 Requires:  kf6-filesystem
 
 # Renamed from kf6-plasma5support
@@ -53,7 +63,7 @@ Provides:       kf6-plasma5support-devel = 1:%{version}-%{release}
 
 %install
 %cmake_install
-%find_lang libplasma5support
+%find_lang libplasma5support --all-name
 
 %files -f libplasma5support.lang
 %doc README.md
@@ -63,6 +73,8 @@ Provides:       kf6-plasma5support-devel = 1:%{version}-%{release}
 %{_kf6_datadir}/qlogging-categories6/plasma5support.renamecategories
 %{_kf6_libdir}/libPlasma5Support.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libPlasma5Support.so.6
+%{_kf6_qtplugindir}/plasma5support/dataengine/plasma_engine_devicenotifications.so
+%{_kf6_qtplugindir}/plasma5support/dataengine/plasma_engine_keystate.so
 %{_qt6_qmldir}/org/kde/plasma/plasma5support/
 
 %files devel
@@ -72,6 +84,18 @@ Provides:       kf6-plasma5support-devel = 1:%{version}-%{release}
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
+
+* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
+- Update to 6.0.5
+
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
+* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
+- Update to 6.0.3
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

@@ -1,21 +1,17 @@
-%global commit0 fe5089925a698230d8ea41303879c5605b7de9a9
+%global commit0 60e2b59dad817fbbb7407e6e4712c23d754ba13a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %bcond x11 1
 
 Name:    kwin
-Version: 6.0.4%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.0.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: KDE Window manager
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://userbase.kde.org/KWin
-%plasma_source
-Patch:   https://invent.kde.org/plasma/kwin/-/merge_requests/5733.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/merge_requests/5776.patch
-
-## proposed patches
+%plasma_source -v 6.0.90
 
 # Base
 BuildRequires:  extra-cmake-modules
@@ -104,6 +100,7 @@ BuildRequires:  cmake(KGlobalAccelD)
 BuildRequires:  libdisplay-info-devel
 BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(fontconfig)
+BuildRequires:  pkgconfig(libeis-1.0)
 
 ## Runtime deps
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
@@ -220,7 +217,7 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 %{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/config.kcfg/kwin.kcfg
 %{_kf6_datadir}/config.kcfg/kwindecorationsettings.kcfg
-%{_kf6_datadir}/config.kcfg/nightcolorsettings.kcfg
+%{_kf6_datadir}/config.kcfg/nightlightsettings.kcfg
 %{_kf6_datadir}/config.kcfg/virtualdesktopssettings.kcfg
 %{_kf6_datadir}/icons/hicolor/*/apps/kwin.*
 %{_kf6_datadir}/kconf_update/kwin.upd
@@ -273,6 +270,30 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
+
+* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-3
+- drop explicit sync
+
+* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
+- Update to 6.0.5
+
+* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4.1-3
+- backport explicit sync, fix dnd in chromium
+
+* Sat May 04 2024 Neal Gompa <ngompa@fedoraproject.org> - 6.0.4.1-2
+- Persist CAP_SYS_NICE capability for kwin_wayland binary
+
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
+* Wed Mar 27 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3.1-1
+- Update to 6.0.3.1
+
+* Tue Mar 26 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-1
+- Update to 6.0.3
+
 * Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.2-2
 - qmlcache rebuild
 

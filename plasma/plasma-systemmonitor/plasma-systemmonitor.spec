@@ -1,9 +1,9 @@
-%global commit0 b586a34e677a165e1f66c93bd9d8487382adcfd3
+%global commit0 bb9fc7bd8f7b3d3fad691f39a99d1d9bd6dc61a8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    plasma-systemmonitor
-Version: 6.0.4%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.0.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: An application for monitoring system resources
 
@@ -76,6 +76,15 @@ resources.
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
+
+* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
+- Update to 6.0.5
+
+* Tue Apr 16 2024 Pavel Solovev <daron439@gmail.com> - 6.0.4-1
+- Update to 6.0.4
+
 * Sun Mar 31 2024 Pavel Solovev <daron439@gmail.com> - 6.0.3-2
 - relax obsoletes
 

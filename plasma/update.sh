@@ -11,7 +11,7 @@ process_spec() {
     fi
 
     oldCommit="$(sed -n 's/%global[[:space:]]\+\bcommit0\b[[:space:]]\+\(.*\)/\1/p' "$1")"
-    IFS=$'\n' read -r -d '' -a commits <<< "$(gh api --method GET "repos/KDE/$baseName/commits?sha=Plasma/6.0&per_page=50" -q '.[].sha')"
+    IFS=$'\n' read -r -d '' -a commits <<< "$(gh api --method GET "repos/KDE/$baseName/commits?sha=Plasma/6.1&per_page=50" -q '.[].sha')"
 
     for commit in "${commits[@]}";
     do
