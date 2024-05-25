@@ -1,34 +1,41 @@
-%global commit f36bf16487d4c1b4dcdc3cce520d0fafe17d19df
-%global commitdate 20240201
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-
 %global qt6minver 6.4.0
 %global kf6minver 5.240.0
 
 Name:           krdp
-Version:        5.27.80~git%{commitdate}.%{shortcommit}
-Release:        4%{?dist}
+Version:        6.0.90
+Release:        1%{?dist}
 Summary:        Library for creating an RDP server
 
 License:        LGPL-2.1-only OR LGPL-3.0-only
 URL:            https://invent.kde.org/plasma/krdp
-Source0:        %{url}/-/archive/%{commit}/%{name}-%{commit}.tar.gz
+%plasma_source
 
 BuildRequires:  cmake
-BuildRequires:  gcc-c++
 BuildRequires:  extra-cmake-modules >= %{kf6minver}
+BuildRequires:  gcc-c++
+BuildRequires:  systemd-rpm-macros
 BuildRequires:  qt6-qtbase-private-devel >= %{qt6minver}
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
+
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KCMUtils)
+BuildRequires:  cmake(KF6StatusNotifierItem)
+
 BuildRequires:  cmake(Qt6Core) >= %{qt6minver}
 BuildRequires:  cmake(Qt6Gui) >= %{qt6minver}
 BuildRequires:  cmake(Qt6Network) >= %{qt6minver}
 BuildRequires:  cmake(Qt6DBus) >= %{qt6minver}
 BuildRequires:  cmake(Qt6WaylandClient) >= %{qt6minver}
-BuildRequires:  cmake(FreeRDP) >= 2.10
-BuildRequires:  cmake(WinPR)
+
 BuildRequires:  cmake(FreeRDP-Server)
+BuildRequires:  cmake(FreeRDP) >= 2.10
 BuildRequires:  cmake(KPipeWire) >= 5.27.80
 BuildRequires:  cmake(PlasmaWaylandProtocols)
+BuildRequires:  cmake(Qt6Keychain)
+BuildRequires:  cmake(WinPR)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  /usr/bin/winpr-makecert
 Requires:       /usr/bin/winpr-makecert
@@ -55,7 +62,8 @@ Requires:       /usr/bin/openssl
 
 
 %prep
-%autosetup -n %{name}-%{commit} -p1
+%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
+%autosetup -p1
 
 
 %build
@@ -70,7 +78,7 @@ Requires:       /usr/bin/openssl
 %files
 %license LICENSES/LGPL-*.txt LICENSES/LicenseRef-KDE-*
 %doc README.md
-%{_kf6_libdir}/libKRdp.so.5{,.*}
+%{_kf6_libdir}/libKRdp.so.6{,.*}
 
 %files devel
 %{_kf6_libdir}/libKRdp.so
@@ -78,11 +86,28 @@ Requires:       /usr/bin/openssl
 
 %files server
 %{_kf6_bindir}/krdpserver
+%{_kf6_datadir}/applications/kcm_krdpserver.desktop
 %{_kf6_datadir}/applications/org.kde.krdp.desktop
+%{_kf6_datadir}/qlogging-categories6/kcm_krdpserver.categories
 %{_kf6_datadir}/qlogging-categories6/krdp.categories
+%{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_krdpserver.so
+%{_userunitdir}/plasma-krdp_server.service
+
+
+%post
+%systemd_user_post plasma-krdp_server.service
+
+%preun
+%systemd_user_preun plasma-krdp_server.service
+
+%postun
+%systemd_user_postun plasma-krdp_server.service
 
 
 %changelog
+* Sat May 25 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- new version
+
 * Thu Jan 25 2024 Fedora Release Engineering <releng@fedoraproject.org> - 5.27.80~git20231227.4931015-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
 
