@@ -1,11 +1,12 @@
 Name:           kcalc
 Summary:        Scientific Calculator
 Version:        24.05.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 License:        GPL-2.0-or-later
 URL:            https://invent.kde.org/utils/%{name}
 %apps_source
+Patch:          https://invent.kde.org/utilities/kcalc/-/commit/1e2716452a5a29a9a5bbca92b19afcda3a4f16a3.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
