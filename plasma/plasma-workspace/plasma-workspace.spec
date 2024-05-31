@@ -3,11 +3,13 @@
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
 Version: 6.0.90
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
+Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/d131786647dc4a9137f176d7f4e2eb3b2fb30af1.patch
+Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/a6b6963b1770d28c2f76911921ff376896557933.patch
 
 Source11:       startkderc
 Source15:       fedora-lookandfeel.json
@@ -425,7 +427,7 @@ BuildArch: noarch
 
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -a 20 -p1
+%autosetup -p1
 
 # Populate initial lookandfeel package
 cp -a lookandfeel/org.kde.breeze lookandfeel/org.fedoraproject.fedora
@@ -698,6 +700,9 @@ fi
 
 
 %changelog
+* Fri May 31 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-2
+- pick upstream commits
+
 * Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
 - Update to 6.0.90
 
