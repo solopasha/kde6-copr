@@ -2,12 +2,12 @@
 
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
-Version: 6.0.5
+Version: 6.0.5.1
 Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
-%plasma_source
+%plasma_source -v 6.0.5
 
 Source11:       startkderc
 Source15:       fedora-lookandfeel.json
@@ -148,7 +148,7 @@ BuildRequires:  pkgconfig(libxcrypt)
 BuildRequires:  cmake(KF6UserFeedback)
 BuildRequires:  wayland-protocols-devel
 BuildRequires:  plasma-wayland-protocols-devel
-BuildRequires:  plasma-breeze-devel >= %{version}
+BuildRequires:  plasma-breeze-devel >= %{basever}
 
 BuildRequires:  chrpath
 BuildRequires:  desktop-file-utils
