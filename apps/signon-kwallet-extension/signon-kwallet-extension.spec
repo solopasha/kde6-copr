@@ -13,6 +13,7 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6Wallet)
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(SignOnQt6)
+BuildRequires:  pkgconfig(signon-plugins)
 
 Supplements:    (kf6-kwallet and signon)
 
