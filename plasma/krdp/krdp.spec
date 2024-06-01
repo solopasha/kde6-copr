@@ -1,10 +1,10 @@
-%global qt6minver 6.4.0
-%global kf6minver 5.240.0
+%global qt6minver 6.6.0
+%global kf6minver 6.2
 
 Name:           krdp
 Version:        6.0.90
-Release:        1%{?dist}
-Summary:        Library for creating an RDP server
+Release:        2%{?dist}
+Summary:        Desktop sharing using RDP
 
 License:        LGPL-2.1-only OR LGPL-3.0-only
 URL:            https://invent.kde.org/plasma/krdp
@@ -30,34 +30,36 @@ BuildRequires:  cmake(Qt6Network) >= %{qt6minver}
 BuildRequires:  cmake(Qt6DBus) >= %{qt6minver}
 BuildRequires:  cmake(Qt6WaylandClient) >= %{qt6minver}
 
-BuildRequires:  cmake(FreeRDP-Server)
-BuildRequires:  cmake(FreeRDP) >= 2.10
+BuildRequires:  (cmake(FreeRDP-Server) >= 2.10 with cmake(FreeRDP-Server) < 3)
+BuildRequires:  (cmake(FreeRDP) >= 2.10 with cmake(FreeRDP) < 3)
+BuildRequires:  (cmake(WinPR) >= 2.10 with cmake(WinPR) < 3)
 BuildRequires:  cmake(KPipeWire) >= 5.27.80
 BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  cmake(Qt6Keychain)
-BuildRequires:  cmake(WinPR)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  /usr/bin/winpr-makecert
 Requires:       /usr/bin/winpr-makecert
 
+Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+Obsoletes:      %{name}-server < 6.0.90-3
+Provides:       %{name}-server = %{version}-%{release}
+Provides:       %{name}-server%{?_isa} = %{version}-%{release}
+
 %description
 %{summary}.
 
-
-%package devel
-Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
-
-%description devel
-%{summary}.
-
-
-%package server
-Summary:        Simple RDP server using %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+%package        libs
+Summary:        Library for creating an RDP server
 Requires:       /usr/bin/openssl
 
-%description server
+%description    libs
+%{summary}.
+
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+
+%description    devel
 %{summary}.
 
 
@@ -76,15 +78,7 @@ Requires:       /usr/bin/openssl
 
 
 %files
-%license LICENSES/LGPL-*.txt LICENSES/LicenseRef-KDE-*
 %doc README.md
-%{_kf6_libdir}/libKRdp.so.6{,.*}
-
-%files devel
-%{_kf6_libdir}/libKRdp.so
-%{_kf6_libdir}/cmake/KRdp/
-
-%files server
 %{_kf6_bindir}/krdpserver
 %{_kf6_datadir}/applications/kcm_krdpserver.desktop
 %{_kf6_datadir}/applications/org.kde.krdp.desktop
@@ -92,6 +86,14 @@ Requires:       /usr/bin/openssl
 %{_kf6_datadir}/qlogging-categories6/krdp.categories
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_krdpserver.so
 %{_userunitdir}/plasma-krdp_server.service
+
+%files libs
+%license LICENSES/LGPL-*.txt LICENSES/LicenseRef-KDE-*
+%{_kf6_libdir}/libKRdp.so.6{,.*}
+
+%files devel
+%{_kf6_libdir}/libKRdp.so
+%{_kf6_libdir}/cmake/KRdp/
 
 
 %post
@@ -105,6 +107,9 @@ Requires:       /usr/bin/openssl
 
 
 %changelog
+* Sat Jun 01 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-2
+- restructure (from fedora)
+
 * Sat May 25 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
 - new version
 
