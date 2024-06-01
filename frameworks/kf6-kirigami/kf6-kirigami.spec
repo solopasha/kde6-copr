@@ -26,8 +26,6 @@ BuildRequires:	cmake(Qt6Quick)
 BuildRequires:	cmake(Qt6ShaderTools)
 BuildRequires:	cmake(Qt6Core5Compat)
 
-Requires:       qt6-qt5compat
-
 # Renamed from kf6-kirigami2
 Obsoletes:      kf6-kirigami2 < 5.246.0-2
 Provides:       kf6-kirigami2 = %{version}-%{release}
@@ -38,7 +36,7 @@ Provides:       kf6-kirigami2%{?_isa} = %{version}-%{release}
 
 %package	    devel
 Summary:	    Development files for %{name}
-Requires:	    %{name} = %{version}-%{release}
+Requires:	    %{name}%{?_isa} = %{version}-%{release}
 Obsoletes:      kf6-kirigami2-devel < 5.246.0-2
 Provides:       kf6-kirigami2-devel = %{version}-%{release}
 %description	devel
@@ -68,8 +66,14 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKirigami.so.6
 %{_kf6_libdir}/libKirigamiDelegates.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKirigamiDelegates.so.6
+%{_kf6_libdir}/libKirigamiDialogs.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
+%{_kf6_libdir}/libKirigamiDialogs.so.6
+%{_kf6_libdir}/libKirigamiLayouts.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
+%{_kf6_libdir}/libKirigamiLayouts.so.6
 %{_kf6_libdir}/libKirigamiPlatform.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKirigamiPlatform.so.6
+%{_kf6_libdir}/libKirigamiPrimitives.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
+%{_kf6_libdir}/libKirigamiPrimitives.so.6
 %{_kf6_qmldir}/org/kde/kirigami/
 
 %files devel
@@ -83,7 +87,10 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6KirigamiPlatform/
 %{_kf6_libdir}/libKirigami.so
 %{_kf6_libdir}/libKirigamiDelegates.so
+%{_kf6_libdir}/libKirigamiDialogs.so
+%{_kf6_libdir}/libKirigamiLayouts.so
 %{_kf6_libdir}/libKirigamiPlatform.so
+%{_kf6_libdir}/libKirigamiPrimitives.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}

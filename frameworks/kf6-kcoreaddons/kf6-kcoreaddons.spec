@@ -31,7 +31,7 @@ replacement, accessing user information and many more.
 
 %package	devel
 Summary:	Development files for %{name}
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}%{?_isa} = %{version}-%{release}
 Requires:	qt6-qtbase-devel
 %description	devel
 The %{name}-devel package contains libraries and header files for
@@ -59,7 +59,6 @@ cat *.lang > all.lang
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/kf6/jsonschema/kpluginmetadata.schema.json
-%{_kf6_datadir}/kf6/licenses/
 %{_kf6_datadir}/mime/packages/kde6.xml
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6CoreAddons.so.6
