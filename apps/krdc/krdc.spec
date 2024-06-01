@@ -33,7 +33,8 @@ BuildRequires: cmake(KF5Activities)
 BuildRequires: cmake(Qt5Core)
 
 BuildRequires: freerdp
-BuildRequires: cmake(freerdp)
+BuildRequires: (cmake(FreeRDP) >= 2.10 with cmake(FreeRDP) < 3)
+BuildRequires: (cmake(FreeRDP-Client) >= 2.10 with cmake(FreeRDP-Client) < 3)
 BuildRequires: pkgconfig(libssh)
 BuildRequires: pkgconfig(libvncserver)
 
