@@ -61,14 +61,15 @@ developing applications that use %{name}.
 %files -f %{name}.lang
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*%{framework}.*
-%{_kf6_libdir}/libKF6Contacts.so.6
 %{_kf6_libdir}/libKF6Contacts.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
+%{_kf6_libdir}/libKF6Contacts.so.6
+%{_kf6_qmldir}/org/kde/contacts/
 
 %files devel
 %{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KContacts/
-%{_kf6_libdir}/libKF6Contacts.so
 %{_kf6_libdir}/cmake/KF6Contacts/
+%{_kf6_libdir}/libKF6Contacts.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}
