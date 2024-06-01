@@ -37,6 +37,8 @@ Patch107:       plasma-workspace-6.0.0-enable-lock-logout-action.patch
 # Hide virtual keyboard indicator on sddm.
 # Do not remove this as it breaks Fedora's QA policy
 Patch108:       hide-virtual-keyboard-indicator-on-sddm.patch
+# /usr/bin/qtpaths-qt6
+Patch109:       qtpaths-binary-name.patch
 
 BuildRequires:  zlib-devel
 BuildRequires:  libGL-devel
