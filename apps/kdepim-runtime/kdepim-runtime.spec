@@ -57,7 +57,7 @@ BuildRequires:  cmake(Qt6WebEngineWidgets)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  boost-devel
-BuildRequires:  cmake(Etebase)
+BuildRequires:  libetebase-devel
 BuildRequires:  cmake(libkolabxml)
 BuildRequires:  cmake(Qca-qt6)
 BuildRequires:  pkgconfig(libical)
