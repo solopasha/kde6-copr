@@ -27,6 +27,8 @@ BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  qt6-qtbase-devel
+BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  cmake(Qt6UiPlugin)
 
 Requires:  kf6-filesystem
@@ -53,7 +55,6 @@ developing applications that use %{name}.
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 %cmake_kf6
