@@ -2,13 +2,48 @@
 
 Name:    kwin
 Version: 6.0.90.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: KDE Window manager
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://userbase.kde.org/KWin
 %plasma_source -v 6.0.90
-
+Patch: https://invent.kde.org/plasma/kwin/-/commit/395bf399da136a0a1233c60f33788a571c16c6a4.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/66341f39791604939b312857a991bd58ac4c4681.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/20c89ff6deb0fdc2a20ecaa5e871d77317fbcc31.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/6442b2473c5f1051c92841216776e40436117a8e.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/3aa3579816a63ab3b7f7f9f45dfbe76a4788ec20.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/da90a81243efd9f8c536f78788a30c7204ed9871.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/a5e101b7d7cf57b3747b95f31b62860490943aed.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/edcd8c9f3f2908a3647c65bafbcf83fb84099a72.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/0ecc01d08a36ef976a007f8d970e6aa1f10115bb.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/255cc9c579b8141e66160c10e87f0c36925853da.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/0d88d8ff6688967d1f3392112249fe72676fe72c.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/0c1f545d6be2c4d4a5de7364c9f87f6193898027.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/0df9cf4f15af34f7b173c4f596f2c6aead918fd4.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/2f64b1182a47f864cdf1a86de86791a1c2fc4a0e.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/3361d718ac186708a545ef38931d0e8cf1d1e72a.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/cc5dd48af3ef31b8a2243579c5b40f4e5730c865.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/ed445ede2abad8f89406163309d56911cb8270f7.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/77850217f9012e6a68d771fba50873f60ff0adf8.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/354b72d8004bc68d69439f85b777dac16b06c384.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/20191ffaa1a1683c39e5d25ec1b752aebd75f874.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/2899a011f81e489221fef40ac827283413c6b749.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/098b76b151446ecb2be685713d7aee8355e68f4f.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/97f90794ff1c4b88b28c2c5e05173e76fab844ee.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/c4eb7f3418a810ba2da2d61d6a485a002e53738d.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/45124b63f6e34057f422c3bd0ab1e14c3ce4b920.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/bc40f0fe60123fdd2725e74e14c1cb7b5e8f99a7.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/0e9b0fd4046908d609e243d57af896e2ce590359.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/b13ae603444d5a10b977aa35dccb7a456af6312f.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/e846d011b9a73ccfa8aea5a8f6a58c47eb1d91c7.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/049d9db87924d104956cfd1c28b311f4d6c9ef8e.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/14172ffb8e3acb2588ec95172e0738cc08ba9e90.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/78c3aa13b388c290bd48cc1ff7ba2d86f8c222c5.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/1e3bdaf8410181182e779e3477bae09b9328dc4f.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/3d9c8429c96da9dea175013414b4c7aef8642723.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/c747f9c3a7cb9aab74ea07f38eb5de43feb06a2c.patch
+Patch: https://invent.kde.org/plasma/kwin/-/commit/5911940b282834c7d6cb8d84e33fd7b07284db8e.patch
 # Base
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
