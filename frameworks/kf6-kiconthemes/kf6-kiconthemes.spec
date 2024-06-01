@@ -19,6 +19,7 @@ BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6Archive)
+BuildRequires:  cmake(KF6BreezeIcons)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6I18n)
@@ -72,7 +73,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6IconWidgets.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/qt6/qml/org/kde/iconthemes/
 %{_kf6_qtplugindir}/designer/*6widgets.so
-%{_kf6_qtplugindir}/iconengines/KIconEnginePlugin.so
+%{_kf6_qtplugindir}/kiconthemes6/iconengines/KIconEnginePlugin.so
 
 %files devel
 %{_qt6_docdir}/*.tags
