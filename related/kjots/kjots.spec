@@ -1,9 +1,9 @@
-%global commit0 cd4994dd6fb73652da68d2246acd4a5a1dd8eb24
+%global commit0 a68b77bba2c2bca2a034dae22201bf1374dcff3a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Name:           kjots
 Summary:        KDE Notes application
-Version:        5.1.2~4.git%{shortcommit0}
+Version:        5.1.2~5.git%{shortcommit0}
 Release:        1%{?dist}
 License:        LGPL-2.0-or-later AND GPL-2.0-or-later
 URL:            https://invent.kde.org/pim/kjots
@@ -46,7 +46,7 @@ KJots is an application for writing and organizing notes.
 
 
 %build
-%cmake_kf6 -DQT_MAJOR_VERSION=6
+%cmake_kf6
 %cmake_build
 
 
