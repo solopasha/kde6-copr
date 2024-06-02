@@ -1,6 +1,6 @@
 Name:    kaccounts-integration
 Version: 24.05.0
-Release: 1%{?dist}
+Release: 1%{?dist}.1
 Summary: Small system to administer web accounts across the KDE desktop
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LicenseRef-KDE-Accepted-GPL
 URL:     https://invent.kde.org/network/%{name}
@@ -58,7 +58,7 @@ Provides:       kaccounts-integration%{?_isa} = %{version}-%{release}
 
 %package        qt6-devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name}-qt6%{?_isa} = %{version}-%{release}
 Requires:       cmake(Qt6Widgets)
 Requires:       cmake(AccountsQt6)
 Requires:       cmake(KF6CoreAddons)
@@ -140,6 +140,9 @@ Requires:       cmake(SignOnQt5)
 
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1.1
+- fix requires
+
 * Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
 - Update to 24.05.0
 

@@ -8,7 +8,7 @@
 
 Name:           libetebase
 Version:        0.5.6
-Release:        %autorelease
+Release:        %autorelease -b2
 Summary:        C library for etebase
 
 SourceLicense:  BSD-3-Clause
@@ -21,7 +21,7 @@ Source:         %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 Patch:          configurable-libdir-support.patch
 
 BuildRequires:  cargo-rpm-macros >= 25
-BuildRequires:  kf6-srpm-macros
+BuildRequires:  kf6-rpm-macros
 BuildRequires:  pkgconfig(libsodium)
 BuildRequires:  pkgconfig(openssl)
 

@@ -3,7 +3,7 @@ Summary: Show documentation for KDE applications
 # Override khelpcenter subpackage from kde-runtime-15.04 (no longer built)
 Epoch:   1
 Version: 24.05.0
-Release: 1%{?dist}
+Release: 1%{?dist}.1
 
 License: (GPL-2.0-only OR GPL-3.0-only) AND GPL-2.0-or-later
 URL:     https://invent.kde.org/system/%{name}
@@ -58,6 +58,9 @@ BuildRequires:  cmake(libxml2)
 %install
 %cmake_install
 
+install -D -m0644 -t %{buildroot}%{_datadir}/kde4/services/ khelpcenter.desktop
+install -D -m0644 -t %{buildroot}%{_datadir}/kservices5/ khelpcenter.desktop
+
 %find_lang %{name} --all-name --with-html
 
 
@@ -74,6 +77,8 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/config.kcfg/%{name}.kcfg
 %{_kf6_datadir}/dbus-1/services/org.kde.%{name}.service
+%{_kf6_datadir}/kde4/services/%{name}.desktop
+%{_kf6_datadir}/kservices5/%{name}.desktop
 %{_kf6_datadir}/qlogging-categories6/%{name}.*
 %{_kf6_metainfodir}/org.kde.%{name}.metainfo.xml
 %{_libexecdir}/khc_mansearch.pl
@@ -82,6 +87,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 1:24.05.0-1.1
+- Provide khelpcenter service for KDE 4/5 applications
+
 * Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 1:24.05.0-1
 - Update to 24.05.0
 

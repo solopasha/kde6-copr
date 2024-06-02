@@ -1,6 +1,6 @@
 Name:           koko
 Version:        24.05.0
-Release:        1%{?dist}
+Release:        1%{?dist}.1
 License:        GPLv2+ and GPLv3 and LGPLv2 and LGPLv2+ and CC0 and BSD
 Summary:        An Image gallery application
 URL:            https://apps.kde.org/koko/
@@ -49,14 +49,9 @@ Requires:      kquickimageeditor-qt6%{?_isa}
 Requires:      qt6-qtmultimedia%{?_isa}
 Requires:      qt6-qtdeclarative%{?_isa}
 
+Obsoletes:     %{name}-devel < 24.05.0-2
+
 %description
-%{summary}.
-
-%package devel
-Summary: Development files for koko
-Requires: %{name}%{?_isa} = %{version}-%{release}
-
-%description devel
 %{summary}.
 
 %prep
@@ -73,6 +68,7 @@ cp %{SOURCE12} src/
 
 %install
 %cmake_install
+rm -r %{buildroot}%{_kf6_libdir}/libkokocommon.so
 %find_lang %{name}
 
 %files -f %{name}.lang
@@ -85,10 +81,11 @@ cp %{SOURCE12} src/
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 %{_kf6_qmldir}/org/kde/%{name}/
 
-%files devel
-%{_kf6_libdir}/libkokocommon.so
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1.1
+- remove devel package
+
 * Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
 - Update to 24.05.0
 

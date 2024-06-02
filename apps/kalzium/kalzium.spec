@@ -13,7 +13,7 @@ Summary: Periodic Table of Elements
 Version: 24.05.0
 Release: 1%{?dist}
 
-License: GPL-2.0-or-late
+License: GPL-2.0-or-later
 URL:     https://invent.kde.org/education/kalzium
 %apps_source
 

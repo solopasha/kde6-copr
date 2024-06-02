@@ -3,7 +3,7 @@
 Name:    kate
 Summary: Advanced Text Editor
 Version: 24.05.0
-Release: 1%{?dist}
+Release: 1%{?dist}.1
 
 # kwrite LGPLv2+
 # kate: app LGPLv2, plugins, LGPLv2 and LGPLv2+ and GPLv2+
@@ -76,7 +76,7 @@ Summary: Kate plugins
 License: LGPLv2
 Requires: %{name} = %{version}-%{release}
 # Kate integrated terminal plugin doesnt work without Konsole
-Recommends: konsole
+Recommends: konsole-part
 %description plugins
 %{summary}.
 
@@ -177,6 +177,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1.1
+- fix recommends
+
 * Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
 - Update to 24.05.0
 
