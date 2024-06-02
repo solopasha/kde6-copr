@@ -3,7 +3,7 @@
 Name:    okular5
 Summary: A document viewer
 Version: 23.08.5
-Release: 7%{?dist}
+Release: 8%{?dist}
 
 License: GPL-2.0-only
 URL:     https://www.kde.org/applications/graphics/okular/
@@ -85,6 +85,7 @@ Recommends: ghostscript-core
 %package  part
 Summary:  Okular kpart plugin
 Requires: %{name}-libs%{?_isa} = %{version}-%{release}
+Supplements: kbibtex
 %description part
 %{summary}.
 
@@ -130,6 +131,9 @@ rm -rf %{buildroot}%{_kf5_metainfodir}
 
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 23.08.5-8
+- supplement kbibtex
+
 * Sun Dec 17 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.4-1
 - 23.08.4
 
