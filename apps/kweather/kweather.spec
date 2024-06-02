@@ -1,6 +1,6 @@
 Name:           kweather
 Version:        24.05.0
-Release:        1%{?dist}
+Release:        1%{?dist}.1
 License:        GPLv2+
 Summary:        Convergent KDE weather application
 URL:            https://invent.kde.org/utilities/kweather
@@ -34,11 +34,25 @@ BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Qt6Widgets)
 
 Requires:       hicolor-icon-theme
-Requires:       kf6-kirigami2
-Requires:       kf6-kirigami-addons
+Requires:       kf6-kcoreaddons%{?_isa}
+Requires:       kf6-kirigami-addons%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
+
+Recommends:     (%{name}-plasma-applet%{?_isa} = %{version}-%{release} if plasma-workspace)
 
 %description
 Weather application for Plasma Mobile
+
+%package        plasma-applet
+Summary:        Plasma weather applet
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+# QML module dependencies
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-kirigami-addons%{?_isa}
+Requires:       libplasma%{?_isa}
+
+%description plasma-applet
+%{summary}.
 
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
@@ -63,12 +77,17 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/dbus-1/services/org.kde.%{name}.service
 %{_kf6_datadir}/icons/hicolor/scalable/apps/org.kde.%{name}.svg
-%{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.%{name}_1x4/
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
+
+%files plasma-applet
+%{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.%{name}_1x4/
 %{_kf6_metainfodir}/org.kde.plasma.%{name}_1x4.appdata.xml
 %{_kf6_qtplugindir}/plasma/applets/plasma_applet_%{name}_1x4.so
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1.1
+- split pkgs
+
 * Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
 - Update to 24.05.0
 
