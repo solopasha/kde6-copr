@@ -191,8 +191,8 @@ BuildArch:      noarch
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1 -a20
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1 -a20
 
 sed '/falkon\|debian/d' -i kde-mimeapps.list
 

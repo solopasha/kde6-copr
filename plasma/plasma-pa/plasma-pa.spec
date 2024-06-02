@@ -66,7 +66,7 @@ rm %{buildroot}%{_kf6_libdir}/libplasma-volume.so
 %license LICENSES/*
 %{_kf6_datadir}/applications/kcm_pulseaudio.desktop
 %{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.volume/
-%{_kf6_libdir}/libplasma-volume.so.%{version}
+%{_kf6_libdir}/libplasma-volume.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libplasma-volume.so.6
 %{_kf6_metainfodir}/org.kde.plasma.volume.appdata.xml
 %{_kf6_plugindir}/kded/audioshortcutsservice.so

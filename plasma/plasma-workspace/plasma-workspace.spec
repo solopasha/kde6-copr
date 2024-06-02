@@ -145,7 +145,7 @@ BuildRequires:  pkgconfig(libxcrypt)
 BuildRequires:  cmake(KF6UserFeedback)
 BuildRequires:  wayland-protocols-devel
 BuildRequires:  plasma-wayland-protocols-devel
-BuildRequires:  plasma-breeze-devel >= %{version}
+BuildRequires:  plasma-breeze-devel >= %{majmin_ver_kf6}
 BuildRequires:  cmake(QCoro6)
 
 BuildRequires:  chrpath
