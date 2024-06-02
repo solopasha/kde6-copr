@@ -37,6 +37,7 @@ BuildRequires: cmake(Qt6Qml)
 
 BuildRequires: cups-devel >= 1.5.0
 # /usr/bin/smbspool (runtime dep, but checked-for at build-time)
+BuildRequires: cups
 BuildRequires: samba-client
 
 # Renamed from kde-print-manager

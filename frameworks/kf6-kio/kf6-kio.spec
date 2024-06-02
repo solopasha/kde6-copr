@@ -193,7 +193,8 @@ Recommends:     switcheroo-control
 %files widgets-libs
 %{_kf6_libdir}/libKF6KIOWidgets.so.6
 %{_kf6_libdir}/libKF6KIOWidgets.so.%{version}
-%{_kf6_libdir}/libkuriikwsfiltereng_private.so
+%{_kf6_libdir}/libkuriikwsfiltereng_private.so.6
+%{_kf6_libdir}/libkuriikwsfiltereng_private.so.%{version}
 %{_kf6_qtplugindir}/designer/*6widgets.so
 
 %files file-widgets
@@ -213,6 +214,7 @@ Recommends:     switcheroo-control
 %{_kf6_libdir}/libKF6KIOFileWidgets.so
 %{_kf6_libdir}/libKF6KIOGui.so
 %{_kf6_libdir}/libKF6KIOWidgets.so
+%{_kf6_libdir}/libkuriikwsfiltereng_private.so
 
 %changelog
 * Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-2.1

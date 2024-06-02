@@ -1,6 +1,7 @@
 Name:    ksysguard
+Epoch:   1
 Version: 5.22.0
-Release: 11%{?dist}
+Release: 1%{?dist}
 Summary: KDE Process Management application
 
 License: GPLv2
@@ -106,6 +107,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.ksysguard
 
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 1:5.22.0-1
+- epoch bump
+
 * Sun Mar 31 2024 Pavel Solovev <daron439@gmail.com> - 5.22.0-11
 - rebuilt
 

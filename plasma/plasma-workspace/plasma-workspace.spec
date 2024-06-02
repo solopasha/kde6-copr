@@ -17,7 +17,7 @@ Source101:      kde-fingerprint
 Source102:      kde-smartcard
 
 # breeze fedora sddm theme components
-# includes f25-based preview (better than breeze or nothing at least)
+# includes f40-based preview (better than breeze or nothing at least)
 Source20:       https://src.fedoraproject.org/lookaside/pkgs/plasma-workspace/breeze-fedora-0.3.tar.gz/sha512/8a3cafb61c5dc8944b71c8c8036e034d178a9384e0ca3b86847ad0caa91962b0f50e6615348cd32e116fe28a6befa5492dc5cc1c4ef0120617a1fbbf69ee0200/breeze-fedora-0.3.tar.gz
 
 ## systemd user service dependencies
@@ -209,7 +209,7 @@ Recommends: audiocd-kio
 # For a11y
 Recommends: orca
 
-# powerdevil has a versioned dep on libkworkspace5, so (may?)
+# powerdevil has a versioned dep on libkworkspace6, so (may?)
 # need to avoid this dep when bootstrapping
 %if ! 0%{?bootstrap}
 # Power management
@@ -230,6 +230,9 @@ Requires:       xmessage
 Requires:       qt6-qttools
 
 Requires:       qt6-qt5compat%{?_isa}
+
+# kconf_update
+Requires:       /usr/bin/qtpaths-qt6
 
 Requires:       iceauth xrdb xprop
 
@@ -388,6 +391,7 @@ Summary:        Plasma Wayland SDDM greeter configuration
 Provides:       sddm-greeter-displayserver
 Conflicts:      sddm-greeter-displayserver
 Requires:       kwin-wayland
+Requires:       layer-shell-qt
 Requires:       maliit-keyboard
 Recommends:     layer-shell-qt5
 Supplements:    (sddm and plasma-workspace-wayland)
@@ -412,6 +416,7 @@ Requires:       qt6-qtwayland%{?_isa}
 # startplasmacompositor deps
 Requires:       qt6-qttools
 Requires:       xdg-desktop-portal-kde
+Recommends:     xwaylandvideobridge
 %if ! %{with x11}
 Obsoletes:      %{name}-x11 < %{version}-%{release}
 %endif

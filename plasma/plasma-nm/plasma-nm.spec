@@ -47,6 +47,7 @@ BuildRequires:  cmake(KF6Kirigami)
 
 BuildRequires:  pkgconfig(ModemManager) >= 1.0.0
 BuildRequires:  pkgconfig(libnm) >= 1.0.0
+BuildRequires:  pkgconfig(mobile-broadband-provider-info)
 
 %if %{with openconnect}
 BuildRequires:  pkgconfig(openconnect) >= 4.00
@@ -56,8 +57,8 @@ Obsoletes:      %{name}-openconnect < %{version}-%{release}
 %endif
 
 Requires:       NetworkManager >= 1.0.0
-Requires:       kf6-prison
-Requires:       kf6-kirigami2
+Requires:       kf6-prison%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
 
 Obsoletes:      kde-plasma-networkmanagement < 1:0.9.1.0
 Obsoletes:      kde-plasma-networkmanagement-libs < 1:0.9.1.0
