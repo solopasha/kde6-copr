@@ -8,7 +8,7 @@
 Name:    akonadi-server
 Summary: PIM Storage Service
 Version: 24.05.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-KDE-Accepted-GPL AND MIT
 URL:     https://invent.kde.org/pim/akonadi
@@ -96,9 +96,13 @@ Provides:       kf5-akonadi-server-mysql = %{version}-%{release}
 Obsoletes:      akonadi-mysql < 24.01.85-2
 Provides:       akonadi-mysql = %{version}-%{release}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
+%if %{fedora} >= 40
+Requires:       mariadb-server
+%else
 Requires:       %{mysql}-server
 %if "%{?mysql}" != "mariadb" && 0%{?fedora} > 20
 Recommends:     mariadb-server
+%endif
 %endif
 Requires:       qt6-qtbase-mysql%{?_isa}
 Requires(post): /usr/sbin/update-alternatives
@@ -245,6 +249,9 @@ fi
 
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-2
+- fix requires
+
 * Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
 - Update to 24.05.0
 
