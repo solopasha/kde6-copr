@@ -2,7 +2,7 @@
 
 Name:    plasma-nano
 Version: 6.0.5
-Release: 1%{?dist}
+Release: 1%{?dist}.1
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND MIT
 URL:     https://invent.kde.org/plasma/plasma-nano
 %plasma_source
@@ -35,9 +35,9 @@ BuildRequires:  cmake(Qt6Svg)
 Requires:       kf6-kcoreaddons%{?_isa}
 Requires:       kf6-kpackage%{?_isa}
 Requires:       kf6-kservice%{?_isa}
-Requires:       kwayland%{?_isa}
 Requires:       kf6-kwindowsystem%{?_isa}
-Requires:       kf6-plasma%{?_isa}
+Requires:       kwayland%{?_isa}
+Requires:       libplasma%{?_isa}
 Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtdeclarative%{?_isa}
 
@@ -72,6 +72,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.pl
 
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1.1
+- rebuild for f40
+
 * Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
 - Update to 6.0.5
 

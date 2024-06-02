@@ -3,7 +3,7 @@
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
 Version: 6.0.5.1
-Release: 1%{?dist}
+Release: 1%{?dist}.1
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
@@ -365,9 +365,7 @@ Requires: %{name}-geolocation = %{version}-%{release}
 %package -n sddm-breeze
 Summary:        SDDM breeze theme
 Requires:       kde-settings-sddm
-# upgrade path, when sddm-breeze was split out
-Obsoletes: plasma-workspace < 5.3.2-8
-Requires:       kf6-plasma
+Requires:       libplasma
 # on-screen keyboard
 Recommends:     qt6-qtvirtualkeyboard
 # QML imports:
@@ -740,6 +738,9 @@ fi
 
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5.1-1.1
+- rebuild for f40
+
 * Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
 - Update to 6.0.5
 

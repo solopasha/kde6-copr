@@ -1,7 +1,7 @@
 Name:    kdeplasma-addons
 Summary: Additional Plasmoids for Plasma 6
 Version: 6.0.5
-Release: 1%{?dist}
+Release: 1%{?dist}.1
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
@@ -46,7 +46,7 @@ BuildRequires:  plasma-workspace-devel
 BuildRequires:  libksysguard-devel
 
 # for notes.svgz
-Requires:       kf6-plasma
+Requires:       libplasma%{?_isa}
 
 # Quickshare applet runtime dep
 BuildRequires:  cmake(KF6Purpose)
@@ -116,6 +116,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1.1
+- rebuild for f40
+
 * Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
 - Update to 6.0.5
 

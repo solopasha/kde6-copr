@@ -1,6 +1,6 @@
 Name:           kscreenlocker
 Version:        6.0.5
-Release:        1%{?dist}
+Release:        1%{?dist}.1
 Summary:        Library and components for secure lock screen architecture
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -88,6 +88,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1.1
+- rebuild for f40
+
 * Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
 - Update to 6.0.5
 
