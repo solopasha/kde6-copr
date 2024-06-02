@@ -1,6 +1,6 @@
 Name:    akonadi-mime
 Version: 24.05.0
-Release: 1%{?dist}
+Release: 1%{?dist}.1
 Summary: The Akonadi Mime Library
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
@@ -23,7 +23,7 @@ BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  pkgconfig(libxslt)
 BuildRequires:  pkgconfig(shared-mime-info)
 
-Conflicts:      kf5-akonadi-mime < 23.08.3-2
+Obsoletes:      kf5-akonadi-mime < 24.01.80-1
 
 %description
 %{summary}.
@@ -70,6 +70,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1.1
+- add obsoletes
+
 * Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
 - Update to 24.05.0
 

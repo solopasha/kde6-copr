@@ -1,6 +1,6 @@
 Name:    akonadi-search
 Version: 24.05.0
-Release: 1%{?dist}
+Release: 1%{?dist}.1
 Summary: The Akonadi Search library and indexing agent
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -33,7 +33,7 @@ BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Corrosion)
 BuildRequires:  pkgconfig(xapian-core)
 
-Conflicts:      kf5-%{name} < 23.08.3-2
+Obsoletes:      kf5-akonadi-search < 24.01.80-1
 
 %description
 %{summary}.
@@ -94,6 +94,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1.1
+- add obsoletes
+
 * Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
 - Update to 24.05.0
 
