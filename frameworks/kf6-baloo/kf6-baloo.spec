@@ -9,6 +9,8 @@ License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
+Patch100: baloo-5.67.0-baloofile_config.patch
+
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
