@@ -3,7 +3,7 @@
 
 Name:           kf6-%{framework}
 Version:        6.2.0
-Release:        1%{?dist}
+Release:        1%{?dist}.1
 Summary:        KDE Frameworks 6 Syntax highlighting engine for Kate syntax definitions
 License:        MIT AND BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND LGPL-2.0-or-later
 URL:            https://invent.kde.org/frameworks/%{framework}
@@ -70,6 +70,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6SyntaxHighlighting.so
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1.1
+- rebuild for f40
+
 * Sun May 12 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
 - Update to 6.2.0
 

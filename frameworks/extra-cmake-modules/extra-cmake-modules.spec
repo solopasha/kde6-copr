@@ -12,7 +12,7 @@
 Name:    extra-cmake-modules
 Summary: Additional modules for CMake build system
 Version: 6.2.0
-Release: 1%{?dist}
+Release: 1%{?dist}.1
 License: BSD
 URL:     https://api.kde.org/ecm/
 %frameworks_meta
@@ -74,6 +74,9 @@ make test ARGS="--output-on-failure --timeout 300" -C %{_vpath_builddir} ||:
 
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1.1
+- rebuild for f40
+
 * Sun May 12 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
 - Update to 6.2.0
 

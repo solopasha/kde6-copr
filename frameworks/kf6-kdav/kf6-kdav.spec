@@ -2,7 +2,7 @@
 
 Name:    kf6-%{framework}
 Version: 6.2.0
-Release: 1%{?dist}
+Release: 1%{?dist}.1
 Summary: A DAV protocol implementation with KJobs
 
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -64,6 +64,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6DAV.so
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1.1
+- rebuild for f40
+
 * Sun May 12 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
 - Update to 6.2.0
 
