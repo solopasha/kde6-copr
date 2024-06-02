@@ -8,7 +8,7 @@
 Name:    akonadi-server
 Summary: PIM Storage Service
 Version: 24.05.0
-Release: 2%{?dist}
+Release: 2%{?dist}.1
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-KDE-Accepted-GPL AND MIT
 URL:     https://invent.kde.org/pim/akonadi
@@ -59,7 +59,7 @@ Requires(postun): /usr/sbin/update-alternatives
 Recommends:     %{name}-mysql = %{version}-%{release}
 %endif
 
-Conflicts: kf5-akonadi-server < 23.08.3-2
+Obsoletes:      kf5-akonadi-server < 23.08.5-9
 
 Obsoletes:      akonadi < 24.01.85-2
 Provides:       akonadi = %{version}-%{release}
@@ -249,6 +249,9 @@ fi
 
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-2.1
+- obsolete kf5-akonadi-server
+
 * Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-2
 - fix requires
 

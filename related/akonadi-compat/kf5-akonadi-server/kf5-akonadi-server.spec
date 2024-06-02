@@ -28,7 +28,7 @@
 Name:    kf5-%{framework}
 Summary: PIM Storage Service
 Version: 23.08.5
-Release: 6%{?dist}
+Release: 8%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-KDE-Accepted-GPL AND MIT
 URL:     https://invent.kde.org/frameworks/%{framework}
@@ -118,6 +118,11 @@ Requires:   akonadi >= 24.01.75
 %description
 %{summary}.
 
+%package libs
+Summary:        KDE PIM core libraries
+%description libs
+%{summary}.
+
 %package devel
 Summary:        Developer files for %{name}
 Obsoletes:      kf5-akonadi-devel < 16.03
@@ -194,7 +199,7 @@ make test ARGS="--output-on-failure --timeout 300" -C %{_vpath_builddir} ||:
 %endif
 
 
-%files
+%files libs
 %doc AUTHORS
 %doc README*
 %license LICENSES/*
@@ -227,6 +232,9 @@ make test ARGS="--output-on-failure --timeout 300" -C %{_vpath_builddir} ||:
 
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 23.08.5-6.1
+- rename
+
 * Fri Oct 13 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 23.08.2-2
 - Rebuild (Qt5)
 
