@@ -2,7 +2,7 @@
 
 Name:    kwin
 Version: 6.0.5
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: KDE Window manager
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -105,7 +105,7 @@ Requires:       %{name}-common%{?_isa} = %{version}-%{release}
 Requires:       kf6-kdeclarative%{?_isa}
 Requires:       kf6-kirigami%{?_isa}
 Requires:       kscreenlocker%{?_isa} >= %{basever}
-Requires:       plasma-framework%{?_isa} >= %{basever}
+Requires:       libplasma%{?_isa} >= %{basever}
 Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtdeclarative%{?_isa}
 Requires:       qt6-qtmultimedia%{?_isa}
@@ -268,6 +268,9 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-4
+- fix requires
+
 * Sat Jun 01 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-3
 - pick upstream commit
 
