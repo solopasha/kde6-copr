@@ -6,9 +6,9 @@ Summary:        An Image gallery application
 URL:            https://apps.kde.org/koko/
 %apps_source
 
-Source10:       http://download.geonames.org/export/dump/cities1000.zip
-Source11:       http://download.geonames.org/export/dump/admin1CodesASCII.txt
-Source12:       http://download.geonames.org/export/dump/admin2Codes.txt
+Source10:       https://download.geonames.org/export/dump/cities1000.zip
+Source11:       https://download.geonames.org/export/dump/admin1CodesASCII.txt
+Source12:       https://download.geonames.org/export/dump/admin2Codes.txt
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
