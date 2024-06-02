@@ -14,7 +14,7 @@
 Name:    okular
 Summary: A document viewer
 Version: 24.05.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPL-2.0-only
 URL:     https://www.kde.org/applications/graphics/okular/
@@ -124,7 +124,6 @@ Recommends: ghostscript-core
 
 %package part
 Summary: Okular kpart plugin
-Recommends: okular5-part
 Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 %description part
 %{summary}.
@@ -207,6 +206,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.ok
 
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-2
+- don't recommend okular5-part
+
 * Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
 - Update to 24.05.0
 
