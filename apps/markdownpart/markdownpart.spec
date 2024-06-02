@@ -3,7 +3,7 @@
 Name:           markdownpart
 Summary:        Markdown KPart
 Version:        24.05.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        LGPL-2.1-or-later
 URL:            https://apps.kde.org/categories/utilities/
 %apps_source
@@ -17,7 +17,6 @@ BuildRequires:  gcc-c++
 BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 
-Recommends:     %{name}-qt5
 
 %description
 A Markdown viewer KParts plugin, which allows KParts-using applications to
@@ -52,6 +51,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/%{app_id}.
 
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-2
+- remove recommends
+
 * Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
 - Update to 24.05.0
 

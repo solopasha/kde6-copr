@@ -1,7 +1,7 @@
 Name:           svgpart
 Summary:        SVG KPart
 Version:        24.05.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 License:        GPL-2.0-or-later
 URL:            https://www.kde.org/applications/graphics/
@@ -20,8 +20,6 @@ BuildRequires:  cmake(KF6XmlGui)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6SvgWidgets)
 BuildRequires:  cmake(Qt6Widgets)
-
-Recommends:     svgpart-qt5
 
 
 %description
@@ -55,6 +53,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.metainfo.xml
 
 
 %changelog
+* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-2
+- remove recommends
+
 * Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
 - Update to 24.05.0
 
