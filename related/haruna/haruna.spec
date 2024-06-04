@@ -1,12 +1,12 @@
 Name:    haruna
-Version: 1.1.1
+Version: 1.1.2
 Release: %autorelease
 Summary: Open source video player built with Qt/QML and libmpv
 
 License: BSD and CC-BY and CC-BY-SA and GPLv2+ and LGPLv2+ and GPLv3+
 URL:     https://invent.kde.org/multimedia/%{name}/
-Source0: https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz
-Source1: https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz.sig
+Source0: https://download.kde.org/stable/%{name}/%{version}/%{name}-%{version}.tar.xz
+Source1: https://download.kde.org/stable/%{name}/%{version}/%{name}-%{version}.tar.xz.sig
 Source2: gpgkey-4E421C6554B89766DF9B7A37E12AB207C8755905.gpg
 
 BuildRequires: cmake
@@ -19,6 +19,7 @@ BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib
 
 BuildRequires: cmake(Qt6Core)
+BuildRequires: cmake(Qt6Core5Compat)
 BuildRequires: cmake(Qt6DBus)
 BuildRequires: cmake(Qt6Gui)
 BuildRequires: cmake(Qt6Qml)
