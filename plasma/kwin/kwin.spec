@@ -1,6 +1,6 @@
-%global commit0 e1bb824eb5ece286781877514199307f2b02c91e
+%global commit0 3e9c2a06f36d242b7847945a4487c5a554494229
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %bcond x11 1
 
@@ -228,6 +228,7 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 %{_kf6_libdir}/kconf_update_bin/kwin-6.0-delete-desktop-switching-shortcuts
 %{_kf6_libdir}/kconf_update_bin/kwin-6.0-remove-breeze-tabbox-default
 %{_kf6_libdir}/kconf_update_bin/kwin-6.0-reset-active-mouse-screen
+%{_kf6_libdir}/kconf_update_bin/kwin-6.1-remove-gridview-expose-shortcuts
 %{_kf6_libdir}/kconf_update_bin/kwin5_update_default_rules
 %{_kf6_qtplugindir}/kf6/packagestructure/kwin_*.so
 %{_kf6_qtplugindir}/kwin/
