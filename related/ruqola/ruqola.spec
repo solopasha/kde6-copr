@@ -87,6 +87,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/icons/hicolor/*/apps/%{name}.png
 %{_kf6_datadir}/knotifications6/%{name}.notifyrc
+%{_kf6_datadir}/messageviewer/openurlwith/ruqola.openurl
 %{_kf6_datadir}/qlogging-categories6/%{name}.*
 %{_kf6_libdir}/librocketchatrestapi-qt.so.{0,%{version}}
 %{_kf6_libdir}/libruqolacore.so.{0,%{version}}
