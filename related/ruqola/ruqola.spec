@@ -1,6 +1,6 @@
 Name:           ruqola
-Version:        2.1.1
-Release:        2%{?dist}
+Version:        2.2.0
+Release:        1%{?dist}
 Summary:        KDE client for Rocket Chat
 
 License:        LGPL-2.0-or-later
@@ -57,6 +57,7 @@ BuildRequires:  cmake(KF6TextEmoticonsWidgets)
 BuildRequires:  cmake(KF6TextTranslator)
 BuildRequires:  cmake(KF6TextUtils)
 # BuildRequires:  cmake(KLLMWidgets)
+BuildRequires:  cmake(PlasmaActivities)
 BuildRequires:  cmake(Qt6Keychain)
 
 %description
