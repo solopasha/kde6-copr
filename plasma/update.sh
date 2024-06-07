@@ -41,4 +41,4 @@ git push --quiet origin git-build
 
 # shellcheck disable=SC2154
 # shellcheck disable=SC1083
-xargs -a <(parallel echo {/.} ::: "${changedSpecs[@]}") ruby ~/ruby/deps.rb --copr solopasha/git-builds -b -s
+xargs -a <(parallel echo {/.} ::: "${changedSpecs[@]}") ruby ~/ruby/deps.rb --copr solopasha/git-builds -s
