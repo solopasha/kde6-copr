@@ -1,8 +1,8 @@
 %global		framework kirigami
 
 Name:		kf6-%{framework}
-Version:	6.2.1
-Release:	1%{?dist}.1
+Version:	6.3.0
+Release:	1%{?dist}
 Summary:	QtQuick plugins to build user interfaces based on the KDE UX guidelines
 License:	BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:		https://invent.kde.org/frameworks/%{framework}
@@ -22,8 +22,6 @@ BuildRequires:	cmake(Qt6Quick)
 BuildRequires:	cmake(Qt6ShaderTools)
 BuildRequires:	cmake(Qt6Core5Compat)
 
-Requires:       qt6-qt5compat
-
 # Renamed from kf6-kirigami2
 Obsoletes:      kf6-kirigami2 < 5.246.0-2
 Provides:       kf6-kirigami2 = %{version}-%{release}
@@ -34,7 +32,7 @@ Provides:       kf6-kirigami2%{?_isa} = %{version}-%{release}
 
 %package	    devel
 Summary:	    Development files for %{name}
-Requires:	    %{name} = %{version}-%{release}
+Requires:	    %{name}%{?_isa} = %{version}-%{release}
 Obsoletes:      kf6-kirigami2-devel < 5.246.0-2
 Provides:       kf6-kirigami2-devel = %{version}-%{release}
 %description	devel
@@ -64,8 +62,14 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKirigami.so.6
 %{_kf6_libdir}/libKirigamiDelegates.so.%{version}
 %{_kf6_libdir}/libKirigamiDelegates.so.6
-%{_kf6_libdir}/libKirigamiPlatform.so.%{version}
+%{_kf6_libdir}/libKirigamiDialogs.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
+%{_kf6_libdir}/libKirigamiDialogs.so.6
+%{_kf6_libdir}/libKirigamiLayouts.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
+%{_kf6_libdir}/libKirigamiLayouts.so.6
+%{_kf6_libdir}/libKirigamiPlatform.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKirigamiPlatform.so.6
+%{_kf6_libdir}/libKirigamiPrimitives.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
+%{_kf6_libdir}/libKirigamiPrimitives.so.6
 %{_kf6_qmldir}/org/kde/kirigami/
 
 %files devel
@@ -79,9 +83,15 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6KirigamiPlatform/
 %{_kf6_libdir}/libKirigami.so
 %{_kf6_libdir}/libKirigamiDelegates.so
+%{_kf6_libdir}/libKirigamiDialogs.so
+%{_kf6_libdir}/libKirigamiLayouts.so
 %{_kf6_libdir}/libKirigamiPlatform.so
+%{_kf6_libdir}/libKirigamiPrimitives.so
 
 %changelog
+* Fri Jun 07 2024 Pavel Solovev <daron439@gmail.com> - 6.3.0-1
+- Update to 6.3.0
+
 * Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1.1
 - rebuild for f40
 

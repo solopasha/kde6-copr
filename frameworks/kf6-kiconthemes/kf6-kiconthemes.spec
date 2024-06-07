@@ -1,8 +1,8 @@
 %global framework kiconthemes
 
 Name:    kf6-%{framework}
-Version: 6.2.0
-Release: 1%{?dist}.1
+Version: 6.3.0
+Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 integration module with icon themes
 
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -15,6 +15,7 @@ BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6Archive)
+BuildRequires:  cmake(KF6BreezeIcons)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6I18n)
@@ -68,7 +69,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6IconWidgets.so.%{version}
 %{_kf6_libdir}/qt6/qml/org/kde/iconthemes/
 %{_kf6_qtplugindir}/designer/*6widgets.so
-%{_kf6_qtplugindir}/iconengines/KIconEnginePlugin.so
+%{_kf6_qtplugindir}/kiconthemes6/iconengines/KIconEnginePlugin.so
 
 %files devel
 %{_qt6_docdir}/*.tags
@@ -79,6 +80,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6IconWidgets.so
 
 %changelog
+* Fri Jun 07 2024 Pavel Solovev <daron439@gmail.com> - 6.3.0-1
+- Update to 6.3.0
+
 * Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1.1
 - rebuild for f40
 

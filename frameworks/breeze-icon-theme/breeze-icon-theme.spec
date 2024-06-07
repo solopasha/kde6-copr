@@ -1,41 +1,31 @@
 %global framework breeze-icons
 
-# trim changelog included in binary rpms
-%global _changelog_trimtime %(date +%s -d "1 year ago")
+Name:           breeze-icon-theme
+Summary:        Breeze icon theme
+Version:        6.3.0
+Release:        1%{?dist}
 
-Name:    breeze-icon-theme
-Summary: Breeze icon theme
-Version: 6.2.0
-Release: 1%{?dist}.1
-
-# http://techbase.kde.org/Policies/Licensing_Policy
-License: LGPL-3.0-or-later
-URL:     https://api.kde.org/frameworks-api/frameworks-apidocs/frameworks/breeze-icons/html/
+License:        LGPL-3.0-or-later
+URL:            https://invent.kde.org/frameworks/breeze-icons
 %frameworks_meta
-
-## upstream patches
-
-## upstreamable patches
-
-BuildArch: noarch
 
 BuildRequires:  extra-cmake-modules >= %{version}
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  qt6-qtbase-devel
 
 # icon optimizations
-BuildRequires: hardlink
+BuildRequires:  hardlink
 # for optimizegraphics
 #BuildRequires: kde-dev-scripts
-BuildRequires: time
+BuildRequires:  time
 # for generate-24px-versions.py
-BuildRequires: python3-lxml
+BuildRequires:  python3-lxml
 
 # inheritance, though could consider Recommends: if needed -- rex
-Requires: hicolor-icon-theme
+Requires:       hicolor-icon-theme
 
 # Needed for proper Fedora logo
-Requires: system-logos
+Requires:       system-logos
 
 # upstream name
 Provides:       breeze-icons = %{version}-%{release}
@@ -44,18 +34,16 @@ Provides:       kf6-breeze-icons = %{version}-%{release}
 %description
 %{summary}.
 
-%package rcc
-Summary: breeze Qt resource files
-# when split out
-#Conflicts: breeze-icon-theme < 5.33.0-2
-Requires: %{name} = %{version}-%{release}
-%description rcc
+%package        rcc
+Summary:        breeze Qt resource files
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+%description    rcc
 %{summary}.
 
-%package     devel
-Summary:     Breeze icon theme development files
-Requires:    %{name} = %{version}-%{release}
-%description devel
+%package        devel
+Summary:        Breeze icon theme development files
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+%description  devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
@@ -64,13 +52,8 @@ developing applications that use %{name}.
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -n %{framework}-%{version} -p1
 
-# Fix FTI for -devel package
-sed -e 's|\${KDE_INSTALL_CMAKEPACKAGEDIR}|%{_datadir}/cmake|g' -i CMakeLists.txt
-
-
 %build
 %cmake_kf6 -DBINARY_ICONS_RESOURCE=ON
-
 %cmake_build
 
 
@@ -122,17 +105,22 @@ gtk-update-icon-cache --force %{_datadir}/icons/breeze-dark &>/dev/null || :
 %{_datadir}/icons/breeze/
 %{_datadir}/icons/breeze-dark/
 %exclude %{_datadir}/icons/breeze/breeze-icons.rcc
-%exclude %{_datadir}/icons/breeze-dark/breeze-icons-dark.rcc
+%{_kf6_libdir}/libKF6BreezeIcons.so.6
+%{_kf6_libdir}/libKF6BreezeIcons.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 
 %files devel
-%{_datadir}/cmake/KF6BreezeIcons/
+%{_kf6_includedir}/BreezeIcons/
+%{_kf6_libdir}/cmake/KF6BreezeIcons/
+%{_kf6_libdir}/libKF6BreezeIcons.so
 
 %files rcc
 %{_datadir}/icons/breeze/breeze-icons.rcc
-%{_datadir}/icons/breeze-dark/breeze-icons-dark.rcc
 
 
 %changelog
+* Fri Jun 07 2024 Pavel Solovev <daron439@gmail.com> - 6.3.0-1
+- Update to 6.3.0
+
 * Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1.1
 - rebuild for f40
 

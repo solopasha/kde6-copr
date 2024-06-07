@@ -1,8 +1,8 @@
 %global framework knotifications
 
 Name:    kf6-%{framework}
-Version: 6.2.0
-Release: 1%{?dist}.1
+Version: 6.3.0
+Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 2 solution with abstraction for system notifications
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
@@ -68,6 +68,9 @@ mkdir -p %{buildroot}/%{_kf6_datadir}/knotifications6
 %{_kf6_libdir}/libKF6Notifications.so
 
 %changelog
+* Fri Jun 07 2024 Pavel Solovev <daron439@gmail.com> - 6.3.0-1
+- Update to 6.3.0
+
 * Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1.1
 - rebuild for f40
 

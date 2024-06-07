@@ -1,8 +1,8 @@
 %global framework kcontacts
 
 Name:    kf6-%{framework}
-Version: 6.2.0
-Release: 1%{?dist}.1
+Version: 6.3.0
+Release: 1%{?dist}
 Summary: The KContacts Library
 
 # The following licenses are present in LICENSES but go unused: BSD-3-Clause, MIT, Unicode-DFS-2016
@@ -57,16 +57,20 @@ developing applications that use %{name}.
 %files -f %{name}.lang
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*%{framework}.*
-%{_kf6_libdir}/libKF6Contacts.so.6
 %{_kf6_libdir}/libKF6Contacts.so.%{version}
+%{_kf6_libdir}/libKF6Contacts.so.6
+%{_kf6_qmldir}/org/kde/contacts/
 
 %files devel
 %{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KContacts/
-%{_kf6_libdir}/libKF6Contacts.so
 %{_kf6_libdir}/cmake/KF6Contacts/
+%{_kf6_libdir}/libKF6Contacts.so
 
 %changelog
+* Fri Jun 07 2024 Pavel Solovev <daron439@gmail.com> - 6.3.0-1
+- Update to 6.3.0
+
 * Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1.1
 - rebuild for f40
 

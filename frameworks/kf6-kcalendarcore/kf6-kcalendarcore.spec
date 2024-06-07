@@ -1,8 +1,8 @@
 %global		framework kcalendarcore
 
 Name:		kf6-%{framework}
-Version:	6.2.0
-Release:	1%{?dist}.1
+Version:	6.3.0
+Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 KCalendarCore Library
 License:	BSD-3-Clause AND LGPL-2.0-or-later AND LGPL-3.0-or-later
 URL:		https://invent.kde.org/frameworks/%{framework}
@@ -56,6 +56,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/pkgconfig/KF6CalendarCore.pc
 
 %changelog
+* Fri Jun 07 2024 Pavel Solovev <daron439@gmail.com> - 6.3.0-1
+- Update to 6.3.0
+
 * Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1.1
 - rebuild for f40
 

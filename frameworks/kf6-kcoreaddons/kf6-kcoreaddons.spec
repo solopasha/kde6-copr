@@ -1,8 +1,8 @@
 %global		framework kcoreaddons
 
 Name:		kf6-%{framework}
-Version:	6.2.0
-Release:	1%{?dist}.1
+Version:	6.3.0
+Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with various classes on top of QtCore
 License:	BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND MPL-1.1 AND LGPL-2.0-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-2.1-only WITH Qt-LGPL-exception-1.1
 URL:		https://invent.kde.org/frameworks/%{framework}
@@ -27,7 +27,7 @@ replacement, accessing user information and many more.
 
 %package	devel
 Summary:	Development files for %{name}
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}%{?_isa} = %{version}-%{release}
 Requires:	qt6-qtbase-devel
 %description	devel
 The %{name}-devel package contains libraries and header files for
@@ -55,7 +55,6 @@ cat *.lang > all.lang
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/kf6/jsonschema/kpluginmetadata.schema.json
-%{_kf6_datadir}/kf6/licenses/
 %{_kf6_datadir}/mime/packages/kde6.xml
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6CoreAddons.so.6
@@ -69,6 +68,9 @@ cat *.lang > all.lang
 %{_kf6_libdir}/libKF6CoreAddons.so
 
 %changelog
+* Fri Jun 07 2024 Pavel Solovev <daron439@gmail.com> - 6.3.0-1
+- Update to 6.3.0
+
 * Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1.1
 - rebuild for f40
 
