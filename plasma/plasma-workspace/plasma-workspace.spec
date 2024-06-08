@@ -550,6 +550,7 @@ fi
 %{_kf6_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/
 %{_kf6_datadir}/plasma/look-and-feel/org.kde.breezedark.desktop/
 %{_kf6_datadir}/plasma/look-and-feel/org.kde.breezetwilight.desktop/
+%{_kf6_datadir}/plasma/weather/noaa_station_list.xml
 %{_kf6_datadir}/solid/
 %{_kf6_datadir}/kstyle/
 %{_sysconfdir}/xdg/startkderc
