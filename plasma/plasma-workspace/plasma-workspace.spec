@@ -3,7 +3,7 @@
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
 Version: 6.0.5.1
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
@@ -232,8 +232,10 @@ Requires:       qt6-qttools
 
 Requires:       qt6-qt5compat%{?_isa}
 
+%if %{?fedora} >= 40
 # kconf_update
 Requires:       /usr/bin/qtpaths-qt6
+%endif
 
 Requires:       iceauth xrdb xprop
 
@@ -460,7 +462,12 @@ BuildArch: noarch
 
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -a 20 -p1
+%autosetup -a 20 -N
+%if %{?fedora} >= 40
+%autopatch -p1
+%else
+%autopatch -p1 -M 108
+%endif
 
 # Populate initial lookandfeel package
 cp -a lookandfeel/org.kde.breeze lookandfeel/org.fedoraproject.fedora
@@ -744,6 +751,9 @@ fi
 
 
 %changelog
+* Sun Jun 09 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5.1-3
+- don't install -devel in f39
+
 * Sat Jun 08 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5.1-2
 - pick upstream commit
 
