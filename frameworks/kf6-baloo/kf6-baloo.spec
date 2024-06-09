@@ -3,7 +3,7 @@
 Name:    kf6-%{framework}
 Summary: A Tier 3 KDE Frameworks 6 module that provides indexing and search functionality
 Version: 6.3.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND bzip2-1.0.6
 URL:     https://invent.kde.org/frameworks/%{framework}
@@ -31,6 +31,8 @@ BuildRequires:  qt6-qtdeclarative-devel
 
 # for systemd-related macros
 BuildRequires:  systemd
+
+Requires:       %{name}-file%{?_isa} = %{version}-%{release}
 
 %description
 %{summary}.
@@ -94,41 +96,44 @@ cat baloo_file6.lang baloo_file_extractor6.lang \
 
 %files -f %{name}.lang
 %license LICENSES/*.txt
+%{_kf6_bindir}/balooctl6
 %{_kf6_bindir}/baloosearch6
 %{_kf6_bindir}/balooshow6
-%{_kf6_bindir}/balooctl6
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
 
 %files file -f %{name}-file.lang
 %config(noreplace) %{_kf6_sysconfdir}/xdg/autostart/baloo_file.desktop
-%{_userunitdir}/kde-baloo.service
 %{_libexecdir}/kf6/baloo_file
 %{_libexecdir}/kf6/baloo_file_extractor
+%{_userunitdir}/kde-baloo.service
 
 
 %files libs
 %license LICENSES/*
-%{_kf6_libdir}/libKF6Baloo.so.6
 %{_kf6_libdir}/libKF6Baloo.so.%{version}
-%{_kf6_libdir}/libKF6BalooEngine.so.6
+%{_kf6_libdir}/libKF6Baloo.so.6
 %{_kf6_libdir}/libKF6BalooEngine.so.%{version}
+%{_kf6_libdir}/libKF6BalooEngine.so.6
+%{_kf6_plugindir}/kded/baloosearchmodule.so
 %{_kf6_plugindir}/kio/baloosearch.so
 %{_kf6_plugindir}/kio/tags.so
 %{_kf6_plugindir}/kio/timeline.so
-%{_kf6_plugindir}/kded/baloosearchmodule.so
 %{_kf6_qmldir}/org/kde/baloo/
 
 %files devel
-%{_qt6_docdir}/*.tags
-%{_kf6_libdir}/libKF6Baloo.so
-%{_kf6_libdir}/cmake/KF6Baloo/
-%{_kf6_libdir}/pkgconfig/KF6Baloo.pc
-%{_kf6_includedir}/Baloo/
 %{_kf6_datadir}/dbus-1/interfaces/org.kde.baloo.*.xml
 %{_kf6_datadir}/dbus-1/interfaces/org.kde.Baloo*.xml
+%{_kf6_includedir}/Baloo/
+%{_kf6_libdir}/cmake/KF6Baloo/
+%{_kf6_libdir}/libKF6Baloo.so
+%{_kf6_libdir}/pkgconfig/KF6Baloo.pc
+%{_qt6_docdir}/*.tags
 
 
 %changelog
+* Sun Jun 09 2024 Pavel Solovev <daron439@gmail.com> - 6.3.0-2
+- require baloo-file
+
 * Fri Jun 07 2024 Pavel Solovev <daron439@gmail.com> - 6.3.0-1
 - Update to 6.3.0
 
