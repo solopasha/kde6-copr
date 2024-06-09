@@ -1,6 +1,6 @@
 Name:           ghostwriter
 Version:        24.05.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 License:        GPL-3.0-or-later AND Apache-2.0 AND CC-BY-4.0 AND CC-BY-SA-4.0 AND MPL-1.1 AND BSD AND LGPL-3.0-only AND MIT AND ISC
 Summary:        Cross-platform, aesthetic, distraction-free Markdown editor
@@ -12,24 +12,22 @@ BuildRequires: extra-cmake-modules
 BuildRequires: gcc-c++
 BuildRequires: libappstream-glib
 
-BuildRequires: cmake(KF6ConfigWidgets)
-BuildRequires: cmake(KF6CoreAddons)
-BuildRequires: cmake(KF6DocTools)
-BuildRequires: cmake(KF6Sonnet)
-BuildRequires: cmake(KF6WidgetsAddons)
-BuildRequires: cmake(KF6XmlGui)
+BuildRequires: cmake(KF5ConfigWidgets)
+BuildRequires: cmake(KF5CoreAddons)
+BuildRequires: cmake(KF5DocTools)
+BuildRequires: cmake(KF5Sonnet)
+BuildRequires: cmake(KF5WidgetsAddons)
+BuildRequires: cmake(KF5XmlGui)
 
-BuildRequires: cmake(Qt6Concurrent)
-BuildRequires: cmake(Qt6Core)
-BuildRequires: cmake(Qt6Core5Compat)
-BuildRequires: cmake(Qt6Gui)
-BuildRequires: cmake(Qt6Svg)
-BuildRequires: cmake(Qt6WebChannel)
-BuildRequires: cmake(Qt6WebEngineWidgets)
-BuildRequires: cmake(Qt6Widgets)
+BuildRequires: cmake(Qt5Concurrent)
+BuildRequires: cmake(Qt5Core)
+BuildRequires: cmake(Qt5Gui)
+BuildRequires: cmake(Qt5Svg)
+BuildRequires: cmake(Qt5WebChannel)
+BuildRequires: cmake(Qt5WebEngineWidgets)
+BuildRequires: cmake(Qt5Widgets)
 
 BuildRequires: pkgconfig(hunspell)
-
 
 Provides: bundled(cmark-gfm) = 0.29.0.gfm.6
 Provides: bundled(fontawesome-fonts) = 5.10.2
@@ -60,7 +58,7 @@ or your novel.
 %autosetup -p1
 
 %build
-%cmake_kf6 -DQT_MAJOR_VERSION=6
+%cmake_kf5
 %cmake_build
 
 %check
@@ -74,13 +72,16 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 %files -f %{name}.lang
 %doc CHANGELOG.md CONTRIBUTING.md README.md
 %license COPYING
-%{_kf6_bindir}/%{name}
-%{_kf6_datadir}/applications/org.kde.%{name}.desktop
-%{_kf6_datadir}/icons/hicolor/*/apps/%{name}.*
-%{_kf6_mandir}/man1/ghostwriter.1.*
-%{_kf6_metainfodir}/org.kde.%{name}.metainfo.xml
+%{_kf5_bindir}/%{name}
+%{_kf5_datadir}/applications/org.kde.%{name}.desktop
+%{_kf5_datadir}/icons/hicolor/*/apps/%{name}.*
+%{_kf5_mandir}/man1/ghostwriter.1.*
+%{_kf5_metainfodir}/org.kde.%{name}.metainfo.xml
 
 %changelog
+* Sun Jun 09 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-2
+- use KF5
+
 * Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
 - Update to 24.05.0
 
