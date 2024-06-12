@@ -1,11 +1,11 @@
-%global commit0 4104625862bcfd522737cc52104c7e96990d2404
+%global commit0 753dc77f0d7ed691dce1b245f03572c5c1a12aea
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global         base_name milou
 
 Name:    plasma-%{base_name}
-Version: 6.0.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.1.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: A dedicated KDE search application built on top of Baloo
 

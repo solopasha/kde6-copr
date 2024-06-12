@@ -1,10 +1,10 @@
-%global commit0 6f87539c509eaf91a9d613d701dd489e80339928
+%global commit0 138260ff522f747ff6aeee31c63ae9dddb6c0a25
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    bluedevil
 Summary: Bluetooth stack for KDE
-Version: 6.0.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.1.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later

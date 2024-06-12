@@ -1,10 +1,10 @@
-%global commit0 2b38253ea0ef8e9600fac20ae728ec485294ece8
+%global commit0 21c6d057b702d589a3448f52a5ede2ac686ad52b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    plasma-activities
 Summary: Core components for the KDE's Activities System
-Version: 6.0.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.1.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND MIT

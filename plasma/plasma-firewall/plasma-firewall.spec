@@ -1,4 +1,4 @@
-%global commit0 e8fd6a3dcce53e5dc855f83a97d415ffc5eba81f
+%global commit0 abfdc10a654776971a821109e0e06152bfff38e1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -11,7 +11,7 @@
 %endif
 
 Name:    plasma-firewall
-Version: 6.0.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.1.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Control Panel for your system firewall
 

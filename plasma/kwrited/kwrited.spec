@@ -1,10 +1,10 @@
-%global commit0 8e94b1f86bf8434287e43b20b8ade38235a43efd
+%global commit0 605196325e0175fcb32743c708bf8638c851263f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kwrited
 Summary: KDE Write Daemon
-Version: 6.0.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.1.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later

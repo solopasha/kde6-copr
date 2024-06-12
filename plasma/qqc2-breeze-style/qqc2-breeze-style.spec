@@ -1,9 +1,9 @@
-%global commit0 132ae0cb7fffdae506a01c865d4e225e951c8aa0
+%global commit0 77094a116f6fba7fd863647d155d5d43250d76b6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    qqc2-breeze-style
-Version: 6.0.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.1.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: QtQuickControls2 breeze style
 

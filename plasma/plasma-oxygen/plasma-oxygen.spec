@@ -1,11 +1,11 @@
-%global commit0 e7ea12cb6e443af4c36da8dcb546d86d7ffad4ec
+%global commit0 245453ebbf17faa348fde897ffe6d351b521359e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global         base_name oxygen
 
 Name:    plasma-%{base_name}
-Version: 6.0.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.1.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Plasma and Qt widget style and window decorations for Plasma
 

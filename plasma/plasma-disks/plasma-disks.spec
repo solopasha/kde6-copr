@@ -1,10 +1,10 @@
-%global commit0 1ae42b2ef458368e6d4a976317337bc0497d23dc
+%global commit0 358b6c36c31feb6b1e85ad38e19e67efe299c1bd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    plasma-disks
 Summary: Hard disk health monitoring for KDE Plasma
-Version: 6.0.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version: 6.1.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-3.0-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
