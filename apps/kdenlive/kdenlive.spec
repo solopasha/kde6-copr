@@ -2,7 +2,7 @@
 
 Name:    kdenlive
 Summary: Non-linear video editor
-Version: 24.05.0
+Version: 24.05.1
 Release: 1%{?dist}
 
 License: (GPL-2.0-only or GPL-3.0-only) and GPL-2.0-or-later and GPL-3.0-or-later and LGPL-3.0-only and BSD-3-Clause and CC0-1.0
@@ -132,6 +132,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Thu Jun 13 2024 Pavel Solovev <daron439@gmail.com> - 24.05.1-1
+- Update to 24.05.1
+
 * Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
 - Update to 24.05.0
 

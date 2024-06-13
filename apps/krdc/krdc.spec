@@ -1,7 +1,7 @@
 Name:    krdc
 Summary: Remote desktop client
-Version: 24.05.0
-Release: 2%{?dist}
+Version: 24.05.1
+Release: 1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/network/krdc
@@ -112,6 +112,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Thu Jun 13 2024 Pavel Solovev <daron439@gmail.com> - 24.05.1-1
+- Update to 24.05.1
+
 * Sat Jun 08 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-2
 - pick upstream commit
 

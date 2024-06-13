@@ -1,5 +1,5 @@
 Name:           tokodon
-Version:        24.05.0
+Version:        24.05.1
 Release:        1%{?dist}
 License:        GPL-2.0-only OR GPL-3.0-only AND CC0-1.0 AND LGPL-2.1-or-later
 Summary:        Kirigami-based mastodon client
@@ -39,12 +39,16 @@ BuildRequires:  cmake(Qt6WebSockets)
 BuildRequires:  cmake(Qt6WebView)
 BuildRequires:  cmake(Qt6Widgets)
 
-Requires:       kf6-kirigami2
-Requires:       kf6-kirigami-addons
-Requires:       kf6-kitemmodels
-Requires:       kf6-sonnet
 Requires:       hicolor-icon-theme
-Requires:       qt6-qt5compat
+
+Requires:       kf6-kdeclarative%{?_isa}
+Requires:       kf6-kirigami-addons%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-kitemmodels%{?_isa}
+Requires:       kf6-knotifications%{?_isa}
+Requires:       kf6-purpose%{?_isa}
+Requires:       kf6-sonnet%{?_isa}
+Requires:       qt6-qt5compat%{?_isa}
 
 %description
 Tokodon is a Mastodon client for Plasma and Plasma Mobile.
@@ -84,6 +88,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Thu Jun 13 2024 Pavel Solovev <daron439@gmail.com> - 24.05.1-1
+- Update to 24.05.1
+
 * Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
 - Update to 24.05.0
 

@@ -1,5 +1,5 @@
 Name:           calindori
-Version:        24.05.0
+Version:        24.05.1
 Release:        1%{?dist}
 Summary:        Calendar application for Plasma Mobile
 License:        BSD-2-Clause AND CC-BY-4.0 AND CC-BY-SA-4.0 AND CC0-1.0 AND GPL-3.0-or-later AND LGPL-3.0-or-later
@@ -71,6 +71,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{
 %license LICENSES/*
 
 %changelog
+* Thu Jun 13 2024 Pavel Solovev <daron439@gmail.com> - 24.05.1-1
+- Update to 24.05.1
+
 * Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
 - Update to 24.05.0
 

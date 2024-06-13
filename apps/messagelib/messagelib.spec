@@ -1,8 +1,8 @@
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
 
 Name:    messagelib
-Version: 24.05.0
-Release: 1%{?dist}.1
+Version: 24.05.1
+Release: 1%{?dist}
 Summary: KDE Message libraries
 
 License: BSD-3-Clause AND BSL-1.0 AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -166,6 +166,9 @@ Requires:       cmake(Qt6WebEngineWidgets)
 
 
 %changelog
+* Thu Jun 13 2024 Pavel Solovev <daron439@gmail.com> - 24.05.1-1
+- Update to 24.05.1
+
 * Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1.1
 - add obsoletes
 

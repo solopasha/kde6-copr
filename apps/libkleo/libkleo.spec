@@ -1,6 +1,6 @@
 Name:    libkleo
-Version: 24.05.0
-Release: 1%{?dist}.2
+Version: 24.05.1
+Release: 1%{?dist}
 Summary: KDE PIM cryptographic library
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-2.0-or-later WITH GCC-exception-3.1
@@ -78,6 +78,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Thu Jun 13 2024 Pavel Solovev <daron439@gmail.com> - 24.05.1-1
+- Update to 24.05.1
+
 * Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1.2
 - add obsoletes
 

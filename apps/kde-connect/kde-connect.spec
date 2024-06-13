@@ -1,8 +1,8 @@
 %global base_name kdeconnect-kde
 
 Name:    kde-connect
-Version: 24.05.0
-Release: 3%{?dist}
+Version: 24.05.1
+Release: 1%{?dist}
 License: GPLv2+
 Summary: KDE Connect client for communication with smartphones
 URL:     https://community.kde.org/KDEConnect
@@ -158,6 +158,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop ||:
 
 
 %changelog
+* Thu Jun 13 2024 Pavel Solovev <daron439@gmail.com> - 24.05.1-1
+- Update to 24.05.1
+
 * Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-3
 - rebuilt
 

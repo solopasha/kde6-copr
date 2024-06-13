@@ -1,5 +1,5 @@
 Name:           qmlkonsole
-Version:        24.05.0
+Version:        24.05.1
 Release:        1%{?dist}
 License:        GPLv2+
 Summary:        Terminal app for Plasma Mobile
@@ -63,6 +63,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 %{_kf6_datadir}/config.kcfg/terminalsettings.kcfg
 
 %changelog
+* Thu Jun 13 2024 Pavel Solovev <daron439@gmail.com> - 24.05.1-1
+- Update to 24.05.1
+
 * Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
 - Update to 24.05.0
 

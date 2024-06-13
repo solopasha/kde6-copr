@@ -1,6 +1,6 @@
 Name:           ghostwriter
-Version:        24.05.0
-Release:        2%{?dist}
+Version:        24.05.1
+Release:        1%{?dist}
 
 License:        GPL-3.0-or-later AND Apache-2.0 AND CC-BY-4.0 AND CC-BY-SA-4.0 AND MPL-1.1 AND BSD AND LGPL-3.0-only AND MIT AND ISC
 Summary:        Cross-platform, aesthetic, distraction-free Markdown editor
@@ -79,6 +79,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 %{_kf5_metainfodir}/org.kde.%{name}.metainfo.xml
 
 %changelog
+* Thu Jun 13 2024 Pavel Solovev <daron439@gmail.com> - 24.05.1-1
+- Update to 24.05.1
+
 * Sun Jun 09 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-2
 - use KF5
 

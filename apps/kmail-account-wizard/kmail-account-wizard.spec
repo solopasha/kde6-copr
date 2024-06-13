@@ -2,7 +2,7 @@
 
 Name:    kmail-account-wizard
 Summary: KMail Account Wizard
-Version: 24.05.0
+Version: 24.05.1
 Release: 1%{?dist}
 
 License: GPLv2+
@@ -78,6 +78,9 @@ xvfb-run -a bash -c "%ctest"
 
 
 %changelog
+* Thu Jun 13 2024 Pavel Solovev <daron439@gmail.com> - 24.05.1-1
+- Update to 24.05.1
+
 * Thu May 23 2024 Pavel Solovev <daron439@gmail.com> - 24.05.0-1
 - Update to 24.05.0
 
