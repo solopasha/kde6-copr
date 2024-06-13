@@ -1,6 +1,6 @@
-%global commit0 076242ad66f906b50ca131b360fd4f94686e2d10
+%global commit0 3afe72f44a849f17eec61eb8318a0a918a648e3e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kactivitymanagerd
 Summary: Plasma service to manage user's activities
