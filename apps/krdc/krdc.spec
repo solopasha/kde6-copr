@@ -6,8 +6,6 @@ Release: 1%{?dist}
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/network/krdc
 %apps_source
-Patch:   https://invent.kde.org/network/krdc/-/commit/e6a169e40b80b4fcd5e42dbba17d82f3f7bf4feb.patch
-
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules

@@ -8,7 +8,6 @@ Release: 1%{?dist}
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://www.kde.org/applications/office/kaddressbook
 %apps_source
-Patch:   remove-duplicate.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
