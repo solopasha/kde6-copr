@@ -63,7 +63,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.au
 %{_kf6_bindir}/audex
 %{_kf6_datadir}/applications/org.kde.audex.desktop
 %{_kf6_datadir}/audex/
-%{_kf6_datadir}/icons/hicolor/*/apps/audex.*
+%{_kf6_datadir}/icons/hicolor/scalable/apps/org.kde.audex.svg
 %{_kf6_datadir}/solid/actions/audex-rip-audiocd.desktop
 %{_kf6_metainfodir}/org.kde.audex.appdata.xml
 
