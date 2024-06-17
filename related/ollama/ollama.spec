@@ -8,7 +8,7 @@
 
 # https://github.com/jmorganca/ollama
 %global goipath         github.com/ollama/ollama
-Version:                0.1.41
+Version:                0.1.44
 
 %gometa -L -f
 
@@ -82,6 +82,9 @@ BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  systemd-rpm-macros
 
+Requires(pre):  systemd-sysusers
+Requires(pre):  systemd-tmpfiles
+
 Provides:       bundled(llama.cpp) = 0~1.git%{llama_shortcommit}
 
 %description %{common_description}
@@ -110,6 +113,8 @@ install -Dpm644 %{SOURCE4} %{buildroot}%{_sysusersdir}/%{name}.conf
 install -Dpm644 %{SOURCE5} %{buildroot}%{_unitdir}/%{name}.service
 install -Dpm644 %{SOURCE6} %{buildroot}%{_tmpfilesdir}/%{name}.conf
 
+mkdir -p %{buildroot}%{_sharedstatedir}/%{name}
+
 %if %{with check}
 %check
 for test in "TestBasicGetGPUInfo" \
@@ -118,6 +123,10 @@ awk -i inplace '/^func.*'"$test"'\(/ { print; print "\tt.Skip(\"disabled failing
 done
 %gocheck -t vendor
 %endif
+
+%pre
+%sysusers_create_package %{name} %{SOURCE4}
+%tmpfiles_create_package %{name} %{SOURCE6}
 
 %post
 %systemd_post %{name}.service
@@ -136,6 +145,7 @@ done
 %{_sysusersdir}/%{name}.conf
 %{_tmpfilesdir}/%{name}.conf
 %{_unitdir}/%{name}.service
+%ghost %dir %attr(0755, ollama, ollama) %{_sharedstatedir}/%{name}
 
 %changelog
 %autochangelog
