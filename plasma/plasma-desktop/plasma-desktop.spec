@@ -8,11 +8,11 @@ URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
 
 # breeze fedora sddm theme components
-# includes f25-based preview (better than breeze or nothing at least)
+# includes f40-based preview (better than breeze or nothing at least)
 Source20:       https://src.fedoraproject.org/lookaside/pkgs/plasma-workspace/breeze-fedora-0.3.tar.gz/sha512/8a3cafb61c5dc8944b71c8c8036e034d178a9384e0ca3b86847ad0caa91962b0f50e6615348cd32e116fe28a6befa5492dc5cc1c4ef0120617a1fbbf69ee0200/breeze-fedora-0.3.tar.gz
 
 ## downstream patches
-# default kickoff favorites: +konsole +apper
+# default kickoff/kicker favorites: +kwrite +konsole
 Patch100: plasma-desktop-5.90.0-default_favorites.patch
 Patch101: hide-virtual-keyboard-indicator-on-sddm.patch
 ## upstreamable patches
