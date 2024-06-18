@@ -1,7 +1,7 @@
 Name:    kdeplasma-addons
 Summary: Additional Plasmoids for Plasma 6
-Version: 6.0.5
-Release: 1%{?dist}.1
+Version: 6.1.0
+Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
@@ -11,28 +11,32 @@ URL:     https://invent.kde.org/plasma/%{name}
 BuildRequires:  cmake(Qt6WebEngineQuick)
 %endif
 
-## upstream patches
-
 BuildRequires:  extra-cmake-modules
-BuildRequires:  cmake(PlasmaActivities)
-BuildRequires:  cmake(KF6KCMUtils)
+BuildRequires:  kf6-rpm-macros
+
+BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6Declarative)
+BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6Holidays)
 BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6NewStuff)
+BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Runner)
 BuildRequires:  cmake(KF6Service)
-BuildRequires:  cmake(Plasma)
-BuildRequires:  cmake(KF6GlobalAccel)
-BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Sonnet)
 BuildRequires:  cmake(KF6UnitConversion)
-BuildRequires:  cmake(Plasma5Support)
 BuildRequires:  cmake(KF6XmlGui)
-BuildRequires:  kf6-rpm-macros
+
+BuildRequires:  cmake(Plasma)
+BuildRequires:  cmake(Plasma5Support)
+BuildRequires:  cmake(PlasmaActivities)
+
 BuildRequires:  libicu-devel
 BuildRequires:  libxcb-devel
 BuildRequires:  cmake(Qt6Core5Compat)
@@ -40,7 +44,7 @@ BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtdeclarative-devel
 BuildRequires:  xcb-util-image-devel
 BuildRequires:  xcb-util-keysyms-devel
-BuildRequires:  cmake(KF6Declarative)
+
 BuildRequires:  libappstream-glib
 BuildRequires:  plasma-workspace-devel
 BuildRequires:  libksysguard-devel
@@ -96,10 +100,13 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 %{_kf6_datadir}/plasma/desktoptheme/default/widgets/*
 %{_kf6_datadir}/plasma/plasmoids/*
 %{_kf6_datadir}/plasma/wallpapers/*
+%{_kf6_datadir}/polkit-1/actions/org.kde.kameleonhelper.policy
 %{_kf6_datadir}/qlogging-categories6/kdeplasma-addons.categories
+%{_kf6_datadir}/dbus-1/system-services/org.kde.kameleonhelper.service
+%{_kf6_datadir}/dbus-1/system.d/org.kde.kameleonhelper.conf
 %{_kf6_libdir}/libplasmapotdprovidercore.so.2{,.*}
-%{_kf6_libdir}/qt6/qml/org/kde/plasmacalendar/alternatecalendarconfig/*
 %{_kf6_libdir}/qt6/qml/org/kde/plasmacalendar/astronomicaleventsconfig/*
+%{_kf6_libexecdir}/kauth/kameleonhelper
 %{_kf6_metainfodir}/*.appdata.xml
 %{_kf6_qmldir}/org/kde/plasma/*
 %{_kf6_qtplugindir}/kf6/
@@ -116,8 +123,11 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1.1
-- rebuild for f40
+* Tue Jun 18 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
+- Update to 6.1.0
+
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
 
 * Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
 - Update to 6.0.5

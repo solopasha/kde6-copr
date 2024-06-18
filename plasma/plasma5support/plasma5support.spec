@@ -1,7 +1,7 @@
 Name:    plasma5support
 Summary: Support components for porting from KF5/Qt5 to KF6/Qt6
-Version: 6.0.5
-Release: 1%{?dist}.1
+Version: 6.1.0
+Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/%{name}
@@ -12,15 +12,25 @@ BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  qt6-qtbase-devel
+
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Sql)
 BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Widgets)
+
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Notifications)
+BuildRequires:  cmake(KF6Service)
+BuildRequires:  cmake(KF6Solid)
+
+BuildRequires:  cmake(KSysGuard)
+BuildRequires:  cmake(Plasma)
+
 Requires:  kf6-filesystem
 
 # Renamed from kf6-plasma5support
@@ -49,7 +59,7 @@ Provides:       kf6-plasma5support-devel = 1:%{version}-%{release}
 
 %install
 %cmake_install
-%find_lang libplasma5support
+%find_lang libplasma5support --all-name
 
 %files -f libplasma5support.lang
 %doc README.md
@@ -59,6 +69,8 @@ Provides:       kf6-plasma5support-devel = 1:%{version}-%{release}
 %{_kf6_datadir}/qlogging-categories6/plasma5support.renamecategories
 %{_kf6_libdir}/libPlasma5Support.so.%{version}
 %{_kf6_libdir}/libPlasma5Support.so.6
+%{_kf6_qtplugindir}/plasma5support/dataengine/plasma_engine_devicenotifications.so
+%{_kf6_qtplugindir}/plasma5support/dataengine/plasma_engine_keystate.so
 %{_qt6_qmldir}/org/kde/plasma/plasma5support/
 
 %files devel
@@ -67,8 +79,11 @@ Provides:       kf6-plasma5support-devel = 1:%{version}-%{release}
 %{_kf6_libdir}/libPlasma5Support.so
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1.1
-- rebuild for f40
+* Tue Jun 18 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
+- Update to 6.1.0
+
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
 
 * Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
 - Update to 6.0.5

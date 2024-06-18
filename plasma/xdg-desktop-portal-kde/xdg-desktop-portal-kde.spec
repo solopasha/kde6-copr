@@ -1,12 +1,11 @@
 Name:    xdg-desktop-portal-kde
 Summary: Backend implementation for xdg-desktop-portal using Qt/KF5
-Version: 6.0.5
-Release: 2%{?dist}
+Version: 6.1.0
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
-Patch:   https://invent.kde.org/plasma/xdg-desktop-portal-kde/-/commit/cc37d9414b83206f72f77d91b6ac1ffd03d112b1.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
@@ -84,11 +83,11 @@ pieces of KDE infrastructure.
 
 
 %changelog
-* Wed Jun 05 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-2
-- Fix screencast window restoration check
+* Tue Jun 18 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
+- Update to 6.1.0
 
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1.1
-- rebuild for f40
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
 
 * Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
 - Update to 6.0.5

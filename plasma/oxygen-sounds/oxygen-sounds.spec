@@ -1,6 +1,6 @@
 Name:           oxygen-sounds
-Version:        6.0.5
-Release:        1%{?dist}.1
+Version:        6.1.0
+Release:        1%{?dist}
 Summary:        The Oxygen Sound Theme
 
 License:        LGPL-3.0-or-later AND CC0-1.0 AND CC-BY-3.0 AND BSD-2-Clause
@@ -40,8 +40,11 @@ BuildArch:      noarch
 
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1.1
-- rebuild for f40
+* Tue Jun 18 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
+- Update to 6.1.0
+
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
 
 * Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
 - Update to 6.0.5

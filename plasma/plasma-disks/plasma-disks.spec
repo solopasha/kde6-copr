@@ -1,7 +1,7 @@
 Name:    plasma-disks
 Summary: Hard disk health monitoring for KDE Plasma
-Version: 6.0.5
-Release: 1%{?dist}.1
+Version: 6.1.0
+Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-3.0-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
@@ -64,8 +64,11 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/kcm_disks.desktop
 %{_kf6_datadir}/polkit-1/actions/org.kde.kded.smart.policy
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1.1
-- rebuild for f40
+* Tue Jun 18 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
+- Update to 6.1.0
+
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
 
 * Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
 - Update to 6.0.5

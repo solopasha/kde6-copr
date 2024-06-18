@@ -1,8 +1,8 @@
 %global orgname org.kde.plasma-welcome
 
 Name:           plasma-welcome
-Version:        6.0.5
-Release:        1%{?dist}.1
+Version:        6.1.0
+Release:        1%{?dist}
 License:        GPL-2.0-or-later and BSD-3-Clause
 Summary:        Plasma Welcome
 Url:            https://invent.kde.org/plasma/%{name}
@@ -49,8 +49,6 @@ A Friendly onboarding wizard for Plasma.
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -p1
-# It is for generate pot file for translate so we can ignore it.
-rm Messages.sh
 
 %build
 %cmake_kf6
@@ -65,7 +63,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/%{orgname}
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{orgname}.desktop
 
 %files -f %{name}.lang
-%license src/LICENSES/{BSD-3-Clause.txt,GPL-2.0-or-later.txt,FSFAP.txt}
+%license LICENSES/{BSD-3-Clause.txt,GPL-2.0-or-later.txt,FSFAP.txt}
 %doc README.md
 %{_kf6_bindir}/plasma-welcome
 %{_kf6_datadir}/applications/%{orgname}.desktop
@@ -74,8 +72,11 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{orgname}.deskto
 
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1.1
-- rebuild for f40
+* Tue Jun 18 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
+- Update to 6.1.0
+
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
 
 * Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
 - Update to 6.0.5

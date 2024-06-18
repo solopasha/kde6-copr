@@ -1,15 +1,13 @@
 %bcond x11 1
 
 Name:    kwin
-Version: 6.0.5
-Release: 4%{?dist}.1
+Version: 6.1.0
+Release: 1%{?dist}
 Summary: KDE Window manager
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://userbase.kde.org/KWin
 %plasma_source
-Patch:   https://invent.kde.org/plasma/kwin/-/merge_requests/5733.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/merge_requests/5776.patch
 
 # Base
 BuildRequires:  extra-cmake-modules
@@ -98,6 +96,7 @@ BuildRequires:  cmake(KGlobalAccelD)
 BuildRequires:  libdisplay-info-devel
 BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(fontconfig)
+BuildRequires:  pkgconfig(libeis-1.0)
 
 ## Runtime deps
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
@@ -216,7 +215,7 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 %{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/config.kcfg/kwin.kcfg
 %{_kf6_datadir}/config.kcfg/kwindecorationsettings.kcfg
-%{_kf6_datadir}/config.kcfg/nightcolorsettings.kcfg
+%{_kf6_datadir}/config.kcfg/nightlightsettings.kcfg
 %{_kf6_datadir}/config.kcfg/virtualdesktopssettings.kcfg
 %{_kf6_datadir}/icons/hicolor/*/apps/kwin.*
 %{_kf6_datadir}/kconf_update/kwin.upd
@@ -268,16 +267,13 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-4.1
-- rebuild for f40
+* Tue Jun 18 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
+- Update to 6.1.0
 
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-4
-- fix requires
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
 
-* Sat Jun 01 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-3
-- pick upstream commit
-
-* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-2
+* Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-3
 - drop explicit sync
 
 * Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1

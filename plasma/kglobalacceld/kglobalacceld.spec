@@ -1,7 +1,7 @@
 Name:    kglobalacceld
 Summary: Daemon providing Global Keyboard Shortcut functionality
-Version: 6.0.5
-Release: 1%{?dist}.1
+Version: 6.1.0
+Release: 1%{?dist}
 
 License: CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
@@ -34,12 +34,13 @@ BuildRequires:  pkgconfig(xcb-xkb)
 BuildRequires:  pkgconfig(xcb-record)
 BuildRequires:  pkgconfig(xcb-xtest)
 BuildRequires:  systemd
-Requires:  kf6-filesystem
+
+Requires:       kf6-filesystem
 
 %description
 %{summary}.
 
-%package devel
+%package        devel
 Summary:        Developer files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       qt6-qtbase-devel
@@ -62,6 +63,7 @@ Requires:       qt6-qtbase-devel
 %{_kf6_libdir}/libKGlobalAccelD.so.%{version}
 %{_kf6_libdir}/libKGlobalAccelD.so.0
 %{_libexecdir}/kglobalacceld
+%dir %{_qt6_plugindir}/org.kde.kglobalacceld.platforms
 %{_qt6_plugindir}/org.kde.kglobalacceld.platforms/KGlobalAccelDXcb.so
 %{_sysconfdir}/xdg/autostart/kglobalacceld.desktop
 %{_userunitdir}/plasma-kglobalaccel.service
@@ -71,8 +73,11 @@ Requires:       qt6-qtbase-devel
 %{_kf6_libdir}/cmake/KGlobalAccelD/
 
 %changelog
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1.1
-- rebuild for f40
+* Tue Jun 18 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
+- Update to 6.1.0
+
+* Fri May 24 2024 Pavel Solovev <daron439@gmail.com> - 6.0.90-1
+- Update to 6.0.90
 
 * Tue May 21 2024 Pavel Solovev <daron439@gmail.com> - 6.0.5-1
 - Update to 6.0.5
