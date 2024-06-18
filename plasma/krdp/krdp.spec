@@ -76,8 +76,9 @@ Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 %install
 %cmake_install
 
+%find_lang %{name} --all-name
 
-%files
+%files -f %{name}.lang
 %doc README.md
 %{_kf6_bindir}/krdpserver
 %{_kf6_datadir}/applications/kcm_krdpserver.desktop
