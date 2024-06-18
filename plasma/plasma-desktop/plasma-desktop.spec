@@ -178,7 +178,7 @@ Requires:       kde-settings-sddm
 Requires:       kf6-plasma
 # on-screen keyboard
 Recommends:     qt6-qtvirtualkeyboard
-Requires:       plasma-workspace >= %{version}
+Requires:       plasma-workspace >= %{basever}
 # /usr/share/backgrounds/default.png}
 Requires:       desktop-backgrounds-compat
 BuildArch:      noarch
