@@ -3,11 +3,12 @@
 Name:    kf6-ksvg
 Summary: Components for handling SVGs
 Version: 6.3.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
+Patch:   https://invent.kde.org/frameworks/ksvg/-/commit/74f9f9cbd226407f8cde08c5cd5a711444e2775d.patch
 
 BuildRequires: cmake
 BuildRequires: extra-cmake-modules >= %{version}
@@ -67,6 +68,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Svg.so
 
 %changelog
+* Wed Jun 19 2024 Pavel Solovev <daron439@gmail.com> - 6.3.0-2
+- pick upstream commit
+
 * Fri Jun 07 2024 Pavel Solovev <daron439@gmail.com> - 6.3.0-1
 - Update to 6.3.0
 
