@@ -3,11 +3,12 @@
 Name:    kdenlive
 Summary: Non-linear video editor
 Version: 24.05.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: (GPL-2.0-only or GPL-3.0-only) and GPL-2.0-or-later and GPL-3.0-or-later and LGPL-3.0-only and BSD-3-Clause and CC0-1.0
 URL:     http://www.kdenlive.org
 %apps_source
+Patch:   https://invent.kde.org/multimedia/kdenlive/-/commit/8be0e826471332bb739344ebe1859298c46e9e0f.patch
 
 
 BuildRequires: gcc-c++
@@ -69,7 +70,7 @@ Requires: frei0r-plugins
 Requires: kf6-qqc2-desktop-style
 Requires: kf6-kirigami2
 
-# https://fedoraproject.org/wiki/Changes/EncourageI686LeafRemoval            
+# https://fedoraproject.org/wiki/Changes/EncourageI686LeafRemoval
 ExcludeArch: %{ix86}
 
 %description
@@ -132,6 +133,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Thu Jun 20 2024 Pavel Solovev <daron439@gmail.com> - 24.05.1-2
+- pick upstream commit
+
 * Thu Jun 13 2024 Pavel Solovev <daron439@gmail.com> - 24.05.1-1
 - Update to 24.05.1
 
@@ -604,7 +608,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 * Tue Jul  8 2008 jeff <moe@blagblagblag.org> - 0.6-1.svn2298.0blag.f9
 - Update to svn r2298
 - New Requires
-- kdenlive-svn-r2298-renderer-CMakeLists.patch 
+- kdenlive-svn-r2298-renderer-CMakeLists.patch
 
 * Sun Nov 11 2007 jeff <moe@blagblagblag.org> - 0.5-1blag.f7
 - Update to 0.5 final
