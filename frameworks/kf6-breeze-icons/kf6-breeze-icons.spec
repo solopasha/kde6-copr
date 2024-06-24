@@ -1,64 +1,101 @@
+# If KF7 still provides these icons, then their installation should then
+# be disabled in KF6 builds.
+%bcond install_icons 1
+# for compatibility, to be removed once Kexi (and others?) are ported
+%bcond install_rcc 1
+
 %global framework breeze-icons
 
-Name:           breeze-icon-theme
-Summary:        Breeze icon theme
-Version:        6.3.0
-Release:        1%{?dist}
+Name:    kf6-%{framework}
+Summary: Breeze icon theme library
+Version: 6.3.0
+Release: 2%{?dist}
 
-License:        LGPL-3.0-or-later
-URL:            https://invent.kde.org/frameworks/breeze-icons
+# skladnik.svg is CC-BY-SA-4.0
+# folder-edit-sign-encrypt.svg is LGPL-2.1-or-later
+# src/lib/ is LGPL-2.0-or-later
+# all other icons are LGPL-3.0-or-later
+License: LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-or-later AND CC-BY-SA-4.0
+URL:     https://api.kde.org/frameworks/breeze-icons/html/
 %frameworks_meta
 
-BuildRequires:  extra-cmake-modules >= %{version}
-BuildRequires:  kf6-rpm-macros
-BuildRequires:  qt6-qtbase-devel
+## upstream patches
 
+## upstreamable patches
+
+
+BuildRequires: extra-cmake-modules >= %{version}
+BuildRequires: kf6-rpm-macros
+BuildRequires: cmake(Qt6Core)
+BuildRequires: cmake(Qt6Gui)
 # icon optimizations
-BuildRequires:  hardlink
-# for optimizegraphics
-#BuildRequires: kde-dev-scripts
-BuildRequires:  time
+BuildRequires: hardlink
 # for generate-24px-versions.py
-BuildRequires:  python3-lxml
+BuildRequires: python3-lxml
 
-# inheritance, though could consider Recommends: if needed -- rex
-Requires:       hicolor-icon-theme
-
-# Needed for proper Fedora logo
-Requires:       system-logos
-
-# upstream name
-Provides:       breeze-icons = %{version}-%{release}
-Provides:       kf6-breeze-icons = %{version}-%{release}
+%if %{with install_icons}
+Requires: breeze-icon-theme = %{version}-%{release}
+%else
+Requires: breeze-icon-theme
+%endif
 
 %description
 %{summary}.
 
-%package        rcc
-Summary:        breeze Qt resource files
-Requires:       %{name}%{?_isa} = %{version}-%{release}
-%description    rcc
+%if %{with install_icons}
+%package -n breeze-icon-theme
+Summary:     Breeze icon theme
+# analysis above
+License:     LGPL-2.1-or-later AND LGPL-3.0-or-later AND CC-BY-SA-4.0
+BuildArch:   noarch
+Requires:    hicolor-icon-theme
+# Needed for proper Fedora logo
+Requires:    system-logos
+# upstream name
+Provides:    breeze-icons = %{version}-%{release}
+%description -n breeze-icon-theme
 %{summary}.
+%endif
 
-%package        devel
-Summary:        Breeze icon theme development files
-Requires:       %{name}%{?_isa} = %{version}-%{release}
-%description  devel
+%if %{with install_rcc}
+%package -n breeze-icon-theme-rcc
+Summary:     Breeze Qt resource files
+# analysis above
+License:     LGPL-2.1-or-later AND LGPL-3.0-or-later AND CC-BY-SA-4.0
+BuildArch:   noarch
+%description -n breeze-icon-theme-rcc
+%{summary}.
+%endif
+
+%package     devel
+Summary:     Breeze icon theme development files
+Requires:    %{name} = %{version}-%{release}
+# renamed for https://pagure.io/fedora-kde/SIG/issue/530
+Provides:    breeze-icon-theme-devel = %{version}-%{release}
+Obsoletes:   breeze-icon-theme-devel < 6.3.0-2
+%description devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{framework}-%{version} -p1
 
+
 %build
-%cmake_kf6 -DBINARY_ICONS_RESOURCE=ON
+%cmake_kf6 \
+  -DBINARY_ICONS_RESOURCE:BOOL=%{?with_install_rcc:ON}%{!?with_install_rcc:OFF} \
+  -DSKIP_INSTALL_ICONS:BOOL=%{?with_install_icons:OFF}%{!?with_install_icons:ON} \
+  %{nil}
+
 %cmake_build
 
 
 %install
 %cmake_install
+
+%if %{with install_icons}
 
 # Do not use Fedora logo from upstream
 rm -rf %{buildroot}%{_datadir}/icons/breeze-dark/apps/48/org.fedoraproject.AnacondaInstaller.svg
@@ -72,66 +109,91 @@ ln -s ../../../hicolor/48x48/apps/org.fedoraproject.AnacondaInstaller.svg org.fe
 popd
 
 ## icon optimizations
-# Note: we don't do optimizegraphics because breeze is exclusively SVG
-#du -s  .
-#time optimizegraphics ||:
 du -s .
 hardlink -c -v %{buildroot}%{_datadir}/icons/
 du -s .
 
 # %%ghost icon.cache
-touch  %{buildroot}%{_kf6_datadir}/icons/{breeze,breeze-dark}/icon-theme.cache
+touch %{buildroot}%{_kf6_datadir}/icons/{breeze,breeze-dark}/icon-theme.cache
 
 
 ## trigger-based scriptlets
-%transfiletriggerin -- %{_datadir}/icons/breeze
+%transfiletriggerin -n breeze-icon-theme -- %{_datadir}/icons/breeze
 gtk-update-icon-cache --force %{_datadir}/icons/breeze &>/dev/null || :
 
-%transfiletriggerin -- %{_datadir}/icons/breeze-dark
+%transfiletriggerin -n breeze-icon-theme -- %{_datadir}/icons/breeze-dark
 gtk-update-icon-cache --force %{_datadir}/icons/breeze-dark &>/dev/null || :
 
-%transfiletriggerpostun -- %{_datadir}/icons/breeze
+%transfiletriggerpostun -n breeze-icon-theme -- %{_datadir}/icons/breeze
 gtk-update-icon-cache --force %{_datadir}/icons/breeze &>/dev/null || :
 
-%transfiletriggerpostun -- %{_datadir}/icons/breeze-dark
+%transfiletriggerpostun -n breeze-icon-theme -- %{_datadir}/icons/breeze-dark
 gtk-update-icon-cache --force %{_datadir}/icons/breeze-dark &>/dev/null || :
 
+%endif
 
 %files
-%license COPYING-ICONS
+%license COPYING.LIB
 %doc README.md
-%ghost %{_datadir}/icons/breeze/icon-theme.cache
-%ghost %{_datadir}/icons/breeze-dark/icon-theme.cache
-%{_datadir}/icons/breeze/
-%{_datadir}/icons/breeze-dark/
-%exclude %{_datadir}/icons/breeze/breeze-icons.rcc
 %{_kf6_libdir}/libKF6BreezeIcons.so.6
-%{_kf6_libdir}/libKF6BreezeIcons.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
+%{_kf6_libdir}/libKF6BreezeIcons.so.%{version}
 
 %files devel
 %{_kf6_includedir}/BreezeIcons/
 %{_kf6_libdir}/cmake/KF6BreezeIcons/
 %{_kf6_libdir}/libKF6BreezeIcons.so
 
-%files rcc
-%{_datadir}/icons/breeze/breeze-icons.rcc
+%if %{with install_icons}
+%files -n breeze-icon-theme
+%license COPYING-ICONS
+%doc README.md
+%ghost %{_datadir}/icons/breeze/icon-theme.cache
+%{_datadir}/icons/breeze/index.theme
+%{_datadir}/icons/breeze/*/
+%ghost %{_datadir}/icons/breeze-dark/icon-theme.cache
+%{_datadir}/icons/breeze-dark/index.theme
+%{_datadir}/icons/breeze-dark/*/
+%exclude %{_datadir}/icons/breeze/breeze-icons.rcc
+%endif
 
+%if %{with install_rcc}
+%files -n breeze-icon-theme-rcc
+%{_datadir}/icons/breeze/breeze-icons.rcc
+%endif
 
 %changelog
-* Fri Jun 07 2024 Pavel Solovev <daron439@gmail.com> - 6.3.0-1
-- Update to 6.3.0
+* Mon Jun 10 2024 Yaakov Selkowitz <yselkowi@redhat.com> - 6.3.0-2
+- Renamed to kf6-breeze-icons with breeze-icon-theme subpackage
 
-* Sun Jun 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1.1
-- rebuild for f40
+* Sat Jun 01 2024 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 6.3.0-1
+- 6.3.0
 
-* Sun May 12 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
-- Update to 6.2.0
+* Sat May 04 2024 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 6.2.0-1
+- 6.2.0
 
-* Fri Apr 12 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
-- Update to 6.1.0
+* Wed Apr 10 2024 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 6.1.0-1
+- 6.1.0
 
-* Wed Mar 20 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-2
-- qmlcache rebuild
+* Wed Feb 21 2024 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 6.0.0-1
+- 6.0.0
+
+* Wed Jan 31 2024 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 5.249.0-1
+- 5.249.0
+
+* Tue Jan 23 2024 Fedora Release Engineering <releng@fedoraproject.org> - 5.248.0-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
+
+* Fri Jan 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 5.248.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
+
+* Wed Jan 10 2024 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 5.248.0-1
+- 5.248.0
+
+* Wed Dec 20 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 5.247.0-1
+- 5.247.0
+
+* Sat Dec 02 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 5.246.0-1
+- 5.246.0
 
 * Sun Nov 12 2023 Alessandro Astone <ales.astone@gmail.com> - 5.245.0-1
 - 5.245.0
