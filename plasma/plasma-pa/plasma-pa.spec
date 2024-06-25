@@ -56,7 +56,6 @@ Requires:       pulseaudio-daemon
 %install
 %cmake_install
 %find_lang %{name} --all-name --with-html
-rm %{buildroot}%{_kf6_libdir}/libplasma-volume.so
 
 %files -f %{name}.lang
 %license LICENSES/*
