@@ -1,7 +1,7 @@
 %global  base_name breeze
 
 Name:    plasma-breeze
-Version: 6.1.0
+Version: 6.1.1
 Release: 1%{?dist}
 Summary: Artwork, styles and assets for the Breeze visual style for the Plasma Desktop
 
@@ -148,6 +148,9 @@ popd
 %{_kf6_datadir}/icons/breeze_cursors/index.theme
 
 %changelog
+* Tue Jun 25 2024 Pavel Solovev <daron439@gmail.com> - 6.1.1-1
+- Update to 6.1.1
+
 * Tue Jun 18 2024 Pavel Solovev <daron439@gmail.com> - 6.1.0-1
 - Update to 6.1.0
 
