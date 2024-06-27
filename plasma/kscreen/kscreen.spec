@@ -59,11 +59,7 @@ KCM and KDED modules for managing displays in KDE.
 %{_kf6_datadir}/dbus-1/services/org.kde.kscreen.osdService.service
 %{_kf6_datadir}/kglobalaccel/org.kde.kscreen.desktop
 %{_kf6_datadir}/metainfo/org.kde.kscreen.appdata.xml
-%{_kf6_datadir}/plasma/plasmoids/org.kde.kscreen/contents/ui/InhibitionHint.qml
-%{_kf6_datadir}/plasma/plasmoids/org.kde.kscreen/contents/ui/main.qml
-%{_kf6_datadir}/plasma/plasmoids/org.kde.kscreen/contents/ui/PresentationModeItem.qml
-%{_kf6_datadir}/plasma/plasmoids/org.kde.kscreen/contents/ui/ScreenLayoutSelection.qml
-%{_kf6_datadir}/plasma/plasmoids/org.kde.kscreen/metadata.json
+%{_kf6_datadir}/plasma/plasmoids/org.kde.kscreen/
 %{_kf6_datadir}/qlogging-categories6/kscreen.categories
 %{_kf6_plugindir}/kded/kscreen.so
 %{_kf6_qtplugindir}/plasma/applets/org.kde.kscreen.so
