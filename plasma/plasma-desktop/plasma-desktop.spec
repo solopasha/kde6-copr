@@ -1,6 +1,6 @@
 Name:    plasma-desktop
 Summary: Plasma Desktop shell
-Version: 6.1.1
+Version: 6.1.2
 Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -295,6 +295,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_datadir}/sddm/themes/01-breeze-fedora/
 
 %changelog
+* Tue Jul 02 2024 Pavel Solovev <daron439@gmail.com> - 6.1.2-1
+- Update to 6.1.2
+
 * Tue Jun 25 2024 Pavel Solovev <daron439@gmail.com> - 6.1.1-1
 - Update to 6.1.1
 
