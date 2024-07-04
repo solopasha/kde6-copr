@@ -2,7 +2,7 @@
 %global _lto_cflags %{nil}
 
 Name:    libkgapi
-Version: 24.05.1
+Version: 24.05.2
 Release: 1%{?dist}
 Summary: Library to access to Google services
 
@@ -84,6 +84,9 @@ resources.
 
 
 %changelog
+* Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
+- Update to 24.05.2
+
 * Thu Jun 13 2024 Pavel Solovev <daron439@gmail.com> - 24.05.1-1
 - Update to 24.05.1
 

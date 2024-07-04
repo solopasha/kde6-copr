@@ -1,5 +1,5 @@
 Name:           kio-admin
-Version:        24.05.1
+Version:        24.05.2
 Release:        1%{?dist}
 Summary:        Manage files as administrator using the admin:// KIO protocol
 License:        (GPL-2.0-only or GPL-3.0-only) and BSD-3-Clause and CC0-1.0 and FSFAP
@@ -59,6 +59,9 @@ operations in root-scope.
 
 
 %changelog
+* Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
+- Update to 24.05.2
+
 * Thu Jun 13 2024 Pavel Solovev <daron439@gmail.com> - 24.05.1-1
 - Update to 24.05.1
 

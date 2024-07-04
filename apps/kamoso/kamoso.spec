@@ -7,7 +7,7 @@
 
 Name:    kamoso
 Summary: Application for taking pictures and videos from a webcam
-Version: 24.05.1
+Version: 24.05.2
 Release: 1%{?dist}
 
 License: GFDL-1.2-or-later AND GPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later
@@ -106,6 +106,9 @@ xvfb-run -a bash -c "%ctest"
 
 
 %changelog
+* Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
+- Update to 24.05.2
+
 * Thu Jun 13 2024 Pavel Solovev <daron439@gmail.com> - 24.05.1-1
 - Update to 24.05.1
 

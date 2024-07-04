@@ -1,6 +1,6 @@
 Name:           artikulate
 Summary:        Improve your pronunciation by listening to native speakers
-Version:        24.05.1
+Version:        24.05.2
 Release:        1%{?dist}
 
 # artwork: LGPL3
@@ -84,6 +84,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
+- Update to 24.05.2
+
 * Thu Jun 13 2024 Pavel Solovev <daron439@gmail.com> - 24.05.1-1
 - Update to 24.05.1
 

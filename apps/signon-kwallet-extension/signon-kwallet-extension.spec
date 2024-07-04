@@ -1,6 +1,6 @@
 
 Name:    signon-kwallet-extension
-Version: 24.05.1
+Version: 24.05.2
 Release: 1%{?dist}
 Summary: KWallet integration for Sign-on framework
 
@@ -41,6 +41,9 @@ Supplements:    (kf6-kwallet and signon)
 
 
 %changelog
+* Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
+- Update to 24.05.2
+
 * Thu Jun 13 2024 Pavel Solovev <daron439@gmail.com> - 24.05.1-1
 - Update to 24.05.1
 

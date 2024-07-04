@@ -1,6 +1,6 @@
 Name:    cervisia
 Summary: CVS frontend
-Version: 24.05.1
+Version: 24.05.2
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later AND LGPL-2.0-or-later AND GFDL-1.2-or-later
@@ -82,6 +82,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.cervisia.
 
 
 %changelog
+* Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
+- Update to 24.05.2
+
 * Thu Jun 13 2024 Pavel Solovev <daron439@gmail.com> - 24.05.1-1
 - Update to 24.05.1
 
