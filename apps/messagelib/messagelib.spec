@@ -2,7 +2,7 @@
 
 Name:    messagelib
 Version: 24.05.2
-Release: 1%{?dist}
+Release: 1%{?dist}.1
 Summary: KDE Message libraries
 
 License: BSD-3-Clause AND BSL-1.0 AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -70,7 +70,9 @@ BuildRequires:  cmake(Qca-qt6)
 BuildRequires:  cmake(Gpgmepp)
 BuildRequires:  cmake(QGpgmeQt6)
 
+%if %{fedora} >= 40
 Obsoletes:      kf5-%{name} < 24.01.80
+%endif
 
 %description
 %{summary}.
@@ -166,6 +168,9 @@ Requires:       cmake(Qt6WebEngineWidgets)
 
 
 %changelog
+* Sat Jul 06 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1.1
+- obsolete kf5- in f40 only
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

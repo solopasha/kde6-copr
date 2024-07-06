@@ -2,7 +2,7 @@
 
 Name:    akonadi-contacts
 Version: 24.05.2
-Release: 1%{?dist}
+Release: 1%{?dist}.1
 Summary: The Akonadi Contacts Library
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -44,7 +44,9 @@ BuildRequires: akonadi-mysql
 BuildRequires: xorg-x11-server-Xvfb
 %endif
 
+%if %{fedora} >= 40
 Obsoletes:      kf5-akonadi-contacts < 24.01.80-1
+%endif
 
 %description
 %{summary}.
@@ -105,6 +107,9 @@ xvfb-run -a bash -c "%ctest"
 
 
 %changelog
+* Sat Jul 06 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1.1
+- obsolete kf5- in f40 only
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 
