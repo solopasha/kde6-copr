@@ -1,13 +1,15 @@
-%global commit0 a68b77bba2c2bca2a034dae22201bf1374dcff3a
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-
 Name:           kjots
 Summary:        KDE Notes application
-Version:        5.1.2~5.git%{shortcommit0}
+Version:        6.0.0
 Release:        1%{?dist}
 License:        LGPL-2.0-or-later AND GPL-2.0-or-later
 URL:            https://invent.kde.org/pim/kjots
-Source:         %{url}/-/archive/%{commit0}/%{name}-%{shortcommit0}.tar.gz
+Source0:        https://download.kde.org/stable/%{name}/%{version}/%{name}-%{version}.tar.xz
+Source1:        https://download.kde.org/stable/%{name}/%{version}/%{name}-%{version}.tar.xz.sig
+Source2:        kde-gear-signing-keys.pgp
+
+Patch:          https://invent.kde.org/pim/kjots/-/commit/60002fcce510331b3bdad541d9c4cd331fe0eb72.patch
+Patch:          https://invent.kde.org/pim/kjots/-/commit/04f20c1a5a76295519d35b143c515b9a524f0aef.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
@@ -20,7 +22,6 @@ BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Parts)
-BuildRequires:  cmake(KF6TextWidgets)
 BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  cmake(Qt6DBus)
@@ -42,7 +43,7 @@ KJots is an application for writing and organizing notes.
 
 
 %prep
-%autosetup -n %{name}-%{commit0} -p1
+%autosetup -p1
 
 
 %build
@@ -76,6 +77,9 @@ appstream-util validate-relax --nonet %{buildroot}/%{_kf6_metainfodir}/*.xml
 
 
 %changelog
+* Tue Jul 09 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-1
+- new version
+
 * Mon Sep 25 2023 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 5.1.1-3
 - Rebuild against ktextaddons 1.5.1
 
