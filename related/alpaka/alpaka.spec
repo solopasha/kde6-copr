@@ -1,6 +1,6 @@
-%global commit0 f99795e5abb0102dc43066cb2115a0b379e72d60
+%global commit0 9d1f0c7247771d34f8755ca0dd6c60c3548d72bb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 8
 
 Name:           alpaka
 Version:        0.1.1%{?bumpver:^%{bumpver}.git%{shortcommit0}}
@@ -33,8 +33,8 @@ BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6Widgets)
 
-Requires:       kf6-kirigami
-Requires:       kf6-kirigami-addons
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-kirigami-addons%{?_isa}
 
 Recommends:     ollama
 
