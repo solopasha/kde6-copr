@@ -1,7 +1,7 @@
 %global		framework kirigami
 
 Name:		kf6-%{framework}
-Version:	6.3.0
+Version:	6.4.0
 Release:	1%{?dist}
 Summary:	QtQuick plugins to build user interfaces based on the KDE UX guidelines
 License:	BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -70,6 +70,8 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKirigamiPlatform.so.6
 %{_kf6_libdir}/libKirigamiPrimitives.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKirigamiPrimitives.so.6
+%{_kf6_libdir}/libKirigamiPrivate.so.%{version}
+%{_kf6_libdir}/libKirigamiPrivate.so.6
 %{_kf6_qmldir}/org/kde/kirigami/
 
 %files devel
@@ -87,8 +89,12 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKirigamiLayouts.so
 %{_kf6_libdir}/libKirigamiPlatform.so
 %{_kf6_libdir}/libKirigamiPrimitives.so
+%{_kf6_libdir}/libKirigamiPrivate.so
 
 %changelog
+* Fri Jul 12 2024 Pavel Solovev <daron439@gmail.com> - 6.4.0-1
+- Update to 6.4.0
+
 * Fri Jun 07 2024 Pavel Solovev <daron439@gmail.com> - 6.3.0-1
 - Update to 6.3.0
 

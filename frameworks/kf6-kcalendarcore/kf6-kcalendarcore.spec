@@ -1,7 +1,7 @@
 %global		framework kcalendarcore
 
 Name:		kf6-%{framework}
-Version:	6.3.0
+Version:	6.4.0
 Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 KCalendarCore Library
 License:	BSD-3-Clause AND LGPL-2.0-or-later AND LGPL-3.0-or-later
@@ -9,12 +9,13 @@ URL:		https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:	cmake
-BuildRequires:	gcc-c++
 BuildRequires:	extra-cmake-modules >= %{version}
+BuildRequires:	gcc-c++
 BuildRequires:	kf6-rpm-macros
 BuildRequires:	libical-devel
-BuildRequires:	qt6-qtbase-devel
 BuildRequires:	pkgconfig(xkbcommon)
+BuildRequires:	qt6-qtbase-devel
+BuildRequires:  cmake(Qt6Qml)
 
 %description
 %{summary}.
@@ -45,8 +46,9 @@ developing applications that use %{name}.
 %files
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*kcalendarcore.*
-%{_kf6_libdir}/libKF6CalendarCore.so.6
 %{_kf6_libdir}/libKF6CalendarCore.so.%{version}
+%{_kf6_libdir}/libKF6CalendarCore.so.6
+%{_kf6_qmldir}/org/kde/calendarcore/
 
 %files devel
 %{_qt6_docdir}/*.tags
@@ -56,6 +58,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/pkgconfig/KF6CalendarCore.pc
 
 %changelog
+* Fri Jul 12 2024 Pavel Solovev <daron439@gmail.com> - 6.4.0-1
+- Update to 6.4.0
+
 * Fri Jun 07 2024 Pavel Solovev <daron439@gmail.com> - 6.3.0-1
 - Update to 6.3.0
 

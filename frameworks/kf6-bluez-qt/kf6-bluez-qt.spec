@@ -2,7 +2,7 @@
 
 Name:           kf6-%{framework}
 Summary:        A Qt wrapper for Bluez
-Version:        6.3.0
+Version:        6.4.0
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only
@@ -66,6 +66,9 @@ Development files for %{name}.
 %{_kf6_libdir}/pkgconfig/KF6BluezQt.pc
 
 %changelog
+* Fri Jul 12 2024 Pavel Solovev <daron439@gmail.com> - 6.4.0-1
+- Update to 6.4.0
+
 * Fri Jun 07 2024 Pavel Solovev <daron439@gmail.com> - 6.3.0-1
 - Update to 6.3.0
 
