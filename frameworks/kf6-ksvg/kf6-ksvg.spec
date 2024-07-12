@@ -8,7 +8,6 @@ Release: 1%{?dist}
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
-Patch:   https://invent.kde.org/frameworks/ksvg/-/commit/74f9f9cbd226407f8cde08c5cd5a711444e2775d.patch
 
 BuildRequires: cmake
 BuildRequires: extra-cmake-modules >= %{version}
