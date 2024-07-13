@@ -5,11 +5,12 @@
 Name:           ark
 Summary:        Archive manager
 Version:        24.05.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 License:        GPL-2.0-or-later AND BSD-2-Clause
 URL:            https://www.kde.org/applications/utilities/ark/
 %apps_source
+Patch:          https://invent.kde.org/utilities/ark/-/commit/85c5e26f581cf011638a53e62b92e1da8fd55fcd.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
@@ -121,6 +122,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.ark.deskt
 
 
 %changelog
+* Sat Jul 13 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-2
+- pick upstream commit
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 
