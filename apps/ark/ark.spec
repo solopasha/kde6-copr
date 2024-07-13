@@ -10,7 +10,7 @@ Release:        2%{?dist}
 License:        GPL-2.0-or-later AND BSD-2-Clause
 URL:            https://www.kde.org/applications/utilities/ark/
 %apps_source
-Patch:          https://invent.kde.org/utilities/ark/-/commit/85c5e26f581cf011638a53e62b92e1da8fd55fcd.patch
+Patch:          backport-85c5e26f.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
