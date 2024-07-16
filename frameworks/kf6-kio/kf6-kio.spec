@@ -2,13 +2,14 @@
 
 Name:    kf6-%{framework}
 Version: 6.4.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: KDE Frameworks 6 Tier 3 solution for filesystem abstraction
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 Patch:   0001-Give-the-kuriikwsfiltereng_private-a-VERSION-and-SOV.patch
+Patch:   https://invent.kde.org/frameworks/kio/-/commit/e0ea91afdf0dccef7e3afbf23a159bf5a8d6b249.patch
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules >= %{version}
@@ -213,6 +214,9 @@ Recommends:     switcheroo-control
 %{_kf6_libdir}/libkuriikwsfiltereng_private.so
 
 %changelog
+* Tue Jul 16 2024 Pavel Solovev <daron439@gmail.com> - 6.4.0-2
+- pick upstream commit
+
 * Fri Jul 12 2024 Pavel Solovev <daron439@gmail.com> - 6.4.0-1
 - Update to 6.4.0
 
