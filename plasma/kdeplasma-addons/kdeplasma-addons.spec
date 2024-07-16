@@ -1,7 +1,7 @@
 Name:    kdeplasma-addons
 Summary: Additional Plasmoids for Plasma 6
 Version: 6.1.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
@@ -64,6 +64,15 @@ Requires:       qt6-qtquick3d%{?_isa}
 %description
 %{summary}.
 
+%package -n kate-krunner-plugin
+Summary: KRunner plugin for searching Kate sessions
+Requires: kate
+Supplements: kate
+# Before the split
+Conflicts: kdeplasma-addons < 6.1.2-2
+%description -n kate-krunner-plugin
+%{summary}.
+
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
@@ -110,10 +119,14 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 %{_kf6_metainfodir}/*.appdata.xml
 %{_kf6_qmldir}/org/kde/plasma/*
 %{_kf6_qtplugindir}/kf6/
+%exclude %{_kf6_plugindir}/krunner/krunner_katesessions.so
 %{_kf6_qtplugindir}/kwin/effects/configs/kwin_cube_config.so
 %{_kf6_qtplugindir}/plasma/applets/*.so
 %{_kf6_qtplugindir}/plasmacalendarplugins/
 %{_kf6_qtplugindir}/potd/
+
+%files -n kate-krunner-plugin
+%{_kf6_plugindir}/krunner/krunner_katesessions.so
 
 %files devel
 %{_includedir}/plasma/potdprovider/
@@ -123,6 +136,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 
 
 %changelog
+* Tue Jul 16 2024 Pavel Solovev <daron439@gmail.com> - 6.1.2-2
+- Split kate krunner plugin into its own package
+
 * Tue Jul 02 2024 Pavel Solovev <daron439@gmail.com> - 6.1.2-1
 - Update to 6.1.2
 
