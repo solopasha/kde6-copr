@@ -1,6 +1,6 @@
 Name:           kdecoration
 Summary:        A plugin-based library to create window decorations
-Version:        6.1.2
+Version:        6.1.3
 Release:        1%{?dist}
 
 License:        LGPLv2
@@ -57,6 +57,9 @@ mkdir -p %{buildroot}%{_kf6_qtplugindir}/org.kde.kdecoration2/
 %{_kf6_libdir}/libkdecorations2private.so
 
 %changelog
+* Tue Jul 16 2024 Pavel Solovev <daron439@gmail.com> - 6.1.3-1
+- Update to 6.1.3
+
 * Tue Jul 02 2024 Pavel Solovev <daron439@gmail.com> - 6.1.2-1
 - Update to 6.1.2
 

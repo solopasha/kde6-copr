@@ -1,7 +1,7 @@
 %global orgname org.kde.plasma-welcome
 
 Name:           plasma-welcome
-Version:        6.1.2
+Version:        6.1.3
 Release:        1%{?dist}
 License:        GPL-2.0-or-later and BSD-3-Clause
 Summary:        Plasma Welcome
@@ -72,6 +72,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{orgname}.deskto
 
 
 %changelog
+* Tue Jul 16 2024 Pavel Solovev <daron439@gmail.com> - 6.1.3-1
+- Update to 6.1.3
+
 * Tue Jul 02 2024 Pavel Solovev <daron439@gmail.com> - 6.1.2-1
 - Update to 6.1.2
 

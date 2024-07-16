@@ -7,7 +7,7 @@
 %endif
 
 Name:    plasma-firewall
-Version: 6.1.2
+Version: 6.1.3
 Release: 1%{?dist}
 Summary: Control Panel for your system firewall
 
@@ -125,6 +125,9 @@ rm -rfv %{buildroot}%{_kf6_libexecdir}/kauth/kde_ufw_plugin_helper
 
 
 %changelog
+* Tue Jul 16 2024 Pavel Solovev <daron439@gmail.com> - 6.1.3-1
+- Update to 6.1.3
+
 * Tue Jul 02 2024 Pavel Solovev <daron439@gmail.com> - 6.1.2-1
 - Update to 6.1.2
 

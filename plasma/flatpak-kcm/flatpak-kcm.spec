@@ -1,5 +1,5 @@
 Name:          flatpak-kcm
-Version:       6.1.2
+Version:       6.1.3
 Release:       1%{?dist}
 License:       BSD-2-Clause and BSD-3-Clause and CC0-1.0 and GPL-2.0-or-later
 Summary:       Flatpak Permissions Management KCM
@@ -42,6 +42,9 @@ BuildRequires: pkgconfig(flatpak)
 %{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_flatpak.so
 
 %changelog
+* Tue Jul 16 2024 Pavel Solovev <daron439@gmail.com> - 6.1.3-1
+- Update to 6.1.3
+
 * Tue Jul 02 2024 Pavel Solovev <daron439@gmail.com> - 6.1.2-1
 - Update to 6.1.2
 
