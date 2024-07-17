@@ -1,5 +1,5 @@
 Name:           marknote
-Version:        1.2.1
+Version:        1.3.0
 Release:        1%{?dist}
 License:        GPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.0-only OR LGPL-3.0-only) AND BSD-3-Clause AND GPL-2.0-or-later
 Summary:        A simple markdown note management app
@@ -15,6 +15,7 @@ BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 
+BuildRequires:  cmake(KF6BreezeIcons)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
@@ -31,6 +32,7 @@ BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  cmake(KF6KirigamiAddons)
+BuildRequires:  cmake(KPim6Mime)
 BuildRequires:  pkgconfig(md4c)
 
 Requires:       qt6qml(org.kde.iconthemes)
@@ -68,6 +70,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_metainfodir}/org.kde.%{name}.metainfo.xml
 
 %changelog
+* Wed Jul 17 2024 Pavel Solovev <daron439@gmail.com> - 1.3.0-1
+- new version
+
 * Wed May 22 2024 Pavel Solovev <daron439@gmail.com> - 1.2.1-1
 - new version
 
