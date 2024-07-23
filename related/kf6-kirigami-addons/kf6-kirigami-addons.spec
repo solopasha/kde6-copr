@@ -1,7 +1,7 @@
 %global orig_name kirigami-addons
 
 Name:           kf6-kirigami-addons
-Version:        1.3.0
+Version:        1.4.0
 Release:        1%{?dist}
 License:        BSD-2-Clause AND CC-BY-SA-4.0 AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND LicenseRef-KFQF-Accepted-GPL
 Summary:        Convergent visual components ("widgets") for Kirigami-based applications
@@ -15,6 +15,9 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6GlobalAccel)
+BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Kirigami)
 
@@ -22,8 +25,8 @@ BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6QuickControls2)
 
-Requires:       kf6-kitemmodels
-Requires:       kf6-kirigami
+Requires:       kf6-kitemmodels%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
 
 Obsoletes:      kf6-kirigami2-addons < 1:0.11.76-5
 Provides:       kf6-kirigami2-addons = 1:%{version}-%{release}
@@ -49,6 +52,14 @@ Obsoletes:      kf6-kirigami-addons-treeview < 0.11.76-5
 Provides:       kf6-kirigami-addons-treeview = %{version}-%{release}
 Provides:       kf6-kirigami-addons-treeview%{?_isa} = %{version}-%{release}
 
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+
+%description    devel
+The %{name}-devel package contains libraries and header files for
+developing applications that use %{name}.
+
 %description
 A set of "widgets" i.e visual end user components along with a
 code to support them. Components are usable by both touch and
@@ -71,10 +82,20 @@ or Plasma).
 %files -f %{orig_name}6.lang
 %doc README.md
 %license LICENSES/
+%{_kf6_libdir}/libKirigamiAddonsStatefulApp.so.%{version}
+%{_kf6_libdir}/libKirigamiAddonsStatefulApp.so.6
 %{_kf6_qmldir}/org/kde/kirigamiaddons/
+
+%files devel
+%{_includedir}/KirigamiAddonsStatefulApp/
+%{_kf6_datadir}/kdevappwizard/templates/kirigamiaddons6.tar.bz2
 %{_kf6_libdir}/cmake/KF6KirigamiAddons/
+%{_kf6_libdir}/libKirigamiAddonsStatefulApp.so
 
 %changelog
+* Tue Jul 23 2024 Pavel Solovev <daron439@gmail.com> - 1.4.0-1
+- new version
+
 * Thu May 16 2024 Pavel Solovev <daron439@gmail.com> - 1.2.1-1
 - new version
 
