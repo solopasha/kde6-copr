@@ -1,12 +1,10 @@
 Name:           kweathercore
-Version:        0.8.0
+Version:        24.07.80
 Release:        1%{?dist}
 License:        LGPLv2+
 Summary:        Library to facilitate retrieval of weather information
 URL:            https://invent.kde.org/libraries/kweathercore
-Source0:        https://download.kde.org/stable/kweathercore/%{version}/%{name}-%{version}.tar.xz
-Source1:        https://download.kde.org/stable/kweathercore/%{version}/%{name}-%{version}.tar.xz.sig
-Source2:        kde-frameworks-signing-keys.pgp
+%apps_source
 
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
@@ -23,7 +21,7 @@ provides you a highly abstracted library for things related to weather:
 Get local weather forecast, get weather of a location by name or coordinate,
 get sunrise/set moonrise/set and many more informations about a location.
 
-%package devel
+%package        devel
 Summary:        Development headers for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 
@@ -48,7 +46,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %files -f %{name}6.lang
 %license LICENSES/*.txt
-%{_kf6_libdir}/libKWeatherCore.so.%{version}
+%{_kf6_libdir}/libKWeatherCore.so.2*
 %{_kf6_libdir}/libKWeatherCore.so.6
 
 %files devel
@@ -60,6 +58,9 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 20 2023 Fedora Release Engineering <releng@fedoraproject.org> - 0.7-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
 

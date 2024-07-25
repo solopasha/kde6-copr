@@ -1,22 +1,28 @@
 Name:           kpublictransport
-Version:        24.05.2
+Version:        24.07.80
 Release:        1%{?dist}
 License:        BSD and CC0-1.0 and LGPLv2+ and MIT and ODbL-1.0
 Summary:        Library to assist with accessing public transport timetables and other data
 URL:            https://invent.kde.org/libraries/kpublictransport
 %apps_source
 
-BuildRequires: extra-cmake-modules
-BuildRequires: gcc-c++
-BuildRequires: kf6-rpm-macros
-BuildRequires: zlib-devel
-BuildRequires: protobuf-devel
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  zlib-devel
+BuildRequires:  protobuf-devel
 
-BuildRequires: cmake(Qt6Core)
-BuildRequires: cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Quick)
 
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6NetworkManagerQt)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6NetworkManagerQt)
+
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+%description    devel
+%{summary}.
 
 %description
 %{summary}.
@@ -32,7 +38,9 @@ BuildRequires: cmake(KF6NetworkManagerQt)
 %install
 %cmake_install
 
-%files
+%find_lang %{name}
+
+%files -f %{name}.lang
 %{_kf6_datadir}/qlogging-categories6/org_kde_kpublictransport_onboard.categories
 %{_kf6_datadir}/qlogging-categories6/org_kde_kpublictransport.categories
 %{_kf6_libdir}/libKPublicTransport.so.%{version}
@@ -41,20 +49,15 @@ BuildRequires: cmake(KF6NetworkManagerQt)
 %{_kf6_libdir}/libKPublicTransportOnboard.so.1
 %{_kf6_qmldir}/org/kde/kpublictransport/
 
-%package devel
-Summary: Development files for %{name}
-License: BSD and CC0-1.0 and LGPLv2+ and MIT and ODbL-1.0
-Requires: %{name}%{?_isa} = %{version}-%{release}
-
-%description devel
-%{summary}.
-
 %files devel
 %{_includedir}/KPublicTransport/
 %{_kf6_libdir}/cmake/KPublicTransport/
 %{_kf6_libdir}/*.so
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

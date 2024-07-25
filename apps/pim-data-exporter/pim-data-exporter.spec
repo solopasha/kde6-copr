@@ -2,7 +2,7 @@
 
 Name:    pim-data-exporter
 Summary: Pim Data Exporter
-Version: 24.05.2
+Version: 24.07.80
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -102,6 +102,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

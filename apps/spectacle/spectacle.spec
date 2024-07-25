@@ -1,6 +1,6 @@
 Name:    spectacle
 Summary: Screenshot capture utility
-Version: 24.05.2
+Version: 24.07.80
 Release: 1%{?dist}
 
 License: GPLv2
@@ -25,7 +25,9 @@ BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6KIO)
 BuildRequires: cmake(KF6KirigamiPlatform)
 BuildRequires: cmake(KF6Notifications)
+BuildRequires: cmake(KF6Prison)
 BuildRequires: cmake(KF6Purpose)
+BuildRequires: cmake(KF6StatusNotifierItem)
 BuildRequires: cmake(KF6WindowSystem)
 BuildRequires: cmake(KF6XmlGui)
 
@@ -77,6 +79,7 @@ BuildRequires:  systemd-devel
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.spectacle.appdata.xml
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.spectacle.desktop
 
+
 %files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_bindir}/spectacle
@@ -96,6 +99,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.spectacle
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

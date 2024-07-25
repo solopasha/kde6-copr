@@ -1,5 +1,5 @@
 Name:           kongress
-Version:        24.05.2
+Version:        24.07.80
 Release:        1%{?dist}
 License:        GPL-3.0-or-later AND BSD-2-Clause AND CC0-1.0
 Summary:        A companion application for conferences made by KDE
@@ -24,12 +24,16 @@ BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(KF6CalendarCore)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6DBusAddons) 
+BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6Notifications)
 
-Requires:       kf6-kirigami2
+BuildRequires:  cmake(KF6KirigamiAddons)
+BuildRequires:  cmake(KOSMIndoorMap)
+
+Requires:       kf6-kirigami-addons%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
 
 %description
 %{summary}.
@@ -68,6 +72,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

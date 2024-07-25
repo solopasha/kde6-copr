@@ -2,31 +2,28 @@
 
 Name:           kdevelop-php
 Summary:        Php language and documentation plugins for KDevelop
-Version:        24.05.2
+Version:        24.07.80
 Release:        1%{?dist}
 
 # Most files LGPLv2+/GPLv2+
 License:        GPL-2.0-or-later
-URL:            http://www.kde.org/
+URL:            https://invent.kde.org/kdevelop/kdev-php
 %apps_source
 
-BuildRequires:  gettext
-BuildRequires:  kdevelop-pg-qt-devel >= 1.90.91
-BuildRequires:  kdevelop-devel >= %{version}
-
-BuildRequires:  kf5-rpm-macros
 BuildRequires:  extra-cmake-modules
-BuildRequires:  grantlee-qt5-devel
-BuildRequires:  kf5-knotifyconfig-devel
-BuildRequires:  kf5-knewstuff-devel
-BuildRequires:  kf5-kdelibs4support-devel
-BuildRequires:  kf5-threadweaver-devel
-BuildRequires:  kf5-ktexteditor-devel
-BuildRequires:  kf5-ki18n-devel
-BuildRequires:  kf5-kcmutils-devel
 
-BuildRequires:  qt5-qtbase-devel
-BuildRequires:  qt5-qtwebkit-devel
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KCMUtils)
+BuildRequires:  cmake(KF6TextEditor)
+BuildRequires:  cmake(KF6ThreadWeaver)
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Core5Compat)
+BuildRequires:  cmake(Qt6WebEngineWidgets)
+BuildRequires:  cmake(Qt6Widgets)
+
+BuildRequires:  cmake(KDevPlatform)
+BuildRequires:  cmake(KDevelop-PG-Qt)
 
 %{?kdevelop_requires}
 
@@ -36,34 +33,37 @@ BuildRequires:  qt5-qtwebkit-devel
 
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{sourcerootdir}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
-%{cmake_kf5}
+%cmake_kf6
 %cmake_build
 
 
 %install
 %cmake_install
 
-# TODO Enable translations in stable build
 %find_lang %{name} --all-name
+
+
 %files -f %{name}.lang
 %doc AUTHORS
 %license LICENSES/*
-%{_datadir}/kdevappwizard/
-%{_datadir}/kdevphpsupport/
-%{_datadir}/kservices5/*.desktop
-%{_includedir}/kdev-php/*
-%{_libdir}/libkdevphp*.so
-%{_libdir}/cmake/KDevPHP/*.cmake
-%{_kf5_qtplugindir}/kdevplatform/
-%{_datadir}/qlogging-categories5/kdevphpsupport.categories
-%{_datadir}/metainfo/org.kde.kdev-php.metainfo.xml
+%{_includedir}/kdev-php/
+%{_kf6_datadir}/kdevappwizard/
+%{_kf6_datadir}/kdevphpsupport/
+%{_kf6_datadir}/metainfo/org.kde.kdev-php.metainfo.xml
+%{_kf6_datadir}/qlogging-categories6/kdevphpsupport.categories
+%{_kf6_libdir}/cmake/KDevPHP/
+%{_kf6_libdir}/libkdevphp*.so
+%{_kf6_qtplugindir}/kdevplatform/
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 
@@ -97,7 +97,7 @@ BuildRequires:  qt5-qtwebkit-devel
 * Thu Jan 11 2024 Marc Deop i Argemí <marcdeop@fedoraproject.org> - 24.01.90-1
 - 24.01.90
 
-	
+
 * Fri Jan 05 2024 Marie Loise Nolden <loise@kde.org> - 24.01.85-1
 - update to 24.01.85 (still using qt5/kf5)
 

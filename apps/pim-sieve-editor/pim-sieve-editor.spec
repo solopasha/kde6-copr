@@ -4,15 +4,13 @@
 
 Name:    pim-sieve-editor
 Summary: Sieve Editor
-Version: 24.05.2
+Version: 24.07.80
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
 License: GPLv2 and GFDL
 URL:     https://invent.kde.org/pim/%{name}
 %apps_source
-
-
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
@@ -24,9 +22,10 @@ BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DBusAddons)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6I18n)
+BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6KIO)
-BuildRequires: cmake(KF6XmlGui)
 BuildRequires: cmake(KF6UserFeedback)
+BuildRequires: cmake(KF6XmlGui)
 
 BuildRequires: cmake(KPim6IMAP)
 BuildRequires: cmake(KPim6KSieveUi)
@@ -85,6 +84,9 @@ xvfb-run -a bash -c "%ctest"
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

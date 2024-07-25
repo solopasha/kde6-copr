@@ -1,5 +1,5 @@
 Name:    neochat
-Version: 24.05.2
+Version: 24.07.80
 Release: 1%{?dist}
 
 License: GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND BSD-3-Clause
@@ -107,17 +107,20 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %files -f %{name}.lang
 %license LICENSES/*
 %doc README.md
-%{_bindir}/%{name}
-%{_datadir}/applications/*.desktop
-%{_datadir}/icons/hicolor/*/apps/*
+%{_kf6_bindir}/%{name}
+%{_kf6_datadir}/applications/*.desktop
+%{_kf6_datadir}/icons/hicolor/*/apps/*
 %{_kf6_datadir}/knotifications6/%{name}.notifyrc
 %{_kf6_datadir}/krunner/dbusplugins/*.desktop
 %{_kf6_datadir}/qlogging-categories6/neochat.categories
-%{_kf6_plugindir}/purpose/neochatplugin.so
-%{_mandir}/man1/neochat.1*
-%{_metainfodir}/*.appdata.xml
+%{_kf6_mandir}/man1/neochat.1*
+%{_kf6_metainfodir}/*.appdata.xml
+%{_kf6_plugindir}/purpose/neochatshareplugin.so
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

@@ -5,7 +5,7 @@
 
 Name:    kwalletmanager5
 Summary: Manage KDE passwords
-Version: 24.05.2
+Version: 24.07.80
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -50,7 +50,7 @@ KDE Wallet Manager is a tool to manage the passwords on your KDE system.
 
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{base_name}-%{version} -p1
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -65,7 +65,7 @@ KDE Wallet Manager is a tool to manage the passwords on your KDE system.
 
 
 %check
-desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.desktop
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 
 %files -f %{name}.lang
@@ -73,7 +73,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %{_datadir}/dbus-1/services/org.kde.kwalletmanager5.service
 %{_kf6_bindir}/kwalletmanager5
 %{_kf6_datadir}/applications/kwalletmanager5-kwalletd.desktop
-%{_kf6_datadir}/applications/org.kde.kwalletmanager5.desktop
+%{_kf6_datadir}/applications/org.kde.kwalletmanager.desktop
 %{_kf6_datadir}/icons/hicolor/*/actions/wallet-*
 %{_kf6_datadir}/icons/hicolor/*/apps/kwalletmanager*.*
 %{_kf6_datadir}/qlogging-categories6/kwalletmanager*
@@ -88,6 +88,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

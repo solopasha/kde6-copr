@@ -1,5 +1,5 @@
 Name:    kaccounts-providers
-Version: 24.05.2
+Version: 24.07.80
 Release: 1%{?dist}
 Summary: Additional service providers for KAccounts framework
 License: GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -19,6 +19,7 @@ BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6WebEngineQuick)
 
 BuildRequires:  cmake(KAccounts6)
+BuildRequires:  cmake(QCoro6)
 
 Requires:       signon-ui
 Requires:       kf6-kirigami
@@ -32,7 +33,7 @@ Supplements:    kaccounts-integration-qt6
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
+%autosetup -p1
 
 
 %build
@@ -62,6 +63,9 @@ Supplements:    kaccounts-integration-qt6
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

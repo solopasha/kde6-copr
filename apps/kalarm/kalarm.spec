@@ -2,7 +2,7 @@
 
 Name:    kalarm
 Summary: Personal Alarm Scheduler
-Version: 24.05.2
+Version: 24.07.80
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -55,7 +55,7 @@ BuildRequires: cmake(Qt6Gui)
 BuildRequires: cmake(Qt6Network)
 BuildRequires: cmake(Qt6Widgets)
 
-BuildRequires: pkgconfig(libcanberra)
+BuildRequires: pkgconfig(libvlc)
 
 %if 0%{?tests}
 BuildRequires: dbus-x11
@@ -112,6 +112,9 @@ xvfb-run -a bash -c "%ctest"
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

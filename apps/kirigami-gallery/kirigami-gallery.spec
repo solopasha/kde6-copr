@@ -1,33 +1,30 @@
 Name:    kirigami-gallery
-Version: 24.05.2
+Version: 24.07.80
 Release: 1%{?dist}
 Summary: Gallery application built using Kirigami
 License: LGPL-2.1-or-later
-URL:     https://apps.kde.org/en/kirigami2.gallery
+URL:     https://apps.kde.org/kirigami2.gallery
 %apps_source
 
-
 BuildRequires: desktop-file-utils
-BuildRequires: appstream
 BuildRequires: libappstream-glib
 BuildRequires: gcc-c++
 BuildRequires: extra-cmake-modules
-BuildRequires: kf5-rpm-macros
-BuildRequires: cmake(Qt5Core)
-BuildRequires: cmake(Qt5Gui)
-BuildRequires: cmake(Qt5LinguistTools)
-BuildRequires: cmake(Qt5Quick)
-BuildRequires: cmake(Qt5QuickControls2)
-BuildRequires: cmake(Qt5Svg)
+BuildRequires: kf6-rpm-macros
 
-BuildRequires: cmake(KF5Kirigami2)
-BuildRequires: cmake(KF5ItemModels)
+BuildRequires: cmake(Qt6Core)
+BuildRequires: cmake(Qt6Gui)
+BuildRequires: cmake(Qt6Quick)
+BuildRequires: cmake(Qt6QuickControls2)
+BuildRequires: cmake(Qt6Svg)
+BuildRequires: cmake(Qt6Widgets)
+
+BuildRequires: cmake(KF6ItemModels)
+BuildRequires: cmake(KF6Kirigami)
 BuildRequires: cmake(KF5Package)
 
-Requires:   kf5-kirigami2%{?_isa}
-Requires:   kf5-kitemmodels%{?_isa}
-Requires:   qt5-qtquickcontrols2%{?_isa}
-Requires:   qt5-qtgraphicaleffects%{?_isa}
+Requires:   kf6-kirigami%{?_isa}
+Requires:   kf6-kitemmodels%{?_isa}
 Requires:   breeze-icon-theme
 
 %description
@@ -43,8 +40,7 @@ code examples on invent.
 
 
 %build
-%cmake_kf5
-
+%cmake_kf6
 %cmake_build
 
 
@@ -56,20 +52,22 @@ code examples on invent.
 
 %check
 # https://github.com/hughsie/appstream-glib/issues/360
-appstream-util validate-relax --nonet %{buildroot}%{_kf5_metainfodir}/org.kde.kirigami2.gallery.appdata.xml ||:
-appstreamcli validate --no-net %{buildroot}%{_datadir}/metainfo/org.kde.kirigami2.gallery.appdata.xml
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.kirigami2.gallery.appdata.xml ||:
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kirigami2.gallery.desktop
 
 
 %files -f kirigamigallery.lang
 %doc README.md
 %license LICENSE.LGPL-2
-%{_kf5_metainfodir}/org.kde.kirigami2.gallery.appdata.xml
-%{_kf5_datadir}/applications/org.kde.kirigami2.gallery.desktop
-%{_kf5_bindir}/kirigami2gallery
+%{_kf6_bindir}/kirigami2gallery
+%{_kf6_datadir}/applications/org.kde.kirigami2.gallery.desktop
+%{_kf6_metainfodir}/org.kde.kirigami2.gallery.appdata.xml
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

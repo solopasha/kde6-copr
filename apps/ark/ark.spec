@@ -4,23 +4,24 @@
 
 Name:           ark
 Summary:        Archive manager
-Version:        24.05.2
-Release:        2%{?dist}
+Version:        24.07.80
+Release:        1%{?dist}
 
 License:        GPL-2.0-or-later AND BSD-2-Clause
 URL:            https://www.kde.org/applications/utilities/ark/
 %apps_source
-Patch:          backport-85c5e26f.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 
+BuildRequires:  cmake(KF6BreezeIcons)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6FileMetaData)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KIO)
@@ -29,7 +30,6 @@ BuildRequires:  cmake(KF6Pty)
 BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  cmake(KF6FileMetaData)
 
 BuildRequires:  cmake(Qt6Concurrent)
 BuildRequires:  cmake(Qt6Core)
@@ -41,7 +41,6 @@ BuildRequires:  pkgconfig(libarchive)
 BuildRequires:  pkgconfig(liblzma)
 BuildRequires:  pkgconfig(libzip)
 BuildRequires:  pkgconfig(zlib)
-
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
@@ -80,7 +79,7 @@ Requires:       %{name} = %{version}-%{release}
 
 
 %build
-%cmake_kf6 -DBUILD_WITH_QT6:BOOL=TRUE
+%cmake_kf6
 %cmake_build
 
 
@@ -111,7 +110,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.ark.deskt
 %{_kf6_metainfodir}/org.kde.ark.appdata.xml
 %{_kf6_sysconfdir}/xdg/arkrc
 
-
 %files libs
 %{_kf6_libdir}/libkerfuffle.so.*
 %{_kf6_plugindir}/kfileitemaction/compressfileitemaction.so
@@ -122,6 +120,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.ark.deskt
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Sat Jul 13 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-2
 - pick upstream commit
 

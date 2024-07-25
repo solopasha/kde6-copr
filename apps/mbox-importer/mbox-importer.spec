@@ -2,15 +2,13 @@
 
 Name:    mbox-importer
 Summary: MBox Importer
-Version: 24.05.2
+Version: 24.07.80
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
 License: GPLv2 and GFDL
 URL:     https://invent.kde.org/pim/%{name}
 %apps_source
-
-
 
 BuildRequires: desktop-file-utils
 BuildRequires: gettext
@@ -19,6 +17,7 @@ BuildRequires: kf6-rpm-macros
 
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6Crash)
+BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6KIO)
 BuildRequires: cmake(KF6Service)
 
@@ -27,7 +26,7 @@ BuildRequires: cmake(KPim6IdentityManagementCore)
 BuildRequires: cmake(KPim6MailCommon)
 BuildRequires: cmake(KPim6MailImporterAkonadi)
 
-BuildRequires: cmake(Qt6Gui) 
+BuildRequires: cmake(Qt6Gui)
 BuildRequires: cmake(Qt6Widgets)
 
 %if 0%{?tests}
@@ -70,6 +69,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

@@ -2,7 +2,7 @@
 
 Name:    akonadi-import-wizard
 Summary: Akonadi Import Wizard
-Version: 24.05.2
+Version: 24.07.80
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -10,12 +10,10 @@ License: GPLv2 and GFDL
 URL:     https://invent.kde.org/pim/%{name}
 %apps_source
 
-
-
 BuildRequires: desktop-file-utils
+BuildRequires: extra-cmake-modules
 BuildRequires: gettext
 BuildRequires: kf6-rpm-macros
-BuildRequires: extra-cmake-modules
 
 BuildRequires: cmake(KF6Archive)
 BuildRequires: cmake(KF6Auth)
@@ -24,6 +22,7 @@ BuildRequires: cmake(KF6Contacts)
 BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DBusAddons)
 BuildRequires: cmake(KF6DocTools)
+BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6KIO)
 
 BuildRequires: cmake(KPim6Akonadi)
@@ -95,6 +94,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

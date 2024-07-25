@@ -1,7 +1,7 @@
 %global base_name kdesdk-kio
 Name:    kdesdk-kioslaves
 Summary: KDESDK KIOslaves
-Version: 24.05.2
+Version: 24.07.80
 Release: 1%{?dist}
 
 License: GPLv2 and GPLv2+
@@ -32,7 +32,7 @@ KDE SDK kioslaves:
 
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1 -n %{base_name}-%{version}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -53,6 +53,9 @@ KDE SDK kioslaves:
 
 
 %changelog	
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

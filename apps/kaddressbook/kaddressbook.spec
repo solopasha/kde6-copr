@@ -2,7 +2,7 @@
 
 Name:    kaddressbook
 Summary: Contact Manager
-Version: 24.05.2
+Version: 24.07.80
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -18,6 +18,7 @@ BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6UserFeedback)
 
@@ -26,6 +27,7 @@ BuildRequires:  cmake(KPim6AkonadiContactWidgets)
 BuildRequires:  cmake(KPim6AkonadiSearch)
 BuildRequires:  cmake(KPim6GrantleeTheme)
 BuildRequires:  cmake(KPim6KontactInterface)
+BuildRequires:  cmake(KPim6LdapCore)
 BuildRequires:  cmake(KPim6Libkdepim)
 BuildRequires:  cmake(KPim6PimCommonAkonadi)
 
@@ -106,6 +108,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

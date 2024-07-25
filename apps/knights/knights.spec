@@ -1,5 +1,5 @@
-Name:		  knights
-Version:	24.05.2
+Name:		knights
+Version:	24.07.80
 Release:	1%{?dist}
 Summary:	A chess board for KDE
 
@@ -37,8 +37,8 @@ checking, themes, and nice animations
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%setup -q
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -p1
 
 %build
 %cmake_kf6
@@ -62,10 +62,13 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.knights.d
 %{_datadir}/config.kcfg/%{name}.kcfg
 %{_datadir}/metainfo/org.kde.knights.appdata.xml
 %exclude %{_datadir}/doc/HTML/
-%{_datadir}/qlogging-categories6/knights.categories
+%{_datadir}/qlogging-categories6/knights*categories
 %{_datadir}/knsrcfiles/knights.knsrc
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

@@ -1,5 +1,5 @@
 Name:           skanlite
-Version:        24.05.2
+Version:        24.07.80
 Release:        1%{?dist}
 Summary:        Lightweight scanning program
 # Actually: GPLv2 or GPLv3 or any later Version approved by KDE e.V.
@@ -57,11 +57,14 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/org.kde.
 %{_bindir}/%{name}
 %{_datadir}/applications/org.kde.%{name}.desktop
 %{_datadir}/icons/hicolor/128x128/apps/%{name}.png
-%{_datadir}/icons/hicolor/48x48/apps/org.kde.skanlite.svg
+%{_datadir}/icons/hicolor/scalable/apps/org.kde.skanlite.svg
 %{_metainfodir}/org.kde.%{name}.appdata.xml
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

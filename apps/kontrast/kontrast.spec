@@ -1,5 +1,5 @@
 Name:          kontrast
-Version:       24.05.2
+Version:       24.07.80
 Release:       1%{?dist}
 Summary:       Color contrast checker
 # BSD, CC0 are only for build files
@@ -28,10 +28,12 @@ BuildRequires: cmake(Qt6Sql)
 BuildRequires: cmake(Qt6Svg)
 BuildRequires: cmake(Qt6Widgets)
 
+BuildRequires: cmake(KF6KirigamiAddons)
+
 Requires:      hicolor-icon-theme
 Requires:      kf6-filesystem
 # QML dependencies
-Requires:      kf6-kirigami2%{?_isa}
+Requires:      kf6-kirigami%{?_isa}
 Requires:      kf6-kirigami-addons%{?_isa}
 
 %description
@@ -70,6 +72,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

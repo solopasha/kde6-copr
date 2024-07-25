@@ -1,9 +1,8 @@
 ## FIXME: many tests require GLX, which doesn't appear to work as-is under koji
 #global tests 1
-%global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
 
 Name:    konqueror
-Version: 24.05.2
+Version: 24.07.80
 Release: 1%{?dist}
 Summary: KDE File Manager and Browser
 
@@ -20,7 +19,7 @@ URL:     https://apps.kde.org/konqueror/
 # toggle 'Always try to have one preloaded instance' to default off
 # https://bugzilla.redhat.com/1523082
 # https://bugs.kde.org/398996
-Patch101: konqueror-18.12.2-preloaded.patch
+Patch101: konqueror-24.07.80-preloaded.patch
 
 ## Fedora specific patches
 
@@ -158,6 +157,7 @@ xvfb-run -a bash -c "%ctest" || :
 
 %files libs
 %{_kf6_libdir}/libKF6Konq.so.{7,*.*}
+%{_kf6_libdir}/libKF6KonqSettings.so.{7,*.*}
 %{_kf6_libdir}/libkonqsidebarplugin.so.{6,*.*}
 %{_kf6_libdir}/libkonquerorprivate.so.{5,*.*}
 %{_kf6_plugindir}/kfileitemaction/akregatorplugin.so
@@ -178,12 +178,13 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_qtplugindir}/webenginepart/kpartplugins/*
 
 %files devel
-#{_includedir}/konqsidebarplugin.h
-%{_kf6_includedir}/asyncselectorinterface.h
 %{_kf6_includedir}/konq*.h
 %{_kf6_includedir}/libkonq_export.h
+%{_kf6_includedir}/libkonqsettings_export.h
+%{_kf6_includedir}/selectorinterface.h
 %{_kf6_libdir}/cmake/KF6Konq/
 %{_kf6_libdir}/libKF6Konq.so
+%{_kf6_libdir}/libKF6KonqSettings.so
 %{_kf6_libdir}/libkonqsidebarplugin.so
 
 %files -n kwebenginepart
@@ -194,6 +195,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

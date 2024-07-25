@@ -1,5 +1,5 @@
 Name:		    merkuro
-Version:	    24.05.2
+Version:	    24.07.80
 Release:	    1%{?dist}
 Summary:	    A calendar application using Akonadi to sync with external services (Nextcloud, GMail, ...)
 
@@ -24,11 +24,12 @@ BuildRequires:  cmake(KF6ItemModels)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6KirigamiAddons)
-BuildRequires:  cmake(Plasma)
-BuildRequires:  cmake(Plasma)
+BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6QQC2DesktopStyle)
 BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(KF6XmlGui)
+
+BuildRequires:  cmake(Plasma)
 
 BuildRequires:  cmake(KPim6Akonadi)
 BuildRequires:  cmake(KPim6AkonadiCalendar)
@@ -53,9 +54,8 @@ BuildRequires:  cmake(Qt6Test)
 
 BuildRequires:  cmake(QGpgmeQt6)
 
-
 # QML module dependencies
-Requires:	kf6-kirigami2%{?_isa}
+Requires:	kf6-kirigami%{?_isa}
 Requires:   kf6-kirigami-addons%{?_isa}
 Requires:	kf6-kitemmodels%{?_isa}
 
@@ -89,6 +89,8 @@ your Plasma desktop or phone.
 %cmake_install
 %find_lang %{name} --with-kde --with-man --all-name
 
+rm %{buildroot}%{_kf6_libdir}/libmerkuro_contact_plugin.so %{buildroot}%{_kf6_libdir}/libMerkuroComponents.so
+
 
 %check
 desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
@@ -105,16 +107,22 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 %{_kf6_datadir}/applications/org.kde.merkuro.contact.desktop
 %{_kf6_datadir}/applications/org.kde.merkuro.mail.desktop
 %{_kf6_datadir}/icons/hicolor/*/apps/org.kde.merkuro*.png
+%{_kf6_datadir}/knotifications6/merkuro.mail.notifyrc
 %{_kf6_datadir}/plasma/plasmoids/org.kde.merkuro.contact/
 %{_kf6_datadir}/qlogging-categories6/akonadi.quick.categories
 %{_kf6_datadir}/qlogging-categories6/merkuro.categories
 %{_kf6_datadir}/qlogging-categories6/merkuro.contact.categories
+%{_kf6_libdir}/libmerkuro_contact_plugin.so.{6,%{version}}
+%{_kf6_libdir}/libMerkuroComponents.so.{6,%{version}}
 %{_kf6_metainfodir}/org.kde.merkuro.*.xml
 %{_kf6_qmldir}/org/kde/akonadi/*
 %{_kf6_qmldir}/org/kde/merkuro/
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

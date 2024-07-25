@@ -1,7 +1,7 @@
 Name:    filelight
 Summary: Graphical disk usage statistics
 Epoch:   1
-Version: 24.05.2
+Version: 24.07.80
 Release: 1%{?dist}
 
 # KDE e.V. may determine that future GPL versions are accepted
@@ -10,25 +10,26 @@ URL:     http://utils.kde.org/projects/filelight
 %apps_source
 
 BuildRequires: desktop-file-utils
-BuildRequires: libappstream-glib
-
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
+BuildRequires: libappstream-glib
+
 BuildRequires: cmake(KF6CoreAddons)
-BuildRequires: cmake(KF6KIO)
+BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6XmlGui)
-BuildRequires: cmake(KF6QQC2DesktopStyle)
+BuildRequires: cmake(KF6KIO)
 BuildRequires: cmake(KF6KirigamiAddons)
+BuildRequires: cmake(KF6QQC2DesktopStyle)
+BuildRequires: cmake(KF6XmlGui)
 
 BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6Quick)
 BuildRequires: cmake(Qt6QuickControls2)
 BuildRequires: cmake(Qt6Widgets)
 
-Requires:      kf6-qqc2-desktop-style
-Requires:      kf6-kquickcharts
+Requires:      kf6-qqc2-desktop-style%{?_isa}
+Requires:      kf6-kquickcharts%{?_isa}
 
 %description
 Filelight allows you to quickly understand exactly where your diskspace
@@ -59,15 +60,18 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %files -f %{name}.lang
 %license LICENSES/*
 %doc AUTHORS README*
-%{_kf6_datadir}/qlogging-categories6/%{name}*
 %{_kf6_bindir}/filelight
 %{_kf6_datadir}/applications/org.kde.filelight.desktop
-%{_kf6_metainfodir}/org.kde.filelight.appdata.xml
 %{_kf6_datadir}/icons/hicolor/*/*/*filelight.*
+%{_kf6_datadir}/qlogging-categories6/%{name}*
+%{_kf6_metainfodir}/org.kde.filelight.appdata.xml
 %{_sysconfdir}/xdg/filelightrc
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 1:24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 1:24.05.2-1
 - Update to 24.05.2
 

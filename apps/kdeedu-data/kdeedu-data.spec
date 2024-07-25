@@ -1,6 +1,6 @@
 Name:    kdeedu-data
 Summary: Shared icons, artwork and data files for educational applications
-Version: 24.05.2
+Version: 24.07.80
 Release: 1%{?dist}
 
 License: GPLv2
@@ -8,10 +8,8 @@ URL:     https://invent.kde.org/education/%{name}
 %apps_source
 BuildArch: noarch
 
-BuildRequires: kde-filesystem
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
-# ECM macro used in kdeedu-data needs qmake
 BuildRequires: qt6-qtbase-devel
 
 Requires: hicolor-icon-theme
@@ -22,12 +20,11 @@ Requires: hicolor-icon-theme
 
 %prep
 %{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%setup -q
+%autosetup -p1
 
 
 %build
-%cmake_kf6 -DQT_MAJOR_VERSION=6
-
+%cmake_kf6
 %cmake_build
 
 
@@ -38,10 +35,13 @@ Requires: hicolor-icon-theme
 %files
 %license COPYING
 %{_kf6_datadir}/apps/kvtml/
-%{_datadir}/icons/hicolor/*/*/*
+%{_kf6_datadir}/icons/hicolor/*/*/*
 
 
 %changelog
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 
