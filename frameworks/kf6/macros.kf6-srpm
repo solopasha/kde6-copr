@@ -20,6 +20,10 @@
     fi
     )
 
+%version_no_git %{lua:
+  print((macros.version:gsub('[%^~].*', '')))
+}
+
 %kde_name2name_with_namespace %{lua:
     local pkgname = macros.base_name or macros.name
     local kde = require "fedora.srpm.kde"
@@ -48,7 +52,7 @@
 }
 
 %plasma_source(v:) %{lua:
-    macros.basever = (rpm.expand("%{-v}") ~= "") and rpm.expand("%{-v*}") or macros.version
+    macros.basever = (rpm.expand("%{-v}") ~= "") and rpm.expand("%{-v*}") or macros.version_no_git
     local pkgname = macros.base_name or macros.name
     if macros.bumpver or macros.gitdate then
         local fedora = require "fedora.common"
@@ -64,7 +68,7 @@
 }
 
 %apps_source(v:) %{lua:
-    macros.basever = (rpm.expand("%{-v}") ~= "") and rpm.expand("%{-v*}") or macros.version
+    macros.basever = (rpm.expand("%{-v}") ~= "") and rpm.expand("%{-v*}") or macros.version_no_git
     local pkgname = macros.base_name or macros.name
     if macros.bumpver or macros.gitdate then
         local fedora = require "fedora.common"

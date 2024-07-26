@@ -2,7 +2,7 @@ Name:    kf6
 # This version MUST remain in sync with KF6 versions!
 # XXX: Yes, it's 5.x still, this is synced with the version set in extra-cmake-modules
 Version: 6.4.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: Filesystem and RPM macros for KDE Frameworks 6
 License: BSD-3-Clause
 URL:     http://www.kde.org
@@ -118,6 +118,9 @@ install -Dpm0644 %{_sourcedir}/kde.lua %{buildroot}%{_rpmluadir}/fedora/srpm/kde
 %files qch
 
 %changelog
+* Fri Jul 26 2024 Pavel Solovev <daron439@gmail.com> - 6.4.0-4
+- misc fixes for git handling
+
 * Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 6.4.0-3
 - handle git versions
 

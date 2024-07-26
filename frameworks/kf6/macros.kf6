@@ -75,7 +75,3 @@
                       "- This is an automated snapshot build ".."%s".."\\n\\n"
         return string.format(entry, "")
 }
-
-%version_no_git %{lua:
-  print((macros.version:gsub('[%^~].*', '')))
-}
