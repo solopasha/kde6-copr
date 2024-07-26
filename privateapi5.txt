@@ -1,8 +1,0 @@
-kf5-akonadi-server
-kf5-ki18n
-kf5-kiconthemes
-kf5-kirigami2
-kf5-kwayland
-kf5-kxmlgui
-kwayland-integration
-plasma-integration
