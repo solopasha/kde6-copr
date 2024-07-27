@@ -8,6 +8,15 @@ Release: 1%{?dist}
 License: (GPL-2.0-only or GPL-3.0-only) and GPL-2.0-or-later and GPL-3.0-or-later and LGPL-3.0-only and BSD-3-Clause and CC0-1.0
 URL:     http://www.kdenlive.org
 %apps_source
+Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/823df90e9ac578351bb86d30a64bef3e6df3e8c5.patch
+Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/684271282544763877f0d557be6661586d859bd4.patch
+Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/763b141f81c56fd19a0b5e8ecb9278a905535fbb.patch
+Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/1e24fdb98483a0cea138affa728066ec54568c84.patch
+Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/bcb6a5626b7e5bbf17803520ea4da4c6b08c2911.patch
+Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/f26a1ad9a9c043973dcc2da826475ed2b7adb1aa.patch
+Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/f5e6dbe88ca671fab304d19ea65871cb46bb99e1.patch
+Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/074598bbe3f8d8df144e2c8f38f26047a77c5506.patch
+Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/89320d71ae024c4e146b69f5c048f110c7567f69.patch
 
 BuildRequires: gcc-c++
 BuildRequires: cmake
