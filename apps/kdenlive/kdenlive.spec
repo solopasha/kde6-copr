@@ -10,7 +10,6 @@ URL:     http://www.kdenlive.org
 %apps_source
 Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/823df90e9ac578351bb86d30a64bef3e6df3e8c5.patch
 Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/684271282544763877f0d557be6661586d859bd4.patch
-Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/763b141f81c56fd19a0b5e8ecb9278a905535fbb.patch
 Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/1e24fdb98483a0cea138affa728066ec54568c84.patch
 Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/bcb6a5626b7e5bbf17803520ea4da4c6b08c2911.patch
 Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/f26a1ad9a9c043973dcc2da826475ed2b7adb1aa.patch
