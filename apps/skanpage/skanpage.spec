@@ -6,6 +6,7 @@ Summary:  Utility to scan images and multi-page documents
 License:  GPLv3 and GPLv2 and CC0-1.0 and BSD
 URL:      https://invent.kde.org/utilities/%{name}
 %apps_source
+
 Patch:    flags.patch
 
 BuildRequires:  cmake

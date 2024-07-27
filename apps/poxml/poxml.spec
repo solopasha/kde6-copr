@@ -7,7 +7,6 @@ License:        GPLv2+
 URL:            https://invent.kde.org/sdk/poxml
 %apps_source
 
-
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gettext-devel
 BuildRequires:  kf6-rpm-macros

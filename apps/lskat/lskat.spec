@@ -7,7 +7,6 @@ License: LGPLv2 and GFDL
 URL:     https://invent.kde.org/plasma/%{name}
 %apps_source
 
-
 BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib
 

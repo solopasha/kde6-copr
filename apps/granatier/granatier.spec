@@ -7,7 +7,6 @@ License: GPL-2.0-or-later AND GFDL-1.2-or-later
 URL:     https://invent.kde.org/games/%{name}
 %apps_source
 
-
 BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib
 

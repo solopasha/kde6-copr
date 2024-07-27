@@ -6,6 +6,7 @@ Release: 1%{?dist}
 License: GPLv2
 URL:     https://invent.kde.org/education/%{name}
 %apps_source
+
 BuildArch: noarch
 
 BuildRequires: extra-cmake-modules

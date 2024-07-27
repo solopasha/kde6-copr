@@ -7,7 +7,6 @@ License:       BSD-3-Clause and CC0-1.0 and MIT and LGPL-2.1-or-later and MIT
 URL:           https://invent.kde.org/system/%{name}
 %apps_source
 
-
 BuildRequires: cmake
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules

@@ -7,7 +7,6 @@ License: GPLv2 and GFDL
 URL:     https://invent.kde.org/sdk/%{name}
 %apps_source
 
-
 ## upstream patches
 
 BuildRequires: desktop-file-utils

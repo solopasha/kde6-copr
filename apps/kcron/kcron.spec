@@ -7,7 +7,6 @@ License: GPLv2+
 URL:     https://invent.kde.org/system/%{name}
 %apps_source
 
-
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
 

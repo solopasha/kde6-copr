@@ -8,6 +8,7 @@ Release: 2%{?dist}
 License: (GPL-2.0-only or GPL-3.0-only) and GPL-2.0-or-later and GPL-3.0-or-later and LGPL-3.0-only and BSD-3-Clause and CC0-1.0
 URL:     http://www.kdenlive.org
 %apps_source
+
 Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/823df90e9ac578351bb86d30a64bef3e6df3e8c5.patch
 Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/684271282544763877f0d557be6661586d859bd4.patch
 Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/1e24fdb98483a0cea138affa728066ec54568c84.patch

@@ -7,7 +7,6 @@ License: GPL-2.0-only AND GPL-2.0-or-later AND LGPL-2.0-only AND BSD-2-Clause
 URL:     https://invent.kde.org/sdk/%{name}.git
 %apps_source
 
-
 BuildRequires:  extra-cmake-modules
 BuildRequires:  cmake(KF6DocTools)
 

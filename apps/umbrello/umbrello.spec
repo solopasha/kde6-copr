@@ -7,7 +7,6 @@ License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-
 URL:     https://www.kde.org/applications/development/umbrello/
 %apps_source
 
-
 ## upstream patches
 
 BuildRequires: desktop-file-utils

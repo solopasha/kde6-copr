@@ -9,8 +9,6 @@ License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND GPL-
 URL:     https://invent.kde.org/pim/akonadi-calendar
 %apps_source
 
-
-
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 

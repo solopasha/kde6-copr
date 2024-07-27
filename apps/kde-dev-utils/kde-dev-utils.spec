@@ -7,7 +7,6 @@ License: LGPL-2.0-only AND LGPL-3.0-only
 URL:     https://invent.kde.org/sdk/%{name}.git
 %apps_source
 
-
 ## upstream patches
 
 BuildRequires:  desktop-file-utils

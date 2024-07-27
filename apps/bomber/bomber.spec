@@ -8,7 +8,6 @@ License: LGPL-2.0-or-later AND GFDL-1.2-or-later
 URL:     https://invent.kde.org/games/%{name}
 %apps_source
 
-
 BuildRequires: desktop-file-utils
 %if 0%{?fedora}
 BuildRequires: libappstream-glib

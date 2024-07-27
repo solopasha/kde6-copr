@@ -6,6 +6,7 @@ Summary:        A user friendly IRC client
 License:        GPL-2.0-or-later
 URL:            https://invent.kde.org/network/konversation/
 %apps_source
+
 Source10:       konversationrc
 
 BuildRequires:  desktop-file-utils

@@ -8,7 +8,6 @@ License: LGPL-2.1-only
 URL:     https://invent.kde.org/libraries/kqtquickcharts
 %apps_source
 
-
 BuildRequires: gcc-c++
 BuildRequires: cmake
 BuildRequires: extra-cmake-modules

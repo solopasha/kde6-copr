@@ -7,7 +7,6 @@ License: GPLv2+
 URL:     https://invent.kde.org/sdk/%{name}
 %apps_source
 
-
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gettext-devel

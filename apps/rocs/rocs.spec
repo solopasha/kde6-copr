@@ -7,7 +7,6 @@ License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-
 URL:     https://invent.kde.org/education/rocs
 %apps_source
 
-
 BuildRequires: boost-devel >= 1.43
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules

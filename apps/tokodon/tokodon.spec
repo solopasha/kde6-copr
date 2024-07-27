@@ -5,6 +5,7 @@ License:        GPL-2.0-only OR GPL-3.0-only AND CC0-1.0 AND LGPL-2.1-or-later
 Summary:        Kirigami-based mastodon client
 URL:            https://invent.kde.org/network/tokodon
 %apps_source
+
 Patch: https://invent.kde.org/network/tokodon/-/commit/ec998c6895dc15d9f88fe3cb4bc8232dfd08843f.patch
 
 BuildRequires:  cmake

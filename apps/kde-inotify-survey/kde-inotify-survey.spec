@@ -8,7 +8,6 @@ License:       BSD-3-Clause and CC0-1.0 and FSFAP and GPL-2.0-only and GPL-3.0-o
 URL:           https://invent.kde.org/system/%{name}
 %apps_source
 
-
 Requires:      kf6-kded
 Requires:      dbus-common
 Requires:      polkit

@@ -8,7 +8,6 @@ License: GPLv2 and GPLv2+
 URL:     https://cgit.kde.org/%{name}.git
 %apps_source
 
-
 BuildRequires: perl-generators
 
 BuildRequires: extra-cmake-modules

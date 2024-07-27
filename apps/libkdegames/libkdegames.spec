@@ -8,7 +8,6 @@ License: LGPLv2 and GPLv2+
 URL:     https://invent.kde.org/games/%{name}
 %apps_source
 
-
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-karchive-devel
 BuildRequires: kf6-kbookmarks-devel

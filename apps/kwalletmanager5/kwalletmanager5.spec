@@ -11,6 +11,7 @@ Release: 1%{?dist}
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/utils/%{base_name}
 %apps_source
+
 # upstream patches
 
 ## upstreamable patches

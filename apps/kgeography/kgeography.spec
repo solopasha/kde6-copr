@@ -7,7 +7,6 @@ License: GPL-2.0-or-later
 URL:     https://invent.kde.org/education/%{name}
 %apps_source
 
-
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
 BuildRequires: gettext

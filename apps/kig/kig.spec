@@ -10,7 +10,6 @@ License: BSD-3-Clause AND GFDL-1.2-or-later AND GPL-2.0-only AND GPL-2.0-or-late
 URL:     https://invent.kde.org/education/%{name}
 %apps_source
 
-
 ## upstreamable patches
 # https://bugzilla.redhat.com/show_bug.cgi?id=1238113
 # https://bugs.kde.org/show_bug.cgi?id=335965#c23

@@ -6,6 +6,7 @@ Summary:	    A calendar application using Akonadi to sync with external services
 License:	    GPL-3.0-or-later
 URL:		    https://invent.kde.org/pim/%{name}
 %apps_source
+
 Patch: https://invent.kde.org/pim/merkuro/-/commit/c43e675b55b7c48553d631f4ba1d841016abcb8f.patch
 Patch: https://invent.kde.org/pim/merkuro/-/commit/0600fca144c59f6bf49d4c981afa3fe9defadabc.patch
 Patch: https://invent.kde.org/pim/merkuro/-/commit/cf6ebaa59370459e55e4713a35497550fdc51643.patch

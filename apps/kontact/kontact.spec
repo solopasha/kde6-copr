@@ -10,8 +10,6 @@ License: GPLv2 and GFDL
 URL:     https://invent.kde.org/pim/%{name}
 %apps_source
 
-
-
 BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib
 BuildRequires: extra-cmake-modules

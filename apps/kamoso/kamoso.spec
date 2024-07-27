@@ -14,7 +14,6 @@ License: GFDL-1.2-or-later AND GPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-o
 URL:     https://userbase.kde.org/Kamoso
 %apps_source
 
-
 ## upstream patches
 
 ## upstreamable patches

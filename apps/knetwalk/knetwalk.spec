@@ -8,7 +8,6 @@ License: GPLv2+ and GFDL
 URL:     https://cgit.kde.org/%{name}.git
 %apps_source
 
-
 BuildRequires: desktop-file-utils
 
 BuildRequires: extra-cmake-modules
