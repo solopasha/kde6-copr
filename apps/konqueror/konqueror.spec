@@ -109,8 +109,7 @@ browsing the web in Konqueror.
 
 %build
 %cmake_kf6 \
-  -DQT_MAJOR_VERSION=6 \
-  -Wno-dev \
+  -DUSE_SYSTEM_DICTIONARIES=ON \
   %{?tests:-DBUILD_TESTING:BOOL=ON}
 
 %cmake_build
