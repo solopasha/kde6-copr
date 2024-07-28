@@ -10,6 +10,9 @@ License: GPLv2+ and LGPLv2+ and GFDL
 URL:     https://apps.kde.org/konqueror/
 %apps_source
 
+Patch: https://invent.kde.org/network/konqueror/-/commit/135ed489debdb6eb3d39228c91f9ca34c477c8a2.patch
+Patch: https://invent.kde.org/network/konqueror/-/commit/f2124ac6c9508ce5a7c79e14aa679a5b14027b30.patch
+
 # handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
 %{?qt6_qtwebengine_arches:ExclusiveArch: %{qt6_qtwebengine_arches}}
 
