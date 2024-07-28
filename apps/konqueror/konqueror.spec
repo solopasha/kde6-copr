@@ -3,7 +3,7 @@
 
 Name:    konqueror
 Version: 24.07.80
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: KDE File Manager and Browser
 
 License: GPLv2+ and LGPLv2+ and GFDL
@@ -197,6 +197,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Sun Jul 28 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-2
+- pick upstream commits
+
 * Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
 - Update to 24.07.80
 
