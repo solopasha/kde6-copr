@@ -3,7 +3,7 @@
 
 Name:    konqueror
 Version: 24.07.80
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: KDE File Manager and Browser
 
 License: GPLv2+ and LGPLv2+ and GFDL
@@ -13,6 +13,7 @@ URL:     https://apps.kde.org/konqueror/
 Patch: https://invent.kde.org/network/konqueror/-/commit/135ed489debdb6eb3d39228c91f9ca34c477c8a2.patch
 Patch: https://invent.kde.org/network/konqueror/-/commit/f2124ac6c9508ce5a7c79e14aa679a5b14027b30.patch
 Patch: https://invent.kde.org/network/konqueror/-/commit/88a44f484ebc8b0aa897ceea8cd4089bbc9cb055.patch
+Patch: https://invent.kde.org/network/konqueror/-/commit/540fdb7acc4137c7c18abc1f31823a59c8e594c9.patch
 
 # handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
 %{?qt6_qtwebengine_arches:ExclusiveArch: %{qt6_qtwebengine_arches}}
@@ -198,6 +199,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Mon Jul 29 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-4
+- pick upstream commit
+
 * Mon Jul 29 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-3
 - pick upstream commit
 

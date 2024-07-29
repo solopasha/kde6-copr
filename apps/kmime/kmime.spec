@@ -1,11 +1,13 @@
 Name:    kmime
 Version: 24.07.80
-Release: 1%{?dist}
+Release: 3%{?dist}
 Summary: The KMime Library
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/pim/kmime
 %apps_source
+
+Patch: https://invent.kde.org/pim/kmime/-/commit/563c3ad11cba76801845ffdac6e6cb41458dff1f.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
@@ -59,6 +61,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Mon Jul 29 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-3
+- pick upstream commit
+
 * Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
 - Update to 24.07.80
 
