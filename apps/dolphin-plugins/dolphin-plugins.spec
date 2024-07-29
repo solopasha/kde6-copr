@@ -1,30 +1,34 @@
 Name:    dolphin-plugins
 Summary: Dolphin plugins
 Version: 24.07.80
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/sdk/%{name}
 %apps_source
 
+Patch:   https://invent.kde.org/sdk/dolphin-plugins/-/commit/d374b0eb53599096833a63fdc7dbb877bd00f8aa.patch
+
 BuildRequires:  desktop-file-utils
-BuildRequires:  dolphin-devel >= %{maj_ver_kf6}.%{min_ver_kf6}
+BuildRequires:  dolphin-devel
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(KF6XmlGui)
+
+BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(KF6TextWidgets)
-BuildRequires:  cmake(KF6TextEditor)
-BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Solid)
+BuildRequires:  cmake(KF6TextEditor)
+BuildRequires:  cmake(KF6TextWidgets)
+BuildRequires:  cmake(KF6XmlGui)
+
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Core5Compat)
-BuildRequires:  cmake(Qt6Widgets)
-BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6Widgets)
 
-Requires:       dolphin >= %{maj_ver_kf6}.%{min_ver_kf6}
+Requires:       dolphin >= %{majmin_ver_kf6}
 
 %description
 Dolphin integration for revision control systems, Dropbox, and disk images.
@@ -48,22 +52,26 @@ Dolphin integration for revision control systems, Dropbox, and disk images.
 
 %files -f %{name}.lang
 %license LICENSES/*
+%{_kf6_datadir}/config.kcfg/fileviewgitpluginsettings.kcfg
+%{_kf6_datadir}/config.kcfg/fileviewhgpluginsettings.kcfg
+%{_kf6_datadir}/config.kcfg/fileviewsvnpluginsettings.kcfg
+%{_kf6_datadir}/qlogging-categories6/dolphingit.categories
 %{_kf6_metainfodir}/org.kde.dolphin-plugins.metainfo.xml
-%dir %{_kf6_qtplugindir}/dolphin/
-%dir %{_kf6_qtplugindir}/dolphin/vcs/
+%{_kf6_plugindir}/kfileitemaction/makefileactions.so
+%{_kf6_plugindir}/kfileitemaction/mountisoaction.so
+%dir %{_kf6_qtplugindir}/dolphin
+%dir %{_kf6_qtplugindir}/dolphin/vcs
 %{_kf6_qtplugindir}/dolphin/vcs/fileviewbazaarplugin.so
 %{_kf6_qtplugindir}/dolphin/vcs/fileviewdropboxplugin.so
 %{_kf6_qtplugindir}/dolphin/vcs/fileviewgitplugin.so
-%{_kf6_qtplugindir}/dolphin/vcs/fileviewsvnplugin.so
 %{_kf6_qtplugindir}/dolphin/vcs/fileviewhgplugin.so
-%{_kf6_plugindir}/kfileitemaction/mountisoaction.so
-%{_kf6_plugindir}/kfileitemaction/makefileactions.so
-%{_kf6_datadir}/config.kcfg/fileviewgitpluginsettings.kcfg
-%{_kf6_datadir}/config.kcfg/fileviewsvnpluginsettings.kcfg
-%{_kf6_datadir}/config.kcfg/fileviewhgpluginsettings.kcfg
+%{_kf6_qtplugindir}/dolphin/vcs/fileviewsvnplugin.so
 
 
 %changelog
+* Mon Jul 29 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-2
+- pick upstream commit
+
 * Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
 - Update to 24.07.80
 
