@@ -1,4 +1,4 @@
-%global llama_commit d94c6e0ccbd29ee1ba4f44e9caa8682ad94df9fa
+%global llama_commit 6eeaeba126ff701f3e8f79f246805b7023709972
 %global llama_shortcommit %(c=%{llama_commit}; echo ${c:0:7})
 
 %global gomodulesmode GO111MODULE=on
@@ -8,7 +8,7 @@
 
 # https://github.com/jmorganca/ollama
 %global goipath         github.com/ollama/ollama
-Version:                0.2.8
+Version:                0.3.1
 
 %gometa -L -f
 
@@ -93,7 +93,7 @@ Provides:       bundled(llama.cpp) = 0~1.git%{llama_shortcommit}
 %autosetup -p1 %{forgesetupargs} -a1
 tar -xf %{SOURCE3} -C llm/llama.cpp --strip=1
 %goprep -ke
-sed -i 's,T_CODE=on,T_CODE=on -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -D LLAMA_LTO:BOOL=ON -D CMAKE_BUILD_TYPE=Release,g' llm/generate/gen_linux.sh
+sed -i 's,T_CODE=on,T_CODE=on -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -D GGML_LTO:BOOL=ON -D CMAKE_BUILD_TYPE=Release,g' llm/generate/gen_linux.sh
 
 %build
 %set_build_flags
