@@ -1,11 +1,13 @@
 Name:           lokalize
 Summary:        Computer-aided translation system
 Version:        24.07.80
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 License:        BSD-3-Clause AND GFDL-1.2-or-later AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-or-later
 URL:            https://invent.kde.org/sdk/%{name}
 %apps_source
+
+Patch: https://invent.kde.org/sdk/lokalize/-/commit/3015496e548d7eb36a2eece6bbff2bb11c180c74.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
@@ -88,6 +90,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Wed Jul 31 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-2
+- pick upstream commit
+
 * Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
 - Update to 24.07.80
 

@@ -1,6 +1,6 @@
 Name:           koko
 Version:        24.07.80
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPLv2+ and GPLv3 and LGPLv2 and LGPLv2+ and CC0 and BSD
 Summary:        An Image gallery application
 URL:            https://apps.kde.org/koko/
@@ -10,46 +10,47 @@ Source10:       https://download.geonames.org/export/dump/cities1000.zip
 Source11:       https://download.geonames.org/export/dump/admin1CodesASCII.txt
 Source12:       https://download.geonames.org/export/dump/admin2Codes.txt
 
-BuildRequires: desktop-file-utils
-BuildRequires: extra-cmake-modules
-BuildRequires: gcc-c++
-BuildRequires: kf6-rpm-macros
-BuildRequires: xcb-util-devel
+Patch:          https://invent.kde.org/graphics/koko/-/commit/5e6bbe1d33b6b3e2690d35d963e12b25867569fa.patch
 
-BuildRequires: cmake(KF6Config)
-BuildRequires: cmake(KF6ConfigWidgets)
-BuildRequires: cmake(KF6CoreAddons)
-BuildRequires: cmake(KF6DBusAddons)
-BuildRequires: cmake(KF6Declarative)
-BuildRequires: cmake(KF6FileMetaData)
-BuildRequires: cmake(KF6GuiAddons)
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6KIO)
-BuildRequires: cmake(KF6Notifications)
+BuildRequires:  desktop-file-utils
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  xcb-util-devel
 
-BuildRequires: cmake(Qt6Positioning)
-BuildRequires: cmake(Qt6Qml)
-BuildRequires: cmake(Qt6Quick)
-BuildRequires: cmake(Qt6Sql)
-BuildRequires: cmake(Qt6Svg)
-BuildRequires: cmake(Qt6Test)
-BuildRequires: cmake(Qt6Widgets)
-BuildRequires: qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6ConfigWidgets)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6Declarative)
+BuildRequires:  cmake(KF6FileMetaData)
+BuildRequires:  cmake(KF6GuiAddons)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Notifications)
 
-BuildRequires: cmake(exiv2)
-BuildRequires: cmake(KQuickImageEditor)
+BuildRequires:  cmake(Qt6Positioning)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Sql)
+BuildRequires:  cmake(Qt6Svg)
+BuildRequires:  cmake(Qt6Test)
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  qt6-qtbase-private-devel
 
-# QML module dependencies
-Requires:      kf6-kdeclarative%{?_isa}
-Requires:      kf6-kirigami2%{?_isa}
-Requires:      kf6-kirigami-addons%{?_isa}
-Requires:      kf6-purpose%{?_isa}
-Requires:      kquickimageeditor-qt6%{?_isa}
-Requires:      qt6-qtmultimedia%{?_isa}
-Requires:      qt6-qtdeclarative%{?_isa}
+BuildRequires:  cmake(exiv2)
+BuildRequires:  cmake(KQuickImageEditor)
 
-Obsoletes:     %{name}-devel < 24.05.0-2
+# QML module de pendencies
+Requires:       kf6-kdeclarative%{?_isa}
+Requires:       kf6-kirigami-addons%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-purpose%{?_isa}
+Requires:       kquickimageeditor-qt6%{?_isa}
+Requires:       qt6-qtdeclarative%{?_isa}
+Requires:       qt6-qtmultimedia%{?_isa}
+
+Obsoletes:      %{name}-devel < 24.05.0-2
 
 %description
 %{summary}.
@@ -73,16 +74,19 @@ rm -r %{buildroot}%{_kf6_libdir}/libkokocommon.so
 
 %files -f %{name}.lang
 %{_kf6_bindir}/%{name}
-%{_kf6_datadir}/%{name}
+%{_kf6_datadir}/%{name}/
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/icons/hicolor/*/apps/*%{name}.*
-%{_kf6_datadir}/knotifications6/*
+%{_kf6_datadir}/knotifications6/%{name}.notifyrc
 %{_kf6_libdir}/libkokocommon.so.0.0.1
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 %{_kf6_qmldir}/org/kde/%{name}/
 
 
 %changelog
+* Wed Jul 31 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-2
+- pick upstream commit
+
 * Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
 - Update to 24.07.80
 
