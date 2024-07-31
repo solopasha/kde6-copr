@@ -65,7 +65,7 @@ include integration with office suites
 
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.desktop
 
-%find_lang %{name} --with-kde --with-html --with-man
+%find_lang %{name} --all-name --with-kde --with-html --with-man
 
 %files -f %{name}.lang
 %license LICENSES/GPL-2.0-or-later.txt LICENSES/MIT.txt
