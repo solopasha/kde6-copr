@@ -2,11 +2,15 @@
 
 Name:    kde-connect
 Version: 24.07.80
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv2+
 Summary: KDE Connect client for communication with smartphones
 URL:     https://community.kde.org/KDEConnect
 %apps_source
+
+Patch: https://invent.kde.org/network/kdeconnect-kde/-/commit/8eff1dcca79efc0fe7bf1f6320f40692e0d313d7.patch
+Patch: https://invent.kde.org/network/kdeconnect-kde/-/commit/75ecb0fd74251b4f557820fffedeff426d6f6e01.patch
+Patch: https://invent.kde.org/network/kdeconnect-kde/-/commit/a40b694b5ca301681b281fa3849f5ed5d18094e8.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  firewalld-filesystem
@@ -24,6 +28,7 @@ BuildRequires:  cmake(KF6PulseAudioQt)
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6ConfigWidgets)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6GuiAddons)
@@ -105,7 +110,7 @@ Supplements: (kdeconnectd and nautilus)
 
 
 %build
-%cmake_kf6 -DQT_MAJOR_VERSION=6
+%cmake_kf6
 %cmake_build
 
 
@@ -158,6 +163,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop ||:
 
 
 %changelog
+* Thu Aug 01 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-2
+- pick upstream commits
+
 * Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
 - Update to 24.07.80
 
