@@ -203,9 +203,6 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevil{configcommonprivate,core,ui}.so
 * Thu Feb 09 2023 Marc Deop <marcdeop@fedoraproject.org> - 5.27.0-1
 - 5.27.0
 
-* Thu Jan 19 2023 Marc Deop <marcdeop@fedoraproject.org> - 5.26.90-1
-- 5.26.90
-
 * Fri Jan 20 2023 Fedora Release Engineering <releng@fedoraproject.org> - 5.26.5-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_38_Mass_Rebuild
 

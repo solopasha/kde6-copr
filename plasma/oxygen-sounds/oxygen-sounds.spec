@@ -135,6 +135,3 @@ BuildArch:      noarch
 
 * Thu Aug 04 2022 Justin Zobel <justin@1707.io> - 5.25.4-1
 - Update to 5.25.4
-
-%autochangelog
-
