@@ -1,5 +1,5 @@
 Name:    kinfocenter
-Version: 6.1.3
+Version: 6.1.4
 Release: 1%{?dist}
 Summary: KDE Info Center
 
@@ -61,6 +61,7 @@ Requires: egl-utils
 Requires: fwupd
 Requires: aha
 Requires: clinfo
+Requires: pulseaudio-utils
 
 # When kinfocenter was split out from kde-workspace
 Conflicts:      kde-workspace < 4.11.15-3
@@ -109,6 +110,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 
 
 %changelog
+* Tue Aug 06 2024 Pavel Solovev <daron439@gmail.com> - 6.1.4-1
+- Update to 6.1.4
+
 * Tue Jul 16 2024 Pavel Solovev <daron439@gmail.com> - 6.1.3-1
 - Update to 6.1.3
 

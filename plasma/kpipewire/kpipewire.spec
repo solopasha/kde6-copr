@@ -1,6 +1,6 @@
 Name:    kpipewire
 Summary: Set of convenient classes to use PipeWire in Qt projects
-Version: 6.1.3
+Version: 6.1.4
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only
@@ -102,6 +102,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKPipeWireRecord.so
 
 %changelog
+* Tue Aug 06 2024 Pavel Solovev <daron439@gmail.com> - 6.1.4-1
+- Update to 6.1.4
+
 * Tue Jul 16 2024 Pavel Solovev <daron439@gmail.com> - 6.1.3-1
 - Update to 6.1.3
 

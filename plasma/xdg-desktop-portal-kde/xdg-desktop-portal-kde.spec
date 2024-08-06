@@ -1,13 +1,11 @@
 Name:    xdg-desktop-portal-kde
 Summary: Backend implementation for xdg-desktop-portal using Qt/KF5
-Version: 6.1.3
-Release: 2%{?dist}
+Version: 6.1.4
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
-
-Patch: https://invent.kde.org/plasma/xdg-desktop-portal-kde/-/commit/8fd86c5b0e6d6797bff850947b07e086544cd617.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
@@ -85,6 +83,9 @@ pieces of KDE infrastructure.
 
 
 %changelog
+* Tue Aug 06 2024 Pavel Solovev <daron439@gmail.com> - 6.1.4-1
+- Update to 6.1.4
+
 * Wed Jul 31 2024 Pavel Solovev <daron439@gmail.com> - 6.1.3-2
 - pick upstream commit
 

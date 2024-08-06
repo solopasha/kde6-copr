@@ -1,7 +1,7 @@
 Name:    kgamma
 Summary: A monitor calibration tool
 Epoch:   1
-Version: 6.1.3
+Version: 6.1.4
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later
@@ -55,6 +55,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
+* Tue Aug 06 2024 Pavel Solovev <daron439@gmail.com> - 1:6.1.4-1
+- Update to 6.1.4
+
 * Tue Jul 16 2024 Pavel Solovev <daron439@gmail.com> - 1:6.1.3-1
 - Update to 6.1.3
 

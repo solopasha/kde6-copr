@@ -1,5 +1,5 @@
 Name:           kscreenlocker
-Version:        6.1.3
+Version:        6.1.4
 Release:        1%{?dist}
 Summary:        Library and components for secure lock screen architecture
 
@@ -88,6 +88,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Tue Aug 06 2024 Pavel Solovev <daron439@gmail.com> - 6.1.4-1
+- Update to 6.1.4
+
 * Tue Jul 16 2024 Pavel Solovev <daron439@gmail.com> - 6.1.3-1
 - Update to 6.1.3
 
