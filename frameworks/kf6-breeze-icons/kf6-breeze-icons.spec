@@ -8,7 +8,7 @@
 
 Name:    kf6-%{framework}
 Summary: Breeze icon theme library
-Version: 6.4.0
+Version: 6.5.0
 Release: 1%{?dist}
 
 # skladnik.svg is CC-BY-SA-4.0
@@ -162,6 +162,9 @@ gtk-update-icon-cache --force %{_datadir}/icons/breeze-dark &>/dev/null || :
 %endif
 
 %changelog
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
+- Update to 6.5.0
+
 * Fri Jul 12 2024 Pavel Solovev <daron439@gmail.com> - 6.4.0-1
 - Update to 6.4.0
 

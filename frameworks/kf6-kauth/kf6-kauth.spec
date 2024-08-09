@@ -1,7 +1,7 @@
 %global framework kauth
 
 Name:    kf6-%{framework}
-Version: 6.4.0
+Version: 6.5.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 module to perform actions as privileged user
 # LGPL-2.0-or-later is also in the project's LICENSES, but is unused according to reuse.
@@ -67,6 +67,9 @@ developing applications that use %{name}.
 %{_kf6_libexecdir}/kauth/
 
 %changelog
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
+- Update to 6.5.0
+
 * Fri Jul 12 2024 Pavel Solovev <daron439@gmail.com> - 6.4.0-1
 - Update to 6.4.0
 
