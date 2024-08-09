@@ -1,6 +1,6 @@
 Name:    kqtquickcharts
 Summary: A QtQuick plugin to render beautiful and interactive charts
-Version: 24.07.80
+Version: 24.07.90
 Release: 1%{?dist}
 
 # KDE e.V. may determine that future LGPL versions are accepted
@@ -52,6 +52,9 @@ Provides: %{name}-devel%{?_isa} = %{version}-%{release}
 %{_kf5_libdir}/cmake/KQtQuickCharts/KQtQuickChartsConfig.cmake
 
 %changelog
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
 * Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
 - Update to 24.07.80
 

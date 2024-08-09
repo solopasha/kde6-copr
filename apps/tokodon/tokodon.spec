@@ -1,13 +1,10 @@
 Name:           tokodon
-Version:        24.07.80
-Release:        3%{?dist}
+Version:        24.07.90
+Release:        1%{?dist}
 License:        GPL-2.0-only OR GPL-3.0-only AND CC0-1.0 AND LGPL-2.1-or-later
 Summary:        Kirigami-based mastodon client
 URL:            https://invent.kde.org/network/tokodon
 %apps_source
-
-Patch: https://invent.kde.org/network/tokodon/-/commit/ec998c6895dc15d9f88fe3cb4bc8232dfd08843f.patch
-Patch: https://invent.kde.org/network/tokodon/-/commit/12f890809962f129b4bd9775037852108b155b6e.patch
 
 BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
@@ -90,6 +87,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
 * Sat Aug 03 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-3
 - pick upstream commit
 

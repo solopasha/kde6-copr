@@ -1,6 +1,6 @@
 Name:           koko
-Version:        24.07.80
-Release:        2%{?dist}
+Version:        24.07.90
+Release:        1%{?dist}
 License:        GPLv2+ and GPLv3 and LGPLv2 and LGPLv2+ and CC0 and BSD
 Summary:        An Image gallery application
 URL:            https://apps.kde.org/koko/
@@ -10,7 +10,6 @@ Source10:       https://download.geonames.org/export/dump/cities1000.zip
 Source11:       https://download.geonames.org/export/dump/admin1CodesASCII.txt
 Source12:       https://download.geonames.org/export/dump/admin2Codes.txt
 
-Patch:          https://invent.kde.org/graphics/koko/-/commit/5e6bbe1d33b6b3e2690d35d963e12b25867569fa.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
@@ -84,6 +83,9 @@ rm -r %{buildroot}%{_kf6_libdir}/libkokocommon.so
 
 
 %changelog
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
 * Wed Jul 31 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-2
 - pick upstream commit
 

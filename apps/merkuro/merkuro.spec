@@ -1,17 +1,11 @@
 Name:		    merkuro
-Version:	    24.07.80
-Release:	    2%{?dist}
+Version:	    24.07.90
+Release:	    1%{?dist}
 Summary:	    A calendar application using Akonadi to sync with external services (Nextcloud, GMail, ...)
 
 License:	    GPL-3.0-or-later
 URL:		    https://invent.kde.org/pim/%{name}
 %apps_source
-
-Patch: https://invent.kde.org/pim/merkuro/-/commit/c43e675b55b7c48553d631f4ba1d841016abcb8f.patch
-Patch: https://invent.kde.org/pim/merkuro/-/commit/0600fca144c59f6bf49d4c981afa3fe9defadabc.patch
-Patch: https://invent.kde.org/pim/merkuro/-/commit/cf6ebaa59370459e55e4713a35497550fdc51643.patch
-Patch: https://invent.kde.org/pim/merkuro/-/commit/e964fb0c71ce6501d1020ebd33ba783fbcc95034.patch
-Patch: https://invent.kde.org/pim/merkuro/-/commit/77bb289897c78380c15214d0217fdb758fb4ebb9.patch
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	extra-cmake-modules
@@ -126,6 +120,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 
 
 %changelog
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
 * Sat Jul 27 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-2
 - pick upstream commits
 

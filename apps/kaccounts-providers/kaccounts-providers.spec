@@ -1,5 +1,5 @@
 Name:    kaccounts-providers
-Version: 24.07.80
+Version: 24.07.90
 Release: 1%{?dist}
 Summary: Additional service providers for KAccounts framework
 License: GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -63,6 +63,9 @@ Supplements:    kaccounts-integration-qt6
 
 
 %changelog
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
 * Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
 - Update to 24.07.80
 

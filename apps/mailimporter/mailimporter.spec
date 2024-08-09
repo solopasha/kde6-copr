@@ -1,5 +1,5 @@
 Name:    mailimporter
-Version: 24.07.80
+Version: 24.07.90
 Release: 1%{?dist}
 Summary: Mail importer library
 
@@ -82,6 +82,9 @@ Requires:       %{name}-akonadi%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
 * Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
 - Update to 24.07.80
 

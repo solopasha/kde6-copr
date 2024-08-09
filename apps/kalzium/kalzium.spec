@@ -10,7 +10,7 @@
 
 Name:    kalzium
 Summary: Periodic Table of Elements
-Version: 24.07.80
+Version: 24.07.90
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -139,6 +139,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/*.desktop
 
 
 %changelog
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
 * Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
 - Update to 24.07.80
 

@@ -1,5 +1,5 @@
 Name:           kpublictransport
-Version:        24.07.80
+Version:        24.07.90
 Release:        1%{?dist}
 License:        BSD and CC0-1.0 and LGPLv2+ and MIT and ODbL-1.0
 Summary:        Library to assist with accessing public transport timetables and other data
@@ -55,6 +55,9 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %{_kf6_libdir}/*.so
 
 %changelog
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
 * Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
 - Update to 24.07.80
 
