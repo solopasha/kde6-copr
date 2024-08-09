@@ -9,8 +9,6 @@ URL:            http://www.kdevelop.org/
 
 Source10:       macros.kdevelop
 
-Patch0:         kdevelop-5.2.3-qmake.patch
-
 BuildRequires:  gcc-c++
 BuildRequires:  gcc
 BuildRequires:  extra-cmake-modules
