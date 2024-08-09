@@ -24,9 +24,9 @@ BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6WidgetsAddons)
-# Package requires at least v1.0 of AppStreamQt which isn't out yet. This is optional,
-# and will be enabled once available.
-# BuildRequires:  cmake(AppStreamQt) >= 1.0
+%if 0%{?fedora} >= 40
+BuildRequires:  cmake(AppStreamQt)
+%endif
 BuildRequires:  cmake(packagekitqt6)
 BuildRequires:  cmake(KF6ColorScheme)
 Requires:  kf6-filesystem
@@ -69,13 +69,14 @@ The %{name}-devel package contains files to develop for %{name}.
 %{_kf6_datadir}/knotifications6/plasma_workspace.notifyrc
 %dir %{_kf6_libexecdir}/kpackagehandlers
 %{_kf6_libexecdir}/kpackagehandlers/knshandler
+%if 0%{?fedora} >= 40
+%{_kf6_libexecdir}/kpackagehandlers/appstreamhandler
+%endif
 
 %files libs
 %{_kf6_libdir}/libKF6Style.so.6
 %{_kf6_libdir}/libKF6Style.so.%{version}
 %{_kf6_plugindir}/FrameworkIntegrationPlugin.so
-# Version in fedora is too old, uncomment when it is updated
-#%%{_kf6_libexecdir}/kpackagehandlers/appstreamhandler
 
 %files devel
 %{_kf6_includedir}/FrameworkIntegration/
