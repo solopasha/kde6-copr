@@ -1,0 +1,13 @@
+diff --git a/libkonqsettings/src/konqueror.kcfg b/libkonqsettings/src/konqueror.kcfg
+index cc97d83..5a0bc97 100644
+--- a/libkonqsettings/src/konqueror.kcfg
++++ b/libkonqsettings/src/konqueror.kcfg
+@@ -410,7 +410,7 @@
+ 
+   <group name="Reusing" >
+     <entry key="AlwaysHavePreloaded" type="Bool">
+-      <default>true</default>
++      <default>false</default>
+       <label></label>
+       <whatsthis></whatsthis>
+     </entry>

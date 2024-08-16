@@ -1,5 +1,9 @@
+%global commit0 5b3e650854e44942dbf47dd19698dc34a2330a00
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    neochat
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 License: GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND BSD-3-Clause
@@ -89,8 +93,8 @@ instant messaging. It is a fork of Spectral, using KDE frameworks, most
 notably Kirigami, KConfig and KI18n.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6 -DCMAKE_BUILD_TYPE=Release
@@ -107,17 +111,32 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %files -f %{name}.lang
 %license LICENSES/*
 %doc README.md
-%{_bindir}/%{name}
-%{_datadir}/applications/*.desktop
-%{_datadir}/icons/hicolor/*/apps/*
+%{_kf6_bindir}/%{name}
+%{_kf6_datadir}/applications/*.desktop
+%{_kf6_datadir}/icons/hicolor/*/apps/*
 %{_kf6_datadir}/knotifications6/%{name}.notifyrc
 %{_kf6_datadir}/krunner/dbusplugins/*.desktop
 %{_kf6_datadir}/qlogging-categories6/neochat.categories
-%{_kf6_plugindir}/purpose/neochatplugin.so
-%{_mandir}/man1/neochat.1*
-%{_metainfodir}/*.appdata.xml
+%{_kf6_mandir}/man1/neochat.1*
+%{_kf6_metainfodir}/*.appdata.xml
+%{_kf6_plugindir}/purpose/neochatshareplugin.so
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Mon Jul 29 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-3
+- pick upstream commits
+
+* Sat Jul 27 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-2
+- pick upstream commits
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

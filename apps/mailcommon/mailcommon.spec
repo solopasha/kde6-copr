@@ -1,13 +1,15 @@
+%global commit0 de343ec6b50433c845dd62f76e28d8475b57cfa1
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    mailcommon
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 Summary: Mail applications support library
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/pim/mailcommon
 %apps_source
-
-
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
@@ -74,8 +76,8 @@ Requires:       cmake(KF6Completion)
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -104,6 +106,15 @@ Requires:       cmake(KF6Completion)
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

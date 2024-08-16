@@ -1,7 +1,11 @@
+%global commit0 a5ded3ec32312eb1f4c196a1e583f62c9ad532a3
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    k3b
 Summary: CD/DVD/Blu-ray burning application
 Epoch:   1
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -16,38 +20,37 @@ Patch10: prefer-wodim.patch
 
 ## downstream patches
 
-BuildRequires: gcc-c++
 BuildRequires: cmake
 BuildRequires: desktop-file-utils
-BuildRequires: libappstream-glib
 BuildRequires: extra-cmake-modules
-BuildRequires: kf5-rpm-macros
+BuildRequires: gcc-c++
+BuildRequires: kf6-rpm-macros
+BuildRequires: libappstream-glib
 
-BuildRequires: cmake(Qt5Core)
-BuildRequires: cmake(Qt5DBus)
-BuildRequires: cmake(Qt5Gui)
+BuildRequires: cmake(Qt6Core)
+BuildRequires: cmake(Qt6DBus)
+BuildRequires: cmake(Qt6Gui)
+BuildRequires: cmake(Qt6WebEngineWidgets)
 
-BuildRequires: cmake(Qt5WebEngineWidgets)
+BuildRequires: cmake(KF6Archive)
+BuildRequires: cmake(KF6Auth)
+BuildRequires: cmake(KF6Config)
+BuildRequires: cmake(KF6CoreAddons)
+BuildRequires: cmake(KF6DocTools)
+BuildRequires: cmake(KF6FileMetaData)
+BuildRequires: cmake(KF6I18n)
+BuildRequires: cmake(KF6IconThemes)
+BuildRequires: cmake(KF6JobWidgets)
+BuildRequires: cmake(KF6KCMUtils)
+BuildRequires: cmake(KF6KIO)
+BuildRequires: cmake(KF6NewStuff)
+BuildRequires: cmake(KF6Notifications)
+BuildRequires: cmake(KF6NotifyConfig)
+BuildRequires: cmake(KF6Solid)
+BuildRequires: cmake(KF6WidgetsAddons)
+BuildRequires: cmake(KF6XmlGui)
 
-BuildRequires: cmake(KF5Archive)
-BuildRequires: cmake(KF5Auth)
-BuildRequires: cmake(KF5Config)
-BuildRequires: cmake(KF5CoreAddons)
-BuildRequires: cmake(KF5DocTools)
-BuildRequires: cmake(KF5FileMetaData)
-BuildRequires: cmake(KF5I18n)
-BuildRequires: cmake(KF5IconThemes)
-BuildRequires: cmake(KF5JobWidgets)
-BuildRequires: cmake(KF5KCMUtils)
-BuildRequires: cmake(KF5KIO)
-BuildRequires: cmake(KF5NewStuff)
-BuildRequires: cmake(KF5Notifications)
-BuildRequires: cmake(KF5NotifyConfig)
-BuildRequires: cmake(KF5Solid)
-BuildRequires: cmake(KF5WidgetsAddons)
-BuildRequires: cmake(KF5XmlGui)
-
-BuildRequires: cmake(KF5Cddb)
+BuildRequires: cmake(KCddb6)
 BuildRequires: ffmpeg-free-devel
 BuildRequires: lame-devel
 BuildRequires: libmpcdec-devel
@@ -58,11 +61,8 @@ BuildRequires: pkgconfig(mad)
 BuildRequires: pkgconfig(samplerate)
 BuildRequires: pkgconfig(sndfile)
 BuildRequires: pkgconfig(taglib)
-BuildRequires: pkgconfig(vorbisenc) pkgconfig(vorbisfile)
-BuildRequires: pkgconfig(taglib)
-
-Obsoletes: k3b-common < 1:17.03
-Provides:  k3b-common = %{epoch}:%{version}-%{release}
+BuildRequires: pkgconfig(vorbisenc)
+BuildRequires: pkgconfig(vorbisfile)
 
 Requires: %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 
@@ -103,16 +103,12 @@ Requires: %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
-%cmake_kf5 \
-  -DK3B_BUILD_FFMPEG_DECODER_PLUGIN:BOOL=ON \
-  -DK3B_BUILD_LAME_ENCODER_PLUGIN:BOOL=ON \
-  -DK3B_BUILD_MAD_DECODER_PLUGIN:BOOL=ON
-
+%cmake_kf6
 %cmake_build
 
 
@@ -123,43 +119,52 @@ Requires: %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf5_metainfodir}/org.kde.k3b.appdata.xml
-desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.k3b.desktop
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.desktop
 
 
 %files -f %{name}.lang
 %doc README*
 %license LICENSES/*
-%{_kf5_bindir}/k3b
-%{_kf5_metainfodir}/org.kde.k3b.appdata.xml
-%{_kf5_datadir}/applications/org.kde.k3b.desktop
-%{_kf5_datadir}/knotifications5/k3b.*
-%{_datadir}/knsrcfiles/k3btheme.knsrc
-%{_kf5_datadir}/konqsidebartng/virtual_folders/services/*.desktop
-%{_kf5_datadir}/solid/actions/k3b*.desktop
-%{_kf5_datadir}/mime/packages/x-k3b.xml
-%{_kf5_datadir}/icons/hicolor/*/*/*
-%{_kf5_datadir}/k3b/
-%{_kf5_datadir}/kio/servicemenus/*
-%{_kf5_datadir}/qlogging-categories5/k3b.categories
-%{_libexecdir}/kf5/kauth/k3bhelper
-%{_datadir}/dbus-1/system-services/org.kde.k3b.service
-%{_datadir}/dbus-1/system.d/org.kde.k3b.conf
-%{_datadir}/polkit-1/actions/org.kde.k3b.policy
+%{_kf6_bindir}/k3b
+%{_kf6_datadir}/applications/org.kde.k3b.desktop
+%{_kf6_datadir}/dbus-1/system-services/org.kde.k3b.service
+%{_kf6_datadir}/dbus-1/system.d/org.kde.k3b.conf
+%{_kf6_datadir}/icons/hicolor/*/*/*
+%{_kf6_datadir}/k3b/
+%{_kf6_datadir}/kio/servicemenus/*
+%{_kf6_datadir}/knotifications6/k3b.*
+%{_kf6_datadir}/knsrcfiles/k3btheme.knsrc
+%{_kf6_datadir}/konqsidebartng/virtual_folders/services/*.desktop
+%{_kf6_datadir}/mime/packages/x-k3b.xml
+%{_kf6_datadir}/polkit-1/actions/org.kde.k3b.policy
+%{_kf6_datadir}/qlogging-categories6/k3b.categories
+%{_kf6_datadir}/solid/actions/k3b*.desktop
+%{_kf6_libexecdir}/kauth/k3bhelper
+%{_kf6_metainfodir}/org.kde.k3b.appdata.xml
 
 %files libs
-%{_kf5_libdir}/libk3bdevice.so.*
-%{_kf5_libdir}/libk3blib.so.*
-%{_kf5_qtplugindir}/k3b_plugins
-%{_kf5_plugindir}/kio/videodvd.so
+%{_kf6_libdir}/libk3bdevice.so.*
+%{_kf6_libdir}/libk3blib.so.*
+%{_kf6_plugindir}/kio/videodvd.so
+%{_kf6_qtplugindir}/k3b_plugins
 
 %files devel
 %{_includedir}/k3b*.h
-%{_kf5_libdir}/libk3bdevice.so
-%{_kf5_libdir}/libk3blib.so
+%{_kf6_libdir}/libk3bdevice.so
+%{_kf6_libdir}/libk3blib.so
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 1:24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 1:24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 1:24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 1:24.05.2-1
 - Update to 24.05.2
 

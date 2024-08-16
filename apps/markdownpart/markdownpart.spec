@@ -1,8 +1,12 @@
+%global commit0 13a839d1896575523a0041b5d3d630564038f133
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global app_id  org.kde.markdownpart
 
 Name:           markdownpart
 Summary:        Markdown KPart
-Version:        24.05.2
+Version:        24.08.0
 Release:        1%{?dist}
 License:        LGPL-2.1-or-later
 URL:            https://apps.kde.org/categories/utilities/
@@ -24,8 +28,8 @@ display files in Markdown format in the target format.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -51,6 +55,15 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/%{app_id}.
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

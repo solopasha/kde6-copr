@@ -1,3 +1,7 @@
+%global commit0 ebe1957e53633b0b9bf97626f4214bc3dd349fe2
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global base_name akonadi
 %global mysql mysql
 
@@ -7,7 +11,7 @@
 
 Name:    akonadi-server
 Summary: PIM Storage Service
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-KDE-Accepted-GPL AND MIT
@@ -117,7 +121,7 @@ See also: %{_sysconfdir}/akonadi/mysql-global.conf
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
 
@@ -249,6 +253,15 @@ fi
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

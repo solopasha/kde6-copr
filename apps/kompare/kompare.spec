@@ -1,34 +1,38 @@
-Name:    kompare
-Summary: Diff tool
-Version: 24.05.2
-Release: 1%{?dist}
+%global commit0 bad80bbac06a9d7aa9390d63e7a35d9a42a7d10f
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
 
-License: (GPL-2.0-only OR GPL-3.0-only) AND GPL-2.0-or-later and GFDL
-URL:     https://apps.kde.org/kompare/
+Name:           kompare
+Summary:        Diff tool
+Version:        24.08.0
+Release:        1%{?dist}
+
+License:        (GPL-2.0-only OR GPL-3.0-only) AND GPL-2.0-or-later and GFDL
+URL:            https://apps.kde.org/kompare
 %apps_source
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
-BuildRequires:  kf5-rpm-macros
+BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 
-BuildRequires:  cmake(KF5Codecs)
-BuildRequires:  cmake(KF5Config)
-BuildRequires:  cmake(KF5CoreAddons)
-BuildRequires:  cmake(KF5DocTools)
-BuildRequires:  cmake(KF5I18n)
-BuildRequires:  cmake(KF5IconThemes)
-BuildRequires:  cmake(KF5JobWidgets)
-BuildRequires:  cmake(KF5Parts)
-BuildRequires:  cmake(KF5TextEditor)
-BuildRequires:  cmake(KF5WidgetsAddons)
+BuildRequires:  cmake(KF6Codecs)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6IconThemes)
+BuildRequires:  cmake(KF6JobWidgets)
+BuildRequires:  cmake(KF6Parts)
+BuildRequires:  cmake(KF6TextEditor)
+BuildRequires:  cmake(KF6WidgetsAddons)
 
-BuildRequires:  cmake(Qt5Core)
-BuildRequires:  cmake(Qt5PrintSupport)
-BuildRequires:  cmake(Qt5Widgets)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6PrintSupport)
+BuildRequires:  cmake(Qt6Widgets)
 
-BuildRequires:  cmake(LibKompareDiff2)
+BuildRequires:  cmake(KompareDiff2)
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
@@ -37,28 +41,27 @@ Provides:       mergetool
 %description
 Tool to visualize changes between two versions of a file
 
-%package libs
-Summary: Runtime libraries for %{name}
-Requires:  %{name} = %{version}-%{release}
-%description libs
+%package        libs
+Summary:        Runtime libraries for %{name}
+%description    libs
 This package contains shared libraries for %{name}.
 
-%package devel
-Summary: Developer files for %{name}
-Requires:  %{name}-libs%{?_isa} = %{version}-%{release}
-Requires:  qt5-qtbase-devel
-%description devel
+%package        devel
+Summary:        Developer files for %{name}
+Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+Requires:       qt6-qtbase-devel
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
-%cmake_kf5
+%cmake_kf6
 %cmake_build
 
 
@@ -69,32 +72,41 @@ developing applications that use %{name}.
 
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.xml
-desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kompare.desktop
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.desktop
 
 
 %files -f %{name}.lang
 %doc README
 %license LICENSES/*
-%{_bindir}/kompare
-%{_datadir}/applications/org.kde.kompare.desktop
-%{_datadir}/icons/hicolor/*/apps/kompare.*
-%{_datadir}/kio/servicemenus/kompare.desktop
-%{_kf5_datadir}/qlogging-categories5/kompare.categories
-%{_kf5_metainfodir}/org.kde.kompare.appdata.xml
+%{_kf6_bindir}/%{name}
+%{_kf6_datadir}/applications/org.kde.%{name}.desktop
+%{_kf6_datadir}/icons/hicolor/*/apps/%{name}.*
+%{_kf6_datadir}/kio/servicemenus/%{name}.desktop
+%{_kf6_datadir}/qlogging-categories6/%{name}.categories
+%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %files libs
-%{_libdir}/libkomparedialogpages.so.*
-%{_libdir}/libkompareinterface.so.*
-%{_kf5_plugindir}/parts/komparenavtreepart.so
-%{_kf5_plugindir}/parts/komparepart.so
+%{_kf6_libdir}/libkomparedialogpages.so.*
+%{_kf6_libdir}/libkompareinterface.so.*
+%{_kf6_plugindir}/parts/komparenavtreepart.so
+%{_kf6_plugindir}/parts/komparepart.so
 
 %files devel
-%{_includedir}/kompare/
-%{_libdir}/libkompareinterface.so
+%{_includedir}/%{name}/
+%{_kf6_libdir}/libkompareinterface.so
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

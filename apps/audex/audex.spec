@@ -1,5 +1,9 @@
+%global commit0 d871ca16b832053df7c2e4173c0232af5ef40652
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:           audex
-Version:        24.05.2
+Version:        24.08.0
 Release:        1%{?dist}
 Summary:        Audio ripper
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-2.0-or-later
@@ -42,7 +46,7 @@ Audex is an audio grabber tool for CD-ROM drives built with KDE Frameworks.
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -p1
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -68,6 +72,15 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.au
 %{_kf6_metainfodir}/org.kde.audex.appdata.xml
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

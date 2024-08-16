@@ -1,9 +1,12 @@
+%global commit0 3466bb73f8b81b5cc462b9957f6afefa0a70166e
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 ## FIXME: many tests require GLX, which doesn't appear to work as-is under koji
 #global tests 1
-%global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
 
 Name:    konqueror
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 Summary: KDE File Manager and Browser
 
@@ -20,7 +23,7 @@ URL:     https://apps.kde.org/konqueror/
 # toggle 'Always try to have one preloaded instance' to default off
 # https://bugzilla.redhat.com/1523082
 # https://bugs.kde.org/398996
-Patch101: konqueror-18.12.2-preloaded.patch
+Patch101: konqueror-24.07.80-preloaded.patch
 
 ## Fedora specific patches
 
@@ -104,14 +107,13 @@ browsing the web in Konqueror.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
 %cmake_kf6 \
-  -DQT_MAJOR_VERSION=6 \
-  -Wno-dev \
+  -DUSE_SYSTEM_DICTIONARIES=ON \
   %{?tests:-DBUILD_TESTING:BOOL=ON}
 
 %cmake_build
@@ -158,6 +160,7 @@ xvfb-run -a bash -c "%ctest" || :
 
 %files libs
 %{_kf6_libdir}/libKF6Konq.so.{7,*.*}
+%{_kf6_libdir}/libKF6KonqSettings.so.{7,*.*}
 %{_kf6_libdir}/libkonqsidebarplugin.so.{6,*.*}
 %{_kf6_libdir}/libkonquerorprivate.so.{5,*.*}
 %{_kf6_plugindir}/kfileitemaction/akregatorplugin.so
@@ -178,12 +181,13 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_qtplugindir}/webenginepart/kpartplugins/*
 
 %files devel
-#{_includedir}/konqsidebarplugin.h
-%{_kf6_includedir}/asyncselectorinterface.h
 %{_kf6_includedir}/konq*.h
 %{_kf6_includedir}/libkonq_export.h
+%{_kf6_includedir}/libkonqsettings_export.h
+%{_kf6_includedir}/selectorinterface.h
 %{_kf6_libdir}/cmake/KF6Konq/
 %{_kf6_libdir}/libKF6Konq.so
+%{_kf6_libdir}/libKF6KonqSettings.so
 %{_kf6_libdir}/libkonqsidebarplugin.so
 
 %files -n kwebenginepart
@@ -194,6 +198,24 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Mon Jul 29 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-4
+- pick upstream commit
+
+* Mon Jul 29 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-3
+- pick upstream commit
+
+* Sun Jul 28 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-2
+- pick upstream commits
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

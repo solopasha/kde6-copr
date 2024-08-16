@@ -1,12 +1,15 @@
+%global commit0 9e6d0125062ce511a2cb8e61ba97fcbdf3894880
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    kcron
 Summary: Cron KDE configuration module
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 License: GPLv2+
 URL:     https://invent.kde.org/system/%{name}
 %apps_source
-
 
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
@@ -28,8 +31,8 @@ Systemsettings module for the cron task scheduler.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -57,6 +60,15 @@ Systemsettings module for the cron task scheduler.
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

@@ -1,20 +1,16 @@
-%global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
+%global commit0 96ee443c04e9d61e212da224a08f0187e14b7975
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 
 Name:    kdepim-addons
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 Summary: Additional plugins for KDE PIM applications
 
 License: GPLv2 and LGPLv2+
 URL:     https://invent.kde.org/pim/%{name}
 %apps_source
-
-# handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
-# libphonenumber is not build for i686 anymore (i686 is not in
-# %%{java_arches}), see https://fedoraproject.org/wiki/Changes/Drop_i686_JDKs
-# Since libphonenumber is a transitive dependency of this package, we must
-# drop i686 support as well
-%{?qt6_qtwebengine_arches:ExclusiveArch: %(echo %{qt6_qtwebengine_arches} | sed -e 's/i686//g')}
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
@@ -82,7 +78,6 @@ BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  pkgconfig(libmarkdown)
 
-
 # at least until we have subpkgs for each -- rex
 Supplements:    kaddressbook
 Supplements:    kmail
@@ -93,8 +88,8 @@ Supplements:    korganizer
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -111,7 +106,6 @@ Supplements:    korganizer
 
 %files -f %{name}.lang
 %license LICENSES/*
-%{_kf6_datadir}/icons/hicolor/scalable/status/moon-phase-*
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
 %{_kf6_libdir}/libadblockplugin.so.6{,.*}
 %{_kf6_libdir}/libakonadidatasetools.so.6{,.*}
@@ -120,8 +114,6 @@ Supplements:    korganizer
 %{_kf6_libdir}/libfolderconfiguresettings.so.6{,.*}
 %{_kf6_libdir}/libkmailconfirmbeforedeleting.so.6{,.*}
 %{_kf6_libdir}/libopenurlwithconfigure.so.6{,.*}
-#%%{_kf6_libdir}/libscamconfiguresettings.so.5*
-#%%{_kf6_libdir}/libscamconfiguresettings.so.6
 
 %{_kf6_qmldir}/org/kde/plasma/PimCalendars/
 %{_kf6_qtplugindir}/pim6/mailtransport/mailtransport_sendplugin.so
@@ -144,9 +136,6 @@ Supplements:    korganizer
 %{_kf6_sysconfdir}/xdg/kmail.antispamrc
 %{_kf6_sysconfdir}/xdg/kmail.antivirusrc
 
-# KOrganizer
-%{_kf6_qtplugindir}/pim6/korganizer/
-
 # PimCommon
 %{_kf6_libdir}/libshorturlpluginprivate.so*
 %{_kf6_qtplugindir}/pim6/pimcommon/
@@ -156,6 +145,15 @@ Supplements:    korganizer
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

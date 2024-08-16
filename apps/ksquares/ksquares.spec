@@ -1,12 +1,15 @@
+%global commit0 b5a156ac6e6eaba3bc73514f95acede6108f932b
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    ksquares
 Summary: Connect the dots to create squares
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
 URL:     https://invent.kde.org/games/%{name}
 %apps_source
-
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
@@ -51,8 +54,8 @@ the most area with the squares of player's own color.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -83,6 +86,15 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

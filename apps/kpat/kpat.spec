@@ -1,13 +1,16 @@
+%global commit0 15f961f5f56c1f42a24aaaccc5f20cabc52fedab
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 
 Name:    kpat
 Summary: A selection of solitaire card games
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
 URL:     https://invent.kde.org/games/%{name}
 %apps_source
-
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
@@ -56,8 +59,8 @@ special order — moving, turning and reordering them.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -93,6 +96,15 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

@@ -1,13 +1,16 @@
+%global commit0 c78801c0c74de1376b0631e5c14b6747a6631cc3
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global base_name kdesdk-kio
 Name:    kdesdk-kioslaves
 Summary: KDESDK KIOslaves
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 License: GPLv2 and GPLv2+
 URL:     https://cgit.kde.org/%{name}.git
 %apps_source
-
 
 BuildRequires: perl-generators
 
@@ -31,8 +34,8 @@ KDE SDK kioslaves:
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1 -n %{base_name}-%{version}
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -53,6 +56,15 @@ KDE SDK kioslaves:
 
 
 %changelog	
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

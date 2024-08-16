@@ -1,3 +1,7 @@
+%global commit0 c6da753f4a95338183398785ba0f4ac544c44eeb
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 ## uncomment to enable bootstrap mode
 #global bootstrap 1
 
@@ -13,7 +17,7 @@
 
 Name:    okular
 Summary: A document viewer
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 License: GPL-2.0-only
@@ -130,8 +134,8 @@ Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %if ! 0%{?mobile}
 # disable/omit mobile, it doesn't work -- rex
@@ -193,7 +197,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.ok
 %{_kf6_libdir}/libOkular6Core.so
 
 %files libs
-%{_kf6_libdir}/libOkular6Core.so.1{,.*}
+%{_kf6_libdir}/libOkular6Core.so.2{,.*}
 
 %files part -f okular-part.lang
 %if 0%{?fedora}
@@ -206,6 +210,15 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.ok
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

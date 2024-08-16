@@ -1,13 +1,15 @@
+%global commit0 0709c2211f03e6064f818b7a39698955c402744d
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    spectacle
 Summary: Screenshot capture utility
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 License: GPLv2
 URL:     https://www.kde.org/applications/graphics/spectacle/
 %apps_source
-
-## upstream patches
 
 BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib
@@ -25,7 +27,9 @@ BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6KIO)
 BuildRequires: cmake(KF6KirigamiPlatform)
 BuildRequires: cmake(KF6Notifications)
+BuildRequires: cmake(KF6Prison)
 BuildRequires: cmake(KF6Purpose)
+BuildRequires: cmake(KF6StatusNotifierItem)
 BuildRequires: cmake(KF6WindowSystem)
 BuildRequires: cmake(KF6XmlGui)
 
@@ -58,8 +62,8 @@ BuildRequires:  systemd-devel
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -76,6 +80,7 @@ BuildRequires:  systemd-devel
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.spectacle.appdata.xml
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.spectacle.desktop
+
 
 %files -f %{name}.lang
 %license LICENSES/*
@@ -96,6 +101,18 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.spectacle
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Tue Jul 30 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-2
+- pick upstream commit
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

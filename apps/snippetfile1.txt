@@ -1,0 +1,750 @@
+accessibility-inspector release/24.08
+c18862c681c3fa3b70478da3ca24685fe537b6be
+c07526a0f7691fab4d1068fdae6b4a7132908e0b211aea1102fa0b5e65fc9856  sources/accessibility-inspector-24.08.0.tar.xz
+akonadi release/24.08
+ebe1957e53633b0b9bf97626f4214bc3dd349fe2
+e140f6820aa596ea48ce623358bdf584942d6e2a08530b9b43de680801568945  sources/akonadi-24.08.0.tar.xz
+akonadi-calendar release/24.08
+8a1cca6f813e60c9ba27c97acbc1919cda43a3a8
+cb354795a681770c865544f5b0b2786042674b3a9f442a0daff04ec91c222d97  sources/akonadi-calendar-24.08.0.tar.xz
+akonadi-calendar-tools release/24.08
+4771442429ed8f3c1281b73c5572e5ac4988de97
+44863627bcb44c067feadba935da5b34c23f1b66d750ce98d3b18000f1c233f9  sources/akonadi-calendar-tools-24.08.0.tar.xz
+akonadiconsole release/24.08
+5eba6f328a1f627d909ba1ba4ac2fd19f172d9ae
+8059adeaccf58c2fe7182f0f93be1ca71908412670c96826d0d9302d6465bbdd  sources/akonadiconsole-24.08.0.tar.xz
+akonadi-contacts release/24.08
+1e112bbf9650025fe3fe982f91c21334da845955
+2b0f854f82900aa202dc5f16ac01effd687217b2d135ff51a0878de07aafb451  sources/akonadi-contacts-24.08.0.tar.xz
+akonadi-import-wizard release/24.08
+6363695b54c4c771c2b122c2e955d1a8bbb76c01
+06feaef071635a2e583330708a9f255afce9d4918997946a7d4c20ab138159aa  sources/akonadi-import-wizard-24.08.0.tar.xz
+akonadi-mime release/24.08
+bd5c7bb6e160f41e931655918e7365883a0e8c19
+eb0829466f694daf0c4ce047073c299fd3e24be72447bdf407561822bcf1022c  sources/akonadi-mime-24.08.0.tar.xz
+akonadi-notes release/24.08
+0bc0683cf87a1665b68b1e83e9cc9775a7dfae2c
+13279448fb1186a3553f7012909b943f4cf476ca5b11e4edc7e70bdf6940b78d  sources/akonadi-notes-24.08.0.tar.xz
+akonadi-search release/24.08
+887e91aa893e7c42708a83ba4bf0f3040e69e3b5
+883c00f1e1c07828606d0ff20d85819d24b1023e9cbf6d9feef2cab1e2909eb7  sources/akonadi-search-24.08.0.tar.xz
+akregator release/24.08
+224a0820f0dda00377c9e08027822f4a1a87162c
+b7035b4b644fda7e95417ed5706e44a7331a7728bd506d99650ba1bfb23072d0  sources/akregator-24.08.0.tar.xz
+alligator release/24.08
+c1d10ad5e94e8fb1d1ec7d572515765d457f7c93
+8152a6b88ffeeca365c038e062ed78e65a97ddb96ab9988975d784e59dce350d  sources/alligator-24.08.0.tar.xz
+analitza release/24.08
+02be82178c91cdadc03321f6002399244dac6b51
+3eedccc24a1938e9d3dbd3225225feecb2ae904e799ab7508083753f5cbec2cc  sources/analitza-24.08.0.tar.xz
+angelfish release/24.08
+cf28899a2785f015651243b7ebd5ad36428d9da7
+8ce51d5b8dc01dc0754ce15331e88ab1b344942a19c5082a2c54a809c068ee74  sources/angelfish-24.08.0.tar.xz
+arianna release/24.08
+0563a85e26374c6699b4910fbbb7bbf4ba047c2c
+0d3aea7d6acd4a0ec074cd7a3f88c6650d58e02306be30fa43f0ac3beedf2cab  sources/arianna-24.08.0.tar.xz
+ark release/24.08
+4d761bfc454795f85640c63cfd70abc5acd781e1
+c188c30f74c87918b9a102476e1945398176df1ecf9c07e4b75e1183218b34ad  sources/ark-24.08.0.tar.xz
+artikulate release/24.08
+cadab6565b85f898e792df312dd6a35ce22c7351
+75aba02bbe5af4e15d5c5548a56d4796711b5198410c0b30352318a3a482b891  sources/artikulate-24.08.0.tar.xz
+audex release/24.08
+d871ca16b832053df7c2e4173c0232af5ef40652
+693a41087eadf2db4f6992f786cba2db2e1e3a65da831ea0dc78be8739732023  sources/audex-24.08.0.tar.xz
+audiocd-kio release/24.08
+0837b81bf8976da83234ee3c225256c7adc2b193
+e7f2d9b34979ca95c01c4ca516b4f88e62b6c1bb91436fdb1aa1fc0d4f2b2e4b  sources/audiocd-kio-24.08.0.tar.xz
+audiotube release/24.08
+44f5026054d0954916a78fcf742bead9bc69a450
+05cd5523ba3b3067c05f31a763c8081fcc9b441b0b1054ed789704348be29709  sources/audiotube-24.08.0.tar.xz
+baloo-widgets release/24.08
+e63489bdc16a394877eb34c5c2b197966013a238
+a047d911605abe7dbd1c747443be413b99f95633b23e80dbd5b702295577332b  sources/baloo-widgets-24.08.0.tar.xz
+blinken release/24.08
+2ccfb130cf5b52e4a3dd9ac020916f998f3536d0
+a3d558f9eb128c800ce1474457f14dc7703eb4f37ceab269b01aa3b1a5dbb83b  sources/blinken-24.08.0.tar.xz
+bomber release/24.08
+37dfb0b4987c231e907bcd705e0e51c799e475fe
+c89767ce1d0acd1a9f2bb0215d3723c673d3f4500d0b85dfafcd23e0deda8adf  sources/bomber-24.08.0.tar.xz
+bovo release/24.08
+f2a391de3920070324d57010a8b059009b1113dd
+06a0b784b29d3f64c1ad58af8cd210de29670bea74bb3573375c8f053ba0a7a1  sources/bovo-24.08.0.tar.xz
+calendarsupport release/24.08
+99575c86129517cc6695f96d2552f3e8e4b16d1f
+4a305613d2570f279a2b10bbe0de2e7370521fcee4a84777e09c5ea039e7c30d  sources/calendarsupport-24.08.0.tar.xz
+calindori release/24.08
+63012dc3be7521285224729c59cc3cdcebd689fe
+453b985529673f058473910993614d2467eaed5c3aa1eb06fca0928fe37ec9f8  sources/calindori-24.08.0.tar.xz
+cantor release/24.08
+f1a0e6ae9fc8ab03eff690784be35648e7a9819b
+5292977d1a96e30d62011532aa642d3071b751f3c9656371401e0ee8d9e7092f  sources/cantor-24.08.0.tar.xz
+cervisia release/24.08
+42f6fd668856ad5809b58329165207079c231561
+aa63c6f874731a33b0fae82bdc8bafdb2982817818ed06b96ccb28f6b6d1d567  sources/cervisia-24.08.0.tar.xz
+colord-kde release/24.08
+806ba79cd615c67659eb1bc92e8a36a28d90c567
+f555b440f22ef6b8aac717030b11a1c79db3808b7d1d466dcaf4d839f39824ab  sources/colord-kde-24.08.0.tar.xz
+dolphin release/24.08
+d9612a79bcab5e445863d6327b2774f1772534ee
+4a9d52dcd6513d2193c0c34944b270b399150f1da4ff37da06a0f8af87f6d8d7  sources/dolphin-24.08.0.tar.xz
+dolphin-plugins release/24.08
+b4ca98fb9c32ccbf7e975a42445a2ef885811b2d
+3e9c27f667cdb30b7b3264557e1aa3e3f04664615585d024797c2ca4e74e02df  sources/dolphin-plugins-24.08.0.tar.xz
+dragon release/24.08
+192dbff1deb2358325db11548e36446940b97fc0
+e3e3cb8d979e99e4c8e823263ac7652e7852554fc7a17cc31bc65ea06f0ba4a0  sources/dragon-24.08.0.tar.xz
+elisa release/24.08
+cce17238713deca798c55d56e6fcd0dccd5bda52
+7f1ceb99a4ae57a1b609fee4f4903b0243f3cc84a854e1d41cd222a42085ee81  sources/elisa-24.08.0.tar.xz
+eventviews release/24.08
+5e4bf6aabf856131cf1af3c1363ebcafb7b54e44
+f2d6f3d490aaa791a2b94ed2a756725e75702b9fc7b02a6604b3b9b95d852862  sources/eventviews-24.08.0.tar.xz
+falkon release/24.08
+d1491d3f8c561b33fc0365f2eb713bc9516d4f10
+8d23b4d0d58afafb687c38bd8e2a9b8dd58b569c6635ce7c128bf6d6a75ca49d  sources/falkon-24.08.0.tar.xz
+ffmpegthumbs release/24.08
+ab74080e383167c4d7a1210deb1a6b54264513cd
+25c65c5272bbbedcdabc6961846807143d43649a4e3db662c30be524b51487d3  sources/ffmpegthumbs-24.08.0.tar.xz
+filelight release/24.08
+8dcdce191f1d7f5c5d3b28ad87be64a205e14b8d
+70599bcc0668870e82de202ff5b31dfb6536d8199d731bb97be0987a8a566289  sources/filelight-24.08.0.tar.xz
+francis release/24.08
+933807c0cda2d0aad8faea501e8d3dfcc0015e95
+d666a84b37e0e5f872905186b4fa6e2808b9c76cbaa85f213f999ba03e1fd8af  sources/francis-24.08.0.tar.xz
+ghostwriter release/24.08
+bb6e7224095c9c877b329185c48465d8c8f46a92
+54a16a02f11398a962fd184327d238c31c86ca968ae7f10d7502a301cc1782b1  sources/ghostwriter-24.08.0.tar.xz
+granatier release/24.08
+d67326ac1060784b184699b116f8c4323bd1d1fe
+0d81c45c8c44756a2e8d3e15f208c9590a6dd7e8c2808b7c77d406107b10e353  sources/granatier-24.08.0.tar.xz
+grantlee-editor release/24.08
+8425b66649906cde7d161a90f77bb2039f58e7fb
+38537f69b1d24347ef8143e5c729ba183c3a0eaf55d63a7929a4f43204dc8efe  sources/grantlee-editor-24.08.0.tar.xz
+grantleetheme release/24.08
+6c763a733ef6f0886c583f22411753c322ca8a24
+6232665e8da28084be19054294ed210f80400a5aa54c6c710dfde6d558ce7bb1  sources/grantleetheme-24.08.0.tar.xz
+gwenview release/24.08
+ab674f28b7f560f077dc93d3426b8437ce67cbf2
+18d10edb4f7492105a28cb1de114331b7cebf129ce626b8779e1fd75199e7476  sources/gwenview-24.08.0.tar.xz
+incidenceeditor release/24.08
+d96508c1964a93e3ceef567f3ca6a682eb565830
+a7f72c31cfb1480dded75af7eba836b967675cb3b4304240f268b5888cf34997  sources/incidenceeditor-24.08.0.tar.xz
+isoimagewriter release/24.08
+88d9b7086530827b42f0e4f2ed7f43c541052a5e
+3df7436d5a619933645a6d82b4976dea94114b3b154f57a8ab8ce2d8c4da489c  sources/isoimagewriter-24.08.0.tar.xz
+itinerary release/24.08
+2f012b4ae180154ca297cd5996d2ca7c5eff2622
+166864fb078f4e83739b3672a824efba50b87e08e366f7c4edf94555f54d0435  sources/itinerary-24.08.0.tar.xz
+juk release/24.08
+c1dd332c42257100a834af6da5c06c80280807b0
+679b70c25f4014ecdced955a41ad0ef93291e1905d82a15f2cc26c0d7acf2684  sources/juk-24.08.0.tar.xz
+k3b release/24.08
+a5ded3ec32312eb1f4c196a1e583f62c9ad532a3
+610623648429ae874bbbaa5f6559bbdf079729e31f0585527d9e648cbba1e0ad  sources/k3b-24.08.0.tar.xz
+kaccounts-integration release/24.08
+c559547271d067387ceade5af6ff1c5cfbe04282
+fb21d2435b2aaa9960fed9660a9cd56b7702080c4e99f9a207e6c1ba8d52b3f4  sources/kaccounts-integration-24.08.0.tar.xz
+kaccounts-providers release/24.08
+41bee277f1a4a3ea1b3a75b2a8f7d755793788a1
+ee36674c6e8f0fe1f48258ffa892f7c6d4945ce1332e9dfb89943c2a7a71d952  sources/kaccounts-providers-24.08.0.tar.xz
+kaddressbook release/24.08
+ee2fc8eca75c467af037590f038e59fb8a15971b
+7e519f72b62d81b588dc51d3c8417eb26431347cd552ff44cdff711de723f559  sources/kaddressbook-24.08.0.tar.xz
+kajongg release/24.08
+f0df9456e07356efd1d236e2623297a4617b89d3
+41dd9147d7d678ff363a5b43d62fed66f6b881305d7200be25f55fd7c2769ef6  sources/kajongg-24.08.0.tar.xz
+kalarm release/24.08
+07f7661eef8e5978398014e955615bf3ff59dda4
+2e842b66dc9ea5986adef9b049d70b6a3ae90e3f3601620b5e772de8aeb8290d  sources/kalarm-24.08.0.tar.xz
+kalgebra release/24.08
+88a41523bcfabb33fe07103766747a828d0899fd
+0311cb15359bd96370762de31c3c4cd6849fb155172b39a8ca95be900b45d353  sources/kalgebra-24.08.0.tar.xz
+kalk release/24.08
+265f5aa52bebb4fd9c8617f1ecb1d2994c46bd3f
+ec9784599220186b2949b7e4a1aedaeebfb45e0eb9b3ed32dd836343990bdb82  sources/kalk-24.08.0.tar.xz
+kalm release/24.08
+2745a73b57711cac555c0b1ba9abbf6dfdd8f659
+c75981e5c01573b3a1cf2208b62678cc797e9b19216a692d235dbce09f871c36  sources/kalm-24.08.0.tar.xz
+kalzium release/24.08
+3c53b388263b8036f53b04f921800b2cb92818ec
+5e4c2a9758522d6ed26122a77f9e45aaeb3e8251652f70521d63a4e5e9126c30  sources/kalzium-24.08.0.tar.xz
+kamera release/24.08
+d8089159b50a54bca1a333273d24abd63adcfc29
+d819eb4d81ce51d975b35724235e426e0cb2b96a9c58b7854c8f0c86bba6f750  sources/kamera-24.08.0.tar.xz
+kamoso release/24.08
+dd3d79b1995215f319aa9a739ec86833bd88ad4a
+14bfd694c31e460cecd235d53575ac98c196bde7cfde225ec794859832fd3d83  sources/kamoso-24.08.0.tar.xz
+kanagram release/24.08
+8594257344ebad4ff971118496e4ba17943a0e33
+e384e931351df9ad6f032d77e005a3954a78b854cd9dc2e2d2f5c376e5d8125d  sources/kanagram-24.08.0.tar.xz
+kapman release/24.08
+7bfce89480cc792bbb612b0905490d2ed35ea437
+464ab183cd93418dbaf36bf027d991ebc78a82bcaf31fd1b665ee986c1bced28  sources/kapman-24.08.0.tar.xz
+kapptemplate release/24.08
+b5d89026a9903bf686a583156c1efec50a67e70a
+9be0abed6ea2cec7ae4b5d3dc5509baa3aca2cf93a29c6608575c1e17000c823  sources/kapptemplate-24.08.0.tar.xz
+kasts release/24.08
+fdae47626468e94e321f09d96eaa8da97e2d55e4
+56c5ef8171fc812d692060125c9ee968e4f43fb0f0d3915e768085fbe26b06c8  sources/kasts-24.08.0.tar.xz
+kate release/24.08
+0386f8c229446c0d1f1c647a57b2d3aa5b216421
+85b20215e3ccfdbb1e615108a70673f1e6443ceca1948290eee3841a061173e9  sources/kate-24.08.0.tar.xz
+katomic release/24.08
+0de9764f19b4b68fc86f18033049bfca27790c9d
+842b3598720d3382b82e986d9e158a4a493e51dbaff9dd02df60a7f5f846ba97  sources/katomic-24.08.0.tar.xz
+kbackup release/24.08
+5d4a95f0e023be21100412e37413a1fbfc062167
+dcd91b618fb43e5e0d42978686f61b489b424476d5a781f149edf8091981c886  sources/kbackup-24.08.0.tar.xz
+kblackbox release/24.08
+627f216f0bd1470227df97df5b690c2b47c5029e
+bf42986a406c66369aecdecbf53819af931e2c105b69f996be9ba25e9e71a995  sources/kblackbox-24.08.0.tar.xz
+kblocks release/24.08
+c3fb2a26cc961580668d0aa6d8a23de40e75843d
+a6694c435d988b7d5029e33d268eafb24343eec6988840a10926c05c55f28cad  sources/kblocks-24.08.0.tar.xz
+kbounce release/24.08
+3e1e3763a714ee80215e642baee9c7efca6409ff
+bee8a9378ad58488b941546c164fb14d089ce91149665b638f3a01545ceaffe4  sources/kbounce-24.08.0.tar.xz
+kbreakout release/24.08
+288021eb4b144edfd7a337c0d05839f10b16d8df
+e11debd2ad12962852c9ede3998c7d9be66eac906576bae7b94579953ea693f5  sources/kbreakout-24.08.0.tar.xz
+kbruch release/24.08
+bcfe2170fd44f13f8b53e7dead13bbd1d6367c3d
+a857e4d3d787107be0e6d371cc30862e4cf25fa366a1bcf8873769823df89b2f  sources/kbruch-24.08.0.tar.xz
+kcachegrind release/24.08
+9206b15d752837094fb03d8cb0e759b1545945a0
+3378ee7e6722172044176ca1c0f07b850bb1cece9a1564ac48ecb4f3dbfa7170  sources/kcachegrind-24.08.0.tar.xz
+kcalc release/24.08
+7d34413338abb5774c5f7f9774205bc56b86c53a
+ecaf8b2ba5369f4a81086762514a9e6935a3403cf982a7482fbd0525bcff2d35  sources/kcalc-24.08.0.tar.xz
+kcalutils release/24.08
+117011b1ff3fb782b558f0528b2b1c671e913659
+da3164d6d2cec444ce6d73dcc210e0870b081ab832db27816966fb1cb32b0856  sources/kcalutils-24.08.0.tar.xz
+kcharselect release/24.08
+49d17e2386f76c8dd73840d4866c1b6f375a4051
+6dd6ee8f11b076485a9417320c0d34951896b58d107ca2151b62db4c15453c5e  sources/kcharselect-24.08.0.tar.xz
+kclock release/24.08
+19440f00dfb31fd7f0869f17c4b776d239874c4e
+9ed8dbe483233329e66117b0ae41ae8819379f8264423b6ed820956727b68eb9  sources/kclock-24.08.0.tar.xz
+kcolorchooser release/24.08
+c47b933f8e42e78c432503c75a430d8aafeee5fb
+4ee8fd89e99ffb47aa322b8a18589d0c1a5ca23e4eb198519a43e55c0cd0a7ad  sources/kcolorchooser-24.08.0.tar.xz
+kcron release/24.08
+9e6d0125062ce511a2cb8e61ba97fcbdf3894880
+5039e04113d14cb4f80f9324e26de721b4362d7cdf9ee7c734fe441557238d12  sources/kcron-24.08.0.tar.xz
+kdebugsettings release/24.08
+d9eb8d1ebae0342e7e055bc36c0b247548a0f0bb
+af4768a925fb1177c513530d09c3c10ce42a10ab1f54430bf38eab393f44836d  sources/kdebugsettings-24.08.0.tar.xz
+kdeconnect-kde release/24.08
+a316901daf37ad8a06c140efd2aa6122f161fb2c
+cbd102cf3083d2c043e875cc4ef1ac3a33837484f440b2e7377bc9c0bd3212ae  sources/kdeconnect-kde-24.08.0.tar.xz
+kde-dev-scripts release/24.08
+c204df8c2a0f23a65c450b4309dae8baaf085f1f
+ca093feb593a60ca2a2f16bac071dcf779b32a5e42f8b4485fbf11c9e25693d9  sources/kde-dev-scripts-24.08.0.tar.xz
+kde-dev-utils release/24.08
+2ae08b3f6c03ec0dc42bb53ce0615d898b0bb1cf
+db60cf1b5f16e63b958db6882ff84ff204065bceb073e52db19f452a14c5ef6a  sources/kde-dev-utils-24.08.0.tar.xz
+kdeedu-data release/24.08
+a32cea9a28e6fac36b5091b5dfd80788afb6ed97
+ce1d70e39acd3c333a8e6819573b38d83a89fcd80f3293c8c31707e604f4704c  sources/kdeedu-data-24.08.0.tar.xz
+kdegraphics-mobipocket release/24.08
+8c885b8752e166d11a037fe5ac581e527ddd73b1
+bb72e983eff5cfa4f3709e18c2c7ae47cd426e068f800ee4db27aa7876f07b35  sources/kdegraphics-mobipocket-24.08.0.tar.xz
+kdegraphics-thumbnailers release/24.08
+62e0b4e49be8706874f527c7fbf50bb9ae62740a
+0e8326861dc9d8afc3780ef2b4848e9bb2a8194f2144b95928e5bc39989d70b2  sources/kdegraphics-thumbnailers-24.08.0.tar.xz
+kde-inotify-survey release/24.08
+3e32942ec53d3fe9812e2677e7c0045fb19d454d
+150a8a11d8ac0e848be610528b522eea33ae4b8d962cce26d2cc85e0e44eafe2  sources/kde-inotify-survey-24.08.0.tar.xz
+kdenetwork-filesharing release/24.08
+6efbfa8c80fdba88ac3970f7a6379a4c7c2c2e15
+ce836ed38373d35956e8b5fd9657c82932550f613cb01fb402cb1f0afef6e106  sources/kdenetwork-filesharing-24.08.0.tar.xz
+kdenlive release/24.08
+01d23df63206b3de677d28d676b461d9141e6297
+e4306a2aa5a7535cea50aeff493ea9de8b7292d499d7204c41780cb044752f96  sources/kdenlive-24.08.0.tar.xz
+kdepim-addons release/24.08
+96ee443c04e9d61e212da224a08f0187e14b7975
+8d02955a603b705a6c22e70f9a0d066930693c0ff8652d48cdf2f27d261f4524  sources/kdepim-addons-24.08.0.tar.xz
+kdepim-runtime release/24.08
+b59aab40c0883735edd4922d2d4365644162a6d1
+e2028d748b417426e9e0282492c37ee318b532cd6ca256f6dcf4d38e7697dc77  sources/kdepim-runtime-24.08.0.tar.xz
+kdesdk-kio release/24.08
+c78801c0c74de1376b0631e5c14b6747a6631cc3
+48ea13f2dc855b7469f10e54b542197eda041c61120dcda65104656bfd22bb85  sources/kdesdk-kio-24.08.0.tar.xz
+kdesdk-thumbnailers release/24.08
+ef8eef81c3c1e275bd8ed2b0ba97ce46f90a6978
+120a07fb5755afe3a90f75939e254b22690be9b4cbb796815939b3d29a14aa86  sources/kdesdk-thumbnailers-24.08.0.tar.xz
+kdevelop release/24.08
+804514f7ebe18fd44a8a4c279b4146efea57d1c9
+c5201d814b8245ca6aac9175f2cf504d7bef7f85f18679e6fca76dfd0ff8591a  sources/kdevelop-24.08.0.tar.xz
+kdev-php release/24.08
+373065200b7a2d2bdc60c46f1c6b8fa9fbf7ad0b
+3ac3aee8b14e726224551d524b1b4b698e30d4e58f51f2187d43377a632d1fcd  sources/kdev-php-24.08.0.tar.xz
+kdev-python release/24.08
+e80eae82c7ef72b94fe83cebb947421478fb5c17
+203f2267f9f24c57ec41549968389548177118231c7d2da8cb3f0722a09d5cee  sources/kdev-python-24.08.0.tar.xz
+kdf release/24.08
+b48bb161f3963b51f1f1de53de814abdf3497e3e
+e752aae85643c2e408be876eda4cbac2e8f65f36fedc08ddc8869895b3657d39  sources/kdf-24.08.0.tar.xz
+kdialog release/24.08
+428b6aa8edf7983cad0f57a5284a0e767fa0e0ce
+fe76282996578f14e73b0c5cccec9b5028747d1d96681fda64f0cfa295f50854  sources/kdialog-24.08.0.tar.xz
+kdiamond release/24.08
+cab547a7c0fcfb86acd28abea25e334ed02d36dc
+c5e49e5241cbd5a35ad046a5f9c21033660f9a9ab30ddce1597205e7822f63b7  sources/kdiamond-24.08.0.tar.xz
+keditbookmarks release/24.08
+a59d439300a7a8b4dcf7b98ae40620143d119102
+ae640633a1e385f5709bdfc1ec349de6f537b0808aea7ccb837c0fc8b68bf15d  sources/keditbookmarks-24.08.0.tar.xz
+keysmith release/24.08
+3281ff4a83961c99075e1e9ceab428affab83cb3
+ae1c9085bd486b6bff3235e2ed61b379c16dbef5311fa2c44058ca6e19f1e392  sources/keysmith-24.08.0.tar.xz
+kfind release/24.08
+d272a01c6e190b6900884fd553b9d707029b1ca4
+58ddebb376545a761a665a5739a9b986d2f304dd23cf473ced5e7a87e46d59dd  sources/kfind-24.08.0.tar.xz
+kfourinline release/24.08
+555ac04acdff959efaeb6b33529d4bc59bb270ee
+685e0d9095f07f031d12ce135b4ed175bfa50c4065c903244af07306f979fd48  sources/kfourinline-24.08.0.tar.xz
+kgeography release/24.08
+4e175d047ec724e65f7d96d6ec7d288476a8e3e1
+9ef775378b9872cd2171cc8a9ba10baec5ed5d11cdce97938dc8b44a92ef6ca2  sources/kgeography-24.08.0.tar.xz
+kget release/24.08
+97f0a1dbc3052594dbb9934d59ee27b5bd74fcad
+d7383f2b3f5d98723c97345d2f89dd3ba55c449cce4e642ade21f23780bf4d5d  sources/kget-24.08.0.tar.xz
+kgoldrunner release/24.08
+0a676e444999bb0f7a44af0076ccdc611906b0e1
+5445116678a68253d9dd7e5ac7252b13e995558e7ecf79760d752c5f4d744121  sources/kgoldrunner-24.08.0.tar.xz
+kgpg release/24.08
+db46179d3869f05a4de403931e4c3295cd77de93
+e7c1c56313d597e9b93c542ed407ffe14329ab9825c1a6abd5950d9f41a81f57  sources/kgpg-24.08.0.tar.xz
+kgraphviewer release/24.08
+886d15941354acdf1a6a68cca1f43cd804c403f9
+f2efe1591be2794df6eb299ed6ab32629bf91208c097a0e2a5fe89c8ce5c8cd1  sources/kgraphviewer-24.08.0.tar.xz
+khangman release/24.08
+0750798f874bf69f180fbc4b8f788cbdc0bb77d8
+fd116685b3c4d5f69de6fd0f0b5a2255188b9de1e278857ff75e074175ce0a9c  sources/khangman-24.08.0.tar.xz
+khealthcertificate release/24.08
+a45260004d5dd943fc6a1c5df3e041230342bf45
+4975da85764d4e361af96fb5cd5fa0f5c5c5c985c5ff6866acaff8066f4645f6  sources/khealthcertificate-24.08.0.tar.xz
+khelpcenter release/24.08
+f6dd19733d34930a97b663324ab1f5ec013d97e1
+5d9f93b8f5b115c2bbb914f5a62db6f186fdc0d94a7e39c5d3218f6fd0f9c543  sources/khelpcenter-24.08.0.tar.xz
+kidentitymanagement release/24.08
+8cf8a2f58cea7a9ef60a0b1320ea23235ca973f2
+07eaf3ea6553fa277c345a9aad9e191c72e32576379211d71e3b5cac586e4742  sources/kidentitymanagement-24.08.0.tar.xz
+kig release/24.08
+1f9f963af3327ef7ff302db083da6f56401bfc5f
+d770ca0d6cd511d1659dd2d6d40048110080a7179e4085aa00aed6dd8bdde079  sources/kig-24.08.0.tar.xz
+kigo release/24.08
+1631f16c6f963805138ac4af332d11e25bfe09dc
+d4c57221675c46ffec35f5d8d90b5a797ec66da34883bc234cecc30601077d91  sources/kigo-24.08.0.tar.xz
+killbots release/24.08
+9c98cdb677c48cfc38154b66713755881951e48b
+7d4f78e5c80c21ab79eb5f0a1da3ca36e43a80b4ac42d57ba778ca0c1f147823  sources/killbots-24.08.0.tar.xz
+kimagemapeditor release/24.08
+b466f3ae3ffc6ce27efa7c27b495972348272466
+f2322c0134207f971bad78c5f93833d16dee577e9ce716ed707c7e8ca7e023f9  sources/kimagemapeditor-24.08.0.tar.xz
+kimap release/24.08
+a7200a6cc7edec562efeffb965a6c67f3f8bc0d6
+05fe949400c08f16d8a20d569d5adc27c619cd55b78e71261b575bb2f54615ee  sources/kimap-24.08.0.tar.xz
+kio-admin release/24.08
+a4a1737ee3ef7386bddc98680866fec91e075765
+0304d2d848e515d4d72d2d6b785deb64c464ff66c6fbb5ac2f4390780fd83317  sources/kio-admin-24.08.0.tar.xz
+kio-extras release/24.08
+fd0c2e98fc2f173fd3952f84cfdce3bb6d5ba5e8
+7590f4897962388149c0fec25e7eb8b691597dacfd4aedf3343bbeeb4b98445c  sources/kio-extras-24.08.0.tar.xz
+kio-gdrive release/24.08
+59949411152cb8c8b4eea645e749ada31521ef70
+1f6148711f3d95acdbc6257be250ae50309ed95c39d7d8fbcda0029b4345afbe  sources/kio-gdrive-24.08.0.tar.xz
+kio-zeroconf release/24.08
+4397f9c727f3ac1dd0b55b27a79d47930824f3ba
+3a75529be2af8c50a816586d7347d19d9c8bd9cbbf70992e741b36a5a4ba2bbc  sources/kio-zeroconf-24.08.0.tar.xz
+kirigami-gallery release/24.08
+cc7db779dbcbe081c60b9ffd74e5bc39c898140f
+5298ab4156833f7fb65fa421fa0f9f63b578bdcf87c3d380224e9fb3b132c44a  sources/kirigami-gallery-24.08.0.tar.xz
+kiriki release/24.08
+8b260a752440c3e839513f39f42f12d9e8099d6c
+e0af359fb4d9592be89f59fe5b8aa30dcf39d8ab006e00e2bbd703b7a486d233  sources/kiriki-24.08.0.tar.xz
+kiten release/24.08
+5a29b578080fb94b3bb072b1e3fbe53a3a221040
+7f929f7d503b074786fa9693d180b9ffd9c2d7405a33906e91af7237ee7154b2  sources/kiten-24.08.0.tar.xz
+kitinerary release/24.08
+5dd1cb3d3b3b1407071b1c3c8f6e2f4f4ef32c9e
+befb95f1620e0c9baa82264aabfba0cc676c9ee40583938be2091f1254f2cdac  sources/kitinerary-24.08.0.tar.xz
+kjournald release/24.08
+98a0c258aa4becc78100dfccf320ff829012163e
+9993d2e4fc5f91ea739649d85c53197c54b0b8d49ee28cbdeb8dfb62590033c6  sources/kjournald-24.08.0.tar.xz
+kjumpingcube release/24.08
+01ca92470aa75cd3ed85988e8a2542702f1a325b
+f3c4cefdf072350a21b07f39090c8fb3054e5360e1a84024a03893e59427a011  sources/kjumpingcube-24.08.0.tar.xz
+kldap release/24.08
+9f376cc44bc75956c8fc9c7a11667a944cea1bc5
+3e45e6ecaced0b72018bb9a7fcd9f68a968237ea0c2b953627040be908640094  sources/kldap-24.08.0.tar.xz
+kleopatra release/24.08
+c27a7c031ceba606660de63ecc7a605740bb805f
+d6a8a9b50201a41a91350633c6ceec861fa57fb0ca07301825857942d45ea32b  sources/kleopatra-24.08.0.tar.xz
+klettres release/24.08
+fe51d25b2c175402594fb23241dba4e6fca239af
+1e15daea925278f2284d2e500f89a71b048cb860fa75bdcfa899c07af5ff81b2  sources/klettres-24.08.0.tar.xz
+klickety release/24.08
+5050d1237cbb58810607d266681a6109f3fe398a
+fffa2fb50bb44308a7e9bc956ea5838b6df79a375777e84518f5cf6b784b194d  sources/klickety-24.08.0.tar.xz
+klines release/24.08
+65208d0a1558b184c0f57d1004f399b4044c3598
+30c28bf5c3662f71ee290025996f0f0de118771ecbf83dc1c374c6375bdc3858  sources/klines-24.08.0.tar.xz
+kmag release/24.08
+28c896c7129ad35150aafd6e2fafdd697f88915f
+69fb4d3413eea31b9f845f1f6596780d929e66afcfbf1345adfa9b20ec64baa7  sources/kmag-24.08.0.tar.xz
+kmahjongg release/24.08
+baae3bef9617a95a37eb9b4209156ca951243b05
+1650b52dd890300703507bccd14234aec55063b2e1830d2aed0d36049a10b663  sources/kmahjongg-24.08.0.tar.xz
+kmail release/24.08
+955b6b43cfb2de2f9091a17028a23b038552cce7
+94dc89125572f81ac2a3fb387df3b20df2e09462d8af734386d6af5fcf9fc1d3  sources/kmail-24.08.0.tar.xz
+kmail-account-wizard release/24.08
+4f33cf7881b58efa78ff6a4a4a67d14643a854e6
+2384327e8d0911ac6a07f586e99bd2c6a479aedf7ccd3d1b55a6d6f6cfe0dad4  sources/kmail-account-wizard-24.08.0.tar.xz
+kmailtransport release/24.08
+f311aea01e84bdc7d0785013eda173d0c3918675
+9658723bf6925d339dc9b4392b6d8a1cf64e1bd14b8b9683e6ae47f9186b3f9f  sources/kmailtransport-24.08.0.tar.xz
+kmbox release/24.08
+2532587260b4bcd2e2ef02eac8638f1cdde682b2
+5023414d70111305957879d9657eda6c79eaa6bdd0f48995bbb1f489334102e3  sources/kmbox-24.08.0.tar.xz
+kmime release/24.08
+4d10369476c036d8d479f8a4010160b8c2e969e9
+9e5aa90d8a2314b5fbc015f066922f2e1fa529daad3b76dfd351567a954353c2  sources/kmime-24.08.0.tar.xz
+kmines release/24.08
+6469b4504f37af5e7f5bded8e07a19caed816914
+07d2955bb677ce91e301a6a18f535f206b54f246ab834d5d67c3770bfb3cec0a  sources/kmines-24.08.0.tar.xz
+kmix release/24.08
+cb432a65cfd1f23f400a4a5be1112282698ee573
+f121bbd2d85265cc417b22f5c1b733d15fcb917bb26513b90dbbcadd5fd977f9  sources/kmix-24.08.0.tar.xz
+kmousetool release/24.08
+a1311d68e993443d6807b75bb41bebce403b8a56
+520daebc6cde0d3b73b3bf95389d9d16d2bbb794e971a9a5c31c7b5d04307a67  sources/kmousetool-24.08.0.tar.xz
+kmouth release/24.08
+335ca2cc94a79f45132c10b08f597be027be675d
+90e2ba9b3a9cac215cfcacb60928ed4e011bbd49cf9a5fcfa7e185d653d1d47c  sources/kmouth-24.08.0.tar.xz
+kmplot release/24.08
+39d18ba5aca688ead0ad9825ccc7992835f1fb5d
+4f6a21a93504df5712f0f27af7228cf87129493536b62450bcce1ef0ba5f9912  sources/kmplot-24.08.0.tar.xz
+knavalbattle release/24.08
+69b813787b0d5243c1f4b463653b495f9fd4fe79
+bb9c978613b0fc0a1722e797ebefc00f4764932bbb47e1d315f62a96e530f1d5  sources/knavalbattle-24.08.0.tar.xz
+knetwalk release/24.08
+35fb9275f34e1700d9c3b8e945ca3c42b44f95a6
+50ab6953b1b476fd90b67b1434b5f54fe404b0f3222fe719be0ac53d7a806e7f  sources/knetwalk-24.08.0.tar.xz
+knights release/24.08
+0f83a6063265817ecf6b828caa92c8477b143742
+33db02b99b31179e42223fdbeba21227b473e9a5e3d714fc2d173f7f8374a247  sources/knights-24.08.0.tar.xz
+koko release/24.08
+40246ed3c6697b54fdc8ddee841ec3abb4d7c4ba
+7548db173edbffcb42fef693d8d0966dbfc4ef8e649a85da5c00cca8cf4c9855  sources/koko-24.08.0.tar.xz
+kolf release/24.08
+1b2ce4ab059099cf014c56f2ee42e783cd8b518a
+d9099994148ae960f223177c25c1bc5c39deb8f31514374f7aba08d3f041fd78  sources/kolf-24.08.0.tar.xz
+kollision release/24.08
+a7f1e24f2d271361e615a76eb4638af8e6a0b368
+55575b09bb3a1ce07a12dba0cb2c8a7987895671a74b88727844c57c946ec23e  sources/kollision-24.08.0.tar.xz
+kolourpaint release/24.08
+2c15c6ecad16681603b04a40336564de2d87f263
+0dbcd92f6f55bf448d5557bf6f15fca5779259c7c05f2d4846129c6c20246d8f  sources/kolourpaint-24.08.0.tar.xz
+kompare release/24.08
+bad80bbac06a9d7aa9390d63e7a35d9a42a7d10f
+31dec3ef38f3ca5a95bc22518356e72301bfd94098c269fa6aff796aeb8f080d  sources/kompare-24.08.0.tar.xz
+kongress release/24.08
+614bc866baa67135c694f9e65f8040a9e0a649dd
+941d64669700ffc8b1434b54fe3fbbf14d6d8ee96d5d0d69af50e566252a3436  sources/kongress-24.08.0.tar.xz
+konqueror release/24.08
+3466bb73f8b81b5cc462b9957f6afefa0a70166e
+d11c153db1a63d3850e050913556aa88f834ba4ddf7045a1a57699ec198b37e4  sources/konqueror-24.08.0.tar.xz
+konquest release/24.08
+6311ade6a292175395512788a202e0cac0a9b948
+02e92872f78ac85a685b849522da40d9adc9acf676260cb0525b0a22df782770  sources/konquest-24.08.0.tar.xz
+konsole release/24.08
+ef1b5ebeb65b5c32bf20aa55f12043e9b4dce884
+0095f1afc4e4a4cd36a12a2927e090e62fb0d016d38914bc858af568b7416101  sources/konsole-24.08.0.tar.xz
+kontact release/24.08
+96cb8056b6e480cd4320673d1da01a72a8e9d2bf
+5143c8acfe43779c0bb50fa7ae3b588ec11ea60f123dab1c9dc42de9e831b40e  sources/kontact-24.08.0.tar.xz
+kontactinterface release/24.08
+9bbfa0114bdc7cc8351625262f857265bca7036a
+f663851fa518d935ea86d781387c797f212997ddeff26f79225e65cd8b94c2b3  sources/kontactinterface-24.08.0.tar.xz
+kontrast release/24.08
+d12a2d9054a069b7f7add2981ff2a880aac11ea2
+d163d403ad78e0f42da096b99adbbe0f290953c17032cd0c170e6d8f5afdd747  sources/kontrast-24.08.0.tar.xz
+konversation release/24.08
+0438748db76b5ea72f2fe386947c68e0fe8df7bc
+d16587f50cc6519be8f0876ffccd3f6b3c9142652046637a393cd822758907a0  sources/konversation-24.08.0.tar.xz
+kopeninghours release/24.08
+e0efb5691f65b8f063c78efb8eb7235bec407fbf
+d9c97b3c6ffc6c7105bc1f890788475a86e47bc02787916dae6459bdcc3658d6  sources/kopeninghours-24.08.0.tar.xz
+korganizer release/24.08
+b69c8d3f370ef257e5cbf89000962544abfb6a18
+27d1ade2f48e89db1e4bbbae7ea71a5561e66600466d8e128f1e8cf95b2eeb20  sources/korganizer-24.08.0.tar.xz
+kosmindoormap release/24.08
+4b557516b8233efff4e48248ecf3debea8b093e1
+b74c78e8e2038f75165dc9899a16498e524580c9ae687269a38d6c5a582ab299  sources/kosmindoormap-24.08.0.tar.xz
+kpat release/24.08
+15f961f5f56c1f42a24aaaccc5f20cabc52fedab
+d7c9659df82997e35345d4ac99a63c81b557732cd1acbf67f294b284bbc15e3d  sources/kpat-24.08.0.tar.xz
+kpimtextedit release/24.08
+859184c32a83dc206749ff741124466651763df6
+abc7d5170967b010fa6ace2ff762671b5212a9de4542f3da3fc31dbe7235c0a3  sources/kpimtextedit-24.08.0.tar.xz
+kpkpass release/24.08
+63891931f537a632a2ac8b14b6b5ee11b36215c1
+0fb6cb547a0501d4fbd01dd49986e98d42ff4afe02a4dce0acbb741cdff6b1bb  sources/kpkpass-24.08.0.tar.xz
+kpmcore release/24.08
+2224569c512ecdc0608d355064ae81810b5dac90
+ac25fe28297ba2a328afaa03c0e5d817ade3714d7793a90a204f9b694b090d67  sources/kpmcore-24.08.0.tar.xz
+kpublictransport release/24.08
+06e364f1bf6dfb9c1bd6b81413aa38302046cf77
+e91445d37d4ce0f6bb9aa0c039ea73f2709f65712bd11c72f3a83aadbc038c96  sources/kpublictransport-24.08.0.tar.xz
+kqtquickcharts release/24.08
+a01d5c555f3525ae207e03ff5b4abad81684d843
+d41d9583cba46cb36de34ec355e7f73cf77e380a8ffb2bd34bff779e36be2f6a  sources/kqtquickcharts-24.08.0.tar.xz
+krdc release/24.08
+209795285e75dc4e05e2f1c0e281898513affed9
+b6bfda5da8ef52ef37ac0d40f1d755f82ac2e689f3486d399d9bb9b57aee3305  sources/krdc-24.08.0.tar.xz
+krecorder release/24.08
+f72d9c5d79c851453f78e321c5c9580f4b074039
+2c2a43f69cd7bc68f584b215fbe3a6065e705d1f0941986910408bab060e65af  sources/krecorder-24.08.0.tar.xz
+kreversi release/24.08
+4045ec26a3b19b96250136157876a5a456ea3dea
+ce1ae306ff0481b4b02b6eef2040734415be5cf4cc5074e9c4d71d4dcaefb134  sources/kreversi-24.08.0.tar.xz
+krfb release/24.08
+b7aff939a0dcfb1f4077491e384771d2db818cb1
+d08c0aaa54ffa0558b04505da65563176995b75ac194a14b586da559910618c4  sources/krfb-24.08.0.tar.xz
+kross-interpreters release/24.08
+43385ad742d6ca2708140cc1b331e9b80feda522
+0a204320f410b1122d5ed0b0ba778058dd722deb9fd4da99a9d0c39e69f0c8c2  sources/kross-interpreters-24.08.0.tar.xz
+kruler release/24.08
+0df5b7144a566f01a39faef5ce6b6930c41ed9d6
+77aaff2f677eed3386cd9a2df88679fdcd19404c32d861556b3cc4dbe54e91bf  sources/kruler-24.08.0.tar.xz
+ksanecore release/24.08
+3fa7b667a425101b3dbd337fe036197228851c98
+8d37b81ee5adce4350d6ce51c045b25dfdee5fe45056fd99e9f2b21d53c0472d  sources/ksanecore-24.08.0.tar.xz
+kshisen release/24.08
+14157d017d8c1997fa00cdc5f97b258eafe6a182
+f5f8d939473886781cf92af7630a4adf000a3d12853cd1d04e1cd0e6ac95ec2a  sources/kshisen-24.08.0.tar.xz
+ksirk release/24.08
+a63c3f68a1cfbb0d7ab5564c937d9daafe85a53d
+69a96faa695592a128866a4a1e15c1018ae8a6473bfebe54ff7933c02f082128  sources/ksirk-24.08.0.tar.xz
+ksmtp release/24.08
+6c282e76e67c14713d3c2fe4b10aff3ce8e7ee9c
+409ffcf96e43e8b65cc49c1576d9a214e7fbac638954fa9e8643d4620cebcc74  sources/ksmtp-24.08.0.tar.xz
+ksnakeduel release/24.08
+633774f3611ad7bdd4505a3d9e3168829c285c18
+340c48d0672646a79ed9635b17086b43891766ebe085b4c9e283513ff4fe6e48  sources/ksnakeduel-24.08.0.tar.xz
+kspaceduel release/24.08
+a6ec3d1ca0ba00b3ae87e9b314a64387b8cde4c0
+8178d5448759ecdbebf33fd6bd8d9e5f37e2e5623f5757b503cdbf3b47a76330  sources/kspaceduel-24.08.0.tar.xz
+ksquares release/24.08
+b5a156ac6e6eaba3bc73514f95acede6108f932b
+ab8f7c37ba8fd46f93a276da86f639fa3227d3c4aff550630ab9d574898878b4  sources/ksquares-24.08.0.tar.xz
+ksudoku release/24.08
+da4ba71c8b7d53d8eee2702ac2afb7e93aa5fdb4
+a34876aaa6752c5d613d87d3ff51d2330c4c5973665eff03a19c08722be75311  sources/ksudoku-24.08.0.tar.xz
+ksystemlog release/24.08
+3bf3acff711458286c5cc78c1854f5d83e1c3053
+d04b95d15a2a5ef55bb50cbf6b3a585ef82b16491fc3c9b0da8231dc178c6c52  sources/ksystemlog-24.08.0.tar.xz
+kteatime release/24.08
+3a3d28239cff4b951c98199317f7cb5f29875ed5
+11851a49fb53ab7431d7de22180a6907289f2cd1a72f68d51561193954a75753  sources/kteatime-24.08.0.tar.xz
+ktimer release/24.08
+3d63decd83cdfddd211f1421f9ab7d0f4dcdcdf9
+a02c5794ec8e481785aa8b05c0ebcdf54f09ace218e37e171512cf952a3c16a7  sources/ktimer-24.08.0.tar.xz
+ktnef release/24.08
+1f704440d1ae95c4b3ea3516233ed2662d12a43d
+25eae8e9c28de7a85410ab15d75874ec32b5102ad566e71961941142e3d52c66  sources/ktnef-24.08.0.tar.xz
+ktorrent release/24.08
+48fed0d5c2247264808a0a9e01309cae168bfa61
+c0ae4689aa93f500592088058de7cb16eb9956e4812ad3d3a3ba7eba908e2741  sources/ktorrent-24.08.0.tar.xz
+ktouch release/24.08
+2e773db8df20395e2b77568dcbb82a63d3468f68
+6c1b19055fe06b99ac76852db535846d4d482a417a8dbc33bf488dc172bffc14  sources/ktouch-24.08.0.tar.xz
+ktrip release/24.08
+e75ee46ae0af824f01969e6b44d7c25190ff35f4
+61ae3597f67fec71ad798f87ecec0da90a66d68df32b76c551f786c87f204091  sources/ktrip-24.08.0.tar.xz
+ktuberling release/24.08
+7dc3efa2f60901376bfcc70d12892dc407b2c685
+dd4df1598a1944a773c3760a81c4a7265d1ef1403cc77cdbb9ee6865c98c5790  sources/ktuberling-24.08.0.tar.xz
+kturtle release/24.08
+7ec997b1d6419477c424a719d0174a6894750c4e
+5b67a10b26cd8ecfab243eb0cd254857da8b5e26e00988277cef3dcaf2716934  sources/kturtle-24.08.0.tar.xz
+kubrick release/24.08
+03ff644077d3ba72054d4feb6b86747f26426b73
+ce69252fc8d84954d25a151965ce908333c590861d0a570f2a412e4ddfc89a9d  sources/kubrick-24.08.0.tar.xz
+kwalletmanager release/24.08
+a3a8e991d138308142db0b85c4636804e6095183
+08f900f9ef770b2bc9208781e5dcdb7e0c43f0c7a47a1515b1888f24756542f7  sources/kwalletmanager-24.08.0.tar.xz
+kwave release/24.08
+0f1db1c9bf44191c637bd1f22d1840e7f1ff3a42
+c3aae51974a9143bb37c509cc123c00424cc51735dc12b015430f0839bf844da  sources/kwave-24.08.0.tar.xz
+kweather release/24.08
+8b0ef74c474f4c6570b452c22343f75dd7bb3f41
+6ab41961bf57bfeb42b679167f3a42e258af264b919654e70f780b814d1e0354  sources/kweather-24.08.0.tar.xz
+kweathercore release/24.08
+d0dccbda4444bd554c1b1ef8e8abe16247ddcf9a
+ada469144f2cd75f70c6d474b965e3d5cf49c80c4f3270fad36399889126b1b2  sources/kweathercore-24.08.0.tar.xz
+kwordquiz release/24.08
+81e077fb4521fce5daa9fb37f9d82dbb204ef4a7
+79b471f98e1cb836dbc4c95e5b7dc295739fda3f7360873e8405458324c0e41c  sources/kwordquiz-24.08.0.tar.xz
+libgravatar release/24.08
+a88ebd09e5c1a42b244d2b521277e429028e0d82
+318e551d0eba013d6baa1d525e06ddb54d1ee6b9a85405f8dfcb057fd65b1dfb  sources/libgravatar-24.08.0.tar.xz
+libkcddb release/24.08
+e05f565246035ecaeb14777374bb82582d394610
+62cb6882bff4ce274bc5e98715decc8b8964f9809178219ef49cbd37d091941a  sources/libkcddb-24.08.0.tar.xz
+libkcompactdisc release/24.08
+e39bdd6548fba5955ec8e3a919bc4ffcb76ede99
+40be0e5edb051aa7de8ca7ce20e75de935f34e37b6a5251b7ad1f3088a466b3c  sources/libkcompactdisc-24.08.0.tar.xz
+libkdcraw release/24.08
+615c43c3311b9e008bb2a522120561cef9bee53e
+b64b7f094296be4e689f4846c8d3ac82f93dc30cbd92ccbf62b65596e88625c2  sources/libkdcraw-24.08.0.tar.xz
+libkdegames release/24.08
+e8a3da2b9d08b453f426a79e2e202f4570deeff5
+22f9d42076d896a8e0a55b8e00b37974180e9f6b8606b011038db8ee6f4357c5  sources/libkdegames-24.08.0.tar.xz
+libkdepim release/24.08
+f48c0bd8bee3f6c892757f4c7a4d85055ba5fd2b
+36b77351b98bdd12cb2a703eb3f4c87b56a47f81bce12418c4d67412465ecbca  sources/libkdepim-24.08.0.tar.xz
+libkeduvocdocument release/24.08
+f6419c5c0c10773e88cd21c9634fab804cf00b1d
+9ff94d77c66ef574bc51f5384fa3370a854524a809bab10a292ccd57d723a8c5  sources/libkeduvocdocument-24.08.0.tar.xz
+libkexiv2 release/24.08
+354ff39d2cd5bc5bbcbe57ed231faa510fc63a87
+615faa6949ac9069832d381c56a7c8311a420c5d42c4d674bada62605a557291  sources/libkexiv2-24.08.0.tar.xz
+libkgapi release/24.08
+0ec6ce6192ff6c42e66edc0e4b669e3d3d48a900
+1db9e5e2b1bb550b36780f9ab5e571e15b75d397c5555e0e18fd8e3541ddc915  sources/libkgapi-24.08.0.tar.xz
+libkleo release/24.08
+d51217ae6739c15c1d51e9a517f6b851df1e87df
+951657eb625686f13305fdae1d52e0c5e5a108e1f3ba03d1080239a0c0f531f1  sources/libkleo-24.08.0.tar.xz
+libkmahjongg release/24.08
+a192cb46969b5b3fca6a11f38ab17cb0456bd7c6
+8e0d3d8888c3832837f98ffe7548b3fd6f9617c022fe3c50cf6f40de17e9f77b  sources/libkmahjongg-24.08.0.tar.xz
+libkomparediff2 release/24.08
+a95c8a4ab3b5c0a738c312fd9e4fd405accdf455
+a9f57e9f11b34dd9dc148fb85c2fc904f6c8a87dd92e676c387d5b850cd0cc66  sources/libkomparediff2-24.08.0.tar.xz
+libksane release/24.08
+d25549bfb3c09864b61fafd891cdb09f7444ba15
+4bfbc56289b18fc020809d5cb89185094783370728e02b7cdd2a3832b609bb3d  sources/libksane-24.08.0.tar.xz
+libksieve release/24.08
+089f5a20b8cbbf73a43101854d62c98c866842b2
+8f42129e6bd6a83b751f043d0c7b316dceb7d7c01fd595a98d7a6eb658f9e814  sources/libksieve-24.08.0.tar.xz
+libktorrent release/24.08
+eb0197451cd18fb66d8cac9fa5488729453cc865
+7f5e8662642f85d6d76afe00e1c37df030fc2a4f33d945d6c6e27d2401afb3d1  sources/libktorrent-24.08.0.tar.xz
+lokalize release/24.08
+b9590372deb723fc7a05413ee962c0a672acac16
+b7874452fc149d32efda8dc04719f7578b3f2273eea8227b2bf25754650a9ca6  sources/lokalize-24.08.0.tar.xz
+lskat release/24.08
+edcb419b7fee4e301ea470284942f1c7e3aa971b
+3af56f5b9ebd69bfc7fd6412bea9b28836d37f92b8412ca024dc432aced5df97  sources/lskat-24.08.0.tar.xz
+mailcommon release/24.08
+de343ec6b50433c845dd62f76e28d8475b57cfa1
+e947745ad72c4b4b9cf34742fcecf84d45669785d0df081f5c4e59de00900e11  sources/mailcommon-24.08.0.tar.xz
+mailimporter release/24.08
+dc1c232e71527afc450f59a71db31329a8913211
+65fc7189d1698284a037635fc7fb6c645737c4bc61a8b236d67a687eb6bb62d3  sources/mailimporter-24.08.0.tar.xz
+marble release/24.08
+ed2e00476d3196126b439b2b7f58ae2c6612ecc2
+bc02c709c15518fa1c6a7dafef2c507e14571d4f722486faca1bf8e18be931a5  sources/marble-24.08.0.tar.xz
+markdownpart release/24.08
+13a839d1896575523a0041b5d3d630564038f133
+2f83b6e4913709953144b873a01a79b6e81ca75e33beae43fc3788bbd80ffd17  sources/markdownpart-24.08.0.tar.xz
+massif-visualizer release/24.08
+ce74e5a067ed41a0d39afa6158613be89ba0cfc9
+dd605c473f6d2c77cd2a6ebaab5645a7784ef7e414a65bff357836e8a26df590  sources/massif-visualizer-24.08.0.tar.xz
+mbox-importer release/24.08
+1f63ddad21d971c8ec4bffc4c0a0e012bc3dbc5c
+559a112c0dbc73ca152d1d237a4149dea98ce97ecb75566fbdef36a7e1b21c36  sources/mbox-importer-24.08.0.tar.xz
+merkuro release/24.08
+03fb0bd005e0373c921634d6b49c443eb27ddbc4
+726070bef38453eadd3dee68b68fb294dc215107b98c1a8edb461bad1c9fbdae  sources/merkuro-24.08.0.tar.xz
+messagelib release/24.08
+5d3d3fd62f0bebfc232893e134c7b866d526248a
+c44c0c4ec3056b47930846f44eb685479db06281c79eead78edf57903b8ab8a5  sources/messagelib-24.08.0.tar.xz
+mimetreeparser release/24.08
+524a6ae74bdfbec297a26cbe88ebac6300e6b306
+bc0401a7d4dbae4b18cead7d788b54bd6b27b460850b299b01f07b47069db05e  sources/mimetreeparser-24.08.0.tar.xz
+minuet release/24.08
+744b15d377e18c3f14ee474d7c73ce3d51d75ab1
+7e9a3d8ef23ba49aca162e178d3ac64be8317cf3280d2deff9a7554b97764573  sources/minuet-24.08.0.tar.xz
+neochat release/24.08
+5b3e650854e44942dbf47dd19698dc34a2330a00
+6b72d1864cc0d90704318c8970b9dc6a2dacd541fc5b95c46dcebb5c6a61705f  sources/neochat-24.08.0.tar.xz
+okular release/24.08
+c6da753f4a95338183398785ba0f4ac544c44eeb
+3de16e26294b3863270df1760403a676ba3d7204738bebce8a05562d932c318b  sources/okular-24.08.0.tar.xz
+palapeli release/24.08
+631f7a5783cbb76186d7ba68e70746079cf18e92
+572844398954453b5f8dc5316bb0f4b9ce160aa04a08db37397a9ab3acaf8069  sources/palapeli-24.08.0.tar.xz
+parley release/24.08
+b6f5c911dd3a8899555a34a13c84607a0ad5070a
+c5cdb2a7c5385f4d77196696a5698e8e0592ac38765f49e750af7a46e2ce07b3  sources/parley-24.08.0.tar.xz
+partitionmanager release/24.08
+44b38fc6c1d35729da030aef39ed36b408ddfb5b
+f5f8dc4f1aaa164b97c41086ca3807ef93a68d9522f90dd167e6c7e7adec64ab  sources/partitionmanager-24.08.0.tar.xz
+picmi release/24.08
+3cc7b9b9613383254b1bc26798b4e2f9cfa291ad
+783bba33c7c2f859311ed33b886f50bb24580ea80de591c58a319ed75777a284  sources/picmi-24.08.0.tar.xz
+pimcommon release/24.08
+f9c35e437f4095827c172a8ddde2c7ed54d36058
+ce8e85e45bfc4ef88f0c081719fcf8fad4743c9bc0b109a13a9c73662e1bd77d  sources/pimcommon-24.08.0.tar.xz
+pim-data-exporter release/24.08
+596b5e66ebf4105a2520c5b72e90e26e8041f62f
+3125a2192289418c08e72552604c7104f2e8f30f4c3d7c181a1749a88b4cb1f5  sources/pim-data-exporter-24.08.0.tar.xz
+pim-sieve-editor release/24.08
+0398dbc45632d4ddc09d7903c745e2b67605bb96
+e74e8568142cf7fbeb92633013d2f39f475371bf6325b3fae9a26f5794631ab9  sources/pim-sieve-editor-24.08.0.tar.xz
+plasmatube release/24.08
+872306a69849789718613e5b3945ff726fc88092
+b3c0f4dc212468d13d2fad733bc267b76ee69d84537f83ef71b457ec79ae0cb8  sources/plasmatube-24.08.0.tar.xz
+poxml release/24.08
+ed364e000e277e70527eb954b9db3843faff67f4
+c0725f0acda50ab54bafc499fd1bb5ef4d382ef6cf68bbe425111463c0db516a  sources/poxml-24.08.0.tar.xz
+qmlkonsole release/24.08
+57748de99ef8a05a54abf3fcf195cf10e343d1b8
+848806e00704d44946b319a449eba26c1a790aa288139fb7e79a3048090a740c  sources/qmlkonsole-24.08.0.tar.xz
+rocs release/24.08
+6a321deb011efb5afbd790f6fd1c35593f2f64f9
+7461c791d5ab3b29581abba2869ae0fb9ec0ca877c7af272b2a0170860dad18c  sources/rocs-24.08.0.tar.xz
+signon-kwallet-extension release/24.08
+54deb13db017b72458f12772de5ed4f2236ccaaf
+d5cc47bb9cfe45c857ace62c0d80529ee80e005b96369579cf3604f122ce12c1  sources/signon-kwallet-extension-24.08.0.tar.xz
+skanlite release/24.08
+cf277863f64fb1ccc7b1a28434924bd7f2ecadbc
+343beb192dc01846b7593a530fe468505dd8392a8e2778c92746984805b5ffbf  sources/skanlite-24.08.0.tar.xz
+skanpage release/24.08
+723b810ba3912bbf73f80a891453c99d3a1fe625
+685ed0f9fd36d44a70b8c754f96ebaa7c5f867a5c1f1104f75f5d7a12eba9484  sources/skanpage-24.08.0.tar.xz
+skladnik release/24.08
+445cbd78aba1fc650f482c655c194932e8310818
+5354376c90273b2c40432c5d02515996a9cc319119794fdb8acc63a01c46d988  sources/skladnik-24.08.0.tar.xz
+spectacle release/24.08
+0709c2211f03e6064f818b7a39698955c402744d
+8d37135c6edd62f09f5e6004bef947331466cf20fded79450500dc802dd1ad8c  sources/spectacle-24.08.0.tar.xz
+step release/24.08
+6ce8cb7a4761b85315160fd288eaadf4541b2aea
+6c8f3d96ae317a507ed2b45441c510e7ef76a9b9beaebcf7e568829289136e51  sources/step-24.08.0.tar.xz
+svgpart release/24.08
+c6969096b596618f0aad14e64df52298cb80072d
+216beed4959c22615bd71e4d4ad33501da4d2bc30daa051794b9deeafa7e1334  sources/svgpart-24.08.0.tar.xz
+sweeper release/24.08
+0a4cb04996e97c6ba793230f63ec108e87699ae6
+176b7d71b344545edabf8e46c9f701c4a01701f316e0778ded4f19816f364cdf  sources/sweeper-24.08.0.tar.xz
+telly-skout release/24.08
+ac41c0dc3e272ce5d5a340e772c83d89fd8803ed
+a1276ca19dbe3760dd5efae9ed5f83fcb1d5ec06d4f3887cd500c179a2b167f3  sources/telly-skout-24.08.0.tar.xz
+tokodon release/24.08
+ff84047f0b7f4e076828ddcf95a9a9416b936f45
+24d42173986608608277f17f5687cc25f6c93968c0923945cca27da13ae4078a  sources/tokodon-24.08.0.tar.xz
+umbrello release/24.08
+615cb4352039cfb555f39387aa5029b7db741024
+7909d3cccc87db2395421ac522a34631081b061b0b1da1ef008115dbab0112ba  sources/umbrello-24.08.0.tar.xz
+yakuake release/24.08
+a0c694f264b573f5d008ab7de5897fff34415135
+f6156119a4be8b7d07a7ac9bf2427e4d6d8620225a7e0b21c5ddef71e462ce6d  sources/yakuake-24.08.0.tar.xz
+zanshin release/24.08
+27f43cb6f3317e89c2c1f4ade9a9854f8b76e306
+9a2dc6609d4e933a63eaeb08af40752cc14a8ec6579a7fe0dd5d988118c948b7  sources/zanshin-24.08.0.tar.xz

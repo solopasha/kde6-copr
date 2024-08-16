@@ -1,51 +1,40 @@
-Name:    lokalize
-Summary: Computer-aided translation system
-Version: 24.05.2
-Release: 1%{?dist}
+%global commit0 b9590372deb723fc7a05413ee962c0a672acac16
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
 
-License: BSD-3-Clause AND GFDL-1.2-or-later AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-or-later
-URL:     https://invent.kde.org/sdk/%{name}
+Name:           lokalize
+Summary:        Computer-aided translation system
+Version:        24.08.0
+Release:        1%{?dist}
+
+License:        BSD-3-Clause AND GFDL-1.2-or-later AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-or-later
+URL:            https://invent.kde.org/sdk/%{name}
 %apps_source
 
+BuildRequires:  desktop-file-utils
+BuildRequires:  extra-cmake-modules
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  libappstream-glib
 
-BuildRequires: desktop-file-utils
-BuildRequires: extra-cmake-modules
-BuildRequires: gettext
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
+BuildRequires:  cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Notifications)
+BuildRequires:  cmake(KF6Sonnet)
+BuildRequires:  cmake(KF6TextWidgets)
+BuildRequires:  cmake(KF6XmlGui)
 
-BuildRequires: kf5-kcompletion-devel
-BuildRequires: kf5-kconfig-devel
-BuildRequires: kf5-kconfigwidgets-devel
-BuildRequires: kf5-kcoreaddons-devel
-BuildRequires: kf5-kcrash-devel
-BuildRequires: kf5-kdbusaddons-devel
-BuildRequires: kf5-kdeclarative-devel
-BuildRequires: kf5-kdoctools-devel
-BuildRequires: kf5-kguiaddons-devel
-BuildRequires: kf5-ki18n-devel
-BuildRequires: kf5-kiconthemes-devel
-BuildRequires: kf5-kio-devel
-BuildRequires: kf5-kitemviews-devel
-BuildRequires: kf5-kjobwidgets-devel
-BuildRequires: kf5-knewstuff-devel
-BuildRequires: kf5-knewstuff-devel
-BuildRequires: kf5-knotifications-devel
-BuildRequires: kf5-knotifyconfig-devel
-BuildRequires: kf5-kross-devel
-BuildRequires: kf5-kservice-devel
-BuildRequires: kf5-kwidgetsaddons-devel
-BuildRequires: kf5-kwindowsystem-devel
-BuildRequires: kf5-kxmlgui-devel
-BuildRequires: kf5-rpm-macros
-BuildRequires: kf5-sonnet-devel
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Sql)
+BuildRequires:  cmake(Qt6Test)
+BuildRequires:  cmake(Qt6Widgets)
 
-BuildRequires: pkgconfig(Qt5DBus)
-BuildRequires: pkgconfig(Qt5Script)
-BuildRequires: pkgconfig(Qt5Sql)
-BuildRequires: pkgconfig(Qt5Widgets)
-BuildRequires: pkgconfig(hunspell)
-
-## check
-BuildRequires: libappstream-glib
+BuildRequires:  pkgconfig(hunspell)
 
 ## fixme
 # aka python-unversioned-command
@@ -62,12 +51,12 @@ Computer-aided translation system focusing on productivity and performance
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
-%cmake_kf5
+%cmake_kf6
 %cmake_build
 
 
@@ -77,32 +66,44 @@ Computer-aided translation system focusing on productivity and performance
 %find_lang %{name} --all-name --with-html
 
 # Add Comment key to .desktop file
-grep '^Comment=' %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.desktop || \
+grep '^Comment=' %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.desktop || \
 desktop-file-install \
-  --dir=%{buildroot}%{_kf5_datadir}/applications \
+  --dir=%{buildroot}%{_kf6_datadir}/applications \
   --set-comment="%{summary}" \
-  %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.desktop
+  %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.desktop
 
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf5_metainfodir}/org.kde.%{name}.appdata.xml
-desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.desktop
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.desktop
 
 
 %files -f %{name}.lang
 %license LICENSES/*
 %doc README.md
-%{_kf5_bindir}/%{name}
-%{_kf5_datadir}/%{name}/
-%{_kf5_datadir}/applications/org.kde.%{name}.desktop
-%{_kf5_datadir}/config.kcfg/%{name}.kcfg
-%{_kf5_datadir}/icons/hicolor/*/apps/%{name}.*
-%{_kf5_datadir}/knotifications5/%{name}.notifyrc
-%{_kf5_datadir}/qlogging-categories5/%{name}*
-%{_kf5_metainfodir}/org.kde.%{name}.appdata.xml
+%{_kf6_bindir}/%{name}
+%{_kf6_datadir}/%{name}/
+%{_kf6_datadir}/applications/org.kde.%{name}.desktop
+%{_kf6_datadir}/config.kcfg/%{name}.kcfg
+%{_kf6_datadir}/icons/hicolor/*/apps/%{name}.*
+%{_kf6_datadir}/knotifications6/%{name}.notifyrc
+%{_kf6_datadir}/qlogging-categories6/%{name}*
+%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Wed Jul 31 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-2
+- pick upstream commit
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

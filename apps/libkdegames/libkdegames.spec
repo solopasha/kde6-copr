@@ -1,13 +1,16 @@
+%global commit0 e8a3da2b9d08b453f426a79e2e202f4570deeff5
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    libkdegames
 Summary: Common code and data for many KDE games
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 # libKF5KDEGames is LGPLv2, libKF5KDEGamesPrivate is GPLv2+
 License: LGPLv2 and GPLv2+
 URL:     https://invent.kde.org/games/%{name}
 %apps_source
-
 
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-karchive-devel
@@ -68,8 +71,8 @@ Requires: kf6-kwidgetsaddons-devel
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -103,6 +106,15 @@ Requires: kf6-kwidgetsaddons-devel
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

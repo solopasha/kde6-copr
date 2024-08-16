@@ -1,5 +1,9 @@
+%global commit0 4b557516b8233efff4e48248ecf3debea8b093e1
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    kosmindoormap
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 Summary: OSM multi-floor indoor map renderer
 
@@ -26,7 +30,6 @@ BuildRequires:  rsync
 BuildRequires:  protobuf-devel
 BuildRequires:  openssl-devel
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  protobuf-lite-devel
 
 BuildRequires:  cmake(KF6Kirigami)
@@ -50,8 +53,8 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -67,11 +70,14 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %doc README.md
 %{_kf6_datadir}/qlogging-categories6/org_kde_kosmindoormap.categories
+%{_kf6_libdir}/libKOSM.so.%{version_no_git}
 %{_kf6_libdir}/libKOSM.so.1
-%{_kf6_libdir}/libKOSM.so.%{version}
+%{_kf6_libdir}/libKOSMIndoorMap.so.%{version_no_git}
 %{_kf6_libdir}/libKOSMIndoorMap.so.1
-%{_kf6_libdir}/libKOSMIndoorMap.so.%{version}
+%{_kf6_libdir}/libKOSMIndoorRouting.so.%{version_no_git}
+%{_kf6_libdir}/libKOSMIndoorRouting.so.1
 %{_qt6_qmldir}/org/kde/kosmindoormap/
+%{_qt6_qmldir}/org/kde/kosmindoorrouting/
 %{_qt6_qmldir}/org/kde/osm/
 
 %files devel
@@ -80,11 +86,23 @@ developing applications that use %{name}.
 %{_includedir}/kosmindoormap_version.h
 %{_includedir}/kosmindoormap/
 %{_includedir}/KOSMIndoorMap/
+%{_includedir}/kosmindoorrouting/
+%{_includedir}/KOSMIndoorRouting/
 %{_kf6_libdir}/cmake/KOSMIndoorMap/
 %{_kf6_libdir}/libKOSM.so
 %{_kf6_libdir}/libKOSMIndoorMap.so
+%{_kf6_libdir}/libKOSMIndoorRouting.so
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

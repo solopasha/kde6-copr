@@ -1,6 +1,10 @@
+%global commit0 d9612a79bcab5e445863d6327b2774f1772534ee
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:           dolphin
 Summary:        KDE File Manager
-Version:        24.05.2
+Version:        24.08.0
 Release:        1%{?dist}
 
 License:        GPLv2+
@@ -78,8 +82,8 @@ Requires:       kf6-kio-devel%{?_isa}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -139,6 +143,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %files libs
 %{_kf6_libdir}/libdolphinprivate.so.*
 %{_kf6_libdir}/libdolphinvcs.so.*
+%{_kf6_plugindir}/kfileitemaction/movetonewfolderitemaction.so
 %{_kf6_plugindir}/parts/dolphinpart.so
 %{_kf6_qtplugindir}/dolphin/
 
@@ -150,6 +155,18 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Aug 01 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-2
+- pick upstream commit
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

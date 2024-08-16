@@ -1,12 +1,15 @@
+%global commit0 615cb4352039cfb555f39387aa5029b7db741024
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    umbrello
 Summary: UML modeler and UML diagram tool
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND (GPL-2.0-only OR GPL-3.0-only)
 URL:     https://www.kde.org/applications/development/umbrello/
 %apps_source
-
 
 ## upstream patches
 
@@ -53,23 +56,20 @@ BuildRequires: cmake(Clang)
 BuildRequires: llvm-devel
 
 # API doc generation - for later use
-#BuildRequires: doxygen
+BuildRequires: doxygen
 #BuildRequires: cmake(Qt5Help)
 
 Conflicts:      kdesdk-common < 4.10.80
 Provides:       kdesdk-umbrello = %{version}-%{release}
 Obsoletes:      kdesdk-umbrello < 4.10.80
 
-Conflicts: kde-l10n < 17.08.3-2
-
-
 %description
 GUI for diagramming Unified Modeling Language (UML)
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -99,6 +99,15 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.umbrello.
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

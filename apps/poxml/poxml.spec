@@ -1,26 +1,24 @@
-Name:    poxml
-Summary: Text utilities from kdesdk
-Version: 24.05.2
-Release: 1%{?dist}
+%global commit0 ed364e000e277e70527eb954b9db3843faff67f4
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
 
-License: GPLv2+
-URL:     https://invent.kde.org/sdk/%{name}
+Name:           poxml
+Summary:        Text utilities from kdesdk
+Version:        24.08.0
+Release:        1%{?dist}
+
+License:        GPLv2+
+URL:            https://invent.kde.org/sdk/poxml
 %apps_source
 
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gettext-devel
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires: extra-cmake-modules
-BuildRequires: gettext-devel
-BuildRequires: kf5-kdoctools-devel
-BuildRequires: kf5-rpm-macros
-BuildRequires: pkgconfig(libxslt)
-BuildRequires: pkgconfig(Qt5Xml)
+BuildRequires:  cmake(KF6DocTools)
 
-# translations moved here
-Conflicts: kde-l10n < 17.03
-
-Conflicts:     kdesdk-common < 4.10.80
-Provides:      kdesdk-poxml = %{version}-%{release}
-Obsoletes:     kdesdk-poxml < 4.10.80
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Xml)
 
 %description
 Text utilities from kdesdk, including
@@ -31,12 +29,12 @@ xml2pot
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
-%cmake_kf5
+%cmake_kf6
 %cmake_build
 
 
@@ -48,17 +46,26 @@ xml2pot
 
 %files -f %{name}.lang
 %license COPYING*
-%{_kf5_bindir}/po2xml
-%{_kf5_bindir}/split2po
-%{_kf5_bindir}/swappo
-%{_kf5_bindir}/xml2pot
-%{_mandir}/man1/po2xml*
-%{_mandir}/man1/split2po*
-%{_mandir}/man1/swappo*
-%{_mandir}/man1/xml2pot*
+%{_kf6_bindir}/po2xml
+%{_kf6_bindir}/split2po
+%{_kf6_bindir}/swappo
+%{_kf6_bindir}/xml2pot
+%{_kf6_mandir}/man1/po2xml*
+%{_kf6_mandir}/man1/split2po*
+%{_kf6_mandir}/man1/swappo*
+%{_kf6_mandir}/man1/xml2pot*
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

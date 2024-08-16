@@ -1,5 +1,9 @@
+%global commit0 bb6e7224095c9c877b329185c48465d8c8f46a92
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:           ghostwriter
-Version:        24.05.2
+Version:        24.08.0
 Release:        1%{?dist}
 
 License:        GPL-3.0-or-later AND Apache-2.0 AND CC-BY-4.0 AND CC-BY-SA-4.0 AND MPL-1.1 AND BSD AND LGPL-3.0-only AND MIT AND ISC
@@ -12,20 +16,21 @@ BuildRequires: extra-cmake-modules
 BuildRequires: gcc-c++
 BuildRequires: libappstream-glib
 
-BuildRequires: cmake(KF5ConfigWidgets)
-BuildRequires: cmake(KF5CoreAddons)
-BuildRequires: cmake(KF5DocTools)
-BuildRequires: cmake(KF5Sonnet)
-BuildRequires: cmake(KF5WidgetsAddons)
-BuildRequires: cmake(KF5XmlGui)
+BuildRequires: cmake(KF6ConfigWidgets)
+BuildRequires: cmake(KF6CoreAddons)
+BuildRequires: cmake(KF6DocTools)
+BuildRequires: cmake(KF6Sonnet)
+BuildRequires: cmake(KF6WidgetsAddons)
+BuildRequires: cmake(KF6XmlGui)
 
-BuildRequires: cmake(Qt5Concurrent)
-BuildRequires: cmake(Qt5Core)
-BuildRequires: cmake(Qt5Gui)
-BuildRequires: cmake(Qt5Svg)
-BuildRequires: cmake(Qt5WebChannel)
-BuildRequires: cmake(Qt5WebEngineWidgets)
-BuildRequires: cmake(Qt5Widgets)
+BuildRequires: cmake(Qt6Concurrent)
+BuildRequires: cmake(Qt6Core)
+BuildRequires: cmake(Qt6Core5Compat)
+BuildRequires: cmake(Qt6Gui)
+BuildRequires: cmake(Qt6Svg)
+BuildRequires: cmake(Qt6WebChannel)
+BuildRequires: cmake(Qt6WebEngineWidgets)
+BuildRequires: cmake(Qt6Widgets)
 
 BuildRequires: pkgconfig(hunspell)
 
@@ -33,7 +38,6 @@ Provides: bundled(cmark-gfm) = 0.29.0.gfm.6
 Provides: bundled(fontawesome-fonts) = 5.10.2
 Provides: bundled(nodejs-mathjax-full) = 3.1.2
 Provides: bundled(nodejs-react) = 17.0.1
-Provides: bundled(QtAwesome) = 5
 
 Requires: hicolor-icon-theme
 
@@ -41,8 +45,8 @@ Recommends: cmark%{?_isa}
 Recommends: multimarkdown%{?_isa}
 Recommends: pandoc%{?_isa}
 
-# Required qt5-qtwebengine is not available on some arches.
-ExclusiveArch: %{qt5_qtwebengine_arches}
+# Required qt6-qtwebengine is not available on some arches.
+ExclusiveArch: %{qt6_qtwebengine_arches}
 
 %description
 Ghostwriter is a text editor for Markdown, which is a plain text markup
@@ -54,11 +58,11 @@ whether your masterpiece be that next blog post, your school paper,
 or your novel.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
-%cmake_kf5
+%cmake_kf6
 %cmake_build
 
 %check
@@ -72,13 +76,22 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 %files -f %{name}.lang
 %doc CHANGELOG.md CONTRIBUTING.md README.md
 %license COPYING
-%{_kf5_bindir}/%{name}
-%{_kf5_datadir}/applications/org.kde.%{name}.desktop
-%{_kf5_datadir}/icons/hicolor/*/apps/%{name}.*
-%{_kf5_mandir}/man1/ghostwriter.1.*
-%{_kf5_metainfodir}/org.kde.%{name}.metainfo.xml
+%{_kf6_bindir}/%{name}
+%{_kf6_datadir}/applications/org.kde.%{name}.desktop
+%{_kf6_datadir}/icons/hicolor/*/apps/%{name}.*
+%{_kf6_mandir}/man1/%{name}.1.*
+%{_kf6_metainfodir}/org.kde.%{name}.metainfo.xml
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

@@ -1,8 +1,12 @@
+%global commit0 0386f8c229446c0d1f1c647a57b2d3aa5b216421
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 #global tests 1
 
 Name:    kate
 Summary: Advanced Text Editor
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 # kwrite LGPLv2+
@@ -11,8 +15,6 @@ Release: 1%{?dist}
 License: LGPLv2 and LGPLv2+ and GPLv2+
 URL:     https://apps.kde.org/kate/
 %apps_source
-
-## upstream patches
 
 BuildRequires: desktop-file-utils
 BuildRequires: gettext
@@ -39,6 +41,7 @@ BuildRequires: cmake(Qt6Widgets)
 BuildRequires: cmake(Qt6Sql)
 BuildRequires: cmake(Qt6Test)
 BuildRequires: cmake(Qt6Concurrent)
+BuildRequires: cmake(Qt6Keychain)
 BuildRequires: qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
@@ -89,8 +92,8 @@ Requires: %{name}-libs = %{version}-%{release}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -128,6 +131,7 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_datadir}/applications/org.kde.kate.desktop
 %{_kf6_datadir}/icons/hicolor/*/apps/kate.*
 %{_kf6_metainfodir}/org.kde.kate.appdata.xml
+%dir %{_kf6_plugindir}/ktexteditor
 %{_kf6_plugindir}/ktexteditor/cmaketoolsplugin.so
 %{_kf6_plugindir}/ktexteditor/eslintplugin.so
 %{_kf6_plugindir}/ktexteditor/formatplugin.so
@@ -136,7 +140,7 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %files libs
-%{_kf6_libdir}/libkateprivate.so.%{version}
+%{_kf6_libdir}/libkateprivate.so.%{version_no_git}
 
 %files plugins -f plugins.lang
 %{_kf6_datadir}/kateproject/
@@ -157,6 +161,7 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_plugindir}/ktexteditor/katereplicodeplugin.so
 %{_kf6_plugindir}/ktexteditor/katesearchplugin.so
 %{_kf6_plugindir}/ktexteditor/katesnippetsplugin.so
+%{_kf6_plugindir}/ktexteditor/katesqlplugin.so
 %{_kf6_plugindir}/ktexteditor/katesymbolviewerplugin.so
 %{_kf6_plugindir}/ktexteditor/katexmlcheckplugin.so
 %{_kf6_plugindir}/ktexteditor/katexmltoolsplugin.so
@@ -164,10 +169,10 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_plugindir}/ktexteditor/ktexteditorpreviewplugin.so
 %{_kf6_plugindir}/ktexteditor/latexcompletionplugin.so
 %{_kf6_plugindir}/ktexteditor/lspclientplugin.so
+%{_kf6_plugindir}/ktexteditor/openlinkplugin.so
 %{_kf6_plugindir}/ktexteditor/rainbowparens.so
 %{_kf6_plugindir}/ktexteditor/tabswitcherplugin.so
 %{_kf6_plugindir}/ktexteditor/textfilterplugin.so
-%{_kf6_plugindir}/ktexteditor/openlinkplugin.so
 
 %files -n kwrite -f kwrite.lang
 %{_kf6_bindir}/kwrite
@@ -177,6 +182,18 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Mon Jul 29 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-2
+- pick upstream commits
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

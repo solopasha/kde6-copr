@@ -1,15 +1,18 @@
+%global commit0 1f9f963af3327ef7ff302db083da6f56401bfc5f
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global _python3_include %(%{__python3} -Ic "from distutils.sysconfig import get_python_inc; print(get_python_inc())")
 %global _python3_lib /usr/%{_lib}/lib%(basename %{_python3_include}).so
 
 Name:    kig
 Summary: Interactive Geometry
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND GFDL-1.2-or-later AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-or-later
 URL:     https://invent.kde.org/education/%{name}
 %apps_source
-
 
 ## upstreamable patches
 # https://bugzilla.redhat.com/show_bug.cgi?id=1238113
@@ -53,8 +56,8 @@ BuildRequires: pkgconfig(Qt5XmlPatterns)
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %py3_shebang_fix pykig/pykig.py
 
@@ -99,6 +102,15 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

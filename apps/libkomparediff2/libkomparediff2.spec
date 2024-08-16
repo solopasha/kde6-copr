@@ -1,56 +1,54 @@
-# enable tests
-#global tests 1
+%global commit0 a95c8a4ab3b5c0a738c312fd9e4fd405accdf455
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
 
-Name:    libkomparediff2
-Summary: Library to compare files and strings
-Version: 24.05.2
-Release: 1%{?dist}
+Name:           libkomparediff2
+Summary:        Library to compare files and strings
+Version:        24.08.0
+Release:        1%{?dist}
 
 # Library: GPLv2+ (some files LGPLv2+), CMake scripts: BSD
-License: GPL-2.0-or-later AND LGPL-2.0-or-later
-URL:     https://www.kde.org/
+License:        GPL-2.0-or-later AND LGPL-2.0-or-later
+URL:            https://www.kde.org/
 %apps_source
 
 BuildRequires:  gcc-c++
-BuildRequires:  kf5-rpm-macros
+BuildRequires:  kf6-rpm-macros
 BuildRequires:  extra-cmake-modules
 
-BuildRequires:  cmake(KF5Config)
-BuildRequires:  cmake(KF5CoreAddons)
-BuildRequires:  cmake(KF5I18n)
-BuildRequires:  cmake(KF5KIO)
-BuildRequires:  cmake(KF5XmlGui)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6XmlGui)
 
-BuildRequires:  cmake(Qt5Core)
-BuildRequires:  cmake(Qt5Test)
-BuildRequires:  cmake(Qt5Widgets)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Widgets)
 
 
 %description
 A shared library to compare files and strings using KDE Frameworks 5 and GNU
 diff, used in Kompare and KDevelop.
 
-%package devel
-Summary: Developer files for %{name}
-Requires: %{name}%{?_isa} = %{version}-%{release}
-Requires: cmake
-Requires: cmake(KF5Config)
-Requires: cmake(KF5XmlGui)
-Requires: cmake(Qt5Core)
-Requires: cmake(Qt5Widgets)
+%package        devel
+Summary:        Developer files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(KF6Config)
+Requires:       cmake(KF6XmlGui)
+Requires:       cmake(Qt6Core)
+Requires:       cmake(Qt6Widgets)
 %description devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
-%cmake_kf5 \
-  -DBUILD_TESTING:BOOL=%{?tests}%{!?tests:0}
+%cmake_kf6
 %cmake_build
 
 
@@ -60,24 +58,27 @@ developing applications that use %{name}.
 %find_lang %{name} --all-name
 
 
-%check
-%if 0%{?tests}
-%ctest
-%endif
-
-
 %files -f %{name}.lang
 %license COPYING*
-%{_kf5_datadir}/qlogging-categories5/libkomparediff2.categories
-%{_libdir}/libkomparediff2.so.5*
+%{_kf6_datadir}/qlogging-categories6/libkomparediff2.categories
+%{_kf6_libdir}/libkomparediff2.so.6*
 
 %files devel
 %{_includedir}/KompareDiff2/
-%{_libdir}/libkomparediff2.so
-%{_libdir}/cmake/LibKompareDiff2/
+%{_kf6_libdir}/cmake/KompareDiff2/
+%{_kf6_libdir}/libkomparediff2.so
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

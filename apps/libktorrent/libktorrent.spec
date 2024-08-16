@@ -1,6 +1,10 @@
+%global commit0 eb0197451cd18fb66d8cac9fa5488729453cc865
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:           libktorrent
 Summary:        Torrent downloading library for KDE 6 applications
-Version:        24.05.2
+Version:        24.08.0
 Release:        1%{?dist}
 # CC0 is only for CI tooling, BSD3 for cmake macros, MIT for win32 support code
 License:        GPL-2.0-or-later
@@ -47,8 +51,8 @@ Requires:       cmake(Qt6Network)
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -66,7 +70,7 @@ Requires:       cmake(Qt6Network)
 %doc ChangeLog
 %license LICENSES/GPL*.txt
 %{_kf6_libdir}/libKTorrent6.so.6
-%{_kf6_libdir}/libKTorrent6.so.%{version}
+%{_kf6_libdir}/libKTorrent6.so.%{version_no_git}
 
 %files devel
 %{_kf6_includedir}/libktorrent/
@@ -75,6 +79,15 @@ Requires:       cmake(Qt6Network)
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

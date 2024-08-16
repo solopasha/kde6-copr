@@ -1,5 +1,9 @@
+%global commit0 3e32942ec53d3fe9812e2677e7c0045fb19d454d
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:          kde-inotify-survey
-Version:       24.05.2
+Version:       24.08.0
 Release:       1%{?dist}
 Summary:       Monitors inotify limits and lets the user know when exceeded
 
@@ -7,7 +11,6 @@ Summary:       Monitors inotify limits and lets the user know when exceeded
 License:       BSD-3-Clause and CC0-1.0 and FSFAP and GPL-2.0-only and GPL-3.0-only
 URL:           https://invent.kde.org/system/%{name}
 %apps_source
-
 
 Requires:      kf6-kded
 Requires:      dbus-common
@@ -29,8 +32,8 @@ BuildRequires: cmake(KF6Auth)
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6 -DQT_MAJOR_VERSION=6
@@ -54,6 +57,15 @@ BuildRequires: cmake(KF6Auth)
 %{_datadir}/polkit-1/actions/org.kde.kded.inotify.policy
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

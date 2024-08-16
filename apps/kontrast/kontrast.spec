@@ -1,5 +1,9 @@
+%global commit0 d12a2d9054a069b7f7add2981ff2a880aac11ea2
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:          kontrast
-Version:       24.05.2
+Version:       24.08.0
 Release:       1%{?dist}
 Summary:       Color contrast checker
 # BSD, CC0 are only for build files
@@ -28,10 +32,12 @@ BuildRequires: cmake(Qt6Sql)
 BuildRequires: cmake(Qt6Svg)
 BuildRequires: cmake(Qt6Widgets)
 
+BuildRequires: cmake(KF6KirigamiAddons)
+
 Requires:      hicolor-icon-theme
 Requires:      kf6-filesystem
 # QML dependencies
-Requires:      kf6-kirigami2%{?_isa}
+Requires:      kf6-kirigami%{?_isa}
 Requires:      kf6-kirigami-addons%{?_isa}
 
 %description
@@ -40,8 +46,8 @@ are accessible for people with color vision deficiencies.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -70,6 +76,15 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

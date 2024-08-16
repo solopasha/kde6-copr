@@ -1,71 +1,78 @@
-Name:    krdc
-Summary: Remote desktop client
-Version: 24.05.2
-Release: 1%{?dist}
+%global commit0 209795285e75dc4e05e2f1c0e281898513affed9
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
 
-License: GPL-2.0-or-later
-URL:     https://invent.kde.org/network/krdc
+Name:           krdc
+Summary:        Remote desktop client
+Version:        24.08.0
+Release:        1%{?dist}
+
+License:        GPL-2.0-or-later
+URL:            https://invent.kde.org/network/krdc
 %apps_source
 
-BuildRequires: desktop-file-utils
-BuildRequires: extra-cmake-modules
-BuildRequires: kf5-rpm-macros
-BuildRequires: libappstream-glib
+BuildRequires:  desktop-file-utils
+BuildRequires:  extra-cmake-modules
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  libappstream-glib
 
-BuildRequires: cmake(KF5Bookmarks)
-BuildRequires: cmake(KF5Completion)
-BuildRequires: cmake(KF5Config)
-BuildRequires: cmake(KF5DNSSD)
-BuildRequires: cmake(KF5DocTools)
-BuildRequires: cmake(KF5I18n)
-BuildRequires: cmake(KF5IconThemes)
-BuildRequires: cmake(KF5KCMUtils)
-BuildRequires: cmake(KF5KIO)
-BuildRequires: cmake(KF5Notifications)
-BuildRequires: cmake(KF5NotifyConfig)
-BuildRequires: cmake(KF5Wallet)
-BuildRequires: cmake(KF5WidgetsAddons)
-BuildRequires: cmake(KF5WindowSystem)
-BuildRequires: cmake(KF5XmlGui)
-BuildRequires: cmake(KF5Activities)
+BuildRequires:  cmake(KF6Bookmarks)
+BuildRequires:  cmake(KF6Completion)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6DNSSD)
+BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6IconThemes)
+BuildRequires:  cmake(KF6KCMUtils)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Notifications)
+BuildRequires:  cmake(KF6NotifyConfig)
+BuildRequires:  cmake(KF6StatusNotifierItem)
+BuildRequires:  cmake(KF6Wallet)
+BuildRequires:  cmake(KF6WidgetsAddons)
+BuildRequires:  cmake(KF6WindowSystem)
+BuildRequires:  cmake(KF6XmlGui)
 
-BuildRequires: cmake(Qt5Core)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6WaylandClient)
+BuildRequires:  qt6-qtbase-private-devel
 
-BuildRequires: freerdp
-BuildRequires: (cmake(FreeRDP) >= 2.10 with cmake(FreeRDP) < 3)
-BuildRequires: (cmake(FreeRDP-Client) >= 2.10 with cmake(FreeRDP-Client) < 3)
-BuildRequires: pkgconfig(libssh)
-BuildRequires: pkgconfig(libvncserver)
+BuildRequires:  cmake(PlasmaActivities)
+
+BuildRequires:  freerdp
+BuildRequires:  (cmake(FreeRDP) >= 2.10 with cmake(FreeRDP) < 3)
+BuildRequires:  (cmake(FreeRDP-Client) >= 2.10 with cmake(FreeRDP-Client) < 3)
+BuildRequires:  pkgconfig(libssh)
+BuildRequires:  pkgconfig(libvncserver)
 
 # see icon hack in %%install
-BuildRequires: oxygen-icon-theme
+BuildRequires:  breeze-icon-theme
 
-Requires: %{name}-libs%{?_isa} = %{version}-%{release}
-Requires: freerdp
+Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+Requires:       freerdp
 
 %description
 %{summary}.
 
-%package libs
-Summary: Runtime libraries for %{name}
-Requires: %{name} = %{version}-%{release}
-%description libs
+%package        libs
+Summary:        Runtime libraries for %{name}
+%description    libs
 %{summary}.
 
-%package devel
-Summary: Developer files for %{name}
-Requires: %{name}-libs%{?_isa} = %{version}-%{release}
-%description devel
+%package        devel
+Summary:        Developer files for %{name}
+Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+%description    devel
 %{summary}.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
-%cmake_kf5
+%cmake_kf6
 %cmake_build
 
 
@@ -75,41 +82,48 @@ Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 %find_lang %{name} --all-name --with-html
 
 # workaround https://bugs.kde.org/show_bug.cgi?id=365986
-mkdir -p %{buildroot}%{_datadir}/icons/hicolor
-pushd /usr/share/icons/oxygen/
-for icon in $(find */apps -name krdc.*) $(find base/*/apps -name krdc.*); do
-cp -v --parents -n ${icon} %{buildroot}%{_datadir}/icons/hicolor/
-done
-mv %{buildroot}%{_datadir}/icons/hicolor/base/* %{buildroot}%{_datadir}/icons/hicolor/ ||:
+mkdir -p %{buildroot}%{_datadir}/icons/hicolor/scalable/apps
+cp -v -n /usr/share/icons/breeze/apps/48/krdc.svg \
+         /usr/share/icons/breeze/apps/48/org.kde.krdc.svg \
+         %{buildroot}%{_datadir}/icons/hicolor/scalable/apps
 
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf5_metainfodir}/org.kde.%{name}.appdata.xml
-desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.desktop
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.desktop
 
 
 %files -f %{name}.lang
 %license LICENSES/*
-%{_kf5_bindir}/krdc
-%{_kf5_datadir}/applications/org.kde.krdc.desktop
-%{_kf5_datadir}/config.kcfg/krdc.kcfg
-%{_kf5_datadir}/icons/hicolor/*/apps/krdc.*
-%{_kf5_datadir}/qlogging-categories5/krdc.categories
-%{_kf5_metainfodir}/org.kde.%{name}.appdata.xml
+%{_kf6_bindir}/krdc
+%{_kf6_datadir}/applications/org.kde.krdc.desktop
+%{_kf6_datadir}/config.kcfg/krdc.kcfg
+%{_kf6_datadir}/icons/hicolor/*/apps/*krdc.*
+%{_kf6_datadir}/qlogging-categories6/krdc.categories
+%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 
 %files libs
-%{_kf5_libdir}/libkrdccore.so.%{version}
-%{_kf5_libdir}/libkrdccore.so.5*
-%{_kf5_qtplugindir}/krdc/
+%{_kf6_libdir}/libkrdccore.so.%{version_no_git}
+%{_kf6_libdir}/libkrdccore.so.5*
+%{_kf6_qtplugindir}/krdc/
 
 %files devel
 %{_includedir}/krdc/
 %{_includedir}/krdccore_export.h
-%{_kf5_libdir}/libkrdccore.so
+%{_kf6_libdir}/libkrdccore.so
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

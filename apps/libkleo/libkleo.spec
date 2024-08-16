@@ -1,6 +1,10 @@
+%global commit0 d51217ae6739c15c1d51e9a517f6b851df1e87df
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    libkleo
-Version: 24.05.2
-Release: 1%{?dist}.1
+Version: 24.08.0
+Release: 1%{?dist}
 Summary: KDE PIM cryptographic library
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-2.0-or-later WITH GCC-exception-3.1
@@ -51,8 +55,8 @@ developing applications that use %{name}.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -80,6 +84,15 @@ developing applications that use %{name}.
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Sat Jul 06 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1.1
 - obsolete kf5- in f40 only
 

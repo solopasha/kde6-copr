@@ -1,8 +1,12 @@
+%global commit0 224a0820f0dda00377c9e08027822f4a1a87162c
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 #global tests 1
 
 Name:    akregator
 Summary: Feed Reader
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -10,17 +14,16 @@ License: GPLv2 and GFDL
 URL:     https://www.kde.org/applications/internet/akregator/
 %apps_source
 
-
-
 BuildRequires: desktop-file-utils
-BuildRequires: libappstream-glib
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
+BuildRequires: libappstream-glib
 
 BuildRequires: cmake(KF6Codecs)
 BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6I18n)
+BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6KCMUtils)
 BuildRequires: cmake(KF6Notifications)
 BuildRequires: cmake(KF6NotifyConfig)
@@ -31,8 +34,8 @@ BuildRequires: cmake(KF6TextAddonsWidgets)
 BuildRequires: cmake(KF6TextEditTextToSpeech)
 BuildRequires: cmake(KF6TextUtils)
 BuildRequires: cmake(KF6TextWidgets)
-BuildRequires: cmake(KF6XmlGui)
 BuildRequires: cmake(KF6UserFeedback)
+BuildRequires: cmake(KF6XmlGui)
 
 BuildRequires: cmake(KPim6GrantleeTheme)
 BuildRequires: cmake(KPim6KontactInterface)
@@ -66,8 +69,8 @@ Requires: %{name} = %{version}-%{release}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -94,7 +97,6 @@ xvfb-run -a bash -c "%ctest" || :
 %license LICENSES/*
 %{_kf6_bindir}/akregator
 %{_kf6_bindir}/akregatorstorageexporter
-%{_kf6_datadir}/akregator/
 %{_kf6_datadir}/applications/org.kde.akregator.desktop
 %{_kf6_datadir}/config.kcfg/akregator.kcfg
 %{_kf6_datadir}/dbus-1/interfaces/org.kde.akregator.part.xml
@@ -115,6 +117,15 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

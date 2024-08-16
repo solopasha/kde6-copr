@@ -1,6 +1,10 @@
+%global commit0 e63489bdc16a394877eb34c5c2b197966013a238
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    baloo-widgets
 Summary: Widgets for Baloo
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 # # KDE e.V. may determine that future LGPL versions are accepted
@@ -35,8 +39,8 @@ Requires: kf6-kio-devel
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -54,7 +58,7 @@ Requires: kf6-kio-devel
 %doc LICENSES/*
 %{_kf6_bindir}/baloo_filemetadata_temp_extractor
 %{_kf6_datadir}/qlogging-categories6/%{name}*
-%{_kf6_libdir}/libKF6BalooWidgets.so.%{version}
+%{_kf6_libdir}/libKF6BalooWidgets.so.%{version_no_git}
 %{_kf6_libdir}/libKF6BalooWidgets.so.6
 %{_kf6_plugindir}/kfileitemaction/tagsfileitemaction.so
 %{_kf6_plugindir}/propertiesdialog/baloofilepropertiesplugin.so
@@ -66,6 +70,15 @@ Requires: kf6-kio-devel
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

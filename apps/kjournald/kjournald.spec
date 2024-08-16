@@ -1,12 +1,15 @@
+%global commit0 98a0c258aa4becc78100dfccf320ff829012163e
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:          kjournald
-Version:       24.05.2
+Version:       24.08.0
 Release:       1%{?dist}
 Summary:       Framework for interacting with systemd-journald
 
 License:       BSD-3-Clause and CC0-1.0 and MIT and LGPL-2.1-or-later and MIT
 URL:           https://invent.kde.org/system/%{name}
 %apps_source
-
 
 BuildRequires: cmake
 BuildRequires: desktop-file-utils
@@ -37,8 +40,8 @@ Requires:      %{name} = %{version}
 %description   libs
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -63,10 +66,19 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.kj
 %{_kf6_metainfodir}/org.kde.kjournaldbrowser.appdata.xml
 
 %files libs
-%{_kf6_libdir}/libkjournald.so.%{version}
+%{_kf6_libdir}/libkjournald.so.%{version_no_git}
 %{_kf6_libdir}/libkjournald.so.0
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

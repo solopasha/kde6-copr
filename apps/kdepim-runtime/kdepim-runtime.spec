@@ -1,9 +1,13 @@
+%global commit0 b59aab40c0883735edd4922d2d4365644162a6d1
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 #global tests 1
 
 Name:    kdepim-runtime
 Summary: KDE PIM Runtime Environment
 Epoch:   1
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 License: GPLv2
@@ -80,14 +84,14 @@ Requires:       %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 Summary: %{name} runtime libraries
 Obsoletes: kf5-kmailtransport-akonadi < 23.08.0
 Requires: %{name} = %{epoch}:%{version}-%{release}
-Requires: akonadi%{?_isa} >= %{version}
+Requires: akonadi-server%{?_isa} >= %{majmin_ver_kf6}
 %description libs
 %{summary}.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n kdepim-runtime-%{version}%{?pre} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -139,6 +143,15 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 1:24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 1:24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 1:24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 1:24.05.2-1
 - Update to 24.05.2
 

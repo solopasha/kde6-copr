@@ -1,8 +1,12 @@
+%global commit0 d1491d3f8c561b33fc0365f2eb713bc9516d4f10
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 # build Python plugins (disabled by default due to #2048781)
 %bcond_with python
 
 Name:           falkon
-Version:        24.05.2
+Version:        24.08.0
 Release:        1%{?dist}
 Summary:        Modern web browser
 
@@ -106,8 +110,8 @@ lightweight and fast and offers advanced functions such as
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %if 0%{?with_python}
 # delete falkon_hellopython and falkon_helloqml translations, those plugins are
@@ -178,6 +182,15 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.fa
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

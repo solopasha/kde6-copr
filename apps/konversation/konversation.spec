@@ -1,11 +1,16 @@
+%global commit0 0438748db76b5ea72f2fe386947c68e0fe8df7bc
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:           konversation
-Version:        24.05.2
+Version:        24.08.0
 Release:        1%{?dist}
 Summary:        A user friendly IRC client
 
 License:        GPL-2.0-or-later
 URL:            https://invent.kde.org/network/konversation/
 %apps_source
+
 Source10:       konversationrc
 
 BuildRequires:  desktop-file-utils
@@ -60,7 +65,7 @@ to chat windows; configurable background colors and much more
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -p1
+%autosetup -n %{sourcerootdir} -p1
 
 sed -i \
   -e "s|^#!/usr/bin/env python$|#!%{python3}|g" \
@@ -107,6 +112,15 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.konversat
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

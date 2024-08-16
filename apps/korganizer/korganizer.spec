@@ -1,8 +1,12 @@
+%global commit0 b69c8d3f370ef257e5cbf89000962544abfb6a18
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 #global tests 1
 
 Name:    korganizer
 Summary: Personal Organizer
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -10,13 +14,10 @@ License: GPLv2 and GFDL
 URL:     https://invent.kde.org/pim/%{name}
 %apps_source
 
-
-
-
 BuildRequires: desktop-file-utils
-BuildRequires: libappstream-glib
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
+BuildRequires: libappstream-glib
 
 BuildRequires: cmake(KF6CalendarCore)
 BuildRequires: cmake(KF6Config)
@@ -82,8 +83,8 @@ Requires: %{name} = %{version}-%{release}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -114,8 +115,7 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_datadir}/applications/korganizer-view.desktop
 %{_kf6_datadir}/applications/org.kde.korganizer.desktop
 %{_kf6_datadir}/config.kcfg/korganizer.kcfg
-%{_kf6_datadir}/dbus-1/interfaces/org.kde.korganizer.*.xml
-%{_kf6_datadir}/dbus-1/interfaces/org.kde.Korganizer.*.xml
+%{_kf6_datadir}/dbus-1/interfaces/org.kde.[Kk]organizer.*.xml
 %{_kf6_datadir}/dbus-1/services/org.kde.korganizer.service
 %{_kf6_datadir}/icons/hicolor/*
 %{_kf6_datadir}/knsrcfiles/korganizer.knsrc
@@ -124,20 +124,32 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_metainfodir}/org.kde.korganizer.appdata.xml
 
 %files libs
-%{_kf6_libdir}/libkorganizer_interfaces.so.*
 %{_kf6_libdir}/libkorganizer_core.so.*
+%{_kf6_libdir}/libkorganizer_interfaces.so.*
 %{_kf6_libdir}/libkorganizerprivate.so.*
-%{_kf6_qtplugindir}/pim6/kcms/korganizer/*
-%{_kf6_qtplugindir}/pim6/kcms/summary/*
 %{_kf6_qtplugindir}/korganizerpart.so
-# Kontact integration
-%{_kf6_qtplugindir}/pim6/kontact/kontact_korganizerplugin.so
-%{_kf6_qtplugindir}/pim6/kontact/kontact_todoplugin.so
+%{_kf6_qtplugindir}/pim6/kcms/korganizer/
+%{_kf6_qtplugindir}/pim6/kcms/summary/*
 %{_kf6_qtplugindir}/pim6/kontact/kontact_journalplugin.so
+%{_kf6_qtplugindir}/pim6/kontact/kontact_korganizerplugin.so
 %{_kf6_qtplugindir}/pim6/kontact/kontact_specialdatesplugin.so
+%{_kf6_qtplugindir}/pim6/kontact/kontact_todoplugin.so
+%{_kf6_qtplugindir}/pim6/korganizer/datenums.so
+%{_kf6_qtplugindir}/pim6/korganizer/lunarphases.so
+%{_kf6_qtplugindir}/pim6/korganizer/picoftheday.so
+%{_kf6_qtplugindir}/pim6/korganizer/thisdayinhistory.so
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

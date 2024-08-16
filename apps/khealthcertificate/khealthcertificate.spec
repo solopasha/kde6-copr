@@ -1,5 +1,9 @@
+%global commit0 a45260004d5dd943fc6a1c5df3e041230342bf45
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:           khealthcertificate
-Version:        24.05.2
+Version:        24.08.0
 Release:        1%{?dist}
 License:        Apache2.0 and BSD and CC-BY-4.0 and CC0-1.0 and EUPL-1.2 and LGPL-2.0 and MIT and W3C-20120513
 Summary:        Handling of digital vaccination, test and recovery certificates.
@@ -25,8 +29,8 @@ BuildRequires: cmake(Qt6Test)
 %{summary}.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6 -DQT_MAJOR_VERSION=6
@@ -38,7 +42,7 @@ BuildRequires: cmake(Qt6Test)
 %files
 %license LICENSES/*
 %{_kf6_datadir}/qlogging-categories6/org_kde_khealthcertificate.categories
-%{_kf6_libdir}/libKHealthCertificate.so.%{version}
+%{_kf6_libdir}/libKHealthCertificate.so.%{version_no_git}
 %{_kf6_libdir}/libKHealthCertificate.so.1
 %{_kf6_qmldir}/org/kde/khealthcertificate/
 
@@ -56,6 +60,15 @@ Requires: cmake(Qt6Core)
 %{_kf6_libdir}/libKHealthCertificate.so
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

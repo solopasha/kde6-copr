@@ -1,12 +1,15 @@
+%global commit0 9206b15d752837094fb03d8cb0e759b1545945a0
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    kcachegrind
 Summary: GUI to profilers such as Valgrind
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 License: GPLv2 and GFDL
 URL:     https://invent.kde.org/sdk/%{name}
 %apps_source
-
 
 ## upstream patches
 
@@ -48,8 +51,8 @@ QT-based browser for data produced by profiling tools (e.g. cachegrind).
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 # Avoid use of #!/usr/bin/env as interpeter
 sed -i.env -e "s|^#!/usr/bin/env python$|#!%{__python3}|g" converters/hotshot2calltree.in
@@ -111,6 +114,15 @@ cat kcachegrind_qt.lang >> kcachegrind.lang
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

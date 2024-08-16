@@ -1,3 +1,7 @@
+%global commit0 f1a0e6ae9fc8ab03eff690784be35648e7a9819b
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 # uncomment to enable bootstrap mode
 #global bootstrap 1
 
@@ -25,7 +29,7 @@
 
 Name:    cantor
 Summary: KDE Frontend to Mathematical Software
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -141,8 +145,8 @@ Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -218,7 +222,7 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.d
 
 %files libs
 %{_libdir}/libcantorlibs.so.%{soname}*
-%{_libdir}/libcantorlibs.so.%{version}
+%{_libdir}/libcantorlibs.so.%{version_no_git}
 %{_libdir}/libcantor_config.so
 %{_kf5_plugindir}/parts/cantorpart.so
 ## backend/plugins
@@ -252,6 +256,15 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

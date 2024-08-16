@@ -1,7 +1,11 @@
+%global commit0 804514f7ebe18fd44a8a4c279b4146efea57d1c9
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:           kdevelop
 Summary:        Integrated Development Environment for C++/C
 Epoch:          9
-Version:        24.05.2
+Version:        24.08.0
 Release:        1%{?dist}
 License:        GPL-2.0-only
 URL:            http://www.kdevelop.org/
@@ -9,71 +13,62 @@ URL:            http://www.kdevelop.org/
 
 Source10:       macros.kdevelop
 
-%global rpm_macros_dir %(d=%{_rpmconfigdir}/macros.d; [ -d $d ] || d=%{_sysconfdir}/rpm; echo $d)
-Patch0:         kdevelop-5.2.3-qmake.patch
-
-# upstreamable patches
-
-# upstream patches
-
-BuildRequires:  gcc-c++ gcc
+BuildRequires:  gcc-c++
+BuildRequires:  gcc
+BuildRequires:  extra-cmake-modules
 BuildRequires:  boost-devel
 BuildRequires:  meson
 BuildRequires:  desktop-file-utils
-BuildRequires:  gettext
 BuildRequires:  shared-mime-info
 BuildRequires:  llvm-devel
 BuildRequires:  clang-devel
 BuildRequires:  okteta-devel
 BuildRequires:  pcre-devel
 BuildRequires:  subversion-devel
-BuildRequires:  kdevelop-pg-qt-devel >= 2.0
-BuildRequires:  grantlee-qt5-devel
-BuildRequires:  libksysguard5-devel
-
-%{?grantlee5_requires}
 BuildRequires:  astyle-devel
-BuildRequires:  libkomparediff2-devel
-BuildRequires:  kf5-rpm-macros
-BuildRequires:  extra-cmake-modules
-BuildRequires:  kf5-karchive-devel
-BuildRequires:  kf5-kconfig-devel
-BuildRequires:  kf5-kguiaddons-devel
-BuildRequires:  kf5-kiconthemes-devel
-BuildRequires:  kf5-ki18n-devel
-BuildRequires:  kf5-kitemmodels-devel
-BuildRequires:  kf5-kitemviews-devel
-BuildRequires:  kf5-kjobwidgets-devel
-BuildRequires:  kf5-kcmutils-devel
-BuildRequires:  kf5-kio-devel
-BuildRequires:  kf5-kdoctools-devel
-BuildRequires:  kf5-knewstuff-devel
-BuildRequires:  kf5-knotifications-devel
-BuildRequires:  kf5-knotifyconfig-devel
-BuildRequires:  kf5-kparts-devel
-BuildRequires:  kf5-kservice-devel
-BuildRequires:  kf5-ktexteditor-devel
-BuildRequires:  kf5-threadweaver-devel
-BuildRequires:  kf5-kwindowsystem-devel
-BuildRequires:  kf5-kdeclarative-devel
-BuildRequires:  kf5-kxmlgui-devel
-BuildRequires:  kf5-plasma-devel
-BuildRequires:  kf5-krunner-devel
-BuildRequires:  kf5-kcrash-devel
-BuildRequires:  kf5-purpose-devel
 
-BuildRequires:  qt5-qtbase-devel
-BuildRequires:  qt5-qtdeclarative-devel
-%ifarch %{qt5_qtwebengine_arches}
-BuildRequires:  qt5-qtwebengine-devel
-%else
-BuildRequires:  qt5-qtwebkit-devel
-%endif
-BuildRequires:  qt5-qtscript-devel
-BuildRequires:  qt5-qttools-devel
+BuildRequires:  cmake(KF6Archive)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6Crash)
+BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6GuiAddons)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6IconThemes)
+BuildRequires:  cmake(KF6ItemModels)
+BuildRequires:  cmake(KF6ItemViews)
+BuildRequires:  cmake(KF6JobWidgets)
+BuildRequires:  cmake(KF6KCMUtils)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6NewStuff)
+BuildRequires:  cmake(KF6Notifications)
+BuildRequires:  cmake(KF6NotifyConfig)
+BuildRequires:  cmake(KF6Parts)
+BuildRequires:  cmake(KF6Purpose)
+BuildRequires:  cmake(KF6Runner)
+BuildRequires:  cmake(KF6Service)
+BuildRequires:  cmake(KF6Sonnet)
+BuildRequires:  cmake(KF6TextEditor)
+BuildRequires:  cmake(KF6TextTemplate)
+BuildRequires:  cmake(KF6TextWidgets)
+BuildRequires:  cmake(KF6ThreadWeaver)
+BuildRequires:  cmake(KF6WindowSystem)
+BuildRequires:  cmake(KF6XmlGui)
 
-# For AutoReq cmake-filesystem
-BuildRequires:  cmake
+BuildRequires:  cmake(Qt6Concurrent)
+BuildRequires:  cmake(Qt6Core5Compat)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Help)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6QuickWidgets)
+BuildRequires:  cmake(Qt6WebEngineWidgets)
+BuildRequires:  cmake(Qt6Widgets)
+
+BuildRequires:  cmake(KSysGuard)
+BuildRequires:  cmake(Plasma)
+
+BuildRequires:  cmake(KompareDiff2)
+
+BuildRequires:  cmake(KDevelop-PG-Qt)
 
 # some arches don't have valgrind so we need to disable its support on them
 %ifarch %{ix86} x86_64 ppc ppc64 s390x
@@ -87,18 +82,16 @@ Obsoletes: kdevelop-custom-buildsystem < 1.2.1-5
 Provides:  kdevplatform = %{version}-%{release}
 Obsoletes: kdevplatform < 5.1.80-1
 
-# kdevappwizard/templates/qmake_qt4guiapp moved here
-Conflicts: kapptemplate < 16.03.80
-
 Requires: %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
-Requires: astyle
+Recommends: astyle
 Requires: cmake
-Requires: clang-tools-extra
+Recommends: clang-tools-extra
 Suggests: clazy
-Requires: cppcheck
+Recommends: cppcheck
 Requires: git
-Requires: meson
-Requires: konsole5-part
+Recommends: meson
+Requires: konsole-part
+Recommends: heaptrack
 
 %description
 The KDevelop Integrated Development Environment provides many features
@@ -135,8 +128,6 @@ Obsoletes: kdevplatform-devel < 5.1.80-1
 
 %package libs
 Summary: %{name} runtime libraries
-# helps multilib upgrades
-Obsoletes: kdevelop < 9:3.9.95
 Requires: %{name} = %{epoch}:%{version}-%{release}
 Provides: kdevplatform-libs = %{version}-%{release}
 Obsoletes: kdevplatform-libs < 5.1.80-1
@@ -145,11 +136,11 @@ Obsoletes: kdevplatform-libs < 5.1.80-1
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
-%{cmake_kf5}
+%cmake_kf6
 %cmake_build
 
 
@@ -160,75 +151,71 @@ Obsoletes: kdevplatform-libs < 5.1.80-1
 
 # rpm macros
 install -p -m644 -D %{SOURCE10} \
-  %{buildroot}%{rpm_macros_dir}/macros.kdevelop
+  %{buildroot}%{rpmmacrodir}/macros.kdevelop
 sed -i \
   -e "s|@@NAME@@|%{name}|g" \
   -e "s|@@EPOCH@@|%{?epoch}%{!?epoch:0}|g" \
   -e "s|@@VERSION@@|%{version}|g" \
   -e "s|@@EVR@@|%{?epoch:%{epoch}:}%{version}-%{release}|g" \
-  %{buildroot}%{rpm_macros_dir}/macros.kdevelop
+  %{buildroot}%{rpmmacrodir}/macros.kdevelop
 
-# drop zsh, using bash as default
-rm -f %{buildroot}%{_datadir}/kdevplatform/shellutils/.zshrc
 
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kdevelop.desktop
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
+
 
 %files -f %{name}.lang
 %doc AUTHORS
 %license COPYING.DOC
-%{_bindir}/kdevelop
-%{_bindir}/kdevelop!
-%{_bindir}/kdev_includepathsconverter
-%{_bindir}/kdev_dbus_socket_transformer
-%{_bindir}/kdevplatform_shell_environment.sh
-%{_bindir}/kdev_format_source
-%{_datadir}/kdev*/
-%{_datadir}/applications/org.kde.kdevelop.desktop
-%{_datadir}/applications/org.kde.kdevelop_ps.desktop
-%{_datadir}/applications/org.kde.kdevelop_bzr.desktop
-%{_datadir}/applications/org.kde.kdevelop_git.desktop
-%{_datadir}/applications/org.kde.kdevelop_kdev4.desktop
-%{_datadir}/applications/org.kde.kdevelop_svn.desktop
-%{_datadir}/kservices5/*.desktop
-%{_datadir}/mime/packages/kdevelop.xml
-%{_datadir}/mime/packages/kdevclang.xml
-%{_datadir}/mime/packages/kdevgit.xml
-%{_datadir}/plasma/plasmoids/kdevelopsessions/*
-%{_datadir}/knotifications5/kdevelop.notifyrc
-%{_datadir}/icons/hicolor/*/*/*
-%{_datadir}/metainfo/org.kde.kdevelop.appdata.xml
-%{_datadir}/qlogging-categories5/kdevelop.categories
-%{_datadir}/qlogging-categories5/kdevplatform.categories
-# %%{_datadir}/bash-completion/completions/kdevelop
-%{_datadir}/knsrcfiles/kdev*.knsrc
 %{_docdir}/HTML/*/kdevelop/
-%{_kf5_datadir}/kservicetypes5/kdevelopplugin.desktop
-%{_qt5_qmldir}/org/kde/plasma/private/kdevelopsessions/libkdevelopsessionsplugin.so
-%{_qt5_qmldir}/org/kde/plasma/private/kdevelopsessions/qmldir
+%{_kf6_bindir}/kdev_dbus_socket_transformer
+%{_kf6_bindir}/kdev_format_source
+%{_kf6_bindir}/kdev_includepathsconverter
+%{_kf6_bindir}/kdevelop
+%{_kf6_bindir}/kdevelop!
+%{_kf6_bindir}/kdevplatform_shell_environment.sh
+%{_kf6_datadir}/applications/org.kde.kdevelo*.desktop
+%{_kf6_datadir}/icons/hicolor/*/*/*
+%{_kf6_datadir}/kdev*/
+%{_kf6_datadir}/kdevplatform/shellutils/.zshrc
+%{_kf6_datadir}/knotifications6/kdevelop.notifyrc
+%{_kf6_datadir}/knsrcfiles/kdev*.knsrc
+%{_kf6_datadir}/metainfo/org.kde.kdevelop.appdata.xml
+%{_kf6_datadir}/metainfo/org.kde.kdevelopsessions.appdata.xml
+%{_kf6_datadir}/mime/packages/kdevclang.xml
+%{_kf6_datadir}/mime/packages/kdevelop.xml
+%{_kf6_datadir}/mime/packages/kdevgit.xml
+%{_kf6_datadir}/plasma/plasmoids/org.kde.kdevelopsessions/
+%{_kf6_datadir}/qlogging-categories6/kdevelop.categories
+%{_kf6_datadir}/qlogging-categories6/kdevplatform.categories
+%{_qt6_qmldir}/org/kde/plasma/private/kdevelopsessions/
 
 
 %files libs
-%{_libdir}/lib*.so.*
-%{_libdir}/*.so
-%{_libdir}/libKDevClangPrivate.so*
-%{_kf5_qtplugindir}/kf5/krunner/krunner_kdevelopsessions.so
-%{_kf5_qtplugindir}/kdevplatform/
-%{_kf5_qtplugindir}/grantlee/%{grantlee5_plugins}/kdev_filters.so
-# FIXME/TODO: does not use standard %%{?grantlee5_plugindir}, is that a problem?  -- rex
-%dir %{_kf5_qtplugindir}/grantlee/
-%dir %{_kf5_qtplugindir}/grantlee/%{grantlee5_plugins}/
-%{_qt5_qmldir}/org/kde/kdevplatform/
+%{_kf6_libdir}/lib*.so.*
+%{_kf6_plugindir}/krunner/kdevelopsessions.so
+%{_kf6_plugindir}/ktexttemplate/kdev_filters.so
+%{_kf6_qtplugindir}/kdevplatform/
+
 
 %files devel
-%{_libdir}/cmake/KDevelop/
-%{_libdir}/cmake/KDevPlatform
 %{_includedir}/kdevelop/
 %{_includedir}/kdevplatform/
-%{_libdir}/lib*.so
-%{rpm_macros_dir}/macros.kdevelop
+%{_kf6_libdir}/cmake/KDevelop/
+%{_kf6_libdir}/cmake/KDevPlatform/
+%{_kf6_libdir}/lib*.so
+%{rpmmacrodir}/macros.kdevelop
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 9:24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 9:24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 9:24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 9:24.05.2-1
 - Update to 24.05.2
 

@@ -1,8 +1,12 @@
+%global commit0 ef1b5ebeb65b5c32bf20aa55f12043e9b4dce884
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 #global tests 1
 
 Name:    konsole
 Summary: KDE Terminal emulator
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 # sources: MIT and LGPLv2 and LGPLv2+ and GPLv2+
@@ -81,8 +85,8 @@ Provides:  konsole6-part%{?_isa} = %{version}-%{release}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -110,7 +114,6 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %files -f konsole.lang
-%dir %{_kf6_datadir}/knsrcfiles/
 %doc README*
 %{_kf6_bindir}/konsole
 %{_kf6_bindir}/konsoleprofile
@@ -120,7 +123,6 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_datadir}/kglobalaccel/org.kde.konsole.desktop
 %{_kf6_datadir}/kio/servicemenus/konsolerun.desktop
 %{_kf6_datadir}/knotifications6/konsole.notifyrc
-%{_kf6_datadir}/knsrcfiles/konsole.knsrc
 %{_kf6_datadir}/qlogging-categories6/konsole.*
 %{_kf6_datadir}/zsh/site-functions/_konsole
 %{_kf6_libdir}/kconf_update_bin/konsole_globalaccel
@@ -133,14 +135,22 @@ xvfb-run -a bash -c "%ctest" || :
 
 %files part
 %config(noreplace) %{_kf6_sysconfdir}/xdg/konsolerc
-%{_kf6_datadir}/konsole/
-%{_kf6_libdir}/libkonsoleapp.so.%{version}
-%{_kf6_libdir}/libkonsoleprivate.so.%{version}
+%{_kf6_libdir}/libkonsoleapp.so.%{version_no_git}
+%{_kf6_libdir}/libkonsoleprivate.so.%{version_no_git}
 %{_kf6_plugindir}/parts/konsolepart.so
 %{_kf6_qtplugindir}/konsoleplugins/
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

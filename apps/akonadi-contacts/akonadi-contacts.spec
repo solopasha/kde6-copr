@@ -1,15 +1,17 @@
+%global commit0 1e112bbf9650025fe3fe982f91c21334da845955
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 #global tests 1
 
 Name:    akonadi-contacts
-Version: 24.05.2
-Release: 1%{?dist}.1
+Version: 24.08.0
+Release: 1%{?dist}
 Summary: The Akonadi Contacts Library
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/pim/akonadi-contacts
 %apps_source
-
-
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
@@ -65,8 +67,8 @@ developing applications that use %{name}.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -107,6 +109,15 @@ xvfb-run -a bash -c "%ctest"
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Sat Jul 06 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1.1
 - obsolete kf5- in f40 only
 

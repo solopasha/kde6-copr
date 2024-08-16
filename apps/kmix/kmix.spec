@@ -1,6 +1,10 @@
+%global commit0 cb432a65cfd1f23f400a4a5be1112282698ee573
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    kmix
 Summary: KDE volume control
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later
@@ -25,6 +29,7 @@ BuildRequires: extra-cmake-modules
 BuildRequires: kf5-rpm-macros
 BuildRequires: cmake(KF5Config)
 BuildRequires: cmake(KF5ConfigWidgets)
+BuildRequires: cmake(KF5Crash)
 BuildRequires: cmake(KF5DBusAddons)
 BuildRequires: cmake(KF5DocTools)
 BuildRequires: cmake(KF5GlobalAccel)
@@ -43,8 +48,8 @@ BuildRequires: pkgconfig(Qt5Gui)
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -85,11 +90,20 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kmix.desktop
 %{_kf5_datadir}/kservices5/kmixctrl_restore.desktop
 # -libs subpkg?
 %{_kf5_libdir}/libkmixcore.so.5*
-%{_kf5_libdir}/libkmixcore.so.%{version}
+%{_kf5_libdir}/libkmixcore.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf5_plugindir}/kded/kmixd.so
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

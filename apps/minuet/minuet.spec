@@ -1,5 +1,9 @@
+%global commit0 744b15d377e18c3f14ee474d7c73ce3d51d75ab1
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:           minuet
-Version:        24.05.2
+Version:        24.08.0
 Release:        1%{?dist}
 Summary:        A KDE Software for Music Education
 #OFL license for bundled Bravura.otf font
@@ -62,8 +66,8 @@ BuildArch:      noarch
 Data files for Minuet.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 chmod -x src/app/org.kde.%{name}.desktop
 
 %build
@@ -101,6 +105,15 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/org.kde.%{name}.desk
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

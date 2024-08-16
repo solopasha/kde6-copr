@@ -1,58 +1,61 @@
-%global kf6_min_version 5.240.0
+%global commit0 fdae47626468e94e321f09d96eaa8da97e2d55e4
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
 
 Name:           kasts
-Version:        24.05.2
+Version:        24.08.0
 Release:        1%{?dist}
 License:        GPLv2 and GPLv2+ and GPLv3+ and BSD and LGPLv3+
 Summary:        A mobile podcast application
 URL:            https://apps.kde.org/%{name}
 %apps_source
 
-BuildRequires:  desktop-file-utils
-BuildRequires:  libappstream-glib
-
 BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  libappstream-glib
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Keychain)
+BuildRequires:  cmake(Qt6Multimedia)
+BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6QuickControls2)
+BuildRequires:  cmake(Qt6Sql)
+BuildRequires:  cmake(Qt6Svg)
+BuildRequires:  cmake(Qt6Test)
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6Xml)
+
+BuildRequires:  cmake(KF6BreezeIcons)
+BuildRequires:  cmake(KF6ColorScheme)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6Kirigami)
+BuildRequires:  cmake(KF6KirigamiAddons)
+BuildRequires:  cmake(KF6Syndication)
+BuildRequires:  cmake(KF6ThreadWeaver)
+
 BuildRequires:  taglib-devel
 BuildRequires:  pkgconfig(libvlc)
 BuildRequires:  pkgconfig(gstreamer-1.0)
 
-BuildRequires:  cmake(Qt6Core)
-BuildRequires:  cmake(Qt6Quick)
-BuildRequires:  cmake(Qt6Test)
-BuildRequires:  cmake(Qt6Gui)
-BuildRequires:  cmake(Qt6QuickControls2)
-BuildRequires:  cmake(Qt6Sql)
-BuildRequires:  cmake(Qt6Svg)
-BuildRequires:  cmake(Qt6Xml)
-BuildRequires:  cmake(Qt6Network)
-BuildRequires:  cmake(Qt6Keychain)
-BuildRequires:  cmake(Qt6Widgets)
-BuildRequires:  cmake(Qt6DBus)
-BuildRequires:  cmake(Qt6Multimedia)
-
-BuildRequires:  cmake(KF6I18n)           >= %{kf6_min_version}
-BuildRequires:  cmake(KF6CoreAddons)     >= %{kf6_min_version}
-BuildRequires:  cmake(KF6Kirigami)      >= %{kf6_min_version}
-BuildRequires:  cmake(KF6KirigamiAddons)
-BuildRequires:  cmake(KF6Syndication)    >= %{kf6_min_version}
-BuildRequires:  cmake(KF6Config)         >= %{kf6_min_version}
-BuildRequires:  cmake(KF6ThreadWeaver)   >= %{kf6_min_version}
-BuildRequires:  cmake(KF6ColorScheme)    >= %{kf6_min_version}
-BuildRequires:  kf6-rpm-macros           >= %{kf6_min_version}
-
 # QML module dependencies
-Requires:  kf6-kirigami2%{?_isa}
-Requires:  kf6-kirigami-addons%{?_isa}
-Requires:  qt6-qtmultimedia%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-kirigami-addons%{?_isa}
+Requires:       qt6-qtmultimedia%{?_isa}
 
 %description
 %{summary}.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -67,18 +70,27 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %files -f %{name}.lang
+%license LICENSES/*
 %{_kf6_bindir}/%{name}
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/icons/hicolor/scalable/actions/media-playback-cloud.svg
-%{_kf6_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 %{_kf6_datadir}/icons/hicolor/scalable/apps/%{name}-tray-dark.svg
 %{_kf6_datadir}/icons/hicolor/scalable/apps/%{name}-tray-light.svg
+%{_kf6_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 %{_kf6_libdir}/libKMediaSession.so
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
-%license LICENSES/*
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

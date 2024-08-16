@@ -1,6 +1,10 @@
+%global commit0 d9eb8d1ebae0342e7e055bc36c0b247548a0f0bb
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    kdebugsettings
 Summary: Configure debug output from Qt5 applications
-Version: 24.05.2
+Version: 24.08.0
 Release: 1%{?dist}
 
 License: LGPL-2.0-or-later
@@ -16,6 +20,7 @@ BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6XmlGui)
 
@@ -27,8 +32,8 @@ An application to enable/disable qCDebug
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -58,6 +63,15 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.kdebugset
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 

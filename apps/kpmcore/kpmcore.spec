@@ -1,9 +1,13 @@
+%global commit0 2224569c512ecdc0608d355064ae81810b5dac90
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global kf6min 5.240.0
 %global qt6min 6.5.0
 %global sover 12
 
 Name:           kpmcore
-Version:        24.05.2
+Version:        24.08.0
 Release:        1%{?dist}
 Summary:        Library for managing partitions by KDE programs
 License:        GPL-3.0-or-later AND MIT AND CC-BY-4.0 AND CC0-1.0
@@ -59,8 +63,8 @@ developing applications that use %{name}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -77,7 +81,7 @@ developing applications that use %{name}
 %license LICENSES/*
 %doc README.md
 %{_kf6_libdir}/libkpmcore.so.%{sover}
-%{_kf6_libdir}/libkpmcore.so.%{version}
+%{_kf6_libdir}/libkpmcore.so.%{version_no_git}
 %{_kf6_qtplugindir}/kpmcore
 %{_libexecdir}/kpmcore_externalcommand
 %{_datadir}/dbus-1/system.d/org.kde.kpmcore.*.conf
@@ -91,6 +95,15 @@ developing applications that use %{name}
 
 
 %changelog
+* Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
+- Update to 24.08.0
+
+* Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 24.07.90-1
+- Update to 24.07.90
+
+* Thu Jul 25 2024 Pavel Solovev <daron439@gmail.com> - 24.07.80-1
+- Update to 24.07.80
+
 * Thu Jul 04 2024 Pavel Solovev <daron439@gmail.com> - 24.05.2-1
 - Update to 24.05.2
 
