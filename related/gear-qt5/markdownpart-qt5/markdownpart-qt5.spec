@@ -3,7 +3,7 @@
 Name:           markdownpart-qt5
 Summary:        Markdown KPart
 Version:        23.08.5
-Release:        %autorelease
+Release:        %autorelease -b2
 License:        LGPL-2.1-or-later
 URL:            https://apps.kde.org/categories/utilities/
 
@@ -25,7 +25,9 @@ BuildRequires:  gettext
 BuildRequires:  libappstream-glib
 
 Supplements:    krusader
+%if %{fedora} >= 40
 Supplements:    kdevelop
+%endif
 
 %description
 A Markdown viewer KParts plugin, which allows KParts-using applications to
