@@ -1,6 +1,6 @@
-%global commit0 9d1f0c7247771d34f8755ca0dd6c60c3548d72bb
+%global commit0 0faae394bc346df1fa13302b33c040f6f60385e1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 8
+%global bumpver 9
 
 Name:           alpaka
 Version:        0.1.1%{?bumpver:^%{bumpver}.git%{shortcommit0}}
