@@ -4,19 +4,20 @@
 
 Name:		    merkuro
 Version:	    24.08.0
-Release:	    2%{?dist}
+Release:	    3%{?dist}
 Summary:	    A calendar application using Akonadi to sync with external services (Nextcloud, GMail, ...)
 
 License:	    GPL-3.0-or-later
 URL:		    https://invent.kde.org/pim/%{name}
 %apps_source
 
+Patch:          https://invent.kde.org/pim/merkuro/-/commit/23b279548f8229d624ccf790daf8a19600993a29.patch
+
 BuildRequires:	desktop-file-utils
 BuildRequires:	extra-cmake-modules
 BuildRequires:	gcc-c++
 BuildRequires:	kf6-rpm-macros
 BuildRequires:	libappstream-glib
-BuildRequires:	patchelf
 
 BuildRequires:  cmake(KF6CalendarCore)
 BuildRequires:  cmake(KF6ConfigWidgets)
@@ -94,9 +95,6 @@ your Plasma desktop or phone.
 %cmake_install
 %find_lang %{name} --with-kde --with-man --all-name
 
-patchelf --add-needed libmerkuro_contact_plugin.so.6 %{buildroot}%{_kf6_bindir}/merkuro-calendar
-patchelf --add-needed libmerkuro_contact_plugin.so.6 %{buildroot}%{_kf6_bindir}/merkuro-contact
-
 rm %{buildroot}%{_kf6_libdir}/libmerkuro_contact_plugin.so %{buildroot}%{_kf6_libdir}/libMerkuroComponents.so
 
 
@@ -128,7 +126,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 
 
 %changelog
-* Mon Aug 26 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-2
+* Mon Aug 26 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-3
 - fix calendar,contact
 
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
