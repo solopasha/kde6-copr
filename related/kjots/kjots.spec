@@ -1,7 +1,7 @@
 Name:           kjots
 Summary:        KDE Notes application
 Version:        6.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        LGPL-2.0-or-later AND GPL-2.0-or-later
 URL:            https://invent.kde.org/pim/kjots
 Source0:        https://download.kde.org/stable/%{name}/%{version}/%{name}-%{version}.tar.xz
@@ -77,6 +77,9 @@ appstream-util validate-relax --nonet %{buildroot}/%{_kf6_metainfodir}/*.xml
 
 
 %changelog
+* Tue Aug 27 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-2
+- rebuilt
+
 * Tue Jul 09 2024 Pavel Solovev <daron439@gmail.com> - 6.0.0-1
 - new version
 
