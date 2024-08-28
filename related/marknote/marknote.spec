@@ -1,6 +1,6 @@
 Name:           marknote
 Version:        1.3.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.0-only OR LGPL-3.0-only) AND BSD-3-Clause AND GPL-2.0-or-later
 Summary:        A simple markdown note management app
 URL:            https://invent.kde.org/office/marknote
@@ -70,6 +70,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_metainfodir}/org.kde.%{name}.metainfo.xml
 
 %changelog
+* Wed Aug 28 2024 Pavel Solovev <daron439@gmail.com> - 1.3.0-2
+- rebuilt
+
 * Wed Jul 17 2024 Pavel Solovev <daron439@gmail.com> - 1.3.0-1
 - new version
 
