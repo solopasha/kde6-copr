@@ -1,5 +1,5 @@
 Name:    haruna
-Version: 1.1.2
+Version: 1.2.0
 Release: %autorelease
 Summary: Open source video player built with Qt/QML and libmpv
 
@@ -29,7 +29,6 @@ BuildRequires: cmake(Qt6QuickControls2)
 BuildRequires: cmake(KF6ColorScheme)
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6CoreAddons)
-BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6FileMetaData)
 BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6IconThemes)
@@ -95,7 +94,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_bindir}/haruna
+%{_kf6_bindir}/%{name}
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/icons/hicolor/*/apps/haruna.{svg,png}
 %{_kf6_metainfodir}/org.kde.%{name}.metainfo.xml
