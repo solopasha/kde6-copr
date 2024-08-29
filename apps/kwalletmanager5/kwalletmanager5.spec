@@ -10,11 +10,13 @@
 Name:    kwalletmanager5
 Summary: Manage KDE passwords
 Version: 24.08.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/utils/%{base_name}
 %apps_source
+
+Patch0:  https://invent.kde.org/utilities/kwalletmanager/-/merge_requests/50.patch
 
 # upstream patches
 
@@ -75,7 +77,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files -f %{name}.lang
 %license LICENSES/*
-%{_datadir}/dbus-1/services/org.kde.kwalletmanager5.service
+%{_datadir}/dbus-1/services/org.kde.kwalletmanager.service
 %{_kf6_bindir}/kwalletmanager5
 %{_kf6_datadir}/applications/kwalletmanager5-kwalletd.desktop
 %{_kf6_datadir}/applications/org.kde.kwalletmanager.desktop
@@ -93,6 +95,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 
 %changelog
+* Thu Aug 29 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-2
+- Fix service file name
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 
