@@ -30,7 +30,7 @@
 Name:    cantor
 Summary: KDE Frontend to Mathematical Software
 Version: 24.08.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://apps.kde.org/cantor/
@@ -39,9 +39,8 @@ URL:     https://apps.kde.org/cantor/
 # handled by qt5-srpm-macros, which defines %%qt5_qtwebengine_arches
 %{?qt5_qtwebengine_arches:ExclusiveArch: %{qt5_qtwebengine_arches}}
 
-## upstream fixes
 
-## upstreamable patches
+Patch1:  cantor-24.02.2-jl_array_data.patch
 # Kill using cantor internal API
 Patch2:  cantor-21.04.3-no-julia-internal.patch
 
@@ -256,6 +255,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Sun Sep 01 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-2
+- rebuilt
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 
