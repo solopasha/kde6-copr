@@ -1,8 +1,8 @@
 diff --git a/llm/generate/gen_common.sh b/llm/generate/gen_common.sh
-index da1b0688..5c37e03f 100644
+index cef68ea1..8f450cc3 100644
 --- a/llm/generate/gen_common.sh
 +++ b/llm/generate/gen_common.sh
-@@ -54,8 +54,6 @@ git_module_setup() {
+@@ -60,8 +60,6 @@ git_module_setup() {
          echo "Cleaning up old submodule"
          rm -rf ${LLAMACPP_DIR}
      fi
@@ -11,7 +11,7 @@ index da1b0688..5c37e03f 100644
  
  }
  
-@@ -68,19 +66,15 @@ apply_patches() {
+@@ -74,19 +72,15 @@ apply_patches() {
      if [ -n "$(ls -A ../patches/*.diff)" ]; then
          # apply temporary patches until fix is upstream
          for patch in ../patches/*.diff; do
@@ -31,10 +31,10 @@ index da1b0688..5c37e03f 100644
 -    cmake --build ${BUILD_DIR} ${CMAKE_TARGETS} -j8
 +    cmake --build ${BUILD_DIR} ${CMAKE_TARGETS} -j${RPM_BUILD_NCPUS} --verbose
 +    strip --strip-all ${BUILD_DIR}/bin/ollama_llama_server || :
+     # remove unnecessary build artifacts
+     rm -f ${BUILD_DIR}/bin/ggml-common.h ${BUILD_DIR}/bin/ggml-metal.metal
  }
- 
- compress() {
-@@ -107,13 +101,5 @@ compress() {
+@@ -125,13 +119,5 @@ install() {
  
  # Keep the local tree clean after we're done with the build
  cleanup() {
