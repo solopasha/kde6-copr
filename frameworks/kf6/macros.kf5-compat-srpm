@@ -1,0 +1,17 @@
+%maj_ver_kf5 %maj_ver_kf6
+%min_ver_kf5 %min_ver_kf6
+%bug_ver_kf5 %bug_ver_kf6
+%stable_kf5 %stable_kf6
+%majmin_ver_kf5 %majmin_ver_kf6
+
+%is_kde6_copr %{lua:
+    if macros.copr_projectname == "kde6" then
+        print("1")
+    else
+        print("0")
+    end
+}
+
+%plasma5_source(v:) %plasma_source %{**}
+%apps5_source(v:) %apps_source %{**}
+%frameworks5_source(v:p) %frameworks_meta %{**}

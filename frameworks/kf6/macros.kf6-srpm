@@ -30,7 +30,7 @@
     print(kde.name2name_with_namespace(pkgname))
 }
 
-%frameworks_meta(v:) %{lua:
+%frameworks_meta(v:p) %{lua:
     macros.basever = (rpm.expand("%{-v}") ~= "") and rpm.expand("%{-v*}") or macros.majmin_ver_kf6
     macros._kf6_build_qch = "1"
     if macros.bumpver or macros.gitdate then
@@ -39,8 +39,8 @@
         print(rpm.expand("Source0: https://invent.kde.org/frameworks/%{framework}/-/archive/%{commit}/%{framework}-%{shortcommit}.tar.gz\\n"))
         macros.sourcerootdir = rpm.expand("%{framework}-%{commit}")
     else
-        print(rpm.expand("Source0: https://download.kde.org/%{stable_kf6}/frameworks/%{basever}/%{framework}-%{version}.tar.xz\\n" ..
-                         "Source1: https://download.kde.org/%{stable_kf6}/frameworks/%{basever}/%{framework}-%{version}.tar.xz.sig\\n" ..
+        print(rpm.expand("Source0: https://download.kde.org/%{stable_kf6}/frameworks/%{basever}/"..((opt.p == "") and "portingAids/" or "").."%{framework}-%{version}.tar.xz\\n" ..
+                         "Source1: https://download.kde.org/%{stable_kf6}/frameworks/%{basever}/"..((opt.p == "") and "portingAids/" or "").."%{framework}-%{version}.tar.xz.sig\\n" ..
                          "Source2: kde-frameworks-signing-keys.pgp\\n"))
         macros.sourcerootdir = rpm.expand("%{framework}-%{version}")
     end

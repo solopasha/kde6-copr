@@ -2,7 +2,7 @@ Name:    kf6
 # This version MUST remain in sync with KF6 versions!
 # XXX: Yes, it's 5.x still, this is synced with the version set in extra-cmake-modules
 Version: 6.5.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Filesystem and RPM macros for KDE Frameworks 6
 License: BSD-3-Clause
 URL:     http://www.kde.org
@@ -11,6 +11,7 @@ Source1: LICENSE
 Source2: macros.kf6-srpm
 Source3: kde_maps.lua
 Source4: kde.lua
+Source5: macros.kf5-compat-srpm
 
 %description
 Filesystem and RPM macros for KDE Frameworks 6
@@ -39,6 +40,7 @@ RPM macros for building KDE Frameworks 6 packages.
 
 %package srpm-macros
 Summary: SRPM macros for KDE Frameworks 6
+Obsoletes: kf5-srpm-macros < 5.116.0-2
 BuildArch: noarch
 %description srpm-macros
 RPM macros for building KDE SRPM packages.
@@ -74,6 +76,7 @@ mkdir -p %{buildroot}%{_sysconfdir}/xdg/plasma-workspace/{env,shutdown}
 
 install -Dpm644 %{_sourcedir}/macros.kf6 %{buildroot}%{_rpmconfigdir}/macros.d/macros.kf6
 install -Dpm644 %{_sourcedir}/macros.kf6-srpm %{buildroot}%{_rpmconfigdir}/macros.d/macros.kf6-srpm
+install -Dpm644 %{_sourcedir}/macros.kf5-compat-srpm %{buildroot}%{_rpmconfigdir}/macros.d/macros.kf5-compat-srpm
 install -Dpm644 %{_sourcedir}/LICENSE %{buildroot}%{_datadir}/kf6/LICENSE
 sed -i \
   -e "s|@@kf6_VERSION@@|%{version}|g" \
@@ -113,11 +116,15 @@ install -Dpm0644 %{_sourcedir}/kde.lua %{buildroot}%{_rpmluadir}/fedora/srpm/kde
 
 %files srpm-macros
 %{_rpmconfigdir}/macros.d/macros.kf6-srpm
+%{_rpmconfigdir}/macros.d/macros.kf5-compat-srpm
 %{_rpmluadir}/fedora/srpm/kde*.lua
 
 %files qch
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-2
+- add kf5 compat
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 
