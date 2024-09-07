@@ -15,6 +15,7 @@ BuildRequires:  qt5-qtwayland-devel
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf5-rpm-macros
+BuildRequires:  gnupg2
 
 BuildRequires:  kf5-kidletime-devel
 BuildRequires:  kf5-kwindowsystem-devel
