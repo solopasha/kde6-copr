@@ -1,8 +1,12 @@
+%global commit0 4a1b59ded964152de65a83d8dbd637f7dc014d7a
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework baloo
 
 Name:    kf6-%{framework}
 Summary: A Tier 3 KDE Frameworks 6 module that provides indexing and search functionality
-Version: 6.5.0
+Version: 6.6.0
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND bzip2-1.0.6
@@ -11,7 +15,7 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 
 Patch100: baloo-5.67.0-baloofile_config.patch
 
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
 BuildRequires:  cmake(KF6Config)
@@ -65,8 +69,8 @@ Summary:        Runtime libraries for %{name}
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -110,9 +114,9 @@ cat baloo_file6.lang baloo_file_extractor6.lang \
 
 %files libs
 %license LICENSES/*
-%{_kf6_libdir}/libKF6Baloo.so.%{version}
+%{_kf6_libdir}/libKF6Baloo.so.%{version_no_git}
 %{_kf6_libdir}/libKF6Baloo.so.6
-%{_kf6_libdir}/libKF6BalooEngine.so.%{version}
+%{_kf6_libdir}/libKF6BalooEngine.so.%{version_no_git}
 %{_kf6_libdir}/libKF6BalooEngine.so.6
 %{_kf6_plugindir}/kded/baloosearchmodule.so
 %{_kf6_plugindir}/kded/baloosearchmodule.so
@@ -132,6 +136,9 @@ cat baloo_file6.lang baloo_file_extractor6.lang \
 
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

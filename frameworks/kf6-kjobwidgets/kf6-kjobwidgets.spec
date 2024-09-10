@@ -1,7 +1,11 @@
+%global commit0 ce72d8c09b0503344d716290c5ee3c2761fa4618
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework kjobwidgets
 
 Name:           kf6-%{framework}
-Version:        6.5.0
+Version:        6.6.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 addon for KJobs
 # The following are in the LICENSES folder, but go unused: LGPL-3.0-only, LicenseRef-KDE-Accepted-LGPL
@@ -9,7 +13,7 @@ License:        CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
@@ -41,8 +45,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -59,7 +63,7 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6JobWidgets.so.6
-%{_kf6_libdir}/libKF6JobWidgets.so.%{version}
+%{_kf6_libdir}/libKF6JobWidgets.so.%{version_no_git}
 
 %files devel
 %{_qt6_docdir}/*.tags
@@ -69,6 +73,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6JobWidgets.so
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

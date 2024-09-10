@@ -1,7 +1,11 @@
+%global commit0 15c8fd49c86796996bb597f99f008780fc1f5a16
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework knotifications
 
 Name:    kf6-%{framework}
-Version: 6.5.0
+Version: 6.6.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 2 solution with abstraction for system notifications
 
@@ -10,7 +14,7 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
@@ -39,8 +43,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -57,7 +61,7 @@ mkdir -p %{buildroot}/%{_kf6_datadir}/knotifications6
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6Notifications.so.6
-%{_kf6_libdir}/libKF6Notifications.so.%{version}
+%{_kf6_libdir}/libKF6Notifications.so.%{version_no_git}
 %{_kf6_qmldir}/org/kde/notification/
 %dir %{_kf6_datadir}/knotifications6
 
@@ -68,6 +72,9 @@ mkdir -p %{buildroot}/%{_kf6_datadir}/knotifications6
 %{_kf6_libdir}/libKF6Notifications.so
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

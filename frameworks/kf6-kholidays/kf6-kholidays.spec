@@ -1,7 +1,11 @@
+%global commit0 b6181efe031bd29a6aaa4546cc49c4c11f4f0366
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global		framework kholidays
 
 Name:		kf6-%{framework}
-Version:	6.5.0
+Version:	6.6.0
 Release:	1%{?dist}
 Summary:	The KHolidays Library
 
@@ -10,7 +14,7 @@ URL:		https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules >= %{version}
+BuildRequires:	extra-cmake-modules
 BuildRequires:	gcc-c++
 BuildRequires:	kf6-rpm-macros
 
@@ -33,8 +37,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -48,7 +52,7 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*categories
 %{_kf6_libdir}/libKF6Holidays.so.6
-%{_kf6_libdir}/libKF6Holidays.so.%{version}
+%{_kf6_libdir}/libKF6Holidays.so.%{version_no_git}
 %{_kf6_qmldir}/org/kde/kholidays/
 
 %files devel
@@ -58,6 +62,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Holidays.so
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

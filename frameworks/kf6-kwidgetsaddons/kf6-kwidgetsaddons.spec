@@ -1,7 +1,11 @@
+%global commit0 92bfc3b4a0138b145a4978c4566c913bad394860
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global		framework kwidgetsaddons
 
 Name:		kf6-%{framework}
-Version:	6.5.0
+Version:	6.6.0
 Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with various classes on top of QtWidgets
 License:	BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later
@@ -33,8 +37,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -51,7 +55,7 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*categories
 %{_kf6_libdir}/libKF6WidgetsAddons.so.6
-%{_kf6_libdir}/libKF6WidgetsAddons.so.%{version}
+%{_kf6_libdir}/libKF6WidgetsAddons.so.%{version_no_git}
 %{_kf6_qtplugindir}/designer/*6widgets.so
 
 %files devel
@@ -61,6 +65,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6WidgetsAddons.so
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

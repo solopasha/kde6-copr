@@ -1,14 +1,18 @@
+%global commit0 989a5c70d60d783127625dda82f44d276615fc6d
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework kimageformats
 
 Name:           kf6-%{framework}
-Version:        6.5.0
+Version:        6.6.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with additional image plugins for QtGui
 License:        LGPLv2+
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
 BuildRequires:  kf6-rpm-macros
@@ -33,8 +37,8 @@ may be a runtime requirement for Qt-based software to support certain
 image formats.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6 -DKIMAGEFORMATS_HEIF=ON
@@ -49,6 +53,9 @@ image formats.
 %{_kf6_qtplugindir}/imageformats/*.so
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

@@ -1,7 +1,11 @@
+%global commit0 6f08a86a7d10f78e952071026471ccdfbac6708e
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global		framework ktexttemplate
 
 Name:		kf6-%{framework}
-Version:	6.5.0
+Version:	6.6.0
 Release:	1%{?dist}
 Summary:	Separates the structure of documents from their data
 License:	CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later
@@ -9,7 +13,7 @@ URL:		https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules >= %{version}
+BuildRequires:	extra-cmake-modules
 BuildRequires:	gcc-c++
 BuildRequires:	kf6-rpm-macros
 BuildRequires:	cmake(Qt6Core)
@@ -32,8 +36,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version}
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -47,7 +51,7 @@ developing applications that use %{name}.
 %{_kf6_datadir}/qlogging-categories6/ktexttemplate.categories
 %{_kf6_plugindir}/ktexttemplate/
 %{_kf6_libdir}/libKF6TextTemplate.so.6
-%{_kf6_libdir}/libKF6TextTemplate.so.%{version}
+%{_kf6_libdir}/libKF6TextTemplate.so.%{version_no_git}
 
 %files devel
 %{_qt6_docdir}/*.tags
@@ -56,6 +60,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6TextTemplate.so
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

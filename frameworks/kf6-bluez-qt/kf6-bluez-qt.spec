@@ -1,15 +1,19 @@
+%global commit0 359f5a4f7741fa3472d0e656cf12d4ce46e8e702
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework bluez-qt
 
 Name:           kf6-%{framework}
 Summary:        A Qt wrapper for Bluez
-Version:        6.5.0
+Version:        6.6.0
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtdeclarative-devel
@@ -19,7 +23,7 @@ BuildRequires:  cmake
 # For %%{_udevrulesdir}
 BuildRequires:  systemd
 
-Requires:       kf6-filesystem >= %{version}
+Requires:       kf6-filesystem
 Recommends:     bluez >= 5
 
 %description
@@ -38,8 +42,8 @@ Development files for %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version}
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -55,7 +59,7 @@ Development files for %{name}.
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*categories
 %{_kf6_libdir}/libKF6BluezQt.so.6
-%{_kf6_libdir}/libKF6BluezQt.so.%{version}
+%{_kf6_libdir}/libKF6BluezQt.so.%{version_no_git}
 %{_kf6_qmldir}/org/kde/bluezqt/
 
 %files devel
@@ -66,6 +70,9 @@ Development files for %{name}.
 %{_kf6_libdir}/pkgconfig/KF6BluezQt.pc
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

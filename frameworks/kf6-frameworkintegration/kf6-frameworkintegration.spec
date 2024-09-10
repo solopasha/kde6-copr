@@ -1,14 +1,18 @@
+%global commit0 5547d629ee321b63d1903aeb6b0cac2ae83510e4
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework frameworkintegration
 
 Name:    kf6-%{framework}
-Version: 6.5.0
+Version: 6.6.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 4 workspace and cross-framework integration plugins
 License: CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
 BuildRequires:  cmake(KF6NewStuff)
@@ -53,8 +57,8 @@ Requires:       cmake(KF6WidgetsAddons)
 The %{name}-devel package contains files to develop for %{name}.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -75,7 +79,7 @@ The %{name}-devel package contains files to develop for %{name}.
 
 %files libs
 %{_kf6_libdir}/libKF6Style.so.6
-%{_kf6_libdir}/libKF6Style.so.%{version}
+%{_kf6_libdir}/libKF6Style.so.%{version_no_git}
 %{_kf6_plugindir}/FrameworkIntegrationPlugin.so
 
 %files devel
@@ -85,6 +89,9 @@ The %{name}-devel package contains files to develop for %{name}.
 %{_kf6_libdir}/cmake/KF6FrameworkIntegration/
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

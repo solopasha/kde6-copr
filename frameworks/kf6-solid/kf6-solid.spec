@@ -1,9 +1,13 @@
+%global commit0 bad1e352ec77cc75f84cfa2405ab9eaeffce9e87
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global _default_patch_fuzz 2
 
 %global framework solid
 
 Name:           kf6-%{framework}
-Version:        6.5.0
+Version:        6.6.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 integration module that provides hardware information
 License:        LGPL-2.1-or-later AND LGPL-2.1-only AND CCO-1.0 AND BSD-3-Clause AND LGPL-3.0-only
@@ -12,7 +16,7 @@ URL:            https://invent.kde.org/frameworks/solid
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Qml)
@@ -48,8 +52,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6 \
@@ -68,7 +72,7 @@ developing applications that use %{name}.
 %{_kf6_bindir}/solid-hardware6
 %{_kf6_bindir}/solid-power
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6Solid.so.%{version}
+%{_kf6_libdir}/libKF6Solid.so.%{version_no_git}
 %{_kf6_libdir}/libKF6Solid.so.6
 
 %files devel
@@ -78,6 +82,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Solid.so
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

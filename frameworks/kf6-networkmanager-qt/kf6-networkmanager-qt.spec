@@ -1,7 +1,11 @@
+%global commit0 10663ac336df975c67e460123f231df117824d18
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework networkmanager-qt
 
 Name:           kf6-%{framework}
-Version:        6.5.0
+Version:        6.6.0
 Release:        1%{?dist}
 Summary:        A Tier 1 KDE Frameworks 6 module that wraps NetworkManager DBus API
 License:        LGPL-2.0-or-later AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND CC0-1.0
@@ -43,8 +47,8 @@ that use NetworkManager.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -57,7 +61,7 @@ that use NetworkManager.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*categories
-%{_kf6_libdir}/libKF6NetworkManagerQt.so.%{version}
+%{_kf6_libdir}/libKF6NetworkManagerQt.so.%{version_no_git}
 %{_kf6_libdir}/libKF6NetworkManagerQt.so.6
 %{_kf6_libdir}/qt6/qml/org/kde/networkmanager/kde-qmlmodule.version
 %{_kf6_libdir}/qt6/qml/org/kde/networkmanager/libnetworkmanagerqtqml.so
@@ -71,6 +75,9 @@ that use NetworkManager.
 %{_kf6_libdir}/cmake/KF6NetworkManagerQt/
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

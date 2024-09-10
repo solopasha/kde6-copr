@@ -1,7 +1,11 @@
+%global commit0 33e18f0a49c2c969976f5d8f21b09fc1e6ea0572
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global		framework kirigami
 
 Name:		kf6-%{framework}
-Version:	6.5.0
+Version:	6.6.0
 Release:	1%{?dist}
 Summary:	QtQuick plugins to build user interfaces based on the KDE UX guidelines
 License:	BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -10,7 +14,7 @@ URL:		https://invent.kde.org/frameworks/%{framework}
 
 BuildRequires:	cmake
 BuildRequires:	gcc-c++
-BuildRequires:	extra-cmake-modules >= %{basever}
+BuildRequires:	extra-cmake-modules
 BuildRequires:	kf6-rpm-macros
 BuildRequires:	qt6-linguist
 BuildRequires:	qt6-qtbase-devel
@@ -43,8 +47,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -58,9 +62,9 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/kirigami.categories
-%{_kf6_libdir}/libKirigami.so.%{version}
+%{_kf6_libdir}/libKirigami.so.%{version_no_git}
 %{_kf6_libdir}/libKirigami.so.6
-%{_kf6_libdir}/libKirigamiDelegates.so.%{version}
+%{_kf6_libdir}/libKirigamiDelegates.so.%{version_no_git}
 %{_kf6_libdir}/libKirigamiDelegates.so.6
 %{_kf6_libdir}/libKirigamiDialogs.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKirigamiDialogs.so.6
@@ -70,7 +74,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKirigamiPlatform.so.6
 %{_kf6_libdir}/libKirigamiPrimitives.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
 %{_kf6_libdir}/libKirigamiPrimitives.so.6
-%{_kf6_libdir}/libKirigamiPrivate.so.%{version}
+%{_kf6_libdir}/libKirigamiPrivate.so.%{version_no_git}
 %{_kf6_libdir}/libKirigamiPrivate.so.6
 %{_kf6_qmldir}/org/kde/kirigami/
 
@@ -92,6 +96,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKirigamiPrivate.so
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

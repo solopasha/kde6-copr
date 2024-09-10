@@ -1,8 +1,12 @@
+%global commit0 eb3f5b8db6b65a3e22fe5d6946da43969b99c3d2
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global		framework kconfig
 
 
 Name:		  kf6-%{framework}
-Version:	6.5.0
+Version:	6.6.0
 Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with advanced configuration system
 License:	BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND MIT
@@ -10,7 +14,7 @@ URL:		  https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules >= %{version}
+BuildRequires:	extra-cmake-modules
 BuildRequires:	gcc-c++
 BuildRequires:	kf6-rpm-macros
 BuildRequires:	cmake(Qt6DBus)
@@ -37,8 +41,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -54,11 +58,11 @@ developing applications that use %{name}.
 %{_kf6_bindir}/kreadconfig6
 %{_kf6_bindir}/kwriteconfig6
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
-%{_kf6_libdir}/libKF6ConfigCore.so.%{version}
+%{_kf6_libdir}/libKF6ConfigCore.so.%{version_no_git}
 %{_kf6_libdir}/libKF6ConfigCore.so.6
-%{_kf6_libdir}/libKF6ConfigGui.so.%{version}
+%{_kf6_libdir}/libKF6ConfigGui.so.%{version_no_git}
 %{_kf6_libdir}/libKF6ConfigGui.so.6
-%{_kf6_libdir}/libKF6ConfigQml.so.%{version}
+%{_kf6_libdir}/libKF6ConfigQml.so.%{version_no_git}
 %{_kf6_libdir}/libKF6ConfigQml.so.6
 %{_kf6_libdir}/qt6/qml/org/kde/config/
 %{_kf6_libexecdir}/kconf_update
@@ -76,6 +80,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6ConfigQml.so
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

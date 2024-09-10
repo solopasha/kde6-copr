@@ -1,7 +1,11 @@
+%global commit0 2698c1c1cd0f7e60190509d8ac1e280f7105dab9
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global		framework kcoreaddons
 
 Name:		kf6-%{framework}
-Version:	6.5.0
+Version:	6.6.0
 Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with various classes on top of QtCore
 License:	BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND MPL-1.1 AND LGPL-2.0-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-2.1-only WITH Qt-LGPL-exception-1.1
@@ -10,7 +14,7 @@ URL:		https://invent.kde.org/frameworks/%{framework}
 
 BuildRequires:	cmake
 BuildRequires:	gcc-c++
-BuildRequires:	extra-cmake-modules >= %{version}
+BuildRequires:	extra-cmake-modules
 BuildRequires:	kf6-rpm-macros
 BuildRequires:	qt6-qtbase-devel
 BuildRequires:	qt6-qttools-devel
@@ -37,8 +41,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -58,7 +62,7 @@ cat *.lang > all.lang
 %{_kf6_datadir}/mime/packages/kde6.xml
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6CoreAddons.so.6
-%{_kf6_libdir}/libKF6CoreAddons.so.%{version}
+%{_kf6_libdir}/libKF6CoreAddons.so.%{version_no_git}
 %{_kf6_qmldir}/org/kde/coreaddons/
 
 %files devel
@@ -68,6 +72,9 @@ cat *.lang > all.lang
 %{_kf6_libdir}/libKF6CoreAddons.so
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

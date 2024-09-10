@@ -1,7 +1,11 @@
+%global commit0 921dde5c0367d56cbb68bf3748f954fdc76c877f
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global		framework kcodecs
 
 Name:		kf6-%{framework}
-Version:	6.5.0
+Version:	6.6.0
 Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with string manipulation methods
 License:	BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND MIT AND MPL-1.1
@@ -12,7 +16,7 @@ BuildRequires:	fdupes
 BuildRequires:	cmake
 BuildRequires:	gcc-c++
 BuildRequires:	gperf
-BuildRequires:	extra-cmake-modules >= %{version}
+BuildRequires:	extra-cmake-modules
 BuildRequires:	kf6-rpm-macros
 BuildRequires:	qt6-qtbase-devel
 BuildRequires:	qt6-qttools-devel
@@ -34,8 +38,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -51,7 +55,7 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*categories
 %{_kf6_libdir}/libKF6Codecs.so.6
-%{_kf6_libdir}/libKF6Codecs.so.%{version}
+%{_kf6_libdir}/libKF6Codecs.so.%{version_no_git}
 
 %files devel
 %{_qt6_docdir}/*.tags
@@ -60,6 +64,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Codecs.so
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

@@ -1,3 +1,7 @@
+%global commit0 9d9b0199bd69cc11450298881ac1555f9654ef0e
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 # If KF7 still provides these icons, then their installation should then
 # be disabled in KF6 builds.
 %bcond install_icons 1
@@ -8,7 +12,7 @@
 
 Name:    kf6-%{framework}
 Summary: Breeze icon theme library
-Version: 6.5.0
+Version: 6.6.0
 Release: 1%{?dist}
 
 # skladnik.svg is CC-BY-SA-4.0
@@ -24,7 +28,7 @@ URL:     https://api.kde.org/frameworks/breeze-icons/html/
 ## upstreamable patches
 
 
-BuildRequires: extra-cmake-modules >= %{version}
+BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
 BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6Gui)
@@ -80,7 +84,7 @@ developing applications that use %{name}.
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{framework}-%{version} -p1
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -136,7 +140,7 @@ gtk-update-icon-cache --force %{_datadir}/icons/breeze-dark &>/dev/null || :
 %license COPYING.LIB
 %doc README.md
 %{_kf6_libdir}/libKF6BreezeIcons.so.6
-%{_kf6_libdir}/libKF6BreezeIcons.so.%{version}
+%{_kf6_libdir}/libKF6BreezeIcons.so.%{version_no_git}
 
 %files devel
 %{_kf6_includedir}/BreezeIcons/
@@ -162,6 +166,9 @@ gtk-update-icon-cache --force %{_datadir}/icons/breeze-dark &>/dev/null || :
 %endif
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

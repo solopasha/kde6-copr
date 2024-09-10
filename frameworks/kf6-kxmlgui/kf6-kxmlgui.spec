@@ -1,7 +1,11 @@
+%global commit0 6ae871938497be853261f7616a5623379bd3c66c
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework kxmlgui
 
 Name:    kf6-%{framework}
-Version: 6.5.0
+Version: 6.6.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 solution for user-configurable main windows
 
@@ -9,7 +13,7 @@ License: BSD-2-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LG
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
 BuildRequires:  kf6-rpm-macros
@@ -50,8 +54,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -68,7 +72,7 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kxmlgui5/
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6XmlGui.so.6
-%{_kf6_libdir}/libKF6XmlGui.so.%{version}
+%{_kf6_libdir}/libKF6XmlGui.so.%{version_no_git}
 %dir %{_kf6_datadir}/kxmlgui5/
 
 %files devel
@@ -79,6 +83,9 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kxmlgui5/
 %{_kf6_qtplugindir}/designer/*6widgets.so
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

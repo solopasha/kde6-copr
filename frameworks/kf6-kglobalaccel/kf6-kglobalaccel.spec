@@ -1,7 +1,11 @@
+%global commit0 4dc232fec942eb4942f11b1a448520bf9122172b
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework kglobalaccel
 
 Name:    kf6-%{framework}
-Version: 6.5.0
+Version: 6.6.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 integration module for global shortcuts
 
@@ -11,7 +15,7 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
@@ -35,8 +39,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -57,7 +61,7 @@ rm -fv %{buildroot}%{_prefix}/lib/systemd/user/plasma-kglobalaccel.service
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
 %{_kf6_libdir}/libKF6GlobalAccel.so.6
-%{_kf6_libdir}/libKF6GlobalAccel.so.%{version}
+%{_kf6_libdir}/libKF6GlobalAccel.so.%{version_no_git}
 
 %files devel
 %{_qt6_docdir}/*.tags
@@ -67,6 +71,9 @@ rm -fv %{buildroot}%{_prefix}/lib/systemd/user/plasma-kglobalaccel.service
 %{_kf6_datadir}/dbus-1/interfaces/*
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

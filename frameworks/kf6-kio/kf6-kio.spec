@@ -1,7 +1,11 @@
+%global commit0 a89e682a9ad269965859fd4bb625a03003767c3f
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework kio
 
 Name:    kf6-%{framework}
-Version: 6.5.0
+Version: 6.6.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 solution for filesystem abstraction
 
@@ -11,7 +15,7 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 Patch:   0001-Give-the-kuriikwsfiltereng_private-a-VERSION-and-SOV.patch
 
 BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
@@ -141,8 +145,8 @@ Recommends:     switcheroo-control
 %qch_package qch
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -174,13 +178,13 @@ Recommends:     switcheroo-control
 
 %files core-libs
 %{_kf6_libdir}/libKF6KIOCore.so.6
-%{_kf6_libdir}/libKF6KIOCore.so.%{version}
+%{_kf6_libdir}/libKF6KIOCore.so.%{version_no_git}
 
 %files doc -f %{name}.lang
 
 %files gui
 %{_kf6_libdir}/libKF6KIOGui.so.6
-%{_kf6_libdir}/libKF6KIOGui.so.%{version}
+%{_kf6_libdir}/libKF6KIOGui.so.%{version_no_git}
 
 %files widgets
 %dir %{_kf6_plugindir}/urifilters/
@@ -188,14 +192,14 @@ Recommends:     switcheroo-control
 
 %files widgets-libs
 %{_kf6_libdir}/libKF6KIOWidgets.so.6
-%{_kf6_libdir}/libKF6KIOWidgets.so.%{version}
+%{_kf6_libdir}/libKF6KIOWidgets.so.%{version_no_git}
 %{_kf6_libdir}/libkuriikwsfiltereng_private.so.6
-%{_kf6_libdir}/libkuriikwsfiltereng_private.so.%{version}
+%{_kf6_libdir}/libkuriikwsfiltereng_private.so.%{version_no_git}
 %{_kf6_qtplugindir}/designer/*6widgets.so
 
 %files file-widgets
 %{_kf6_libdir}/libKF6KIOFileWidgets.so.6
-%{_kf6_libdir}/libKF6KIOFileWidgets.so.%{version}
+%{_kf6_libdir}/libKF6KIOFileWidgets.so.%{version_no_git}
 
 %files devel
 %{_qt6_docdir}/*.tags
@@ -213,6 +217,9 @@ Recommends:     switcheroo-control
 %{_kf6_libdir}/libkuriikwsfiltereng_private.so
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

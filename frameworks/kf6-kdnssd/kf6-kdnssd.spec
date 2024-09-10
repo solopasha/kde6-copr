@@ -1,7 +1,11 @@
+%global commit0 834c5b9b06fbd19bed461c3c17dde92a41dd9e4a
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global		framework kdnssd
 
 Name:		kf6-%{framework}
-Version:	6.5.0
+Version:	6.6.0
 Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 integration module for DNS-SD services (Zeroconf)
 License:	BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later
@@ -11,7 +15,7 @@ URL:		https://invent.kde.org/frameworks/%{framework}
 BuildRequires:	cmake
 BuildRequires:	gcc-c++
 BuildRequires:	avahi-devel
-BuildRequires:	extra-cmake-modules >= %{version}
+BuildRequires:	extra-cmake-modules
 BuildRequires:	kf6-rpm-macros
 BuildRequires:	cmake(Qt6Network)
 BuildRequires:	cmake(Qt6DBus)
@@ -34,8 +38,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -49,7 +53,7 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_libdir}/libKF6DNSSD.so.6
-%{_kf6_libdir}/libKF6DNSSD.so.%{version}
+%{_kf6_libdir}/libKF6DNSSD.so.%{version_no_git}
 
 %files devel
 %{_qt6_docdir}/*.tags
@@ -59,6 +63,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

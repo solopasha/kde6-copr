@@ -1,7 +1,11 @@
+%global commit0 c1c2c8f1b0594d18c99369e568ad42d5ea75ca2c
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework karchive
 
 Name:           kf6-%{framework}
-Version:        6.5.0
+Version:        6.6.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with archive functions
 License:        LGPL-2.0-or-later AND BSD-2-Clause
@@ -43,8 +47,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -58,7 +62,7 @@ developing applications that use %{name}.
 %doc AUTHORS README.md
 %license LICENSES/*
 %{_kf6_datadir}/qlogging-categories6/*categories
-%{_kf6_libdir}/libKF6Archive.so.%{version}
+%{_kf6_libdir}/libKF6Archive.so.%{version_no_git}
 %{_kf6_libdir}/libKF6Archive.so.6
 
 %files devel
@@ -68,6 +72,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Archive.so
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

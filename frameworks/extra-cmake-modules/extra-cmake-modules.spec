@@ -1,3 +1,7 @@
+%global commit0 229d8c80d4450f5c3e701c8ad796fdddf9535d1b
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 
 %global framework extra-cmake-modules
 
@@ -11,7 +15,7 @@
 
 Name:    extra-cmake-modules
 Summary: Additional modules for CMake build system
-Version: 6.5.0
+Version: 6.6.0
 Release: 1%{?dist}
 License: BSD
 URL:     https://api.kde.org/ecm/
@@ -43,8 +47,8 @@ Requires: (cmake(Qt5LinguistTools) if qt5-qtbase-devel)
 Additional modules for CMake build system needed by KDE Frameworks.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{name}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6 \
@@ -74,6 +78,9 @@ make test ARGS="--output-on-failure --timeout 300" -C %{_vpath_builddir} ||:
 
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

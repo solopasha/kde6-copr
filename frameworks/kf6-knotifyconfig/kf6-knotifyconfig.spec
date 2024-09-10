@@ -1,7 +1,11 @@
+%global commit0 96b85414232c6613d24a1d6a7428bd3b3e65cb35
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework knotifyconfig
 
 Name:    kf6-%{framework}
-Version: 6.5.0
+Version: 6.6.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 module for KNotify configuration
 
@@ -10,7 +14,7 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6Completion)
@@ -38,8 +42,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -54,7 +58,7 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*%{framework}.*
 %{_kf6_libdir}/libKF6NotifyConfig.so.6
-%{_kf6_libdir}/libKF6NotifyConfig.so.%{version}
+%{_kf6_libdir}/libKF6NotifyConfig.so.%{version_no_git}
 
 %files devel
 %{_qt6_docdir}/*.tags
@@ -63,6 +67,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6NotifyConfig.so
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

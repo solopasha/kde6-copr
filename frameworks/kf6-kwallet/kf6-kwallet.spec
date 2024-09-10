@@ -1,7 +1,11 @@
+%global commit0 6f1e207b720c88e4cf0ef901b0a9e8648da85418
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework kwallet
 
 Name:    kf6-%{framework}
-Version: 6.5.0
+Version: 6.6.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 solution for password management
 
@@ -9,14 +13,15 @@ License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LG
 URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
 BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6I18n)
@@ -57,8 +62,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -80,23 +85,26 @@ developing applications that use %{name}.
 %{_kf6_datadir}/knotifications6/kwalletd6.notifyrc
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
 %{_kf6_datadir}/xdg-desktop-portal/portals/kwallet.portal
-%{_mandir}/man1/kwallet-query.1*
+%{_kf6_mandir}/man1/kwallet-query.1.*
 
 %files libs
+%{_kf6_libdir}/libKF6Wallet.so.%{version_no_git}
 %{_kf6_libdir}/libKF6Wallet.so.6
-%{_kf6_libdir}/libKF6Wallet.so.%{version}
+%{_kf6_libdir}/libKF6WalletBackend.so.%{version_no_git}
 %{_kf6_libdir}/libKF6WalletBackend.so.6
-%{_kf6_libdir}/libKF6WalletBackend.so.%{version}
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_datadir}/dbus-1/interfaces/kf6_org.kde.KWallet.xml
 %{_kf6_includedir}/KWallet/
 %{_kf6_libdir}/cmake/KF6Wallet/
 %{_kf6_libdir}/libKF6Wallet.so
+%{_qt6_docdir}/*.tags
 
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

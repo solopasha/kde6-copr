@@ -1,7 +1,11 @@
+%global commit0 7916ee1848c5ec89872b2dd6c033bb0538f75ef2
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework kstatusnotifieritem
 
 Name:           kf6-%{framework}
-Version:        6.5.0
+Version:        6.6.0
 Release:        1%{?dist}
 Summary:        Implementation of Status Notifier Items
 
@@ -10,7 +14,7 @@ URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
@@ -39,8 +43,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version}
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -55,7 +59,7 @@ developing applications that use %{name}.
 %{_kf6_datadir}/dbus-1/interfaces/kf6_org.kde.StatusNotifierWatcher.xml
 %{_kf6_datadir}/qlogging-categories6/kstatusnotifieritem.categories
 %{_kf6_libdir}/libKF6StatusNotifierItem.so.6
-%{_kf6_libdir}/libKF6StatusNotifierItem.so.%{version}
+%{_kf6_libdir}/libKF6StatusNotifierItem.so.%{version_no_git}
 
 %files devel
 %{_qt6_docdir}/*.tags
@@ -64,6 +68,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6StatusNotifierItem.so
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 

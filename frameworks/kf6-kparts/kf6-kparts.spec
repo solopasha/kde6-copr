@@ -1,7 +1,11 @@
+%global commit0 3061d55fd77b01847bf7945e51f9c5d837c8215d
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global framework kparts
 
 Name:    kf6-%{framework}
-Version: 6.5.0
+Version: 6.6.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 solution for KParts
 
@@ -10,7 +14,7 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules >= %{version}
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6Config)
@@ -42,8 +46,8 @@ developing applications that use %{name}.
 %qch_package
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{framework}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -60,7 +64,7 @@ mkdir -p %{buildroot}%{_kf6_plugindir}/parts/
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6Parts.so.6
-%{_kf6_libdir}/libKF6Parts.so.%{version}
+%{_kf6_libdir}/libKF6Parts.so.%{version_no_git}
 %dir %{_kf6_plugindir}/parts/
 
 %files devel
@@ -74,6 +78,9 @@ mkdir -p %{buildroot}%{_kf6_plugindir}/parts/
 
 
 %changelog
+* Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
+- Update to 6.6.0
+
 * Fri Aug 09 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-1
 - Update to 6.5.0
 
