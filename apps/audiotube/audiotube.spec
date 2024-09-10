@@ -1,9 +1,9 @@
-%global commit0 44f5026054d0954916a78fcf742bead9bc69a450
+%global commit0 8065732ab7adf74d941759880f7b0585c388cc06
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           audiotube
-Version:        24.08.0
+Version:        24.08.1
 Release:        1%{?dist}
 License:        (GPL-2.0-only OR GPL-3.0-only) AND GPL-2.0-or-later AND LGPL-2.1-or-later AND CC0-1.0
 Summary:        AudioTube can search YouTube Music, list albums and artists, play automatically generated playlists, albums and allows to put your own playlist together.
@@ -78,6 +78,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

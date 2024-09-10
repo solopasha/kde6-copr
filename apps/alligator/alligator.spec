@@ -1,9 +1,9 @@
-%global commit0 c1d10ad5e94e8fb1d1ec7d572515765d457f7c93
+%global commit0 84c346b5cd10fb7b636ac54f040b192065846551
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           alligator
-Version:        24.08.0
+Version:        24.08.1
 Release:        1%{?dist}
 License:        GPLv2 or GPLv3
 Summary:        Kirigami-based RSS reader
@@ -65,6 +65,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

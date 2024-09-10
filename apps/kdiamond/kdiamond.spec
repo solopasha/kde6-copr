@@ -1,10 +1,10 @@
-%global commit0 cab547a7c0fcfb86acd28abea25e334ed02d36dc
+%global commit0 dff39d8d817eba1d1c4e004f54414146a8cf5c5d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kdiamond
 Summary: A three-in-a-row game
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
@@ -85,6 +85,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

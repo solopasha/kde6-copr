@@ -1,28 +1,26 @@
-%global commit0 a3a8e991d138308142db0b85c4636804e6095183
+%global commit0 6b2d95be8b6774b7031d52ef0d8edeb00029bc6e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-%global  base_name kwalletmanager
+%global base_name kwalletmanager
 
 # replace kde4-based kwalletmanager
 %global kwalletmanager 1
 
 Name:    kwalletmanager5
 Summary: Manage KDE passwords
-Version: 24.08.0
-Release: 2%{?dist}
+Version: 24.08.1
+Release: 1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/utils/%{base_name}
 %apps_source
 
-Patch0:  https://invent.kde.org/utilities/kwalletmanager/-/merge_requests/50.patch
-
-# upstream patches
+Patch:   qt6.6.patch
 
 ## upstreamable patches
 # better/sane defaults (no autoclose mostly)
-Patch1: kwalletmanager-15.12.1-defaults.patch
+Patch: kwalletmanager-15.12.1-defaults.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
@@ -95,6 +93,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Thu Aug 29 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-2
 - Fix service file name
 

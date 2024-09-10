@@ -1,9 +1,9 @@
-%global commit0 a7200a6cc7edec562efeffb965a6c67f3f8bc0d6
+%global commit0 e81dfe5468c6a74b61e4341e9bab372cf44aa322
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kimap
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 Summary: The KIMAP Library
 
@@ -71,6 +71,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

@@ -1,4 +1,4 @@
-%global commit0 5eba6f328a1f627d909ba1ba4ac2fd19f172d9ae
+%global commit0 cd9369708517c0940113e2eb0bc2fe0d71ca4c84
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    akonadiconsole
 Summary: Akonadi developer tool
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -93,6 +93,9 @@ xvfb-run -a bash -c "%ctest"
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

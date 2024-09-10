@@ -1,4 +1,4 @@
-%global commit0 4d761bfc454795f85640c63cfd70abc5acd781e1
+%global commit0 e41e90935df163c80c30ea7263316dabf124a1c5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -8,7 +8,7 @@
 
 Name:           ark
 Summary:        Archive manager
-Version:        24.08.0
+Version:        24.08.1
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later AND BSD-2-Clause
@@ -124,6 +124,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.ark.deskt
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

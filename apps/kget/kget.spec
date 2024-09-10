@@ -1,10 +1,10 @@
-%global commit0 97f0a1dbc3052594dbb9934d59ee27b5bd74fcad
+%global commit0 d9cedd09d3ff2c3a4dbcd9928ba47e5562047270
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kget
 Summary: Download manager
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
@@ -109,6 +109,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

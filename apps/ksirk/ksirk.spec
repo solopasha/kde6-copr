@@ -1,10 +1,10 @@
-%global commit0 a63c3f68a1cfbb0d7ab5564c937d9daafe85a53d
+%global commit0 5df68df0dec505bfda9a13979ccfb2994c1cbe00
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    ksirk
 Summary: Conquer-the-world strategy game
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
@@ -83,6 +83,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

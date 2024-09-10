@@ -1,9 +1,9 @@
-%global commit0 3281ff4a83961c99075e1e9ceab428affab83cb3
+%global commit0 64f90bbf907565c31dc069791794d33dc90f4f8a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           keysmith
-Version:        24.08.0
+Version:        24.08.1
 Release:        1%{?dist}
 License:        GPLv3+
 Summary:        Convergent OTP client
@@ -66,6 +66,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

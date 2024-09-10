@@ -1,10 +1,10 @@
-%global commit0 fd0c2e98fc2f173fd3952f84cfdce3bb6d5ba5e8
+%global commit0 8052362deb3ba962eb74676263271c66a89c8039
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kio-extras
-Version: 24.08.0
-Release: 2%{?dist}
+Version: 24.08.1
+Release: 1%{?dist}
 Summary: Additional components to increase the functionality of KIO Framework
 
 License: GPLv2+
@@ -142,6 +142,9 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-2
 - pick upstream commit
 

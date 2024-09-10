@@ -1,10 +1,10 @@
-%global commit0 3d63decd83cdfddd211f1421f9ab7d0f4dcdcdf9
+%global commit0 1b72e707023871418df2659bf04efa6de2f6adfc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    ktimer
 Summary: Task Scheduler
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -63,6 +63,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

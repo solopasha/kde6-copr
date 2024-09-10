@@ -1,10 +1,10 @@
-%global commit0 209795285e75dc4e05e2f1c0e281898513affed9
+%global commit0 8a7af22e22e23c97d9403d0bf564ae0754939d6a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           krdc
 Summary:        Remote desktop client
-Version:        24.08.0
+Version:        24.08.1
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later
@@ -115,6 +115,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

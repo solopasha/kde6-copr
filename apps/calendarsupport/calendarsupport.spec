@@ -1,9 +1,9 @@
-%global commit0 99575c86129517cc6695f96d2552f3e8e4b16d1f
+%global commit0 37aebcd54ee34a70b898f4fd17278cbef90437f2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    calendarsupport
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 Summary: KDE PIM library for calendar and even handling
 
@@ -80,6 +80,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

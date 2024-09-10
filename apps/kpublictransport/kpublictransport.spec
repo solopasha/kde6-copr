@@ -1,9 +1,9 @@
-%global commit0 06e364f1bf6dfb9c1bd6b81413aa38302046cf77
+%global commit0 d15019b7ccd3cbe1f2e53e98a05bd3c63c7ce2c2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kpublictransport
-Version:        24.08.0
+Version:        24.08.1
 Release:        1%{?dist}
 License:        BSD and CC0-1.0 and LGPLv2+ and MIT and ODbL-1.0
 Summary:        Library to assist with accessing public transport timetables and other data
@@ -59,6 +59,9 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %{_kf6_libdir}/*.so
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

@@ -1,4 +1,4 @@
-%global commit0 6363695b54c4c771c2b122c2e955d1a8bbb76c01
+%global commit0 4e227e453477a22404ad08fc2cd27ad6e5a601a4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    akonadi-import-wizard
 Summary: Akonadi Import Wizard
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -98,6 +98,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

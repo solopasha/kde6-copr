@@ -1,11 +1,11 @@
-%global commit0 c78801c0c74de1376b0631e5c14b6747a6631cc3
+%global commit0 655aaa52f425a8b9386b08fbd5ccf00cec29bbf8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global base_name kdesdk-kio
 Name:    kdesdk-kioslaves
 Summary: KDESDK KIOslaves
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 
 License: GPLv2 and GPLv2+
@@ -56,6 +56,9 @@ KDE SDK kioslaves:
 
 
 %changelog	
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

@@ -1,15 +1,17 @@
-%global commit0 3a3d28239cff4b951c98199317f7cb5f29875ed5
+%global commit0 f4f89b2a1c50f7788fb511a6bbb9fa3bc5899fa9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kteatime
 Summary: Handy timer for steeping tea
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 
 License: GPLv2+
 URL:     https://apps.kde.org/kteatime
 %apps_source
+
+Patch:   qt6.6.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
@@ -67,6 +69,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

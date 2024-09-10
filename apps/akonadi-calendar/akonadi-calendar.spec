@@ -1,11 +1,11 @@
-%global commit0 8a1cca6f813e60c9ba27c97acbc1919cda43a3a8
+%global commit0 0bd74c26d66c8b1547e70efb40282c3588d43c00
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 #global tests 1
 
 Name:    akonadi-calendar
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 Summary: The Akonadi Calendar Library
 
@@ -111,6 +111,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

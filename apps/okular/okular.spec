@@ -1,4 +1,4 @@
-%global commit0 c6da753f4a95338183398785ba0f4ac544c44eeb
+%global commit0 c40286a5dde1dced214fea303c5740c3a5595e7b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -17,7 +17,7 @@
 
 Name:    okular
 Summary: A document viewer
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 
 License: GPL-2.0-only
@@ -210,6 +210,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.ok
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

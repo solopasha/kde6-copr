@@ -1,4 +1,4 @@
-%global commit0 373065200b7a2d2bdc60c46f1c6b8fa9fbf7ad0b
+%global commit0 b2e797507e731fb803c6d0edd3eed523dff72af8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:           kdevelop-php
 Summary:        Php language and documentation plugins for KDevelop
-Version:        24.08.0
+Version:        24.08.1
 Release:        1%{?dist}
 
 # Most files LGPLv2+/GPLv2+
@@ -65,6 +65,9 @@ BuildRequires:  cmake(KDevelop-PG-Qt)
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

@@ -1,17 +1,14 @@
-%global commit0 ff84047f0b7f4e076828ddcf95a9a9416b936f45
+%global commit0 4e4437727b55c1529da590b3389b9a4bb7946eae
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           tokodon
-Version:        24.08.0
-Release:        2%{?dist}
+Version:        24.08.1
+Release:        1%{?dist}
 License:        GPL-2.0-only OR GPL-3.0-only AND CC0-1.0 AND LGPL-2.1-or-later
 Summary:        Kirigami-based mastodon client
 URL:            https://invent.kde.org/network/tokodon
 %apps_source
-
-Patch:          https://invent.kde.org/network/tokodon/-/commit/5950882cbe1bc264cb4b6dac1c5ddae72ed0a6c1.patch
-Patch:          https://invent.kde.org/network/tokodon/-/commit/469ee2325aabbd294bf4f1358786c0f7db68b471.patch
 
 BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
@@ -24,6 +21,7 @@ BuildRequires:  cmake(MpvQt)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
@@ -94,6 +92,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Sat Aug 31 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-2
 - pick upstream commits
 

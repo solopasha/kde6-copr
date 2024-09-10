@@ -1,10 +1,10 @@
-%global commit0 bad80bbac06a9d7aa9390d63e7a35d9a42a7d10f
+%global commit0 4fbcd7e2149d74ec1b4fc711313ba3d28dae0a82
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kompare
 Summary:        Diff tool
-Version:        24.08.0
+Version:        24.08.1
 Release:        1%{?dist}
 
 License:        (GPL-2.0-only OR GPL-3.0-only) AND GPL-2.0-or-later and GFDL
@@ -98,6 +98,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

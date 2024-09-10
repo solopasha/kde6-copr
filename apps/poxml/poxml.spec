@@ -4,7 +4,7 @@
 
 Name:           poxml
 Summary:        Text utilities from kdesdk
-Version:        24.08.0
+Version:        24.08.1
 Release:        1%{?dist}
 
 License:        GPLv2+
@@ -57,6 +57,9 @@ xml2pot
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

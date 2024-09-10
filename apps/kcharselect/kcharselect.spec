@@ -1,15 +1,17 @@
-%global commit0 49d17e2386f76c8dd73840d4866c1b6f375a4051
+%global commit0 427385ca93b599c5d4d262a8605df258ae55bac4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kcharselect
 Summary: Character selector
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://apps.kde.org/kcharselect
 %apps_source
+
+Patch:   qt6.6.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
@@ -62,6 +64,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

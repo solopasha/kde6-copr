@@ -1,16 +1,18 @@
-%global commit0 a59d439300a7a8b4dcf7b98ae40620143d119102
+%global commit0 81574276dadc1ab70357d238278b9bf98a1fb033
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    keditbookmarks
 Summary: Bookmark organizer and editor
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 
 # Documentation is GFDL, rest GPLv2 and GPLv3 (note: NOT any later version)
 License: GPLv2 and GPLv3 and GFDL
 URL:     https://www.kde.org/
 %apps_source
+
+Patch:   qt6.6.patch
 
 BuildRequires: desktop-file-utils
 
@@ -78,6 +80,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

@@ -1,10 +1,10 @@
-%global commit0 9206b15d752837094fb03d8cb0e759b1545945a0
+%global commit0 4fa177aa6bcc0123b06b66b5098eb96b8efee169
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kcachegrind
 Summary: GUI to profilers such as Valgrind
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 
 License: GPLv2 and GFDL
@@ -114,6 +114,9 @@ cat kcachegrind_qt.lang >> kcachegrind.lang
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

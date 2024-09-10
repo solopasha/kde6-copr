@@ -1,11 +1,11 @@
-%global commit0 27f43cb6f3317e89c2c1f4ade9a9854f8b76e306
+%global commit0 77e58328316b7dc43ad3ab195a0c43f10a25208e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 #global tests 1
 
 Name:           zanshin
-Version:        24.08.0
+Version:        24.08.1
 Release:        1%{?dist}
 Summary:        Todo/action management software
 
@@ -102,6 +102,9 @@ time \
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

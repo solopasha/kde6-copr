@@ -1,16 +1,18 @@
-%global commit0 a1311d68e993443d6807b75bb41bebce403b8a56
+%global commit0 18610cec0a49a3e6d43eab4a16500e9031058e53
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:    kmousetool
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 Summary: A program that clicks the mouse for you
 
 License: GPLv2+
 URL:     http://accessibility.kde.org/
 %apps_source
+
+Patch:   qt6.6.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
@@ -74,6 +76,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop ||:
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

@@ -1,4 +1,4 @@
-%global commit0 3c53b388263b8036f53b04f921800b2cb92818ec
+%global commit0 07c62018b051c267da93d96e7dd8e7fab35c22f6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -14,7 +14,7 @@
 
 Name:    kalzium
 Summary: Periodic Table of Elements
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -143,6 +143,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/*.desktop
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

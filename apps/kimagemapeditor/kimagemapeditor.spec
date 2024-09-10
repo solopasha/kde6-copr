@@ -1,10 +1,10 @@
-%global commit0 b466f3ae3ffc6ce27efa7c27b495972348272466
+%global commit0 bd7f266451e613e999371f404d9769a5445aa038
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kimagemapeditor
 Summary:        HTML Image Map Editor
-Version:        24.08.0
+Version:        24.08.1
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later
@@ -71,6 +71,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

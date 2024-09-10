@@ -1,11 +1,11 @@
-%global commit0 a316901daf37ad8a06c140efd2aa6122f161fb2c
+%global commit0 73ae1aee5c4f29c7d878ef88865ac7a439a48ad4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global base_name kdeconnect-kde
 
 Name:    kde-connect
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 License: GPLv2+
 Summary: KDE Connect client for communication with smartphones
@@ -163,6 +163,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop ||:
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

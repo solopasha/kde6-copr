@@ -1,9 +1,9 @@
-%global commit0 cf28899a2785f015651243b7ebd5ad36428d9da7
+%global commit0 5f22d5e06cce0dd14cc404c6b7a8faa2fb399d48
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           angelfish
-Version:        24.08.0
+Version:        24.08.1
 Release:        1%{?dist}
 Summary:        Plasma Mobile minimal web browser
 
@@ -99,6 +99,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{
 %{_kf6_metainfodir}/org.kde.%{name}.metainfo.xml
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

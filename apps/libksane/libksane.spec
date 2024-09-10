@@ -1,10 +1,10 @@
-%global commit0 d25549bfb3c09864b61fafd891cdb09f7444ba15
+%global commit0 936dc4d034417fd9f56e44c5a532f853eb57e960
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    libksane
 Summary: SANE Library interface for KDE
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 
 License: CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
@@ -115,7 +115,7 @@ Provides internationalization files.
 
 %if %{fedora} >= 40
 %files qt5
-%{_libdir}/libKF5Sane.so.{6,%{version}}
+%{_libdir}/libKF5Sane.so.{6,%{version_no_git}}
 %{_datadir}/icons/hicolor/*/actions/*
 
 %files qt5-devel
@@ -125,7 +125,7 @@ Provides internationalization files.
 %endif
 
 %files qt6
-%{_libdir}/libKSaneWidgets6.so.{6,%{version}}
+%{_libdir}/libKSaneWidgets6.so.{6,%{version_no_git}}
 
 %files qt6-devel
 %{_includedir}/KSaneWidgets6/
@@ -134,6 +134,9 @@ Provides internationalization files.
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

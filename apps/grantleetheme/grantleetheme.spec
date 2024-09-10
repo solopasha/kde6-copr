@@ -1,9 +1,9 @@
-%global commit0 6c763a733ef6f0886c583f22411753c322ca8a24
+%global commit0 442ae7b92cf206b07b80322e1a06c58ef89a4fa4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    grantleetheme
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 Summary: KDE PIM library for Grantlee template system
 
@@ -68,6 +68,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

@@ -1,9 +1,9 @@
-%global commit0 9f376cc44bc75956c8fc9c7a11667a944cea1bc5
+%global commit0 bcbd8514ad6f478fc1ab8f51529a2788669594dc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kldap
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 Summary: The KLDAP Library
 
@@ -74,6 +74,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

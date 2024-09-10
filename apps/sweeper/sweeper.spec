@@ -1,15 +1,17 @@
-%global commit0 0a4cb04996e97c6ba793230f63ec108e87699ae6
+%global commit0 c218a611384d71e44be446ab54dc3ccdffaa4792
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    sweeper
 Summary: Clean unwanted traces the user leaves on the system
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 
 License: LGPLv2+
 URL:     https://invent.kde.org/utils/%{name}
 %apps_source
+
+Patch:   qt6.6.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
@@ -66,6 +68,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.sweeper.d
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

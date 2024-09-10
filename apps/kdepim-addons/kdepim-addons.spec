@@ -1,10 +1,10 @@
-%global commit0 96ee443c04e9d61e212da224a08f0187e14b7975
+%global commit0 6a76c19ee2c0ca3ef8db0578e8009dd55d6d7aaf
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:    kdepim-addons
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 Summary: Additional plugins for KDE PIM applications
 
@@ -145,6 +145,9 @@ Supplements:    korganizer
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

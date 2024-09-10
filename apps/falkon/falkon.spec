@@ -1,4 +1,4 @@
-%global commit0 d1491d3f8c561b33fc0365f2eb713bc9516d4f10
+%global commit0 f9ecda03b82379ff846c55d7c99af959b73d4042
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 %bcond_with python
 
 Name:           falkon
-Version:        24.08.0
+Version:        24.08.1
 Release:        1%{?dist}
 Summary:        Modern web browser
 
@@ -182,6 +182,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.fa
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

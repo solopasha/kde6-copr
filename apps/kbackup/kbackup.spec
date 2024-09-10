@@ -1,15 +1,17 @@
-%global commit0 5d4a95f0e023be21100412e37413a1fbfc062167
+%global commit0 554392eeb1760916e34224cded9f3e260d8c3250
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kbackup
-Version:        24.08.0
+Version:        24.08.1
 Release:        1%{?dist}
 Summary:        Back up your data in a simple, user friendly way
 
 License:        GPL-2.0-or-later
 URL:            https://github.com/KDE/kbackup
 %apps_source
+
+Patch:          qt6.6.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
@@ -81,6 +83,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

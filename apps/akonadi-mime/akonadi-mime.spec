@@ -1,9 +1,9 @@
-%global commit0 bd5c7bb6e160f41e931655918e7365883a0e8c19
+%global commit0 0e2fd1609aa9366bd4dac232615a36ef98018078
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    akonadi-mime
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 Summary: The Akonadi Mime Library
 
@@ -76,6 +76,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

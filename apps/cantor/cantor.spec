@@ -1,4 +1,4 @@
-%global commit0 f1a0e6ae9fc8ab03eff690784be35648e7a9819b
+%global commit0 e8c2e40e21fac5cb86a64785ef98b9aa522a9e20
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -29,8 +29,8 @@
 
 Name:    cantor
 Summary: KDE Frontend to Mathematical Software
-Version: 24.08.0
-Release: 2%{?dist}
+Version: 24.08.1
+Release: 1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://apps.kde.org/cantor/
@@ -39,10 +39,10 @@ URL:     https://apps.kde.org/cantor/
 # handled by qt5-srpm-macros, which defines %%qt5_qtwebengine_arches
 %{?qt5_qtwebengine_arches:ExclusiveArch: %{qt5_qtwebengine_arches}}
 
-
-Patch1:  cantor-24.02.2-jl_array_data.patch
 # Kill using cantor internal API
 Patch2:  cantor-21.04.3-no-julia-internal.patch
+
+Patch100:  cantor-24.02.2-jl_array_data.patch
 
 BuildRequires: openblas-devel
 
@@ -145,8 +145,12 @@ Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
+%autosetup -n %{sourcerootdir} -p1 -N
+%if %{fedora} >= 40
+%autopatch -p1
+%else
+%autopatch -p1 -M 99
+%endif
 
 %build
 # PYTHONLIBS_FOUND is used to find Python 2.7
@@ -255,6 +259,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Sun Sep 01 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-2
 - rebuilt
 

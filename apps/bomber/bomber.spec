@@ -1,10 +1,10 @@
-%global commit0 37dfb0b4987c231e907bcd705e0e51c799e475fe
+%global commit0 164590c97cd5275b1220fee4e7d8bd6b23630828
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    bomber
 Summary: Arcade bombing game
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 
 # code LGPLv2+, docs GFDL
@@ -76,6 +76,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

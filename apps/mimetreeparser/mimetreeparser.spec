@@ -1,9 +1,9 @@
-%global commit0 524a6ae74bdfbec297a26cbe88ebac6300e6b306
+%global commit0 cbb4014eadfe3b6e839a1014c52fc20b9e538e49
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    mimetreeparser
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 Summary: Parser for MIME trees
 
@@ -80,6 +80,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

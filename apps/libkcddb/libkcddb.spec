@@ -1,9 +1,9 @@
-%global commit0 e05f565246035ecaeb14777374bb82582d394610
+%global commit0 3000273de9721e5a747d750467b334bc2dc3ab0f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           libkcddb
-Version:        24.08.0
+Version:        24.08.1
 Release:        1%{?dist}
 Summary:        CDDB retrieval library
 
@@ -122,6 +122,9 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

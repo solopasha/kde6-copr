@@ -1,17 +1,15 @@
-%global commit0 03fb0bd005e0373c921634d6b49c443eb27ddbc4
+%global commit0 201edea94429b8ba63dd0d3adc4826b10e591700
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:		    merkuro
-Version:	    24.08.0
-Release:	    3%{?dist}
+Version:	    24.08.1
+Release:	    1%{?dist}
 Summary:	    A calendar application using Akonadi to sync with external services (Nextcloud, GMail, ...)
 
 License:	    GPL-3.0-or-later
 URL:		    https://invent.kde.org/pim/%{name}
 %apps_source
-
-Patch:          https://invent.kde.org/pim/merkuro/-/commit/23b279548f8229d624ccf790daf8a19600993a29.patch
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	extra-cmake-modules
@@ -95,7 +93,7 @@ your Plasma desktop or phone.
 %cmake_install
 %find_lang %{name} --with-kde --with-man --all-name
 
-rm %{buildroot}%{_kf6_libdir}/libmerkuro_contact_plugin.so %{buildroot}%{_kf6_libdir}/libMerkuroComponents.so
+rm %{buildroot}%{_kf6_libdir}/libmerkuro_contact.so %{buildroot}%{_kf6_libdir}/libMerkuroComponents.so
 
 
 %check
@@ -118,14 +116,17 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 %{_kf6_datadir}/qlogging-categories6/akonadi.quick.categories
 %{_kf6_datadir}/qlogging-categories6/merkuro.categories
 %{_kf6_datadir}/qlogging-categories6/merkuro.contact.categories
-%{_kf6_libdir}/libmerkuro_contact_plugin.so.{6,%{version}}
-%{_kf6_libdir}/libMerkuroComponents.so.{6,%{version}}
+%{_kf6_libdir}/libmerkuro_contact.so.{6,%{version_no_git}}
+%{_kf6_libdir}/libMerkuroComponents.so.{6,%{version_no_git}}
 %{_kf6_metainfodir}/org.kde.merkuro.*.xml
 %{_kf6_qmldir}/org/kde/akonadi/*
 %{_kf6_qmldir}/org/kde/merkuro/
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Mon Aug 26 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-3
 - fix calendar,contact
 

@@ -1,10 +1,10 @@
-%global commit0 3fa7b667a425101b3dbd337fe036197228851c98
+%global commit0 7f4953fda262cde216365f03a00bc393d7fd996a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    ksanecore
 Summary: Library providing logic to interface scanners
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 
 License: LGPL-2.1-only OR LGPL-3.0-only
@@ -111,6 +111,9 @@ Provides internationalization files.
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

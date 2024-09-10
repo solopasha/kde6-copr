@@ -1,9 +1,9 @@
-%global commit0 089f5a20b8cbbf73a43101854d62c98c866842b2
+%global commit0 a768484950175ba9c11289cc4a399f91f00754dd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    libksieve
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 Summary: Sieve support library
 
@@ -97,6 +97,9 @@ Requires:       cmake(KF6SyntaxHighlighting)
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

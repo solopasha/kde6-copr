@@ -1,10 +1,10 @@
-%global commit0 54deb13db017b72458f12772de5ed4f2236ccaaf
+%global commit0 9cc327b736557455f28a1b7f929e8c0dc2b928a9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:    signon-kwallet-extension
-Version: 24.08.0
+Version: 24.08.1
 Release: 1%{?dist}
 Summary: KWallet integration for Sign-on framework
 
@@ -45,6 +45,9 @@ Supplements:    (kf6-kwallet and signon)
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 

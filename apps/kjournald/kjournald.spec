@@ -1,9 +1,9 @@
-%global commit0 98a0c258aa4becc78100dfccf320ff829012163e
+%global commit0 1314b15200306431e434aff76504b4f4507661d8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:          kjournald
-Version:       24.08.0
+Version:       24.08.1
 Release:       1%{?dist}
 Summary:       Framework for interacting with systemd-journald
 
@@ -70,6 +70,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.kj
 %{_kf6_libdir}/libkjournald.so.0
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
+- Update to 24.08.1
+
 * Fri Aug 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.0-1
 - Update to 24.08.0
 
