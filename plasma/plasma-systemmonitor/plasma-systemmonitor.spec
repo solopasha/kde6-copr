@@ -1,5 +1,5 @@
 Name:    plasma-systemmonitor
-Version: 6.1.4
+Version: 6.1.5
 Release: 1%{?dist}
 Summary: An application for monitoring system resources
 
@@ -72,6 +72,9 @@ resources.
 %{_kf6_qmldir}/org/kde/ksysguard/
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
+- Update to 6.1.5
+
 * Tue Aug 06 2024 Pavel Solovev <daron439@gmail.com> - 6.1.4-1
 - Update to 6.1.4
 

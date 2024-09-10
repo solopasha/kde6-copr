@@ -1,5 +1,5 @@
 Name:    powerdevil
-Version: 6.1.4
+Version: 6.1.5
 Release: 1%{?dist}
 Summary: Manages the power consumption settings of a Plasma Shell
 
@@ -58,7 +58,15 @@ BuildRequires:  libddcutil-devel
 Requires:       kf6-kitemmodels
 Requires:       kf6-kirigami
 
-Recommends: power-profiles-daemon
+# Request a power-profiles-daemon implementation
+Recommends: ppd-service
+%if 0%{?fedora} && 0%{?fedora} < 41
+# Prefer ppd
+Suggests: power-profiles-daemon
+%else
+# Prefer tuned-ppd
+Suggests: tuned-ppd
+%endif
 Recommends: ddcutil
 
 %description
@@ -116,6 +124,9 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevil{configcommonprivate,core,ui}.so
 %{_userunitdir}/plasma-powerprofile-osd.service
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
+- Update to 6.1.5
+
 * Tue Aug 06 2024 Pavel Solovev <daron439@gmail.com> - 6.1.4-1
 - Update to 6.1.4
 

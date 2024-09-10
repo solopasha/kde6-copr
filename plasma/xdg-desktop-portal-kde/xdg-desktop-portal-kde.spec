@@ -1,6 +1,6 @@
 Name:    xdg-desktop-portal-kde
 Summary: Backend implementation for xdg-desktop-portal using Qt/KF5
-Version: 6.1.4
+Version: 6.1.5
 Release: 1%{?dist}
 
 License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -83,6 +83,9 @@ pieces of KDE infrastructure.
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
+- Update to 6.1.5
+
 * Tue Aug 06 2024 Pavel Solovev <daron439@gmail.com> - 6.1.4-1
 - Update to 6.1.4
 

@@ -1,5 +1,5 @@
 Name:    kwayland-integration
-Version: 6.1.4
+Version: 6.1.5
 Release: 1%{?dist}
 Summary: Provides integration plugins for various KDE Frameworks for Wayland
 
@@ -53,6 +53,9 @@ Requires:       kf5-filesystem
 
 
 %changelog
+* Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
+- Update to 6.1.5
+
 * Tue Aug 06 2024 Pavel Solovev <daron439@gmail.com> - 6.1.4-1
 - Update to 6.1.4
 
