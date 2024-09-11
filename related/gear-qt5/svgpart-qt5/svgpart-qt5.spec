@@ -1,7 +1,7 @@
 Name:    svgpart-qt5
 Summary: SVG KPart
 Version: 23.08.5
-Release: 3%{?dist}
+Release: 4%{?dist}
 
 License: GPLv2+
 URL:     https://www.kde.org/applications/graphics/
@@ -21,9 +21,6 @@ BuildRequires: cmake(KF5CoreAddons)
 BuildRequires: cmake(KF5Parts)
 
 Supplements:   krusader
-%if %{fedora} < 40
-Supplements:   kdevelop
-%endif
 
 %description
 %{summary}.
@@ -51,6 +48,9 @@ rm -rf %{buildroot}%{_kf5_datadir}/locale
 
 
 %changelog
+* Wed Sep 11 2024 Pavel Solovev <daron439@gmail.com> - 23.08.5-4
+- drop unneeded supplements
+
 * Mon Aug 26 2024 Pavel Solovev <daron439@gmail.com> - 23.08.5-3
 - fix condition
 
