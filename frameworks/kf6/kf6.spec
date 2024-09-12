@@ -2,7 +2,7 @@ Name:    kf6
 # This version MUST remain in sync with KF6 versions!
 # XXX: Yes, it's 5.x still, this is synced with the version set in extra-cmake-modules
 Version: 6.5.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Filesystem and RPM macros for KDE Frameworks 6
 License: BSD-3-Clause
 URL:     http://www.kde.org
@@ -122,6 +122,9 @@ install -Dpm0644 %{_sourcedir}/kde.lua %{buildroot}%{_rpmluadir}/fedora/srpm/kde
 %files qch
 
 %changelog
+* Thu Sep 12 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-3
+- rename plasma gpg keys
+
 * Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.5.0-2
 - add kf5 compat
 

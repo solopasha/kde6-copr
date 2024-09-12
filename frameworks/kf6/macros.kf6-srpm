@@ -62,7 +62,7 @@
     else
         print(rpm.expand("Source0: https://download.kde.org/%{stable_kf6}/plasma/%{basever}/"..pkgname.."-%{version}.tar.xz\\n" ..
                          "Source1: https://download.kde.org/%{stable_kf6}/plasma/%{basever}/"..pkgname.."-%{version}.tar.xz.sig\\n" ..
-                         "Source2: kde-frameworks-signing-keys.pgp\\n"))
+                         "Source2: kde-plasma-signing-keys.pgp\\n"))
         macros.sourcerootdir = rpm.expand(pkgname.."-%{version}")
     end
 }
