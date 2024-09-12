@@ -1,4 +1,4 @@
-%global llama_commit 1e6f6554aa11fa10160a5fda689e736c3c34169f
+%global llama_commit 8962422b1c6f9b8b15f5aeaea42600bcc2d44177
 %global llama_shortcommit %(c=%{llama_commit}; echo ${c:0:7})
 
 %global gomodulesmode GO111MODULE=on
@@ -8,7 +8,7 @@
 
 # https://github.com/jmorganca/ollama
 %global goipath         github.com/ollama/ollama
-Version:                0.3.9
+Version:                0.3.10
 
 %gometa -L -f
 
@@ -22,7 +22,7 @@ locally.}
 %global godocs          README.md
 
 Name:           ollama
-Release:        %autorelease -b2
+Release:        %autorelease
 Summary:        Get up and running with Llama 2 and other large language models locally
 # License for github.com/jmorganca/ollama: MIT
 # License for github.com/bytedance/sonic: Apache-2.0
