@@ -6,7 +6,7 @@ Name:           kdevelop
 Summary:        Integrated Development Environment for C++/C
 Epoch:          9
 Version:        24.08.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-2.0-only
 URL:            http://www.kdevelop.org/
 %apps_source
@@ -192,7 +192,8 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 
 %files libs
-%{_kf6_libdir}/lib*.so.*
+%{_kf6_libdir}/libKDev*.so.*
+%{_kf6_libdir}/libKDevelopSessionsWatch.so
 %{_kf6_plugindir}/krunner/kdevelopsessions.so
 %{_kf6_plugindir}/ktexttemplate/kdev_filters.so
 %{_kf6_qtplugindir}/kdevplatform/
@@ -203,10 +204,14 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_includedir}/kdevplatform/
 %{_kf6_libdir}/cmake/KDevelop/
 %{_kf6_libdir}/cmake/KDevPlatform/
-%{_kf6_libdir}/lib*.so
+%exclude %{_libdir}/libKDevelopSessionsWatch.so
+%{_kf6_libdir}/libKDev*.so
 %{rpmmacrodir}/macros.kdevelop
 
 %changelog
+* Sat Sep 14 2024 Pavel Solovev <daron439@gmail.com> - 9:24.08.1-2
+- fix file list
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 9:24.08.1-1
 - Update to 24.08.1
 
