@@ -2,11 +2,13 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
+%global __requires_exclude ^/usr/bin/zsh$
+
 Name:           kdevelop
 Summary:        Integrated Development Environment for C++/C
 Epoch:          9
 Version:        24.08.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 License:        GPL-2.0-only
 URL:            http://www.kdevelop.org/
 %apps_source
@@ -209,6 +211,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{rpmmacrodir}/macros.kdevelop
 
 %changelog
+* Sat Sep 14 2024 Pavel Solovev <daron439@gmail.com> - 9:24.08.1-3
+- filter out zsh
+
 * Sat Sep 14 2024 Pavel Solovev <daron439@gmail.com> - 9:24.08.1-2
 - fix file list
 
