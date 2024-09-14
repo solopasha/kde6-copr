@@ -7,7 +7,7 @@
 Name:    kate
 Summary: Advanced Text Editor
 Version: 24.08.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 # kwrite LGPLv2+
 # kate: app LGPLv2, plugins, LGPLv2 and LGPLv2+ and GPLv2+
@@ -17,6 +17,10 @@ URL:     https://apps.kde.org/kate/
 %apps_source
 
 Patch:   https://invent.kde.org/utilities/kate/-/commit/ca8a77baea474e792a38617204677fd1627ab8ca.patch
+Patch:   https://invent.kde.org/utilities/kate/-/commit/68d396d19b5571bf2c69b26b089a5b17e5f54336.patch
+Patch:   https://invent.kde.org/utilities/kate/-/commit/be856dbb927f2c4082218bc4e0360eb677c9c44f.patch
+Patch:   https://invent.kde.org/utilities/kate/-/commit/4bfb621ac4c7a9e2209fb91198247059e87728df.patch
+Patch:   https://invent.kde.org/utilities/kate/-/commit/e09a2a552bcd003f281492a2fb86e22145391da6.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: gettext
@@ -184,6 +188,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Sat Sep 14 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-2
+- pick upstream commits
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

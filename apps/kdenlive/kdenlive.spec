@@ -7,11 +7,15 @@
 Name:    kdenlive
 Summary: Non-linear video editor
 Version: 24.08.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: (GPL-2.0-only or GPL-3.0-only) and GPL-2.0-or-later and GPL-3.0-or-later and LGPL-3.0-only and BSD-3-Clause and CC0-1.0
 URL:     http://www.kdenlive.org
 %apps_source
+
+Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/e491467eb393fc5751b457805f1c47ad7dc9dab4.patch
+Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/5d869293ca48cf0aa02302f181b61f283d2e6518.patch
+Patch: https://invent.kde.org/multimedia/kdenlive/-/commit/1f30a6356f94a5daf549a149a0232edf6c02e995.patch
 
 BuildRequires: gcc-c++
 BuildRequires: cmake
@@ -135,6 +139,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Sat Sep 14 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-2
+- pick upstream commits
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

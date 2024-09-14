@@ -8,11 +8,13 @@ Name:    kdepim-runtime
 Summary: KDE PIM Runtime Environment
 Epoch:   1
 Version: 24.08.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPLv2
 URL:     https://invent.kde.org/pim/%{name}
 %apps_source
+
+Patch:   https://invent.kde.org/pim/kdepim-runtime/-/commit/2c4d702e630e832237f02b762890ca8ed03bd08c.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
@@ -143,6 +145,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
+* Sat Sep 14 2024 Pavel Solovev <daron439@gmail.com> - 1:24.08.1-2
+- pick upstream commits
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 1:24.08.1-1
 - Update to 24.08.1
 
