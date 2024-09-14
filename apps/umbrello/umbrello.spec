@@ -44,10 +44,10 @@ BuildRequires: cmake(Qt5Widgets)
 BuildRequires: cmake(Qt5Xml)
 BuildRequires: cmake(Qt5WebKitWidgets)
 
-%ifnarch s390x
-BuildRequires: cmake(KDevelop-PG-Qt)
-BuildRequires: cmake(KDevPlatform)
-%endif
+#%%ifnarch s390x
+#BuildRequires: cmake(KDevelop-PG-Qt)
+#BuildRequires: cmake(KDevPlatform)
+#%%endif
 BuildRequires: cmake(KF5ThreadWeaver)
 BuildRequires: cmake(KF5KCMUtils)
 
@@ -291,7 +291,7 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.umbrello.
 
 * Sat Jun 27 2020 Marie Loise Nolden <loise@kde.org> - 20.04.2-2
 - add KDevelop PHP and LLVM/Clang Support
- 
+
 * Fri Jun 12 2020 Rex Dieter <rdieter@fedoraproject.org> - 20.04.2-1
 - 20.04.2
 
