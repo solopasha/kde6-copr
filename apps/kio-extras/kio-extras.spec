@@ -4,7 +4,7 @@
 
 Name:    kio-extras
 Version: 24.08.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Additional components to increase the functionality of KIO Framework
 
 License: GPLv2+
@@ -62,26 +62,15 @@ BuildRequires:  taglib-devel > 1.11
 # This package provides plugins for KIO
 Supplements:    kf6-kio-core
 
-Recommends:     kio-extras-kf5%{?_isa} >= %{version}
-
-Obsoletes:      kio-extras-kf6 < 24.01.80-2
-Provides:       kio-extras-kf6 = %{version}-%{release}
-Provides:       kio-extras-kf6%{?_isa} = %{version}-%{release}
+# Merged into main package
+Provides:       kio-extras-info = %{version}-%{release}
+Obsoletes:      kio-extras-info < 24.08.1-2
 
 %description
 %{summary}.
 
-%package info
-Summary: Info kioslave
-Obsoletes:  kio-extras-kf6-info < 24.01.80-2
-Provides:   kio-extras-kf6-info = %{version}-%{release}
-%description info
-Kioslave for reading info pages.
-
 %package        devel
 Summary:        Development files for %{name}
-Obsoletes:      kio-extras-kf6-devel < 24.01.80-2
-Provides:       kio-extras-kf6-devel = %{version}-%{release}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 %description devel
 %{summary}.
@@ -117,6 +106,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %{_datadir}/mime/packages/org.kde.kio.smb.xml
 %{_datadir}/remoteview/
 %{_datadir}/konqueror/
+%{_datadir}/kio_info/
 
 %{_kf6_datadir}/qlogging-categories6/kio-extras*
 %{_kf6_datadir}/solid/actions/solid_afc.desktop
@@ -130,18 +120,15 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %{_kf6_qtplugindir}/kcm_trash.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/kcm_*.so
 
-%files info
-%{_kf6_plugindir}/kio/info.so
-# perl deps, but required at runtime for the info kioslave to actually work:
-%dir %{_datadir}/kio_info/
-%{_datadir}/kio_info/kde-info2html*
-
 %files devel
 %{_includedir}/KioArchive6/*.h
 %{_kf6_libdir}/cmake/KioArchive6/
 
 
 %changelog
+* Sat Sep 14 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-2
+- Include kio_info in main package
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 
