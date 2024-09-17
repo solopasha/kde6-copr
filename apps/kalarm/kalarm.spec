@@ -7,11 +7,14 @@
 Name:    kalarm
 Summary: Personal Alarm Scheduler
 Version: 24.08.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/pim/kalarm
 %apps_source
+
+Patch: https://invent.kde.org/pim/kalarm/-/commit/723279e2a1d646d69b92d16573b4d5b96eab4b36.patch
+Patch: https://invent.kde.org/pim/kalarm/-/commit/97ef99f19570fb1ffaaed2b1d56df03bdf2e02bc.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
@@ -116,6 +119,9 @@ xvfb-run -a bash -c "%ctest"
 
 
 %changelog
+* Tue Sep 17 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-2
+- pick upstream commits
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

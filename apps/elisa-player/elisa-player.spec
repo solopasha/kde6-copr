@@ -6,7 +6,7 @@
 
 Name:       elisa-player
 Version:    24.08.1
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Elisa music player
 
 # Main program LGPLv3+
@@ -14,6 +14,8 @@ Summary:    Elisa music player
 License:    LGPLv3+ and CC-BY-SA
 URL:        https://apps.kde.org/elisa
 %apps_source
+
+Patch: https://invent.kde.org/multimedia/elisa/-/commit/c9abeb97a3427eac3459c68f111b0232f98abf9b.patch
 
 # Compile Tools
 BuildRequires:  gcc-c++
@@ -99,6 +101,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.el
 %{_kf6_libdir}/elisa/
 
 %changelog
+* Tue Sep 17 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-2
+- pick upstream commits
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 
