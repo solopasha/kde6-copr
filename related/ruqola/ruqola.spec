@@ -1,5 +1,5 @@
 Name:           ruqola
-Version:        2.2.0
+Version:        2.3.0
 Release:        1%{?dist}
 Summary:        KDE client for Rocket Chat
 
@@ -89,6 +89,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_kf6_datadir}/knotifications6/%{name}.notifyrc
 %{_kf6_datadir}/messageviewer/openurlwith/ruqola.openurl
 %{_kf6_datadir}/qlogging-categories6/%{name}.*
+%{_kf6_libdir}/libcmark-rc-copy.so.0*
 %{_kf6_libdir}/librocketchatrestapi-qt.so.{0,%{version}}
 %{_kf6_libdir}/libruqolacore.so.{0,%{version}}
 %{_kf6_libdir}/libruqolawidgets.so.{0,%{version}}
