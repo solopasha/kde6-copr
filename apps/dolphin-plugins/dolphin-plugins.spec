@@ -5,11 +5,13 @@
 Name:    dolphin-plugins
 Summary: Dolphin plugins
 Version: 24.08.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/sdk/%{name}
 %apps_source
+
+Patch: https://invent.kde.org/sdk/dolphin-plugins/-/commit/04e5e9a84394f35cfe0985c8492f0deadd77f0f4.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  dolphin-devel
@@ -71,6 +73,9 @@ Dolphin integration for revision control systems, Dropbox, and disk images.
 
 
 %changelog
+* Mon Sep 23 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-2
+- pick upstream commits
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

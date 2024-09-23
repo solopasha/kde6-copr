@@ -6,12 +6,15 @@ Name:    filelight
 Summary: Graphical disk usage statistics
 Epoch:   1
 Version: 24.08.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 # KDE e.V. may determine that future GPL versions are accepted
 License: GPL-2.0-only OR GPL-3.0-only
 URL:     http://utils.kde.org/projects/filelight
 %apps_source
+
+Patch: https://invent.kde.org/utilities/filelight/-/commit/2345daa8e63f11efcf16c7d34fff0e2a00f07759.patch
+Patch: https://invent.kde.org/utilities/filelight/-/commit/5b16809b27e9cc5dd33be68a6629c1582ebc534b.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
@@ -73,6 +76,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Mon Sep 23 2024 Pavel Solovev <daron439@gmail.com> - 1:24.08.1-2
+- pick upstream commits
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 1:24.08.1-1
 - Update to 24.08.1
 

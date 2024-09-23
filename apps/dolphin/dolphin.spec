@@ -5,11 +5,14 @@
 Name:           dolphin
 Summary:        KDE File Manager
 Version:        24.08.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 License:        GPLv2+
 URL:            https://invent.kde.org/system/dolphin
 %apps_source
+
+Patch: https://invent.kde.org/system/dolphin/-/commit/0fb46289425d145d0236a638d2478592cda45810.patch
+Patch: https://invent.kde.org/system/dolphin/-/commit/1d6ee22576fdb4472723a40a3fa77bcc0b8013a9.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
@@ -155,6 +158,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Mon Sep 23 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-2
+- pick upstream commits
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 
