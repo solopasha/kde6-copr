@@ -1,0 +1,26 @@
+[archive]
+use_module_proxy = true
+
+[licensing]
+detector = "askalono"
+
+exclude_directories = [
+    "examples"
+]
+
+[[licensing.licenses]]
+path = "vendor/github.com/apache/arrow/go/arrow/LICENSE.txt"
+sha256sum = "b9bb118a7b522be9463470835c0a50451255b4e8dd350465c366a1656128f622"
+expression = "Apache-2.0"
+[[licensing.licenses]]
+path = "vendor/github.com/emirpasic/gods/LICENSE"
+sha256sum = "871b440e9b348d6b2485c72e15f1d18f4cf8ee7bb424cbcd854b6a4a772b61d8"
+expression = "BSD-2-Clause"
+[[licensing.licenses]]
+path = "vendor/gopkg.in/yaml.v3/LICENSE"
+sha256sum = "d18f6323b71b0b768bb5e9616e36da390fbd39369a81807cca352de4e4e6aa0b"
+expression = "Apache-2.0 AND MIT"
+[[licensing.licenses]]
+path = "vendor/github.com/agnivade/levenshtein/License.txt"
+sha256sum = "911d0fb30ff3345e4df60da21c2f2340a69bd98c0e3d1e79d27ae6177ebeb617"
+expression = "MIT"

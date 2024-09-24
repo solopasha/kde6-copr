@@ -1,8 +1,8 @@
 diff --git a/llm/generate/gen_common.sh b/llm/generate/gen_common.sh
-index cef68ea1..2951221b 100644
+index 3825c155..434b99ed 100644
 --- a/llm/generate/gen_common.sh
 +++ b/llm/generate/gen_common.sh
-@@ -60,8 +60,6 @@ git_module_setup() {
+@@ -63,21 +63,20 @@ git_module_setup() {
          echo "Cleaning up old submodule"
          rm -rf ${LLAMACPP_DIR}
      fi
@@ -11,19 +11,12 @@ index cef68ea1..2951221b 100644
  
  }
  
-@@ -74,19 +72,15 @@ apply_patches() {
-     if [ -n "$(ls -A ../patches/*.diff)" ]; then
-         # apply temporary patches until fix is upstream
-         for patch in ../patches/*.diff; do
--            for file in $(grep "^+++ " ${patch} | cut -f2 -d' ' | cut -f2- -d/); do
--                (cd ${LLAMACPP_DIR}; git checkout ${file})
--            done
--        done
--        for patch in ../patches/*.diff; do
--            (cd ${LLAMACPP_DIR} && git apply ${patch})
-+            (cd ${LLAMACPP_DIR} && patch -Np1 -i ${patch})
-         done
-     fi
+ apply_patches() {
+     # apply temporary patches until fix is upstream
+     for patch in ../patches/*.patch; do
+-        git -c 'user.name=nobody' -c 'user.email=<>' -C ${LLAMACPP_DIR} am ${patch}
++        (cd "${LLAMACPP_DIR}" && patch -Np1 -i "${patch}")
+     done
  }
  
  build() {
@@ -34,7 +27,7 @@ index cef68ea1..2951221b 100644
      # remove unnecessary build artifacts
      rm -f ${BUILD_DIR}/bin/ggml-common.h ${BUILD_DIR}/bin/ggml-metal.metal
  }
-@@ -125,13 +119,5 @@ install() {
+@@ -133,13 +132,5 @@ install() {
  
  # Keep the local tree clean after we're done with the build
  cleanup() {

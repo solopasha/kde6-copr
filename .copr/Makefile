@@ -9,10 +9,10 @@ prepare:
 
 goprep:
 	dnf install --nodocs -y --repofrompath 'golang-rawhide,https://download.copr.fedorainfracloud.org/results/@go-sig/golang-rawhide/fedora-$$releasever-$$basearch/' \
-                --setopt='golang-rawhide.gpgkey=https://download.copr.fedorainfracloud.org/results/@go-sig/golang-rawhide/pubkey.gpg' golang git-core
-	go env -w GOPROXY=https://proxy.golang.org,direct
-	go env -w GOSUMDB=sum.golang.org
-	bash bundle_go_deps_for_rpm.sh $(specfile)
+                --setopt='golang-rawhide.gpgkey=https://download.copr.fedorainfracloud.org/results/@go-sig/golang-rawhide/pubkey.gpg' \
+				golang git-core go-vendor-tools askalono-cli rpmdevtools
+	spectool -g ./$(specfile)
+	go_vendor_archive create --config go-vendor-tools.toml $(specfile)
 
 %spec:
 	@:
