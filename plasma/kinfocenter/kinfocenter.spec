@@ -1,5 +1,9 @@
+%global commit0 dfd9e5e4af027eeab439e430d0fa827d6b3c673d
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    kinfocenter
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 Summary: KDE Info Center
 
@@ -71,8 +75,8 @@ Conflicts:      kde-workspace < 4.11.15-3
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -110,6 +114,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

@@ -1,10 +1,15 @@
+%global commit0 6bad1f7d05ce9edd206d9e680c3a47ec18cb06e6
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    plasma-workspace-wallpapers
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 Summary: Additional wallpapers for Plasma workspace
 License: LGPLv3
 URL:     https://invent.kde.org/plasma/plasma-workspace-wallpapers
 %plasma_source
+
 BuildArch: noarch
 
 BuildRequires:  extra-cmake-modules
@@ -18,8 +23,8 @@ Requires:       kde-filesystem
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -61,11 +66,15 @@ Requires:       kde-filesystem
 %{_datadir}/wallpapers/Patak/
 %{_datadir}/wallpapers/Path/
 %{_datadir}/wallpapers/SafeLanding/
+%{_datadir}/wallpapers/ScarletTree/
 %{_datadir}/wallpapers/Shell/
 %{_datadir}/wallpapers/summer_1am/
 %{_datadir}/wallpapers/Volna/
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

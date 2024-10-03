@@ -1,5 +1,9 @@
+%global commit0 da5bbedd21a9e74673efb54d080eeb9a6f77bb1f
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    libplasma
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 Summary: Plasma is the foundation of the KDE user interface (v6)
 
@@ -10,46 +14,39 @@ URL:     https://invent.kde.org/plasma/plasma-framework
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
-BuildRequires:  cmake(PlasmaActivities)
-BuildRequires:  cmake(KF6Archive)
-BuildRequires:  cmake(KF6Declarative)
-BuildRequires:  cmake(KF6Su)
-BuildRequires:  cmake(KF6GlobalAccel)
-BuildRequires:  cmake(KF6Kirigami)
-BuildRequires:  cmake(KF6Package)
-BuildRequires:  cmake(KF6Parts)
-BuildRequires:  cmake(KF6ConfigWidgets)
-BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(KF6Solid)
-BuildRequires:  openssl-devel
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
-BuildRequires:  qt6-qtdeclarative-devel
-BuildRequires:  qt6-qtsvg-devel
 
+BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6DBusAddons)
-BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6KirigamiPlatform)
 BuildRequires:  cmake(KF6Notifications)
-BuildRequires:  cmake(KF6Service)
+BuildRequires:  cmake(KF6Package)
 BuildRequires:  cmake(KF6Svg)
-BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  cmake(KF6XmlGui)
-BuildRequires:  cmake(PlasmaWaylandProtocols)
+
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6QuickControls2)
+BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6WaylandClient)
+BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
+
+BuildRequires:  cmake(PlasmaActivities)
+
+BuildRequires:  cmake(PlasmaWaylandProtocols)
 
 BuildRequires:  wayland-devel
-BuildRequires:  kf6-kwayland-devel
 
 Requires:       kf6-filesystem
 
@@ -83,8 +80,8 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -99,34 +96,36 @@ mkdir -p %{buildroot}%{_kf6_datadir}/plasma/plasmoids
 mkdir -p %{buildroot}%{_kf6_qmldir}/org/kde/private
 
 %files -f %{name}6.lang
-%dir %{_kf6_qmldir}/org/
-%dir %{_kf6_qmldir}/org/kde/
-%dir %{_kf6_qmldir}/org/kde/private/
+%dir %{_kf6_qmldir}/org
+%dir %{_kf6_qmldir}/org/kde
+%dir %{_kf6_qmldir}/org/kde/private
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/plasma/
 %{_kf6_datadir}/qlogging-categories6/*plasma*
-%{_kf6_libdir}/libPlasma.so.%{version}
+%{_kf6_libdir}/libPlasma.so.%{version_no_git}
 %{_kf6_libdir}/libPlasma.so.6
-%{_kf6_libdir}/libPlasmaQuick.so.%{version}
+%{_kf6_libdir}/libPlasmaQuick.so.%{version_no_git}
 %{_kf6_libdir}/libPlasmaQuick.so.6
 %{_kf6_plugindir}/kirigami/
-%{_kf6_plugindir}/packagestructure
+%{_kf6_plugindir}/packagestructure/
+%{_kf6_qmldir}/org/kde/kirigami/styles/Plasma/
 %{_kf6_qmldir}/org/kde/plasma/
-%{_kf6_qmldir}/org/kde/kirigami/styles/Plasma/AbstractApplicationHeader.qml
-%{_kf6_qmldir}/org/kde/kirigami/styles/Plasma/Icon.qml
 
 %files devel
-%dir %{_kf6_datadir}/kdevappwizard/
-%{_kf6_datadir}/kdevappwizard/templates/
 %{_includedir}/Plasma/
 %{_includedir}/PlasmaQuick/
+%dir %{_kf6_datadir}/kdevappwizard
+%{_kf6_datadir}/kdevappwizard/templates/
 %{_kf6_libdir}/cmake/Plasma/
 %{_kf6_libdir}/cmake/PlasmaQuick/
 %{_kf6_libdir}/libPlasma.so
 %{_kf6_libdir}/libPlasmaQuick.so
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

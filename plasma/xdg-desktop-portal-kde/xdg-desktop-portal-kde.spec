@@ -1,6 +1,10 @@
+%global commit0 fec46fc7b6c35d7a695da69e4b91a0571402e29f
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    xdg-desktop-portal-kde
 Summary: Backend implementation for xdg-desktop-portal using Qt/KF5
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 
 License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -27,6 +31,7 @@ BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
@@ -55,8 +60,8 @@ pieces of KDE infrastructure.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -78,11 +83,13 @@ pieces of KDE infrastructure.
 %{_datadir}/applications/org.freedesktop.impl.portal.desktop.kde.desktop
 %{_datadir}/knotifications6/xdg-desktop-portal-kde.notifyrc
 %{_datadir}/qlogging-categories6/xdp-kde.categories
-%{_datadir}/xdg-desktop-portal/kde-portals.conf
 %{_userunitdir}/plasma-xdg-desktop-portal-kde.service
 
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

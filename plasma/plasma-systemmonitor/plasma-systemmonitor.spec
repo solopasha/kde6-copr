@@ -1,13 +1,15 @@
+%global commit0 cceac60e8f107e5cc7e08f73d7fc2b4c42d152ac
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    plasma-systemmonitor
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 Summary: An application for monitoring system resources
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
-
-## upstream patches
 
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
@@ -43,8 +45,8 @@ resources.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -72,6 +74,9 @@ resources.
 %{_kf6_qmldir}/org/kde/ksysguard/
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

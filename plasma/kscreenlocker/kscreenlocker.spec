@@ -1,11 +1,14 @@
+%global commit0 0bc9007ea9fda66da167067f780a61e5973518ef
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:           kscreenlocker
-Version:        6.1.5
+Version:        6.2.0
 Release:        1%{?dist}
 Summary:        Library and components for secure lock screen architecture
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
 URL:            https://invent.kde.org/plasma/%{name}
-
 %plasma_source
 
 BuildRequires:  cmake(LayerShellQt)
@@ -52,8 +55,8 @@ developing applications that use %{name}.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -74,7 +77,7 @@ developing applications that use %{name}.
 %dir %{_kf6_datadir}/ksmserver/
 %{_kf6_datadir}/ksmserver/screenlocker/
 %{_kf6_datadir}/qlogging-categories6/kscreenlocker.categories
-%{_kf6_libdir}/libKScreenLocker.so.%{version}
+%{_kf6_libdir}/libKScreenLocker.so.%{version_no_git}
 %{_kf6_libdir}/libKScreenLocker.so.6
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_screenlocker.so
 %{_libexecdir}/kscreenlocker_greet
@@ -88,6 +91,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

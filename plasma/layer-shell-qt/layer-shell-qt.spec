@@ -1,12 +1,15 @@
+%global commit0 3fca657826869140416586f0031788626c8b2449
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    layer-shell-qt
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 Summary: Library to easily use clients based on wlr-layer-shell
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-3.0-or-later AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
-
 
 BuildRequires: extra-cmake-modules
 
@@ -35,8 +38,8 @@ Requires: cmake(Qt6Gui)
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -50,7 +53,7 @@ Requires: cmake(Qt6Gui)
 
 %files
 %license LICENSES/*
-%{_kf6_libdir}/libLayerShellQtInterface.so.%{version}
+%{_kf6_libdir}/libLayerShellQtInterface.so.%{version_no_git}
 %{_kf6_libdir}/libLayerShellQtInterface.so.6
 %{_kf6_qmldir}/org/kde/layershell/
 %{_qt6_plugindir}/wayland-shell-integration/
@@ -62,6 +65,9 @@ Requires: cmake(Qt6Gui)
 
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

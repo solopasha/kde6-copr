@@ -1,6 +1,10 @@
+%global commit0 1429869e18c2653a1a8d04473bde420f6115cd6f
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    plasma-desktop
 Summary: Plasma Desktop shell
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -90,6 +94,7 @@ BuildRequires:  libcanberra-devel
 BuildRequires:  pulseaudio-libs-devel
 BuildRequires:  SDL2-devel
 BuildRequires:  desktop-file-utils
+BuildRequires:  systemd-rpm-macros
 
 BuildRequires:  xdg-user-dirs
 
@@ -178,7 +183,7 @@ Requires:       kde-settings-sddm
 Requires:       kf6-plasma
 # on-screen keyboard
 Recommends:     qt6-qtvirtualkeyboard
-Requires:       plasma-workspace >= %{basever}
+Requires:       plasma-workspace >= %{majmin_ver_kf6}
 # /usr/share/backgrounds/default.png}
 Requires:       desktop-backgrounds-compat
 BuildArch:      noarch
@@ -187,8 +192,8 @@ BuildArch:      noarch
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1 -a20
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1 -a20
 
 sed '/falkon\|debian/d' -i kde-mimeapps.list
 
@@ -278,6 +283,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_datadir}/dbus-1/system-services/*.service
 %{_datadir}/polkit-1/actions/org.kde.kcontrol.kcmclock.policy
 %{_sysconfdir}/xdg/autostart/*.desktop
+%{_userunitdir}/plasma-kaccess.service
 
 # How to include these in the .lang file?
 %{_kf6_datadir}/locale/sr/LC_SCRIPTS/kfontinst/kfontinst.js
@@ -295,6 +301,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_datadir}/sddm/themes/01-breeze-fedora/
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

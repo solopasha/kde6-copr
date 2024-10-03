@@ -1,6 +1,10 @@
+%global commit0 fc871144b7a74c6cea5014c8c40c2c0b68cbb835
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    plasma5support
 Summary: Support components for porting from KF5/Qt5 to KF6/Qt6
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -51,7 +55,7 @@ Provides:       kf6-plasma5support-devel = 1:%{version}-%{release}
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -p1
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -67,10 +71,9 @@ Provides:       kf6-plasma5support-devel = 1:%{version}-%{release}
 %{_kf6_datadir}/plasma5support/
 %{_kf6_datadir}/qlogging-categories6/plasma5support.categories
 %{_kf6_datadir}/qlogging-categories6/plasma5support.renamecategories
-%{_kf6_libdir}/libPlasma5Support.so.%{version}
+%{_kf6_libdir}/libPlasma5Support.so.%{version_no_git}
 %{_kf6_libdir}/libPlasma5Support.so.6
-%{_kf6_qtplugindir}/plasma5support/dataengine/plasma_engine_devicenotifications.so
-%{_kf6_qtplugindir}/plasma5support/dataengine/plasma_engine_keystate.so
+%{_kf6_qtplugindir}/plasma5support/
 %{_qt6_qmldir}/org/kde/plasma/plasma5support/
 
 %files devel
@@ -79,6 +82,9 @@ Provides:       kf6-plasma5support-devel = 1:%{version}-%{release}
 %{_kf6_libdir}/libPlasma5Support.so
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

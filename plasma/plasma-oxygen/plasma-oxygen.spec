@@ -1,14 +1,17 @@
-%global         base_name oxygen
+%global commit0 d934ba1d2653cd2a21c85a2eac544e2c74604209
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
+%global base_name oxygen
 
 Name:    plasma-%{base_name}
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 Summary: Plasma and Qt widget style and window decorations for Plasma
 
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only) AND MIT
 URL:     https://invent.kde.org/plasma/%{base_name}
 %plasma_source
-
 
 # Misc
 BuildRequires:  extra-cmake-modules
@@ -93,8 +96,8 @@ Obsoletes:      plasma-oxygen-common < 5.1.1-2
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{base_name}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -130,6 +133,7 @@ popd
 %{_kf6_datadir}/color-schemes/OxygenCold.colors
 %{_kf6_datadir}/icons/hicolor/*/apps/oxygen-settings.*
 %{_kf6_datadir}/kstyle/themes/oxygen.themerc
+%{_kf6_datadir}/plasma/desktoptheme/oxygen/
 %{_kf6_datadir}/plasma/look-and-feel/org.kde.oxygen/
 %{_kf6_metainfodir}/org.kde.oxygen.appdata.xml
 %{_kf6_qtplugindir}/kstyle_config/kstyle_oxygen_config.so
@@ -158,6 +162,9 @@ popd
 
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

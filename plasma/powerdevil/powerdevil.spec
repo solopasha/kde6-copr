@@ -1,5 +1,9 @@
+%global commit0 360d495166fffaf2f51b2ac1dc1afebf83cb25ea
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    powerdevil
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 Summary: Manages the power consumption settings of a Plasma Shell
 
@@ -7,13 +11,10 @@ License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-# Plasma Dependencies
-BuildRequires:  plasma-workspace-devel
-
-# KDE Frameworks 6
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  extra-cmake-modules
-BuildRequires:  cmake(PlasmaActivities)
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  systemd-rpm-macros
+
 BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6Crash)
@@ -27,33 +28,33 @@ BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6Notifications)
-BuildRequires:  cmake(KF6NotifyConfig)
+BuildRequires:  cmake(KF6Runner)
 BuildRequires:  cmake(KF6Solid)
 BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(KF6XmlGui)
-BuildRequires:  cmake(LayerShellQt)
 
-BuildRequires:  qt6-qtbase-devel
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6WaylandClient)
+BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
-BuildRequires:  cmake(Qt6Qml)
 
-BuildRequires:  libXrandr-devel
-BuildRequires:  libcap-devel
-BuildRequires:  libkscreen-devel
-BuildRequires:  libxcb-devel
-BuildRequires:  systemd-devel
-BuildRequires:  systemd-rpm-macros
-BuildRequires:  xcb-util-image-devel
-BuildRequires:  xcb-util-keysyms-devel
-BuildRequires:  xcb-util-wm-devel
+BuildRequires:  cmake(KF6Screen)
+BuildRequires:  cmake(LibKWorkspace)
+BuildRequires:  cmake(Plasma)
+BuildRequires:  cmake(PlasmaActivities)
 
-%ifnarch s390 s390x
-BuildRequires:  libddcutil-devel
-%global DDCUTIL ON
-%else
-%global DDCUTIL OFF
-%endif
+BuildRequires:  cmake(PlasmaWaylandProtocols)
+
+BuildRequires:  cmake(QCoro6)
+BuildRequires:  pkgconfig(ddcutil)
+BuildRequires:  pkgconfig(libcap)
+BuildRequires:  pkgconfig(libudev)
+BuildRequires:  pkgconfig(wayland-client)
+BuildRequires:  pkgconfig(xcb-dpms)
+BuildRequires:  pkgconfig(xcb-randr)
+BuildRequires:  pkgconfig(xcb)
 
 Requires:       kf6-kitemmodels
 Requires:       kf6-kirigami
@@ -75,12 +76,12 @@ of a daemon (a KDED module) and a KCModule for its configuration.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
-%cmake_kf6 -DHAVE_DDCUTIL=%DDCUTIL
+%cmake_kf6
 %cmake_build
 
 
@@ -96,7 +97,6 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevil{configcommonprivate,core,ui}.so
 %files -f powerdevil6.lang
 %license LICENSES/*
 %{_kf6_datadir}/applications/kcm_powerdevilprofilesconfig.desktop
-%{_kf6_datadir}/dbus-1/services/org.kde.powerdevil.powerProfileOsdService.service
 %{_kf6_datadir}/dbus-1/system-services/org.kde.powerdevil.backlighthelper.service
 %{_kf6_datadir}/dbus-1/system-services/org.kde.powerdevil.chargethresholdhelper.service
 %{_kf6_datadir}/dbus-1/system-services/org.kde.powerdevil.discretegpuhelper.service
@@ -104,26 +104,36 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevil{configcommonprivate,core,ui}.so
 %{_kf6_datadir}/dbus-1/system.d/org.kde.powerdevil.chargethresholdhelper.conf
 %{_kf6_datadir}/dbus-1/system.d/org.kde.powerdevil.discretegpuhelper.conf
 %{_kf6_datadir}/knotifications6/powerdevil.notifyrc
+%{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.battery/
+%{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.brightness/
 %{_kf6_datadir}/polkit-1/actions/org.kde.powerdevil.backlighthelper.policy
 %{_kf6_datadir}/polkit-1/actions/org.kde.powerdevil.chargethresholdhelper.policy
 %{_kf6_datadir}/polkit-1/actions/org.kde.powerdevil.discretegpuhelper.policy
+%{_kf6_datadir}/qlogging-categories6/batterymonitor.categories
 %{_kf6_datadir}/qlogging-categories6/powerdevil.categories
-%{_kf6_libdir}/libpowerdevilconfigcommonprivate.so.%{version}
+%{_kf6_libdir}/libpowerdevilconfigcommonprivate.so.%{version_no_git}
 %{_kf6_libdir}/libpowerdevilconfigcommonprivate.so.6
-%{_kf6_libdir}/libpowerdevilcore.so.%{version}
+%{_kf6_libdir}/libpowerdevilcore.so.%{version_no_git}
 %{_kf6_libdir}/libpowerdevilcore.so.2
 %{_kf6_libexecdir}/kauth/backlighthelper
 %{_kf6_libexecdir}/kauth/chargethresholdhelper
 %{_kf6_libexecdir}/kauth/discretegpuhelper
+%{_kf6_metainfodir}/org.kde.plasma.battery.appdata.xml
+%{_kf6_metainfodir}/org.kde.plasma.brightness.appdata.xml
+%{_kf6_plugindir}/krunner/krunner_powerdevil.so
+%{_kf6_qmldir}/org/kde/plasma/private/batterymonitor/
+%{_kf6_qmldir}/org/kde/plasma/private/brightnesscontrolplugin/
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_powerdevilprofilesconfig.so
 %{_kf6_qtplugindir}/powerdevil/
 %{_libexecdir}/org_kde_powerdevil
-%{_libexecdir}/power_profile_osd_service
 %{_sysconfdir}/xdg/autostart/powerdevil.desktop
 %{_userunitdir}/plasma-powerdevil.service
-%{_userunitdir}/plasma-powerprofile-osd.service
+
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

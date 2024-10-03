@@ -1,6 +1,10 @@
+%global commit0 cae17ca8c88b32428afa1fb957eb3b979f39ed0f
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    libkscreen
 Summary: KDE display configuration library
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -48,8 +52,8 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -65,9 +69,9 @@ developing applications that use %{name}.
 %{_kf6_datadir}/dbus-1/services/org.kde.kscreen.service
 %{_kf6_datadir}/qlogging-categories6/libkscreen.categories
 %{_kf6_datadir}/zsh/site-functions/_kscreen-doctor
-%{_kf6_libdir}/libKF6Screen.so.%{version}
+%{_kf6_libdir}/libKF6Screen.so.%{version_no_git}
 %{_kf6_libdir}/libKF6Screen.so.8
-%{_kf6_libdir}/libKF6ScreenDpms.so.%{version}
+%{_kf6_libdir}/libKF6ScreenDpms.so.%{version_no_git}
 %{_kf6_libdir}/libKF6ScreenDpms.so.8
 %{_kf6_libexecdir}/kscreen_backend_launcher
 %{_kf6_plugindir}/kscreen/
@@ -82,6 +86,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/pkgconfig/KF6Screen.pc
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

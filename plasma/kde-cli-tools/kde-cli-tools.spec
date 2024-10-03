@@ -1,5 +1,9 @@
+%global commit0 7ccab5ccbdd97d1969f098c69c0c133fe1a93b3d
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    kde-cli-tools
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 Summary: Tools based on KDE Frameworks 5 to better interact with the system
 
@@ -7,36 +11,34 @@ License: Artistic-2.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-## upstream patches
-
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
-BuildRequires:  cmake(Qt6Qml)
-BuildRequires:  cmake(Qt6Svg)
-
+BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 
-BuildRequires:  extra-cmake-modules
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Svg)
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
+
 BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DocTools)
-BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KCMUtils)
-BuildRequires:  cmake(KF6Su)
 BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(KF6Parts)
-BuildRequires:  plasma-workspace-devel >= %{version}
-Requires:       libkworkspace6%{?_isa} >= %{version}
+BuildRequires:  cmake(KF6Service)
+BuildRequires:  cmake(KF6Su)
+BuildRequires:  cmake(KF6WidgetsAddons)
+BuildRequires:  cmake(KF6WindowSystem)
+
+BuildRequires:  plasma-workspace-devel >= %{majmin_ver_kf6}
+Requires:       libkworkspace6%{?_isa} >= %{majmin_ver_kf6}
 
 # upgrade path, from when this wasn't split out
 Requires:       kdesu = 1:%{version}-%{release}
-
-# unversioned utilitized landed here in 5.23.90, see also
-# https://phabricator.kde.org/T14763
-# https://invent.kde.org/plasma/kde-cli-tools/-/merge_requests/23
-Conflicts: kde-runtime < 17.08.3-23
 
 %description
 Provides several KDE and Plasma specific command line tools to allow
@@ -45,15 +47,13 @@ better interaction with the system.
 %package -n kdesu
 Summary: Runs a program with elevated privileges
 Epoch: 1
-Conflicts: kde-runtime < 14.12.3-2
-Conflicts: kde-runtime-docs < 14.12.3-2
 %description -n kdesu
 %{summary}.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -107,6 +107,9 @@ ln -s %{_kf6_libexecdir}/kdesu %{buildroot}%{_bindir}/kdesu
 
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

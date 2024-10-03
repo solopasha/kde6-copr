@@ -1,14 +1,17 @@
+%global commit0 938b3f13600e4b6bb7d80e9b4f0020523eacba84
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global         base_name polkit-kde-agent-1
 
 Name:    polkit-kde
 Summary: PolicyKit integration for KDE Desktop
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later AND CC0-1.0
 URL:     https://invent.kde.org/plasma/%{base_name}
 %plasma_source
-
 
 ## upstreamable patches
 
@@ -45,8 +48,8 @@ Provides Policy Kit Authentication Agent that nicely fits to KDE.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{base_name}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -71,6 +74,9 @@ Provides Policy Kit Authentication Agent that nicely fits to KDE.
 
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

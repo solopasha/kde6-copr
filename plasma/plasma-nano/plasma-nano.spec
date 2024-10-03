@@ -1,7 +1,11 @@
+%global commit0 bd0b42b20c208b22a11f895f0b9f7458823fca3c
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global orig_name org.kde.plasma.nano
 
 Name:    plasma-nano
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND MIT
 URL:     https://invent.kde.org/plasma/plasma-nano
@@ -46,8 +50,8 @@ Requires:       qt6-qtdeclarative%{?_isa}
 %{Summary}
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -57,21 +61,18 @@ Requires:       qt6-qtdeclarative%{?_isa}
 %cmake_install
 %find_lang plasma_shell_%{orig_name} --all-name
 
-%check
-appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.plasma.nano.desktoptoolbox.appdata.xml ||:
-
-
 %files -f plasma_shell_%{orig_name}.lang
 %license LICENSES/*.txt
 %doc README.md
-
-%{_kf6_metainfodir}/org.kde.plasma.nano.desktoptoolbox.appdata.xml
-%{_kf6_qmldir}/org/kde/plasma/private/nanoshell
-%{_kf6_datadir}/plasma/packages/%{orig_name}.desktoptoolbox
-%{_kf6_datadir}/plasma/shells/%{orig_name}
+#{_kf6_metainfodir}/org.kde.plasma.nano.desktoptoolbox.appdata.xml
+%{_kf6_datadir}/plasma/shells/%{orig_name}/
+%{_kf6_qmldir}/org/kde/plasma/private/nanoshell/
 
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

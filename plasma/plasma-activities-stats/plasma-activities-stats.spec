@@ -1,6 +1,10 @@
+%global commit0 07b65f19fade5af16e80fbea711b494f244c0db7
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    plasma-activities-stats
 Summary: A KDE Frameworks 6 Tier 3 library for accessing the usage data collected by the activities system
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 
 License: CC0-1.0, GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -41,8 +45,8 @@ Provides:       kactivities-stats-devel = %{version}-%{release}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -57,7 +61,7 @@ Provides:       kactivities-stats-devel = %{version}-%{release}
 %doc MAINTAINER README.developers TODO
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{name}.*
-%{_kf6_libdir}/libPlasmaActivitiesStats.so.%{version}
+%{_kf6_libdir}/libPlasmaActivitiesStats.so.%{version_no_git}
 %{_kf6_libdir}/libPlasmaActivitiesStats.so.1
 
 %files devel
@@ -67,6 +71,9 @@ Provides:       kactivities-stats-devel = %{version}-%{release}
 %{_kf6_libdir}/pkgconfig/PlasmaActivitiesStats.pc
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

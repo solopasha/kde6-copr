@@ -1,7 +1,11 @@
+%global commit0 2a5e2227de54f2f667649fd08ca3d034b805daab
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %bcond x11 1
 
 Name:    kwin
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 Summary: KDE Window manager
 
@@ -24,6 +28,7 @@ BuildRequires:  qt6-qtsensors-devel
 BuildRequires:  qt6-qttools-devel
 BuildRequires:  qt6-qtwayland-devel
 BuildRequires:  cmake(Qt6Core5Compat)
+BuildRequires:  cmake(Qt6Svg)
 
 # X11/OpenGL
 BuildRequires:  pkgconfig(libxcvt)
@@ -97,14 +102,15 @@ BuildRequires:  libdisplay-info-devel
 BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  pkgconfig(libeis-1.0)
+BuildRequires:  pkgconfig(libcanberra)
 
 ## Runtime deps
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       %{name}-common%{?_isa} = %{version}-%{release}
 Requires:       kf6-kdeclarative%{?_isa}
 Requires:       kf6-kirigami%{?_isa}
-Requires:       kscreenlocker%{?_isa} >= %{basever}
-Requires:       libplasma%{?_isa} >= %{basever}
+Requires:       kscreenlocker%{?_isa} >= %{majmin_ver_kf6}
+Requires:       libplasma%{?_isa} >= %{majmin_ver_kf6}
 Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtdeclarative%{?_isa}
 Requires:       qt6-qtmultimedia%{?_isa}
@@ -122,7 +128,7 @@ Requires:   %{name}-wayland = %{version}-%{release}
 Summary:        KDE Window Manager with Wayland support
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       %{name}-common%{?_isa} = %{version}-%{release}
-Requires:       kwayland-integration%{?_isa} >= %{basever}
+Requires:       kwayland-integration%{?_isa} >= %{majmin_ver_kf6}
 BuildRequires:  pkgconfig(xwayland)
 Requires:       xorg-x11-server-Xwayland
 # http://bugzilla.redhat.com/605675
@@ -151,7 +157,7 @@ Provides:       firstboot(windowmanager) = kwin_x11
 %package        common
 Summary:        Common files for KWin X11 and KWin Wayland
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
-Requires:       kwayland%{?_isa} >= %{basever}
+Requires:       kwayland%{?_isa} >= %{majmin_ver_kf6}
 %description    common
 %{summary}.
 
@@ -184,8 +190,8 @@ BuildArch:      noarch
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -198,6 +204,9 @@ BuildArch:      noarch
 %find_lang %{name} --with-html --all-name
 grep "%{_kf6_docdir}" %{name}.lang > %{name}-doc.lang
 cat %{name}.lang %{name}-doc.lang | sort | uniq -u > kwin6.lang
+
+# co-own Xwayland-session.d folder
+mkdir -p %{buildroot}%{_sysconfdir}/xdg/Xwayland-session.d
 
 # temporary(?) hack to allow initial-setup to use /usr/bin/kwin too
 ln -sr %{buildroot}%{_kf6_bindir}/kwin_wayland %{buildroot}%{_bindir}/kwin
@@ -242,6 +251,7 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 %caps(cap_sys_nice=ep) %{_kf6_bindir}/kwin_wayland
 %{_kf6_bindir}/kwin_wayland_wrapper
 %{_userunitdir}/plasma-kwin_wayland.service
+%dir %{_sysconfdir}/xdg/Xwayland-session.d
 
 %if %{with x11}
 %files x11
@@ -268,6 +278,9 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

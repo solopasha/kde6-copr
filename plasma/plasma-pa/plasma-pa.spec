@@ -1,5 +1,9 @@
+%global commit0 0c7d0f03f3e472f8e62f2f69623b7fbeb5abcc54
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    plasma-pa
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 Summary: Plasma applet for audio volume management using PulseAudio
 
@@ -44,8 +48,8 @@ Requires:       pulseaudio-daemon
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -61,7 +65,7 @@ Requires:       pulseaudio-daemon
 %license LICENSES/*
 %{_kf6_datadir}/applications/kcm_pulseaudio.desktop
 %{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.volume/
-%{_kf6_libdir}/libplasma-volume.so.%{version}
+%{_kf6_libdir}/libplasma-volume.so.%{version_no_git}
 %{_kf6_libdir}/libplasma-volume.so.6
 %{_kf6_metainfodir}/org.kde.plasma.volume.appdata.xml
 %{_kf6_plugindir}/kded/audioshortcutsservice.so
@@ -70,6 +74,9 @@ Requires:       pulseaudio-daemon
 
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

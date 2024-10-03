@@ -1,15 +1,19 @@
+%global commit0 7eb91d76c1e57e0f8b3565ee0d3baae4f46f6414
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %bcond x11 1
 
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
-Version: 6.1.5
-Release: 3%{?dist}
+Version: 6.2.0
+Release: 2%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/561646763d994288d771b0efaa9b2a3e45e810fa.patch
+Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/5319e8edfed25fb0a42cfee188745bb4f650a4b4.patch
 
 Source11:       startkderc
 Source15:       fedora-lookandfeel.json
@@ -85,6 +89,7 @@ BuildRequires:  qt6-qtdeclarative-devel
 BuildRequires:  qt6-qtsvg-devel
 BuildRequires:  qt6-qtwayland-devel
 BuildRequires:  cmake(Qt6ShaderTools)
+BuildRequires:  cmake(Qt6Positioning)
 BuildRequires:  polkit-qt6-1-devel
 BuildRequires:  libcanberra-devel
 BuildRequires:  kf6-rpm-macros
@@ -145,7 +150,7 @@ BuildRequires:  pkgconfig(libxcrypt)
 BuildRequires:  cmake(KF6UserFeedback)
 BuildRequires:  wayland-protocols-devel
 BuildRequires:  plasma-wayland-protocols-devel
-BuildRequires:  plasma-breeze-devel >= %{basever}
+BuildRequires:  plasma-breeze-devel >= %{majmin_ver_kf6}
 BuildRequires:  cmake(QCoro6)
 
 BuildRequires:  chrpath
@@ -177,8 +182,8 @@ Requires:       libkworkspace6%{?_isa} = %{version}-%{release}
 # for selinux settings
 Requires:       (policycoreutils if selinux-policy)
 
-Requires:       kactivitymanagerd%{?_isa} >= %{basever}
-Requires:       ksystemstats%{?_isa} >= %{basever}
+Requires:       kactivitymanagerd%{?_isa} >= %{majmin_ver_kf6}
+Requires:       ksystemstats%{?_isa} >= %{majmin_ver_kf6}
 Requires:       kf6-baloo
 Requires:       kf6-kded
 Requires:       kf6-kdoctools
@@ -209,7 +214,7 @@ Recommends: orca
 # need to avoid this dep when bootstrapping
 %if ! 0%{?bootstrap}
 # Power management
-Requires:       powerdevil >= %{basever}
+Requires:       powerdevil >= %{majmin_ver_kf6}
 %endif
 
 Requires:       dbus
@@ -249,7 +254,7 @@ Requires:       ocean-sound-theme
 Requires:       polkit-kde
 
 # onscreen keyboard
-Requires:       maliit-keyboard
+Recommends:     maliit-keyboard
 
 # lockscreen look-and-feel imports qml: QtQuick.VirtualKeyboard
 Requires:       qt6-qtvirtualkeyboard
@@ -370,8 +375,6 @@ Provides:       sddm-greeter-displayserver
 Conflicts:      sddm-greeter-displayserver
 Requires:       kwin-wayland
 Requires:       layer-shell-qt
-Requires:       maliit-keyboard
-Recommends:     layer-shell-qt5
 Supplements:    (sddm and plasma-workspace-wayland)
 %if ! (0%{?fedora} && 0%{?fedora} < 38)
 # Replace sddm-x11 with sddm-wayland-plasma
@@ -435,8 +438,8 @@ BuildArch: noarch
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -N
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1 -N
 %if %{?fedora} >= 40
 %autopatch -p1
 %else
@@ -470,6 +473,7 @@ EOL
 rm -v %{buildroot}%{_kf6_bindir}/startplasma-x11 %{buildroot}%{_datadir}/xsessions/plasmax11.desktop
 %endif
 
+rm %{buildroot}%{_kf6_libdir}/libklipper.so
 
 chrpath --delete %{buildroot}%{_kf6_qtplugindir}/phonon_platform/kde.so
 
@@ -595,6 +599,7 @@ fi
 %{_kf6_datadir}/applications/org.kde.kfontinst.desktop
 %{_kf6_datadir}/kio/servicemenus/installfont.desktop
 %{_kf6_datadir}/qlogging-categories6/*.categories
+%{_kf6_datadir}/xdg-desktop-portal/kde-portals.conf
 %{_sysconfdir}/xdg/plasmanotifyrc
 %{_kf6_datadir}/polkit-1/actions/org.kde.fontinst.policy
 %{_userunitdir}/*.service
@@ -629,6 +634,7 @@ fi
 %{_libdir}/libkfontinst*
 %{_libdir}/libkmpris.so.*
 %{_libdir}/libbatterycontrol.so.*
+%{_libdir}/libklipper.so.*
 # multilib'able plugins
 %{_kf6_qtplugindir}/plasma/applets/
 %if 0%{?kf6_pim}
@@ -715,11 +721,11 @@ fi
 
 
 %changelog
-* Mon Sep 16 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-3
+* Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-2
 - pick upstream commit
 
-* Sun Sep 15 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-2
-- Require xsetroot in the main pkg
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
 
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5

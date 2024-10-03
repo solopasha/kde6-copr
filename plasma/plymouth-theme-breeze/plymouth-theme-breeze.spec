@@ -1,7 +1,11 @@
+%global commit0 0c072aa8f463455ae4f4dc091aaaca8860f90747
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global base_name breeze-plymouth
 
 Name:    plymouth-theme-breeze
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 Summary: Breeze theme for Plymouth
 
@@ -26,8 +30,8 @@ Requires:       plymouth-plugin-script
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{base_name}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -43,7 +47,6 @@ install -D -m644 -p %{SOURCE10} \
 
 %files
 %license LICENSES/*.txt
-%doc README
 %{_libdir}/plymouth/breeze-text.so
 %{_datadir}/plymouth/themes/breeze-text/
 %{_datadir}/plymouth/themes/breeze/
@@ -51,6 +54,9 @@ install -D -m644 -p %{SOURCE10} \
 
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

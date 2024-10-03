@@ -1,18 +1,19 @@
+%global commit0 ee3dbb7eafcb0077b2743173d84d84d8d7622a62
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global  base_name print-manager
 
 Name:    plasma-print-manager
 Summary: Printer management for KDE
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
 URL:     https://invent.kde.org/plasma/%{base_name}
 %plasma_source
 
-## upstream patches
-
 BuildRequires: desktop-file-utils
-BuildRequires: gettext
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
 
@@ -67,8 +68,8 @@ Provides:       kde-print-manager-libs = 1:%{version}-%{release}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1 -n %{base_name}-%{version}
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -107,11 +108,14 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.PrintQueu
 
 
 %files libs
-%{_kf6_libdir}/libkcupslib.so.%{version}
+%{_kf6_libdir}/libkcupslib.so.%{version_no_git}
 %{_kf6_plugindir}/kded/printmanager.so
 
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

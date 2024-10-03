@@ -1,6 +1,10 @@
+%global commit0 fde4b0f6de882967df34ca90695580ead9ceeeff
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    plasma-nm
 Summary: Plasma for managing network connections
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -13,13 +17,9 @@ URL:     https://invent.kde.org/plasma/%{name}
 %bcond openconnect 0
 %endif
 
-## upstream patches
-
-
-BuildRequires:  gettext
-
-BuildRequires:  kf6-rpm-macros
+BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
+BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  cmake(QCoro6)
@@ -171,8 +171,8 @@ Requires:       NetworkManager-iodine
 %endif
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -215,6 +215,9 @@ rm -f %{buildroot}/usr/share/locale/*/LC_MESSAGES/plasmanetworkmanagement_openco
 %find_lang plasmanetworkmanagement_iodineui
 %endif
 
+%check
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
+
 
 %files -f plasma_applet_org.kde.plasma.networkmanagement.lang -f plasmanetworkmanagement-kded.lang -f plasmanetworkmanagement-libs.lang -f plasmanetworkmanagement-kcm.lang
 %{_libdir}/libplasmanm_internal.so
@@ -234,6 +237,7 @@ rm -f %{buildroot}/usr/share/locale/*/LC_MESSAGES/plasmanetworkmanagement_openco
 %{_qt6_plugindir}/plasma/kcms/systemsettings_qwidgets/kcm_networkmanagement.so
 %{_datadir}/kcm_networkmanagement/qml/
 %{_kf6_datadir}/applications/kcm_networkmanagement.desktop
+%{_kf6_datadir}/applications/org.kde.vpnimport.desktop
 
 %files openvpn -f plasmanetworkmanagement_openvpnui.lang
 %{_kf6_qtplugindir}/plasma/network/vpn/plasmanetworkmanagement_openvpnui.so
@@ -279,6 +283,9 @@ rm -f %{buildroot}/usr/share/locale/*/LC_MESSAGES/plasmanetworkmanagement_openco
 %endif
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

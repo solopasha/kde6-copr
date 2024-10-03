@@ -1,5 +1,9 @@
+%global commit0 5d0c1385d4036ecc6657189e130505a79141c0be
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    ksystemstats
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 Summary: KSystemStats is a daemon that collects statistics about the running system.
 
@@ -7,26 +11,28 @@ License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires: libksysguard-devel
-
+BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
 BuildRequires: systemd-rpm-macros
-BuildRequires: extra-cmake-modules
+
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6CoreAddons)
+BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DBusAddons)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6ItemViews)
 BuildRequires: cmake(KF6KIO)
+BuildRequires: cmake(KF6NetworkManagerQt)
 BuildRequires: cmake(KF6NewStuff)
 BuildRequires: cmake(KF6Notifications)
 BuildRequires: cmake(KF6Solid)
 BuildRequires: cmake(KF6WindowSystem)
-BuildRequires: cmake(KF6NetworkManagerQt)
 
 BuildRequires: cmake(Qt6Widgets)
+
+BuildRequires: cmake(KSysGuard)
 
 BuildRequires:  libnl3-devel
 BuildRequires:  lm_sensors-devel
@@ -44,8 +50,8 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -67,6 +73,9 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 %{_qt6_plugindir}/ksystemstats/
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 

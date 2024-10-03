@@ -1,6 +1,10 @@
+%global commit0 159d0f0e6b4314285de39a3ca464dbb89cbc2adc
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 Name:    kwayland-integration
-Version: 6.1.5
-Release: 2%{?dist}
+Version: 6.2.0
+Release: 1%{?dist}
 Summary: Provides integration plugins for various KDE Frameworks for Wayland
 
 License: CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only AND LGPL-3.0-only)
@@ -33,8 +37,8 @@ Requires:       kf5-filesystem
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -53,8 +57,8 @@ Requires:       kf5-filesystem
 
 
 %changelog
-* Sat Sep 14 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-2
-- rebuilt
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
 
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5

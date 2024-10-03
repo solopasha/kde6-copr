@@ -1,14 +1,17 @@
+%global commit0 82c60898abc82c046c881e3c5ac2f3ccfce010d4
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global  base_name breeze
 
 Name:    plasma-breeze
-Version: 6.1.5
+Version: 6.2.0
 Release: 1%{?dist}
 Summary: Artwork, styles and assets for the Breeze visual style for the Plasma Desktop
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND MIT
 URL:     https://invent.kde.org/plasma/%{base_name}.git
 %plasma_source
-
 
 # Misc
 BuildRequires:  extra-cmake-modules
@@ -84,8 +87,8 @@ Provides:       breeze-cursor-themes = %{version}-%{release}
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -n %{base_name}-%{version} -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 
 %build
@@ -139,15 +142,19 @@ popd
 %{_datadir}/wallpapers/Next/
 
 %files -n breeze-cursor-theme
-%doc cursors/Breeze/README
 %dir %{_kf6_datadir}/icons/Breeze_Light/
 %{_kf6_datadir}/icons/Breeze_Light/cursors/
+%{_kf6_datadir}/icons/Breeze_Light/cursors_scalable/
 %{_kf6_datadir}/icons/Breeze_Light/index.theme
 %dir %{_kf6_datadir}/icons/breeze_cursors/
 %{_kf6_datadir}/icons/breeze_cursors/cursors/
+%{_kf6_datadir}/icons/breeze_cursors/cursors_scalable/
 %{_kf6_datadir}/icons/breeze_cursors/index.theme
 
 %changelog
+* Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
+- Update to 6.2.0
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 6.1.5-1
 - Update to 6.1.5
 
