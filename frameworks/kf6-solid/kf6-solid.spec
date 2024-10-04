@@ -56,10 +56,7 @@ developing applications that use %{name}.
 %autosetup -n %{sourcerootdir} -p1
 
 %build
-%cmake_kf6 \
-    -DWITH_NEW_POWER_ASYNC_API:BOOL=ON \
-    -DWITH_NEW_POWER_ASYNC_FREEDESKTOP:BOOL=ON \
-    -DWITH_NEW_SOLID_JOB:BOOL=ON
+%cmake_kf6
 %cmake_build
 
 %install
@@ -70,7 +67,6 @@ developing applications that use %{name}.
 %doc README.md TODO
 %license LICENSES/*.txt
 %{_kf6_bindir}/solid-hardware6
-%{_kf6_bindir}/solid-power
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6Solid.so.%{version_no_git}
 %{_kf6_libdir}/libKF6Solid.so.6
