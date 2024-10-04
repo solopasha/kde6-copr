@@ -9,7 +9,7 @@ process_spec() {
     fi
 
     oldCommit="$(sed -n 's/%global[[:space:]]\+\bcommit0\b[[:space:]]\+\(.*\)/\1/p' "$1")"
-    newCommit="$(grep "^${baseName};" frameworks-6.6.0-release-data | awk -F\; '{print $3}')"
+    newCommit="$(grep "^${baseName};" frameworks-6.7.0-release-data | awk -F\; '{print $3}')"
 
     sed -i "s/$oldCommit/$newCommit/" "$1"
 }

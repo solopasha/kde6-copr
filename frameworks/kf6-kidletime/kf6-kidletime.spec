@@ -1,11 +1,11 @@
-%global commit0 a3886dc3db2101e0fd9d50d4c1e014f3e90aba92
+%global commit0 f201d44a41d54d6e0f5bd37264ea3e3c1235365d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global		framework kidletime
 
 Name:		kf6-%{framework}
-Version:	6.6.0
+Version:	6.7.0
 Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 integration module for idle time detection
 License:	CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.1-or-later AND MIT
@@ -75,6 +75,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6IdleTime.so
 
 %changelog
+* Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
+- Update to 6.7.0
+
 * Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
 - Update to 6.6.0
 

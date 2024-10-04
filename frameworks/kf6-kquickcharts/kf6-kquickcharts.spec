@@ -1,4 +1,4 @@
-%global commit0 312d3b8e71ab91cd014ac85324386f30f718ff5e
+%global commit0 db59d56747c4d87b822bdfc871ec3f3bc6d70a15
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:		kf6-%{framework}
 Summary:	A QtQuick module providing high-performance charts
-Version:	6.6.0
+Version:	6.7.0
 Release:	1%{?dist}
 
 License:	BSD-2-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only AND MIT
@@ -66,6 +66,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libQuickChartsControls.so
 
 %changelog
+* Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
+- Update to 6.7.0
+
 * Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
 - Update to 6.6.0
 

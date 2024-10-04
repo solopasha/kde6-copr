@@ -1,11 +1,11 @@
-%global commit0 a6b8ba3a192ec797f6198af985dc63cd8f05e252
+%global commit0 034e014677cf4b4af22a924712d92ca453bce1d5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kdeclarative
 
 Name:    kf6-%{framework}
-Version: 6.6.0
+Version: 6.7.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 addon for Qt declarative
 
@@ -74,6 +74,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6Declarative/
 
 %changelog
+* Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
+- Update to 6.7.0
+
 * Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
 - Update to 6.6.0
 

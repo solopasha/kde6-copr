@@ -1,11 +1,11 @@
-%global commit0 921dde5c0367d56cbb68bf3748f954fdc76c877f
+%global commit0 1506c842b1290b308164a655605cb3930ac03d24
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global		framework kcodecs
 
 Name:		kf6-%{framework}
-Version:	6.6.0
+Version:	6.7.0
 Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with string manipulation methods
 License:	BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND MIT AND MPL-1.1
@@ -64,6 +64,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Codecs.so
 
 %changelog
+* Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
+- Update to 6.7.0
+
 * Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
 - Update to 6.6.0
 

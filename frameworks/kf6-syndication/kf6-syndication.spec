@@ -1,11 +1,11 @@
-%global commit0 b925ba4fd7f0b95df00995b516059d9580f68286
+%global commit0 93e8f0f3a2dd7524fe2565df4308cd456db14f9f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework syndication
 
 Name:    kf6-%{framework}
-Version: 6.6.0
+Version: 6.7.0
 Release: 1%{?dist}
 Summary: The Syndication Library
 
@@ -62,6 +62,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Syndication.so
 
 %changelog
+* Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
+- Update to 6.7.0
+
 * Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
 - Update to 6.6.0
 

@@ -1,11 +1,11 @@
-%global commit0 a89e682a9ad269965859fd4bb625a03003767c3f
+%global commit0 3e5648b542e16458ba8401fb352e1db2d11328b1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kio
 
 Name:    kf6-%{framework}
-Version: 6.6.0
+Version: 6.7.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 solution for filesystem abstraction
 
@@ -217,6 +217,9 @@ Recommends:     switcheroo-control
 %{_kf6_libdir}/libkuriikwsfiltereng_private.so
 
 %changelog
+* Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
+- Update to 6.7.0
+
 * Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
 - Update to 6.6.0
 

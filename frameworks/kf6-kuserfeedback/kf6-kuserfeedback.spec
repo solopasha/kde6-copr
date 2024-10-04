@@ -1,4 +1,4 @@
-%global commit0 cc26cd44c768f7189b563f61360b59912024b2c5
+%global commit0 7c1d99b49b5a98d3d37f3244727341503c17fb83
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    kf6-%{framework}
 Summary: Framework for collecting user feedback for apps via telemetry and surveys
-Version: 6.6.0
+Version: 6.7.0
 Release: 1%{?dist}
 
 License: MIT AND CC0-1.0 AND BSD-3-Clause
@@ -117,6 +117,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kuserfeedback
 
 
 %changelog
+* Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
+- Update to 6.7.0
+
 * Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
 - Update to 6.6.0
 

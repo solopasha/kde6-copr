@@ -1,4 +1,4 @@
-%global commit0 b0e0866219e8c4d8ebe521afd90fb1e883078459
+%global commit0 30ef9ac5080d167791e92d59899a7755d300d196
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    kf6-%{framework}
 Summary: KDE Frameworks 6 Tier 3 solution for advanced plugin and service introspection
-Version: 6.6.0
+Version: 6.7.0
 Release: 1%{?dist}
 
 # The following licenses are in the LICENSES folder but go unused: GPL-2.0-only, GPL-2.0-or-later, GPL-3.0-only, LicenseRef-KDE-Accepted-GPL
@@ -79,6 +79,9 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kservicetypes6
 %{_kf6_libdir}/libKF6Service.so
 
 %changelog
+* Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
+- Update to 6.7.0
+
 * Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
 - Update to 6.6.0
 

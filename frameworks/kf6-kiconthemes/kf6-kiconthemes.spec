@@ -1,11 +1,11 @@
-%global commit0 cc101945a35ee4bd51356cb435c80133786458b5
+%global commit0 5f964042d368c8a1023c4e46c23ed4785aca473b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kiconthemes
 
 Name:    kf6-%{framework}
-Version: 6.6.0
+Version: 6.7.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 integration module with icon themes
 
@@ -84,6 +84,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6IconWidgets.so
 
 %changelog
+* Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
+- Update to 6.7.0
+
 * Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
 - Update to 6.6.0
 

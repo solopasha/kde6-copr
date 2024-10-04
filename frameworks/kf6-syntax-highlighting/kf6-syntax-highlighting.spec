@@ -1,4 +1,4 @@
-%global commit0 88ba1e68ea8816c0568e5a08b51fb6e703fa77eb
+%global commit0 82ebc2a7a4f43de064a8bef52c11b024420ed943
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 %global framework syntax-highlighting
 
 Name:           kf6-%{framework}
-Version:        6.6.0
+Version:        6.7.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Syntax highlighting engine for Kate syntax definitions
 License:        MIT AND BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND LGPL-2.0-or-later
@@ -74,6 +74,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6SyntaxHighlighting.so
 
 %changelog
+* Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
+- Update to 6.7.0
+
 * Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
 - Update to 6.6.0
 

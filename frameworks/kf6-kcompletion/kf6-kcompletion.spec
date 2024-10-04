@@ -1,11 +1,11 @@
-%global commit0 d6b0da5ddab4eee01eb521a79c3f058f60f33d46
+%global commit0 dafce524101f5da103479deb21888721754f53c4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kcompletion
 
 Name:           kf6-%{framework}
-Version:        6.6.0
+Version:        6.7.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 addon with auto completion widgets and classes
 # BSD-3-Clause is in the LICENSES folder but goes unused.
@@ -66,6 +66,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
+- Update to 6.7.0
+
 * Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
 - Update to 6.6.0
 

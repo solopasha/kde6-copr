@@ -1,11 +1,11 @@
-%global commit0 15c8fd49c86796996bb597f99f008780fc1f5a16
+%global commit0 2621f483857973d698c7769bceb5686fde188aa9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework knotifications
 
 Name:    kf6-%{framework}
-Version: 6.6.0
+Version: 6.7.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 2 solution with abstraction for system notifications
 
@@ -72,6 +72,9 @@ mkdir -p %{buildroot}/%{_kf6_datadir}/knotifications6
 %{_kf6_libdir}/libKF6Notifications.so
 
 %changelog
+* Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
+- Update to 6.7.0
+
 * Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
 - Update to 6.6.0
 

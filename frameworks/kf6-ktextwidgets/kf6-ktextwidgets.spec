@@ -1,11 +1,11 @@
-%global commit0 bd8bd68b19d32be61a64c248cf558043ea92a190
+%global commit0 14d487cd4c9d9b144c70a2e12bdd5f5a6d92a916
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework ktextwidgets
 
 Name:    kf6-%{framework}
-Version: 6.6.0
+Version: 6.7.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 addon with advanced text editing widgets
 
@@ -73,6 +73,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6TextWidgets.so
 
 %changelog
+* Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
+- Update to 6.7.0
+
 * Fri Sep 06 2024 Pavel Solovev <daron439@gmail.com> - 6.6.0-1
 - Update to 6.6.0
 
