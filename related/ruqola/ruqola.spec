@@ -1,6 +1,6 @@
 Name:           ruqola
 Version:        2.3.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        KDE client for Rocket Chat
 
 License:        LGPL-2.0-or-later
@@ -97,4 +97,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_qt6_plugindir}/ruqolaplugins/
 
 %changelog
+* Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 2.3.0-2
+- rebuilt
+
 %autochangelog
