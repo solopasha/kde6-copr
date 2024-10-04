@@ -2,7 +2,7 @@
 %global debug_package %{nil}
 
 Name:           plasma-wayland-protocols
-Version:        1.13.0
+Version:        1.14.0
 Release:        1%{?dist}
 Summary:        Plasma Specific Protocols for Wayland
 
