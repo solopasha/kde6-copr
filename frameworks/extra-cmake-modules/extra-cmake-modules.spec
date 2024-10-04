@@ -72,7 +72,7 @@ make test ARGS="--output-on-failure --timeout 300" -C %{_vpath_builddir} ||:
 %license LICENSES/*.txt
 %{_datadir}/ECM/
 %if 0%{?docs}
-%{_kf6_docdir}/ECM/html/
+%{_kf6_docdir}/ECM/
 %{_kf6_mandir}/man7/ecm*.7*
 %endif
 
