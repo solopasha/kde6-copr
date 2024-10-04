@@ -38,7 +38,7 @@ plasma-activities;Plasma/6.2;24542a78f2ec9423356b6bbdd620c1343d2d310a;plasma-act
 plasma-activities-stats;Plasma/6.2;07b65f19fade5af16e80fbea711b494f244c0db7;plasma-activities-stats-6.2.0.tar.xz;215d7728537b890a1f319f13caa6038c02dc4e3e64d99cf40ce08fc82f465dfd
 plasma-browser-integration;Plasma/6.2;1745476691e41e77b5cd87650cf6e10a3f172f8d;plasma-browser-integration-6.2.0.tar.xz;91d596cfd891b44c10c5dd7862e2c95acda7526fe9a9f018e946836c17450a68
 plasma-desktop;Plasma/6.2;1429869e18c2653a1a8d04473bde420f6115cd6f;plasma-desktop-6.2.0.tar.xz;0ea38e20b9c4163857db920ea80c9740a29e561886b5feb9f20f938598692709
-plasma-dialer;Plasma/6.2;60245cf28ca855f6cee5a97e5f0717b1ae5c2bab;plasma-dialer-6.2.0.tar.xz;eaf132f9293a6f0b9ce953d26f6b57c056ef3a3ad1482e0add4c8a52ffa6706e
+plasma-dialer;Plasma/6.2;23cee63abde3d1cda8fc0d45f9ec550aefd73279;plasma-dialer-6.2.0.tar.xz;ef6247d02db10322521e52e71e9c94291f07abddaf16f084613c8dd36f7caace
 plasma-disks;Plasma/6.2;09a1004a8a573393368ecfccf46bf6f6626e7016;plasma-disks-6.2.0.tar.xz;581fba7b97397853442e9203e02cc5fe6007a1f6d6020bd3383751d7a70d2ba1
 plasma-firewall;Plasma/6.2;005ea7873de1592e961ca63ffdee5471716f4aff;plasma-firewall-6.2.0.tar.xz;59fd0579a6c9913f97466ebbe562b00c27b590d9c3874c239c8a51fe61903e65
 plasma-integration;Plasma/6.2;60b2985ceedfc94c1733bceb217474abb739e05b;plasma-integration-6.2.0.tar.xz;dcd10a0c8418524e66c6ea7bfba4de4d4f20469db470b41a50ae20e359e9b768
@@ -51,7 +51,7 @@ plasma-systemmonitor;Plasma/6.2;cceac60e8f107e5cc7e08f73d7fc2b4c42d152ac;plasma-
 plasma-thunderbolt;Plasma/6.2;c818a37fe55d399ca4e6a2b94203b8dfd4380b9b;plasma-thunderbolt-6.2.0.tar.xz;1cdc763003e201178e526f48c30df650f37a8b4e016d25a5e9839bbce94dce3a
 plasma-vault;Plasma/6.2;15cf7b59afaa5d9acb901c1cd2beb517ac50e995;plasma-vault-6.2.0.tar.xz;c1f03d1b6b8fdf3918790f609664e80f8ba0f8ac49fee4e153cb8785e6dd2797
 plasma-welcome;Plasma/6.2;fa95a1c82c9ac24f99ec5a2caebdb1a3c068bf0c;plasma-welcome-6.2.0.tar.xz;6782406d5643745953de82b1b1f58a44a6f854c2d7e0d675d037e63377f552d5
-plasma-workspace;Plasma/6.2;7eb91d76c1e57e0f8b3565ee0d3baae4f46f6414;plasma-workspace-6.2.0.tar.xz;fc52cc3e33a84337bfb24ce5ca0f2b99cc2357981f87f5e58ecd4f4fba1075d1
+plasma-workspace;Plasma/6.2;ba67ab37fca0ddc1f61b1a06ff748449e6cf3f5b;plasma-workspace-6.2.0.tar.xz;2d4268cbae757631be57d69d34fc02c8d0204762515370c9679ecb2aa2afdf33
 plasma-workspace-wallpapers;Plasma/6.2;6bad1f7d05ce9edd206d9e680c3a47ec18cb06e6;plasma-workspace-wallpapers-6.2.0.tar.xz;8241982c98c431101a7c33958cf21b9f7063b0db11f06663a72325f5010f9c01
 plasma5support;Plasma/6.2;fc871144b7a74c6cea5014c8c40c2c0b68cbb835;plasma5support-6.2.0.tar.xz;46eb4f5d94077c46c24b494bbae2e5749b5b5f7cc1db6ef2923b8112ae6ae58d
 plymouth-kcm;Plasma/6.2;3aa98536998ea79bebb0ab865ba7f3be6a20b94c;plymouth-kcm-6.2.0.tar.xz;fa23aa0b5a6eef76cb4b5a349a027f2e66a13b22e2dbf5b2bfc7abab0a78f1ae
@@ -60,7 +60,7 @@ powerdevil;Plasma/6.2;360d495166fffaf2f51b2ac1dc1afebf83cb25ea;powerdevil-6.2.0.
 print-manager;Plasma/6.2;ee3dbb7eafcb0077b2743173d84d84d8d7622a62;print-manager-6.2.0.tar.xz;8c8270f20cccce94b13a95830d27a7230353e5d8f8f5249f67b78c836132f8cd
 qqc2-breeze-style;Plasma/6.2;d642576607b877e26683dd975978d0633650afba;qqc2-breeze-style-6.2.0.tar.xz;1197fb335656cc85a99294e95a2f01f43688eddf5458da92a144e7b6182b5498
 sddm-kcm;Plasma/6.2;e1e35c4f96a7185f1f6d00b093089a1ca4e962aa;sddm-kcm-6.2.0.tar.xz;d5c6cc98c190789d1b886dba8140396588ead6125341cf5231adf95a6368851f
-spacebar;Plasma/6.2;71fa1faea947e5cab23052ebf83eb44f0916d56e;spacebar-6.2.0.tar.xz;e47e278bc2b8d6b633fbd4516fb1f3b6cb25073aeb9124a361ffd0ca00d976f1
+spacebar;Plasma/6.2;6cf6ac3da7031d5b50650b78d9599644b7f1c5d3;spacebar-6.2.0.tar.xz;427a29e9eb2a79e9059d8af69bb56b5d472e13421dc872d0a59358b8307a986e
 systemsettings;Plasma/6.2;1e55935eee0200059ac0eb7ef160c7c418cf98ef;systemsettings-6.2.0.tar.xz;6b4675edd4717f7ca88d17700696c38873ff46b3f9063ecfa7cc207eb04ebae0
 wacomtablet;Plasma/6.2;083cf9be7d622224cc7597028fd0a6d68a6850e6;wacomtablet-6.2.0.tar.xz;9a5d9f6ba37243904d4cbf91c87493b20576bebd258a75c1f66093b3762e5de3
 xdg-desktop-portal-kde;Plasma/6.2;fec46fc7b6c35d7a695da69e4b91a0571402e29f;xdg-desktop-portal-kde-6.2.0.tar.xz;800684c5bbcdbd41dbc8bfcba8eda9a27a0db9f0f72099d18246fb7940764ffc

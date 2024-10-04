@@ -1,4 +1,4 @@
-%global commit0 7eb91d76c1e57e0f8b3565ee0d3baae4f46f6414
+%global commit0 ba67ab37fca0ddc1f61b1a06ff748449e6cf3f5b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -7,13 +7,11 @@
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
 Version: 6.2.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
-
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/5319e8edfed25fb0a42cfee188745bb4f650a4b4.patch
 
 Source11:       startkderc
 Source15:       fedora-lookandfeel.json
@@ -721,6 +719,9 @@ fi
 
 
 %changelog
+* Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-3
+- rebuilt
+
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-2
 - pick upstream commit
 
