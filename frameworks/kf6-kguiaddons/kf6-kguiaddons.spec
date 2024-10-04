@@ -61,8 +61,9 @@ developing applications that use %{name}.
 %{_kf6_bindir}/kde-geo-uri-handler
 %{_kf6_datadir}/applications/*-handler.desktop
 %{_kf6_datadir}/qlogging-categories6/*categories
-%{_kf6_libdir}/libKF6GuiAddons.so.6
 %{_kf6_libdir}/libKF6GuiAddons.so.%{version_no_git}
+%{_kf6_libdir}/libKF6GuiAddons.so.6
+%{_kf6_qmldir}/org/kde/guiaddons/
 
 %files devel
 %{_qt6_docdir}/*.tags
