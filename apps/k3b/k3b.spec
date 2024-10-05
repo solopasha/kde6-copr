@@ -6,7 +6,7 @@ Name:    k3b
 Summary: CD/DVD/Blu-ray burning application
 Epoch:   1
 Version: 24.08.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/multimedia/k3b
@@ -156,6 +156,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Sat Oct 05 2024 Pavel Solovev <daron439@gmail.com> - 1:24.08.1-2
+- rebuilt
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 1:24.08.1-1
 - Update to 24.08.1
 

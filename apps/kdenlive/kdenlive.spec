@@ -7,7 +7,7 @@
 Name:    kdenlive
 Summary: Non-linear video editor
 Version: 24.08.1
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: (GPL-2.0-only or GPL-3.0-only) and GPL-2.0-or-later and GPL-3.0-or-later and LGPL-3.0-only and BSD-3-Clause and CC0-1.0
 URL:     http://www.kdenlive.org
@@ -139,6 +139,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Sat Oct 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-3
+- rebuilt
+
 * Sat Sep 14 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-2
 - pick upstream commits
 
