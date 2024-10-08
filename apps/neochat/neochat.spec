@@ -95,6 +95,7 @@ notably Kirigami, KConfig and KI18n.
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
+rm po/sl/docs/neochat/man-neochat.1.docbook
 
 %build
 %cmake_kf6 -DCMAKE_BUILD_TYPE=Release
