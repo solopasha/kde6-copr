@@ -1,9 +1,9 @@
-%global commit0 6f87a1056547dd9898880528e00fa37551b8d67f
+%global commit0 2df30db00f4cbdaee040501223aa600dfc152866
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           ghostwriter
-Version:        24.08.1
+Version:        24.08.2
 Release:        1%{?dist}
 
 License:        GPL-3.0-or-later AND Apache-2.0 AND CC-BY-4.0 AND CC-BY-SA-4.0 AND MPL-1.1 AND BSD AND LGPL-3.0-only AND MIT AND ISC
@@ -83,6 +83,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 %{_kf6_metainfodir}/org.kde.%{name}.metainfo.xml
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

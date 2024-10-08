@@ -1,9 +1,9 @@
-%global commit0 e294c5312f3f5e4cc5a42aac20b56f44d3eff25f
+%global commit0 3d007ddb5dcc7bddbb98a47cdfe15158052ec56f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           accessibility-inspector
-Version:        24.08.1
+Version:        24.08.2
 Release:        1%{?dist}
 License:        (LGPL-2.1-only OR LGPL-3.0-only) AND CC0-1.0
 Summary:        Inspect your application accessibility tree
@@ -59,6 +59,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_metainfodir}/org.kde.accessibilityinspector.metainfo.xml
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

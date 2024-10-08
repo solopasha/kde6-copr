@@ -1,9 +1,9 @@
-%global commit0 72615d78688499d74814ea2c80d051263fbd3441
+%global commit0 413ff6ead1ac93915dde91ac976e679a5dd32743
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kcalutils
-Version:        24.08.1
+Version:        24.08.2
 Release:        1%{?dist}
 Summary:        The KCalendarUtils Library
 
@@ -70,6 +70,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

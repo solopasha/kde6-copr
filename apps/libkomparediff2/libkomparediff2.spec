@@ -4,7 +4,7 @@
 
 Name:           libkomparediff2
 Summary:        Library to compare files and strings
-Version:        24.08.1
+Version:        24.08.2
 Release:        1%{?dist}
 
 # Library: GPLv2+ (some files LGPLv2+), CMake scripts: BSD
@@ -70,6 +70,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

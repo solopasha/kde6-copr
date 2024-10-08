@@ -1,10 +1,10 @@
-%global commit0 e6ecc65191a0bac20419481dd125e57e8d1f13f1
+%global commit0 77923216b26b632515f84de59b833be2b8092751
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           lokalize
 Summary:        Computer-aided translation system
-Version:        24.08.1
+Version:        24.08.2
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND GFDL-1.2-or-later AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-or-later
@@ -94,6 +94,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

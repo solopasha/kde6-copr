@@ -1,10 +1,10 @@
-%global commit0 ba0331d6c3b177b4b6c393a7fe2c9c16ebfca3fb
+%global commit0 8c1a2c72c9f59b4df2d7a22f5df87b48ed022a36
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kspaceduel
 Summary: Space arcade game
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
@@ -78,6 +78,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

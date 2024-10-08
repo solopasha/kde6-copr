@@ -1,9 +1,9 @@
-%global commit0 ab747ef59d997fcba9701d8794ac4959a41ea6ae
+%global commit0 c6059899cced089de163e4efd04abb353355add3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kaccounts-integration
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 Summary: Small system to administer web accounts across the KDE desktop
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LicenseRef-KDE-Accepted-GPL
@@ -144,6 +144,9 @@ Requires:       cmake(SignOnQt5)
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

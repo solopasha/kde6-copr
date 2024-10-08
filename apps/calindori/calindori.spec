@@ -1,9 +1,9 @@
-%global commit0 e3fcb2141ac8831b3ca6888ae00ab63b11209eac
+%global commit0 65129b6dfd8ad4ec9abdddd74b780e6e07d81bc3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           calindori
-Version:        24.08.1
+Version:        24.08.2
 Release:        1%{?dist}
 Summary:        Calendar application for Plasma Mobile
 License:        BSD-2-Clause AND CC-BY-4.0 AND CC-BY-SA-4.0 AND CC0-1.0 AND GPL-3.0-or-later AND LGPL-3.0-or-later
@@ -75,6 +75,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{
 %license LICENSES/*
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

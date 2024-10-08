@@ -1,9 +1,9 @@
-%global commit0 6898dd86dd74df5a2c17c99648613c5fdfe263d8
+%global commit0 2957e3345209bd58dbefcbaca13d48253fd0dce8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           skladnik
-Version:        24.08.1
+Version:        24.08.2
 Release:        1%{?dist}
 License:        GPL-3.0-or-later AND CC0-1.0 AND LGPL-2.1-or-later
 Summary:        Japanese warehouse keeper sokoban game
@@ -66,6 +66,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

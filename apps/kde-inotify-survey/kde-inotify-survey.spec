@@ -1,9 +1,9 @@
-%global commit0 f33736a95836c4e9380a3dd7730a579c8436c0ef
+%global commit0 35d0f0f7f4309eca3be736b4076deed4a17854c4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:          kde-inotify-survey
-Version:       24.08.1
+Version:       24.08.2
 Release:       1%{?dist}
 Summary:       Monitors inotify limits and lets the user know when exceeded
 
@@ -57,6 +57,9 @@ BuildRequires: cmake(KF6Auth)
 %{_datadir}/polkit-1/actions/org.kde.kded.inotify.policy
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

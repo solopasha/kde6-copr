@@ -1,10 +1,10 @@
-%global commit0 bb5497e171c0de89c987e431602dddef1d198fc2
+%global commit0 b6381242235e98436f3eb39188cad547e9617c92
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kdf
 Summary: View disk usage
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -74,6 +74,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

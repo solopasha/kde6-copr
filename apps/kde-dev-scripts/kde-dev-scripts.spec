@@ -1,10 +1,10 @@
-%global commit0 c204df8c2a0f23a65c450b4309dae8baaf085f1f
+%global commit0 81b79f3589239a8aee1198fcf2e4152494814384
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kde-dev-scripts
 Summary: KDE SDK scripts
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 License: GPL-2.0-only AND GPL-2.0-or-later AND LGPL-2.0-only AND BSD-2-Clause
@@ -139,6 +139,9 @@ rm -fv %{buildroot}%{_kf6_bindir}/krazy-licensecheck
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

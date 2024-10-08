@@ -1,10 +1,10 @@
-%global commit0 47045e44255b703610e85bf49c43ebdea3ccf2ef
+%global commit0 94af99e70a69a4d978e3b757e3e13e349cec471f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kubrick
 Summary: Puzzle cube solving game
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
@@ -83,6 +83,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

@@ -1,11 +1,11 @@
-%global commit0 b136debd6b87d9a5f291a991be0e7168a9b7de40
+%global commit0 c662f18a5fe13c7d31fb7ee4142c678484ae3160
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    gwenview
 Summary: An image viewer
 Epoch:   1
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 # app: GPLv2+
@@ -117,6 +117,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 1:24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 1:24.08.1-1
 - Update to 24.08.1
 

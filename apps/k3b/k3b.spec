@@ -1,12 +1,12 @@
-%global commit0 1398994eeecdf6d0504b189d5de5157b273a0bec
+%global commit0 3d4d58c02333648ac6605b048e02eba32841d55b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    k3b
 Summary: CD/DVD/Blu-ray burning application
 Epoch:   1
-Version: 24.08.1
-Release: 2%{?dist}
+Version: 24.08.2
+Release: 1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/multimedia/k3b
@@ -156,6 +156,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 1:24.08.2-1
+- Update to 24.08.2
+
 * Sat Oct 05 2024 Pavel Solovev <daron439@gmail.com> - 1:24.08.1-2
 - rebuilt
 

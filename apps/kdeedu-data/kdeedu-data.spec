@@ -4,7 +4,7 @@
 
 Name:    kdeedu-data
 Summary: Shared icons, artwork and data files for educational applications
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 License: GPLv2
@@ -44,6 +44,9 @@ Requires: hicolor-icon-theme
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

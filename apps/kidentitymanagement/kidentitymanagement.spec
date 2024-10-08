@@ -1,9 +1,9 @@
-%global commit0 ffeaa1c7770c199bb1867bff9e1c0e1bfe9d17de
+%global commit0 75e0ecbf9232f2fc339bac84ad83e084e25c8545
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kidentitymanagement
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 Summary: The KIdentityManagement Library
 
@@ -82,6 +82,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

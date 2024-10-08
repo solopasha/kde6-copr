@@ -1,4 +1,4 @@
-%global commit0 e6c7ff03fc9e838b43e70b970f0eb4c9d70f046b
+%global commit0 663c89e5a984b2816e5430528dacd2b8aca73ecc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    akonadi-calendar-tools
 Summary: Akonadi Calendar Tools
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -70,6 +70,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

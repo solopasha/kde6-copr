@@ -1,4 +1,4 @@
-%global commit0 5d4fe7a1974abb2c41bdd59e1993b83073ff193c
+%global commit0 75fa77c864cc711090039372dad99bb952348d48
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,15 +6,13 @@
 
 Name:    kmail
 Summary: Mail client
-Version: 24.08.1
-Release: 2%{?dist}
+Version: 24.08.2
+Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
 License: GPLv2 and GFDL
 URL:     https://www.kde.org/applications/internet/kmail
 %apps_source
-
-Patch:   https://invent.kde.org/pim/kmail/-/commit/6fbb67e455b45b3b25bffe6760f79ebde1e8a9db.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
@@ -173,6 +171,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Sat Sep 14 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-2
 - pick upstream commits
 

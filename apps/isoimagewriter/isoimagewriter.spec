@@ -1,17 +1,15 @@
-%global commit0 01b7e6c56ad064cf9e2b90c3aff8324d4626fbbc
+%global commit0 96092f684a73b3fa30f05c979546c04b87ae0f41
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           isoimagewriter
-Version:        24.08.1
-Release:        2%{?dist}
+Version:        24.08.2
+Release:        1%{?dist}
 Summary:        KDE ISO Image Writer, a tool to write a .iso file to a USB disk
 
 License:        GPL-3.0-or-later
 URL:            https://community.kde.org/ISOImageWriter
 %apps_source
-
-Patch:          https://invent.kde.org/utilities/isoimagewriter/-/commit/bda5e30f9b237890a18acfe9ef78bd6cd8c5e5ef.patch
 
 BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
@@ -73,6 +71,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Sat Sep 14 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-2
 - pick upstream commits
 

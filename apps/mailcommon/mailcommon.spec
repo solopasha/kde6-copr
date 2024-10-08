@@ -1,9 +1,9 @@
-%global commit0 7b172735c7c93bd3933b7cb5f23aec03bf08e037
+%global commit0 29f6c75e860f50160b1ae3cc97db383bae491210
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    mailcommon
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 Summary: Mail applications support library
 
@@ -106,6 +106,9 @@ Requires:       cmake(KF6Completion)
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

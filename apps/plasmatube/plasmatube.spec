@@ -1,9 +1,9 @@
-%global commit0 0c6ca48940d228a261534b7490cb9f2a54cb9205
+%global commit0 ab9a5543e7e79189a02678861449e3b433de4696
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           plasmatube
-Version:        24.08.1
+Version:        24.08.2
 Release:        1%{?dist}
 License:        GPL-3.0-or-later AND GPL-2.0-or-later AND CC0-1.0 AND CC-BY-SA-4.0
 Summary:        YouTube video player based on QtMultimedia and youtube-dl
@@ -70,6 +70,9 @@ appstream-util validate-relax --nonet %{buildroot}/%{_metainfodir}/org.kde.%{nam
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

@@ -1,4 +1,4 @@
-%global commit0 707d8b5296779479985859c4065594007b07e25d
+%global commit0 354a992a4e69fe8e094f95c357c98a7f8e0485a0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -7,8 +7,8 @@
 Name:           kdevelop
 Summary:        Integrated Development Environment for C++/C
 Epoch:          9
-Version:        24.08.1
-Release:        3%{?dist}
+Version:        24.08.2
+Release:        1%{?dist}
 License:        GPL-2.0-only
 URL:            http://www.kdevelop.org/
 %apps_source
@@ -211,6 +211,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{rpmmacrodir}/macros.kdevelop
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 9:24.08.2-1
+- Update to 24.08.2
+
 * Sat Sep 14 2024 Pavel Solovev <daron439@gmail.com> - 9:24.08.1-3
 - filter out zsh
 

@@ -1,10 +1,10 @@
-%global commit0 427385ca93b599c5d4d262a8605df258ae55bac4
+%global commit0 3f9ffdf78d2dbbfdf0c37f6a8e967f41cdb62735
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kcharselect
 Summary: Character selector
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -64,6 +64,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

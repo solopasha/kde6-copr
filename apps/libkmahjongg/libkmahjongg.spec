@@ -1,11 +1,11 @@
-%global commit0 e03d7135e54e208bee49313d584db6a146ef4498
+%global commit0 b4a1c7eedf3ebd219e87a6306e23ef22f0a266e7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:    libkmahjongg
 Summary: Common code, backgrounds and tile sets for games using Mahjongg tiles
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 License: GPLv2+
@@ -80,6 +80,9 @@ BuildArch: noarch
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

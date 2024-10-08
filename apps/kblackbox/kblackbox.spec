@@ -1,10 +1,10 @@
-%global commit0 0d2611dff604b93d2b41ed3ff9e62302ba287006
+%global commit0 638bdca6f695e5afb96b29d72d7e0a9eb6ab3b2d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kblackbox
 Summary: A game of hide and seek played on a grid of boxes
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
@@ -87,6 +87,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

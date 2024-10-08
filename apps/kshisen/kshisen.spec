@@ -1,10 +1,10 @@
-%global commit0 c1b0ee5349da8bf84f130ee37a0761e42231589d
+%global commit0 a714df854fd34ccf1b0e3b0d8f45ceb5411a333e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kshisen
 Summary: Shisen-Sho Mahjongg-like tile game
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
@@ -73,6 +73,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

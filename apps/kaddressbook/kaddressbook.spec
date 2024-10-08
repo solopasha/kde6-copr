@@ -1,4 +1,4 @@
-%global commit0 f66cc213fdbf89dfd169b38087ee89e5bcee17a8
+%global commit0 7d425397686ba33003f4af3a43f845bb210cd048
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    kaddressbook
 Summary: Contact Manager
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -112,6 +112,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

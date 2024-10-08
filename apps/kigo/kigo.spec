@@ -1,10 +1,10 @@
-%global commit0 1d1e0e253ba3d805c3b60e3dfcdf70bb46d656e4
+%global commit0 dcfadcb50a1b0228a9e5bef357d9e7af79036a76
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kigo
 Summary: Go Board game
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 # KDE e.V. may determine that future GPL versions are accepted
@@ -84,6 +84,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

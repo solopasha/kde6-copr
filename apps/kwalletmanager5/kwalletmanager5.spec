@@ -1,4 +1,4 @@
-%global commit0 6b2d95be8b6774b7031d52ef0d8edeb00029bc6e
+%global commit0 0d020e8219d83c218acbdb0cc66c05bab1e70082
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -9,7 +9,7 @@
 
 Name:    kwalletmanager5
 Summary: Manage KDE passwords
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -93,6 +93,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

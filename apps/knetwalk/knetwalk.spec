@@ -1,11 +1,11 @@
-%global commit0 916924294d5c0e6cdcd52e69fe89a0e0426960d8
+%global commit0 1cc4a65524c0134ebbb6bbc65130243f00ef8637
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:    knetwalk
 Summary: Network construction game
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
@@ -82,6 +82,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

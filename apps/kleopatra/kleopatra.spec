@@ -1,9 +1,9 @@
-%global commit0 c58035f981aecbd36cdbd85ca7ccb2bca9cba614
+%global commit0 a1c359e2ccab1b164fd08138d7eeb4d23fb3d57c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kleopatra
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 Summary: KDE certificate manager and unified crypto GUI
 License: GPLv2+ and GFDL
@@ -107,6 +107,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop ||:
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

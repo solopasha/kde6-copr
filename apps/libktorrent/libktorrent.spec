@@ -1,10 +1,10 @@
-%global commit0 de0aa28a13ca2340f957850ed3911e61b542f9db
+%global commit0 eee8f56aefcba2443bf531d370e3d91ded641e53
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           libktorrent
 Summary:        Torrent downloading library for KDE 6 applications
-Version:        24.08.1
+Version:        24.08.2
 Release:        1%{?dist}
 # CC0 is only for CI tooling, BSD3 for cmake macros, MIT for win32 support code
 License:        GPL-2.0-or-later
@@ -79,6 +79,9 @@ Requires:       cmake(Qt6Network)
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

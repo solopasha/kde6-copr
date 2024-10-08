@@ -1,9 +1,9 @@
-%global commit0 9355c95b47c4962e0baa0883f50302fe9b5a3b34
+%global commit0 4343cfc24d9aeefb1c4f128059d1ccf56340867d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           konversation
-Version:        24.08.1
+Version:        24.08.2
 Release:        1%{?dist}
 Summary:        A user friendly IRC client
 
@@ -112,6 +112,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.konversat
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

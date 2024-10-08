@@ -1,10 +1,10 @@
-%global commit0 2d1300e7ad9c8cea09bd27c88ec8c41d9f905f4b
+%global commit0 18a315894e72043e1076835c91d1d8a9647e4a05
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    ffmpegthumbs
-Version: 24.08.1
-Release: 2%{?dist}
+Version: 24.08.2
+Release: 1%{?dist}
 Summary: KDE ffmpegthumbnailer service
 
 License: GPL-2.0-or-later
@@ -71,6 +71,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Sat Oct 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-2
 - rebuilt
 

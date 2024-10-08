@@ -1,9 +1,9 @@
-%global commit0 deac7b0e1a4ff4c7bbcb9b03eb53bc07bc8e05a9
+%global commit0 badc2a7559240ff55d6409d0f0230f90c7f46617
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    mailimporter
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 Summary: Mail importer library
 
@@ -86,6 +86,9 @@ Requires:       %{name}-akonadi%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

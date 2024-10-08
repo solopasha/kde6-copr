@@ -1,9 +1,9 @@
-%global commit0 201edea94429b8ba63dd0d3adc4826b10e591700
+%global commit0 8c673a6674e86527845ef6e365e30f1bdc56dfd7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:		    merkuro
-Version:	    24.08.1
+Version:	    24.08.2
 Release:	    1%{?dist}
 Summary:	    A calendar application using Akonadi to sync with external services (Nextcloud, GMail, ...)
 
@@ -124,6 +124,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

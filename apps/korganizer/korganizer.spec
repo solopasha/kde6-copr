@@ -1,4 +1,4 @@
-%global commit0 7ac4cbf0da394f3c10b105df848294383c0cad88
+%global commit0 c96e85c250d79bf045540fb775e6905aaf5c7c79
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    korganizer
 Summary: Personal Organizer
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -141,6 +141,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

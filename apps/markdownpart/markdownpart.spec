@@ -1,4 +1,4 @@
-%global commit0 99ec3dd02c5d4017887f9b521854dd26edc0020a
+%global commit0 7c8090a9df078476f61695f2faa999038a66938d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:           markdownpart
 Summary:        Markdown KPart
-Version:        24.08.1
+Version:        24.08.2
 Release:        1%{?dist}
 License:        LGPL-2.1-or-later
 URL:            https://apps.kde.org/categories/utilities/
@@ -57,6 +57,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/%{app_id}.
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

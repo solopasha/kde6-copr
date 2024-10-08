@@ -1,4 +1,4 @@
-%global commit0 5e2cd7eb6066a7922e4a29346d86ecc03d027e7c
+%global commit0 99b24d5bf2dbefb40fcd095adf092b87be19e6f1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -7,7 +7,7 @@
 %global sover 12
 
 Name:           kpmcore
-Version:        24.08.1
+Version:        24.08.2
 Release:        1%{?dist}
 Summary:        Library for managing partitions by KDE programs
 License:        GPL-3.0-or-later AND MIT AND CC-BY-4.0 AND CC0-1.0
@@ -95,6 +95,9 @@ developing applications that use %{name}
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

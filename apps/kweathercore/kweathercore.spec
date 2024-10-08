@@ -1,9 +1,9 @@
-%global commit0 ea269c5bdbabe5001e667f1a54d1b1587525bb98
+%global commit0 6ab8d261cf426c96fd07612b4e452d8125ee1146
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kweathercore
-Version:        24.08.1
+Version:        24.08.2
 Release:        1%{?dist}
 License:        LGPLv2+
 Summary:        Library to facilitate retrieval of weather information
@@ -62,6 +62,9 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

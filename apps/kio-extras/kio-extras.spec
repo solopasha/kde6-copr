@@ -1,17 +1,15 @@
-%global commit0 8052362deb3ba962eb74676263271c66a89c8039
+%global commit0 86852d561ff063bde0b66acdcde9f56ba87e1e9b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kio-extras
-Version: 24.08.1
-Release: 2%{?dist}
+Version: 24.08.2
+Release: 1%{?dist}
 Summary: Additional components to increase the functionality of KIO Framework
 
 License: GPLv2+
 URL:     https://invent.kde.org/network/kio-extras
 %apps_source
-
-Patch:   https://invent.kde.org/network/kio-extras/-/commit/0b589bd8744457dd5c427cc6b1626221b5e8d250.patch
 
 BuildRequires:  bzip2-devel
 BuildRequires:  exiv2-devel
@@ -126,6 +124,9 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Sat Sep 14 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-2
 - Include kio_info in main package
 

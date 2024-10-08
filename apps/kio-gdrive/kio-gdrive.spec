@@ -1,9 +1,9 @@
-%global commit0 1ab71e7d97745a081a888585c816273f675796e2
+%global commit0 1dd38b1bf2e821ee776e23b5d5bb5c539cd3cb64
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kio-gdrive
-Version:        24.08.1
+Version:        24.08.2
 Release:        1%{?dist}
 Summary:        An Google Drive KIO slave for KDE
 
@@ -107,6 +107,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml ||:
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

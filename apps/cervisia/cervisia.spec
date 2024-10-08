@@ -1,10 +1,10 @@
-%global commit0 61bbdd4a6ac418a01c8a0fdcff0f35e24326d17d
+%global commit0 f1c4e0e26c2452489e45d12a6dc9f30fa73b5756
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    cervisia
 Summary: CVS frontend
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later AND LGPL-2.0-or-later AND GFDL-1.2-or-later
@@ -85,6 +85,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.cervisia.
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

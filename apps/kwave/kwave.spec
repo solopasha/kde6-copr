@@ -1,4 +1,4 @@
-%global commit0 4baeec9069a01c1e85e9a88d1f8d60f009f9fc9c
+%global commit0 8b3fa727b19e733ad23fb9ae9645b1f91f242fca
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -7,7 +7,7 @@
 %undefine _include_frame_pointers
 
 Name:           kwave
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 Summary:        Sound Editor for KDE
 Summary(de):    Sound-Editor für KDE
@@ -113,6 +113,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.d
 %{_kf5_docdir}/HTML/*/%{name}
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

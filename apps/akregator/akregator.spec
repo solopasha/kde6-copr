@@ -1,4 +1,4 @@
-%global commit0 bbb2c15262f65a04acb719ebc975351b919d17a2
+%global commit0 765be39a1e831736cc680144ef70cb2480f17dfe
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    akregator
 Summary: Feed Reader
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -117,6 +117,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

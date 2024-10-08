@@ -1,10 +1,10 @@
-%global commit0 05630f9a08aff01422422d951c357ead83e726c1
+%global commit0 a7a820f720320ee63fb707941ce5857cadc4936d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           artikulate
 Summary:        Improve your pronunciation by listening to native speakers
-Version:        24.08.1
+Version:        24.08.2
 Release:        1%{?dist}
 
 # artwork: LGPL3
@@ -88,6 +88,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

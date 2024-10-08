@@ -1,10 +1,10 @@
-%global commit0 de86116da8b013a8654e31500cf11046785ed820
+%global commit0 46eb07d0d8d72bc6fcf1e2bb31369e2d2bc14dcf
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kcron
 Summary: Cron KDE configuration module
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 License: GPLv2+
@@ -60,6 +60,9 @@ Systemsettings module for the cron task scheduler.
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

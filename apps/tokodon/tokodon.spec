@@ -1,9 +1,9 @@
-%global commit0 4e4437727b55c1529da590b3389b9a4bb7946eae
+%global commit0 5c1d95ba3e57e9e3963436988cef8e1508ab1129
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           tokodon
-Version:        24.08.1
+Version:        24.08.2
 Release:        1%{?dist}
 License:        GPL-2.0-only OR GPL-3.0-only AND CC0-1.0 AND LGPL-2.1-or-later
 Summary:        Kirigami-based mastodon client
@@ -92,6 +92,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

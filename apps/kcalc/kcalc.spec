@@ -1,17 +1,15 @@
-%global commit0 9a6d567f733735732787eb3b13bf7f3bb3c8c4b9
+%global commit0 fe96b02ab665d3c1d89129e9cb69dac541672681
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kcalc
 Summary:        Scientific Calculator
-Version:        24.08.1
-Release:        2%{?dist}
+Version:        24.08.2
+Release:        1%{?dist}
 
 License:        GPL-2.0-or-later
 URL:            https://invent.kde.org/utils/%{name}
 %apps_source
-
-Patch:          https://invent.kde.org/utilities/kcalc/-/commit/9bc4d3610af2bbf516566a76e39e73e5b94ce338.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
@@ -77,6 +75,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Sat Sep 14 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-2
 - pick upstream commits
 

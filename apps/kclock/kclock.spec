@@ -1,4 +1,4 @@
-%global commit0 52054e8463f604e9c44cb57328c0d48c79742e8e
+%global commit0 ec4d329e9d48db2a2790cb4561d1abbd69167f09
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 %global orig_name org.kde.kclock
 
 Name:           kclock
-Version:        24.08.1
+Version:        24.08.2
 Release:        1%{?dist}
 License:        GPLv2+ and LGPLv2.1+ and CC-BY and GPLv3+
 Summary:        Clock app for Plasma Mobile
@@ -104,6 +104,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

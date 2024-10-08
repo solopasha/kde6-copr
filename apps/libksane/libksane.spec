@@ -1,10 +1,10 @@
-%global commit0 936dc4d034417fd9f56e44c5a532f853eb57e960
+%global commit0 91482859bca43e43761adc4033cc16abc3f045ed
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    libksane
 Summary: SANE Library interface for KDE
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 License: CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
@@ -134,6 +134,9 @@ Provides internationalization files.
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

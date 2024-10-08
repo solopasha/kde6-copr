@@ -1,11 +1,11 @@
-%global commit0 0bb89725bad6e00fd362af39122d78d88e5ab7dd
+%global commit0 323dcb7dc9b2a57319ba05b29e83b9eb8011b6bb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 #global tests 1
 
 Name:    akonadi-contacts
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 Summary: The Akonadi Contacts Library
 
@@ -109,6 +109,9 @@ xvfb-run -a bash -c "%ctest"
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

@@ -1,4 +1,4 @@
-%global commit0 2dda93056d2606121203f2cabc3d388933b0109f
+%global commit0 b57168b19e9ea0573a721e30c4abea2d390239d2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 %global _lto_cflags %{nil}
 
 Name:    libkgapi
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 Summary: Library to access to Google services
 
@@ -88,6 +88,9 @@ resources.
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

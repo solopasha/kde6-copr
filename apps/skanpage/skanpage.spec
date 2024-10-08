@@ -1,10 +1,10 @@
-%global commit0 4959b6b431a73cd801d8bbff1a12daca638ba74d
+%global commit0 8edea6de0584171de25c0f1330fa9facd99ea8f6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:     skanpage
-Version:  24.08.1
-Release:  2%{?dist}
+Version:  24.08.2
+Release:  1%{?dist}
 Summary:  Utility to scan images and multi-page documents
 # For a breakdown of the licensing, see PACKAGE-LICENSING
 License:  GPLv3 and GPLv2 and CC0-1.0 and BSD
@@ -87,6 +87,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Sat Oct 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-2
 - rebuilt
 

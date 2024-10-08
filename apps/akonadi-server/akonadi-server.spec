@@ -1,4 +1,4 @@
-%global commit0 28083133c4f87e18acaa1a97f36a8ac2fe5209bb
+%global commit0 ed36957cb9f8b1ae224bb74bb38edd027952a365
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -11,7 +11,7 @@
 
 Name:    akonadi-server
 Summary: PIM Storage Service
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-KDE-Accepted-GPL AND MIT
@@ -253,6 +253,9 @@ fi
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

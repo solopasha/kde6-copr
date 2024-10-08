@@ -1,12 +1,12 @@
-%global commit0 fce410076bd03cabc7ab510dd0ca4e08ca630fac
+%global commit0 8d845ce5a73c69b7e93fcd579b6e264fa1196aee
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global base_name elisa
 
 Name:       elisa-player
-Version:    24.08.1
-Release:    2%{?dist}
+Version:    24.08.2
+Release:    1%{?dist}
 Summary:    Elisa music player
 
 # Main program LGPLv3+
@@ -14,8 +14,6 @@ Summary:    Elisa music player
 License:    LGPLv3+ and CC-BY-SA
 URL:        https://apps.kde.org/elisa
 %apps_source
-
-Patch: https://invent.kde.org/multimedia/elisa/-/commit/c9abeb97a3427eac3459c68f111b0232f98abf9b.patch
 
 # Compile Tools
 BuildRequires:  gcc-c++
@@ -101,6 +99,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.el
 %{_kf6_libdir}/elisa/
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 17 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-2
 - pick upstream commits
 

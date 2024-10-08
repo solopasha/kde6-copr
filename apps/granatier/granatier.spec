@@ -1,10 +1,10 @@
-%global commit0 a42cab7e1f4386c39f0484b7ab28730723e21e1e
+%global commit0 acc08aa8698491e6a923020b908a4837c8625507
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    granatier
 Summary: Place bombs to kill enemies and remove obstacles
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later AND GFDL-1.2-or-later
@@ -79,6 +79,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

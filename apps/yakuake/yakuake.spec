@@ -1,9 +1,9 @@
-%global commit0 3251e84465ee45f1797b98cacf096677ac4f7e97
+%global commit0 0f02b4b06908ab53d4a6cbb276c7f8aaf48653d0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    yakuake
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 Summary: A drop-down terminal emulator
 
@@ -91,6 +91,9 @@ desktop-file-validate  %{buildroot}%{_kf6_datadir}/applications/org.kde.yakuake.
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

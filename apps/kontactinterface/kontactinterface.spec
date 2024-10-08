@@ -1,9 +1,9 @@
-%global commit0 cdfbdf244ffa92ee63ddd1411143b2f4b45cae73
+%global commit0 8fb79f59d76b835d73e5bbd8b3029da5ac4a7e7a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kontactinterface
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 Summary: The Kontact Interface Library
 
@@ -69,6 +69,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

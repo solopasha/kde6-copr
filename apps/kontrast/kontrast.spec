@@ -1,9 +1,9 @@
-%global commit0 820d2349c0ff1b3f883826497c7e124fac3039e6
+%global commit0 9b9441a0e66db87d961245812a624e3bea841afb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:          kontrast
-Version:       24.08.1
+Version:       24.08.2
 Release:       1%{?dist}
 Summary:       Color contrast checker
 # BSD, CC0 are only for build files
@@ -76,6 +76,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

@@ -1,9 +1,9 @@
-%global commit0 feb11392cf60f080cf379d3851a1f67a9ec5c918
+%global commit0 8b2716c30c39a80c46a2911a45d74827c1ed8557
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           minuet
-Version:        24.08.1
+Version:        24.08.2
 Release:        1%{?dist}
 Summary:        A KDE Software for Music Education
 #OFL license for bundled Bravura.otf font
@@ -105,6 +105,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/org.kde.%{name}.desk
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

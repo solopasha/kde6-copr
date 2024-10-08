@@ -1,10 +1,10 @@
-%global commit0 0bb4cee498354a52560fc4ed617aa22e65c02054
+%global commit0 bb83fbdfc2aa8ec7fc21296b43fdb7c279f7b6ee
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    libkdegames
 Summary: Common code and data for many KDE games
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 
 # libKF5KDEGames is LGPLv2, libKF5KDEGamesPrivate is GPLv2+
@@ -106,6 +106,9 @@ Requires: kf6-kwidgetsaddons-devel
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 

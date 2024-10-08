@@ -1,9 +1,9 @@
-%global commit0 f8c0d466cb8fca0bf33d6b40d960acf05c248fbe
+%global commit0 3445bb8c8d246f6fe3154c854e772ec0725a6e84
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kaccounts-providers
-Version: 24.08.1
+Version: 24.08.2
 Release: 1%{?dist}
 Summary: Additional service providers for KAccounts framework
 License: GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -67,6 +67,9 @@ Supplements:    kaccounts-integration-qt6
 
 
 %changelog
+* Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
+- Update to 24.08.2
+
 * Tue Sep 10 2024 Pavel Solovev <daron439@gmail.com> - 24.08.1-1
 - Update to 24.08.1
 
