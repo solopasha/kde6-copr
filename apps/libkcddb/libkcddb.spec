@@ -73,6 +73,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
+rm po/sl/docs/kcontrol/cddbretrieval5/index.docbook
 
 
 %build
