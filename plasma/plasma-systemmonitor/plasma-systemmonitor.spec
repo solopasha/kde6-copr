@@ -1,9 +1,9 @@
-%global commit0 cceac60e8f107e5cc7e08f73d7fc2b4c42d152ac
+%global commit0 87c99566514dc8bc0e33761c681dda2500152470
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    plasma-systemmonitor
-Version: 6.2.0
+Version: 6.2.1
 Release: 1%{?dist}
 Summary: An application for monitoring system resources
 
@@ -74,6 +74,9 @@ resources.
 %{_kf6_qmldir}/org/kde/ksysguard/
 
 %changelog
+* Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1
+- Update to 6.2.1
+
 * Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
 - Update to 6.2.0
 

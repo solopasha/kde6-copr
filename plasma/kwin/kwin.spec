@@ -1,11 +1,11 @@
-%global commit0 2a5e2227de54f2f667649fd08ca3d034b805daab
+%global commit0 7a828550b3abcbda5081052504663f3969134157
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %bcond x11 1
 
 Name:    kwin
-Version: 6.2.0
+Version: 6.2.1
 Release: 1%{?dist}
 Summary: KDE Window manager
 
@@ -278,6 +278,9 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 
 
 %changelog
+* Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1
+- Update to 6.2.1
+
 * Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
 - Update to 6.2.0
 

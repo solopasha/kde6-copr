@@ -9,7 +9,7 @@ process_spec() {
     fi
 
     oldCommit="$(sed -n 's/%global[[:space:]]\+\bcommit0\b[[:space:]]\+\(.*\)/\1/p' "$1")"
-    newCommit="$(grep "^${baseName};" plasma-6.2.0-release-data | awk -F\; '{print $3}')"
+    newCommit="$(curl "https://invent.kde.org/api/v4/projects/plasma%2F${baseName}/repository/tags" | jq -r '.[] | select(.name=="v6.2.1") | .commit.id')"
 
     sed -i "s/$oldCommit/$newCommit/" "$1"
 }

@@ -1,11 +1,11 @@
-%global commit0 82c60898abc82c046c881e3c5ac2f3ccfce010d4
+%global commit0 b11831929bf513eb84a69b748c8984064461e4b6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global  base_name breeze
 
 Name:    plasma-breeze
-Version: 6.2.0
+Version: 6.2.1
 Release: 1%{?dist}
 Summary: Artwork, styles and assets for the Breeze visual style for the Plasma Desktop
 
@@ -152,6 +152,9 @@ popd
 %{_kf6_datadir}/icons/breeze_cursors/index.theme
 
 %changelog
+* Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1
+- Update to 6.2.1
+
 * Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
 - Update to 6.2.0
 

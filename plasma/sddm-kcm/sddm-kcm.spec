@@ -1,9 +1,9 @@
-%global commit0 e1e35c4f96a7185f1f6d00b093089a1ca4e962aa
+%global commit0 45400f84d039535efabfeb25334f5c9f995b00a1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    sddm-kcm
-Version: 6.2.0
+Version: 6.2.1
 Release: 1%{?dist}
 Summary: SDDM KDE configuration module
 
@@ -68,6 +68,9 @@ SDDM Display Manager
 %{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_sddm.so
 
 %changelog
+* Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1
+- Update to 6.2.1
+
 * Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
 - Update to 6.2.0
 

@@ -1,9 +1,9 @@
-%global commit0 360d495166fffaf2f51b2ac1dc1afebf83cb25ea
+%global commit0 1cdd5e87cb72f381e99b314652a6412931660908
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    powerdevil
-Version: 6.2.0
+Version: 6.2.1
 Release: 1%{?dist}
 Summary: Manages the power consumption settings of a Plasma Shell
 
@@ -131,6 +131,9 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevil{configcommonprivate,core,ui}.so
 
 
 %changelog
+* Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1
+- Update to 6.2.1
+
 * Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
 - Update to 6.2.0
 

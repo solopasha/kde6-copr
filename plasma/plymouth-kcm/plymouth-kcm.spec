@@ -1,4 +1,4 @@
-%global commit0 3aa98536998ea79bebb0ab865ba7f3be6a20b94c
+%global commit0 a738c653e386114baced98eb5e9abae496c1d66e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    plymouth-kcm
 Summary: Plymouth configuration module for systemsettings
-Version: 6.2.0
+Version: 6.2.1
 Release: 1%{?dist}
 
 License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later
@@ -69,6 +69,9 @@ plymouth splash screen.
 
 
 %changelog
+* Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1
+- Update to 6.2.1
+
 * Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
 - Update to 6.2.0
 

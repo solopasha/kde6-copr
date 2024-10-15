@@ -1,9 +1,9 @@
-%global commit0 0bc9007ea9fda66da167067f780a61e5973518ef
+%global commit0 5f3ca73c097251c258a7ede7c79d5388d6de4474
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kscreenlocker
-Version:        6.2.0
+Version:        6.2.1
 Release:        1%{?dist}
 Summary:        Library and components for secure lock screen architecture
 
@@ -91,6 +91,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1
+- Update to 6.2.1
+
 * Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
 - Update to 6.2.0
 

@@ -1,10 +1,10 @@
-%global commit0 1745476691e41e77b5cd87650cf6e10a3f172f8d
+%global commit0 0ace620cb15d49eec202c3cc65a1f47d8730a644
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    plasma-browser-integration
 Summary: %{name} provides components necessary to integrate browsers into the Plasma Desktop
-Version: 6.2.0
+Version: 6.2.1
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later AND GPL-3.0-or-later AND MIT
@@ -84,6 +84,9 @@ https://community.kde.org/Plasma/Browser_Integration
 
 
 %changelog
+* Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1
+- Update to 6.2.1
+
 * Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
 - Update to 6.2.0
 

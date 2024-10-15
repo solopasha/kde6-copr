@@ -1,10 +1,10 @@
-%global commit0 09a1004a8a573393368ecfccf46bf6f6626e7016
+%global commit0 4c874294d6ea614b3ef048850fae4b1d1bb29401
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    plasma-disks
 Summary: Hard disk health monitoring for KDE Plasma
-Version: 6.2.0
+Version: 6.2.1
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-3.0-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -68,6 +68,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/kcm_disks.desktop
 %{_kf6_datadir}/polkit-1/actions/org.kde.kded.smart.policy
 
 %changelog
+* Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1
+- Update to 6.2.1
+
 * Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
 - Update to 6.2.0
 

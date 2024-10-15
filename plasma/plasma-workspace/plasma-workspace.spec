@@ -1,4 +1,4 @@
-%global commit0 ba67ab37fca0ddc1f61b1a06ff748449e6cf3f5b
+%global commit0 b2b9c196b8aa3a78e3847e923f2f53f710ac2806
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,8 +6,8 @@
 
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
-Version: 6.2.0
-Release: 3%{?dist}
+Version: 6.2.1
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
@@ -34,8 +34,6 @@ Source42:       waitforkded.conf
 Patch106:       plasma-workspace-6.0.0-enable-open-terminal-action.patch
 # default to enable the lock/logout actions
 Patch107:       plasma-workspace-6.0.0-enable-lock-logout-action.patch
-# /usr/bin/qtpaths-qt6
-Patch108:       qtpaths-binary-name.patch
 
 BuildRequires:  zlib-devel
 BuildRequires:  libGL-devel
@@ -437,12 +435,7 @@ BuildArch: noarch
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1 -N
-%if %{?fedora} >= 40
-%autopatch -p1
-%else
-%autopatch -p1 -M 108
-%endif
+%autosetup -n %{sourcerootdir} -p1
 
 # Populate initial lookandfeel package
 cp -a lookandfeel/org.kde.breeze lookandfeel/org.fedoraproject.fedora
@@ -719,6 +712,9 @@ fi
 
 
 %changelog
+* Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1
+- Update to 6.2.1
+
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-3
 - rebuilt
 

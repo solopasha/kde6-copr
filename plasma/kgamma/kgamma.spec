@@ -1,11 +1,11 @@
-%global commit0 8b0cefa4eea11a70df1cf97132250196351d1f10
+%global commit0 31eeca9f08f604a718b9729ce6109e7b2ba6cf8b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kgamma
 Summary: A monitor calibration tool
 Epoch:   1
-Version: 6.2.0
+Version: 6.2.1
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later
@@ -59,6 +59,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
+* Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 1:6.2.1-1
+- Update to 6.2.1
+
 * Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 1:6.2.0-1
 - Update to 6.2.0
 

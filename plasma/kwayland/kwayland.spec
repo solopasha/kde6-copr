@@ -1,9 +1,9 @@
-%global commit0 f74222b80cd2cf4a7347b13a3df26be9a036c13d
+%global commit0 f0bc5ab43db6d55ffc1c3426e0ba123b231f201f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:       kwayland
-Version:    6.2.0
+Version:    6.2.1
 Release:    1%{?dist}
 Summary:    KDE Frameworks 6 library that wraps Client and Server Wayland libraries
 
@@ -77,6 +77,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/pkgconfig/KWaylandClient.pc
 
 %changelog
+* Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1
+- Update to 6.2.1
+
 * Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
 - Update to 6.2.0
 

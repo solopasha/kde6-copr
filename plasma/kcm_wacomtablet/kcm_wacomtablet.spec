@@ -1,4 +1,4 @@
-%global commit0 083cf9be7d622224cc7597028fd0a6d68a6850e6
+%global commit0 b6444aa51040f27d9778290dd5360ae479c38809
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    kcm_wacomtablet
 Summary: KDE Control module for Wacom Graphictablets
-Version: 6.2.0
+Version: 6.2.1
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -100,6 +100,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 
 
 %changelog
+* Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1
+- Update to 6.2.1
+
 * Thu Oct 03 2024 Pavel Solovev <daron439@gmail.com> - 6.2.0-1
 - Update to 6.2.0
 
