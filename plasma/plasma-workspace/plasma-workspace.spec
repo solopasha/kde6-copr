@@ -464,8 +464,6 @@ EOL
 rm -v %{buildroot}%{_kf6_bindir}/startplasma-x11 %{buildroot}%{_datadir}/xsessions/plasmax11.desktop
 %endif
 
-rm %{buildroot}%{_kf6_libdir}/libklipper.so
-
 chrpath --delete %{buildroot}%{_kf6_qtplugindir}/phonon_platform/kde.so
 
 # General startplasma symlink
@@ -588,6 +586,7 @@ fi
 %{_kf6_datadir}/applications/org.kde.plasmawindowed.desktop
 %{_kf6_datadir}/applications/org.kde.plasma-fallback-session-save.desktop
 %{_kf6_datadir}/applications/org.kde.kfontinst.desktop
+%{_kf6_datadir}/applications/org.kde.klipper.desktop
 %{_kf6_datadir}/kio/servicemenus/installfont.desktop
 %{_kf6_datadir}/qlogging-categories6/*.categories
 %{_kf6_datadir}/xdg-desktop-portal/kde-portals.conf
@@ -673,6 +672,7 @@ fi
 %{_libdir}/libtaskmanager.so
 %{_libdir}/libplasma-geolocation-interface.so
 %{_libdir}/libkworkspace6.so
+%{_libdir}/libklipper.so
 %dir %{_includedir}/plasma/
 %{_includedir}/colorcorrect/
 %{_includedir}/kworkspace6/
