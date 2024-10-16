@@ -1,4 +1,4 @@
-%global commit0 b2b9c196b8aa3a78e3847e923f2f53f710ac2806
+%global commit0 52bb8daeccfddde002f6d778433ec282472d3296
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,8 +6,8 @@
 
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
-Version: 6.2.1
-Release: 3%{?dist}
+Version: 6.2.1.1
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
@@ -28,8 +28,6 @@ Source41:       spice-vdagent.conf
 Source42:       waitforkded.conf
 
 ## upstream Patches
-Patch:          https://invent.kde.org/plasma/plasma-workspace/-/commit/83aa79af1e624d8978593e0f8724e3b42d8365ac.patch
-Patch:          https://invent.kde.org/plasma/plasma-workspace/-/commit/ec3ae6ab71481a5ffd4202ae360806dd0072da22.patch
 
 ## downstream Patches
 # default to enable open terminal action
@@ -714,6 +712,9 @@ fi
 
 
 %changelog
+* Wed Oct 16 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1.1-1
+- Update to 6.2.1.1
+
 * Wed Oct 16 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-3
 - pick upstream commits
 
