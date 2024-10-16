@@ -7,7 +7,7 @@
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
 Version: 6.2.1
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
@@ -28,14 +28,14 @@ Source41:       spice-vdagent.conf
 Source42:       waitforkded.conf
 
 ## upstream Patches
+Patch:          https://invent.kde.org/plasma/plasma-workspace/-/commit/83aa79af1e624d8978593e0f8724e3b42d8365ac.patch
+Patch:          https://invent.kde.org/plasma/plasma-workspace/-/commit/ec3ae6ab71481a5ffd4202ae360806dd0072da22.patch
 
 ## downstream Patches
 # default to enable open terminal action
 Patch106:       plasma-workspace-6.0.0-enable-open-terminal-action.patch
 # default to enable the lock/logout actions
 Patch107:       plasma-workspace-6.0.0-enable-lock-logout-action.patch
-
-Patch108:       revert-5503d08b.patch
 
 BuildRequires:  zlib-devel
 BuildRequires:  libGL-devel
@@ -714,6 +714,9 @@ fi
 
 
 %changelog
+* Wed Oct 16 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-3
+- pick upstream commits
+
 * Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-2
 - revert 5503d08b to fix slow startup
 
