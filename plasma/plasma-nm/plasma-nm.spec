@@ -5,7 +5,7 @@
 Name:    plasma-nm
 Summary: Plasma for managing network connections
 Version: 6.2.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
 URL:     https://invent.kde.org/plasma/%{name}
@@ -48,6 +48,7 @@ BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  pkgconfig(ModemManager) >= 1.0.0
 BuildRequires:  pkgconfig(libnm) >= 1.0.0
 BuildRequires:  pkgconfig(mobile-broadband-provider-info)
+Requires:       mobile-broadband-provider-info
 
 %if %{with openconnect}
 BuildRequires:  pkgconfig(openconnect) >= 4.00
@@ -283,6 +284,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %endif
 
 %changelog
+* Fri Oct 18 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-2
+- add missing requires
+
 * Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1
 - Update to 6.2.1
 
