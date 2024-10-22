@@ -1,5 +1,5 @@
 diff --git a/llm/generate/gen_common.sh b/llm/generate/gen_common.sh
-index 3825c155..434b99ed 100644
+index e58c2d40..434b99ed 100644
 --- a/llm/generate/gen_common.sh
 +++ b/llm/generate/gen_common.sh
 @@ -63,21 +63,20 @@ git_module_setup() {
@@ -27,18 +27,10 @@ index 3825c155..434b99ed 100644
      # remove unnecessary build artifacts
      rm -f ${BUILD_DIR}/bin/ggml-common.h ${BUILD_DIR}/bin/ggml-metal.metal
  }
-@@ -133,13 +132,5 @@ install() {
+@@ -133,5 +132,5 @@ install() {
  
  # Keep the local tree clean after we're done with the build
  cleanup() {
--    (cd ${LLAMACPP_DIR}/ && git checkout CMakeLists.txt)
--
--    if [ -n "$(ls -A ../patches/*.diff)" ]; then
--        for patch in ../patches/*.diff; do
--            for file in $(grep "^+++ " ${patch} | cut -f2 -d' ' | cut -f2- -d/); do
--                (cd ${LLAMACPP_DIR}; git checkout ${file})
--            done
--        done
--    fi
+-    git submodule update --force ${LLAMACPP_DIR}
 +    :
  }
