@@ -1,10 +1,10 @@
-%global commit0 6392a2f34fa5823f445d083f989cf9503bf253ff
+%global commit0 4b67fd807c0331b4c44f64a3ee0c09138118c436
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    plasma-desktop
 Summary: Plasma Desktop shell
-Version: 6.2.1
+Version: 6.2.2
 Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -301,6 +301,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_datadir}/sddm/themes/01-breeze-fedora/
 
 %changelog
+* Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
+- Update to 6.2.2
+
 * Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1
 - Update to 6.2.1
 

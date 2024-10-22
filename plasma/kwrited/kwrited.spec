@@ -1,10 +1,10 @@
-%global commit0 048fc8cf5a7fa8fa6cda9edbaae1939c1b289875
+%global commit0 8881c82477c3a5f7a4eede013cd3eacc89de135e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kwrited
 Summary: KDE Write Daemon
-Version: 6.2.1
+Version: 6.2.2
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later
@@ -47,6 +47,9 @@ Conflicts:      kde-workspace < 5.0.0-1
 %{_kf6_datadir}/knotifications6/kwrited.notifyrc
 
 %changelog
+* Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
+- Update to 6.2.2
+
 * Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1
 - Update to 6.2.1
 

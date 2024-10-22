@@ -1,10 +1,10 @@
-%global commit0 e05af8411e42621e1c1c098b34a8f06eb5ba9c8e
+%global commit0 9ab55624dd29cb67ab798b2297c30d7f98e9b948
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    libksysguard
 Summary: Library for managing processes running on the system
-Version: 6.2.1
+Version: 6.2.2
 Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -123,6 +123,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libprocesscore.so
 
 %changelog
+* Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
+- Update to 6.2.2
+
 * Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1
 - Update to 6.2.1
 

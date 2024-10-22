@@ -1,4 +1,4 @@
-%global commit0 15339feefac8fdc269fc72acabf461c436a64c7e
+%global commit0 aac8b2924b99c87192900c94f92469f80b10347e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    plasma-drkonqi
 Summary: DrKonqi crash handler for KF6/Plasma6
-Version: 6.2.1
+Version: 6.2.2
 Release: 1%{?dist}
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{base_name}
@@ -117,6 +117,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_userunitdir}/timers.target.wants/drkonqi-*
 
 %changelog
+* Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
+- Update to 6.2.2
+
 * Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1
 - Update to 6.2.1
 

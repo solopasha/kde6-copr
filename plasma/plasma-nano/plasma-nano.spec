@@ -1,11 +1,11 @@
-%global commit0 b73137dcd37f79ac01002c558fde9cc07ea672d5
+%global commit0 7d832bdd206e4ba64decf3414d268dee6b0b4ca5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global orig_name org.kde.plasma.nano
 
 Name:    plasma-nano
-Version: 6.2.1
+Version: 6.2.2
 Release: 1%{?dist}
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND MIT
 URL:     https://invent.kde.org/plasma/plasma-nano
@@ -70,6 +70,9 @@ Requires:       qt6-qtdeclarative%{?_isa}
 
 
 %changelog
+* Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
+- Update to 6.2.2
+
 * Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1
 - Update to 6.2.1
 

@@ -1,10 +1,10 @@
-%global commit0 8ef40d1ab81c1d59a5f8e1bc31a4be7735138790
+%global commit0 05144cd6f5951b6a4f6d1f3cb735d2043bb32589
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kscreen
 Epoch:   1
-Version: 6.2.1
+Version: 6.2.2
 Release: 1%{?dist}
 Summary: KDE Display Management software
 
@@ -72,6 +72,9 @@ KCM and KDED modules for managing displays in KDE.
 
 
 %changelog
+* Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 1:6.2.2-1
+- Update to 6.2.2
+
 * Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 1:6.2.1-1
 - Update to 6.2.1
 

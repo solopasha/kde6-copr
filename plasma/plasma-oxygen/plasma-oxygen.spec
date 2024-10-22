@@ -1,11 +1,11 @@
-%global commit0 e4961dabbc4062a2f4e897a1dba40355e6637811
+%global commit0 213ddbb504e9406ad5545a00646ec6d9d877d482
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global base_name oxygen
 
 Name:    plasma-%{base_name}
-Version: 6.2.1
+Version: 6.2.2
 Release: 1%{?dist}
 Summary: Plasma and Qt widget style and window decorations for Plasma
 
@@ -162,6 +162,9 @@ popd
 
 
 %changelog
+* Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
+- Update to 6.2.2
+
 * Tue Oct 15 2024 Pavel Solovev <daron439@gmail.com> - 6.2.1-1
 - Update to 6.2.1
 
