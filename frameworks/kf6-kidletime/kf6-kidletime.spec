@@ -6,7 +6,7 @@
 
 Name:		kf6-%{framework}
 Version:	6.7.0
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 integration module for idle time detection
 License:	CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.1-or-later AND MIT
 URL:		https://invent.kde.org/frameworks/%{framework}
@@ -28,12 +28,21 @@ BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	wayland-devel
 BuildRequires:	cmake(PlasmaWaylandProtocols)
 BuildRequires:	wayland-protocols-devel
-BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
-Requires:	kf6-filesystem
+
+Requires:	    kf6-filesystem
+Requires:       %{name}-x11%{?_isa} = %{version}-%{release}
 
 %description
 KDE Frameworks 6 Tier 1 integration module for idle time detection.
+
+%package	x11
+Summary:	Idle time detection plugins for X11 environments
+Requires:	%{name}%{?_isa} = %{version}-%{release}
+Conflicts:	%{name} < 6.7.0-2
+
+%description	x11
+The %{name}-x11 package contains plugins for applications using
+%{name} to detect idle time on X11 environments.
 
 %package	devel
 Summary:	Development files for %{name}
@@ -61,10 +70,12 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6IdleTime.so.6
 %{_kf6_libdir}/libKF6IdleTime.so.%{version_no_git}
+%{_kf6_libdir}/libKF6IdleTime.so.6
 %dir %{_kf6_plugindir}/org.kde.kidletime.platforms/
 %{_kf6_plugindir}/org.kde.kidletime.platforms/KF6IdleTimeWaylandPlugin.so
+
+%files x11
 %{_kf6_plugindir}/org.kde.kidletime.platforms/KF6IdleTimeXcbPlugin0.so
 %{_kf6_plugindir}/org.kde.kidletime.platforms/KF6IdleTimeXcbPlugin1.so
 
@@ -75,6 +86,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6IdleTime.so
 
 %changelog
+* Tue Oct 29 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-2
+- Adopt Fedora changes
+
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 
