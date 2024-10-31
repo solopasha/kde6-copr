@@ -4,7 +4,7 @@
 
 Name:           angelfish
 Version:        24.08.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Plasma Mobile minimal web browser
 
 # Cargo license summary:
@@ -99,6 +99,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{
 %{_kf6_metainfodir}/org.kde.%{name}.metainfo.xml
 
 %changelog
+* Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-2
+- rebuilt
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

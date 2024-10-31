@@ -4,7 +4,7 @@
 
 Name:    kontactinterface
 Version: 24.08.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: The Kontact Interface Library
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
@@ -69,6 +69,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-2
+- rebuilt
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

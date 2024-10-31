@@ -7,7 +7,7 @@
 Name:    kcm_wacomtablet
 Summary: KDE Control module for Wacom Graphictablets
 Version: 6.2.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/wacomtablet
@@ -100,6 +100,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 
 
 %changelog
+* Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
+- rebuilt
+
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

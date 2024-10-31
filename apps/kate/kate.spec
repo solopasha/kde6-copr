@@ -7,7 +7,7 @@
 Name:    kate
 Summary: Advanced Text Editor
 Version: 24.08.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 # kwrite LGPLv2+
 # kate: app LGPLv2, plugins, LGPLv2 and LGPLv2+ and GPLv2+
@@ -184,6 +184,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-2
+- rebuilt
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

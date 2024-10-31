@@ -6,7 +6,7 @@
 
 Name:    kf6-%{framework}
 Version: 6.7.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Classes to read and interact with KColorScheme
 License: BSD-2-Clause and CC0-1.0 and LGPL-2.0-or-later and LGPL-2.1-only and LGPL-3.0-only and LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/frameworks/%{framework}
@@ -63,6 +63,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6ColorScheme.so
 
 %changelog
+* Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-2
+- rebuilt
+
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

@@ -6,7 +6,7 @@
 
 Name:    kf6-%{framework}
 Version: 6.7.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: KDE Frameworks 6 Tier 3 addon for creating configuration dialogs
 
 # The following licenses are in LICENSES but go unused: BSD-3-Clause, MIT
@@ -80,6 +80,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6ConfigWidgets/
 
 %changelog
+* Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-2
+- rebuilt
+
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

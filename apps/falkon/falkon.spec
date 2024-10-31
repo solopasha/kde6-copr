@@ -7,7 +7,7 @@
 
 Name:           falkon
 Version:        24.08.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Modern web browser
 
 # Files in src/lib/opensearch and src/lib/3rdparty are GPLv2+
@@ -182,6 +182,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.fa
 
 
 %changelog
+* Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-2
+- rebuilt
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

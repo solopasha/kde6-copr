@@ -4,7 +4,7 @@
 
 Name:           itinerary
 Version:        24.08.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Itinerary and boarding pass management application
 
 License:        Apache-2.0 and BSD-3-Clause and LGPL-2.0-or-later AND CC0-1.0
@@ -103,6 +103,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_qt6_qmldir}/org/kde/solidextras/
 
 %changelog
+* Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-2
+- rebuilt
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

@@ -5,7 +5,7 @@
 Name:           dolphin
 Summary:        KDE File Manager
 Version:        24.08.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 License:        GPLv2+
 URL:            https://invent.kde.org/system/dolphin
@@ -155,6 +155,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-2
+- rebuilt
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

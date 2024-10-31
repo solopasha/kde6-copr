@@ -7,7 +7,7 @@
 
 Name:           krdp
 Version:        6.2.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Desktop sharing using RDP
 
 License:        LGPL-2.1-only OR LGPL-3.0-only
@@ -113,6 +113,9 @@ Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
+- rebuilt
+
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

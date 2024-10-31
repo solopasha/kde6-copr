@@ -4,7 +4,7 @@
 
 Name:    kosmindoormap
 Version: 24.08.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: OSM multi-floor indoor map renderer
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-3.0-or-later AND MIT AND ODbL-1.0
@@ -94,6 +94,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKOSMIndoorRouting.so
 
 %changelog
+* Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-2
+- rebuilt
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

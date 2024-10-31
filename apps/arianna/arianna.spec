@@ -1,10 +1,10 @@
-%global commit0 b7749c653cf403348c29adf8645a0cdf8ad8154c
+%global commit0 726709fc17cd1f28d0070bbd0a1000a87cb30069
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:          arianna
 Version:       24.08.2
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       EPub Reader for mobile devices
 # Complete license breakdown can be found in the "LICENSE-BREAKDOWN" file.
 License:       GPLv3
@@ -88,6 +88,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.ar
 %{_kf6_metainfodir}/org.kde.arianna.appdata.xml
 
 %changelog
+* Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-2
+- rebuilt
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

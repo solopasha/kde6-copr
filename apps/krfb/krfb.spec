@@ -5,7 +5,7 @@
 Name:    krfb
 Summary: Desktop sharing
 Version: 24.08.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPL-2.0-only AND LGPL-2.1-only AND GFDL-1.2-no-invariants-only
 URL:     https://www.kde.org/applications/network/krfb/
@@ -108,6 +108,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.xml
 
 
 %changelog
+* Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-2
+- rebuilt
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 
