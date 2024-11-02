@@ -1,11 +1,11 @@
-%global commit0 acd2bba5b1e999d1cd759a7f4c684c206f2da48a
+%global commit0 bf1881461e327c1e06267599a63f7f05fb53a196
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global		framework kitemmodels
 
 Name:		kf6-%{framework}
-Version:	6.7.0
+Version:	6.8.0
 Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with item models
 
@@ -68,6 +68,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

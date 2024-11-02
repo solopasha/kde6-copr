@@ -1,4 +1,4 @@
-%global commit0 dde6e984ba12bcebda64e8ab8f952d64cc3c7b34
+%global commit0 cee6d98ee7096f2d1fb55d361d355c002d626655
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 %global framework kplotting
 
 Name:           kf6-%{framework}
-Version:        6.7.0
+Version:        6.8.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon for plotting
 License:        GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -61,6 +61,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Plotting.so
 
 %changelog
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

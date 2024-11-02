@@ -1,11 +1,11 @@
-%global commit0 353f0eaa9bbac1684757f714cf1301629e85e290
+%global commit0 79dd16ab4feafbbbe61eb639285f0ff4296613d7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework knewstuff
 
 Name:    kf6-%{framework}
-Version: 6.7.0
+Version: 6.8.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 module for downloading application assets
 License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -89,6 +89,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

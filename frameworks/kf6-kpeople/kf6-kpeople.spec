@@ -1,11 +1,11 @@
-%global commit0 de3683b0b2b6f84231295e44a65e9505ac564b97
+%global commit0 cb4591075652b778fbbc1529037f2ab49b42bc0d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kpeople
 
 Name:    kf6-%{framework}
-Version: 6.7.0
+Version: 6.8.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 library for contact and people aggregation
 
@@ -78,6 +78,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6People/
 
 %changelog
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

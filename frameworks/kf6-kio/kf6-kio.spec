@@ -1,12 +1,12 @@
-%global commit0 3e5648b542e16458ba8401fb352e1db2d11328b1
+%global commit0 20253d19805688036e6d5720a53546b23f80da06
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kio
 
 Name:    kf6-%{framework}
-Version: 6.7.0
-Release: 2%{?dist}
+Version: 6.8.0
+Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 solution for filesystem abstraction
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -58,7 +58,6 @@ BuildRequires:  qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  cmake(Qt6UiPlugin)
 BuildRequires:  cmake(Qt6Qml)
-BuildRequires:  cmake(Qt6Core5Compat)
 
 Requires:       %{name}-core%{?_isa} = %{version}-%{release}
 Requires:       %{name}-widgets%{?_isa} = %{version}-%{release}
@@ -217,6 +216,9 @@ Recommends:     switcheroo-control
 %{_kf6_libdir}/libkuriikwsfiltereng_private.so
 
 %changelog
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-2
 - rebuilt
 

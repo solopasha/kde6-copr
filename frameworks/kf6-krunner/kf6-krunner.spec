@@ -1,11 +1,11 @@
-%global commit0 199240cbcda9f8f5871d2cc4015bfb10f47aa018
+%global commit0 3186b1e172e5b42a33a826c092795257f33bcf21
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework krunner
 
 Name:    kf6-%{framework}
-Version: 6.7.0
+Version: 6.8.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 solution with parallelized query system
 
@@ -71,6 +71,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Runner.so
 
 %changelog
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

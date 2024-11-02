@@ -1,11 +1,11 @@
-%global commit0 90111b109b2bb586b332dff6f27e618baac4481a
+%global commit0 68686585ca564a5760061b79b8064fdd5f5183a2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kdesu
 
 Name:    kf6-%{framework}
-Version: 6.7.0
+Version: 6.8.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 integration with su
 
@@ -71,6 +71,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6Su/
 
 %changelog
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

@@ -1,12 +1,12 @@
-%global commit0 9f3e216b087e025469040d5b2c42471020ad99bd
+%global commit0 4a0ed807bd917a0689e7e080de58690edf39fe11
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kguiaddons
 
 Name:		kf6-%{framework}
-Version:	6.7.0
-Release:	2%{?dist}
+Version:	6.8.0
+Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon with various classes on top of QtGui
 
 License:	BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only
@@ -74,6 +74,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-2
 - rebuilt
 

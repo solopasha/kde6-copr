@@ -1,11 +1,11 @@
-%global commit0 14939114e81ad3243257e9cee7d4674c21a0ac34
+%global commit0 48312f07a9bf460b542035981f15e7dda1992817
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global		framework ktexttemplate
 
 Name:		kf6-%{framework}
-Version:	6.7.0
+Version:	6.8.0
 Release:	1%{?dist}
 Summary:	Separates the structure of documents from their data
 License:	CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later
@@ -60,6 +60,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6TextTemplate.so
 
 %changelog
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

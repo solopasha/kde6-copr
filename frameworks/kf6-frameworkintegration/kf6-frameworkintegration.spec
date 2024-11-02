@@ -1,11 +1,11 @@
-%global commit0 975b91bb3218f3f63f00fba8482fcdb5af949adc
+%global commit0 c2ba3e946ca8a7516651717d59066b7983b4c8c5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework frameworkintegration
 
 Name:    kf6-%{framework}
-Version: 6.7.0
+Version: 6.8.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 4 workspace and cross-framework integration plugins
 License: CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
@@ -89,6 +89,9 @@ The %{name}-devel package contains files to develop for %{name}.
 %{_kf6_libdir}/cmake/KF6FrameworkIntegration/
 
 %changelog
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

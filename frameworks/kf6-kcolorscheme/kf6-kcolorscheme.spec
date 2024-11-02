@@ -1,12 +1,12 @@
-%global commit0 2e234dc82939e4d9be944e06c6084a82e0211eac
+%global commit0 c3a353138868a60298c688276fc57eed221499d4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kcolorscheme
 
 Name:    kf6-%{framework}
-Version: 6.7.0
-Release: 2%{?dist}
+Version: 6.8.0
+Release: 1%{?dist}
 Summary: Classes to read and interact with KColorScheme
 License: BSD-2-Clause and CC0-1.0 and LGPL-2.0-or-later and LGPL-2.1-only and LGPL-3.0-only and LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/frameworks/%{framework}
@@ -63,6 +63,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6ColorScheme.so
 
 %changelog
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-2
 - rebuilt
 

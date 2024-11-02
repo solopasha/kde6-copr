@@ -1,11 +1,11 @@
-%global commit0 1bde569c0adca210241e807d377c196fb3b5837c
+%global commit0 aa043a1c0f9dd8d6c411140957d0af9e82bc1062
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework knotifyconfig
 
 Name:    kf6-%{framework}
-Version: 6.7.0
+Version: 6.8.0
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 module for KNotify configuration
 
@@ -67,6 +67,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6NotifyConfig.so
 
 %changelog
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 
