@@ -1,6 +1,6 @@
 %global commit0 ab894cc76742a4ff69b57843175a6d13bfd63811
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           kscreenlocker
 Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -42,6 +42,7 @@ BuildRequires:  pkgconfig(xi)
 
 BuildRequires:  libXcursor-devel
 BuildRequires:  pam-devel
+BuildRequires:  /usr/bin/loginctl
 
 %description
 %{summary}.
