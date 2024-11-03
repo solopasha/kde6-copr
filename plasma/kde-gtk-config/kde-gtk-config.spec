@@ -11,10 +11,6 @@ License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-# upstream patches
-
-## upstreamable patches
-
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  qt6-qtbase-devel
@@ -63,16 +59,17 @@ appearance of GTK apps in KDE.
 
 %files
 %license LICENSES/*.txt
-%{_libexecdir}/gtk3_preview
-%{_libdir}/kconf_update_bin/gtk_theme
-%{_libdir}/kconf_update_bin/remove_deprecated_gtk4_option
+%{_datadir}/kcm-gtk-module/
 %{_datadir}/kconf_update/gtkconfig.upd
 %{_datadir}/kconf_update/remove_window_decorations_from_gtk_css.sh
+%{_datadir}/qlogging-categories6/kde-gtk-config.categories
+%{_datadir}/themes/Breeze/window_decorations.css
 %{_kf6_plugindir}/kded/gtkconfig.so
 %{_libdir}/gtk-3.0/modules/libcolorreload-gtk-module.so
 %{_libdir}/gtk-3.0/modules/libwindow-decorations-gtk-module.so
-%{_datadir}/themes/Breeze/window_decorations.css
-%{_datadir}/kcm-gtk-module/
+%{_libdir}/kconf_update_bin/gtk_theme
+%{_libdir}/kconf_update_bin/remove_deprecated_gtk4_option
+%{_libexecdir}/gtk3_preview
 
 
 %changelog
