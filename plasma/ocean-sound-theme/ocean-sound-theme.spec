@@ -1,10 +1,10 @@
-%global commit0 3768ecef1441f40437f871dfb98cd0497ff42b22
+%global commit0 3e80c74688ca4e6ede5bbac4033f6ac588b71f64
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           ocean-sound-theme
 Summary:        Ocean Sound Theme for Plasma
-Version:        6.2.2
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 BuildArch:      noarch
 License:        CC0-1.0 AND BSD-2-Clause AND CC-BY-SA-4.0
@@ -40,6 +40,7 @@ Requires:       kf6-filesystem
 %{_kf6_datadir}/sounds/ocean/
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

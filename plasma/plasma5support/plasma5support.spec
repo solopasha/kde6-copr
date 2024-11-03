@@ -1,10 +1,10 @@
-%global commit0 98360974eb771fe5afdae9f85eb4213fb9e165eb
+%global commit0 49dba3f8e32ca108096c05d6c74fbe5c35b4e2a8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    plasma5support
 Summary: Support components for porting from KF5/Qt5 to KF6/Qt6
-Version: 6.2.2
+Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -18,28 +18,41 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  qt6-qtbase-devel
 
 BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Sql)
-BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  qt6-qtbase-private-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6IdleTime)
 BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6NetworkManagerQt)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6Solid)
 
 BuildRequires:  cmake(KSysGuard)
 BuildRequires:  cmake(Plasma)
+BuildRequires:  cmake(PlasmaActivities)
 
-Requires:  kf6-filesystem
+BuildRequires:  pkgconfig(libgps)
+BuildRequires:  pkgconfig(x11)
+BuildRequires:  pkgconfig(xfixes)
+
+Requires:       kf6-filesystem
 
 # Renamed from kf6-plasma5support
 Obsoletes:      kf6-plasma5support < 1:%{version}-%{release}
 Provides:       kf6-plasma5support = 1:%{version}-%{release}
+
+Obsoletes:      plasma-workspace-geolocation < 6.2.80
+Obsoletes:      plasma-workspace-geolocation-libs < 6.2.80
 
 %description
 %{summary}.
@@ -71,17 +84,22 @@ Provides:       kf6-plasma5support-devel = 1:%{version}-%{release}
 %{_kf6_datadir}/plasma5support/
 %{_kf6_datadir}/qlogging-categories6/plasma5support.categories
 %{_kf6_datadir}/qlogging-categories6/plasma5support.renamecategories
+%{_kf6_libdir}/libplasma-geolocation-interface.so.%{version_no_git}
+%{_kf6_libdir}/libplasma-geolocation-interface.so.6
 %{_kf6_libdir}/libPlasma5Support.so.%{version_no_git}
 %{_kf6_libdir}/libPlasma5Support.so.6
 %{_kf6_qtplugindir}/plasma5support/
 %{_qt6_qmldir}/org/kde/plasma/plasma5support/
 
 %files devel
+%{_includedir}/plasma/
 %{_includedir}/Plasma5Support/
 %{_kf6_libdir}/cmake/Plasma5Support/
+%{_kf6_libdir}/libplasma-geolocation-interface.so
 %{_kf6_libdir}/libPlasma5Support.so
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

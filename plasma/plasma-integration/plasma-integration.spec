@@ -1,11 +1,11 @@
-%global commit0 ebedda1652dca9d19d476aaebfb39811e9e20ee6
+%global commit0 aceb89e3bf50e696fbd7abff597b5d659a7cc073
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    plasma-integration
 Summary: Qt Platform Theme integration plugin for Plasma
-Version: 6.2.2
-Release: 2%{?dist}
+Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
@@ -110,6 +110,7 @@ Requires:       kf5-qqc2-breeze-style
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 

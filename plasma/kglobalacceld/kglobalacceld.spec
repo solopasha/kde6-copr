@@ -1,11 +1,11 @@
-%global commit0 e05661acf57cd490af6c124f2def95d69a8d8493
+%global commit0 73c5fd52a10805335316373e7bdf44565aecfbd8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kglobalacceld
 Summary: Daemon providing Global Keyboard Shortcut functionality
-Version: 6.2.2
-Release: 2%{?dist}
+Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 
 License: CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
@@ -77,6 +77,7 @@ Requires:       qt6-qtbase-devel
 %{_kf6_libdir}/cmake/KGlobalAccelD/
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 

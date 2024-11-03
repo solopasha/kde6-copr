@@ -1,10 +1,10 @@
-%global commit0 9a89c07e4d748efae6d14d312f7c5e18d8e38d59
+%global commit0 6abdb0d782fabad94cf3da56d3c9533b49d3602b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    bluedevil
 Summary: Bluetooth stack for KDE
-Version: 6.2.2
+Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -86,6 +86,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

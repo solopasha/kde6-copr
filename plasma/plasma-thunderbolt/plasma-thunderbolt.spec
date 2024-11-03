@@ -1,4 +1,4 @@
-%global commit0 b8dba9467ecbb7ebe249bb35488eda6d5f4a96ae
+%global commit0 ca938a55d19d3203e33c0ce6d441540e4de81513
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    plasma-thunderbolt
 Summary: Plasma integration for controlling Thunderbolt devices
-Version: 6.2.2
+Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LicenseRef-KDE-Accepted-GPL
@@ -64,6 +64,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/kcm_bolt.desktop
 %{_kf6_datadir}/applications/kcm_bolt.desktop
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

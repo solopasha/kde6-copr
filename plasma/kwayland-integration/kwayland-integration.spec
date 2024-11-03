@@ -1,9 +1,9 @@
-%global commit0 4edc4746e606255cd0c5bb822e7d85b000e80167
+%global commit0 1646d3189e5079749f4c185d9071739a29d05bc9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kwayland-integration
-Version: 6.2.2
+Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Provides integration plugins for various KDE Frameworks for Wayland
 
@@ -57,6 +57,7 @@ Requires:       kf5-filesystem
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

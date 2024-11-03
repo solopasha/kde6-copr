@@ -1,11 +1,11 @@
-%global commit0 7bd669303f0f8194a9db91cd501980ba82b1ce2b
+%global commit0 c1090c62a14225f5018d28d2e67a9ed9c2003d45
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global base_name milou
 
 Name:    plasma-%{base_name}
-Version: 6.2.2
+Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: A dedicated KDE search application built on top of Baloo
 
@@ -57,6 +57,7 @@ Provides:       kde-plasma-milou = %{version}-%{release}
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

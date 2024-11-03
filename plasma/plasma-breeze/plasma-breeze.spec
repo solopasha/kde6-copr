@@ -1,11 +1,11 @@
-%global commit0 326476fd5356d9acb7f5e1b66fe17d670c5adf3b
+%global commit0 de23babed94dce045484a17e9de0a631bb04e45b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global  base_name breeze
 
 Name:    plasma-breeze
-Version: 6.2.2
+Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Artwork, styles and assets for the Breeze visual style for the Plasma Desktop
 
@@ -47,6 +47,7 @@ BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Widgets)
 
 Requires:       (%{name}-qt5 if qt5-qtbase-gui)
@@ -120,6 +121,7 @@ popd
 %files -f breeze.lang
 %license LICENSES/*.txt
 %{_bindir}/breeze-settings6
+%{_bindir}/kcursorgen
 %{_kf6_datadir}/applications/breezestyleconfig.desktop
 %{_kf6_datadir}/applications/kcm_breezedecoration.desktop
 %{_kf6_qtplugindir}/kstyle_config/breezestyleconfig.so
@@ -152,6 +154,7 @@ popd
 %{_kf6_datadir}/icons/breeze_cursors/index.theme
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

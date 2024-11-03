@@ -1,19 +1,15 @@
-%global commit0 207bfd77ce83c89ac1c31c3f81bd455b8c69aa5b
+%global commit0 d23cc1f74c26783b3d652c736f4c1df7cb828e76
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kde-gtk-config
 Summary: Configure the appearance of GTK apps in KDE
-Version: 6.2.2
+Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only)
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
-
-# upstream patches
-
-## upstreamable patches
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
@@ -63,19 +59,21 @@ appearance of GTK apps in KDE.
 
 %files
 %license LICENSES/*.txt
-%{_libexecdir}/gtk3_preview
-%{_libdir}/kconf_update_bin/gtk_theme
-%{_libdir}/kconf_update_bin/remove_deprecated_gtk4_option
+%{_datadir}/kcm-gtk-module/
 %{_datadir}/kconf_update/gtkconfig.upd
 %{_datadir}/kconf_update/remove_window_decorations_from_gtk_css.sh
+%{_datadir}/qlogging-categories6/kde-gtk-config.categories
+%{_datadir}/themes/Breeze/window_decorations.css
 %{_kf6_plugindir}/kded/gtkconfig.so
 %{_libdir}/gtk-3.0/modules/libcolorreload-gtk-module.so
 %{_libdir}/gtk-3.0/modules/libwindow-decorations-gtk-module.so
-%{_datadir}/themes/Breeze/window_decorations.css
-%{_datadir}/kcm-gtk-module/
+%{_libdir}/kconf_update_bin/gtk_theme
+%{_libdir}/kconf_update_bin/remove_deprecated_gtk4_option
+%{_libexecdir}/gtk3_preview
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

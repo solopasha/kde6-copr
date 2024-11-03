@@ -1,11 +1,11 @@
-%global commit0 7e0380b7a913f38f5ded833f2db5e2f4bba05c8b
+%global commit0 4de27691b94c3589afe3cf6b2775bdd7e4863c67
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global base_name breeze-plymouth
 
 Name:    plymouth-theme-breeze
-Version: 6.2.2
+Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Breeze theme for Plymouth
 
@@ -54,6 +54,7 @@ install -D -m644 -p %{SOURCE10} \
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

@@ -1,10 +1,10 @@
-%global commit0 06509700a28bed05b18c90b56f223a6245555431
+%global commit0 d075983ad3b84074193bf7e78f9e231350a794ee
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           kdecoration
 Summary:        A plugin-based library to create window decorations
-Version:        6.2.2
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        LGPLv2
@@ -61,6 +61,7 @@ mkdir -p %{buildroot}%{_kf6_qtplugindir}/org.kde.kdecoration2/
 %{_kf6_libdir}/libkdecorations2private.so
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

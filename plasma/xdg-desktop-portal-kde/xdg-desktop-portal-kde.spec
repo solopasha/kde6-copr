@@ -1,11 +1,11 @@
-%global commit0 f6cea32b47de8ff18312ab1b95c18506a5ff1556
+%global commit0 77502f94fadc898a20ce379a07d6d2d2b0ce04cc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    xdg-desktop-portal-kde
 Summary: Backend implementation for xdg-desktop-portal using Qt/KF5
-Version: 6.2.2
-Release: 2%{?dist}
+Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
 URL:     https://invent.kde.org/plasma/%{name}
@@ -87,6 +87,7 @@ pieces of KDE infrastructure.
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 

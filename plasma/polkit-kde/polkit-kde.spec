@@ -1,4 +1,4 @@
-%global commit0 6150fd73741d3a02fd5a45ce8e31cb864afd124e
+%global commit0 86c65ea538a5618b97f0f4cca4291c2fc3c2c4e7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    polkit-kde
 Summary: PolicyKit integration for KDE Desktop
-Version: 6.2.2
+Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later AND CC0-1.0
@@ -74,6 +74,7 @@ Provides Policy Kit Authentication Agent that nicely fits to KDE.
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

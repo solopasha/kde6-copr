@@ -1,4 +1,4 @@
-%global commit0 51996a85c6535dffb35044a09ce7622a3e71eae1
+%global commit0 fedbfec691b7aa0688ebf6d6dc6178cc1dab6171
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,8 +6,8 @@
 
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
-Version: 6.2.2
-Release: 2%{?dist}
+Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
@@ -57,6 +57,7 @@ BuildRequires:  xcb-util-image-devel
 BuildRequires:  xcb-util-renderutil-devel
 BuildRequires:  xcb-util-wm-devel
 BuildRequires:  xcb-util-devel
+BuildRequires:  pkgconfig(xcb-cursor)
 BuildRequires:  glib2-devel
 BuildRequires:  fontconfig-devel
 BuildRequires:  boost-devel
@@ -163,13 +164,6 @@ Conflicts:      kio-extras < 5.4.0
 
 %if 0%{?fedora} > 35
 Recommends:     plasma-welcome
-%endif
-
-%if 0%{?fedora} || 0%{?rhel} > 7
-Recommends:     %{name}-geolocation = %{version}-%{release}
-Suggests:       imsettings-qt
-%else
-Requires:       %{name}-geolocation = %{version}-%{release}
 %endif
 
 Requires:       %{name}-common = %{version}-%{release}
@@ -349,21 +343,6 @@ Requires:       %{name}-common = %{version}-%{release}
 BuildArch: noarch
 %description    doc
 Documentation and user manuals for %{name}.
-
-%package geolocation
-Summary: Plasma5 geolocation components
-# when split out
-Obsoletes: plasma-workspace < 5.4.2-2
-Requires: %{name}-geolocation-libs%{?_isa} = %{version}-%{release}
-%description geolocation
-%{summary}.
-
-%package geolocation-libs
-Summary: Plasma5 geolocation runtime libraries
-Requires: %{name}-common = %{version}-%{release}
-Requires: %{name}-geolocation = %{version}-%{release}
-%description geolocation-libs
-%{summary}.
 
 %package -n sddm-wayland-plasma
 Summary:        Plasma Wayland SDDM greeter configuration
@@ -659,24 +638,14 @@ fi
 %{_libdir}/kconf_update_bin/plasmashell-6.0-keep-custom-position-of-panels
 %{_kf6_datadir}/kglobalaccel/org.kde.krunner.desktop
 
-%files geolocation
-%{_kf6_qtplugindir}/plasma5support/geolocationprovider/plasma-geolocation-gps.so
-%{_kf6_qtplugindir}/plasma5support/geolocationprovider/plasma-geolocation-ip.so
-
-%files geolocation-libs
-%{_libdir}/libplasma-geolocation-interface.so.*
-
 %files devel
 %{_libdir}/libcolorcorrect.so
 %{_libdir}/libweather_ion.so
 %{_libdir}/libtaskmanager.so
-%{_libdir}/libplasma-geolocation-interface.so
 %{_libdir}/libkworkspace6.so
 %{_libdir}/libklipper.so
-%dir %{_includedir}/plasma/
 %{_includedir}/colorcorrect/
 %{_includedir}/kworkspace6/
-%{_includedir}/plasma/geolocation/
 %{_includedir}/taskmanager/
 %{_includedir}/notificationmanager/
 %{_libdir}/cmake/KRunnerAppDBusInterface/
@@ -712,6 +681,7 @@ fi
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 

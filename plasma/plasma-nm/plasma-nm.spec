@@ -1,10 +1,10 @@
-%global commit0 495452bf9a5edbe1df021de8ae382461a77e870a
+%global commit0 a1beefa4f7f09ccf90e9264f22c6cc3c5aacf4ec
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    plasma-nm
 Summary: Plasma for managing network connections
-Version: 6.2.2
+Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -284,6 +284,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %endif
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

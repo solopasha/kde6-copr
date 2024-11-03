@@ -1,9 +1,9 @@
-%global commit0 a9d3d4f960f09313d7a77c69880e242a5063c751
+%global commit0 e51a02e45a925eee1739e698063cc9c34876c04f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:          flatpak-kcm
-Version:       6.2.2
+Version:       6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:       1%{?dist}
 License:       BSD-2-Clause and BSD-3-Clause and CC0-1.0 and GPL-2.0-or-later
 Summary:       Flatpak Permissions Management KCM
@@ -46,6 +46,7 @@ BuildRequires: pkgconfig(flatpak)
 %{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_flatpak.so
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

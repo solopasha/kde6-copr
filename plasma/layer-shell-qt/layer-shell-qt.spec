@@ -1,10 +1,10 @@
-%global commit0 209223f6a12a9aedd2a68f2ec33ad8c51a155f20
+%global commit0 17962554962e8155e12dd8327647d5bbe1578dbd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    layer-shell-qt
-Version: 6.2.2
-Release: 2%{?dist}
+Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 Summary: Library to easily use clients based on wlr-layer-shell
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-3.0-or-later AND MIT
@@ -65,6 +65,7 @@ Requires: cmake(Qt6Gui)
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 

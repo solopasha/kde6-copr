@@ -1,11 +1,11 @@
-%global commit0 4b67fd807c0331b4c44f64a3ee0c09138118c436
+%global commit0 2f9020e1a8235e6448aa027b7f5aec50dccc3d0d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    plasma-desktop
 Summary: Plasma Desktop shell
-Version: 6.2.2
-Release: 2%{?dist}
+Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
@@ -32,6 +32,7 @@ BuildRequires:  xcb-util-renderutil-devel
 BuildRequires:  xcb-util-devel
 BuildRequires:  libxkbcommon-devel
 BuildRequires:  pkgconfig(xkeyboard-config)
+BuildRequires:  pkgconfig(libwacom)
 
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
@@ -269,7 +270,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_kf6_datadir}/dbus-1/interfaces/org.kde.touchpad.xml
 %{_kf6_datadir}/kcmkeys
 %{_kf6_datadir}/knsrcfiles/
-%{_kf6_datadir}/kcm_recentFiles/workspace/settings/qml/recentFiles/BlacklistApplicationView.qml
+%{_kf6_datadir}/kcm_recentFiles/
 %{_kf6_datadir}/kcmsolidactions/
 %{_kf6_datadir}/solid/devices/*.desktop
 %{_kf6_datadir}/dbus-1/system.d/*.conf
@@ -301,6 +302,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_datadir}/sddm/themes/01-breeze-fedora/
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 

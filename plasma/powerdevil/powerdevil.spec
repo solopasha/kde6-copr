@@ -1,10 +1,10 @@
-%global commit0 d37c58e92697f75a34ca8f64b7648a23aca9d39b
+%global commit0 597ab1181ed1ab836d0fc4f2b421bf76167cbbc6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    powerdevil
-Version: 6.2.2
-Release: 2%{?dist}
+Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release: 1%{?dist}
 Summary: Manages the power consumption settings of a Plasma Shell
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -110,6 +110,7 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevil{configcommonprivate,core,ui}.so
 %{_kf6_datadir}/polkit-1/actions/org.kde.powerdevil.chargethresholdhelper.policy
 %{_kf6_datadir}/polkit-1/actions/org.kde.powerdevil.discretegpuhelper.policy
 %{_kf6_datadir}/qlogging-categories6/batterymonitor.categories
+%{_kf6_datadir}/qlogging-categories6/brightness.categories
 %{_kf6_datadir}/qlogging-categories6/powerdevil.categories
 %{_kf6_libdir}/libpowerdevilconfigcommonprivate.so.%{version_no_git}
 %{_kf6_libdir}/libpowerdevilconfigcommonprivate.so.6
@@ -131,6 +132,7 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevil{configcommonprivate,core,ui}.so
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 

@@ -1,10 +1,10 @@
-%global commit0 a4e0e1a347700248d80574edb56af63b3cd69a24
+%global commit0 ab894cc76742a4ff69b57843175a6d13bfd63811
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kscreenlocker
-Version:        6.2.2
-Release:        2%{?dist}
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 Summary:        Library and components for secure lock screen architecture
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -91,6 +91,7 @@ developing applications that use %{name}.
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 
