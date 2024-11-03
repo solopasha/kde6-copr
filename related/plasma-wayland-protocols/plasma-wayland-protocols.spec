@@ -12,6 +12,7 @@ URL:            https://invent.kde.org/libraries/%{name}
 Source0:        https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz
 Source1:        https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz.sig
 Source2:        signing-key.pgp
+Patch:          https://github.com/KDE/plasma-wayland-protocols/commit/365b5b14fcacf3df3ab71839df63a665cfece401.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  qt6-qtbase-devel
