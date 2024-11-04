@@ -3,7 +3,7 @@
 
 Name:           plasma-wayland-protocols
 Version:        1.14.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Plasma Specific Protocols for Wayland
 
 License:        LGPLv2+ and MIT and BSD
@@ -12,7 +12,8 @@ URL:            https://invent.kde.org/libraries/%{name}
 Source0:        https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz
 Source1:        https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz.sig
 Source2:        signing-key.pgp
-Patch:          https://github.com/KDE/plasma-wayland-protocols/commit/365b5b14fcacf3df3ab71839df63a665cfece401.patch
+Patch:          https://invent.kde.org/libraries/plasma-wayland-protocols/-/commit/365b5b14fcacf3df3ab71839df63a665cfece401.patch
+Patch:          https://invent.kde.org/libraries/plasma-wayland-protocols/-/commit/31f2a13995c66af1f567af04a7bd58c727b64a28.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  qt6-qtbase-devel
@@ -52,6 +53,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Mon Nov 04 2024 Pavel Solovev <daron439@gmail.com> - 1.14.0-2
+- pick upstream commits
+
 * Fri Jul 21 2023 Fedora Release Engineering <releng@fedoraproject.org> - 1.10.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
 
