@@ -1,11 +1,11 @@
-%global commit0 29cd5b4b2586481e5f03b9a6f7280e126f0ceb7b
+%global commit0 cb5d39749b7f7fed1f6fea62a9a5b60e8de9414c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    libkscreen
 Summary: KDE display configuration library
-Version: 6.2.2
-Release: 2%{?dist}
+Version: 6.2.3
+Release: 1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/%{name}
@@ -86,6 +86,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/pkgconfig/KF6Screen.pc
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
+- Update to 6.2.3
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 

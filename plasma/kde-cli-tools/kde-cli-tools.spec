@@ -1,10 +1,10 @@
-%global commit0 4f6f879d6e069eb1c9ee12b557b34d08c30e0508
+%global commit0 57eca37bd26ac5265478bd9864ba2c8476309b1f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kde-cli-tools
-Version: 6.2.2
-Release: 2%{?dist}
+Version: 6.2.3
+Release: 1%{?dist}
 Summary: Tools based on KDE Frameworks 5 to better interact with the system
 
 License: Artistic-2.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -107,6 +107,9 @@ ln -s %{_kf6_libexecdir}/kdesu %{buildroot}%{_bindir}/kdesu
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
+- Update to 6.2.3
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 

@@ -1,4 +1,4 @@
-%global commit0 4937aebcb8fd509be2f08964cfac4bd1f51e94b4
+%global commit0 6a22af7d21b1091d6b9f00a291a692c4750c3d17
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,8 +6,8 @@
 %global kf6minver 6.2
 
 Name:           krdp
-Version:        6.2.2
-Release:        2%{?dist}
+Version:        6.2.3
+Release:        1%{?dist}
 Summary:        Desktop sharing using RDP
 
 License:        LGPL-2.1-only OR LGPL-3.0-only
@@ -113,6 +113,9 @@ Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
+- Update to 6.2.3
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 

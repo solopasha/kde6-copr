@@ -1,4 +1,4 @@
-%global commit0 b377f75a68b5f0f661685b95b5a2e4a986cbc5f7
+%global commit0 c529797a7308d6b438c3a0f793f04e88cbc7b9dc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -7,7 +7,7 @@
 
 Name:    pam-kwallet
 Summary: PAM module for KWallet
-Version: 6.2.2
+Version: 6.2.3
 Release: 1%{?dist}
 License: LGPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/%{base_name}.git
@@ -58,6 +58,9 @@ Requires: kf6-kwallet
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
+- Update to 6.2.3
+
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

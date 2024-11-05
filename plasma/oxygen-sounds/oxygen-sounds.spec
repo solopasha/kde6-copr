@@ -1,9 +1,9 @@
-%global commit0 4ce7391d7777f871470f9f029f333d0955994538
+%global commit0 45750558f06b9237f247fa237e7e29db0e95d9e2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           oxygen-sounds
-Version:        6.2.2
+Version:        6.2.3
 Release:        1%{?dist}
 Summary:        The Oxygen Sound Theme
 
@@ -44,6 +44,9 @@ BuildArch:      noarch
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
+- Update to 6.2.3
+
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 
