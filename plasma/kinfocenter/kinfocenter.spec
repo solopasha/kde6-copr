@@ -67,9 +67,6 @@ Requires: aha
 Requires: clinfo
 Requires: pulseaudio-utils
 
-# When kinfocenter was split out from kde-workspace
-Conflicts:      kde-workspace < 4.11.15-3
-
 %description
 %{summary}.
 
@@ -88,29 +85,27 @@ Conflicts:      kde-workspace < 4.11.15-3
 %cmake_install
 %find_lang %{name} --all-name --with-html
 
+
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kinfocenter.desktop
-desktop-file-validate %{buildroot}%{_datadir}/applications/kcm_about-distro.desktop
-desktop-file-validate %{buildroot}%{_datadir}/applications/kcm_energyinfo.desktop
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml || :
 
+
 %files -f %{name}.lang
-%{_datadir}/applications/kcm_energyinfo.desktop
 %{_bindir}/kinfocenter
-%{_kf6_libdir}/libKInfoCenterInternal.so
-%{_kf6_qtplugindir}/plasma/kcms/*.so
-%{_kf6_qtplugindir}/plasma/kcms/kinfocenter/*.so
-%{_datadir}/metainfo/org.kde.kinfocenter.appdata.xml
-%{_sysconfdir}/xdg/menus/kinfocenter.menu
-%{_datadir}/applications/org.kde.kinfocenter.desktop
-%{_datadir}/applications/kcm_about-distro.desktop
+%{_kf6_datadir}/applications/kcm_about-distro.desktop
+%{_kf6_datadir}/applications/kcm_energyinfo.desktop
+%{_kf6_datadir}/applications/org.kde.kinfocenter.desktop
 %{_kf6_datadir}/dbus-1/system-services/org.kde.kinfocenter.dmidecode.service
 %{_kf6_datadir}/dbus-1/system.d/org.kde.kinfocenter.dmidecode.conf
-%{_datadir}/desktop-directories/kinfocenter.directory
 %{_kf6_datadir}/kinfocenter/
+%{_kf6_datadir}/metainfo/org.kde.kinfocenter.appdata.xml
 %{_kf6_datadir}/polkit-1/actions/org.kde.kinfocenter.dmidecode.policy
-%{_qt6_archdatadir}/qml/org/kde/kinfocenter/
+%{_kf6_libdir}/libKInfoCenterInternal.so
 %{_kf6_libexecdir}/kauth/kinfocenter-dmidecode-helper
+%{_kf6_qtplugindir}/plasma/kcms/*.so
+%{_kf6_qtplugindir}/plasma/kcms/kinfocenter/*.so
+%{_qt6_archdatadir}/qml/org/kde/kinfocenter/
 
 
 %changelog
