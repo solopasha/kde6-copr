@@ -1,4 +1,4 @@
-%global commit0 1587075822cc2993967374914c0e0db427cc5c8c
+%global commit0 036df3ea18decead22a45ac260a8f5be09edfe7d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    kdenlive
 Summary: Non-linear video editor
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: (GPL-2.0-only or GPL-3.0-only) and GPL-2.0-or-later and GPL-3.0-or-later and LGPL-3.0-only and BSD-3-Clause and CC0-1.0
@@ -135,6 +135,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

@@ -1,9 +1,9 @@
-%global commit0 786d1e1e276c7807c0d0e795d7bd71a2829b21d7
+%global commit0 18061e610c69363a29544ce0e1036a5876d9497b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           ktrip
-Version:        24.08.2
+Version:        24.08.3
 Release:        1%{?dist}
 License:        GPLv2+
 Summary:        Public transport navigation, allows you to find journeys between specified locations, departures for a specific station and shows real-time delay and disruption information
@@ -68,6 +68,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

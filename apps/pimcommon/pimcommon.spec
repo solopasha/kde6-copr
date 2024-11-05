@@ -1,9 +1,9 @@
-%global commit0 32c946c3bc752e24f851c9cb44013e73f5bbb138
+%global commit0 a7682ed5ec6591a45f7b02ded9efc56e13b098c1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    pimcommon
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 Summary: PIM common libraries
 
@@ -107,6 +107,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

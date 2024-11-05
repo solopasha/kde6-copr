@@ -1,10 +1,10 @@
-%global commit0 1d0ad2788fbfc25646917f475fad8e3b941d999b
+%global commit0 1a221cf9bee85540c4f61c2bd5ed64734706d5b9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kfind
 Summary: KDE Find File Utility
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -67,6 +67,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

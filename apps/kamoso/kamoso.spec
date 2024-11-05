@@ -1,4 +1,4 @@
-%global commit0 39dd52fc0fedf21a1b10c1ae7e8e4c2a9fbb3d45
+%global commit0 3a305a035e8ce20d3f41e957fc16deaabc04a21b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -11,7 +11,7 @@
 
 Name:    kamoso
 Summary: Application for taking pictures and videos from a webcam
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: GFDL-1.2-or-later AND GPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later
@@ -109,6 +109,9 @@ xvfb-run -a bash -c "%ctest"
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

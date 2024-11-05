@@ -1,10 +1,10 @@
-%global commit0 0c495ba850ca25ca716f2489bd70058dac123dd5
+%global commit0 affc15ee6ee920462c3d353309d28069c9f15e83
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    katomic
 Summary: An educational game built around molecular geometry
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 # code GPLv2+, docs GFDL
@@ -73,6 +73,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

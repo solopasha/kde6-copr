@@ -1,4 +1,4 @@
-%global commit0 f3ec683ca85d123260ba965f91c3d330b07ec83a
+%global commit0 91d407f9162ba73264db77df2950a7f481c10a61
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    kmail-account-wizard
 Summary: KMail Account Wizard
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: GPLv2+
@@ -83,6 +83,9 @@ xvfb-run -a bash -c "%ctest"
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

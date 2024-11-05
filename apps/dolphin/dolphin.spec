@@ -1,11 +1,11 @@
-%global commit0 2f8b55cd88ebaa258a04a01b7b789592bb064fe2
+%global commit0 0fb381a7edef8b3c60f1c01fb7cc9d9335556fb4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           dolphin
 Summary:        KDE File Manager
-Version:        24.08.2
-Release:        2%{?dist}
+Version:        24.08.3
+Release:        1%{?dist}
 
 License:        GPLv2+
 URL:            https://invent.kde.org/system/dolphin
@@ -155,6 +155,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-2
 - rebuilt
 

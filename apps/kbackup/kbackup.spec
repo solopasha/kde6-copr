@@ -1,9 +1,9 @@
-%global commit0 06a65e808b9118aa8b62050bc270f3eec3e249fd
+%global commit0 a41c237d8d05fd970ca690997eca7394f08266ac
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kbackup
-Version:        24.08.2
+Version:        24.08.3
 Release:        1%{?dist}
 Summary:        Back up your data in a simple, user friendly way
 
@@ -83,6 +83,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

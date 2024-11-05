@@ -1,4 +1,4 @@
-%global commit0 c58b2bae1b54e386c487b883f4b9a3532a5e369a
+%global commit0 f78b7459e956217f0694087f24d96583925a9de6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    kontact
 Summary: Personal Information Manager
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -101,6 +101,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

@@ -1,10 +1,10 @@
-%global commit0 8049d39d0c7e20004036c87059c4ac8419e24666
+%global commit0 d6a8769476bde0d678e40718980a147744847615
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    blinken 
 Summary: Memory Enhancement Game 
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -76,6 +76,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

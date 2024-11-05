@@ -1,11 +1,11 @@
-%global commit0 4ef3871c281bfe478251b8f3894d00e168524b2b
+%global commit0 4fa1c658fe85de213ac851f439ce13060c21e611
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:    ksnakeduel
 Summary: Snake duel game
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
@@ -83,6 +83,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

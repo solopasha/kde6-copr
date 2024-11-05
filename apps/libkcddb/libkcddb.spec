@@ -1,9 +1,9 @@
-%global commit0 d104d43c8b378e585254ee7b54b438ac4ae6352d
+%global commit0 a2395305bfb4d54646115cf96763eac76b372ef1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           libkcddb
-Version:        24.08.2
+Version:        24.08.3
 Release:        1%{?dist}
 Summary:        CDDB retrieval library
 
@@ -73,7 +73,6 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-rm po/sl/docs/kcontrol/cddbretrieval5/index.docbook
 
 
 %build
@@ -123,6 +122,9 @@ rm po/sl/docs/kcontrol/cddbretrieval5/index.docbook
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

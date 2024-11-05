@@ -1,4 +1,4 @@
-%global commit0 6d85f0b55bf87bb017fc46d6aa3e3a2ed4a9c38f
+%global commit0 5090dd4961658c369980b19ad437c064b4bad7fa
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,8 +6,8 @@
 %bcond_with python
 
 Name:           falkon
-Version:        24.08.2
-Release:        2%{?dist}
+Version:        24.08.3
+Release:        1%{?dist}
 Summary:        Modern web browser
 
 # Files in src/lib/opensearch and src/lib/3rdparty are GPLv2+
@@ -182,6 +182,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.fa
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-2
 - rebuilt
 

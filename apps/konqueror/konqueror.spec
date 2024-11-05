@@ -1,4 +1,4 @@
-%global commit0 a430bd638ff1c4b81addc9ccb4c113814e272cd6
+%global commit0 9593cc64b4409ec5d9a8a8faae6227aab5943347
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,8 +6,8 @@
 #global tests 1
 
 Name:    konqueror
-Version: 24.08.2
-Release: 2%{?dist}
+Version: 24.08.3
+Release: 1%{?dist}
 Summary: KDE File Manager and Browser
 
 License: GPLv2+ and LGPLv2+ and GFDL
@@ -198,6 +198,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-2
 - rebuilt
 

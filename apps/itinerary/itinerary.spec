@@ -1,10 +1,10 @@
-%global commit0 92c90f55ceefafbeee32709c6ce98021506c838d
+%global commit0 d50f8a09766498efb3e762d3c28b6813f28f6478
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           itinerary
-Version:        24.08.2
-Release:        2%{?dist}
+Version:        24.08.3
+Release:        1%{?dist}
 Summary:        Itinerary and boarding pass management application
 
 License:        Apache-2.0 and BSD-3-Clause and LGPL-2.0-or-later AND CC0-1.0
@@ -103,6 +103,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_qt6_qmldir}/org/kde/solidextras/
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-2
 - rebuilt
 

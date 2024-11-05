@@ -1,10 +1,10 @@
-%global commit0 cef29d68e04b680a6ebf8a3a41a786e010bc86de
+%global commit0 fd2a5026a0044f328747e43b6764555900b670ed
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           koko
-Version:        24.08.2
-Release:        2%{?dist}
+Version:        24.08.3
+Release:        1%{?dist}
 License:        GPLv2+ and GPLv3 and LGPLv2 and LGPLv2+ and CC0 and BSD
 Summary:        An Image gallery application
 URL:            https://apps.kde.org/koko/
@@ -87,6 +87,9 @@ rm -r %{buildroot}%{_kf6_libdir}/libkokocommon.so
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-2
 - rebuilt
 

@@ -1,4 +1,4 @@
-%global commit0 14b25266fe1d6996cb704465cd5c2b094f9dbe17
+%global commit0 645228fc5c8ec84b02033510a915c733882ebd95
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -7,7 +7,7 @@
 Name:    kdepim-runtime
 Summary: KDE PIM Runtime Environment
 Epoch:   1
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: GPLv2
@@ -143,6 +143,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 1:24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 1:24.08.2-1
 - Update to 24.08.2
 

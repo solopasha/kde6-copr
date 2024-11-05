@@ -1,10 +1,10 @@
-%global commit0 b33491c481ddf91772788cbfb0f38a7c79bec8f5
+%global commit0 27a955c664f6c69180f53fe37b171c14812de172
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kturtle
 Summary: Educational Programming Environment 
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: GPLv2+
@@ -70,6 +70,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

@@ -1,10 +1,10 @@
-%global commit0 111ed57b496060fab2c614bcf114b58b6a531481
+%global commit0 29ebbda4afbc814b81d492eb19b87ecf45497b61
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kmix
 Summary: KDE volume control
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later
@@ -95,6 +95,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kmix.desktop
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

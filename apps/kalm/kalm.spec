@@ -1,9 +1,9 @@
-%global commit0 c3d267b62c6534ac5308996f14ee6539141e84d0
+%global commit0 152cbcc750d7547815fe8726388089a9a8c83d65
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kalm
-Version:        24.08.2
+Version:        24.08.3
 Release:        1%{?dist}
 License:        LGPL-2.1-or-later AND CC0-1.0
 Summary:        Kalm can teach you different breathing techniques
@@ -64,6 +64,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

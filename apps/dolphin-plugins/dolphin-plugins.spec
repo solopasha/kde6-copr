@@ -1,10 +1,10 @@
-%global commit0 20b609c483308b200dcaa9700f2410bc1a925643
+%global commit0 3e2f8ee697e88869090923259c6aa8b0ed3fa974
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    dolphin-plugins
 Summary: Dolphin plugins
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -71,6 +71,9 @@ Dolphin integration for revision control systems, Dropbox, and disk images.
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

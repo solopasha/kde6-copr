@@ -1,9 +1,9 @@
-%global commit0 25bd4f19153c1bba55a63f83c79fb1d76e04cb33
+%global commit0 9a528a81baf44f9fe74c583c831d63a503e2ef1e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    ksmtp
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 Summary: KDE SMTP libraries
 
@@ -70,6 +70,9 @@ Requires:       cmake(KF6CoreAddons)
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

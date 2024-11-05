@@ -1,10 +1,10 @@
-%global commit0 9b51db6a96f7163b2df9b77961ade1b37ad2bf45
+%global commit0 ad9b4a91aca583670ca416f3eabf291a6522fc14
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kde-dev-utils
 Summary: Utilities for developers using KDE
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: LGPL-2.0-only AND LGPL-3.0-only
@@ -115,6 +115,9 @@ desktop-file-validate %{buildroot}/%{_kf6_datadir}/applications/org.kde.kuiviewe
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

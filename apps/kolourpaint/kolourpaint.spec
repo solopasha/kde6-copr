@@ -1,10 +1,10 @@
-%global commit0 4fc02f53267570eb28299796a1af46cce1b11f1b
+%global commit0 0890dd6d23c1d7308d025f2a3a3cd64d04540700
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kolourpaint
 Summary: An easy-to-use paint program
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: BSD
@@ -83,6 +83,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

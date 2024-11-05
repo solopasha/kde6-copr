@@ -1,4 +1,4 @@
-%global commit0 18fc2181e5ed27f940a7903067ee77f0ec0ddbc5
+%global commit0 26c0c44d2239fd334c36ee4b18e6d2f71fed2d38
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,8 +6,8 @@
 
 Name:    kate
 Summary: Advanced Text Editor
-Version: 24.08.2
-Release: 2%{?dist}
+Version: 24.08.3
+Release: 1%{?dist}
 
 # kwrite LGPLv2+
 # kate: app LGPLv2, plugins, LGPLv2 and LGPLv2+ and GPLv2+
@@ -184,6 +184,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-2
 - rebuilt
 

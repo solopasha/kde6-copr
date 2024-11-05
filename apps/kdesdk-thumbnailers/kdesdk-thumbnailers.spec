@@ -1,10 +1,10 @@
-%global commit0 157f743f457415af649ec05a8ebb87353319fc0f
+%global commit0 fdd5c9c8f0d4081fc739149227c6fe7d2e1d95ab
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kdesdk-thumbnailers
 Summary: Thumbnailers for KDE
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: GPLv2+
@@ -61,6 +61,9 @@ gettext translation templates
 
 
 %changelog	
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

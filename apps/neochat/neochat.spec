@@ -1,9 +1,9 @@
-%global commit0 73cd253e253f547ba5731ce7869bdfd98a5bfff8
+%global commit0 e82a5c94421e48a28581680879cc34b5e893b7fc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    neochat
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND BSD-3-Clause
@@ -95,7 +95,6 @@ notably Kirigami, KConfig and KI18n.
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-rm po/sl/docs/neochat/man-neochat.1.docbook
 
 %build
 %cmake_kf6 -DCMAKE_BUILD_TYPE=Release
@@ -123,6 +122,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_kf6_plugindir}/purpose/neochatshareplugin.so
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

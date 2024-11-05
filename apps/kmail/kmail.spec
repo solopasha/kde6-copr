@@ -1,4 +1,4 @@
-%global commit0 75fa77c864cc711090039372dad99bb952348d48
+%global commit0 5895873aeee1ae9e480568654063a77898219e81
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    kmail
 Summary: Mail client
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -171,6 +171,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

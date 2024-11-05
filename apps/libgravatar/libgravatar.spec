@@ -1,9 +1,9 @@
-%global commit0 760d03c353683e0cca61656edf7b0a8a795970e6
+%global commit0 60eba8a348be207180ecbbfedfdc7296efcc5688
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    libgravatar
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 Summary: Gravatar support library
 
@@ -67,6 +67,9 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

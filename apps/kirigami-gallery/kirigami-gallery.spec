@@ -1,9 +1,9 @@
-%global commit0 1b6c2c82b1e5d3e12012f25bedf6d62c144bf7e5
+%global commit0 e27e528aa4087252eca108fe2371dea1066469aa
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kirigami-gallery
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 Summary: Gallery application built using Kirigami
 License: LGPL-2.1-or-later
@@ -69,6 +69,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kirigami2.gal
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

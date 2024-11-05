@@ -1,10 +1,10 @@
-%global commit0 3979a52b1b83651fdb871f1146aed4e7ded97bc8
+%global commit0 3e1ff1923ccd205ef710a7b64748d33fb2873ab9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    umbrello
 Summary: UML modeler and UML diagram tool
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND (GPL-2.0-only OR GPL-3.0-only)
@@ -70,7 +70,6 @@ GUI for diagramming Unified Modeling Language (UML)
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-rm po/sl/docs/umbrello/apphelp/index.docbook po/sl/docs/umbrello/index.docbook
 
 
 %build
@@ -100,6 +99,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.umbrello.
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

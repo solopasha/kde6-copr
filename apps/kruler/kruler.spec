@@ -1,11 +1,11 @@
-%global commit0 aef0f692ef631bdc2edce2519ae70ab92c618d15
+%global commit0 adfc2a993e7238cee9dc41552970cd0f43d63505
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kruler
 Summary: A screen ruler and color measurement tool 
-Version: 24.08.2
-Release: 2%{?dist}
+Version: 24.08.3
+Release: 1%{?dist}
 
 License: GPLv2 and GFDL
 URL:     https://www.kde.org/applications/graphics/kruler/
@@ -71,6 +71,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-2
 - rebuilt
 

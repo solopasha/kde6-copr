@@ -1,9 +1,9 @@
-%global commit0 a4c00b3df42dc04fac9073a0dc268af56508ffe2
+%global commit0 cf1893cfaa3a0c1be3e07da29b33df8883a65e67
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kgraphviewer
-Version:        24.08.2
+Version:        24.08.3
 Release:        1%{?dist}
 License:        GPL-2.0-only
 Summary:        Graphviz DOT graph file viewer
@@ -116,6 +116,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.appdata.
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

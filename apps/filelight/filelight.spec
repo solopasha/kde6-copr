@@ -1,11 +1,11 @@
-%global commit0 1a84f1ba0130dc2ad10dcb0d421a1f4e1152d1a1
+%global commit0 6706dca88907deb6345edf5e446ec93499ee5384
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    filelight
 Summary: Graphical disk usage statistics
 Epoch:   1
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 # KDE e.V. may determine that future GPL versions are accepted
@@ -73,6 +73,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 1:24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 1:24.08.2-1
 - Update to 24.08.2
 

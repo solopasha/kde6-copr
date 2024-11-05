@@ -1,11 +1,11 @@
-%global commit0 da48366a92d80495199cfdebcb3cf9da07378228
+%global commit0 ada8447f64b1c16e77925988b0e20daff8cd706c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 #global tests 1
 
 Name:    akonadi-notes
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 Summary: The Akonadi Notes Library
 
@@ -77,6 +77,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

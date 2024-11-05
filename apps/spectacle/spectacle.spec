@@ -1,17 +1,15 @@
-%global commit0 58801b1cb58919ec1f619acbc644d6f7a9c384d0
+%global commit0 4912338e39d0c835e7a4f2d129c20b9ca37c0f5f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    spectacle
 Summary: Screenshot capture utility
-Version: 24.08.2
-Release: 2%{?dist}
+Version: 24.08.3
+Release: 1%{?dist}
 
 License: GPLv2
 URL:     https://www.kde.org/applications/graphics/spectacle/
 %apps_source
-
-Patch:   https://invent.kde.org/graphics/spectacle/-/commit/7f0a1cc0e8afb1589fb6f37e17a80c824f17a52f.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib
@@ -103,6 +101,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.spectacle
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-2
 - rebuilt
 

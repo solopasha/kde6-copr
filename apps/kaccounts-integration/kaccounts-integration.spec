@@ -1,9 +1,9 @@
-%global commit0 c6059899cced089de163e4efd04abb353355add3
+%global commit0 f95844a57070f39362327efc50047dbb1390cc07
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kaccounts-integration
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 Summary: Small system to administer web accounts across the KDE desktop
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LicenseRef-KDE-Accepted-GPL
@@ -118,8 +118,9 @@ Requires:       cmake(SignOnQt5)
 %doc README*
 %license LICENSES/*
 %{_kf6_datadir}/applications/kcm_kaccounts.desktop
-%{_kf6_libdir}/libkaccounts6.so.2
+%{_kf6_datadir}/qlogging-categories6/kaccounts.categories
 %{_kf6_libdir}/libkaccounts6.so.%{version_no_git}
+%{_kf6_libdir}/libkaccounts6.so.2
 %{_kf6_plugindir}/kded/kded_accounts.so
 %{_kf6_qmldir}/org/kde/kaccounts/
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_kaccounts.so
@@ -133,8 +134,9 @@ Requires:       cmake(SignOnQt5)
 %files qt5
 %doc README*
 %license LICENSES/*
-%{_kf5_libdir}/libkaccounts.so.2
+%{_kf5_datadir}/qlogging-categories5/kaccounts.categories
 %{_kf5_libdir}/libkaccounts.so.%{version_no_git}
+%{_kf5_libdir}/libkaccounts.so.2
 %{_kf5_qmldir}/org/kde/kaccounts/
 
 %files qt5-devel
@@ -144,6 +146,9 @@ Requires:       cmake(SignOnQt5)
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

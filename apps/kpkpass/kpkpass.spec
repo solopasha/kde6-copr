@@ -1,9 +1,9 @@
-%global commit0 ccd58ffa035fca61a1e2e4d43dd591565cf93057
+%global commit0 aadbd232afc6f17bcba05f5dd9736b4c8bf348f4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kpkpass
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 Summary: Library to deal with Apple Wallet pass files
 
@@ -61,6 +61,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

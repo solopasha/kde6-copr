@@ -1,9 +1,9 @@
-%global commit0 a03d448d8eed45481b37fe98d26be8b29f9cd8b3
+%global commit0 8c2f2bfd02e8ba8637d1331860c485e5a4379ab2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kmailtransport
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 Summary: The KMailTransport Library
 
@@ -71,6 +71,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

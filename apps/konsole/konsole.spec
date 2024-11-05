@@ -1,4 +1,4 @@
-%global commit0 dca8425c2b677a49b81240dccf9923104dd2b7cc
+%global commit0 ada9ce162a6063099dec96b28ae066c26be0c940
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    konsole
 Summary: KDE Terminal emulator
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 # sources: MIT and LGPLv2 and LGPLv2+ and GPLv2+
@@ -142,6 +142,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

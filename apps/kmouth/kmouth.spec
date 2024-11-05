@@ -1,9 +1,9 @@
-%global commit0 ef4c2f269c20aa853a5b23a8272b35fea061d080
+%global commit0 cc2b4a6d258a41e36ba2b046d06b240c38986467
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kmouth
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 Summary: A program that speaks for you
 
@@ -71,6 +71,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.kmouth.de
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

@@ -3,7 +3,7 @@
 %global bumpver 1
 
 Name:    libkcompactdisc
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 Summary: A KDE compact disc library
 
@@ -91,6 +91,9 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

@@ -1,10 +1,10 @@
-%global commit0 0a220460d4cd09bc9dc89c59f7119f625d90a6b1
+%global commit0 46c4b19afffc3c9300eb595ee1bf28118944177a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kdebugsettings
 Summary: Configure debug output from Qt5 applications
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: LGPL-2.0-or-later
@@ -65,6 +65,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.kdebugset
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

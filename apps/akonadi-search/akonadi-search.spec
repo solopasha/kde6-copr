@@ -1,9 +1,9 @@
-%global commit0 1e9a861431922f248f65f9498b36c6062d5efaf3
+%global commit0 e29f6eb7d5cb01471068df972091ae9c7d4804fb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    akonadi-search
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 Summary: The Akonadi Search library and indexing agent
 
@@ -100,6 +100,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

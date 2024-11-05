@@ -1,10 +1,10 @@
-%global commit0 e846c538a03e4fe7f2ecb9c5fc87ebe6d9dab163
+%global commit0 473715f42ca825feee29e46267dcb0705720da7d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:    kpimtextedit
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 Summary: The KPimTextEdit Library
 
@@ -81,6 +81,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

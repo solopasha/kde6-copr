@@ -1,9 +1,9 @@
-%global commit0 a259b94dcf139c08c786d60b22f9d89444fedad6
+%global commit0 edbc2e1bc7eb23034e877d4132e4abd44c7aa41a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           khealthcertificate
-Version:        24.08.2
+Version:        24.08.3
 Release:        1%{?dist}
 License:        Apache2.0 and BSD and CC-BY-4.0 and CC0-1.0 and EUPL-1.2 and LGPL-2.0 and MIT and W3C-20120513
 Summary:        Handling of digital vaccination, test and recovery certificates.
@@ -60,6 +60,9 @@ Requires: cmake(Qt6Core)
 %{_kf6_libdir}/libKHealthCertificate.so
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

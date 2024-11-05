@@ -1,9 +1,9 @@
-%global commit0 2e9ccb6a9c93f1f5da8d1d1b09ce2270bc1209b2
+%global commit0 3f0e611e5fd50e3b06ad748adbf09847166d5143
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kmag
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 Summary: A screen magnifier
 
@@ -64,6 +64,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

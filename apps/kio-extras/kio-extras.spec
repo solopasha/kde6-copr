@@ -1,10 +1,10 @@
-%global commit0 86852d561ff063bde0b66acdcde9f56ba87e1e9b
+%global commit0 8df813894bd98aff56c0def874e9e4289e8e7f5d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kio-extras
-Version: 24.08.2
-Release: 1%{?dist}
+Version: 24.08.3
+Release: 2%{?dist}
 Summary: Additional components to increase the functionality of KIO Framework
 
 License: GPLv2+
@@ -62,7 +62,7 @@ Supplements:    kf6-kio-core
 
 # Merged into main package
 Provides:       kio-extras-info = %{version}-%{release}
-Obsoletes:      kio-extras-info < 24.08.1-2
+Obsoletes:      kio-extras-info < %{version}-%{release}
 
 %description
 %{summary}.
@@ -124,6 +124,12 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
+- rebuilt
+
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

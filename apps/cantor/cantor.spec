@@ -1,4 +1,4 @@
-%global commit0 5cc04d3ca2371a3f8d783e07c9dc0a73fb054b82
+%global commit0 cedc527b0545c10b5e23af10e5aedabe8e23d0f5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -29,7 +29,7 @@
 
 Name:    cantor
 Summary: KDE Frontend to Mathematical Software
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -41,8 +41,6 @@ URL:     https://apps.kde.org/cantor/
 
 # Kill using cantor internal API
 Patch2:  cantor-21.04.3-no-julia-internal.patch
-
-Patch100:  cantor-24.02.2-jl_array_data.patch
 
 BuildRequires: openblas-devel
 
@@ -259,6 +257,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

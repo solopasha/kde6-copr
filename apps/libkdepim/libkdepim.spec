@@ -1,9 +1,9 @@
-%global commit0 f4cebef9ea21ae818e8e6f69256ac5f5264aea48
+%global commit0 6a0070fcd309dbfa95cca5489c466d0032a51d84
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    libkdepim
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 Summary: Library for common kdepim apps
 
@@ -70,6 +70,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

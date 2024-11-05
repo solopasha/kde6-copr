@@ -1,11 +1,11 @@
-%global commit0 893bfa3f241d0c3cccf982e624eb0971bf594e7d
+%global commit0 b3997513bf3774a0250f933d3a51f2b710b5b35c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:    kalgebra
 Summary: 2D and 3D Graph Calculator
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later
@@ -101,6 +101,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.kalgebram
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

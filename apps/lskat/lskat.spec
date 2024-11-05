@@ -1,10 +1,10 @@
-%global commit0 30fcf29953aa83e850a2695d4c416b71f9e069d0
+%global commit0 bee20dcadede9db895791adc8dad1198a8e7d63e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    lskat
 Summary: A fun and engaging card game
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: LGPLv2 and GFDL
@@ -85,6 +85,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

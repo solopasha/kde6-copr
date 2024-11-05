@@ -1,9 +1,9 @@
-%global commit0 a051af79c947a57798972ea4ddb7c8d00db57e0f
+%global commit0 f5f768fd38fdafe263ebb1336f69b228b04f0884
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    ktorrent
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 Summary: A BitTorrent program
 
@@ -116,6 +116,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.ktorrent.
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

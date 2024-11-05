@@ -1,10 +1,10 @@
-%global commit0 0fb6396ef9a78da3b06cdee2ab510667f64ad6ef
+%global commit0 a2ca7bbcd8547ffa7809faff49b1b5e41b6e5c9b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kdialog
 Summary: Nice dialog boxes from shell scripts
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
@@ -57,6 +57,9 @@ KDialog can be used to show nice dialog boxes from shell scripts.
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

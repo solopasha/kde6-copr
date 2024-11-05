@@ -1,10 +1,10 @@
-%global commit0 910e9fba8f29b9cd97008da52d2312c7fb0ca9dc
+%global commit0 2663ccf93f2011588e1227fb2fc8b744e9965a17
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:           colord-kde
-Version:        24.08.2
+Version:        24.08.3
 Release:        1%{?dist}
 Summary:        Colord support for KDE
 
@@ -72,6 +72,9 @@ KDE support for colord including KDE Daemon module and System Settings module.
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

@@ -1,9 +1,9 @@
-%global commit0 7c4bf8e29106bbffe37c3e980b36e141e2f98877
+%global commit0 6820936ecb7ad81b731a4ed43bb32d0a3758b413
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:		knights
-Version:	24.08.2
+Version:	24.08.3
 Release:	1%{?dist}
 Summary:	A chess board for KDE
 
@@ -70,6 +70,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.knights.d
 %{_datadir}/knsrcfiles/knights.knsrc
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

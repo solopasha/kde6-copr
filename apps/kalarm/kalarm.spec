@@ -1,4 +1,4 @@
-%global commit0 46831dadec473580a31ab383805a9678fe09d85c
+%global commit0 987635f1d462c0b939a7c47a32f63e873bb4f851
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    kalarm
 Summary: Personal Alarm Scheduler
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -116,6 +116,9 @@ xvfb-run -a bash -c "%ctest"
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 

@@ -1,9 +1,9 @@
-%global commit0 18a315894e72043e1076835c91d1d8a9647e4a05
+%global commit0 3cedf16474fad5f6cc397a344f536d4a066cbb26
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    ffmpegthumbs
-Version: 24.08.2
+Version: 24.08.3
 Release: 1%{?dist}
 Summary: KDE ffmpegthumbnailer service
 
@@ -71,6 +71,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{
 
 
 %changelog
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Mon Oct 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-1
 - Update to 24.08.2
 
