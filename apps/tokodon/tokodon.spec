@@ -4,7 +4,7 @@
 
 Name:           tokodon
 Version:        24.08.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-2.0-only OR GPL-3.0-only AND CC0-1.0 AND LGPL-2.1-or-later
 Summary:        Kirigami-based mastodon client
 URL:            https://invent.kde.org/network/tokodon
@@ -16,7 +16,6 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
-BuildRequires:  cmake(MpvQt)
 
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
@@ -43,6 +42,9 @@ BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Qt6WebSockets)
 BuildRequires:  cmake(Qt6WebView)
 BuildRequires:  cmake(Qt6Widgets)
+
+BuildRequires:  cmake(KUnifiedPush)
+BuildRequires:  cmake(MpvQt)
 
 Requires:       hicolor-icon-theme
 
@@ -83,15 +85,19 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %license LICENSES/*
 %{_kf6_bindir}/%{name}
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
+%{_kf6_datadir}/dbus-1/services/org.kde.%{name}.service
 %{_kf6_datadir}/icons/hicolor/scalable/actions/%{name}*.svg
 %{_kf6_datadir}/icons/hicolor/scalable/apps/org.kde.%{name}.svg
-%{_kf6_datadir}/knotifications6/tokodon.notifyrc
-%{_kf6_datadir}/qlogging-categories6/tokodon.categories
+%{_kf6_datadir}/knotifications6/%{name}.notifyrc
+%{_kf6_datadir}/qlogging-categories6/%{name}.categories
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 %{_kf6_plugindir}/purpose/tokodonplugin.so
 
 
 %changelog
+* Wed Nov 06 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
+- rebuild with kunifiedpush
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 
