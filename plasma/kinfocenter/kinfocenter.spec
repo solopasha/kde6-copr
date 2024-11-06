@@ -40,6 +40,7 @@ BuildRequires:  mesa-libGLU-devel
 BuildRequires:  libX11-devel
 BuildRequires:  pciutils-devel
 BuildRequires:  pkgconfig(libusb-1.0)
+BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
 %ifnarch s390 s390x
@@ -92,7 +93,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 
 
 %files -f %{name}.lang
-%{_bindir}/kinfocenter
+%{_kf6_bindir}/kinfocenter
 %{_kf6_datadir}/applications/kcm_about-distro.desktop
 %{_kf6_datadir}/applications/kcm_energyinfo.desktop
 %{_kf6_datadir}/applications/org.kde.kinfocenter.desktop
@@ -105,6 +106,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 %{_kf6_libexecdir}/kauth/kinfocenter-dmidecode-helper
 %{_kf6_qtplugindir}/plasma/kcms/*.so
 %{_kf6_qtplugindir}/plasma/kcms/kinfocenter/*.so
+%{_libexecdir}/kinfocenter-opengl-helper
 %{_qt6_archdatadir}/qml/org/kde/kinfocenter/
 
 
