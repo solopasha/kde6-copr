@@ -1,11 +1,11 @@
-%global commit0 f33b3679d6e5b140a855e07b89bed5b901c1df6a
+%global commit0 5f9f1a176390e0fb74c17aaae35dae27fa3d0278
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework karchive
 
 Name:           kf6-%{framework}
-Version:        6.7.0
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with archive functions
 License:        LGPL-2.0-or-later AND BSD-2-Clause
@@ -72,6 +72,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Archive.so
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

@@ -1,11 +1,11 @@
-%global commit0 d02694a67e9049dd1294aadb2d1e439dd3c673ef
+%global commit0 bb2b20607122c39fbdd8d688887828293e6ca3bf
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global		framework ki18n
 
 Name:		kf6-%{framework}
-Version:	6.7.0
+Version:	6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 addon for localization
 License:	BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND ODbL-1.0
@@ -60,11 +60,13 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*%{framework}*
-%{_kf6_libdir}/libKF6I18n.so.6
 %{_kf6_libdir}/libKF6I18n.so.%{version_no_git}
-%{_kf6_libdir}/libKF6I18nLocaleData.so.6
+%{_kf6_libdir}/libKF6I18n.so.6
 %{_kf6_libdir}/libKF6I18nLocaleData.so.%{version_no_git}
-%{_kf6_qmldir}/org/kde/i18n/localeData/
+%{_kf6_libdir}/libKF6I18nLocaleData.so.6
+%{_kf6_libdir}/libKF6I18nQml.so.%{version_no_git}
+%{_kf6_libdir}/libKF6I18nQml.so.6
+%{_kf6_qmldir}/org/kde/i18n/
 %{_kf6_qtplugindir}/kf6/ktranscript.so
 %lang(ca) %{_datadir}/locale/ca/LC_SCRIPTS/ki18n6/
 %lang(ca@valencia) %{_datadir}/locale/ca@valencia/LC_SCRIPTS/ki18n6/
@@ -82,15 +84,17 @@ developing applications that use %{name}.
 %lang(sr@latin) %{_datadir}/locale/sr@latin/LC_SCRIPTS/ki18n6/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KI18n/
 %{_kf6_includedir}/KI18nLocaleData/
 %{_kf6_libdir}/cmake/KF6I18n/
 %{_kf6_libdir}/libKF6I18n.so
 %{_kf6_libdir}/libKF6I18nLocaleData.so
+%{_kf6_libdir}/libKF6I18nQml.so
+%{_qt6_docdir}/*.tags
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

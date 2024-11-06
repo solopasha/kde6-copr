@@ -1,4 +1,4 @@
-%global commit0 db59d56747c4d87b822bdfc871ec3f3bc6d70a15
+%global commit0 ccd4b7cefdce757e5342bc7494c55df595d6fc16
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:		kf6-%{framework}
 Summary:	A QtQuick module providing high-performance charts
-Version:	6.7.0
+Version:	6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:	1%{?dist}
 
 License:	BSD-2-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only AND MIT
@@ -66,6 +66,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libQuickChartsControls.so
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

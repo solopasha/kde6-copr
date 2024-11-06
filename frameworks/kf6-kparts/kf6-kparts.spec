@@ -1,11 +1,11 @@
-%global commit0 f4ab364493b78024c936ee58788906fbea2672ff
+%global commit0 fb3f1ad092384fc89b75074179943f5a62b80801
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kparts
 
 Name:    kf6-%{framework}
-Version: 6.7.0
+Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 solution for KParts
 
@@ -78,6 +78,7 @@ mkdir -p %{buildroot}%{_kf6_plugindir}/parts/
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

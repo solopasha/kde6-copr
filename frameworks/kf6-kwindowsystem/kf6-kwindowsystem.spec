@@ -1,12 +1,12 @@
-%global commit0 be61dafc0f59b11e872f946c4f61819923f32364
+%global commit0 a19654b2e070949cb140c515ebb9deb1fe09cdc3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global		framework kwindowsystem
 
 Name:		kf6-%{framework}
-Version:	6.7.0
-Release:	2%{?dist}
+Version:	6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:	1%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 integration module with classes for windows management
 License:	CC0-1.0 AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND MIT
 URL:		https://invent.kde.org/frameworks/%{framework}
@@ -84,6 +84,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/pkgconfig/KF6WindowSystem.pc
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-2
 - rebuilt
 

@@ -1,11 +1,11 @@
-%global commit0 895b86945e40473a8a580cc1ea1d47494db995af
+%global commit0 cc616f41292560d11b797ee0fef954cc00980ce6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kbookmarks
 
 Name:    kf6-%{framework}
-Version: 6.7.0
+Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 3 addon for bookmarks manipulation
 License: CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
@@ -78,6 +78,7 @@ developing applications that use %{name}.
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

@@ -1,11 +1,11 @@
-%global commit0 3412a02294e757856d072c98c7bc891a49604759
+%global commit0 5077f9f9d0661539a73ada5745e749c0fcc4095d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework attica
 
 Name:           kf6-%{framework}
-Version:        6.7.0
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks Tier 1 Addon with Open Collaboration Services API
 License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL.txt
@@ -61,6 +61,7 @@ Requires:       qt6-qtbase-devel
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

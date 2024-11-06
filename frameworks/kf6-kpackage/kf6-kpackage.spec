@@ -1,11 +1,11 @@
-%global commit0 609ecfa2560cac8782bc27352d1b1f7a3fe7d482
+%global commit0 d188389b823093b33c58db4acaf7c9e2970c098d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kpackage
 
 Name:           kf6-%{framework}
-Version:        6.7.0
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 library to load and install packages as plugins
 License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -74,6 +74,7 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kpackage/
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

@@ -1,4 +1,4 @@
-%global commit0 eb19cd4b0226ca2949697bf3eff117fb0efbe299
+%global commit0 edd81c9dd18fb4a8a382be5cfec8edd703a6aa8e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -12,7 +12,7 @@
 
 Name:    kf6-%{framework}
 Summary: Breeze icon theme library
-Version: 6.7.0
+Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # skladnik.svg is CC-BY-SA-4.0
@@ -166,6 +166,7 @@ gtk-update-icon-cache --force %{_datadir}/icons/breeze-dark &>/dev/null || :
 %endif
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

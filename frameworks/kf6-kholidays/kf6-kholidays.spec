@@ -1,11 +1,11 @@
-%global commit0 c8459c8d0af59c573b47b17f3925049255412323
+%global commit0 967e61c3db30d75df70356099eb9b3984e89bd5d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global		framework kholidays
 
 Name:		kf6-%{framework}
-Version:	6.7.0
+Version:	6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:	1%{?dist}
 Summary:	The KHolidays Library
 
@@ -62,6 +62,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Holidays.so
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

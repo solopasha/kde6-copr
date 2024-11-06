@@ -1,11 +1,11 @@
-%global commit0 c6cc063c248ad2323669389d936bce7d067cdd95
+%global commit0 166e794a6306009537bfd249260e28ba82513a97
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kunitconversion
 
 Name:    kf6-%{framework}
-Version: 6.7.0
+Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: KDE Frameworks 6 Tier 2 addon for unit conversions
 
@@ -62,6 +62,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6UnitConversion/
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

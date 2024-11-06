@@ -1,11 +1,11 @@
-%global commit0 8aecf4552980136a4bc2c9564bc479c7f1dea125
+%global commit0 31450f2cae0afc794942e4d53d0ffe5471187f1a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kcontacts
 
 Name:    kf6-%{framework}
-Version: 6.7.0
+Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The KContacts Library
 
@@ -72,6 +72,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Contacts.so
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

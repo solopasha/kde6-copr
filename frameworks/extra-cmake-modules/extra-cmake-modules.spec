@@ -1,6 +1,6 @@
-%global commit0 8f6acc46a49c626c5276b7d1965ffe3c407ae1ad
+%global commit0 57bcb93d9676f7af24e0d73e2deba82ec3a8fb99
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 
 %global framework extra-cmake-modules
@@ -15,7 +15,7 @@
 
 Name:    extra-cmake-modules
 Summary: Additional modules for CMake build system
-Version: 6.7.0
+Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 License: BSD
 URL:     https://api.kde.org/ecm/
@@ -78,6 +78,7 @@ make test ARGS="--output-on-failure --timeout 300" -C %{_vpath_builddir} ||:
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 
