@@ -4,7 +4,7 @@
 
 Name:    neochat
 Version: 24.08.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND BSD-3-Clause
 URL: https://invent.kde.org/network/%{name}
@@ -44,9 +44,10 @@ BuildRequires: cmake(KF6SyntaxHighlighting)
 BuildRequires: cmake(KF6WindowSystem)
 
 BuildRequires: cmake(KQuickImageEditor)
-BuildRequires: cmake(QuotientQt6)
+BuildRequires: cmake(KUnifiedPush)
 BuildRequires: cmake(QCoro6Core)
 BuildRequires: cmake(QCoro6Network)
+BuildRequires: cmake(QuotientQt6)
 
 BuildRequires: pkgconfig(icu-uc)
 BuildRequires: pkgconfig(libcmark)
@@ -97,7 +98,7 @@ notably Kirigami, KConfig and KI18n.
 %autosetup -n %{sourcerootdir} -p1
 
 %build
-%cmake_kf6 -DCMAKE_BUILD_TYPE=Release
+%cmake_kf6
 %cmake_build
 
 %install
@@ -105,23 +106,27 @@ notably Kirigami, KConfig and KI18n.
 %find_lang %{name} --with-qt --with-man
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
-desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.appdata.xml
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files -f %{name}.lang
 %license LICENSES/*
 %doc README.md
 %{_kf6_bindir}/%{name}
-%{_kf6_datadir}/applications/*.desktop
-%{_kf6_datadir}/icons/hicolor/*/apps/*
+%{_kf6_datadir}/applications/org.kde.neochat.desktop
+%{_kf6_datadir}/dbus-1/services/org.kde.neochat.service
+%{_kf6_datadir}/icons/hicolor/*/apps/org.kde.neochat.*
 %{_kf6_datadir}/knotifications6/%{name}.notifyrc
-%{_kf6_datadir}/krunner/dbusplugins/*.desktop
+%{_kf6_datadir}/krunner/dbusplugins/plasma-runner-neochat.desktop
 %{_kf6_datadir}/qlogging-categories6/neochat.categories
-%{_kf6_mandir}/man1/neochat.1*
-%{_kf6_metainfodir}/*.appdata.xml
+%{_kf6_mandir}/man1/neochat.1.*
+%{_kf6_metainfodir}/org.kde.neochat.appdata.xml
 %{_kf6_plugindir}/purpose/neochatshareplugin.so
 
 %changelog
+* Wed Nov 06 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
+- rebuild against libquotient 0.9.0 and with kunifiedpush
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 
