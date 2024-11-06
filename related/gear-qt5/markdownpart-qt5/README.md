@@ -1,3 +1,0 @@
-# markdownpart
-
-The markdownpart package
