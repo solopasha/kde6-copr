@@ -51,6 +51,7 @@ BuildRequires:  zlib-devel
 BuildRequires:  pkgconfig(x11)
 
 Requires:       %{name}-common = %{version}-%{release}
+Requires:       qt6-qt5compat%{?_isa}
 
 %description
 KSysGuard library provides API to read and manage processes
