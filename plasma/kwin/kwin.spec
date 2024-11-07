@@ -1,6 +1,6 @@
 %global commit0 107594de063ed4fcba6215c4ea1dbf34add95659
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 8
 
 %bcond x11 1
 
@@ -158,6 +158,7 @@ Provides:       firstboot(windowmanager) = kwin_x11
 Summary:        Common files for KWin X11 and KWin Wayland
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       kwayland%{?_isa} >= %{majmin_ver_kf6}
+Requires:       kf6-kxmlgui%{?_isa} >= 6.9.0~
 %description    common
 %{summary}.
 
