@@ -4,6 +4,12 @@ set -euo pipefail
 # shellcheck source=/dev/null
 . "$(which env_parallel.bash)"
 
+exclude_packages=(
+    kf6.spec
+)
+
+IFS=" " read -r -a exclude_rendered <<< "$(printf -- "--exclude=%s " "${exclude_packages[@]}")"
+
 process_spec() {
     set -x
     baseName="$(sed -n 's/%global[[:space:]]\+\bframework\b[[:space:]]\+\(.*\)/\1/p' "$1")"
@@ -34,7 +40,7 @@ process_spec() {
 }
 export -f process_spec
 
-parset changedSpecs process_spec :::: <(fd -espec)
+parset changedSpecs process_spec :::: <(fd -espec "${exclude_rendered[@]}")
 
 git add -- '*.spec'
 git commit -m "bump revisions"
