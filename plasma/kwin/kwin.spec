@@ -1,6 +1,6 @@
 %global commit0 107594de063ed4fcba6215c4ea1dbf34add95659
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 8
+%global bumpver 9
 
 %bcond x11 1
 
@@ -107,10 +107,15 @@ BuildRequires:  pkgconfig(libcanberra)
 ## Runtime deps
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       %{name}-common%{?_isa} = %{version}-%{release}
+Requires:       kf6-kconfig%{?_isa}
 Requires:       kf6-kdeclarative%{?_isa}
 Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-kitemmodels%{?_isa}
+Requires:       kf6-knewstuff%{?_isa}
+Requires:       kf6-kquickcharts%{?_isa}
 Requires:       kscreenlocker%{?_isa} >= %{majmin_ver_kf6}
 Requires:       libplasma%{?_isa} >= %{majmin_ver_kf6}
+Requires:       plasma-milou%{?_isa} >= %{majmin_ver_kf6}
 Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtdeclarative%{?_isa}
 Requires:       qt6-qtmultimedia%{?_isa}
@@ -278,6 +283,9 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Thu Nov 07 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-2
+- add missing QML deps
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 
