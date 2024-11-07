@@ -4,7 +4,7 @@
 
 Name:           kongress
 Version:        24.08.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-3.0-or-later AND BSD-2-Clause AND CC0-1.0
 Summary:        A companion application for conferences made by KDE
 URL:            https://apps.kde.org/kongress/
@@ -38,6 +38,9 @@ BuildRequires:  cmake(KOSMIndoorMap)
 
 Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-kirigami%{?_isa}
+Requires:       kosmindoormap%{?_isa}
+Requires:       qt6-qtlocation%{?_isa}
+Requires:       qt6-qtpositioning%{?_isa}
 
 %description
 %{summary}.
@@ -76,6 +79,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
+* Thu Nov 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
+- add missing requires
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 
