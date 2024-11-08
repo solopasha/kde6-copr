@@ -44,7 +44,8 @@ parset changedSpecs process_spec :::: <(fd -espec "${exclude_rendered[@]}")
 
 git add -- '*.spec'
 git commit -m "bump revisions"
-git push --quiet origin plasma-unstable
+git diff HEAD~..HEAD
+git push --quiet origin plasma-6.3
 
 # shellcheck disable=SC2154
 # shellcheck disable=SC1083
