@@ -1,6 +1,6 @@
 %global commit0 107594de063ed4fcba6215c4ea1dbf34add95659
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 9
+%global bumpver 10
 
 %bcond x11 1
 

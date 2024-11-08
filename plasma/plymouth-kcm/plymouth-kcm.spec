@@ -1,6 +1,6 @@
 %global commit0 46cf29fe93302b3541ae19d8da5196cc53e52491
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global base_name    plymouth-kcm
 
