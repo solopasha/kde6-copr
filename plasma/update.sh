@@ -37,6 +37,7 @@ parset changedSpecs process_spec :::: <(fd -espec)
 
 git add -- '*.spec'
 git commit -m "bump revisions"
+git diff HEAD~..HEAD
 git push --quiet origin plasma-6.3
 
 # shellcheck disable=SC2154
