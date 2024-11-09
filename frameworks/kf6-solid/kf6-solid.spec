@@ -1,6 +1,6 @@
-%global commit0 499f09db90596ed8bcd329c57f3073ff2e4ab9fa
+%global commit0 e0149417e45894a1a70982917144e47b611cbac9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global _default_patch_fuzz 2
 
