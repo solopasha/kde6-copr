@@ -27,7 +27,7 @@ process_spec() {
             break
         fi
         message="$(gh api --method GET "repos/KDE/$baseName/commits/$commit" -q '.commit.message')"
-        if [[ "$message" =~ ^(SVN|GIT)_SILENT.*|Update[[:space:]]version[[:space:]]to|Update[[:digit:]]dependency[[:digit:]]version[[:digit:]]to ]]; then
+        if [[ "$message" =~ ^(SVN|GIT)_SILENT.*|Update[[:space:]]version[[:space:]]to|Update[[:digit:]]dependency[[:digit:]]version[[:digit:]]to|add[[:space:]]Alpine/musl[[:space:]]job ]]; then
             continue
         fi
         break
