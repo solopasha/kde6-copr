@@ -1,6 +1,6 @@
-%global commit0 6491c9bb016fbcad515a7fd0ffa78928fa709674
+%global commit0 27013f5c4ecb94e0b05f8b57a3d79b2b77f3455c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 %global framework knewstuff
 
