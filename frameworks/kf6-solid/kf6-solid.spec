@@ -2,8 +2,6 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 5
 
-%global _default_patch_fuzz 2
-
 %global framework solid
 
 Name:           kf6-%{framework}
