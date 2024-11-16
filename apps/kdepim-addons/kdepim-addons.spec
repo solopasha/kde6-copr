@@ -5,12 +5,13 @@
 
 Name:    kdepim-addons
 Version: 24.08.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Additional plugins for KDE PIM applications
 
 License: GPLv2 and LGPLv2+
 URL:     https://invent.kde.org/pim/%{name}
 %apps_source
+Patch:   https://invent.kde.org/pim/kdepim-addons/-/commit/b5f70b11b8f618d639598c5d04e264ab1463d321.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
@@ -145,6 +146,9 @@ Supplements:    korganizer
 
 
 %changelog
+* Sat Nov 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
+- pick upstream commit
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 
