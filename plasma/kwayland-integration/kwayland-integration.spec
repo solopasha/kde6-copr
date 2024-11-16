@@ -1,6 +1,6 @@
 %global commit0 1646d3189e5079749f4c185d9071739a29d05bc9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    kwayland-integration
 Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -14,7 +14,6 @@ URL:     https://invent.kde.org/plasma/%{name}
 BuildRequires:  qt5-qtbase-devel
 BuildRequires:  qt5-qtbase-static
 BuildRequires:  qt5-qtbase-private-devel
-%{?_qt5:Requires: %{_qt5}%{?_isa} = %{_qt5_version}}
 BuildRequires:  qt5-qtwayland-devel
 
 BuildRequires:  extra-cmake-modules
