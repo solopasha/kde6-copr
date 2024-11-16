@@ -1,6 +1,6 @@
-%global commit0 04e7b4c8f05e3d11567da26888a38f83233944b4
+%global commit0 d26b351b2d0b9c614340e7acd4c09b54122bd9f2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 %global qt6minver 6.6.0
 %global kf6minver 6.2
