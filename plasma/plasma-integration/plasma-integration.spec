@@ -5,7 +5,7 @@
 Name:    plasma-integration
 Summary: Qt Platform Theme integration plugin for Plasma
 Version: 6.2.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
@@ -75,7 +75,6 @@ Requires:       (%{name}-qt5 if qt5-qtbase-gui)
 %package        qt5
 Summary:        Qt5 support for %{name}
 Requires:       kf5-qqc2-breeze-style
-%{?_qt5:Requires: %{_qt5}%{?_isa} = %{_qt5_version}}
 %description    qt5
 %{summary}.
 
@@ -110,6 +109,9 @@ Requires:       kf5-qqc2-breeze-style
 
 
 %changelog
+* Sat Nov 16 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-2
+- Don't depend on the exact version of Qt5
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
 - Update to 6.2.3
 
