@@ -1,6 +1,6 @@
-%global commit0 7449e115a01ba7b6e8231b95cfcd61dcb8bdc305
+%global commit0 59d38756d9f1da54e3351bd86b57e3552be52fac
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework kdoctools
 
