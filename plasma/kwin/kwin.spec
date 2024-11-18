@@ -2,16 +2,20 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
+%global _default_patch_fuzz 2
+
 %bcond x11 1
 
 Name:    kwin
 Version: 6.2.3
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: KDE Window manager
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://userbase.kde.org/KWin
 %plasma_source
+
+Patch:   https://invent.kde.org/plasma/kwin/-/commit/88c260ab261cb79425cbe5755c6c2758a4b3c19f.patch
 
 # Base
 BuildRequires:  extra-cmake-modules
@@ -281,6 +285,9 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 
 
 %changelog
+* Mon Nov 18 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-3
+- pick upstream commit
+
 * Thu Nov 07 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-2
 - add missing QML deps
 
