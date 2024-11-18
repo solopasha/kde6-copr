@@ -5,7 +5,7 @@
 Name:    libksysguard
 Summary: Library for managing processes running on the system
 Version: 6.2.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
@@ -101,7 +101,8 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKSysGuardSystemStats.so.2
 %{_kf6_libdir}/libprocesscore.so.%{version_no_git}
 %{_kf6_libdir}/libprocesscore.so.10
-%{_libexecdir}/ksysguard/
+%dir %{_libexecdir}/ksysguard
+%caps(cap_net_raw=ep) %{_libexecdir}/ksysguard/ksgrd_network_helper
 %{_qt6_plugindir}/kf6/packagestructure/ksysguard_sensorface.so
 %{_qt6_plugindir}/ksysguard/
 %{_qt6_qmldir}/org/kde/ksysguard/
@@ -123,6 +124,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libprocesscore.so
 
 %changelog
+* Mon Nov 18 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-2
+- Fix per-process network usage
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
 - Update to 6.2.3
 
