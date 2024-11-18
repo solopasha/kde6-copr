@@ -5,11 +5,13 @@
 Name:    libksysguard
 Summary: Library for managing processes running on the system
 Version: 6.2.3
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
+Patch:   https://invent.kde.org/plasma/libksysguard/-/commit/6e164d04743823fca6392ed9cce9e75acd537a0c.patch
+Patch:   https://invent.kde.org/plasma/libksysguard/-/commit/9ea3571c903db1ebe72d5091eefc052288af252f.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
@@ -51,6 +53,7 @@ BuildRequires:  zlib-devel
 BuildRequires:  pkgconfig(x11)
 
 Requires:       %{name}-common = %{version}-%{release}
+Requires:       qt6-qt5compat%{?_isa}
 
 %description
 KSysGuard library provides API to read and manage processes
@@ -124,6 +127,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libprocesscore.so
 
 %changelog
+* Mon Nov 18 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-3
+- pick upstream commits
+
 * Mon Nov 18 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-2
 - Fix per-process network usage
 
