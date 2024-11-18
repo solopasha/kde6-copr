@@ -1,6 +1,6 @@
 %global commit0 9952fa2d43617644d81757f73e6d9d767ba85594
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 Name:    libksysguard
 Summary: Library for managing processes running on the system
@@ -102,7 +102,8 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKSysGuardSystemStats.so.2
 %{_kf6_libdir}/libprocesscore.so.%{version_no_git}
 %{_kf6_libdir}/libprocesscore.so.10
-%{_libexecdir}/ksysguard/
+%dir %{_libexecdir}/ksysguard
+%caps(cap_net_raw=ep) %{_libexecdir}/ksysguard/ksgrd_network_helper
 %{_qt6_plugindir}/kf6/packagestructure/ksysguard_sensorface.so
 %{_qt6_plugindir}/ksysguard/
 %{_qt6_qmldir}/org/kde/ksysguard/
