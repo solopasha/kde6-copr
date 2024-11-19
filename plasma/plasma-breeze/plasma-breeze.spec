@@ -1,6 +1,6 @@
-%global commit0 de23babed94dce045484a17e9de0a631bb04e45b
+%global commit0 a89a71a3f2e495c330961274b7769d715e845626
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global  base_name breeze
 
@@ -33,7 +33,7 @@ BuildRequires:  cmake(Qt5X11Extras)
 
 # Qt6
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(KDecoration2)
+BuildRequires:  cmake(KDecoration3)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
@@ -125,8 +125,8 @@ popd
 %{_kf6_datadir}/applications/breezestyleconfig.desktop
 %{_kf6_datadir}/applications/kcm_breezedecoration.desktop
 %{_kf6_qtplugindir}/kstyle_config/breezestyleconfig.so
-%{_kf6_qtplugindir}/org.kde.kdecoration2.kcm/kcm_breezedecoration.so
-%{_kf6_qtplugindir}/org.kde.kdecoration2/org.kde.breeze.so
+%{_kf6_qtplugindir}/org.kde.kdecoration3.kcm/kcm_breezedecoration.so
+%{_kf6_qtplugindir}/org.kde.kdecoration3/org.kde.breeze.so
 %{_libdir}/cmake/Breeze/
 
 %files qt5

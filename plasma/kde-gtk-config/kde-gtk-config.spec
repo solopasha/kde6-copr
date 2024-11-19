@@ -1,6 +1,6 @@
-%global commit0 d23cc1f74c26783b3d652c736f4c1df7cb828e76
+%global commit0 c9f7ab475dbe2ee15f2d56586d1f1964e37412b2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kde-gtk-config
 Summary: Configure the appearance of GTK apps in KDE
@@ -16,7 +16,7 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtsvg-devel
 
-BuildRequires:  cmake(KDecoration2)
+BuildRequires:  cmake(KDecoration3)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Config)

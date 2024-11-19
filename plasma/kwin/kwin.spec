@@ -1,6 +1,6 @@
-%global commit0 11e3af049c0676ddcfced0cc32e35e3c3d222733
+%global commit0 d62eb36757a0e4aacc911e8bffc0ae9e16fcae3e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 20
+%global bumpver 21
 
 %bcond x11 1
 
@@ -93,7 +93,7 @@ BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6XmlGui)
 
-BuildRequires:  cmake(KDecoration2)
+BuildRequires:  cmake(KDecoration3)
 BuildRequires:  kscreenlocker-devel
 BuildRequires:  plasma-breeze-devel
 BuildRequires:  plasma-wayland-protocols-devel
@@ -244,12 +244,12 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 %{_kf6_libdir}/kconf_update_bin/kwin5_update_default_rules
 %{_kf6_qtplugindir}/kf6/packagestructure/kwin_*.so
 %{_kf6_qtplugindir}/kwin/
-%{_kf6_qtplugindir}/org.kde.kdecoration2/*.so
+%{_kf6_qtplugindir}/org.kde.kdecoration3/*.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/*.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/*.so
 %{_libexecdir}/kwin_killer_helper
 %{_libexecdir}/kwin-applywindowdecoration
-%{_qt6_plugindir}/org.kde.kdecoration2.kcm/kcm_auroraedecoration.so
+%{_qt6_plugindir}/org.kde.kdecoration3.kcm/kcm_auroraedecoration.so
 %{_qt6_qmldir}/org/kde/kwin/
 
 %files wayland

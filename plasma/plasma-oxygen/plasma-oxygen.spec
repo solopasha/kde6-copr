@@ -1,6 +1,6 @@
-%global commit0 0fb0c9fda21b39c9a237a04ce4e636f59c8243c0
+%global commit0 7155d7c7d2497930a990971d9cdcbceff883d04d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global base_name oxygen
 
@@ -36,7 +36,7 @@ BuildRequires:  cmake(Qt5X11Extras)
 
 # Qt6
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(KDecoration2)
+BuildRequires:  cmake(KDecoration3)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Config)
@@ -137,8 +137,8 @@ popd
 %{_kf6_datadir}/plasma/look-and-feel/org.kde.oxygen/
 %{_kf6_metainfodir}/org.kde.oxygen.appdata.xml
 %{_kf6_qtplugindir}/kstyle_config/kstyle_oxygen_config.so
-%{_kf6_qtplugindir}/org.kde.kdecoration2.kcm/kcm_oxygendecoration.so
-%{_kf6_qtplugindir}/org.kde.kdecoration2/org.kde.oxygen.so
+%{_kf6_qtplugindir}/org.kde.kdecoration3.kcm/kcm_oxygendecoration.so
+%{_kf6_qtplugindir}/org.kde.kdecoration3/org.kde.oxygen.so
 
 %files qt5
 %{_bindir}/oxygen-demo5
