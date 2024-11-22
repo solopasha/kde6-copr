@@ -1,6 +1,6 @@
-%global commit0 ecfd1c9706596553361b955fdf09f7e977a39c70
+%global commit0 25e5847dc4293a14c10098c14a755a57b0441a23
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 11
+%global bumpver 12
 
 Name:           alpaka
 Version:        0.1.1%{?bumpver:^%{bumpver}.git%{shortcommit0}}
@@ -67,7 +67,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %license LICENSES/*
 %doc README.md
 %{_kf6_bindir}/%{name}
-%{_kf6_datadir}/applications/org.kde.alpaka.desktop
+%{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/qlogging-categories6/kllm.categories
 %{_kf6_libdir}/libkllmcore.so.0{,.*}
 %{_kf6_libdir}/libkllmwidgets.so.0{,.*}
