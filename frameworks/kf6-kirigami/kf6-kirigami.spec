@@ -1,6 +1,6 @@
-%global commit0 e44a66039c98781e3990d98b83f3700e803452cc
+%global commit0 95c13740d42b963711821fff94efbb36bec675f8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 8
 
 %global		framework kirigami
 
