@@ -1,6 +1,6 @@
 %global commit0 f67e2ff47c06d58aee67f9d0163bf3ffeb79d3f6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 
 %global framework extra-cmake-modules
@@ -20,6 +20,7 @@ Release: 1%{?dist}
 License: BSD
 URL:     https://api.kde.org/ecm/
 %frameworks_meta
+Patch:   no-isolation.patch
 
 BuildArch:      noarch
 
