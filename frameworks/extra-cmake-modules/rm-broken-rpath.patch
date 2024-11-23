@@ -1,0 +1,13 @@
+diff --git a/modules/ECMGeneratePythonBindings.cmake b/modules/ECMGeneratePythonBindings.cmake
+index 27c705cf..407e1b4d 100644
+--- a/modules/ECMGeneratePythonBindings.cmake
++++ b/modules/ECMGeneratePythonBindings.cmake
+@@ -85,7 +85,7 @@ function(ecm_generate_python_bindings)
+     # Enable rpaths so that the built shared libraries find their dependencies.
+     set(CMAKE_SKIP_BUILD_RPATH FALSE)
+     set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+-    set(CMAKE_INSTALL_RPATH ${SHIBOKEN_PYTHON_MODULE_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
++    set(CMAKE_INSTALL_RPATH ${SHIBOKEN_PYTHON_MODULE_DIR})
+     set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+ 
+     # Get the relevant include dirs, to pass them on to shiboken.
