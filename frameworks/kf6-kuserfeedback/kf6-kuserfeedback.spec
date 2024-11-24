@@ -1,6 +1,6 @@
 %global commit0 edbded4872bc66c9558be39232d90db8a07d44cf
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework kuserfeedback
 

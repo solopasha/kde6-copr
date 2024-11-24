@@ -1,6 +1,6 @@
 %global commit0 4d65527b5a6c8067eb4a7651e6b4cc41e13af12c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework kpeople
 
