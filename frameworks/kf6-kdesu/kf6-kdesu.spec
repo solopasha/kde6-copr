@@ -6,7 +6,7 @@
 
 Name:    kf6-%{framework}
 Version: 6.8.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: KDE Frameworks 6 Tier 3 integration with su
 
 License: CC0-1.0 AND GPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
@@ -45,7 +45,7 @@ developing applications that use %{name}.
 
 
 %build
-%cmake_kf6
+%cmake_kf6 -DKDESU_USE_SUDO_DEFAULT:BOOL=TRUE
 %cmake_build
 
 
@@ -62,7 +62,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Su.so.6
 %{_kf6_libdir}/libKF6Su.so.%{version_no_git}
 %{_kf6_libexecdir}/kdesu_stub
-%attr(2755,root,nobody) %{_kf6_libexecdir}/kdesud
+%{_kf6_libexecdir}/kdesud
 
 %files devel
 %{_qt6_docdir}/*.tags
@@ -71,6 +71,10 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6Su/
 
 %changelog
+* Sun Nov 24 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
+- Drop sgid
+- Use sudo by default
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 
