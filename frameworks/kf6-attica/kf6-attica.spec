@@ -28,7 +28,7 @@ version 1.6.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(Qt6Core)
 Requires:       cmake(Qt6Network)
 %description    devel

@@ -12,10 +12,10 @@ License:        BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-or-later AND LGPL
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	cmake
-BuildRequires:	gcc-c++
-BuildRequires:	extra-cmake-modules
-BuildRequires:	kf6-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  gcc-c++
+BuildRequires:  extra-cmake-modules
+BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(Qt6Concurrent)
 BuildRequires:  cmake(Qt6Core)
@@ -36,12 +36,12 @@ Provides:       kf6-kirigami2%{?_isa} = %{version}-%{release}
 %description
 %{summary}.
 
-%package	    devel
-Summary:	    Development files for %{name}
-Requires:	    %{name}%{?_isa} = %{version}-%{release}
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Obsoletes:      kf6-kirigami2-devel < 5.246.0-2
 Provides:       kf6-kirigami2-devel = %{version}-%{release}
-%description	devel
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 

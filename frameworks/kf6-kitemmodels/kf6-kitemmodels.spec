@@ -13,13 +13,13 @@ License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules
-BuildRequires:	gcc-c++
-BuildRequires:	kf6-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires:	cmake(Qt6Core)
-BuildRequires:	cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Qml)
 
 Requires:       kf6-filesystem
 
@@ -29,7 +29,7 @@ KDE Frameworks 6 Tier 1 addon with item models.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:	    cmake(Qt6Core)
+Requires:       cmake(Qt6Core)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.

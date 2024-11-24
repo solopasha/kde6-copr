@@ -2,7 +2,7 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 3
 
-%global	framework kquickcharts
+%global framework kquickcharts
 
 Name:           kf6-%{framework}
 Summary:        A QtQuick module providing high-performance charts
@@ -33,7 +33,7 @@ quality.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(Qt6Core)
 %description    devel
 The %{name}-devel package contains libraries and header files for

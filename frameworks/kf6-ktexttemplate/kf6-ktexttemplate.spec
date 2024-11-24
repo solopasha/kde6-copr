@@ -2,7 +2,7 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 3
 
-%global	framework ktexttemplate
+%global framework ktexttemplate
 
 Name:           kf6-%{framework}
 Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -12,13 +12,13 @@ License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules
-BuildRequires:	gcc-c++
-BuildRequires:	kf6-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires:	cmake(Qt6Core)
-BuildRequires:	cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Qml)
 
 %description
 The goal of KTextTemplate is to make it easier for application developers to
@@ -27,7 +27,7 @@ for theming and advanced generation of other text such as code.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(Qt6Core)
 %description    devel
 The %{name}-devel package contains libraries and header files for

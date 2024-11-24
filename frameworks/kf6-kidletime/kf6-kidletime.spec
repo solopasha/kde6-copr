@@ -49,7 +49,7 @@ The %{name}-x11 package contains plugins for applications using
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(Qt6Core)
-%description	devel
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 

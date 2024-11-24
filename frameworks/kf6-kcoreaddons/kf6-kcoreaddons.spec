@@ -2,32 +2,32 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 6
 
-%global	framework kcoreaddons
+%global framework kcoreaddons
 
-Name:		    kf6-%{framework}
-Version:	    6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release:	    1%{?dist}
-Summary:	    Qt addon library with a collection of non-GUI utilities
-License:	    BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND MPL-1.1 AND LGPL-2.0-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-2.1-only WITH Qt-LGPL-exception-1.1
-URL:		    https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        Qt addon library with a collection of non-GUI utilities
+License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND MPL-1.1 AND LGPL-2.0-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-2.1-only WITH Qt-LGPL-exception-1.1
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules
-BuildRequires:	gcc-c++
-BuildRequires:	kf6-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires:	cmake(Qt6Core)
-BuildRequires:	cmake(Qt6DBus)
-BuildRequires:	cmake(Qt6Network)
-BuildRequires:	cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6Qml)
 
-BuildRequires:	cmake(Shiboken6)
+BuildRequires:  cmake(Shiboken6)
 BuildRequires:  cmake(PySide6)
 
 BuildRequires:  pkgconfig(libudev)
 
-Requires:	    kf6-filesystem
+Requires:       kf6-filesystem
 
 %description
 KCoreAddons provides classes built on top of QtCore to perform various tasks
@@ -35,11 +35,11 @@ such as manipulating mime types, autosaving files, creating backup files,
 generating random sequences, performing text manipulations such as macro
 replacement, accessing user information and many more.
 
-%package	    devel
-Summary:	    Development files for %{name}
-Requires:	    %{name}%{?_isa} = %{version}-%{release}
-Requires:	    cmake(Qt6Core)
-%description	devel
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Core)
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 

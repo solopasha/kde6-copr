@@ -35,8 +35,9 @@ BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Qt6Widgets)
 
-BuildRequires:  cmake(KAccounts6)
 BuildRequires:  accounts-qml-module-qt6
+BuildRequires:  cmake(KAccounts6)
+BuildRequires:  intltool
 
 Requires:       accounts-qml-module-qt6%{?_isa}
 Requires:       kf6-bluez-qt%{?_isa}

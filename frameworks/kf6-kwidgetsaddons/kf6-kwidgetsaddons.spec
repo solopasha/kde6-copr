@@ -31,7 +31,7 @@ KDE Frameworks 6 Tier 1 addon with various classes on top of QtWidgets.
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(Qt6Widgets)
-%description	devel
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 

@@ -13,13 +13,13 @@ License:        BSD-2-Clause AND CC0-1.0 AND GPL-3.0-or-later AND LGPL-2.0-or-la
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules
-BuildRequires:	gcc-c++
-BuildRequires:	kf6-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires: 	cmake(Qt6Core)
-BuildRequires: 	cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Qml)
 
 %description
 The KHolidays library provides a C++ API that determines holiday

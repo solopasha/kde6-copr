@@ -2,7 +2,7 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 4
 
-%global	framework kconfig
+%global framework kconfig
 
 Name:           kf6-%{framework}
 Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -33,7 +33,7 @@ Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(Qt6DBus)
 Requires:       cmake(Qt6Qml)
-%description	devel
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 

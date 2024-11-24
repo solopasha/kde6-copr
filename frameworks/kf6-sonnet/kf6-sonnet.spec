@@ -12,23 +12,23 @@ License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-l
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules
-BuildRequires:	gcc-c++
-BuildRequires:	kf6-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires:	cmake(Qt6Core)
-BuildRequires:	cmake(Qt6Quick)
-BuildRequires:	cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Widgets)
 
-BuildRequires:	hspell-devel
-BuildRequires:	pkgconfig(aspell)
-BuildRequires:	pkgconfig(hunspell)
-BuildRequires:	pkgconfig(libvoikko)
-BuildRequires:	zlib-devel
+BuildRequires:  hspell-devel
+BuildRequires:  pkgconfig(aspell)
+BuildRequires:  pkgconfig(hunspell)
+BuildRequires:  pkgconfig(libvoikko)
+BuildRequires:  zlib-devel
 
-Requires:	    kf6-filesystem
-Recommends:	    %{name}-hunspell
+Requires:       kf6-filesystem
+Recommends:     %{name}-hunspell
 
 %description
 KDE Frameworks 6 Tier 1 solution for spell checking.

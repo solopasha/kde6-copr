@@ -33,7 +33,7 @@ an uniform access to generation of barcodes with data.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:	    %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(Qt6Gui)
 %description    devel
 The %{name}-devel package contains libraries and header files for
