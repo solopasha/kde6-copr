@@ -2,56 +2,56 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 3
 
-%global		framework kidletime
+%global framework kidletime
 
-Name:		kf6-%{framework}
-Version:	6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release:	1%{?dist}
-Summary:	KDE Frameworks 6 Tier 1 integration module for idle time detection
-License:	CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.1-or-later AND MIT
-URL:		https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 1 integration module for idle time detection
+License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.1-or-later AND MIT
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	cmake
-BuildRequires:	gcc-c++
-BuildRequires:	extra-cmake-modules
-BuildRequires:	kf6-rpm-macros
-BuildRequires:	qt6-qtbase-devel
-BuildRequires:	cmake(Qt6WaylandClient)
-BuildRequires:	pkgconfig(xext)
-BuildRequires:	pkgconfig(x11-xcb)
-BuildRequires:	pkgconfig(xcb)
-BuildRequires:	pkgconfig(xcb-sync)
-BuildRequires:	pkgconfig(Qt6WaylandClient)
-BuildRequires:	pkgconfig(xscrnsaver)
-BuildRequires:	pkgconfig(xkbcommon)
-BuildRequires:	wayland-devel
-BuildRequires:	cmake(PlasmaWaylandProtocols)
-BuildRequires:	wayland-protocols-devel
+BuildRequires:  cmake
+BuildRequires:  gcc-c++
+BuildRequires:  extra-cmake-modules
+BuildRequires:  kf6-rpm-macros
 
-Requires:	    kf6-filesystem
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6WaylandClient)
+
+BuildRequires:  cmake(PlasmaWaylandProtocols)
+BuildRequires:  pkgconfig(x11-xcb)
+BuildRequires:  pkgconfig(xcb-sync)
+BuildRequires:  pkgconfig(xcb)
+BuildRequires:  pkgconfig(xext)
+BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pkgconfig(xscrnsaver)
+BuildRequires:  wayland-devel
+BuildRequires:  wayland-protocols-devel
+
+Requires:       kf6-filesystem
 Requires:       %{name}-x11%{?_isa} = %{version}-%{release}
 
 %description
 KDE Frameworks 6 Tier 1 integration module for idle time detection.
 
-%package	x11
-Summary:	Idle time detection plugins for X11 environments
-Requires:	%{name}%{?_isa} = %{version}-%{release}
-Conflicts:	%{name} < 6.7.0-2
-
-%description	x11
+%package        x11
+Summary:        Idle time detection plugins for X11 environments
+Conflicts:      %{name} < 6.7.0-2
+%description    x11
 The %{name}-x11 package contains plugins for applications using
 %{name} to detect idle time on X11 environments.
 
-%package	devel
-Summary:	Development files for %{name}
-Requires:	%{name} = %{version}-%{release}
-Requires:	qt6-qtbase-devel
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Core)
 %description	devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -80,10 +80,10 @@ developing applications that use %{name}.
 %{_kf6_plugindir}/org.kde.kidletime.platforms/KF6IdleTimeXcbPlugin1.so
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KIdleTime/
 %{_kf6_libdir}/cmake/KF6IdleTime/
 %{_kf6_libdir}/libKF6IdleTime.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

@@ -17,10 +17,12 @@ BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6WidgetsAddons)
-BuildRequires:  pkgconfig(Qt6Widgets)
+
+BuildRequires:  cmake(Qt6Widgets)
 
 %description
 KCompletion provides widgets with advanced completion support as well as a
@@ -30,11 +32,10 @@ lower-level completion class which can be used with your own widgets.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       pkgconfig(Qt6Widgets)
+Requires:       cmake(Qt6Widgets)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -54,16 +55,15 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6Completion.so.6
 %{_kf6_libdir}/libKF6Completion.so.%{version_no_git}
+%{_kf6_libdir}/libKF6Completion.so.6
 %{_kf6_qtplugindir}/designer/*6widgets.so
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KCompletion/
-%{_kf6_libdir}/libKF6Completion.so
 %{_kf6_libdir}/cmake/KF6Completion/
-
+%{_kf6_libdir}/libKF6Completion.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

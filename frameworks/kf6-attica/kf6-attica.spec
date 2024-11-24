@@ -7,30 +7,32 @@
 Name:           kf6-%{framework}
 Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
-Summary:        KDE Frameworks Tier 1 Addon with Open Collaboration Services API
+Summary:        Open Collaboration Service client library
 License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL.txt
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  gcc-c++
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  qt6-qtbase-devel
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Network)
 
 Requires:       kf6-filesystem
 
 %description
-Attica is a Qt library that implements the Open Collaboration Services
-API version 1.4.
+Attica is a Qt library that implements the Open Collaboration Services API
+version 1.6.
 
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
-Requires:       qt6-qtbase-devel
+Requires:       cmake(Qt6Core)
+Requires:       cmake(Qt6Network)
 %description    devel
 %{summary}.
-
 
 %qch_package
 
@@ -53,12 +55,11 @@ Requires:       qt6-qtbase-devel
 %{_kf6_libdir}/libKF6Attica.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/Attica/
 %{_kf6_libdir}/cmake/KF6Attica/
 %{_kf6_libdir}/libKF6Attica.so
 %{_kf6_libdir}/pkgconfig/KF6Attica.pc
-
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

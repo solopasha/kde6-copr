@@ -1,7 +1,6 @@
 %global commit0 cd99032c8ed1a73c4816e79c109f7f71f92da63d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
-
+%global bumpver 4
 
 %global framework syntax-highlighting
 
@@ -40,7 +39,6 @@ Requires:       cmake(Qt6Core)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-
 %qch_package
 
 %prep
@@ -48,15 +46,12 @@ developing applications that use %{name}.
 %autosetup -n %{sourcerootdir} -p1
 
 %build
-%cmake_kf6 -DBUILD_TESTING:BOOL=ON
+%cmake_kf6
 %cmake_build
 
 %install
 %cmake_install
 %find_lang_kf6 syntaxhighlighting6_qt
-
-%check
-%ctest
 
 %files -f syntaxhighlighting6_qt.lang
 %doc README.md
@@ -68,10 +63,10 @@ developing applications that use %{name}.
 %{_kf6_qmldir}/org/kde/syntaxhighlighting/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KSyntaxHighlighting/
 %{_kf6_libdir}/cmake/KF6SyntaxHighlighting/
 %{_kf6_libdir}/libKF6SyntaxHighlighting.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

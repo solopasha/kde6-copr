@@ -4,26 +4,27 @@
 
 %global framework kguiaddons
 
-Name:		kf6-%{framework}
-Version:	6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release:	1%{?dist}
-Summary:	KDE Frameworks 6 Tier 1 addon with various classes on top of QtGui
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 1 addon with various classes on top of QtGui
 
-License:	BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only
-URL:		https://invent.kde.org/frameworks/%{framework}
+License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires:  cmake(PlasmaWaylandProtocols)
-BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xkbcommon)
@@ -35,8 +36,8 @@ Requires:       kf6-filesystem
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
-Requires:       qt6-qtbase-devel
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Gui)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
@@ -66,12 +67,11 @@ developing applications that use %{name}.
 %{_kf6_qmldir}/org/kde/guiaddons/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KGuiAddons/
 %{_kf6_libdir}/cmake/KF6GuiAddons/
 %{_kf6_libdir}/libKF6GuiAddons.so
 %{_kf6_libdir}/pkgconfig/KF6GuiAddons.pc
-
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

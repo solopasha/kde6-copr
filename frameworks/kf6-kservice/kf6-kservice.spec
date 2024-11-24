@@ -4,14 +4,14 @@
 
 %global framework kservice
 
-Name:    kf6-%{framework}
-Summary: KDE Frameworks 6 Tier 3 solution for advanced plugin and service introspection
-Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           kf6-%{framework}
+Summary:        KDE Frameworks 6 Tier 3 solution for advanced plugin and service introspection
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
 # The following licenses are in the LICENSES folder but go unused: GPL-2.0-only, GPL-2.0-or-later, GPL-3.0-only, LicenseRef-KDE-Accepted-GPL
-License: CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
@@ -24,7 +24,7 @@ BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6I18n)
 
-BuildRequires:  qt6-qtbase-devel
+BuildRequires:  cmake(Qt6Xml)
 
 # for the Administration category
 # Recommends:       redhat-menus
@@ -43,7 +43,6 @@ Requires:       cmake(KF6CoreAddons)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -73,10 +72,10 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kservicetypes6
 %{_kf6_mandir}/man8/*.8*
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KService/
 %{_kf6_libdir}/cmake/KF6Service/
 %{_kf6_libdir}/libKF6Service.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

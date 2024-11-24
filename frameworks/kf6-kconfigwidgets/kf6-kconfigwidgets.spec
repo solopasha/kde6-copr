@@ -4,14 +4,13 @@
 
 %global framework kconfigwidgets
 
-Name:    kf6-%{framework}
-Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 Tier 3 addon for creating configuration dialogs
-
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 3 addon for creating configuration dialogs
 # The following licenses are in LICENSES but go unused: BSD-3-Clause, MIT
-License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
@@ -19,19 +18,21 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
+BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6WidgetsAddons)
-BuildRequires:  cmake(KF6Codecs)
-BuildRequires:  qt6-qtbase-devel
+
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6UiPlugin)
+BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
-BuildRequires:  cmake(Qt6UiPlugin)
 
-Requires:  kf6-filesystem
+Requires:       kf6-filesystem
 
 %description
 KConfigWidgets provides easy-to-use classes to create configuration dialogs, as
@@ -47,8 +48,6 @@ Requires:       cmake(KF6WidgetsAddons)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
-
 
 %qch_package
 
@@ -67,17 +66,17 @@ developing applications that use %{name}.
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
+%{_kf6_datadir}/locale/*/kf6_entry.desktop
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
-%{_kf6_libdir}/qt6/plugins/designer/kconfigwidgets6widgets.so
-%{_kf6_libdir}/libKF6ConfigWidgets.so.6
 %{_kf6_libdir}/libKF6ConfigWidgets.so.%{version_no_git}
-%{_datadir}/locale/*/kf6_entry.desktop
+%{_kf6_libdir}/libKF6ConfigWidgets.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KConfigWidgets/
-%{_kf6_libdir}/libKF6ConfigWidgets.so
 %{_kf6_libdir}/cmake/KF6ConfigWidgets/
+%{_kf6_libdir}/libKF6ConfigWidgets.so
+%{_kf6_libdir}/qt6/plugins/designer/kconfigwidgets6widgets.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

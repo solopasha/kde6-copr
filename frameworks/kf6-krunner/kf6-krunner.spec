@@ -4,13 +4,13 @@
 
 %global framework krunner
 
-Name:    kf6-%{framework}
-Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 Tier 3 solution with parallelized query system
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 3 solution with parallelized query system
 
-License: BSD-2-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        BSD-2-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
@@ -23,23 +23,21 @@ BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6ItemModels)
 
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtdeclarative-devel
+BuildRequires:  cmake(Qt6Gui)
 
-Requires:  kf6-filesystem
+Requires:       kf6-filesystem
 
 %description
 KRunner provides a parallelized query system extendable via plugins.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6CoreAddons)
-Requires:       qt6-qtbase-devel
+Requires:       cmake(Qt6Core)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -58,17 +56,17 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
-%{_kf6_libdir}/libKF6Runner.so.6
 %{_kf6_libdir}/libKF6Runner.so.%{version_no_git}
+%{_kf6_libdir}/libKF6Runner.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_datadir}/dbus-1/interfaces/*
 %{_kf6_datadir}/kdevappwizard/templates/runner6.tar.bz2
 %{_kf6_datadir}/kdevappwizard/templates/runner6python.tar.bz2
 %{_kf6_includedir}/KRunner/
 %{_kf6_libdir}/cmake/KF6Runner/
 %{_kf6_libdir}/libKF6Runner.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

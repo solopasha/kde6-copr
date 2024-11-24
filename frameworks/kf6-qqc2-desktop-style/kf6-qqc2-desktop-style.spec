@@ -4,39 +4,40 @@
 
 %global framework qqc2-desktop-style
 
-Name:    kf6-%{framework}
-Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: QtQuickControls2 style for consistency between QWidget and QML apps
-License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KFQF-Accepted-GPL
-URL:     https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        QtQuickControls2 style for consistency between QWidget and QML apps
+License:        CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KFQF-Accepted-GPL
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires: cmake
-BuildRequires: extra-cmake-modules
-BuildRequires: gcc-c++
-BuildRequires: kf6-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires: cmake(KF6ColorScheme)
-BuildRequires: cmake(KF6Config)
-BuildRequires: cmake(KF6IconThemes)
-BuildRequires: cmake(KF6Kirigami)
-BuildRequires: cmake(KF6Sonnet)
+BuildRequires:  cmake(KF6ColorScheme)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6IconThemes)
+BuildRequires:  cmake(KF6Kirigami)
+BuildRequires:  cmake(KF6Sonnet)
 
-BuildRequires: cmake(Qt6Gui)
-BuildRequires: cmake(Qt6Quick)
-BuildRequires: cmake(Qt6Widgets)
-BuildRequires: qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6QuickControls2)
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  qt6-qtbase-private-devel
 
-Requires:      kf6-kirigami2
-Requires:      kf6-sonnet
+Requires:       kf6-kirigami
+Requires:       kf6-sonnet
 
 %description
 This is a style for QtQuickControls 2 that uses QWidget's QStyle for
 painting, making possible to achieve an higher degree of consistency
 between QWidget-based and QML-based apps.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}

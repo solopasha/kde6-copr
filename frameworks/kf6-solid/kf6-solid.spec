@@ -13,19 +13,22 @@ URL:            https://invent.kde.org/frameworks/solid
 %frameworks_meta
 
 BuildRequires:  cmake
-BuildRequires:  gcc-c++
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(Qt6Core)
-BuildRequires:  cmake(Qt6Qml)
-BuildRequires:  cmake(Qt6Tools)
-BuildRequires:  pkgconfig(libplist-2.0)
-BuildRequires:  pkgconfig(libimobiledevice-1.0)
-BuildRequires:  pkgconfig(mount)
-BuildRequires:  libupnp-devel
-BuildRequires:  systemd-devel
-BuildRequires:  flex
+
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Xml)
+
 BuildRequires:  bison
+BuildRequires:  flex
+BuildRequires:  libupnp-devel
+BuildRequires:  pkgconfig(libimobiledevice-1.0)
+BuildRequires:  pkgconfig(libplist-2.0)
+BuildRequires:  pkgconfig(mount)
+BuildRequires:  systemd-devel
+
 Recommends:     media-player-info
 Recommends:     udisks2
 Recommends:     upower
@@ -45,7 +48,6 @@ Requires:       cmake(Qt6Core)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -70,10 +72,10 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Solid.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/Solid/
 %{_kf6_libdir}/cmake/KF6Solid/
 %{_kf6_libdir}/libKF6Solid.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

@@ -4,14 +4,13 @@
 
 %global framework kcontacts
 
-Name:    kf6-%{framework}
-Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: The KContacts Library
-
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        The KContacts Library
 # The following licenses are present in LICENSES but go unused: BSD-3-Clause, MIT, Unicode-DFS-2016
-License: CC0-1.0 AND LGPL-2.0-or-later
-URL:     https://projects.kde.org/%{framework}
+License:        CC0-1.0 AND LGPL-2.0-or-later
+URL:            https://projects.kde.org/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
@@ -25,6 +24,7 @@ BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
 
 BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Qml)
 
 %description
 %{summary}.
@@ -32,15 +32,13 @@ BuildRequires:  cmake(Qt6Gui)
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       cmake(KF6CoreAddons)
-Requires:       cmake(KF6Config)
-Requires:       cmake(KF6I18n)
 Requires:       cmake(KF6Codecs)
+Requires:       cmake(KF6Config)
+Requires:       cmake(KF6CoreAddons)
+Requires:       cmake(KF6I18n)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
-
 
 %qch_package
 
@@ -48,11 +46,9 @@ developing applications that use %{name}.
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
@@ -66,10 +62,10 @@ developing applications that use %{name}.
 %{_kf6_qmldir}/org/kde/contacts/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KContacts/
 %{_kf6_libdir}/cmake/KF6Contacts/
 %{_kf6_libdir}/libKF6Contacts.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

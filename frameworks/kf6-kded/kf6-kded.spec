@@ -4,13 +4,13 @@
 
 %global framework kded
 
-Name:    kf6-%{framework}
-Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 Tier 3 addon with extensible daemon for system-level services
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 3 addon with extensible daemon for system-level services
 
-License: CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
@@ -25,11 +25,12 @@ BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6Service)
 
-BuildRequires:  qt6-qtbase-devel
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  systemd-rpm-macros
 
-Requires:  kf6-filesystem
+Requires:       kf6-filesystem
 
 %description
 KDED stands for KDE Daemon which isn't very descriptive. KDED runs
@@ -69,18 +70,17 @@ mkdir -p %{buildroot}%{_kf6_plugindir}/kded
 %files -f kded6.lang
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_bindir}/kded6
 %{_kf6_datadir}/applications/org.kde.kded6.desktop
 %{_kf6_datadir}/dbus-1/services/*.service
+%{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_mandir}/man8/kded6.8*
-%dir %{_kf6_plugindir}/kded/
 %{_userunitdir}/plasma-kded6.service
+%dir %{_kf6_plugindir}/kded/
 
 %files devel
-%{_kf6_libdir}/cmake/KF6KDED/
 %{_kf6_datadir}/dbus-1/interfaces/*.xml
-
+%{_kf6_libdir}/cmake/KF6KDED/
 
 %changelog
 %{?kde_snapshot_changelog_entry}

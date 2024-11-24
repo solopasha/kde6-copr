@@ -4,37 +4,39 @@
 
 %global framework kcrash
 
-Name:    kf6-%{framework}
-Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 Tier 2 addon for handling application crashes
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 2 addon for handling application crashes
 
-License: CC0-1.0 AND LGPL-2.0-or-later
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        CC0-1.0 AND LGPL-2.0-or-later
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  extra-cmake-modules
 BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6CoreAddons)
 
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6OpenGL)
+BuildRequires:  cmake(Qt6Test)
+
 BuildRequires:  pkgconfig(x11)
-BuildRequires:  qt6-qtbase-devel
 
 %description
 KCrash provides support for intercepting and handling application crashes.
 
-
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
-Requires:       qt6-qtbase-devel
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Core)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
-
 
 %qch_package
 
@@ -42,16 +44,12 @@ developing applications that use %{name}.
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
 
-
 %install
 %cmake_install
-
-
 
 %files
 %doc README.md
@@ -61,11 +59,10 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Crash.so.%{version_no_git}
 
 %files devel
-%{_qt6_docdir}/*.tags
-
 %{_kf6_includedir}/KCrash/
-%{_kf6_libdir}/libKF6Crash.so
 %{_kf6_libdir}/cmake/KF6Crash/
+%{_kf6_libdir}/libKF6Crash.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

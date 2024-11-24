@@ -12,23 +12,20 @@ License:        LGPL-2.0-or-later AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-# Compile Tools
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
-
-# KDE Frameworks
 BuildRequires:  extra-cmake-modules
-
-# Fedora
-Requires:       kf6-filesystem
 BuildRequires:  kf6-rpm-macros
 
-# Qt
 BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6Qml)
 
-# Other
+BuildRequires:  pkgconfig(gio-2.0)
 BuildRequires:  pkgconfig(libnm)
+
+Requires:       kf6-filesystem
 Recommends:     NetworkManager
 
 %description
@@ -38,11 +35,13 @@ A Tier 1 KDE Frameworks 6 Qt library for NetworkManager.
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(Qt6Core)
+Requires:       cmake(Qt6DBus)
+Requires:       cmake(Qt6Network)
+Requires:       pkgconfig(gio-2.0)
 Requires:       pkgconfig(libnm)
 %description    devel
 Qt libraries and header files for developing applications
 that use NetworkManager.
-
 
 %qch_package
 
@@ -63,16 +62,13 @@ that use NetworkManager.
 %{_kf6_datadir}/qlogging-categories6/*categories
 %{_kf6_libdir}/libKF6NetworkManagerQt.so.%{version_no_git}
 %{_kf6_libdir}/libKF6NetworkManagerQt.so.6
-%{_kf6_libdir}/qt6/qml/org/kde/networkmanager/kde-qmlmodule.version
-%{_kf6_libdir}/qt6/qml/org/kde/networkmanager/libnetworkmanagerqtqml.so
-%{_kf6_libdir}/qt6/qml/org/kde/networkmanager/networkmanagerqtqml.qmltypes
-%{_kf6_libdir}/qt6/qml/org/kde/networkmanager/qmldir
+%{_kf6_libdir}/qt6/qml/org/kde/networkmanager/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/NetworkManagerQt/
-%{_kf6_libdir}/libKF6NetworkManagerQt.so
 %{_kf6_libdir}/cmake/KF6NetworkManagerQt/
+%{_kf6_libdir}/libKF6NetworkManagerQt.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

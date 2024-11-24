@@ -16,13 +16,16 @@ BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  qt6-qtbase-devel
 
-Requires:  kf6-filesystem
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+
+Requires:       kf6-filesystem
 
 %description
 KDE Frameworks 6 Tier 2 library to load and install non-binary packages as
@@ -30,12 +33,11 @@ if they were plugins.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6CoreAddons)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -61,17 +63,16 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kpackage/
 %{_kf6_bindir}/kpackagetool6
 %{_kf6_datadir}/kpackage/
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6Package.so.6
 %{_kf6_libdir}/libKF6Package.so.%{version_no_git}
+%{_kf6_libdir}/libKF6Package.so.6
 %{_kf6_qtplugindir}/kpackage/
 %{_mandir}/man1/kpackagetool6.1*
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KPackage/
 %{_kf6_libdir}/cmake/KF6Package/
 %{_kf6_libdir}/libKF6Package.so
-
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

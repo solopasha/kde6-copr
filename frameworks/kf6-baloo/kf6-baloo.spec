@@ -4,20 +4,21 @@
 
 %global framework baloo
 
-Name:    kf6-%{framework}
-Summary: A Tier 3 KDE Frameworks 6 module that provides indexing and search functionality
-Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-
-License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND bzip2-1.0.6
-URL:     https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Summary:        A Tier 3 KDE Frameworks 6 module that provides indexing and search functionality
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND bzip2-1.0.6
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-Patch100: baloo-5.67.0-baloofile_config.patch
+Patch100:       baloo-5.67.0-baloofile_config.patch
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
+BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
@@ -26,15 +27,19 @@ BuildRequires:  cmake(KF6FileMetaData)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IdleTime)
 BuildRequires:  cmake(KF6KIO)
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6Solid)
 
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Test)
+BuildRequires:  cmake(Qt6Widgets)
+
 BuildRequires:  lmdb-devel
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtdeclarative-devel
 
 # for systemd-related macros
-BuildRequires:  systemd
+BuildRequires:  systemd-rpm-macros
 
 Requires:       %{name}-file%{?_isa} = %{version}-%{release}
 
@@ -46,8 +51,7 @@ Summary:        Development files for %{name}
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6CoreAddons)
 Requires:       cmake(KF6FileMetaData)
-Requires:       qt6-qtbase-devel
-
+Requires:       cmake(Qt6Core)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
@@ -55,7 +59,7 @@ developing applications that use %{name}.
 %package        file
 Summary:        File indexing and search for Baloo
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
-Obsoletes:      kf5-baloo-file < 5.116.0-2
+Obsoletes:      kf5-baloo-file < 6
 %description    file
 %{summary}.
 
@@ -63,8 +67,6 @@ Obsoletes:      kf5-baloo-file < 5.116.0-2
 Summary:        Runtime libraries for %{name}
 %description    libs
 %{summary}.
-
-
 
 %qch_package
 
@@ -111,7 +113,6 @@ cat baloo_file6.lang baloo_file_extractor6.lang \
 %{_libexecdir}/kf6/baloo_file_extractor
 %{_userunitdir}/kde-baloo.service
 
-
 %files libs
 %license LICENSES/*
 %{_kf6_libdir}/libKF6Baloo.so.%{version_no_git}
@@ -133,7 +134,6 @@ cat baloo_file6.lang baloo_file_extractor6.lang \
 %{_kf6_libdir}/libKF6Baloo.so
 %{_kf6_libdir}/pkgconfig/KF6Baloo.pc
 %{_qt6_docdir}/*.tags
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

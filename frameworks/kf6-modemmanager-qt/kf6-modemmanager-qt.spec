@@ -2,22 +2,26 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 2
 
-
 %global framework modemmanager-qt
 
-Name:    kf6-%{framework}
-Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: A Tier 1 KDE Frameworks module wrapping ModemManager DBus API
-License: GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        A Tier 1 KDE Frameworks module wrapping ModemManager DBus API
+License:        GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Xml)
+
 BuildRequires:  pkgconfig(ModemManager)
-BuildRequires:  qt6-qtbase-devel
 
 Requires:       kf6-filesystem
 
@@ -28,11 +32,11 @@ A Qt 6 library for ModemManager.
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ModemManager-devel
-Requires:       qt6-qtbase-devel
+Requires:       cmake(Qt6Core)
+Requires:       cmake(Qt6DBus)
 %description    devel
 Qt 6 libraries and header files for developing applications
 that use ModemManager.
-
 
 %qch_package
 
@@ -52,14 +56,14 @@ that use ModemManager.
 %license LICENSES/*
 %{_kf6_datadir}/qlogging-categories6/*.categories
 %{_kf6_datadir}/qlogging-categories6/*.renamecategories
-%{_kf6_libdir}/libKF6ModemManagerQt.so.6
 %{_kf6_libdir}/libKF6ModemManagerQt.so.%{version_no_git}
+%{_kf6_libdir}/libKF6ModemManagerQt.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/ModemManagerQt/
 %{_kf6_libdir}/cmake/KF6ModemManagerQt/
 %{_kf6_libdir}/libKF6ModemManagerQt.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

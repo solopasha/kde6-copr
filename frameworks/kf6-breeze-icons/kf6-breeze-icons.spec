@@ -10,82 +10,75 @@
 
 %global framework breeze-icons
 
-Name:    kf6-%{framework}
-Summary: Breeze icon theme library
-Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-
+Name:           kf6-%{framework}
+Summary:        Breeze icon theme library
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 # skladnik.svg is CC-BY-SA-4.0
 # folder-edit-sign-encrypt.svg is LGPL-2.1-or-later
 # src/lib/ is LGPL-2.0-or-later
 # all other icons are LGPL-3.0-or-later
-License: LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-or-later AND CC-BY-SA-4.0
-URL:     https://api.kde.org/frameworks/breeze-icons/html/
+License:        LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-or-later AND CC-BY-SA-4.0
+URL:            https://invent.kde.org/frameworks/breeze-icons
 %frameworks_meta
 
-## upstream patches
+BuildRequires:  extra-cmake-modules
+BuildRequires:  kf6-rpm-macros
 
-## upstreamable patches
-
-
-BuildRequires: extra-cmake-modules
-BuildRequires: kf6-rpm-macros
-BuildRequires: cmake(Qt6Core)
-BuildRequires: cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Gui)
 # icon optimizations
-BuildRequires: hardlink
+BuildRequires:  hardlink
 # for generate-24px-versions.py
-BuildRequires: python3-lxml
+BuildRequires:  python3-lxml
 
 %if %{with install_icons}
-Requires: breeze-icon-theme = %{version}-%{release}
+Requires:       breeze-icon-theme = %{version}-%{release}
 %else
-Requires: breeze-icon-theme
+Requires:       breeze-icon-theme
 %endif
 
 %description
 %{summary}.
 
 %if %{with install_icons}
-%package -n breeze-icon-theme
-Summary:     Breeze icon theme
+%package -n     breeze-icon-theme
+Summary:        Breeze icon theme
 # analysis above
-License:     LGPL-2.1-or-later AND LGPL-3.0-or-later AND CC-BY-SA-4.0
-BuildArch:   noarch
-Requires:    hicolor-icon-theme
+License:        LGPL-2.1-or-later AND LGPL-3.0-or-later AND CC-BY-SA-4.0
+BuildArch:      noarch
+Requires:       hicolor-icon-theme
 # Needed for proper Fedora logo
-Requires:    system-logos
+Requires:       system-logos
 # upstream name
-Provides:    breeze-icons = %{version}-%{release}
+Provides:       breeze-icons = %{version}-%{release}
 %description -n breeze-icon-theme
 %{summary}.
 %endif
 
 %if %{with install_rcc}
-%package -n breeze-icon-theme-rcc
-Summary:     Breeze Qt resource files
+%package -n     breeze-icon-theme-rcc
+Summary:        Breeze Qt resource files
 # analysis above
-License:     LGPL-2.1-or-later AND LGPL-3.0-or-later AND CC-BY-SA-4.0
-BuildArch:   noarch
+License:        LGPL-2.1-or-later AND LGPL-3.0-or-later AND CC-BY-SA-4.0
+BuildArch:      noarch
 %description -n breeze-icon-theme-rcc
 %{summary}.
 %endif
 
-%package     devel
-Summary:     Breeze icon theme development files
-Requires:    %{name} = %{version}-%{release}
+%package        devel
+Summary:        Breeze icon theme development files
+Requires:       %{name} = %{version}-%{release}
 # renamed for https://pagure.io/fedora-kde/SIG/issue/530
-Provides:    breeze-icon-theme-devel = %{version}-%{release}
-Obsoletes:   breeze-icon-theme-devel < 6.3.0-2
-%description devel
+Provides:       breeze-icon-theme-devel = %{version}-%{release}
+Obsoletes:      breeze-icon-theme-devel < 6.3.0-2
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 %cmake_kf6 \
@@ -94,7 +87,6 @@ developing applications that use %{name}.
   %{nil}
 
 %cmake_build
-
 
 %install
 %cmake_install
@@ -120,7 +112,6 @@ du -s .
 # %%ghost icon.cache
 touch %{buildroot}%{_kf6_datadir}/icons/{breeze,breeze-dark}/icon-theme.cache
 
-
 ## trigger-based scriptlets
 %transfiletriggerin -n breeze-icon-theme -- %{_datadir}/icons/breeze
 gtk-update-icon-cache --force %{_datadir}/icons/breeze &>/dev/null || :
@@ -139,8 +130,8 @@ gtk-update-icon-cache --force %{_datadir}/icons/breeze-dark &>/dev/null || :
 %files
 %license COPYING.LIB
 %doc README.md
-%{_kf6_libdir}/libKF6BreezeIcons.so.6
 %{_kf6_libdir}/libKF6BreezeIcons.so.%{version_no_git}
+%{_kf6_libdir}/libKF6BreezeIcons.so.6
 
 %files devel
 %{_kf6_includedir}/BreezeIcons/
@@ -152,11 +143,11 @@ gtk-update-icon-cache --force %{_datadir}/icons/breeze-dark &>/dev/null || :
 %license COPYING-ICONS
 %doc README.md
 %ghost %{_datadir}/icons/breeze/icon-theme.cache
-%{_datadir}/icons/breeze/index.theme
 %{_datadir}/icons/breeze/*/
+%{_datadir}/icons/breeze/index.theme
 %ghost %{_datadir}/icons/breeze-dark/icon-theme.cache
-%{_datadir}/icons/breeze-dark/index.theme
 %{_datadir}/icons/breeze-dark/*/
+%{_datadir}/icons/breeze-dark/index.theme
 %exclude %{_datadir}/icons/breeze/breeze-icons.rcc
 %endif
 

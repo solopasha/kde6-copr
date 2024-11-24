@@ -4,18 +4,18 @@
 
 %global framework kxmlgui
 
-Name:    kf6-%{framework}
-Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 Tier 3 solution for user-configurable main windows
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 3 solution for user-configurable main windows
 
-License: BSD-2-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        BSD-2-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
 BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6ColorScheme)
@@ -29,9 +29,11 @@ BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6ItemViews)
 BuildRequires:  cmake(KF6WidgetsAddons)
 
+BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6PrintSupport)
 BuildRequires:  cmake(Qt6UiPlugin)
-BuildRequires:  libX11-devel
-BuildRequires:  qt6-qtbase-devel
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6Xml)
 BuildRequires:  qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
@@ -45,11 +47,12 @@ Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6Config)
 Requires:       cmake(KF6ConfigWidgets)
-Requires:       qt6-qtbase-devel
+Requires:       cmake(Qt6DBus)
+Requires:       cmake(Qt6Widgets)
+Requires:       cmake(Qt6Xml)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -71,16 +74,16 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kxmlgui5/
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6XmlGui.so.6
 %{_kf6_libdir}/libKF6XmlGui.so.%{version_no_git}
+%{_kf6_libdir}/libKF6XmlGui.so.6
 %dir %{_kf6_datadir}/kxmlgui5/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KXmlGui/
 %{_kf6_libdir}/cmake/KF6XmlGui/
 %{_kf6_libdir}/libKF6XmlGui.so
 %{_kf6_qtplugindir}/designer/*6widgets.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

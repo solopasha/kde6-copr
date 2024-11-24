@@ -21,8 +21,9 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
 
+BuildRequires:  cmake(Qt6Core)
+
 BuildRequires:  libutempter-devel
-BuildRequires:  qt6-qtbase-devel
 
 Requires:       kf6-filesystem
 # runtime calls %%_libexexdir/utempter/utempter
@@ -38,7 +39,6 @@ Requires:       cmake(KF6CoreAddons)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -63,10 +63,10 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Pty.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KPty/
-%{_kf6_libdir}/libKF6Pty.so
 %{_kf6_libdir}/cmake/KF6Pty/
+%{_kf6_libdir}/libKF6Pty.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

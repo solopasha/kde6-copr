@@ -2,7 +2,6 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 2
 
-
 %global framework kplotting
 
 Name:           kf6-%{framework}
@@ -17,8 +16,9 @@ BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(Qt6Core)
+
 BuildRequires:  cmake(Qt6UiPlugin)
+BuildRequires:  cmake(Qt6Widgets)
 
 Requires:       kf6-filesystem
 
@@ -28,11 +28,10 @@ KPlotting provides classes to do plotting.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       cmake(Qt6Core)
+Requires:       cmake(Qt6Widgets)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -50,15 +49,15 @@ developing applications that use %{name}.
 %files
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_libdir}/libKF6Plotting.so.6
 %{_kf6_libdir}/libKF6Plotting.so.%{version_no_git}
-%{_kf6_qtplugindir}/designer/kplotting6widgets.so
+%{_kf6_libdir}/libKF6Plotting.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KPlotting/
 %{_kf6_libdir}/cmake/KF6Plotting/
 %{_kf6_libdir}/libKF6Plotting.so
+%{_kf6_qtplugindir}/designer/kplotting6widgets.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

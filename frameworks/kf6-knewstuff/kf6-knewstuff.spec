@@ -4,12 +4,12 @@
 
 %global framework knewstuff
 
-Name:    kf6-%{framework}
-Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 Tier 3 module for downloading application assets
-License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 3 module for downloading application assets
+License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
@@ -33,7 +33,7 @@ BuildRequires:  cmake(KF6Package)
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtdeclarative-devel
 
-Requires:  kf6-filesystem
+Requires:       kf6-filesystem
 
 %description
 KDE Frameworks 6 Tier 3 module for downloading and sharing additional
@@ -48,7 +48,6 @@ Requires:       qt6-qtbase-devel
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -70,14 +69,13 @@ developing applications that use %{name}.
 %{_kf6_bindir}/knewstuff*
 %{_kf6_datadir}/applications/org.kde.knewstuff-dialog6.desktop
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
-%{_kf6_libdir}/libKF6NewStuffCore.so.6
 %{_kf6_libdir}/libKF6NewStuffCore.so.%{version_no_git}
-%{_kf6_libdir}/libKF6NewStuffWidgets.so.6
+%{_kf6_libdir}/libKF6NewStuffCore.so.6
 %{_kf6_libdir}/libKF6NewStuffWidgets.so.%{version_no_git}
+%{_kf6_libdir}/libKF6NewStuffWidgets.so.6
 %{_kf6_qmldir}/org/kde/newstuff/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KNewStuff/
 %{_kf6_includedir}/KNewStuffCore/
 %{_kf6_includedir}/KNewStuffWidgets/
@@ -86,7 +84,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6NewStuffCore.so
 %{_kf6_libdir}/libKF6NewStuffWidgets.so
 %{_kf6_libdir}/qt6/plugins/designer/knewstuff6widgets.so
-
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

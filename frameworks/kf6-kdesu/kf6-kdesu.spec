@@ -1,31 +1,36 @@
 %global commit0 885b53a86fb47e882122b8249b588d9e14d1662b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 4
 
 %global framework kdesu
 
-Name:    kf6-%{framework}
-Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 Tier 3 integration with su
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        User interface for running shell commands with root privileges
 
-License: CC0-1.0 AND GPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        CC0-1.0 AND GPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
 BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Pty)
+
+BuildRequires:  cmake(Qt6Core)
+
 BuildRequires:  pkgconfig(x11)
-BuildRequires:  qt6-qtbase-devel
-Requires:  kf6-filesystem
+
+Requires:       kf6-filesystem
 
 %description
+%{summary}.
 
 %package        devel
 Summary:        Development files for %{name}
@@ -35,40 +40,34 @@ Requires:       cmake(KF6Pty)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-
-
 %qch_package
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
-%cmake_kf6
+%cmake_kf6 -DKDESU_USE_SUDO_DEFAULT:BOOL=TRUE
 %cmake_build
-
 
 %install
 %cmake_install
 %find_lang kdesu6_qt --all-name
 
-
-
 %files -f kdesu6_qt.lang
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*
-%{_kf6_libdir}/libKF6Su.so.6
 %{_kf6_libdir}/libKF6Su.so.%{version_no_git}
+%{_kf6_libdir}/libKF6Su.so.6
 %{_kf6_libexecdir}/kdesu_stub
-%attr(2755,root,nobody) %{_kf6_libexecdir}/kdesud
+%{_kf6_libexecdir}/kdesud
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KDESu/
-%{_kf6_libdir}/libKF6Su.so
 %{_kf6_libdir}/cmake/KF6Su/
+%{_kf6_libdir}/libKF6Su.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

@@ -2,43 +2,44 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 4
 
-%global		framework ki18n
+%global framework ki18n
 
-Name:		kf6-%{framework}
-Version:	6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release:	1%{?dist}
-Summary:	KDE Frameworks 6 Tier 1 addon for localization
-License:	BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND ODbL-1.0
-URL:		https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 1 addon for localization
+License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND ODbL-1.0
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules
-BuildRequires:	gcc-c++
-BuildRequires:	gettext
-BuildRequires:	kf6-rpm-macros
-BuildRequires:	perl-interpreter
-BuildRequires:	pkgconfig(iso-codes)
-BuildRequires:	python3
-BuildRequires:	cmake(Qt6Qml)
-BuildRequires:	cmake(Qt6Core)
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-Requires:	kf6-filesystem
-Requires:	iso-codes
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Widgets)
+
+BuildRequires:  gettext
+BuildRequires:  perl-interpreter
+BuildRequires:  pkgconfig(iso-codes)
+BuildRequires:  python3
+
+Requires:       kf6-filesystem
+Requires:       iso-codes
 
 %description
 KDE Frameworks 6 Tier 1 addon for localization.
 
-%package	devel
-Summary:	Development files for %{name}
-Requires:	%{name}%{?_isa} = %{version}-%{release}
-Requires:	gettext
-Requires:	python3
-%description	devel
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       gettext
+Requires:       python3
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
-
 
 %qch_package
 
@@ -46,11 +47,9 @@ developing applications that use %{name}.
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
@@ -91,7 +90,6 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6I18nLocaleData.so
 %{_kf6_libdir}/libKF6I18nQml.so
 %{_qt6_docdir}/*.tags
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

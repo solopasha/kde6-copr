@@ -4,13 +4,13 @@
 
 %global framework kdeclarative
 
-Name:    kf6-%{framework}
-Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 Tier 3 addon for Qt declarative
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        Integration of QML and KDE work spaces
 
-License: CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-KDE-Accepted-GPL AND MIT
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-KDE-Accepted-GPL AND MIT
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
@@ -23,14 +23,15 @@ BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6WidgetsAddons)
-BuildRequires:  cmake(Qt6ShaderTools)
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtdeclarative-devel
 
-Requires:  kf6-filesystem
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+
+Requires:       kf6-filesystem
 
 %description
-KDE Frameworks 6 Tier 3 addon for Qt declarative
+%{summary}.
 
 %package        devel
 Summary:        Development files for %{name}
@@ -40,7 +41,6 @@ Requires:       cmake(Qt6Quick)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -59,19 +59,19 @@ developing applications that use %{name}.
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_libdir}/libKF6CalendarEvents.so.6
 %{_kf6_libdir}/libKF6CalendarEvents.so.%{version_no_git}
+%{_kf6_libdir}/libKF6CalendarEvents.so.6
 %{_kf6_qmldir}/org/kde/draganddrop/
 %{_kf6_qmldir}/org/kde/graphicaleffects/
 %{_kf6_qmldir}/org/kde/kquickcontrols/
-%{_kf6_qmldir}/org/kde/private/kquickcontrols/
 %{_kf6_qmldir}/org/kde/kquickcontrolsaddons/
+%{_kf6_qmldir}/org/kde/private/kquickcontrols/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KDeclarative/
-%{_kf6_libdir}/libKF6CalendarEvents.so
 %{_kf6_libdir}/cmake/KF6Declarative/
+%{_kf6_libdir}/libKF6CalendarEvents.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

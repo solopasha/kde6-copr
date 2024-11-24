@@ -2,24 +2,26 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 2
 
-%global		framework kquickcharts
+%global	framework kquickcharts
 
-Name:		kf6-%{framework}
-Summary:	A QtQuick module providing high-performance charts
-Version:	6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release:	1%{?dist}
+Name:           kf6-%{framework}
+Summary:        A QtQuick module providing high-performance charts
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License:	BSD-2-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only AND MIT
-URL:		https://invent.kde.org/frameworks/%{framework}
+License:        BSD-2-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only AND MIT
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	cmake
-BuildRequires:	gcc-c++
-BuildRequires:	extra-cmake-modules
-BuildRequires:	cmake(Qt6Qml)
-BuildRequires:	cmake(Qt6Quick)
-BuildRequires:	cmake(Qt6QuickControls2)
-BuildRequires:	cmake(Qt6ShaderTools)
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6QuickControls2)
+BuildRequires:  cmake(Qt6ShaderTools)
 
 %description
 The Quick Charts module provides a set of charts that can be used from QtQuick
@@ -29,19 +31,17 @@ The charts use a system called distance fields for their accelerated rendering,
 which provides ways of using the GPU for rendering 2D shapes without loss of
 quality.
 
-%package	devel
-Summary:	Development files for %{name}
-Requires:	%{name} = %{version}-%{release}
-Requires:	cmake(Qt6Core)
-%description	devel
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name} = %{version}-%{release}
+Requires:       cmake(Qt6Core)
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 %cmake_kf6
@@ -54,11 +54,11 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_qmldir}/org/kde/quickcharts/
-%{_kf6_libdir}/libQuickCharts.so.1
 %{_kf6_libdir}/libQuickCharts.so.%{version_no_git}
-%{_kf6_libdir}/libQuickChartsControls.so.1
+%{_kf6_libdir}/libQuickCharts.so.1
 %{_kf6_libdir}/libQuickChartsControls.so.%{version_no_git}
+%{_kf6_libdir}/libQuickChartsControls.so.1
+%{_kf6_qmldir}/org/kde/quickcharts/
 
 %files devel
 %{_kf6_libdir}/cmake/KF6QuickCharts/

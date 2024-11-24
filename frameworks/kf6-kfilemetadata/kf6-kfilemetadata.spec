@@ -31,22 +31,22 @@ BuildRequires:  catdoc
 BuildRequires:  cmake(QMobipocket6)
 BuildRequires:  ebook-tools-devel
 BuildRequires:  ffmpeg-free-devel
-BuildRequires:  pkgconfig(exiv2) >= 0.20
+BuildRequires:  pkgconfig(exiv2)
 BuildRequires:  pkgconfig(libattr)
 BuildRequires:  pkgconfig(poppler-qt6)
 BuildRequires:  pkgconfig(taglib)
+
 Recommends:     catdoc
 
 %description
 %{summary}.
 
-%package devel
+%package        devel
 Summary:        Developer files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       qt6-qtbase-devel
-%description devel
+Requires:       cmake(Qt6Core)
+%description    devel
 %{summary}.
-
 
 %qch_package
 
@@ -66,18 +66,18 @@ mkdir -p %{buildroot}%{_kf6_plugindir}/kfilemetadata/writers/
 %files -f %{name}.lang
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
-%{_kf6_libdir}/libKF6FileMetaData.so.3
 %{_kf6_libdir}/libKF6FileMetaData.so.%{version_no_git}
-%dir %{_kf6_plugindir}/kfilemetadata/
+%{_kf6_libdir}/libKF6FileMetaData.so.3
+%dir %{_kf6_plugindir}/kfilemetadata
 %{_kf6_plugindir}/kfilemetadata/kfilemetadata_*.so
-%dir %{_kf6_plugindir}/kfilemetadata/writers/
+%dir %{_kf6_plugindir}/kfilemetadata/writers
 %{_kf6_plugindir}/kfilemetadata/writers/kfilemetadata_taglibwriter.so
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KFileMetaData/
 %{_kf6_libdir}/cmake/KF6FileMetaData/
 %{_kf6_libdir}/libKF6FileMetaData.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

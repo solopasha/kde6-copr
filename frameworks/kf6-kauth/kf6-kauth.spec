@@ -4,27 +4,29 @@
 
 %global framework kauth
 
-Name:    kf6-%{framework}
-Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 module to perform actions as privileged user
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 module to perform actions as privileged user
 # LGPL-2.0-or-later is also in the project's LICENSES, but is unused according to reuse.
-License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-or-later
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-or-later
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  polkit-qt6-1-devel
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qttools-devel
-BuildRequires:  pkgconfig(xkbcommon)
+
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6WindowSystem)
 
-Requires:  kf6-filesystem
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+
+BuildRequires:  cmake(PolkitQt6-1)
+
+Requires:       kf6-filesystem
 
 %description
 %{summary}.
@@ -36,7 +38,6 @@ Requires:       cmake(KF6CoreAddons)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -63,12 +64,12 @@ developing applications that use %{name}.
 %{_kf6_qtplugindir}/kf6/kauth/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KAuth/
 %{_kf6_includedir}/KAuthCore/
 %{_kf6_libdir}/cmake/KF6Auth/
 %{_kf6_libdir}/libKF6AuthCore.so
 %{_kf6_libexecdir}/kauth/
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

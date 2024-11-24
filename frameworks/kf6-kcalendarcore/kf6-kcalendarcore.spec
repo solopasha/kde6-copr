@@ -2,37 +2,38 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 3
 
-%global		framework kcalendarcore
+%global	framework kcalendarcore
 
-Name:		kf6-%{framework}
-Version:	6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release:	1%{?dist}
-Summary:	KDE Frameworks 6 Tier 1 KCalendarCore Library
-License:	BSD-3-Clause AND LGPL-2.0-or-later AND LGPL-3.0-or-later
-URL:		https://invent.kde.org/frameworks/%{framework}
+Name:		    kf6-%{framework}
+Version:	    6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:	    1%{?dist}
+Summary:	    KDE Frameworks 6 Tier 1 KCalendarCore Library
+License:	    BSD-3-Clause AND LGPL-2.0-or-later AND LGPL-3.0-or-later
+URL:		    https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:	cmake
 BuildRequires:	extra-cmake-modules
 BuildRequires:	gcc-c++
 BuildRequires:	kf6-rpm-macros
-BuildRequires:	libical-devel
-BuildRequires:	pkgconfig(xkbcommon)
-BuildRequires:	qt6-qtbase-devel
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Qml)
+
+BuildRequires:	pkgconfig(libical)
 
 %description
 %{summary}.
 
-%package	devel
-Summary:	Development files for %{name}
-Requires:	%{name} = :%{version}-%{release}
-Requires:	libical-devel
+%package	    devel
+Summary:	    Development files for %{name}
+Requires:	    %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Core)
+Requires:       cmake(Qt6Gui)
 %description	devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
-
 
 %qch_package
 
@@ -55,11 +56,11 @@ developing applications that use %{name}.
 %{_kf6_qmldir}/org/kde/calendarcore/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KCalendarCore/
-%{_kf6_libdir}/libKF6CalendarCore.so
 %{_kf6_libdir}/cmake/KF6CalendarCore/
+%{_kf6_libdir}/libKF6CalendarCore.so
 %{_kf6_libdir}/pkgconfig/KF6CalendarCore.pc
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

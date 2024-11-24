@@ -12,25 +12,19 @@ License:        LGPL-2.0-or-later AND BSD-2-Clause
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-# Compile Tools
 BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
-
-# Fedora
-Requires:       kf6-filesystem
 BuildRequires:  kf6-rpm-macros
 
-# KDE Frameworks
-BuildRequires:  extra-cmake-modules
-
-# Qt
 BuildRequires:  cmake(Qt6Core)
 
-# Compression
-BuildRequires:  pkgconfig(libzstd)
 BuildRequires:  bzip2-devel
+BuildRequires:  pkgconfig(libzstd)
 BuildRequires:  xz-devel
 BuildRequires:  zlib-devel
+
+Requires:       kf6-filesystem
 
 %description
 KDE Frameworks 6 Tier 1 addon with archive functions.
@@ -38,11 +32,10 @@ KDE Frameworks 6 Tier 1 addon with archive functions.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       qt6-qtbase-devel
+Requires:       cmake(Qt6Core)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -66,10 +59,10 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Archive.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KArchive/
 %{_kf6_libdir}/cmake/KF6Archive/
 %{_kf6_libdir}/libKF6Archive.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

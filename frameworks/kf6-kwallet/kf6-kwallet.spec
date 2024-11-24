@@ -4,13 +4,13 @@
 
 %global framework kwallet
 
-Name:    kf6-%{framework}
-Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 Tier 3 solution for password management
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 3 solution for password management
 
-License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-or-later
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-or-later
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
@@ -29,7 +29,8 @@ BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6WindowSystem)
 
-BuildRequires:  qt6-qtbase-devel
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  cmake(Gpgmepp)
 BuildRequires:  cmake(Qca-qt6)
@@ -51,13 +52,10 @@ Provides API to access KWallet data from applications.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
-Requires:       qt6-qtbase-devel
-
+Requires:       cmake(Qt6Gui)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
-
 
 %qch_package
 
@@ -68,7 +66,6 @@ developing applications that use %{name}.
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
@@ -99,7 +96,6 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6Wallet/
 %{_kf6_libdir}/libKF6Wallet.so
 %{_qt6_docdir}/*.tags
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

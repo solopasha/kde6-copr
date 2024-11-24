@@ -2,30 +2,30 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 2
 
-%global		framework sonnet
+%global framework sonnet
 
-Name:		kf6-%{framework}
-Version:	6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release:	1%{?dist}
-Summary:	KDE Frameworks 6 Tier 1 solution for spell checking
-License:	BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later
-URL:		https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 1 solution for spell checking
+License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	appstream
-BuildRequires:	extra-cmake-modules
-BuildRequires:	kf6-rpm-macros
-BuildRequires:	gcc-c++
 BuildRequires:	cmake
-BuildRequires:	qt6-qtbase-devel
-BuildRequires:	qt6-qtdeclarative-devel
-BuildRequires:	qt6-qttools-devel
-BuildRequires:	zlib-devel
+BuildRequires:	extra-cmake-modules
+BuildRequires:	gcc-c++
+BuildRequires:	kf6-rpm-macros
+
+BuildRequires:	cmake(Qt6Core)
 BuildRequires:	cmake(Qt6Quick)
-BuildRequires:	pkgconfig(hunspell)
-BuildRequires:	pkgconfig(aspell)
-BuildRequires:	pkgconfig(libvoikko)
+BuildRequires:	cmake(Qt6Widgets)
+
 BuildRequires:	hspell-devel
+BuildRequires:	pkgconfig(aspell)
+BuildRequires:	pkgconfig(hunspell)
+BuildRequires:	pkgconfig(libvoikko)
+BuildRequires:	zlib-devel
 
 Requires:	    kf6-filesystem
 Recommends:	    %{name}-hunspell
@@ -33,45 +33,44 @@ Recommends:	    %{name}-hunspell
 %description
 KDE Frameworks 6 Tier 1 solution for spell checking.
 
-%package	    aspell
-Summary:	    aspell plugin for %{name}
-Requires:	    %{name} = %{version}-%{release}
-%description	aspell
+%package        aspell
+Summary:        aspell plugin for %{name}
+Requires:       %{name} = %{version}-%{release}
+%description    aspell
 The %{name}-aspell package contains the aspell spellchecking
 plugin for %{name}.
 
-%package	    hunspell
-Summary:	    hunspell plugin for %{name}
-Requires:	    %{name} = %{version}-%{release}
-%description	hunspell
+%package        hunspell
+Summary:        hunspell plugin for %{name}
+Requires:       %{name} = %{version}-%{release}
+%description    hunspell
 The %{name}-hunspell package contains the hunspell spellchecking
 plugin for %{name}.
 
-%package	    hspell
-Summary:	    hspell plugin for %{name}
-Supplements:	(%{name} and langpacks-he)
-Requires:	    %{name} = %{version}-%{release}
-Requires:	    hunspell-he
-%description	hspell
+%package        hspell
+Summary:        hspell plugin for %{name}
+Supplements:    (%{name} and langpacks-he)
+Requires:       %{name} = %{version}-%{release}
+Requires:       hunspell-he
+%description    hspell
 The %{name}-hspell package contains the Hebrew hspell spellchecking
 plugin for %{name}.
 
-%package	    voikko
-Summary:	    voikko plugin for %{name}
-Supplements:	(%{name} and langpacks-fi)
-Requires:	    %{name} = %{version}-%{release}
-%description	voikko
+%package        voikko
+Summary:        voikko plugin for %{name}
+Supplements:    (%{name} and langpacks-fi)
+Requires:       %{name} = %{version}-%{release}
+%description    voikko
 The %{name}-voikko package contains the Finnish voikko spellchecking
 plugin for %{name}.
 
-%package	    devel
-Summary:	    Development files for %{name}
-Requires:	    %{name} = %{version}-%{release}
-Requires:	    qt6-qtbase-devel
-%description	devel
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Core)
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -113,16 +112,13 @@ developing applications that use %{name}.
 %{_kf6_plugindir}/sonnet/sonnet_voikko.so
 
 %files devel
-%{_qt6_docdir}/*.tags
-%doc README.md
-%license LICENSES/*.txt
 %{_kf6_includedir}/Sonnet/
 %{_kf6_includedir}/SonnetCore/
 %{_kf6_includedir}/SonnetUi/
 %{_kf6_libdir}/cmake/KF6Sonnet/
 %{_kf6_libdir}/libKF6SonnetCore.so
 %{_kf6_libdir}/libKF6SonnetUi.so
-
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}
