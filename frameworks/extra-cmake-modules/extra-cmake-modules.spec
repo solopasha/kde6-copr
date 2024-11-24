@@ -1,6 +1,6 @@
-%global commit0 f67e2ff47c06d58aee67f9d0163bf3ffeb79d3f6
+%global commit0 d3b6667bf22be66e73fc67ad7f18b982e6267e52
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 %global framework extra-cmake-modules
 
@@ -12,8 +12,6 @@ Summary:        Extra modules and scripts for CMake
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND MIT
 URL:            https://invent.kde.org/frameworks/extra-cmake-modules
 %frameworks_meta
-Patch:          no-isolation.patch
-Patch:          rm-broken-rpath.patch
 
 BuildArch:      noarch
 

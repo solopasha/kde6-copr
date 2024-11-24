@@ -1,6 +1,6 @@
-%global commit0 0971293dbe8115cbfde021a83d780c7fcbe48058
+%global commit0 81cc24f60149fe39791ff0fa1946b309e45056b7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 %global framework kguiaddons
 
@@ -24,6 +24,9 @@ BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
+BuildRequires:  cmake(PySide6)
+BuildRequires:  cmake(Shiboken6)
+
 BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(x11)
@@ -41,7 +44,6 @@ Requires:       cmake(Qt6Gui)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -65,6 +67,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6GuiAddons.so.%{version_no_git}
 %{_kf6_libdir}/libKF6GuiAddons.so.6
 %{_kf6_qmldir}/org/kde/guiaddons/
+%{python3_sitearch}/KGuiAddons*.so
 
 %files devel
 %{_kf6_includedir}/KGuiAddons/
