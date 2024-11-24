@@ -70,6 +70,8 @@ developing applications that use %{name}.
 %install
 %cmake_install
 %find_lang %{name} --all-name
+# create/own dirs
+mkdir -p %{buildroot}%{_kf6_qtplugindir}/ktexteditor
 
 %files -f %{name}.lang
 %doc README.md
@@ -84,7 +86,7 @@ developing applications that use %{name}.
 %{_kf6_libexecdir}/kauth/kauth_ktexteditor_helper
 %dir %{_kf6_plugindir}/parts/
 %{_kf6_plugindir}/parts/katepart.so
-%{_kf6_qtplugindir}/ktexteditor/
+%dir %{_kf6_qtplugindir}/ktexteditor
 
 %files devel
 %{_kf6_datadir}/kdevappwizard/templates/ktexteditor6-plugin.tar.bz2
