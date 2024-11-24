@@ -1,38 +1,39 @@
-%global commit0 24eea4c68db94d0ef2d2ecdfe30eabbb47c6df09
+%global commit0 f9dcc31ddfbfb5ee927c85dfdba6e100b6b56e4a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
-%global		framework kwidgetsaddons
+%global framework kwidgetsaddons
 
-Name:		kf6-%{framework}
-Version:	6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release:	1%{?dist}
-Summary:	KDE Frameworks 6 Tier 1 addon with various classes on top of QtWidgets
-License:	BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later
-URL:		https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 1 addon with various classes on top of QtWidgets
+License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules
-BuildRequires:	fdupes
-BuildRequires:	gcc-c++
-BuildRequires:	kf6-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires:	cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6Widgets)
 
-Requires:	kf6-filesystem
+BuildRequires:  cmake(PySide6)
+BuildRequires:  cmake(Shiboken6)
+
+Requires:       kf6-filesystem
 
 %description
 KDE Frameworks 6 Tier 1 addon with various classes on top of QtWidgets.
 
-%package	devel
-Summary:	Development files for %{name}
-Requires:	%{name} = %{version}-%{release}
-Requires:	cmake(Qt6Widgets)
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name} = %{version}-%{release}
+Requires:       cmake(Qt6Widgets)
 %description	devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -47,22 +48,21 @@ developing applications that use %{name}.
 %install
 %cmake_install
 %find_lang_kf6 kwidgetsaddons6_qt
-%fdupes %{buildroot}/%{_kf6_includedir}/KWidgetsAddons/
-%fdupes LICENSES
 
 %files -f kwidgetsaddons6_qt.lang
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*categories
-%{_kf6_libdir}/libKF6WidgetsAddons.so.6
 %{_kf6_libdir}/libKF6WidgetsAddons.so.%{version_no_git}
-%{_kf6_qtplugindir}/designer/*6widgets.so
+%{_kf6_libdir}/libKF6WidgetsAddons.so.6
+%{python3_sitearch}/KWidgetsAddons*.so
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KWidgetsAddons/
 %{_kf6_libdir}/cmake/KF6WidgetsAddons/
 %{_kf6_libdir}/libKF6WidgetsAddons.so
+%{_kf6_qtplugindir}/designer/*6widgets.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}
