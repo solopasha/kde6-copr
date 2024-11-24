@@ -7,7 +7,7 @@
 Name:    kf6-%{framework}
 Summary: A Tier 3 KDE Frameworks 6 module that provides indexing and search functionality
 Version: 6.8.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND bzip2-1.0.6
 URL:     https://invent.kde.org/frameworks/%{framework}
@@ -55,7 +55,7 @@ developing applications that use %{name}.
 %package        file
 Summary:        File indexing and search for Baloo
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
-Obsoletes:      kf5-baloo-file < 5.116.0-2
+Obsoletes:      kf5-baloo-file < 6
 %description    file
 %{summary}.
 
@@ -136,6 +136,9 @@ cat baloo_file6.lang baloo_file_extractor6.lang \
 
 
 %changelog
+* Sun Nov 24 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
+- Obsolete any version of kf5-baloo-file
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 
