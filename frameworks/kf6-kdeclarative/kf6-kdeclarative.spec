@@ -27,6 +27,7 @@ BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6ShaderTools)
 
 Requires:       kf6-filesystem
 
