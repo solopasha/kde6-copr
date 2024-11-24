@@ -1,16 +1,16 @@
-%global commit0 20a58cd2f989ca0001cedb6b149393e23d76e819
+%global commit0 dee786898a0d6077884c3f4c425c923ceca0937e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 8
 
 %global framework ktexteditor
 
-Name:    kf6-%{framework}
-Version: 6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 Tier 3 with advanced embeddable text editor
+Name:           kf6-%{framework}
+Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 3 with advanced embeddable text editor
 
-License: BSD-2-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND MIT
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        BSD-2-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND MIT
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
@@ -27,17 +27,16 @@ BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Parts)
 BuildRequires:  cmake(KF6Sonnet)
 BuildRequires:  cmake(KF6SyntaxHighlighting)
-BuildRequires:  cmake(KF6TextWidgets)
 
+BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6PrintSupport)
 BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6TextToSpeech)
 BuildRequires:  cmake(Qt6Widgets)
-BuildRequires:  cmake(Qt6Xml)
 
 BuildRequires:  pkgconfig(editorconfig)
 
-Requires: kf6-filesystem
+Requires:       kf6-filesystem
 
 %description
 KTextEditor provides a powerful text editor component that you can embed in your
@@ -51,13 +50,12 @@ IDE.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6Parts)
 Requires:       cmake(KF6SyntaxHighlighting)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -72,13 +70,8 @@ developing applications that use %{name}.
 %install
 %cmake_install
 %find_lang %{name} --all-name
-# create/own dirs
-mkdir -p %{buildroot}%{_kf6_qtplugindir}/ktexteditor
-# Removing empty file
-rm -f %{buildroot}%{_kf6_datadir}/katepart5/script/README.md
 
 %files -f %{name}.lang
-%dir %{_kf6_plugindir}/parts/
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_bindir}/ktexteditor-script-tester6
@@ -86,18 +79,19 @@ rm -f %{buildroot}%{_kf6_datadir}/katepart5/script/README.md
 %{_kf6_datadir}/dbus-1/system.d/org.kde.ktexteditor6.katetextbuffer.conf
 %{_kf6_datadir}/polkit-1/actions/org.kde.ktexteditor6.katetextbuffer.policy
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6TextEditor.so.6
 %{_kf6_libdir}/libKF6TextEditor.so.%{version_no_git}
+%{_kf6_libdir}/libKF6TextEditor.so.6
 %{_kf6_libexecdir}/kauth/kauth_ktexteditor_helper
+%dir %{_kf6_plugindir}/parts/
 %{_kf6_plugindir}/parts/katepart.so
 %{_kf6_qtplugindir}/ktexteditor/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_datadir}/kdevappwizard/templates/ktexteditor6-plugin.tar.bz2
 %{_kf6_includedir}/KTextEditor/
 %{_kf6_libdir}/cmake/KF6TextEditor/
 %{_kf6_libdir}/libKF6TextEditor.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}
