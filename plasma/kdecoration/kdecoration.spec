@@ -1,6 +1,6 @@
-%global commit0 e849d0962218d15692cdee9a9422136e09a846e9
+%global commit0 3f18d05d602b28fe99f646655efa17c8c7a8af40
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 Name:           kdecoration
 Summary:        A plugin-based library to create window decorations
@@ -46,18 +46,18 @@ mkdir -p %{buildroot}%{_kf6_qtplugindir}/org.kde.kdecoration3/
 
 %files -f %{name}.lang
 %license LICENSES/*.txt
-%{_kf6_libdir}/libkdecorations2.so.%{version_no_git}
-%{_kf6_libdir}/libkdecorations2.so.6
-%{_kf6_libdir}/libkdecorations2private.so.%{version_no_git}
-%{_kf6_libdir}/libkdecorations2private.so.1
+%{_kf6_libdir}/libkdecorations3.so.%{version_no_git}
+%{_kf6_libdir}/libkdecorations3.so.6
+%{_kf6_libdir}/libkdecorations3private.so.%{version_no_git}
+%{_kf6_libdir}/libkdecorations3private.so.1
 %dir %{_kf6_qtplugindir}/org.kde.kdecoration3/
 
 %files devel
 %{_includedir}/KDecoration3/
 %{_kf6_includedir}/kdecoration3_version.h
 %{_kf6_libdir}/cmake/KDecoration3/
-%{_kf6_libdir}/libkdecorations2.so
-%{_kf6_libdir}/libkdecorations2private.so
+%{_kf6_libdir}/libkdecorations3.so
+%{_kf6_libdir}/libkdecorations3private.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}
