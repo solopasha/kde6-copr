@@ -9,7 +9,7 @@
 Name:           ark
 Summary:        Archive manager
 Version:        24.08.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 License:        GPL-2.0-or-later AND BSD-2-Clause
 URL:            https://www.kde.org/applications/utilities/ark/
@@ -54,7 +54,7 @@ Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       bzip2
 Requires:       gzip
 %if 0%{?p7zip}
-Requires:       p7zip-plugins
+Recommends:     p7zip-plugins
 %endif
 Requires:       unzip
 # optional/soft dependencies
@@ -124,6 +124,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.ark.deskt
 
 
 %changelog
+* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
+- p7zip: requires -> recommends
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 
