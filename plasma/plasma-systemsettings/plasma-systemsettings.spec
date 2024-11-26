@@ -1,4 +1,4 @@
-%global commit0 ce92ae9806cef615eab68be197461609123557ef
+%global commit0 607f9cbbcc37afa3225aa82b99ad9f7279cf97f8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    plasma-%{base_name}
 Summary: KDE System Settings application
-Version: 6.2.3
+Version: 6.2.4
 Release: 1%{?dist}
 
 License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-or-later AND (GPL-2.0-only OR GPL-3.0-only)
@@ -84,6 +84,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
+* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
+- Update to 6.2.4
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
 - Update to 6.2.3
 

@@ -1,4 +1,4 @@
-%global commit0 6a22af7d21b1091d6b9f00a291a692c4750c3d17
+%global commit0 f30af21eff04a399612da7024c79005699b53556
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 %global kf6minver 6.2
 
 Name:           krdp
-Version:        6.2.3
+Version:        6.2.4
 Release:        1%{?dist}
 Summary:        Desktop sharing using RDP
 
@@ -113,6 +113,9 @@ Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
+- Update to 6.2.4
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
 - Update to 6.2.3
 

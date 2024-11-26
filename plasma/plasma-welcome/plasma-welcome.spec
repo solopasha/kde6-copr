@@ -1,19 +1,16 @@
-%global commit0 1041129f84e05fa4148b1bc6af49b9bc294c014c
+%global commit0 8b77b43784da29ad37bbd25e0ee1d05313ba365a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global orgname org.kde.plasma-welcome
 
 Name:           plasma-welcome
-Version:        6.2.3
+Version:        6.2.4
 Release:        1%{?dist}
 License:        GPL-2.0-or-later and BSD-3-Clause
 Summary:        Plasma Welcome
-Url:            https://invent.kde.org/plasma/%{name}
-
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
-
-# Upstream patches
 
 BuildRequires:  gcc-c++
 BuildRequires:  qt6-qtbase-devel
@@ -76,6 +73,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{orgname}.deskto
 
 
 %changelog
+* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
+- Update to 6.2.4
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
 - Update to 6.2.3
 

@@ -1,9 +1,9 @@
-%global commit0 57eca37bd26ac5265478bd9864ba2c8476309b1f
+%global commit0 7ef4745bc25ffd0d74ef2e7ec9e569628d72e3b7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kde-cli-tools
-Version: 6.2.3
+Version: 6.2.4
 Release: 1%{?dist}
 Summary: Tools based on KDE Frameworks 5 to better interact with the system
 
@@ -107,6 +107,9 @@ ln -s %{_kf6_libexecdir}/kdesu %{buildroot}%{_bindir}/kdesu
 
 
 %changelog
+* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
+- Update to 6.2.4
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
 - Update to 6.2.3
 

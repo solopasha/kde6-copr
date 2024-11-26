@@ -1,10 +1,10 @@
-%global commit0 456c7078a1a826a40a8a31d1d65b22d75a936496
+%global commit0 5a47aa1159d31c1998d3a2addde2266226a2cb23
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kwayland-integration
-Version: 6.2.3
-Release: 2%{?dist}
+Version: 6.2.4
+Release: 1%{?dist}
 Summary: Provides integration plugins for various KDE Frameworks for Wayland
 
 License: CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only AND LGPL-3.0-only)
@@ -56,6 +56,9 @@ Requires:       kf5-filesystem
 
 
 %changelog
+* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
+- Update to 6.2.4
+
 * Sat Nov 16 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-2
 - Don't depend on the exact version of Qt5
 

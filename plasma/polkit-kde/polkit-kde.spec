@@ -1,4 +1,4 @@
-%global commit0 f6b6e2d8d5ce883bb923ec4fb80f8243a2c63efb
+%global commit0 ff29cf41166c361056bda58c71359164bfc6dc80
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    polkit-kde
 Summary: PolicyKit integration for KDE Desktop
-Version: 6.2.3
+Version: 6.2.4
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later AND CC0-1.0
@@ -74,6 +74,9 @@ Provides Policy Kit Authentication Agent that nicely fits to KDE.
 
 
 %changelog
+* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
+- Update to 6.2.4
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
 - Update to 6.2.3
 

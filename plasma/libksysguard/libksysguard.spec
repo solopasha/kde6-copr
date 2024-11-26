@@ -1,17 +1,15 @@
-%global commit0 e70cf9be08ed99c1d9e3c9268f7b7d8a72a088bb
+%global commit0 8661af247a90966f7a58f0b6ab2692349925a383
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    libksysguard
 Summary: Library for managing processes running on the system
-Version: 6.2.3
-Release: 3%{?dist}
+Version: 6.2.4
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
-Patch:   https://invent.kde.org/plasma/libksysguard/-/commit/6e164d04743823fca6392ed9cce9e75acd537a0c.patch
-Patch:   https://invent.kde.org/plasma/libksysguard/-/commit/9ea3571c903db1ebe72d5091eefc052288af252f.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
@@ -127,6 +125,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libprocesscore.so
 
 %changelog
+* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
+- Update to 6.2.4
+
 * Mon Nov 18 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-3
 - pick upstream commits
 

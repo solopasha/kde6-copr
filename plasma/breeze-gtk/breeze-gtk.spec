@@ -1,9 +1,9 @@
-%global commit0 75c49560b6b8f9bcfc92b181810fe022e6a7b992
+%global commit0 8f5600b18a2f062719342fc240cc9a4e56d9dbbf
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    breeze-gtk
-Version: 6.2.3
+Version: 6.2.4
 Release: 1%{?dist}
 Summary: Breeze widget theme for GTK
 
@@ -104,6 +104,9 @@ Supplements:    (plasma-breeze and gtk4)
 
 
 %changelog
+* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
+- Update to 6.2.4
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
 - Update to 6.2.3
 

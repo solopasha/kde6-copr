@@ -1,14 +1,13 @@
-%global commit0 a9d3d4f960f09313d7a77c69880e242a5063c751
+%global commit0 9ea2c7968da479c205cebba0c3f84cfc98f70f95
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:          flatpak-kcm
-Version:       6.2.3
+Version:       6.2.4
 Release:       1%{?dist}
 License:       BSD-2-Clause and BSD-3-Clause and CC0-1.0 and GPL-2.0-or-later
 Summary:       Flatpak Permissions Management KCM
-Url:           https://invent.kde.org/plasma/flatpak-kcm
-
+URL:           https://invent.kde.org/plasma/flatpak-kcm
 %plasma_source
 
 BuildRequires: extra-cmake-modules
@@ -46,6 +45,9 @@ BuildRequires: pkgconfig(flatpak)
 %{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_flatpak.so
 
 %changelog
+* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
+- Update to 6.2.4
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
 - Update to 6.2.3
 
