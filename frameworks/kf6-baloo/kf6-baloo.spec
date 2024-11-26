@@ -109,8 +109,8 @@ cat baloo_file6.lang baloo_file_extractor6.lang \
 
 %files file -f %{name}-file.lang
 %config(noreplace) %{_kf6_sysconfdir}/xdg/autostart/baloo_file.desktop
-%{_libexecdir}/kf6/baloo_file
-%{_libexecdir}/kf6/baloo_file_extractor
+%{_kf6_libexecdir}/baloo_file
+%{_kf6_libexecdir}/baloo_file_extractor
 %{_userunitdir}/kde-baloo.service
 
 %files libs
@@ -119,7 +119,6 @@ cat baloo_file6.lang baloo_file_extractor6.lang \
 %{_kf6_libdir}/libKF6Baloo.so.6
 %{_kf6_libdir}/libKF6BalooEngine.so.%{version_no_git}
 %{_kf6_libdir}/libKF6BalooEngine.so.6
-%{_kf6_plugindir}/kded/baloosearchmodule.so
 %{_kf6_plugindir}/kded/baloosearchmodule.so
 %{_kf6_plugindir}/kio/baloosearch.so
 %{_kf6_plugindir}/kio/tags.so
