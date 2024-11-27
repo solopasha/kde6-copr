@@ -1,6 +1,6 @@
-%global commit0 3596ed1a7e7d5efa1cb8ad579286b5dd02bfb053
+%global commit0 f40d24a6bec03e900320557f7b73273ff680ce1a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 12
+%global bumpver 13
 
 %global framework kxmlgui
 
@@ -28,6 +28,9 @@ BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6ItemViews)
 BuildRequires:  cmake(KF6WidgetsAddons)
+
+BuildRequires:  cmake(PySide6)
+BuildRequires:  cmake(Shiboken6)
 
 BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6PrintSupport)
@@ -76,6 +79,7 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kxmlgui5/
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6XmlGui.so.%{version_no_git}
 %{_kf6_libdir}/libKF6XmlGui.so.6
+%{python3_sitearch}/*.so
 %dir %{_kf6_datadir}/kxmlgui5/
 
 %files devel
