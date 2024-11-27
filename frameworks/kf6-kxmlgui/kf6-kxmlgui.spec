@@ -79,7 +79,7 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kxmlgui5/
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6XmlGui.so.%{version_no_git}
 %{_kf6_libdir}/libKF6XmlGui.so.6
-%{python3_sitearch}/*.so
+%{python3_sitearch}/KXmlGui*.so
 %dir %{_kf6_datadir}/kxmlgui5/
 
 %files devel
