@@ -5,7 +5,7 @@
 Name:    libkdcraw
 Summary: A C++ interface around LibRaw library
 Version: 24.08.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later
 URL:     https://invent.kde.org/graphics/%{name}
@@ -13,18 +13,13 @@ URL:     https://invent.kde.org/graphics/%{name}
 
 BuildRequires: extra-cmake-modules
 BuildRequires: gettext
-BuildRequires: kf5-rpm-macros
 BuildRequires: kf6-rpm-macros
 BuildRequires: pkgconfig(libraw) >= 0.15
 BuildRequires: cmake(Qt6Gui)
-BuildRequires: cmake(Qt5Gui)
 
 Requires:      kf6-filesystem
 
 Obsoletes:     %{name}-qt5 < 24.02.1
-Provides:      %{name}-qt5 = %{version}-%{release}
-Obsoletes:     kf5-%{name} < 24.02.1
-Provides:      kf5-%{name} = %{version}-%{release}
 
 %description
 Libkdcraw is a C++ interface around LibRaw library used to decode RAW
@@ -33,10 +28,7 @@ http://www.libraw.org.
 
 %package        devel
 Summary:        Development files for %{name}
-Obsoletes:      kf5-%{name}-devel < 24.02.1
-Provides:       kf5-%{name}-devel = %{version}-%{release}
 Obsoletes:      %{name}-qt5-devel < 24.02.1
-Provides:       %{name}-qt5-devel = %{version}-%{release}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 %description    devel
 %{summary}.
@@ -48,41 +40,30 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %build
-%global _vpath_builddir %{_target_platform}-qt6
 %cmake_kf6 -DQT_MAJOR_VERSION=6
-%cmake_build
-
-%global _vpath_builddir %{_target_platform}-qt5
-%cmake_kf5 -DQT_MAJOR_VERSION=5
 %cmake_build
 
 
 %install
-%global _vpath_builddir %{_target_platform}-qt5
-%cmake_install
-
-%global _vpath_builddir %{_target_platform}-qt6
 %cmake_install
 
 
 %files
 %doc AUTHORS
 %license LICENSES/*
-%{_kf6_libdir}/libKDcrawQt6.so.5*
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
-%{_kf5_libdir}/libKF5KDcraw.so.5*
-%{_kf5_datadir}/qlogging-categories5/*%{name}.*
+%{_kf6_libdir}/libKDcrawQt6.so.5*
 
 %files devel
-%{_kf6_libdir}/libKDcrawQt6.so
 %{_includedir}/KDcrawQt6/
 %{_kf6_libdir}/cmake/KDcrawQt6/
-%{_kf5_libdir}/libKF5KDcraw.so
-%{_kf5_includedir}/KDCRAW/
-%{_kf5_libdir}/cmake/KF5KDcraw/
+%{_kf6_libdir}/libKDcrawQt6.so
 
 
 %changelog
+* Sat Nov 30 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
+- Drop Qt5
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 
