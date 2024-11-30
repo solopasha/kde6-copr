@@ -1,6 +1,6 @@
 %global commit0 442685f03f5d9ccffa52785519f66c06c2cd9807
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 27
+%global bumpver 28
 
 %bcond x11 1
 
@@ -224,6 +224,9 @@ Requires:       iso-codes
 
 # plasmashell provides dbus service org.freedesktop.Notifications
 Provides:       desktop-notification-daemon
+
+# Split of Xorg session into subpackage
+Obsoletes:      plasma-workspace < 5.19.5-2
 
 # khotkeys was dropped
 Obsoletes:      khotkeys < 6
