@@ -1,6 +1,6 @@
 %global commit0 593f769699481fa4772747b60d16e9d7afde29b6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 32
+%global bumpver 33
 
 %bcond x11 1
 
@@ -133,7 +133,7 @@ Requires:   %{name}-wayland = %{version}-%{release}
 Summary:        KDE Window Manager with Wayland support
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       %{name}-common%{?_isa} = %{version}-%{release}
-Requires:       kwayland-integration%{?_isa} >= %{majmin_ver_kf6}
+Requires:       (kwayland-integration%{?_isa} >= %{majmin_ver_kf6} if qt5-qtbase%{?_isa})
 BuildRequires:  pkgconfig(xwayland)
 Requires:       xorg-x11-server-Xwayland
 # http://bugzilla.redhat.com/605675
@@ -272,8 +272,8 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 %files devel
 %{_includedir}/kwin/
 %{_kf6_datadir}/dbus-1/interfaces/*.xml
-%{_kf6_libdir}/cmake/KWin
-%{_kf6_libdir}/cmake/KWinDBusInterface
+%{_kf6_libdir}/cmake/KWin/
+%{_kf6_libdir}/cmake/KWinDBusInterface/
 %{_kf6_libdir}/libkwin.so
 
 %files doc -f %{name}-doc.lang

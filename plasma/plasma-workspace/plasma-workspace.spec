@@ -1,6 +1,6 @@
-%global commit0 30b4514948cea595b8067ce0e5e4a625f8c767bc
+%global commit0 0f213b8ccb3603e69e8f286c972548398df74cee
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 25
+%global bumpver 26
 
 %bcond x11 1
 
@@ -159,9 +159,6 @@ BuildRequires:  cmake(PlasmaActivities)
 BuildRequires:  cmake(AppStreamQt) >= 0.10.4
 %endif
 
-# when kded_desktopnotifier.so moved here
-Conflicts:      kio-extras < 5.4.0
-
 %if 0%{?fedora} > 35
 Recommends:     plasma-welcome
 %endif
@@ -200,12 +197,7 @@ Recommends: audiocd-kio
 # For a11y
 Recommends: orca
 
-# powerdevil has a versioned dep on libkworkspace6, so (may?)
-# need to avoid this dep when bootstrapping
-%if ! 0%{?bootstrap}
-# Power management
 Requires:       powerdevil >= %{majmin_ver_kf6}
-%endif
 
 Requires:       dbus
 # dbus-update-activation-environment
@@ -222,13 +214,10 @@ Requires:       qt6-qttools
 
 Requires:       qt6-qt5compat%{?_isa}
 
-%if %{?fedora} >= 40
 # kconf_update
 Requires:       /usr/bin/qtpaths-qt6
-%endif
 
-Requires:       iceauth xrdb xprop
-Requires:       xsetroot
+Requires:       xrdb xprop
 
 Requires:       kde-settings-plasma
 
@@ -275,9 +264,6 @@ BuildRequires: pkgconfig(iso-codes)
 %endif
 Requires: iso-codes
 
-# Split of Xorg session into subpackage
-Obsoletes: plasma-workspace < 5.19.5-2
-
 # khotkeys was dropped
 Obsoletes: khotkeys < 6
 
@@ -302,8 +288,6 @@ Summary: Common files for %{name}
 
 %package -n libkworkspace6
 Summary: Runtime libkworkspace6 library
-# when spilt occurred
-Obsoletes: plasma-workspace < 5.4.2-2
 Obsoletes: libkworkspace5 < %{version}-%{release}
 Requires:  %{name}-common = %{version}-%{release}
 %description -n libkworkspace6
@@ -311,8 +295,6 @@ Requires:  %{name}-common = %{version}-%{release}
 
 %package libs
 Summary: Runtime libraries for %{name}
-# when split out
-Obsoletes: plasma-workspace < 5.4.2-2
 ## omit dep on main pkg for now, means we can avoid pulling in a
 ## huge amount of deps (including kde4) into buildroot -- rex
 #Requires:  %%{name}%%{?_isa} = %%{version}-%%{release}
@@ -337,10 +319,8 @@ developing applications that use %{name}.
 %package        doc
 Summary:        Documentation and user manuals for %{name}
 License:        GFDL
-# switch to noarch
-Obsoletes:      plasma-workspace-doc < 5.3.1-2
 Requires:       %{name}-common = %{version}-%{release}
-BuildArch: noarch
+BuildArch:      noarch
 %description    doc
 Documentation and user manuals for %{name}.
 
@@ -366,7 +346,7 @@ to use KWin for the Wayland compositor for the greeter.
 Summary:        Wayland support for Plasma
 Requires:       %{name} = %{version}-%{release}
 Requires:       kwin-wayland
-Requires:       kwayland-integration%{?_isa}
+Requires:       (kwayland-integration%{?_isa} >= %{majmin_ver_kf6} if qt5-qtbase%{?_isa})
 Requires:       xorg-x11-server-Xwayland
 Requires:       qt6-qtwayland%{?_isa}
 # startplasmacompositor deps
