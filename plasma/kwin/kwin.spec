@@ -8,13 +8,14 @@
 
 Name:    kwin
 Version: 6.2.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: KDE Window manager
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://userbase.kde.org/KWin
 %plasma_source
 Patch:   https://invent.kde.org/plasma/kwin/-/commit/88c260ab261cb79425cbe5755c6c2758a4b3c19f.patch
+Patch:   https://invent.kde.org/plasma/kwin/-/commit/da1bebbb4480cfc26467ad3b31737b0df044b551.patch
 
 # Base
 BuildRequires:  extra-cmake-modules
@@ -136,7 +137,7 @@ Requires:   %{name}-wayland = %{version}-%{release}
 Summary:        KDE Window Manager with Wayland support
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       %{name}-common%{?_isa} = %{version}-%{release}
-Requires:       kwayland-integration%{?_isa} >= %{majmin_ver_kf6}
+Requires:       (kwayland-integration%{?_isa} >= %{majmin_ver_kf6} if qt5-qtbase%{?_isa})
 BuildRequires:  pkgconfig(xwayland)
 Requires:       xorg-x11-server-Xwayland
 # http://bugzilla.redhat.com/605675
@@ -284,6 +285,9 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 
 
 %changelog
+* Sat Nov 30 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-2
+- pick upstream commit
+
 * Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
 - Update to 6.2.4
 

@@ -7,11 +7,13 @@
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
 Version: 6.2.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
+Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/d5a123f997a06bacafcc2e0b68c43c75ef90f9a0.patch
+Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/7357e228ba88a6a16acc9f97628ce6fd4f40e2ab.patch
 
 Source11:       startkderc
 Source15:       fedora-lookandfeel.json
@@ -387,7 +389,7 @@ to use KWin for the Wayland compositor for the greeter.
 Summary:        Wayland support for Plasma
 Requires:       %{name} = %{version}-%{release}
 Requires:       kwin-wayland
-Requires:       kwayland-integration%{?_isa}
+Requires:       (kwayland-integration%{?_isa} >= %{majmin_ver_kf6} if qt5-qtbase%{?_isa})
 Requires:       xorg-x11-server-Xwayland
 Requires:       qt6-qtwayland%{?_isa}
 # startplasmacompositor deps
@@ -712,6 +714,9 @@ fi
 
 
 %changelog
+* Sat Nov 30 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-2
+- pick upstream commits
+
 * Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
 - Update to 6.2.4
 
