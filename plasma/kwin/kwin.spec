@@ -1,6 +1,6 @@
-%global commit0 593f769699481fa4772747b60d16e9d7afde29b6
+%global commit0 af9eb8cb5efd55ebe16825d0198436cd0725909b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 33
+%global bumpver 34
 
 %bcond x11 1
 
@@ -120,11 +120,7 @@ Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtdeclarative%{?_isa}
 Requires:       qt6-qtmultimedia%{?_isa}
 
-# http://bugzilla.redhat.com/605675
-# until initial-setup is fixed... (#1197135)
-Provides: firstboot(windowmanager) = kwin
-
-Requires:   %{name}-wayland = %{version}-%{release}
+Requires:       %{name}-wayland = %{version}-%{release}
 
 %description
 %{summary}.
@@ -136,8 +132,6 @@ Requires:       %{name}-common%{?_isa} = %{version}-%{release}
 Requires:       (kwayland-integration%{?_isa} >= %{majmin_ver_kf6} if qt5-qtbase%{?_isa})
 BuildRequires:  pkgconfig(xwayland)
 Requires:       xorg-x11-server-Xwayland
-# http://bugzilla.redhat.com/605675
-Provides:       firstboot(windowmanager) = kwin_wayland
 %if ! %{with x11}
 # Obsolete kwin-x11 as we are dropping the package
 Obsoletes:      %{name}-x11 < %{version}-%{release}
