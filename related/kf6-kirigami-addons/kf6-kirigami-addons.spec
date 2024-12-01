@@ -1,7 +1,7 @@
 %global orig_name kirigami-addons
 
 Name:           kf6-kirigami-addons
-Version:        1.5.0
+Version:        1.6.0
 Release:        1%{?dist}
 License:        BSD-2-Clause AND CC-BY-SA-4.0 AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND LicenseRef-KFQF-Accepted-GPL
 Summary:        Convergent visual components ("widgets") for Kirigami-based applications
@@ -94,6 +94,9 @@ or Plasma).
 %{_kf6_libdir}/libKirigamiAddonsStatefulApp.so
 
 %changelog
+* Sun Dec 01 2024 Pavel Solovev <daron439@gmail.com> - 1.6.0-1
+- new version
+
 * Thu Oct 10 2024 Pavel Solovev <daron439@gmail.com> - 1.5.0-1
 - new version
 
