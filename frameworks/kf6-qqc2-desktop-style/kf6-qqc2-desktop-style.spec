@@ -6,7 +6,7 @@
 
 Name:    kf6-%{framework}
 Version: 6.8.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: QtQuickControls2 style for consistency between QWidget and QML apps
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KFQF-Accepted-GPL
 URL:     https://invent.kde.org/frameworks/%{framework}
@@ -27,7 +27,6 @@ BuildRequires: cmake(Qt6Gui)
 BuildRequires: cmake(Qt6Quick)
 BuildRequires: cmake(Qt6Widgets)
 BuildRequires: qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 Requires:      kf6-kirigami2
 Requires:      kf6-sonnet
@@ -59,6 +58,9 @@ between QWidget-based and QML-based apps.
 %{_qt6_qmldir}/org/kde/qqc2desktopstyle/
 
 %changelog
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
+- Remove Qt6 version constraints
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

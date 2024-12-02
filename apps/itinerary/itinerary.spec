@@ -4,7 +4,7 @@
 
 Name:           itinerary
 Version:        24.08.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Itinerary and boarding pass management application
 
 License:        Apache-2.0 and BSD-3-Clause and LGPL-2.0-or-later AND CC0-1.0
@@ -27,7 +27,6 @@ BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 # KDE Frameworks
 BuildRequires:  extra-cmake-modules
@@ -103,6 +102,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_qt6_qmldir}/org/kde/solidextras/
 
 %changelog
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-3
+- Remove Qt6 version constraints
+
 * Wed Nov 06 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
 - rebuild against libquotient 0.9.0
 

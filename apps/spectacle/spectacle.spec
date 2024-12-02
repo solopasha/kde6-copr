@@ -5,7 +5,7 @@
 Name:    spectacle
 Summary: Screenshot capture utility
 Version: 24.08.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPLv2
 URL:     https://www.kde.org/applications/graphics/spectacle/
@@ -38,7 +38,6 @@ BuildRequires: cmake(LayerShellQt)
 BuildRequires: cmake(PlasmaWaylandProtocols)
 
 BuildRequires: qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires: cmake(Qt6DBus)
 BuildRequires: cmake(Qt6PrintSupport)
 BuildRequires: cmake(Qt6QuickControls2)
@@ -101,6 +100,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.spectacle
 
 
 %changelog
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
+- Remove Qt6 version constraints
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

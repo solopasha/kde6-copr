@@ -7,7 +7,7 @@
 
 Name:    konqueror
 Version: 24.08.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: KDE File Manager and Browser
 
 License: GPLv2+ and LGPLv2+ and GFDL
@@ -36,7 +36,6 @@ BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6Widgets)
 BuildRequires: cmake(Qt6WebEngineWidgets)
 BuildRequires: qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires: cmake(KF6Parts)
 BuildRequires: cmake(KF6KCMUtils)
@@ -198,6 +197,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
+- Remove Qt6 version constraints
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

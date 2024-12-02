@@ -5,7 +5,7 @@
 Name:    krfb
 Summary: Desktop sharing
 Version: 24.08.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPL-2.0-only AND LGPL-2.1-only AND GFDL-1.2-no-invariants-only
 URL:     https://www.kde.org/applications/network/krfb/
@@ -35,7 +35,6 @@ BuildRequires: cmake(Qt6DBus)
 BuildRequires: cmake(Qt6Widgets)
 BuildRequires: cmake(Qt6WaylandScannerTools)
 BuildRequires: qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires: cmake(KPipeWire)
 BuildRequires: cmake(KWayland)
@@ -108,6 +107,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.xml
 
 
 %changelog
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
+- Remove Qt6 version constraints
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

@@ -18,7 +18,7 @@
 Name:    okular
 Summary: A document viewer
 Version: 24.08.3
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: GPL-2.0-only
 URL:     https://www.kde.org/applications/graphics/okular/
@@ -61,7 +61,6 @@ BuildRequires: cmake(Qt6Qml)
 BuildRequires: cmake(Qt6DBus)
 BuildRequires: cmake(Qt6TextToSpeech)
 BuildRequires: qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires: cmake(PlasmaActivities)
 
@@ -211,6 +210,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.ok
 
 
 %changelog
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-3
+- Remove Qt6 version constraints
+
 * Sat Nov 09 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
 - pick upstream commit
 

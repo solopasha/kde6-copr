@@ -6,7 +6,7 @@
 
 Name:    plasma-%{base_name}
 Version: 6.2.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Plasma and Qt widget style and window decorations for Plasma
 
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only) AND MIT
@@ -54,7 +54,6 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 Requires:       kf6-filesystem
 
@@ -83,7 +82,6 @@ Provides:       qt5-style-oxygen = %{version}-%{release}
 
 %package        qt6
 Summary:        Oxygen widget style for Qt 6
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 %description    qt6
 %{summary}.
 
@@ -162,6 +160,9 @@ popd
 
 
 %changelog
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-2
+- Remove Qt6 version constraints
+
 * Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
 - Update to 6.2.4
 

@@ -7,7 +7,7 @@
 Name:    kf6-%{framework}
 Summary: Framework for collecting user feedback for apps via telemetry and surveys
 Version: 6.8.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: MIT AND CC0-1.0 AND BSD-3-Clause
 URL:     https://invent.kde.org/frameworks/%{framework}
@@ -50,7 +50,6 @@ developing applications that use %{name}.
 Summary:        Analytics and administration tool for UserFeedback servers
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 Requires:       qt6-qtcharts%{?_isa}
 # Obsolete the qt5 version
 Obsoletes:      kuserfeedback-console < %{version}-%{release}
@@ -117,6 +116,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kuserfeedback
 
 
 %changelog
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
+- Remove Qt6 version constraints
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

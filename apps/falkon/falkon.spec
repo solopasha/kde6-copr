@@ -7,7 +7,7 @@
 
 Name:           falkon
 Version:        24.08.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Modern web browser
 
 # Files in src/lib/opensearch and src/lib/3rdparty are GPLv2+
@@ -59,7 +59,6 @@ BuildRequires:  cmake(KF6I18n)
 %endif
 
 # require the correct minimum versions of Qt, symbol versioning does not work
-Requires:       qt6-qtbase%{?_isa} >= %(echo %{_qt6_version} | cut -d. -f-2)
 %global qtwebengine_version %(pkg-config --modversion Qt6WebEngineCore 2>/dev/null || echo 6.6)
 Requires:       qt6-qtwebengine%{?_isa} >= %(echo %{qtwebengine_version} | cut -d. -f-2)
 
@@ -182,6 +181,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.fa
 
 
 %changelog
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
+- Remove Qt6 version constraints
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

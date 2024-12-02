@@ -6,7 +6,7 @@
 
 Name:    kf6-%{framework}
 Version: 6.8.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: KDE Frameworks 6 Tier 3 addon for creating configuration dialogs
 
 # The following licenses are in LICENSES but go unused: BSD-3-Clause, MIT
@@ -28,7 +28,6 @@ BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  cmake(Qt6UiPlugin)
 
 Requires:  kf6-filesystem
@@ -80,6 +79,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6ConfigWidgets/
 
 %changelog
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
+- Remove Qt6 version constraints
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

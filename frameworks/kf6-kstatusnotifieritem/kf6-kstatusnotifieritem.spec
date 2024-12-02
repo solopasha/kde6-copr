@@ -6,7 +6,7 @@
 
 Name:           kf6-%{framework}
 Version:        6.8.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Implementation of Status Notifier Items
 
 License:        CC0-1.0 AND LGPL-2.0-or-later
@@ -22,7 +22,6 @@ BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires:  pkgconfig(x11)
 
@@ -68,6 +67,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6StatusNotifierItem.so
 
 %changelog
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
+- Remove Qt6 version constraints
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

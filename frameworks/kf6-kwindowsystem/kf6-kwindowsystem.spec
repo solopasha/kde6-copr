@@ -6,7 +6,7 @@
 
 Name:		kf6-%{framework}
 Version:	6.8.0
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	KDE Frameworks 6 Tier 1 integration module with classes for windows management
 License:	CC0-1.0 AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND MIT
 URL:		https://invent.kde.org/frameworks/%{framework}
@@ -33,7 +33,6 @@ BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:	cmake(Qt6Gui)
 BuildRequires:	cmake(Qt6Qml)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 Requires:	kf6-filesystem
 
@@ -84,6 +83,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/pkgconfig/KF6WindowSystem.pc
 
 %changelog
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
+- Remove Qt6 version constraints
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

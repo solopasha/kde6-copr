@@ -2,7 +2,7 @@ Name:    kf6
 # This version MUST remain in sync with KF6 versions!
 # XXX: Yes, it's 5.x still, this is synced with the version set in extra-cmake-modules
 Version: 6.8.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Filesystem and RPM macros for KDE Frameworks 6
 License: BSD-3-Clause
 URL:     http://www.kde.org
@@ -21,7 +21,6 @@ Summary: Filesystem for KDE Frameworks 6
 %if 0%{?fedora} >= 39 || 0%{?rhel} >= 10
 Requires: kde-filesystem >= 5
 %endif
-%{?_qt6_version:Requires: qt6-qtbase >= %{_qt6_version}}
 %description filesystem
 Filesystem for KDE Frameworks 6.
 
@@ -122,6 +121,9 @@ install -Dpm0644 %{_sourcedir}/kde.lua %{buildroot}%{_rpmluadir}/fedora/srpm/kde
 %files qch
 
 %changelog
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
+- Remove Qt6 version constraints
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

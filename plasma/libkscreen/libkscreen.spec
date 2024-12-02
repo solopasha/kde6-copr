@@ -5,7 +5,7 @@
 Name:    libkscreen
 Summary: KDE display configuration library
 Version: 6.2.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/plasma/%{name}
@@ -33,7 +33,6 @@ BuildRequires:  plasma-wayland-protocols-devel
 # Qt
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  qt6-qtwayland-devel
 BuildRequires:  cmake(Qt6WaylandClient)
 
@@ -86,6 +85,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/pkgconfig/KF6Screen.pc
 
 %changelog
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-2
+- Remove Qt6 version constraints
+
 * Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
 - Update to 6.2.4
 

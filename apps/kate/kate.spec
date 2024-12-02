@@ -7,7 +7,7 @@
 Name:    kate
 Summary: Advanced Text Editor
 Version: 24.08.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 # kwrite LGPLv2+
 # kate: app LGPLv2, plugins, LGPLv2 and LGPLv2+ and GPLv2+
@@ -45,7 +45,6 @@ BuildRequires: cmake(Qt6Test)
 BuildRequires: cmake(Qt6Concurrent)
 BuildRequires: cmake(Qt6Keychain)
 BuildRequires: qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires: cmake(PlasmaActivities)
 BuildRequires: cmake(KF6DocTools)
@@ -184,6 +183,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
+- Remove Qt6 version constraints
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 
