@@ -12,6 +12,7 @@ URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
 
 BuildRequires:  kf6-rpm-macros
+BuildRequires:  kf5-rpm-macros
 BuildRequires:  extra-cmake-modules
 BuildRequires:  wayland-devel
 BuildRequires:  cmake(PlasmaWaylandProtocols) >= 1.6.0
