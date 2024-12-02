@@ -1,6 +1,6 @@
 %global commit0 09c15c71460a82ab8ec862f5a3c64184ed817ab5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 Name:    kscreen
 Epoch:   1
@@ -18,7 +18,6 @@ BuildRequires:  systemd-rpm-macros
 
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  qt6-qtsensors-devel
 
 BuildRequires:  cmake(LayerShellQt)

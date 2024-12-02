@@ -1,6 +1,6 @@
 %global commit0 b0433296075af8b9fada5a7ca43710983fea490a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 %global qt6minver 6.6.0
 %global kf6minver 6.2
@@ -19,7 +19,6 @@ BuildRequires:  extra-cmake-modules >= %{kf6minver}
 BuildRequires:  gcc-c++
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  qt6-qtbase-private-devel >= %{qt6minver}
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)

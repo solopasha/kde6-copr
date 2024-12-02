@@ -1,6 +1,6 @@
 %global commit0 d3fb0f11570fb4d3fc01bd5f9091ca93366108d3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:    kpipewire
 Summary: Set of convenient classes to use PipeWire in Qt projects
@@ -43,7 +43,6 @@ BuildRequires:  plasma-wayland-protocols-devel
 # Qt
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  qt6-qtdeclarative-devel
 BuildRequires:  qt6-qtwayland-devel
 

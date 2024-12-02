@@ -1,6 +1,6 @@
 %global commit0 ac93f70463a9fcb31a3cc32ede5296757467f2c0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 29
+%global bumpver 30
 
 %bcond x11 1
 
@@ -89,7 +89,6 @@ BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires:  cmake(Breeze)
 BuildRequires:  cmake(KF6Screen)

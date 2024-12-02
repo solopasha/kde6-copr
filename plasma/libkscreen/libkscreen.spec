@@ -1,6 +1,6 @@
 %global commit0 a49b2d6e149928c7bd0ff363f908f3d8c261074f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:    libkscreen
 Summary: KDE display configuration library
@@ -33,7 +33,6 @@ BuildRequires:  plasma-wayland-protocols-devel
 # Qt
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  qt6-qtwayland-devel
 BuildRequires:  cmake(Qt6WaylandClient)
 

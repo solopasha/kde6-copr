@@ -1,6 +1,6 @@
 %global commit0 4ef28a0af59871619118fdbb1d747013fdb50581
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:    plasma5support
 Summary: Support components for porting from KF5/Qt5 to KF6/Qt6
@@ -24,7 +24,6 @@ BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Sql)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)

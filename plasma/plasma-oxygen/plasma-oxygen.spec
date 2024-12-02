@@ -1,6 +1,6 @@
 %global commit0 5ebda433914b98f975f6cf89b2ed2fa485314558
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 %global base_name oxygen
 
@@ -54,7 +54,6 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 Requires:       kf6-filesystem
 
@@ -83,7 +82,6 @@ Provides:       qt5-style-oxygen = %{version}-%{release}
 
 %package        qt6
 Summary:        Oxygen widget style for Qt 6
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 %description    qt6
 %{summary}.
 

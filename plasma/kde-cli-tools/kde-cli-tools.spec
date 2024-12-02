@@ -1,6 +1,6 @@
 %global commit0 34dcc4b9787eb73a658acded7fa93469f4b5cb8b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    kde-cli-tools
 Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -19,7 +19,6 @@ BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)

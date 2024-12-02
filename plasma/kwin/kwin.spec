@@ -1,6 +1,6 @@
 %global commit0 af9eb8cb5efd55ebe16825d0198436cd0725909b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 34
+%global bumpver 35
 
 %bcond x11 1
 
@@ -23,7 +23,6 @@ BuildRequires:  cmake(QAccessibilityClient6)
 BuildRequires:  qt6-qtbase-devel
 # KWinQpaPlugin (and others?)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  qt6-qtsensors-devel
 BuildRequires:  qt6-qttools-devel
 BuildRequires:  qt6-qtwayland-devel

@@ -1,6 +1,6 @@
 %global commit0 17962554962e8155e12dd8327647d5bbe1578dbd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    layer-shell-qt
 Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -15,7 +15,6 @@ BuildRequires: extra-cmake-modules
 
 BuildRequires: qt6-qtbase-devel
 BuildRequires: qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires: cmake(Qt6WaylandClient)
 BuildRequires: cmake(Qt6Qml)

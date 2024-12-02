@@ -1,6 +1,6 @@
 %global commit0 30c81b026d52fced6f243ea27d860b345e3ba3fd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global base_name wacomtablet
 
@@ -24,7 +24,6 @@ BuildRequires: cmake(Qt6Gui)
 BuildRequires: cmake(Qt6Qml)
 BuildRequires: cmake(Qt6Widgets)
 BuildRequires: qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6CoreAddons)

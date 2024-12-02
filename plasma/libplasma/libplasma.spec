@@ -1,6 +1,6 @@
 %global commit0 ff624952851e83bc78c4d796821ada2b630da4ce
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 8
+%global bumpver 9
 
 Name:    libplasma
 Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -39,7 +39,6 @@ BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires:  cmake(PlasmaActivities)
 

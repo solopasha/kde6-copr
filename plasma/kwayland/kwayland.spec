@@ -1,6 +1,6 @@
 %global commit0 0d45e9642f13efd9324864029b41faff064712a3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:       kwayland
 Version:    6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -19,7 +19,6 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  make
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  qt6-qttools-devel
 BuildRequires:  wayland-devel
 BuildRequires:  wayland-protocols-devel

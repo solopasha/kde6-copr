@@ -1,6 +1,6 @@
 %global commit0 73c5fd52a10805335316373e7bdf44565aecfbd8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    kglobalacceld
 Summary: Daemon providing Global Keyboard Shortcut functionality
@@ -17,7 +17,6 @@ BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  qt6-qtbase-gui
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)

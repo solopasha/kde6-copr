@@ -1,6 +1,6 @@
 %global commit0 e19e17a7892d76b9afa0a6ec50f3f02dddac50bb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 Name:    xdg-desktop-portal-kde
 Summary: Backend implementation for xdg-desktop-portal using Qt/KF5
@@ -27,7 +27,6 @@ BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)

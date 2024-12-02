@@ -1,6 +1,6 @@
 %global commit0 a587eedd69e9811be3c54103c5d4a7b98491ce77
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 28
+%global bumpver 29
 
 Name:    plasma-desktop
 Summary: Plasma Desktop shell
@@ -36,7 +36,6 @@ BuildRequires:  pkgconfig(libwacom)
 
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires:  qt6-qtsvg-devel
 BuildRequires:  qt6-qtdeclarative-devel
 BuildRequires:  qt6-qtwayland-devel
