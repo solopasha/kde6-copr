@@ -8,7 +8,7 @@
 
 # https://github.com/ollama/ollama
 %global goipath         github.com/ollama/ollama
-Version:                0.4.5
+Version:                0.4.7
 
 %gometa -L -f
 
