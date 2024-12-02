@@ -1,6 +1,6 @@
 %global commit0 08353b02e890a2ea6e2929ac02133f1ad5ff2166
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 8
 
 %global framework kwindowsystem
 
@@ -21,7 +21,6 @@ BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  egl-wayland-devel

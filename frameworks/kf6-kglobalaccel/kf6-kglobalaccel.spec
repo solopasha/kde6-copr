@@ -1,6 +1,6 @@
 %global commit0 93e9c935a5fde8580c8d1e262ddad8672e4ce8e6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 %global framework kglobalaccel
 
@@ -23,7 +23,6 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 Requires:       kf6-filesystem
 

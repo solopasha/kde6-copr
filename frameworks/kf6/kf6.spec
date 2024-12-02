@@ -21,7 +21,6 @@ Summary: Filesystem for KDE Frameworks 6
 %if 0%{?fedora} >= 39 || 0%{?rhel} >= 10
 Requires: kde-filesystem >= 5
 %endif
-%{?_qt6_version:Requires: qt6-qtbase >= %{_qt6_version}}
 %description filesystem
 Filesystem for KDE Frameworks 6.
 

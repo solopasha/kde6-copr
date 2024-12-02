@@ -1,6 +1,6 @@
 %global commit0 d3ad6ecfce08ae8c09622214829f3cad299fed6c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 %global framework kdbusaddons
 
@@ -20,7 +20,6 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 Requires:       kf6-filesystem
 

@@ -1,6 +1,6 @@
 %global commit0 baca5221461ea28acc0159c71ec55b9dff636021
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 %global framework kconfigwidgets
 
@@ -30,7 +30,6 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6UiPlugin)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 Requires:       kf6-filesystem
 

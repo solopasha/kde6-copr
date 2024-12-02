@@ -1,6 +1,6 @@
 %global commit0 2e4c3730a056b852ba39c3ca7f7942c28ae901bf
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 %global framework kjobwidgets
 
@@ -25,7 +25,6 @@ BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 Requires:       kf6-filesystem
 

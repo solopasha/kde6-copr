@@ -1,6 +1,6 @@
 %global commit0 40582a77589593ea896ff1a2d596919b26b91558
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 13
+%global bumpver 14
 
 %global framework kio
 
@@ -59,7 +59,6 @@ BuildRequires:  cmake(Qt6UiPlugin)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(Qt6Xml)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 Requires:       %{name}-core%{?_isa} = %{version}-%{release}
 Requires:       %{name}-widgets%{?_isa} = %{version}-%{release}

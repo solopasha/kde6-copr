@@ -1,6 +1,6 @@
 %global commit0 bac10958cf81431e6607274f65b12966b1b27b7d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 16
+%global bumpver 17
 
 %global framework kirigami
 
@@ -26,7 +26,6 @@ BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6ShaderTools)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 # Renamed from kf6-kirigami2
 Obsoletes:      kf6-kirigami2 < 5.246.0-2

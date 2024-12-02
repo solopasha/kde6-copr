@@ -1,6 +1,6 @@
 %global commit0 c15a23454ff5e7680e5ef273173693710387a89f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 %global framework kiconthemes
 
@@ -30,7 +30,6 @@ BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 Requires:       hicolor-icon-theme
 

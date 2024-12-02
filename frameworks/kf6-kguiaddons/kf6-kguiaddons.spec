@@ -1,6 +1,6 @@
 %global commit0 81cc24f60149fe39791ff0fa1946b309e45056b7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 %global framework kguiaddons
 
@@ -22,7 +22,6 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 BuildRequires:  cmake(PySide6)
 BuildRequires:  cmake(Shiboken6)

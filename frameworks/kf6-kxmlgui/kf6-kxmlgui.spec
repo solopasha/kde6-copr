@@ -1,6 +1,6 @@
 %global commit0 f40d24a6bec03e900320557f7b73273ff680ce1a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 13
+%global bumpver 14
 
 %global framework kxmlgui
 
@@ -38,7 +38,6 @@ BuildRequires:  cmake(Qt6UiPlugin)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(Qt6Xml)
 BuildRequires:  qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 Requires:       kf6-filesystem
 
