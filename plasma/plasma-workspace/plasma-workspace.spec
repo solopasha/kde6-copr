@@ -1,6 +1,6 @@
-%global commit0 06028f0d06bbcbdf6f045c49eca33fd0a15173c9
+%global commit0 c1eb76623b917baf4708d521b981852bd30d60f6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 31
+%global bumpver 32
 
 %bcond x11 1
 
@@ -224,15 +224,10 @@ Requires:       iso-codes
 # plasmashell provides dbus service org.freedesktop.Notifications
 Provides:       desktop-notification-daemon
 
-# Split of Xorg session into subpackage
-Obsoletes:      plasma-workspace < 5.19.5-2
-
 # khotkeys was dropped
 Obsoletes:      khotkeys < 6
 # Obsolete packages that are borked in Plasma 6
-Obsoletes:      applet-window-buttons < 0.11.1-8
 Obsoletes:      bismuth < 3.1.4-4
-Obsoletes:      kommit < 1.3.0-2
 Obsoletes:      latte-dock < 0.10.9-4
 Obsoletes:      latte-dock-lang < 0.10.9-4
 Obsoletes:      lightly < 0.4.1-7
@@ -316,12 +311,8 @@ Obsoletes:      %{name}-x11 < %{version}-%{release}
 %if %{with x11}
 %package        x11
 Summary:        Xorg support for Plasma
-# Rename this package to match upstream
-Obsoletes:      %{name}-xorg < 5.20.90-2
 Provides:       %{name}-xorg = %{version}-%{release}
 Provides:       %{name}-xorg%{?_isa} = %{version}-%{release}
-# Split of Xorg session into subpackage
-Obsoletes:      %{name} < 5.19.5-2
 Requires:       %{name} = %{version}-%{release}
 Requires:       kwin-x11
 Requires:       xorg-x11-server-Xorg

@@ -1,6 +1,6 @@
 %global commit0 a49b2d6e149928c7bd0ff363f908f3d8c261074f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 Name:    libkscreen
 Summary: KDE display configuration library
@@ -35,9 +35,6 @@ BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  qt6-qtwayland-devel
 BuildRequires:  cmake(Qt6WaylandClient)
-
-# Renamed from libkscreen-qt5
-Obsoletes:      libkscreen-qt5 < %{version}-%{release}
 
 %description
 LibKScreen is a library that provides access to current configuration
