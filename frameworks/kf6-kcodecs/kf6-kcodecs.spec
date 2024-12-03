@@ -1,6 +1,6 @@
 %global commit0 6c323c28143cabf0caa15d423d12ce4f88d248ce
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 %global framework kcodecs
 
