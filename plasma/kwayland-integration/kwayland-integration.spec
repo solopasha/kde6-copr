@@ -1,6 +1,6 @@
-%global commit0 0bd61486dec73c515708e944c99d1f6b4cb77164
+%global commit0 caab97ff7d9531fa40783f80040db19b4c54a42c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:    kwayland-integration
 Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
