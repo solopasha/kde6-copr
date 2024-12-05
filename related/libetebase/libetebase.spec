@@ -8,7 +8,7 @@
 
 Name:           libetebase
 Version:        0.5.6
-Release:        %autorelease -b2
+Release:        %autorelease -b3
 Summary:        C library for etebase
 
 SourceLicense:  BSD-3-Clause
