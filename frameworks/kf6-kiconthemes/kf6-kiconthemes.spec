@@ -1,16 +1,16 @@
-%global commit0 f2a6d6c45804d80a7cfc33ca8afa5237ba437c18
+%global commit0 15480c8e56df4755de56a3eb0dc7a4cb38c94712
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kiconthemes
 
-Name:    kf6-%{framework}
-Version: 6.8.0
-Release: 2%{?dist}
-Summary: KDE Frameworks 6 Tier 3 integration module with icon themes
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 3 integration module with icon themes
 
-License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
@@ -21,7 +21,6 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(KF6BreezeIcons)
 BuildRequires:  cmake(KF6ColorScheme)
-BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6WidgetsAddons)
 
@@ -31,7 +30,6 @@ BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
-
 
 Requires:       hicolor-icon-theme
 
@@ -45,7 +43,6 @@ Requires:       cmake(Qt6Widgets)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -66,12 +63,11 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_bindir}/kiconfinder6
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6IconThemes.so.6
 %{_kf6_libdir}/libKF6IconThemes.so.%{version_no_git}
-%{_kf6_libdir}/libKF6IconWidgets.so.6
+%{_kf6_libdir}/libKF6IconThemes.so.6
 %{_kf6_libdir}/libKF6IconWidgets.so.%{version_no_git}
+%{_kf6_libdir}/libKF6IconWidgets.so.6
 %{_kf6_libdir}/qt6/qml/org/kde/iconthemes/
-%{_kf6_qtplugindir}/designer/*6widgets.so
 %{_kf6_qtplugindir}/kiconthemes6/iconengines/KIconEnginePlugin.so
 
 %files devel
@@ -81,8 +77,12 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6IconThemes/
 %{_kf6_libdir}/libKF6IconThemes.so
 %{_kf6_libdir}/libKF6IconWidgets.so
+%{_kf6_qtplugindir}/designer/*6widgets.so
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
 - Remove Qt6 version constraints
 

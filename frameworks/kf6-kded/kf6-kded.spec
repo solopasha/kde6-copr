@@ -1,16 +1,16 @@
-%global commit0 7080c0a0e2193c84cdefc95463dd007cd661014a
+%global commit0 726bae16314febf5cab1ace3195e3e0fd7852e49
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kded
 
-Name:    kf6-%{framework}
-Version: 6.8.0
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 Tier 3 addon with extensible daemon for system-level services
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 3 addon with extensible daemon for system-level services
 
-License: CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
@@ -25,11 +25,12 @@ BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6Service)
 
-BuildRequires:  qt6-qtbase-devel
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  systemd-rpm-macros
 
-Requires:  kf6-filesystem
+Requires:       kf6-filesystem
 
 %description
 KDED stands for KDE Daemon which isn't very descriptive. KDED runs
@@ -69,20 +70,22 @@ mkdir -p %{buildroot}%{_kf6_plugindir}/kded
 %files -f kded6.lang
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_bindir}/kded6
 %{_kf6_datadir}/applications/org.kde.kded6.desktop
 %{_kf6_datadir}/dbus-1/services/*.service
+%{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_mandir}/man8/kded6.8*
-%dir %{_kf6_plugindir}/kded/
 %{_userunitdir}/plasma-kded6.service
+%dir %{_kf6_plugindir}/kded/
 
 %files devel
-%{_kf6_libdir}/cmake/KF6KDED/
 %{_kf6_datadir}/dbus-1/interfaces/*.xml
-
+%{_kf6_libdir}/cmake/KF6KDED/
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

@@ -1,27 +1,33 @@
-%global commit0 cfa897e910a99d13eef79c59484b2f6f5536b897
+%global commit0 ac832c5e07cb0cc5aa83467e82e6146a8d8b4c1f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-%global		framework kcoreaddons
+%global framework kcoreaddons
 
-Name:		kf6-%{framework}
-Version:	6.8.0
-Release:	1%{?dist}
-Summary:	KDE Frameworks 6 Tier 1 addon with various classes on top of QtCore
-License:	BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND MPL-1.1 AND LGPL-2.0-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-2.1-only WITH Qt-LGPL-exception-1.1
-URL:		https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        Qt addon library with a collection of non-GUI utilities
+License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND MPL-1.1 AND LGPL-2.0-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-2.1-only WITH Qt-LGPL-exception-1.1
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	cmake
-BuildRequires:	gcc-c++
-BuildRequires:	extra-cmake-modules
-BuildRequires:	kf6-rpm-macros
-BuildRequires:	qt6-qtbase-devel
-BuildRequires:	qt6-qttools-devel
-BuildRequires:	cmake(Qt6Qml)
-BuildRequires:	systemd-devel
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-Requires:	kf6-filesystem
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6Qml)
+
+# BuildRequires:  cmake(Shiboken6)
+# BuildRequires:  cmake(PySide6)
+
+BuildRequires:  pkgconfig(libudev)
+
+Requires:       kf6-filesystem
 
 %description
 KCoreAddons provides classes built on top of QtCore to perform various tasks
@@ -29,14 +35,13 @@ such as manipulating mime types, autosaving files, creating backup files,
 generating random sequences, performing text manipulations such as macro
 replacement, accessing user information and many more.
 
-%package	devel
-Summary:	Development files for %{name}
-Requires:	%{name}%{?_isa} = %{version}-%{release}
-Requires:	qt6-qtbase-devel
-%description	devel
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Core)
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -51,27 +56,29 @@ developing applications that use %{name}.
 %install
 %cmake_install
 
-%find_lang_kf6 kcoreaddons6_qt
-%find_lang_kf6 kde6_xml_mimetypes
-cat *.lang > all.lang
+%find_lang kcoreaddons6_qt --all-name --with-qt
 
-%files -f all.lang
+%files -f kcoreaddons6_qt.lang
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/kf6/jsonschema/kpluginmetadata.schema.json
 %{_kf6_datadir}/mime/packages/kde6.xml
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6CoreAddons.so.6
 %{_kf6_libdir}/libKF6CoreAddons.so.%{version_no_git}
+%{_kf6_libdir}/libKF6CoreAddons.so.6
 %{_kf6_qmldir}/org/kde/coreaddons/
+#{python3_sitearch}/KCoreAddons.*.so
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KCoreAddons/
 %{_kf6_libdir}/cmake/KF6CoreAddons/
 %{_kf6_libdir}/libKF6CoreAddons.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

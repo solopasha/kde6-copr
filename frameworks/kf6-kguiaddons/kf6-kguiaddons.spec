@@ -1,28 +1,32 @@
-%global commit0 4a0ed807bd917a0689e7e080de58690edf39fe11
+%global commit0 bad862e589db7e4664570b3f097d5d4205fd89bd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kguiaddons
 
-Name:		kf6-%{framework}
-Version:	6.8.0
-Release:	2%{?dist}
-Summary:	KDE Frameworks 6 Tier 1 addon with various classes on top of QtGui
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 1 addon with various classes on top of QtGui
 
-License:	BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only
-URL:		https://invent.kde.org/frameworks/%{framework}
+License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  qt6-qtbase-private-devel
 
+# BuildRequires:  cmake(PySide6)
+# BuildRequires:  cmake(Shiboken6)
+
 BuildRequires:  cmake(PlasmaWaylandProtocols)
-BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xkbcommon)
@@ -34,12 +38,11 @@ Requires:       kf6-filesystem
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
-Requires:       qt6-qtbase-devel
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Gui)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -63,16 +66,19 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6GuiAddons.so.%{version_no_git}
 %{_kf6_libdir}/libKF6GuiAddons.so.6
 %{_kf6_qmldir}/org/kde/guiaddons/
+#{python3_sitearch}/KGuiAddons*.so
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KGuiAddons/
 %{_kf6_libdir}/cmake/KF6GuiAddons/
 %{_kf6_libdir}/libKF6GuiAddons.so
 %{_kf6_libdir}/pkgconfig/KF6GuiAddons.pc
-
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
 - Remove Qt6 version constraints
 

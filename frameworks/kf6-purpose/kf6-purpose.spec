@@ -1,35 +1,49 @@
-%global commit0 013a10475374c75cdbb9b7ffee08161f51ca202d
+%global commit0 2a8e10f090ae8142800b34545a6e337cb51a27be
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework purpose
 
-Name:    kf6-purpose
-Summary: Framework for providing abstractions to get the developer's purposes fulfilled
-Version: 6.8.0
-Release: 1%{?dist}
+Name:           kf6-purpose
+Summary:        Framework for providing abstractions to get the developer's purposes fulfilled
+Version:        6.9.0
+Release:        1%{?dist}
 
-License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires: extra-cmake-modules
-BuildRequires: gcc-c++
-BuildRequires: gettext
-BuildRequires: intltool
-BuildRequires: cmake
-BuildRequires: kf6-rpm-macros
-BuildRequires: cmake(KF6Config)
-BuildRequires: cmake(KF6CoreAddons)
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6KIO)
-BuildRequires: cmake(KF6Kirigami)
-BuildRequires: cmake(KF6Notifications)
-BuildRequires: cmake(KF6Prison)
-BuildRequires: cmake(KF6Declarative)
-BuildRequires: cmake(KAccounts6)
-BuildRequires: pkgconfig(Qt6Network)
-BuildRequires: pkgconfig(Qt6Qml)
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Kirigami)
+BuildRequires:  cmake(KF6Notifications)
+BuildRequires:  cmake(KF6Prison)
+BuildRequires:  cmake(KF6Declarative)
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Test)
+BuildRequires:  cmake(Qt6Widgets)
+
+BuildRequires:  accounts-qml-module-qt6
+BuildRequires:  cmake(KAccounts6)
+BuildRequires:  intltool
+
+Requires:       accounts-qml-module-qt6%{?_isa}
+Requires:       kf6-bluez-qt%{?_isa}
+Requires:       kf6-kcmutils%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-prison%{?_isa}
 
 Requires: hicolor-icon-theme
 
@@ -40,11 +54,11 @@ offer them mechanisms to list the different alternatives to execute given the
 requested action type and will facilitate components so that all the plugins
 can receive all the information they need.
 
-%package  devel
-Summary:  Development files for %{name}
-Requires: %{name}%{?_isa} = %{version}-%{release}
-Requires: cmake(KF6CoreAddons)
-%description devel
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(KF6CoreAddons)
+%description    devel
 %{summary}.
 
 %prep
@@ -79,13 +93,16 @@ Requires: cmake(KF6CoreAddons)
 %{_kf6_qmldir}/org/kde/purpose/
 
 %files devel
-%{_kf6_libdir}/libKF6Purpose.so
-%{_kf6_libdir}/libKF6PurposeWidgets.so
 %{_kf6_includedir}/Purpose/
 %{_kf6_includedir}/PurposeWidgets/
 %{_kf6_libdir}/cmake/KF6Purpose/
+%{_kf6_libdir}/libKF6Purpose.so
+%{_kf6_libdir}/libKF6PurposeWidgets.so
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

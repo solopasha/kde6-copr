@@ -1,38 +1,36 @@
-%global commit0 d059f4636b68e10644766dbcbb1cdde35da96851
+%global commit0 4d44fb402d3e0c68c6085b567cc54e5609ce267d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework threadweaver
 
-Name:		kf6-%{framework}
-Version:	6.8.0
-Release:	1%{?dist}
-Summary:	KDE Frameworks 6 Tier 1 addon for advanced thread management
-License:	CC0-1.0 AND LGPL-2.0-or-later
-URL:		https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 1 addon for advanced thread management
+License:        CC0-1.0 AND LGPL-2.0-or-later
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules
-BuildRequires:	gcc-c++
-BuildRequires:	kf6-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires:	qt6-qtbase-devel
+BuildRequires:  cmake(Qt6Core)
 
-Requires:	kf6-filesystem
+Requires:       kf6-filesystem
 
 %description
 KDE Frameworks 6 Tier 1 addon for advanced thread management.
 
-%package	devel
-Summary:	Development files for %{name}
-Requires:	%{name} = %{version}-%{release}
-Requires:	qt6-qtbase-devel
-%description	devel
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Core)
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
-
 
 %qch_package
 
@@ -40,30 +38,29 @@ developing applications that use %{name}.
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
 
-
 %install
 %cmake_install
-
 
 %files
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_libdir}/libKF6ThreadWeaver.so.6
 %{_kf6_libdir}/libKF6ThreadWeaver.so.%{version_no_git}
+%{_kf6_libdir}/libKF6ThreadWeaver.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/ThreadWeaver/
 %{_kf6_libdir}/cmake/KF6ThreadWeaver/
 %{_kf6_libdir}/libKF6ThreadWeaver.so
-
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

@@ -1,39 +1,38 @@
-%global commit0 bf1881461e327c1e06267599a63f7f05fb53a196
+%global commit0 be2e77ba141d4162b07dbbd5deff1662b578a031
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-%global		framework kitemmodels
+%global framework kitemmodels
 
-Name:		kf6-%{framework}
-Version:	6.8.0
-Release:	1%{?dist}
-Summary:	KDE Frameworks 6 Tier 1 addon with item models
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 1 addon with item models
 
-License:	CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only
-URL:		https://invent.kde.org/frameworks/%{framework}
+License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	gcc-c++
-BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules
-BuildRequires:	kf6-rpm-macros
-BuildRequires:	pkgconfig(Qt6Core)
-BuildRequires:	pkgconfig(Qt6Qml)
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-Requires:	kf6-filesystem
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Qml)
+
+Requires:       kf6-filesystem
 
 %description
 KDE Frameworks 6 Tier 1 addon with item models.
 
-%package	devel
-Summary:	Development files for %{name}
-Requires:	%{name} = %{version}-%{release}
-Requires:	qt6-qtbase-devel
-%description	devel
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Core)
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
-
 
 %qch_package
 
@@ -41,33 +40,31 @@ developing applications that use %{name}.
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
 
 %files
-%doc README.md
 %license LICENSES/*.txt
+%doc README.md
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6ItemModels.so.6
 %{_kf6_libdir}/libKF6ItemModels.so.%{version_no_git}
+%{_kf6_libdir}/libKF6ItemModels.so.6
 %{_kf6_qmldir}/org/kde/kitemmodels/
 
 %files devel
-%{_qt6_docdir}/*.tags
-%doc README.md
-%license LICENSES/*.txt
 %{_kf6_includedir}/KItemModels/
 %{_kf6_libdir}/cmake/KF6ItemModels/
 %{_kf6_libdir}/libKF6ItemModels.so
-
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

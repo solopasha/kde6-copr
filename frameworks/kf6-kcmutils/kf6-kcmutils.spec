@@ -1,22 +1,23 @@
-%global commit0 3e30ba4800b1636745f0d31ef50431d9e562593c
+%global commit0 b53105e8e60ace82c30a0b543bdbb1cfdd459c7e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kcmutils
 
-Name:    kf6-%{framework}
-Version: 6.8.0
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 Tier 3 addon with extra API to write KConfigModules
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 3 addon with extra API to write KConfigModules
 
-License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6GuiAddons)
@@ -25,10 +26,16 @@ BuildRequires:  cmake(KF6ItemViews)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6XmlGui)
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtdeclarative-devel
 
-Requires: kf6-filesystem
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6QuickWidgets)
+BuildRequires:  cmake(Qt6Test)
+BuildRequires:  cmake(Qt6Widgets)
+
+Requires:       kf6-filesystem
 
 %description
 KCMUtils provides various classes to work with KCModules. KCModules can be
@@ -43,7 +50,6 @@ Requires:       cmake(Qt6Qml)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -76,7 +82,6 @@ mkdir -p %{buildroot}%{_kf6_qtplugindir}/kcms
 %{_kf6_qtplugindir}/kcms/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KCMUtils/
 %{_kf6_includedir}/KCMUtilsCore/
 %{_kf6_includedir}/KCMUtilsQuick/
@@ -85,8 +90,12 @@ mkdir -p %{buildroot}%{_kf6_qtplugindir}/kcms
 %{_kf6_libdir}/libKF6KCMUtilsCore.so
 %{_kf6_libdir}/libKF6KCMUtilsQuick.so
 %{_kf6_libexecdir}/kcmdesktopfilegenerator
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

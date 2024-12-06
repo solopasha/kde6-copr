@@ -1,16 +1,16 @@
-%global commit0 45f419a2aa89d01b2ab007bba376611b6bccf3d1
+%global commit0 e7ca42340acd1ec00bc68e661b1194e18e670032
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework ktextwidgets
 
-Name:    kf6-%{framework}
-Version: 6.8.0
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 Tier 3 addon with advanced text editing widgets
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 3 addon with advanced text editing widgets
 
-License: CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
@@ -21,7 +21,6 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Sonnet)
 BuildRequires:  cmake(KF6WidgetsAddons)
@@ -39,11 +38,10 @@ Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6I18n)
 Requires:       cmake(KF6Sonnet)
-Requires:       qt6-qtbase-devel
+Requires:       cmake(Qt6Widgets)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -62,17 +60,20 @@ developing applications that use %{name}.
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_libdir}/libKF6TextWidgets.so.6
 %{_kf6_libdir}/libKF6TextWidgets.so.%{version_no_git}
+%{_kf6_libdir}/libKF6TextWidgets.so.6
 %{_kf6_qtplugindir}/designer/*6widgets.so
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KTextWidgets/
 %{_kf6_libdir}/cmake/KF6TextWidgets/
 %{_kf6_libdir}/libKF6TextWidgets.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

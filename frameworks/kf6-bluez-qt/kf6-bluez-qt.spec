@@ -1,4 +1,4 @@
-%global commit0 e5f9881ea329ae733a7f004a0f84e3e7240dce2d
+%global commit0 36588d709da4b6527e40c5c91f2994d0d1ea263a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,22 +6,22 @@
 
 Name:           kf6-%{framework}
 Summary:        A Qt wrapper for Bluez
-Version:        6.8.0
+Version:        6.9.0
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  extra-cmake-modules
-BuildRequires:  kf6-rpm-macros
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtdeclarative-devel
-BuildRequires:  gcc-c++
 BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-# For %%{_udevrulesdir}
-BuildRequires:  systemd
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6Qml)
 
 Requires:       kf6-filesystem
 Recommends:     bluez >= 5
@@ -31,13 +31,10 @@ BluezQt is Qt-based library written handle all Bluetooth functionality.
 
 %package        devel
 Summary:        Development files for %{name}
-
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       qt6-qtbase-devel
 %description    devel
 Development files for %{name}.
-
-
 
 %qch_package
 
@@ -45,10 +42,8 @@ Development files for %{name}.
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
- %{cmake_kf6} \
-  -DUDEV_RULES_INSTALL_DIR:PATH="%{_udevrulesdir}"
+%cmake_kf6
 %cmake_build
 
 %install
@@ -58,18 +53,21 @@ Development files for %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*categories
-%{_kf6_libdir}/libKF6BluezQt.so.6
 %{_kf6_libdir}/libKF6BluezQt.so.%{version_no_git}
+%{_kf6_libdir}/libKF6BluezQt.so.6
 %{_kf6_qmldir}/org/kde/bluezqt/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/BluezQt/
-%{_kf6_libdir}/libKF6BluezQt.so
 %{_kf6_libdir}/cmake/KF6BluezQt/
+%{_kf6_libdir}/libKF6BluezQt.so
 %{_kf6_libdir}/pkgconfig/KF6BluezQt.pc
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

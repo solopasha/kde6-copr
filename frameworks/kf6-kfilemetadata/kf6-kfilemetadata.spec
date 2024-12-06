@@ -1,4 +1,4 @@
-%global commit0 aef987b67962557e2b4384735f2263d206b6c3ca
+%global commit0 466c336085476f01cc5d98168f3d224e0c524b8a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:           kf6-%{framework}
 Summary:        A Tier 2 KDE Framework for extracting file metadata
-Version:        6.8.0
+Version:        6.9.0
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
@@ -31,22 +31,22 @@ BuildRequires:  catdoc
 BuildRequires:  cmake(QMobipocket6)
 BuildRequires:  ebook-tools-devel
 BuildRequires:  ffmpeg-free-devel
-BuildRequires:  pkgconfig(exiv2) >= 0.20
+BuildRequires:  pkgconfig(exiv2)
 BuildRequires:  pkgconfig(libattr)
 BuildRequires:  pkgconfig(poppler-qt6)
 BuildRequires:  pkgconfig(taglib)
+
 Recommends:     catdoc
 
 %description
 %{summary}.
 
-%package devel
+%package        devel
 Summary:        Developer files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       qt6-qtbase-devel
-%description devel
+Requires:       cmake(Qt6Core)
+%description    devel
 %{summary}.
-
 
 %qch_package
 
@@ -66,20 +66,23 @@ mkdir -p %{buildroot}%{_kf6_plugindir}/kfilemetadata/writers/
 %files -f %{name}.lang
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
-%{_kf6_libdir}/libKF6FileMetaData.so.3
 %{_kf6_libdir}/libKF6FileMetaData.so.%{version_no_git}
-%dir %{_kf6_plugindir}/kfilemetadata/
+%{_kf6_libdir}/libKF6FileMetaData.so.3
+%dir %{_kf6_plugindir}/kfilemetadata
 %{_kf6_plugindir}/kfilemetadata/kfilemetadata_*.so
-%dir %{_kf6_plugindir}/kfilemetadata/writers/
+%dir %{_kf6_plugindir}/kfilemetadata/writers
 %{_kf6_plugindir}/kfilemetadata/writers/kfilemetadata_taglibwriter.so
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KFileMetaData/
 %{_kf6_libdir}/cmake/KF6FileMetaData/
 %{_kf6_libdir}/libKF6FileMetaData.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

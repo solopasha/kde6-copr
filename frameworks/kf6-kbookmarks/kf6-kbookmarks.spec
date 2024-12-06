@@ -1,30 +1,30 @@
-%global commit0 7ed138a090e24dc1aa4b069bff18e3090d695fd2
+%global commit0 6072cf9bf6363a723b6dcb481d563616847ae864
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kbookmarks
 
-Name:    kf6-%{framework}
-Version: 6.8.0
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 Tier 3 addon for bookmarks manipulation
-License: CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 3 addon for bookmarks manipulation
+License:        CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(Qt6Widgets)
-BuildRequires:  cmake(Qt6Xml)
 
 BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6WidgetsAddons)
 
-Requires:  kf6-filesystem
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6Xml)
+
+Requires:       kf6-filesystem
 
 %description
 KBookmarks lets you access and manipulate bookmarks stored using the
@@ -40,44 +40,42 @@ Requires:       cmake(Qt6Xml)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-
 %qch_package
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
 
-
 %install
 %cmake_install
 %find_lang_kf6 kbookmarks6_qt
-
 
 %files -f kbookmarks6_qt.lang
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_datadir}/qlogging-categories6/%{framework}widgets.categories
-%{_kf6_libdir}/libKF6Bookmarks.so.6
 %{_kf6_libdir}/libKF6Bookmarks.so.%{version_no_git}
+%{_kf6_libdir}/libKF6Bookmarks.so.6
 %{_kf6_libdir}/libKF6BookmarksWidgets.so.%{version_no_git}
 %{_kf6_libdir}/libKF6BookmarksWidgets.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KBookmarks/
 %{_kf6_includedir}/KBookmarksWidgets/
 %{_kf6_libdir}/cmake/KF6Bookmarks/
 %{_kf6_libdir}/libKF6Bookmarks.so
 %{_kf6_libdir}/libKF6BookmarksWidgets.so
-
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

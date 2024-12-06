@@ -1,12 +1,12 @@
-%global commit0 88abe66fdf407b9bb1b470770d4374e2be06d5a6
+%global commit0 af56d0caf474927cb93494274582b7da502e6aee
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kjobwidgets
 
 Name:           kf6-%{framework}
-Version:        6.8.0
-Release:        2%{?dist}
+Version:        6.9.0
+Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 addon for KJobs
 # The following are in the LICENSES folder, but go unused: LGPL-3.0-only, LicenseRef-KDE-Accepted-LGPL
 License:        CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later
@@ -17,13 +17,14 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  libX11-devel
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qttools-devel
-BuildRequires:  qt6-qtbase-private-devel
+
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6WidgetsAddons)
+
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  qt6-qtbase-private-devel
 
 Requires:       kf6-filesystem
 
@@ -33,13 +34,11 @@ Requires:       kf6-filesystem
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       qt6-qtbase-devel
 Requires:       cmake(KF6CoreAddons)
+Requires:       cmake(Qt6Widgets)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
-
 
 %qch_package
 
@@ -47,11 +46,9 @@ developing applications that use %{name}.
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
@@ -61,17 +58,20 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6JobWidgets.so.6
 %{_kf6_libdir}/libKF6JobWidgets.so.%{version_no_git}
+%{_kf6_libdir}/libKF6JobWidgets.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_datadir}/dbus-1/interfaces/*.xml
 %{_kf6_includedir}/KJobWidgets/
 %{_kf6_libdir}/cmake/KF6JobWidgets/
 %{_kf6_libdir}/libKF6JobWidgets.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
 - Remove Qt6 version constraints
 

@@ -1,42 +1,41 @@
-%global commit0 5433bd241776a4b839a266d414aea98532dec92a
+%global commit0 0ead0b1e5f5db8b42b4ce3da847dc4f09a663bba
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-%global		framework kconfig
+%global framework kconfig
 
-
-Name:		  kf6-%{framework}
-Version:	6.8.0
-Release:	1%{?dist}
-Summary:	KDE Frameworks 6 Tier 1 addon with advanced configuration system
-License:	BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND MIT
-URL:		  https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 1 addon with advanced configuration system
+License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND MIT
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules
-BuildRequires:	gcc-c++
-BuildRequires:	kf6-rpm-macros
-BuildRequires:	cmake(Qt6DBus)
-BuildRequires:	cmake(Qt6Gui)
-BuildRequires:	cmake(Qt6Qml)
-BuildRequires:	cmake(Qt6Xml)
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-Requires:	kf6-filesystem
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Xml)
+
+Requires:       kf6-filesystem
 
 %description
 KDE Frameworks 6 Tier 1 addon with advanced configuration system made of two
 parts: KConfigCore and KConfigGui.
 
-%package	devel
-Summary:	Development files for %{name}
-Requires:	%{name}%{?_isa} = %{version}-%{release}
-Requires:	cmake(Qt6DBus)
-Requires:	cmake(Qt6Qml)
-%description	devel
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6DBus)
+Requires:       cmake(Qt6Qml)
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -69,7 +68,6 @@ developing applications that use %{name}.
 %{_kf6_libexecdir}/kconfig_compiler_kf6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KConfig/
 %{_kf6_includedir}/KConfigCore/
 %{_kf6_includedir}/KConfigGui/
@@ -78,8 +76,12 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6ConfigCore.so
 %{_kf6_libdir}/libKF6ConfigGui.so
 %{_kf6_libdir}/libKF6ConfigQml.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

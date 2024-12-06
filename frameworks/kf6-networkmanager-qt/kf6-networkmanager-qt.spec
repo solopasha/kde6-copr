@@ -1,34 +1,31 @@
-%global commit0 0bd4a777cf93b1271b50617909882d456b0bedd8
+%global commit0 a3fb9b24ab4aab1c91f8ab7b59a993ee27e2b1f5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework networkmanager-qt
 
 Name:           kf6-%{framework}
-Version:        6.8.0
+Version:        6.9.0
 Release:        1%{?dist}
 Summary:        A Tier 1 KDE Frameworks 6 module that wraps NetworkManager DBus API
 License:        LGPL-2.0-or-later AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND CC0-1.0
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-# Compile Tools
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
-
-# KDE Frameworks
 BuildRequires:  extra-cmake-modules
-
-# Fedora
-Requires:       kf6-filesystem
 BuildRequires:  kf6-rpm-macros
 
-# Qt
 BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6Qml)
 
-# Other
+BuildRequires:  pkgconfig(gio-2.0)
 BuildRequires:  pkgconfig(libnm)
+
+Requires:       kf6-filesystem
 Recommends:     NetworkManager
 
 %description
@@ -38,11 +35,13 @@ A Tier 1 KDE Frameworks 6 Qt library for NetworkManager.
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(Qt6Core)
+Requires:       cmake(Qt6DBus)
+Requires:       cmake(Qt6Network)
+Requires:       pkgconfig(gio-2.0)
 Requires:       pkgconfig(libnm)
 %description    devel
 Qt libraries and header files for developing applications
 that use NetworkManager.
-
 
 %qch_package
 
@@ -63,18 +62,18 @@ that use NetworkManager.
 %{_kf6_datadir}/qlogging-categories6/*categories
 %{_kf6_libdir}/libKF6NetworkManagerQt.so.%{version_no_git}
 %{_kf6_libdir}/libKF6NetworkManagerQt.so.6
-%{_kf6_libdir}/qt6/qml/org/kde/networkmanager/kde-qmlmodule.version
-%{_kf6_libdir}/qt6/qml/org/kde/networkmanager/libnetworkmanagerqtqml.so
-%{_kf6_libdir}/qt6/qml/org/kde/networkmanager/networkmanagerqtqml.qmltypes
-%{_kf6_libdir}/qt6/qml/org/kde/networkmanager/qmldir
+%{_kf6_libdir}/qt6/qml/org/kde/networkmanager/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/NetworkManagerQt/
-%{_kf6_libdir}/libKF6NetworkManagerQt.so
 %{_kf6_libdir}/cmake/KF6NetworkManagerQt/
+%{_kf6_libdir}/libKF6NetworkManagerQt.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

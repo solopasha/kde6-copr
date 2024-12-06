@@ -1,53 +1,52 @@
-%global commit0 41893eef00cfd8aa5351077ab28a44bc76eb3f60
+%global commit0 a87255708d7d4ff9d401ad43f3d6dc075e4138ae
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-%global		framework kwindowsystem
+%global framework kwindowsystem
 
-Name:		kf6-%{framework}
-Version:	6.8.0
-Release:	2%{?dist}
-Summary:	KDE Frameworks 6 Tier 1 integration module with classes for windows management
-License:	CC0-1.0 AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND MIT
-URL:		https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 1 integration module with classes for windows management
+License:        CC0-1.0 AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND MIT
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules
-BuildRequires:	fdupes
-BuildRequires:	gcc-c++
-BuildRequires:	kf6-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires:	pkgconfig(x11)
-BuildRequires:	pkgconfig(xcb)
-BuildRequires:	pkgconfig(xcb-icccm)
-BuildRequires:	pkgconfig(xcb-keysyms)
-BuildRequires:	pkgconfig(xkbcommon)
-BuildRequires:	pkgconfig(xfixes)
-BuildRequires:	pkgconfig(xrender)
-BuildRequires:  pkgconfig(wayland-client)
-BuildRequires:  egl-wayland-devel
-BuildRequires:  pkgconfig(wayland-protocols)
-BuildRequires:  cmake(PlasmaWaylandProtocols)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6WaylandClient)
-BuildRequires:	cmake(Qt6Gui)
-BuildRequires:	cmake(Qt6Qml)
 BuildRequires:  qt6-qtbase-private-devel
 
-Requires:	kf6-filesystem
+BuildRequires:  cmake(PlasmaWaylandProtocols)
+BuildRequires:  egl-wayland-devel
+BuildRequires:  pkgconfig(wayland-client)
+BuildRequires:  pkgconfig(wayland-protocols)
+BuildRequires:  pkgconfig(x11)
+BuildRequires:  pkgconfig(xcb-icccm)
+BuildRequires:  pkgconfig(xcb-keysyms)
+BuildRequires:  pkgconfig(xcb)
+BuildRequires:  pkgconfig(xfixes)
+BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pkgconfig(xrender)
+
+Requires:       kf6-filesystem
 
 %description
 KDE Frameworks Tier 1 integration module that provides classes for managing and
 working with windows.
 
-%package	devel
-Summary:	Development files for %{name}
-Requires:	%{name} = %{version}-%{release}
-Requires:	qt6-qtbase-devel
-%description	devel
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Gui)
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -62,27 +61,29 @@ developing applications that use %{name}.
 %install
 %cmake_install
 %find_lang_kf6 kwindowsystem6_qt
-%fdupes %{buildroot}%{_kf6_includedir}
 
 %files -f kwindowsystem6_qt.lang
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6WindowSystem.so.6
 %{_kf6_libdir}/libKF6WindowSystem.so.%{version_no_git}
+%{_kf6_libdir}/libKF6WindowSystem.so.6
+%dir %{_kf6_plugindir}/kwindowsystem
+%{_kf6_plugindir}/kwindowsystem/KF6WindowSystemKWaylandPlugin.so
 %{_kf6_plugindir}/kwindowsystem/KF6WindowSystemX11Plugin.so
-%{_kf6_qmldir}/org/kde/kwindowsystem
-%dir %{_kf6_plugindir}/kwindowsystem/
-%{_qt6_plugindir}/kf6/kwindowsystem/KF6WindowSystemKWaylandPlugin.so
+%{_kf6_qmldir}/org/kde/kwindowsystem/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KWindowSystem/
 %{_kf6_libdir}/cmake/KF6WindowSystem/
 %{_kf6_libdir}/libKF6WindowSystem.so
 %{_kf6_libdir}/pkgconfig/KF6WindowSystem.pc
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
 - Remove Qt6 version constraints
 

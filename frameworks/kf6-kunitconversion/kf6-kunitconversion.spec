@@ -1,38 +1,45 @@
-%global commit0 7061e7e8e84fb2da04efb8a5004cd9282fadb504
+%global commit0 d0e90d78de2c4a85f20d51626b440b2e799825e9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kunitconversion
 
-Name:    kf6-%{framework}
-Version: 6.8.0
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 Tier 2 addon for unit conversions
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        Converting physical units
 
-License: CC0-1.0 AND LGPL-2.0-or-later
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        CC0-1.0 AND LGPL-2.0-or-later
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  extra-cmake-modules
 BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
-BuildRequires:  cmake(KF6I18n)
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  qt6-qtbase-devel
 
-Requires:  kf6-filesystem
+BuildRequires:  cmake(KF6I18n)
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Network)
+
+# BuildRequires:  cmake(PySide6)
+# BuildRequires:  cmake(Shiboken6)
+
+Requires:       kf6-filesystem
 
 %description
-KDE Frameworks 6 Tier 2 addon for unit conversions.
+KUnitConversion provides functions to convert values in different physical
+units. It supports converting different prefixes (e.g. kilo, mega, giga) as
+well as converting between different unit systems (e.g. liters, gallons).
 
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       qt6-qtbase-devel
+Requires:       cmake(Qt6Core)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -51,17 +58,21 @@ developing applications that use %{name}.
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_libdir}/libKF6UnitConversion.so.6
-%{_kf6_libdir}/libKF6UnitConversion.so.%{version_no_git}
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
+%{_kf6_libdir}/libKF6UnitConversion.so.%{version_no_git}
+%{_kf6_libdir}/libKF6UnitConversion.so.6
+#{python3_sitearch}/KUnitConversion*.so
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KUnitConversion/
-%{_kf6_libdir}/libKF6UnitConversion.so
 %{_kf6_libdir}/cmake/KF6UnitConversion/
+%{_kf6_libdir}/libKF6UnitConversion.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

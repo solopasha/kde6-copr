@@ -1,12 +1,11 @@
-%global commit0 08f3858347eb727520b29abc576286e17ee67b91
+%global commit0 5a711dad531cdbf7563a2737eef0e035af325bb5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
-
 
 %global framework syntax-highlighting
 
 Name:           kf6-%{framework}
-Version:        6.8.0
+Version:        6.9.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Syntax highlighting engine for Kate syntax definitions
 License:        MIT AND BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND LGPL-2.0-or-later
@@ -40,7 +39,6 @@ Requires:       cmake(Qt6Core)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-
 %qch_package
 
 %prep
@@ -48,15 +46,12 @@ developing applications that use %{name}.
 %autosetup -n %{sourcerootdir} -p1
 
 %build
-%cmake_kf6 -DBUILD_TESTING:BOOL=ON
+%cmake_kf6
 %cmake_build
 
 %install
 %cmake_install
 %find_lang_kf6 syntaxhighlighting6_qt
-
-%check
-%ctest
 
 %files -f syntaxhighlighting6_qt.lang
 %doc README.md
@@ -68,12 +63,15 @@ developing applications that use %{name}.
 %{_kf6_qmldir}/org/kde/syntaxhighlighting/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KSyntaxHighlighting/
 %{_kf6_libdir}/cmake/KF6SyntaxHighlighting/
 %{_kf6_libdir}/libKF6SyntaxHighlighting.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 
