@@ -1,29 +1,31 @@
-%global commit0 c0abcccc103116013ab3363d89d0ba5d3b7b867c
+%global commit0 6f9fe0f77c97962bcb51fd26d0343967be98f46b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-%global		framework kirigami
+%global framework kirigami
 
-Name:		kf6-%{framework}
-Version:	6.8.0
-Release:	2%{?dist}
-Summary:	QtQuick plugins to build user interfaces based on the KDE UX guidelines
-License:	BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND MIT
-URL:		https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        QtQuick plugins to build user interfaces based on the KDE UX guidelines
+License:        BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND MIT
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	cmake
-BuildRequires:	gcc-c++
-BuildRequires:	extra-cmake-modules
-BuildRequires:	kf6-rpm-macros
-BuildRequires:	qt6-linguist
-BuildRequires:	qt6-qtbase-devel
-BuildRequires:	qt6-qtdeclarative-devel
-BuildRequires:	qt6-qtsvg-devel
+BuildRequires:  cmake
+BuildRequires:  gcc-c++
+BuildRequires:  extra-cmake-modules
+BuildRequires:  kf6-rpm-macros
+
+BuildRequires:  cmake(Qt6Concurrent)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6QuickControls2)
+BuildRequires:  cmake(Qt6ShaderTools)
+BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  qt6-qtbase-private-devel
-BuildRequires:	cmake(Qt6Quick)
-BuildRequires:	cmake(Qt6ShaderTools)
-BuildRequires:	cmake(Qt6Core5Compat)
 
 # Renamed from kf6-kirigami2
 Obsoletes:      kf6-kirigami2 < 5.246.0-2
@@ -33,15 +35,14 @@ Provides:       kf6-kirigami2%{?_isa} = %{version}-%{release}
 %description
 %{summary}.
 
-%package	    devel
-Summary:	    Development files for %{name}
-Requires:	    %{name}%{?_isa} = %{version}-%{release}
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Obsoletes:      kf6-kirigami2-devel < 5.246.0-2
 Provides:       kf6-kirigami2-devel = %{version}-%{release}
-%description	devel
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -65,22 +66,19 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKirigami.so.6
 %{_kf6_libdir}/libKirigamiDelegates.so.%{version_no_git}
 %{_kf6_libdir}/libKirigamiDelegates.so.6
-%{_kf6_libdir}/libKirigamiDialogs.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
+%{_kf6_libdir}/libKirigamiDialogs.so.%{version_no_git}
 %{_kf6_libdir}/libKirigamiDialogs.so.6
-%{_kf6_libdir}/libKirigamiLayouts.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
+%{_kf6_libdir}/libKirigamiLayouts.so.%{version_no_git}
 %{_kf6_libdir}/libKirigamiLayouts.so.6
-%{_kf6_libdir}/libKirigamiPlatform.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
+%{_kf6_libdir}/libKirigamiPlatform.so.%{version_no_git}
 %{_kf6_libdir}/libKirigamiPlatform.so.6
-%{_kf6_libdir}/libKirigamiPrimitives.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
+%{_kf6_libdir}/libKirigamiPrimitives.so.%{version_no_git}
 %{_kf6_libdir}/libKirigamiPrimitives.so.6
 %{_kf6_libdir}/libKirigamiPrivate.so.%{version_no_git}
 %{_kf6_libdir}/libKirigamiPrivate.so.6
 %{_kf6_qmldir}/org/kde/kirigami/
 
 %files devel
-%{_qt6_docdir}/*.tags
-%dir %{_kf6_datadir}/kdevappwizard/
-%dir %{_kf6_datadir}/kdevappwizard/templates/
 %{_kf6_datadir}/kdevappwizard/templates/kirigami6.tar.bz2
 %{_kf6_includedir}/Kirigami/
 %{_kf6_libdir}/cmake/KF6Kirigami/
@@ -93,8 +91,12 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKirigamiPlatform.so
 %{_kf6_libdir}/libKirigamiPrimitives.so
 %{_kf6_libdir}/libKirigamiPrivate.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
 - Remove Qt6 version constraints
 

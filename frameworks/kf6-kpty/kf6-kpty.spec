@@ -1,11 +1,11 @@
-%global commit0 a154ba993b2d65d2258955bfb1d7b12908d7bc01
+%global commit0 eea1e47640749e3867acc42eb412843e84921c0c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kpty
 
 Name:           kf6-%{framework}
-Version:        6.8.0
+Version:        6.9.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 module providing Pty abstraction
 
@@ -21,8 +21,9 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
 
+BuildRequires:  cmake(Qt6Core)
+
 BuildRequires:  libutempter-devel
-BuildRequires:  qt6-qtbase-devel
 
 Requires:       kf6-filesystem
 # runtime calls %%_libexexdir/utempter/utempter
@@ -38,7 +39,6 @@ Requires:       cmake(KF6CoreAddons)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -63,12 +63,15 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Pty.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KPty/
-%{_kf6_libdir}/libKF6Pty.so
 %{_kf6_libdir}/cmake/KF6Pty/
+%{_kf6_libdir}/libKF6Pty.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

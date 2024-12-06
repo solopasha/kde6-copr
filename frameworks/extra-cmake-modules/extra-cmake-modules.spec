@@ -1,83 +1,62 @@
-%global commit0 02e39e9538d3699e470194c989f7047efe44d2cc
+%global commit0 44700a805ad41302a81eebd1fe885b9ca18bf7c8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-
 %global framework extra-cmake-modules
 
-# uncomment to enable bootstrap mode
-#global bootstrap 1
+Name:           extra-cmake-modules
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        Extra modules and scripts for CMake
 
-%if !0%{?bootstrap}
-%global docs 1
-%global tests 1
-%endif
-
-Name:    extra-cmake-modules
-Summary: Additional modules for CMake build system
-Version: 6.8.0
-Release: 1%{?dist}
-License: BSD
-URL:     https://api.kde.org/ecm/
+License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND MIT
+URL:            https://invent.kde.org/frameworks/extra-cmake-modules
 %frameworks_meta
 
 BuildArch:      noarch
 
-## upstreamable patches
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires: kf6-rpm-macros
-%if 0%{?docs}
-# qcollectiongenerator
-BuildRequires: qt6-qttools-devel
-# sphinx-build
-BuildRequires: python3-sphinx
-BuildRequires: python3-sphinxcontrib-qthelp
-%global sphinx_build -DSphinx_BUILD_EXECUTABLE:PATH=%{_bindir}/sphinx-build-3
-%endif
-BuildRequires: pkgconfig(Qt5Core)
-BuildRequires: pkgconfig(Qt6Core)
-Requires: (kf5-rpm-macros if qt5-qtbase-devel)
-Requires: (kf6-rpm-macros if qt6-qtbase-devel)
-Recommends: appstream
+BuildRequires:  python3-sphinx
+BuildRequires:  python3-sphinxcontrib-qthelp
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6ToolsTools)
+
+Recommends:     appstream
+
+Requires:       (kf6-rpm-macros if rpm-build)
 # /usr/share/ECM/modules/ECMPoQmTools.cmake
-Requires: (cmake(Qt6LinguistTools) if qt6-qtbase-devel)
-Requires: (cmake(Qt5LinguistTools) if qt5-qtbase-devel)
+Requires:       (cmake(Qt5LinguistTools) if qt5-qtbase-devel)
+Requires:       (cmake(Qt6LinguistTools) if qt6-qtbase-devel)
+
+Requires:       ((python3-devel and python3-build and python3-setuptools and python3-wheel) if (cmake(Shiboken6) and cmake(PySide6) and rpm-build))
 
 %description
-Additional modules for CMake build system needed by KDE Frameworks.
+%{summary}.
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
 %build
-%cmake_kf6 \
-  -DBUILD_HTML_DOCS:BOOL=%{?docs:ON}%{!?docs:OFF} \
-  -DBUILD_MAN_DOCS:BOOL=%{?docs:ON}%{!?docs:OFF} \
-  -DBUILD_TESTING:BOOL=%{?tests:ON}%{!?tests:OFF} \
-  %{?sphinx_build}
+%cmake_kf6
 %cmake_build
 
 %install
 %cmake_install
 
-%check
-%if 0%{?tests}
-export CTEST_OUTPUT_ON_FAILURE=1
-make test ARGS="--output-on-failure --timeout 300" -C %{_vpath_builddir} ||:
-%endif
-
 %files
 %doc README.rst
 %license LICENSES/*.txt
 %{_datadir}/ECM/
-%if 0%{?docs}
 %{_kf6_docdir}/ECM/
 %{_kf6_mandir}/man7/ecm*.7*
-%endif
-
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

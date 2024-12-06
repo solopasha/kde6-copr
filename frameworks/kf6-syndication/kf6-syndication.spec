@@ -1,17 +1,16 @@
-%global commit0 a3db03fdad883d0bdbcaa0b38831bbbacb98a7fb
+%global commit0 89275cc790a814e667dc6f3f93fa427245f3133c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework syndication
 
-Name:    kf6-%{framework}
-Version: 6.8.0
-Release: 1%{?dist}
-Summary: The Syndication Library
-
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        The Syndication Library
 # Qt-Commercial-exception-1.0 is also found in the LICENSES folder, but is unused except for tests which we don't use anyway
-License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
@@ -20,21 +19,20 @@ BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6Codecs)
-BuildRequires:  qt6-qtbase-devel
 
-BuildRequires:  cmake(KF6KIO)
-Requires:  kf6-filesystem
+BuildRequires:  cmake(Qt6Xml)
+
+Requires:       kf6-filesystem
 
 %description
 %{summary}.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -52,16 +50,19 @@ developing applications that use %{name}.
 %files
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6Syndication.so.6
 %{_kf6_libdir}/libKF6Syndication.so.%{version_no_git}
+%{_kf6_libdir}/libKF6Syndication.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/Syndication/
 %{_kf6_libdir}/cmake/KF6Syndication/
 %{_kf6_libdir}/libKF6Syndication.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

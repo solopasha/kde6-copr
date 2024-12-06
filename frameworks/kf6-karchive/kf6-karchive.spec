@@ -1,36 +1,30 @@
-%global commit0 634a2f34ee537c01e9f7dde2bb09c466702ffa36
+%global commit0 9f4f5e2655e2fa043886ed373730dcedc2dec4e9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework karchive
 
 Name:           kf6-%{framework}
-Version:        6.8.0
+Version:        6.9.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with archive functions
 License:        LGPL-2.0-or-later AND BSD-2-Clause
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-# Compile Tools
 BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
-
-# Fedora
-Requires:       kf6-filesystem
 BuildRequires:  kf6-rpm-macros
 
-# KDE Frameworks
-BuildRequires:  extra-cmake-modules
-
-# Qt
 BuildRequires:  cmake(Qt6Core)
 
-# Compression
-BuildRequires:  pkgconfig(libzstd)
 BuildRequires:  bzip2-devel
+BuildRequires:  pkgconfig(libzstd)
 BuildRequires:  xz-devel
 BuildRequires:  zlib-devel
+
+Requires:       kf6-filesystem
 
 %description
 KDE Frameworks 6 Tier 1 addon with archive functions.
@@ -38,11 +32,10 @@ KDE Frameworks 6 Tier 1 addon with archive functions.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       qt6-qtbase-devel
+Requires:       cmake(Qt6Core)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -66,12 +59,15 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Archive.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KArchive/
 %{_kf6_libdir}/cmake/KF6Archive/
 %{_kf6_libdir}/libKF6Archive.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

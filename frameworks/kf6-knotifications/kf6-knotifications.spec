@@ -1,16 +1,15 @@
-%global commit0 854585c112efdf7e6682220a676ff02aa0fa7db5
+%global commit0 3b6ae4495d88fd76a1d77e4ae86a7c37c8e41a2b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework knotifications
 
-Name:    kf6-%{framework}
-Version: 6.8.0
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 Tier 2 solution with abstraction for system notifications
-
-License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 2 solution with abstraction for system notifications
+License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
@@ -24,6 +23,9 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Qml)
 
+# BuildRequires:  cmake(PySide6)
+# BuildRequires:  cmake(Shiboken6)
+
 BuildRequires:  pkgconfig(libcanberra)
 
 %description
@@ -33,12 +35,11 @@ notifications.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       qt6-qtbase-devel
+Requires:       cmake(Qt6DBus)
+Requires:       cmake(Qt6Gui)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
-
 
 %qch_package
 
@@ -60,18 +61,22 @@ mkdir -p %{buildroot}/%{_kf6_datadir}/knotifications6
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6Notifications.so.6
 %{_kf6_libdir}/libKF6Notifications.so.%{version_no_git}
+%{_kf6_libdir}/libKF6Notifications.so.6
 %{_kf6_qmldir}/org/kde/notification/
+#{python3_sitearch}/KNotifications*.so
 %dir %{_kf6_datadir}/knotifications6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KNotifications/
 %{_kf6_libdir}/cmake/KF6Notifications/
 %{_kf6_libdir}/libKF6Notifications.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

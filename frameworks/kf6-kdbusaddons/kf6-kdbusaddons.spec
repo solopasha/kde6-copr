@@ -1,39 +1,39 @@
-%global commit0 26f982ac646cdbb9dcd99b66cd3690bbb6304c73
+%global commit0 339e62c3a1ef19ff09669dba484feacce759d350
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kdbusaddons
 
-Name:			kf6-%{framework}
-Version:		6.8.0
-Release:		2%{?dist}
-Summary:		KDE Frameworks 6 Tier 1 addon with various classes on top of QtDBus
-License:		CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only
-URL:			https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 1 addon with various classes on top of QtDBus
+License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:		cmake
-BuildRequires:		extra-cmake-modules
-BuildRequires:		gcc-c++
-BuildRequires:		kf6-rpm-macros
-BuildRequires:		cmake(Qt6DBus)
-BuildRequires:		cmake(Qt6Gui)
-BuildRequires:      qt6-qtbase-private-devel
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-Requires:		kf6-filesystem
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  qt6-qtbase-private-devel
+
+Requires:       kf6-filesystem
 
 %description
 KDBusAddons provides convenience classes on top of QtDBus, as well as an API to
 create KDED modules.
 
-%package		devel
-Summary:		Development files for %{name}
-Requires:		%{name} = %{version}-%{release}
-Requires:		qt6-qtbase-devel
-%description		devel
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6DBus)
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -54,17 +54,19 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_bindir}/kquitapp6
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
-%{_kf6_libdir}/libKF6DBusAddons.so.6
 %{_kf6_libdir}/libKF6DBusAddons.so.%{version_no_git}
+%{_kf6_libdir}/libKF6DBusAddons.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KDBusAddons/
 %{_kf6_libdir}/cmake/KF6DBusAddons/
 %{_kf6_libdir}/libKF6DBusAddons.so
-
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
 - Remove Qt6 version constraints
 

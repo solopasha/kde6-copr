@@ -1,32 +1,36 @@
-%global commit0 799ac37660635961db6203a0105d0f6fc860105e
+%global commit0 ceb1c46feab6f8a2a7aea1f89eff91815354701d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kimageformats
 
 Name:           kf6-%{framework}
-Version:        6.8.0
+Version:        6.9.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with additional image plugins for QtGui
 License:        LGPLv2+
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  pkgconfig(libavif)
-BuildRequires:  cmake(OpenEXR)
-BuildRequires:  cmake(Imath)
+
 BuildRequires:  cmake(KF6Archive)
-BuildRequires:  pkgconfig(zlib)
-BuildRequires:  qt6-qtbase-devel
+
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6PrintSupport)
+
+BuildRequires:  pkgconfig(libjxl_threads)
+BuildRequires:  pkgconfig(libjxl)
+BuildRequires:  pkgconfig(libraw_r)
+BuildRequires:  pkgconfig(libraw)
+BuildRequires:  cmake(Imath)
+BuildRequires:  cmake(OpenEXR)
+BuildRequires:  pkgconfig(libavif)
 BuildRequires:  pkgconfig(libheif)
-BuildRequires:	pkgconfig(libjxl) >= 0.7.0
-BuildRequires:	pkgconfig(libjxl_threads) >= 0.7.0
-BuildRequires:	pkgconfig(libraw)
-BuildRequires:	pkgconfig(libraw_r)
+BuildRequires:  pkgconfig(zlib)
 
 Requires:       kf6-filesystem
 
@@ -50,9 +54,32 @@ image formats.
 %files
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_qtplugindir}/imageformats/*.so
+%{_kf6_qtplugindir}/imageformats/kimg_ani.so
+%{_kf6_qtplugindir}/imageformats/kimg_avif.so
+%{_kf6_qtplugindir}/imageformats/kimg_eps.so
+%{_kf6_qtplugindir}/imageformats/kimg_exr.so
+%{_kf6_qtplugindir}/imageformats/kimg_hdr.so
+%{_kf6_qtplugindir}/imageformats/kimg_heif.so
+%{_kf6_qtplugindir}/imageformats/kimg_jxl.so
+%{_kf6_qtplugindir}/imageformats/kimg_kra.so
+%{_kf6_qtplugindir}/imageformats/kimg_ora.so
+%{_kf6_qtplugindir}/imageformats/kimg_pcx.so
+%{_kf6_qtplugindir}/imageformats/kimg_pfm.so
+%{_kf6_qtplugindir}/imageformats/kimg_pic.so
+%{_kf6_qtplugindir}/imageformats/kimg_psd.so
+%{_kf6_qtplugindir}/imageformats/kimg_pxr.so
+%{_kf6_qtplugindir}/imageformats/kimg_qoi.so
+%{_kf6_qtplugindir}/imageformats/kimg_ras.so
+%{_kf6_qtplugindir}/imageformats/kimg_raw.so
+%{_kf6_qtplugindir}/imageformats/kimg_rgb.so
+%{_kf6_qtplugindir}/imageformats/kimg_sct.so
+%{_kf6_qtplugindir}/imageformats/kimg_tga.so
+%{_kf6_qtplugindir}/imageformats/kimg_xcf.so
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

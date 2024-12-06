@@ -1,33 +1,37 @@
-%global commit0 49157258c2e28d3dfbc648602e65850974d55b28
+%global commit0 e24ea9d88203030b1a4eaf0615509f5d05072f33
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kparts
 
-Name:    kf6-%{framework}
-Version: 6.8.0
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 Tier 3 solution for KParts
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 3 solution for KParts
 
-License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6JobWidgets)
+BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6XmlGui)
-BuildRequires:  qt6-qtbase-devel
 
-Requires:  kf6-filesystem
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6Xml)
+
+Requires:       kf6-filesystem
 
 %description
 KDE Frameworks 6 Tier 3 solution for KParts
@@ -41,7 +45,6 @@ Requires:       cmake(KF6XmlGui)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -63,21 +66,21 @@ mkdir -p %{buildroot}%{_kf6_plugindir}/parts/
 %doc README.md AUTHORS
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6Parts.so.6
 %{_kf6_libdir}/libKF6Parts.so.%{version_no_git}
-%dir %{_kf6_plugindir}/parts/
+%{_kf6_libdir}/libKF6Parts.so.6
+%dir %{_kf6_plugindir}/parts
 
 %files devel
-%{_qt6_docdir}/*.tags
-%dir %{_kf6_datadir}/kdevappwizard/
-%dir %{_kf6_datadir}/kdevappwizard/templates/
 %{_kf6_datadir}/kdevappwizard/templates/kparts6-app.tar.bz2
 %{_kf6_includedir}/KParts/
 %{_kf6_libdir}/cmake/KF6Parts/
 %{_kf6_libdir}/libKF6Parts.so
-
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

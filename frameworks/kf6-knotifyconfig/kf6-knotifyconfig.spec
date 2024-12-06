@@ -1,31 +1,34 @@
-%global commit0 aa043a1c0f9dd8d6c411140957d0af9e82bc1062
+%global commit0 3ec4e77f00a25adf4617130205c1c72fc7053dc2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework knotifyconfig
 
-Name:    kf6-%{framework}
-Version: 6.8.0
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 Tier 3 module for KNotify configuration
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 3 module for KNotify configuration
 
-License: CC0-1.0 AND LGPL-2.0-only
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        CC0-1.0 AND LGPL-2.0-only
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
-BuildRequires:  pkgconfig(libcanberra)
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  cmake(Qt6TextToSpeech)
 
-Requires:  kf6-filesystem
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Widgets)
+
+BuildRequires:  pkgconfig(libcanberra)
+
+Requires:       kf6-filesystem
 
 %description
 %{summary}.
@@ -33,11 +36,10 @@ Requires:  kf6-filesystem
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       qt6-qtbase-devel
+Requires:       cmake(Qt6Widgets)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -57,16 +59,19 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*%{framework}.*
-%{_kf6_libdir}/libKF6NotifyConfig.so.6
 %{_kf6_libdir}/libKF6NotifyConfig.so.%{version_no_git}
+%{_kf6_libdir}/libKF6NotifyConfig.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KNotifyConfig/
 %{_kf6_libdir}/cmake/KF6NotifyConfig/
 %{_kf6_libdir}/libKF6NotifyConfig.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

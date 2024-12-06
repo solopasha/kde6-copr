@@ -1,35 +1,35 @@
-%global commit0 11ab4dec5ffeef2d6234aa6ef29152d63e2019e6
+%global commit0 18762b85399bf47b21f2761026be4e7c4c4edcdc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework ksvg
 
-Name:    kf6-ksvg
-Summary: Components for handling SVGs
-Version: 6.8.0
-Release: 1%{?dist}
+Name:           kf6-ksvg
+Summary:        Components for handling SVGs
+Version:        6.9.0
+Release:        1%{?dist}
 
-License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires: cmake
-BuildRequires: extra-cmake-modules
-BuildRequires: gcc-c++
-BuildRequires: kf6-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires: cmake(KF6Archive)
-BuildRequires: cmake(KF6ColorScheme)
-BuildRequires: cmake(KF6Config)
-BuildRequires: cmake(KF6CoreAddons)
-BuildRequires: cmake(KF6GuiAddons)
-BuildRequires: cmake(KF6KirigamiPlatform)
+BuildRequires:  cmake(KF6Archive)
+BuildRequires:  cmake(KF6ColorScheme)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6GuiAddons)
+BuildRequires:  cmake(KF6KirigamiPlatform)
 
-BuildRequires: cmake(Qt6Gui)
-BuildRequires: cmake(Qt6Qml)
-BuildRequires: cmake(Qt6Quick)
-BuildRequires: cmake(Qt6QuickControls2)
-BuildRequires: cmake(Qt6Svg)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6QuickControls2)
+BuildRequires:  cmake(Qt6Svg)
 
 %description
 %{summary}.
@@ -41,8 +41,6 @@ Requires:       cmake(Qt6Gui)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
-
 
 %qch_package
 
@@ -60,17 +58,20 @@ developing applications that use %{name}.
 %files
 %license LICENSES/*
 %{_kf6_datadir}/qlogging-categories6/ksvg.categories
-%{_kf6_libdir}/libKF6Svg.so.6
 %{_kf6_libdir}/libKF6Svg.so.%{version_no_git}
+%{_kf6_libdir}/libKF6Svg.so.6
 %{_kf6_libdir}/qt6/qml/org/kde/ksvg/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KSvg/
 %{_kf6_libdir}/cmake/KF6Svg/
 %{_kf6_libdir}/libKF6Svg.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

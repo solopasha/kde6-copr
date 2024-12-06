@@ -1,39 +1,39 @@
-%global commit0 f32682955f0581501caa0506bca440d3020efe0f
+%global commit0 d4130393b661b2f866ee20333bdadb0e7f7255b3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-%global		framework kdnssd
+%global framework kdnssd
 
-Name:		kf6-%{framework}
-Version:	6.8.0
-Release:	1%{?dist}
-Summary:	KDE Frameworks 6 Tier 1 integration module for DNS-SD services (Zeroconf)
-License:	BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later
-URL:		https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 1 integration module for DNS-SD services (Zeroconf)
+License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	cmake
-BuildRequires:	gcc-c++
-BuildRequires:	avahi-devel
-BuildRequires:	extra-cmake-modules
-BuildRequires:	kf6-rpm-macros
-BuildRequires:	cmake(Qt6Network)
-BuildRequires:	cmake(Qt6DBus)
+BuildRequires:  avahi-devel
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-Requires:	nss-mdns
-Requires:	kf6-filesystem
+BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6DBus)
+
+Requires:       nss-mdns
+Requires:       kf6-filesystem
 
 %description
 KDE Frameworks 6 Tier 1 integration module for DNS-SD services (Zeroconf)
 
-%package	devel
-Summary:	Development files for %{name}
-Requires:	%{name} = %{version}-%{release}
-Requires:	cmake(Qt6Network)
-%description	devel
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Network)
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -52,17 +52,19 @@ developing applications that use %{name}.
 %files -f kdnssd6_qt.lang
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_libdir}/libKF6DNSSD.so.6
 %{_kf6_libdir}/libKF6DNSSD.so.%{version_no_git}
+%{_kf6_libdir}/libKF6DNSSD.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KDNSSD/
 %{_kf6_libdir}/cmake/KF6DNSSD/
 %{_kf6_libdir}/libKF6DNSSD.so
-
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

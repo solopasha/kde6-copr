@@ -1,17 +1,17 @@
-%global commit0 b76e2b838fde71c8299b3b9158489fbbdbe75243
+%global commit0 f47135528f4533e76f28333203ad96637cc0c4be
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kglobalaccel
 
-Name:    kf6-%{framework}
-Version: 6.8.0
-Release: 2%{?dist}
-Summary: KDE Frameworks 6 Tier 3 integration module for global shortcuts
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 3 integration module for global shortcuts
 
 # The following are in the LICENSES folder but go unused: LGPL-2.1-only, LGPL-3.0-only, LicenseRef-KDE-Accepted-LGPL
-License: CC0-1.0 AND LGPL-2.0-or-later
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        CC0-1.0 AND LGPL-2.0-or-later
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake
@@ -31,11 +31,11 @@ Requires:       kf6-filesystem
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       qt6-qtbase-devel
+Requires:       cmake(Qt6DBus)
+Requires:       cmake(Qt6Widgets)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -50,28 +50,26 @@ developing applications that use %{name}.
 %install
 %cmake_install
 
-# unpackaged files
-%if 0%{?flatpak:1}
-rm -fv %{buildroot}%{_prefix}/lib/systemd/user/plasma-kglobalaccel.service
-%endif
-
 %find_lang_kf6 kglobalaccel6_qt
 
 %files -f kglobalaccel6_qt.lang
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
-%{_kf6_libdir}/libKF6GlobalAccel.so.6
 %{_kf6_libdir}/libKF6GlobalAccel.so.%{version_no_git}
+%{_kf6_libdir}/libKF6GlobalAccel.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
-%{_kf6_includedir}/KGlobalAccel/
-%{_kf6_libdir}/libKF6GlobalAccel.so
-%{_kf6_libdir}/cmake/KF6GlobalAccel/
 %{_kf6_datadir}/dbus-1/interfaces/*
+%{_kf6_includedir}/KGlobalAccel/
+%{_kf6_libdir}/cmake/KF6GlobalAccel/
+%{_kf6_libdir}/libKF6GlobalAccel.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
 - Remove Qt6 version constraints
 

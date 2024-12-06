@@ -1,12 +1,12 @@
-%global commit0 cedf50f2763e9adc051403015a792a337c1d761d
+%global commit0 a62e78b6775adcdd251c4a8b0bd4069662f6877c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kstatusnotifieritem
 
 Name:           kf6-%{framework}
-Version:        6.8.0
-Release:        2%{?dist}
+Version:        6.9.0
+Release:        1%{?dist}
 Summary:        Implementation of Status Notifier Items
 
 License:        CC0-1.0 AND LGPL-2.0-or-later
@@ -19,13 +19,14 @@ BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6WindowSystem)
+
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  pkgconfig(x11)
 
-Requires:  kf6-filesystem
+Requires:       kf6-filesystem
 
 %description
 %summary.
@@ -33,11 +34,12 @@ Requires:  kf6-filesystem
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6DBus)
+Requires:       cmake(Qt6Gui)
 Requires:       cmake(Qt6Widgets)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -57,16 +59,19 @@ developing applications that use %{name}.
 %{_kf6_datadir}/dbus-1/interfaces/kf6_org.kde.StatusNotifierItem.xml
 %{_kf6_datadir}/dbus-1/interfaces/kf6_org.kde.StatusNotifierWatcher.xml
 %{_kf6_datadir}/qlogging-categories6/kstatusnotifieritem.categories
-%{_kf6_libdir}/libKF6StatusNotifierItem.so.6
 %{_kf6_libdir}/libKF6StatusNotifierItem.so.%{version_no_git}
+%{_kf6_libdir}/libKF6StatusNotifierItem.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KStatusNotifierItem/
 %{_kf6_libdir}/cmake/KF6StatusNotifierItem/
 %{_kf6_libdir}/libKF6StatusNotifierItem.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
 - Remove Qt6 version constraints
 

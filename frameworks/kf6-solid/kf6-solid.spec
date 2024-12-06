@@ -1,13 +1,11 @@
-%global commit0 2d68bf039099bdaa32ec19deea1e64192d8fa6be
+%global commit0 689923ed5f22c3cf2fae160a06e706b84b6ab923
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
-
-%global _default_patch_fuzz 2
 
 %global framework solid
 
 Name:           kf6-%{framework}
-Version:        6.8.0
+Version:        6.9.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 integration module that provides hardware information
 License:        LGPL-2.1-or-later AND LGPL-2.1-only AND CCO-1.0 AND BSD-3-Clause AND LGPL-3.0-only
@@ -15,19 +13,22 @@ URL:            https://invent.kde.org/frameworks/solid
 %frameworks_meta
 
 BuildRequires:  cmake
-BuildRequires:  gcc-c++
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(Qt6Core)
-BuildRequires:  cmake(Qt6Qml)
-BuildRequires:  cmake(Qt6Tools)
-BuildRequires:  pkgconfig(libplist-2.0)
-BuildRequires:  pkgconfig(libimobiledevice-1.0)
-BuildRequires:  pkgconfig(mount)
-BuildRequires:  libupnp-devel
-BuildRequires:  systemd-devel
-BuildRequires:  flex
+
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Xml)
+
 BuildRequires:  bison
+BuildRequires:  flex
+BuildRequires:  libupnp-devel
+BuildRequires:  pkgconfig(libimobiledevice-1.0)
+BuildRequires:  pkgconfig(libplist-2.0)
+BuildRequires:  pkgconfig(mount)
+BuildRequires:  systemd-devel
+
 Recommends:     media-player-info
 Recommends:     udisks2
 Recommends:     upower
@@ -47,7 +48,6 @@ Requires:       cmake(Qt6Core)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -72,12 +72,15 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Solid.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/Solid/
 %{_kf6_libdir}/cmake/KF6Solid/
 %{_kf6_libdir}/libKF6Solid.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

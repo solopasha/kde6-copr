@@ -1,38 +1,37 @@
-%global commit0 ebb0b32598bb19ca0c8f98d3958455430c31bc32
+%global commit0 c9b1e955c2feba8c439295e8523abd371762a5d1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-%global		framework kholidays
+%global framework kholidays
 
-Name:		kf6-%{framework}
-Version:	6.8.0
-Release:	1%{?dist}
-Summary:	The KHolidays Library
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        The KHolidays Library
 
-License:	BSD-2-Clause AND CC0-1.0 AND GPL-3.0-or-later AND LGPL-2.0-or-later WITH Bison-exception-2.2
-URL:		https://invent.kde.org/frameworks/%{framework}
+License:        BSD-2-Clause AND CC0-1.0 AND GPL-3.0-or-later AND LGPL-2.0-or-later WITH Bison-exception-2.2
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules
-BuildRequires:	gcc-c++
-BuildRequires:	kf6-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires: 	cmake(Qt6Core)
-BuildRequires: 	cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Qml)
 
 %description
 The KHolidays library provides a C++ API that determines holiday
 and other special events for a geographical region.
 
-%package	devel
-Summary:	Development files for %{name}
-Requires:	%{name}%{?_isa} = %{version}-%{release}
-Requires: 	cmake(Qt6Core)
-%description	devel
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Core)
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -51,17 +50,20 @@ developing applications that use %{name}.
 %files -f libkholidays6_qt.lang
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*categories
-%{_kf6_libdir}/libKF6Holidays.so.6
 %{_kf6_libdir}/libKF6Holidays.so.%{version_no_git}
+%{_kf6_libdir}/libKF6Holidays.so.6
 %{_kf6_qmldir}/org/kde/kholidays/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KHolidays/
 %{_kf6_libdir}/cmake/KF6Holidays/
 %{_kf6_libdir}/libKF6Holidays.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

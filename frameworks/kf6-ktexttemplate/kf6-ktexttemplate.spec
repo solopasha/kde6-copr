@@ -1,37 +1,37 @@
-%global commit0 48312f07a9bf460b542035981f15e7dda1992817
+%global commit0 ec49f3b1a7849ffc54e62b20d5223ff43b30caa6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-%global		framework ktexttemplate
+%global framework ktexttemplate
 
-Name:		kf6-%{framework}
-Version:	6.8.0
-Release:	1%{?dist}
-Summary:	Separates the structure of documents from their data
-License:	CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later
-URL:		https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        Separates the structure of documents from their data
+License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	cmake
-BuildRequires:	extra-cmake-modules
-BuildRequires:	gcc-c++
-BuildRequires:	kf6-rpm-macros
-BuildRequires:	cmake(Qt6Core)
-BuildRequires:	cmake(Qt6Qml)
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Qml)
 
 %description
 The goal of KTextTemplate is to make it easier for application developers to
 separate the structure of documents from the data they contain, opening the door
 for theming and advanced generation of other text such as code.
 
-%package	devel
-Summary:	Development files for %{name}
-Requires:	%{name} = %{version}-%{release}
-Requires:	cmake(Qt6Core)
-%description	devel
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Core)
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -49,17 +49,20 @@ developing applications that use %{name}.
 %files
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/ktexttemplate.categories
-%{_kf6_plugindir}/ktexttemplate/
-%{_kf6_libdir}/libKF6TextTemplate.so.6
 %{_kf6_libdir}/libKF6TextTemplate.so.%{version_no_git}
+%{_kf6_libdir}/libKF6TextTemplate.so.6
+%{_kf6_plugindir}/ktexttemplate/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KTextTemplate/
 %{_kf6_libdir}/cmake/KF6TextTemplate/
 %{_kf6_libdir}/libKF6TextTemplate.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

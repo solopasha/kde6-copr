@@ -1,31 +1,36 @@
-%global commit0 68686585ca564a5760061b79b8064fdd5f5183a2
+%global commit0 b38d1fcef668615f56f9f6c101878f3b83062b66
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kdesu
 
-Name:    kf6-%{framework}
-Version: 6.8.0
-Release: 2%{?dist}
-Summary: KDE Frameworks 6 Tier 3 integration with su
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        User interface for running shell commands with root privileges
 
-License: CC0-1.0 AND GPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        CC0-1.0 AND GPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
 BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Pty)
+
+BuildRequires:  cmake(Qt6Core)
+
 BuildRequires:  pkgconfig(x11)
-BuildRequires:  qt6-qtbase-devel
-Requires:  kf6-filesystem
+
+Requires:       kf6-filesystem
 
 %description
+%{summary}.
 
 %package        devel
 Summary:        Development files for %{name}
@@ -35,45 +40,38 @@ Requires:       cmake(KF6Pty)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-
-
 %qch_package
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6 -DKDESU_USE_SUDO_DEFAULT:BOOL=TRUE
 %cmake_build
-
 
 %install
 %cmake_install
 %find_lang kdesu6_qt --all-name
 
-
-
 %files -f kdesu6_qt.lang
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*
-%{_kf6_libdir}/libKF6Su.so.6
 %{_kf6_libdir}/libKF6Su.so.%{version_no_git}
+%{_kf6_libdir}/libKF6Su.so.6
 %{_kf6_libexecdir}/kdesu_stub
 %{_kf6_libexecdir}/kdesud
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KDESu/
-%{_kf6_libdir}/libKF6Su.so
 %{_kf6_libdir}/cmake/KF6Su/
+%{_kf6_libdir}/libKF6Su.so
+%{_qt6_docdir}/*.tags
 
 %changelog
-* Sun Nov 24 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
-- Drop sgid
-- Use sudo by default
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
 
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0

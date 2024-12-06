@@ -1,38 +1,40 @@
-%global commit0 c3a353138868a60298c688276fc57eed221499d4
+%global commit0 aa255466c02993240a621eeabfce078a217bbe39
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kcolorscheme
 
-Name:    kf6-%{framework}
-Version: 6.8.0
-Release: 2%{?dist}
-Summary: Classes to read and interact with KColorScheme
-License: BSD-2-Clause and CC0-1.0 and LGPL-2.0-or-later and LGPL-2.1-only and LGPL-3.0-only and LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        Classes to read and interact with KColorScheme
+License:        BSD-2-Clause and CC0-1.0 and LGPL-2.0-or-later and LGPL-2.1-only and LGPL-3.0-only and LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
+BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
+
 BuildRequires:  qt6-qtbase-private-devel
 
 Requires:       kf6-filesystem
 
 %description
-%summary.
+%{summary}.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6Config)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -56,12 +58,15 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6ColorScheme.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KColorScheme/
 %{_kf6_libdir}/cmake/KF6ColorScheme/
 %{_kf6_libdir}/libKF6ColorScheme.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
 - Remove Qt6 version constraints
 

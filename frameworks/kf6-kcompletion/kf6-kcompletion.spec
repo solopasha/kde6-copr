@@ -1,11 +1,11 @@
-%global commit0 4f9b9fe0353483a4f7330a80a5c02f631ac52bc5
+%global commit0 8d02a3666a572dcdb58efeca902f3898e5a301a3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kcompletion
 
 Name:           kf6-%{framework}
-Version:        6.8.0
+Version:        6.9.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 addon with auto completion widgets and classes
 # BSD-3-Clause is in the LICENSES folder but goes unused.
@@ -17,10 +17,12 @@ BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6WidgetsAddons)
-BuildRequires:  pkgconfig(Qt6Widgets)
+
+BuildRequires:  cmake(Qt6Widgets)
 
 %description
 KCompletion provides widgets with advanced completion support as well as a
@@ -30,11 +32,10 @@ lower-level completion class which can be used with your own widgets.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       pkgconfig(Qt6Widgets)
+Requires:       cmake(Qt6Widgets)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -54,18 +55,20 @@ developing applications that use %{name}.
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
-%{_kf6_libdir}/libKF6Completion.so.6
 %{_kf6_libdir}/libKF6Completion.so.%{version_no_git}
+%{_kf6_libdir}/libKF6Completion.so.6
 %{_kf6_qtplugindir}/designer/*6widgets.so
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KCompletion/
-%{_kf6_libdir}/libKF6Completion.so
 %{_kf6_libdir}/cmake/KF6Completion/
-
+%{_kf6_libdir}/libKF6Completion.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 

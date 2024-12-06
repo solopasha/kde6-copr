@@ -1,39 +1,37 @@
-%global commit0 cce4c7f3f1ca45d55b34d2f6365c2d15ac94eeb5
+%global commit0 fee91e7836d23770ea50ff4e93d49a5e77b4eb68
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-%global		framework kcodecs
+%global framework kcodecs
 
-Name:		kf6-%{framework}
-Version:	6.8.0
-Release:	1%{?dist}
-Summary:	KDE Frameworks 6 Tier 1 addon with string manipulation methods
-License:	BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND MIT AND MPL-1.1
-URL:		https://invent.kde.org/frameworks/%{framework}
+Name:           kf6-%{framework}
+Version:        6.9.0
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 1 addon with string manipulation methods
+License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND MIT AND MPL-1.1
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:	fdupes
-BuildRequires:	cmake
-BuildRequires:	gcc-c++
-BuildRequires:	gperf
-BuildRequires:	extra-cmake-modules
-BuildRequires:	kf6-rpm-macros
-BuildRequires:	qt6-qtbase-devel
-BuildRequires:	qt6-qttools-devel
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  gperf
+BuildRequires:  kf6-rpm-macros
 
-Requires:	kf6-filesystem
+BuildRequires:  cmake(Qt6Core)
+
+Requires:       kf6-filesystem
 
 %description
 KDE Frameworks 6 Tier 1 addon with string manipulation methods.
 
-%package	devel
-Summary:	Development files for %{name}
-Requires:	%{name} = %{version}-%{release}
-Requires:	qt6-qtbase-devel
-%description	devel
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Core)
+%description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %qch_package
 
@@ -48,22 +46,24 @@ developing applications that use %{name}.
 %install
 %cmake_install
 %find_lang_kf6 kcodecs6_qt
-%fdupes LICENSES
 
 %files -f kcodecs6_qt.lang
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*categories
-%{_kf6_libdir}/libKF6Codecs.so.6
 %{_kf6_libdir}/libKF6Codecs.so.%{version_no_git}
+%{_kf6_libdir}/libKF6Codecs.so.6
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KCodecs/
 %{_kf6_libdir}/cmake/KF6Codecs/
 %{_kf6_libdir}/libKF6Codecs.so
+%{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
 * Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
 - Update to 6.8.0
 
