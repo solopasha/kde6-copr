@@ -1,10 +1,10 @@
-%global commit0 81dfa818746d10e615db97543bd78c6c69dac215
+%global commit0 a6bf9119e124dfba595f19b9bea75e2a1d15b098
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kongress
-Version:        24.08.3
-Release:        2%{?dist}
+Version:        24.12.0
+Release:        1%{?dist}
 License:        GPL-3.0-or-later AND BSD-2-Clause AND CC0-1.0
 Summary:        A companion application for conferences made by KDE
 URL:            https://apps.kde.org/kongress/
@@ -28,6 +28,7 @@ BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(KF6CalendarCore)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Kirigami)
@@ -79,6 +80,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Thu Nov 07 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
 - add missing requires
 

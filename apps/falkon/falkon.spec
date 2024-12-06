@@ -1,4 +1,4 @@
-%global commit0 5090dd4961658c369980b19ad437c064b4bad7fa
+%global commit0 b0a6e7a68b0eee38980202fbe05476a876b3e92a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,8 +6,8 @@
 %bcond_with python
 
 Name:           falkon
-Version:        24.08.3
-Release:        2%{?dist}
+Version:        24.12.0
+Release:        1%{?dist}
 Summary:        Modern web browser
 
 # Files in src/lib/opensearch and src/lib/3rdparty are GPLv2+
@@ -70,24 +70,23 @@ Provides:       bundled(qtsingleapplication-qt6)
 
 %global __provides_exclude_from ^%{_kf6_qtplugindir}/falkon/.*$
 
-%package gnome-keyring
-Summary: gnome-keyring plugin for %{name}
+%package        gnome-keyring
+Summary:        gnome-keyring plugin for %{name}
 BuildRequires:  pkgconfig(gnome-keyring-1)
-Requires: %{name}%{?_isa} = %{version}-%{release}
-
-%description gnome-keyring
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+%description    gnome-keyring
 %{summary}.
 
-%package kde
-Summary: KDE Frameworks Integration plugin for %{name}
+%package        kde
+Summary:        KDE Frameworks Integration plugin for %{name}
+Supplements:    (%{name} and plasma-workspace)
 BuildRequires:  cmake(KF6Wallet)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Purpose)
 BuildRequires:  cmake(KF6JobWidgets)
-Requires: %{name}%{?_isa} = %{version}-%{release}
-
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 %description kde
 Plugin for Falkon adding support for:
 - storing passwords securely in KWallet,
@@ -181,6 +180,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.fa
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
 - Remove Qt6 version constraints
 

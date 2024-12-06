@@ -4,8 +4,8 @@
 
 Name:    libkdcraw
 Summary: A C++ interface around LibRaw library
-Version: 24.08.3
-Release: 2%{?dist}
+Version: 24.12.0
+Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later
 URL:     https://invent.kde.org/graphics/%{name}
@@ -61,6 +61,9 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Sat Nov 30 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
 - Drop Qt5
 

@@ -1,9 +1,9 @@
-%global commit0 42651ac6a94ab943685b5012b9734da7a6ad970f
+%global commit0 49bda9d831368490b3b4f70e71fd6b6719d8f757
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kitinerary
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 Summary: A library containing itinerary data model and itinerary extraction code
 
@@ -87,6 +87,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

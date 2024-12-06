@@ -1,4 +1,4 @@
-%global commit0 9108ab503e1baca2dc86be11653b7e66a99f7165
+%global commit0 a1d5f1d13fecf3b52f0294275faf2617b8a4e729
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@ Name:    khelpcenter
 Summary: Show documentation for KDE applications
 # Override khelpcenter subpackage from kde-runtime-15.04 (no longer built)
 Epoch:   1
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: (GPL-2.0-only OR GPL-3.0-only) AND GPL-2.0-or-later
@@ -85,12 +85,15 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 %{_kf6_datadir}/kservices5/%{name}.desktop
 %{_kf6_datadir}/qlogging-categories6/%{name}.*
 %{_kf6_metainfodir}/org.kde.%{name}.metainfo.xml
-%{_libexecdir}/khc_mansearch.pl
+%{_libexecdir}/khc_mansearch.py
 %{_libexecdir}/khc_xapianindexer
 %{_libexecdir}/khc_xapiansearch
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 1:24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 1:24.08.3-1
 - Update to 24.08.3
 

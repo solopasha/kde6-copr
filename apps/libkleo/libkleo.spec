@@ -1,9 +1,9 @@
-%global commit0 bfbfc23e81c2069c5799fae69c27662e50de1a49
+%global commit0 9356047cf7b3b45cca5b3ed9d797df4d76c2ab28
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    libkleo
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 Summary: KDE PIM cryptographic library
 
@@ -33,8 +33,6 @@ BuildRequires:  cmake(QGpgmeQt6)
 BuildRequires:  boost-devel
 
 Recommends:     pinentry-gui
-
-Requires:       gpgmepp >= 1.23.0
 
 %if %{fedora} >= 40
 Obsoletes:      kf5-libkleo < 24.01.80
@@ -79,11 +77,15 @@ developing applications that use %{name}.
 
 %files devel
 %{_includedir}/KPim6/Libkleo/
+%{_kf6_datadir}/KPim6Libkleo/
 %{_kf6_libdir}/cmake/KPim6Libkleo/
 %{_kf6_libdir}/libKPim6Libkleo.so
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

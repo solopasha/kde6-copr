@@ -1,10 +1,10 @@
-%global commit0 154da99822eab2d57c01067f955ebf468dfa36ae
+%global commit0 a21c2e31fe40a9bc8e101463ae9be3513b8d7f7c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kcalc
 Summary:        Scientific Calculator
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later
@@ -75,6 +75,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

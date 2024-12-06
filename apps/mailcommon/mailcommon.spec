@@ -1,9 +1,9 @@
-%global commit0 5c1e6dd2d79395e768a516f4090a0e41608250b8
+%global commit0 720baf8435b044861e4399ec773e17d9548259ea
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    mailcommon
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 Summary: Mail applications support library
 
@@ -43,6 +43,7 @@ BuildRequires:  cmake(KPim6MessageCore)
 BuildRequires:  cmake(KPim6MessageList)
 BuildRequires:  cmake(KPim6MessageViewer)
 BuildRequires:  cmake(KPim6Mime)
+BuildRequires:  cmake(KPim6PimCommonActivities)
 BuildRequires:  cmake(KPim6PimCommonAkonadi)
 BuildRequires:  cmake(KPim6TemplateParser)
 
@@ -106,6 +107,9 @@ Requires:       cmake(KF6Completion)
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

@@ -1,10 +1,10 @@
-%global commit0 1b2b4603a56ecbe6fcf27d8e4edc01347ca09488
+%global commit0 5f63fd31a4af92401e08cf879d337e0b10b7ded2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    audiocd-kio
 Summary: KIO worker for accessing audio CDs
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-3.0-or-later
@@ -119,6 +119,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

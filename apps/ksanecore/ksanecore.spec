@@ -1,10 +1,10 @@
-%global commit0 91e8192db258b15e048460b8f60303a909edc9b6
+%global commit0 a2e89aaa66d0a29fd54db15fb5147eb4f091fe95
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    ksanecore
 Summary: Library providing logic to interface scanners
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: LGPL-2.1-only OR LGPL-3.0-only
@@ -14,11 +14,6 @@ URL:     https://invent.kde.org/libraries/ksanecore
 BuildRequires: cmake
 BuildRequires: extra-cmake-modules
 BuildRequires: gcc-c++
-
-BuildRequires: kf5-rpm-macros
-BuildRequires: cmake(KF5I18n)
-BuildRequires: cmake(Qt5Core)
-BuildRequires: cmake(Qt5Gui)
 
 BuildRequires: kf6-rpm-macros
 BuildRequires: cmake(KF6I18n)
@@ -30,22 +25,10 @@ BuildRequires: pkgconfig(sane-backends)
 %description
 %{summary}.
 
-%package qt5
-Summary: Qt5 library providing logic to interface scanners
-Requires: %{name}-common = %{version}-%{release}
-%description qt5
-%{summary}.
-
-%package qt5-devel
-Summary: Development files for %{name}-qt5
-Requires: %{name}-qt5%{?_isa} = %{version}-%{release}
-Requires: cmake(Qt5Gui)
-%description qt5-devel
-%{summary}.
-
 %package qt6
 Summary: Qt6 library providing logic to interface scanners
 Obsoletes: %{name} < 24.01.85
+Obsoletes: %{name}-qt5 < 24.11.80
 Requires: %{name}-common = %{version}-%{release}
 %description qt6
 %{summary}.
@@ -53,6 +36,7 @@ Requires: %{name}-common = %{version}-%{release}
 %package qt6-devel
 Summary:  Development files for %{name}-qt6
 Obsoletes: %{name}-devel < 24.01.85
+Obsoletes: %{name}-qt5-devel < 24.11.80
 Requires: %{name}-qt6%{?_isa} = %{version}-%{release}
 Requires: cmake(Qt6Gui)
 %description qt6-devel
@@ -72,19 +56,10 @@ Provides internationalization files.
 
 
 %build
-%global _vpath_builddir %{_target_platform}-qt5
-%cmake_kf5 -DBUILD_WITH_QT6=OFF
-%cmake_build
-
-%global _vpath_builddir %{_target_platform}-qt6
-%cmake_kf6 -DBUILD_WITH_QT6=ON
+%cmake_kf6
 %cmake_build
 
 %install
-%global _vpath_builddir %{_target_platform}-qt5
-%cmake_install
-
-%global _vpath_builddir %{_target_platform}-qt6
 %cmake_install
 
 %find_lang %{name} --all-name --with-html
@@ -93,16 +68,8 @@ Provides internationalization files.
 %doc README.md
 %license LICENSES/*
 
-%files qt5
-%{_libdir}/libKSaneCore.so.{1,%{maj_ver_kf6}.*}
-
-%files qt5-devel
-%{_includedir}/KSaneCore/
-%{_libdir}/cmake/KSaneCore/
-%{_libdir}/libKSaneCore.so
-
 %files qt6
-%{_libdir}/libKSaneCore6.so.{1,%{maj_ver_kf6}.*}
+%{_libdir}/libKSaneCore6.so.{1,%{version_no_git}}
 
 %files qt6-devel
 %{_includedir}/KSaneCore6/
@@ -111,6 +78,9 @@ Provides internationalization files.
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

@@ -1,4 +1,4 @@
-%global commit0 5d99e94383c140ee34bdf8efefc06905bc7fbc78
+%global commit0 dd352897534bb37d712ee184df8a2eced7f4edf1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 %global orig_name org.kde.kclock
 
 Name:           kclock
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 License:        GPLv2+ and LGPLv2.1+ and CC-BY and GPLv3+
 Summary:        Clock app for Plasma Mobile
@@ -20,31 +20,32 @@ BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(Qt6Core)
-BuildRequires:  cmake(Qt6Gui)
-BuildRequires:  cmake(Qt6Quick)
-BuildRequires:  cmake(Qt6Test)
-BuildRequires:  cmake(Qt6Svg)
-BuildRequires:  cmake(Qt6QuickControls2)
-BuildRequires:  cmake(Qt6Multimedia)
 BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Multimedia)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6QuickControls2)
+BuildRequires:  cmake(Qt6Svg)
+BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6Kirigami)
-BuildRequires:  cmake(KF6Notifications)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
-BuildRequires:  cmake(KF6StatusNotifierItem)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6KirigamiAddons)
+BuildRequires:  cmake(KF6Notifications)
+BuildRequires:  cmake(KF6StatusNotifierItem)
 
 BuildRequires:  cmake(Plasma)
 
 Requires:       hicolor-icon-theme
 # QML module dependencies
 Requires:       kf6-kcoreaddons%{?_isa}
-Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-kirigami-addons%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-ksvg%{?_isa}
 Requires:       qt6-qtmultimedia%{?_isa}
 
@@ -104,6 +105,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

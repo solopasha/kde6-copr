@@ -1,9 +1,9 @@
-%global commit0 f5f768fd38fdafe263ebb1336f69b228b04f0884
+%global commit0 cce2f51657b685e88bba5c807aab332596238368
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    ktorrent
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 Summary: A BitTorrent program
 
@@ -116,6 +116,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.ktorrent.
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 
@@ -652,14 +655,14 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.ktorrent.
 
 * Tue Jul 03 2007 Roland Wolters <wolters.liste@gmx.net> 2.2-1
 - update to upstream 2.2:
-	- cleaner UI
-	- - New file selection dialog
-	- Statistics plugin with pretty graphs
-	- Possibility to open as many tabs as you want
-	- Diskspace monitoring and stopping of downloads when the diskspace
-	  drops below a certain value
-	- Individual torrent speed limits
-	- Full disk preallocation to avoid fragmentation
+    - cleaner UI
+    - - New file selection dialog
+    - Statistics plugin with pretty graphs
+    - Possibility to open as many tabs as you want
+    - Diskspace monitoring and stopping of downloads when the diskspace
+      drops below a certain value
+    - Individual torrent speed limits
+    - Full disk preallocation to avoid fragmentation
 
 * Wed Jun 13 2007 Roland Wolters <wolters.liste@gmx.net> 2.2rc1-1
 - update to upstream 2.2rc1

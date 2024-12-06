@@ -1,17 +1,16 @@
-%global commit0 025c1146ddff3bc0674bafb244d662d55e088898
+%global commit0 d6bd4db69244886e38534053a6e700116142a796
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:    kdepim-addons
-Version: 24.08.3
-Release: 2%{?dist}
+Version: 24.12.0
+Release: 1%{?dist}
 Summary: Additional plugins for KDE PIM applications
 
 License: GPLv2 and LGPLv2+
 URL:     https://invent.kde.org/pim/%{name}
 %apps_source
-Patch:   https://invent.kde.org/pim/kdepim-addons/-/commit/b5f70b11b8f618d639598c5d04e264ab1463d321.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
@@ -20,7 +19,9 @@ BuildRequires:  cargo
 BuildRequires:  cmake(Corrosion)
 
 BuildRequires:  cmake(KF6CalendarCore)
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6Contacts)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6Declarative)
@@ -44,7 +45,6 @@ BuildRequires:  cmake(KPim6AddressbookImportExport)
 BuildRequires:  cmake(KPim6Akonadi)
 BuildRequires:  cmake(KPim6AkonadiCalendar)
 BuildRequires:  cmake(KPim6AkonadiContactWidgets)
-BuildRequires:  cmake(KPim6AkonadiNotes)
 BuildRequires:  cmake(KPim6CalendarSupport)
 BuildRequires:  cmake(KPim6CalendarUtils)
 BuildRequires:  cmake(KPim6EventViews)
@@ -56,6 +56,7 @@ BuildRequires:  cmake(KPim6ImportWizard)
 BuildRequires:  cmake(KPim6IncidenceEditor)
 BuildRequires:  cmake(KPim6Itinerary)
 BuildRequires:  cmake(KPim6KSieveUi)
+BuildRequires:  cmake(KPim6LdapWidgets)
 BuildRequires:  cmake(KPim6Libkdepim)
 BuildRequires:  cmake(KPim6Libkleo)
 BuildRequires:  cmake(KPim6MailCommon)
@@ -66,6 +67,7 @@ BuildRequires:  cmake(KPim6MessageCore)
 BuildRequires:  cmake(KPim6MessageList)
 BuildRequires:  cmake(KPim6MessageViewer)
 BuildRequires:  cmake(KPim6Mime)
+BuildRequires:  cmake(KPim6PimCommonActivities)
 BuildRequires:  cmake(KPim6PimCommonAkonadi)
 BuildRequires:  cmake(KPim6PkPass)
 BuildRequires:  cmake(KPim6TemplateParser)
@@ -146,6 +148,9 @@ Supplements:    korganizer
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Sat Nov 16 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
 - pick upstream commit
 

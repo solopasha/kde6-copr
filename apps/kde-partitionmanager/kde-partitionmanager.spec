@@ -1,4 +1,4 @@
-%global commit0 cf2f786eeaf84c91ab88a38bb475a0e1f5a85165
+%global commit0 31cc90ca76fe6403185443b3c870634701f997f4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -9,7 +9,7 @@
 %global kpmcoremin 24.01
 
 Name:           kde-partitionmanager
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 Summary:        KDE Partition Manager
 
@@ -90,6 +90,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.appdata.
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

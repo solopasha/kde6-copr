@@ -1,9 +1,9 @@
-%global commit0 d6bac970dfb588904e20a0bb88687e4243653b98
+%global commit0 297eed0815bee3712c4ccf614d4be0748eb74fe1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    eventviews
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 Summary: KDE PIM library for displaying events and calendars
 
@@ -17,7 +17,6 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6CalendarCore)
 BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  cmake(KF6Completion)
-BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6Contacts)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6Holidays)
@@ -84,6 +83,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

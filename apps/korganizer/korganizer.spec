@@ -1,4 +1,4 @@
-%global commit0 84db61c0b6261b9211cc2d542b8e5573b9fa1c32
+%global commit0 9bbf2f8e9008837b375827fe244c525bc5682de7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    korganizer
 Summary: Personal Organizer
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -21,7 +21,6 @@ BuildRequires: libappstream-glib
 
 BuildRequires: cmake(KF6CalendarCore)
 BuildRequires: cmake(KF6Config)
-BuildRequires: cmake(KF6ConfigWidgets)
 BuildRequires: cmake(KF6Contacts)
 BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6Crash)
@@ -42,7 +41,6 @@ BuildRequires: cmake(KF6XmlGui)
 BuildRequires: cmake(KPim6Akonadi)
 BuildRequires: cmake(KPim6AkonadiCalendar)
 BuildRequires: cmake(KPim6AkonadiContactWidgets)
-BuildRequires: cmake(KPim6AkonadiNotes)
 BuildRequires: cmake(KPim6CalendarSupport)
 BuildRequires: cmake(KPim6CalendarUtils)
 BuildRequires: cmake(KPim6EventViews)
@@ -53,6 +51,7 @@ BuildRequires: cmake(KPim6LdapWidgets)
 BuildRequires: cmake(KPim6Libkdepim)
 BuildRequires: cmake(KPim6MailTransport)
 BuildRequires: cmake(KPim6Mime)
+BuildRequires: cmake(KPim6PimCommonActivities)
 BuildRequires: cmake(KPim6PimCommonAkonadi)
 
 BuildRequires: cmake(Qt6DBus)
@@ -141,6 +140,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

@@ -1,9 +1,9 @@
-%global commit0 fd2a5026a0044f328747e43b6764555900b670ed
+%global commit0 75082e4ce7e155bda04a3fda31d7e99cc458d267
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           koko
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 License:        GPLv2+ and GPLv3 and LGPLv2 and LGPLv2+ and CC0 and BSD
 Summary:        An Image gallery application
@@ -42,6 +42,7 @@ BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(exiv2)
+BuildRequires:  cmake(KF6KirigamiAddons)
 BuildRequires:  cmake(KQuickImageEditor)
 
 # QML module de pendencies
@@ -72,7 +73,6 @@ cp %{SOURCE12} src/
 
 %install
 %cmake_install
-rm -r %{buildroot}%{_kf6_libdir}/libkokocommon.so
 %find_lang %{name}
 
 %files -f %{name}.lang
@@ -81,12 +81,12 @@ rm -r %{buildroot}%{_kf6_libdir}/libkokocommon.so
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/icons/hicolor/*/apps/*%{name}.*
 %{_kf6_datadir}/knotifications6/%{name}.notifyrc
-%{_kf6_libdir}/libkokocommon.so.0.0.1
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
-%{_kf6_qmldir}/org/kde/%{name}/
-
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

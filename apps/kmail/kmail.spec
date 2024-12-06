@@ -1,4 +1,4 @@
-%global commit0 5895873aeee1ae9e480568654063a77898219e81
+%global commit0 eff9a1af23e7d44a721c1265b333be4017d98d3d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    kmail
 Summary: Mail client
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -70,6 +70,7 @@ BuildRequires: cmake(KPim6MessageCore)
 BuildRequires: cmake(KPim6MessageList)
 BuildRequires: cmake(KPim6MessageViewer)
 BuildRequires: cmake(KPim6Mime)
+BuildRequires: cmake(KPim6PimCommonActivities)
 BuildRequires: cmake(KPim6PimCommonAkonadi)
 BuildRequires: cmake(KPim6TemplateParser)
 BuildRequires: cmake(KPim6TextEdit)
@@ -171,6 +172,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

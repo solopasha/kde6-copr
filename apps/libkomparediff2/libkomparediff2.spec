@@ -1,10 +1,10 @@
-%global commit0 2f346a7cdefdba323dd455875081cc373783e80d
+%global commit0 6fc3d89ea8188a051d18d41bd1bea3b386b0c9e5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           libkomparediff2
 Summary:        Library to compare files and strings
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 
 # Library: GPLv2+ (some files LGPLv2+), CMake scripts: BSD
@@ -70,6 +70,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

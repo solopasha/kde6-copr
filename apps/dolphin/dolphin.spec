@@ -1,24 +1,22 @@
-%global commit0 0fb381a7edef8b3c60f1c01fb7cc9d9335556fb4
+%global commit0 98f73dbf47c34677ade41528bb3166b8531ccb78
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           dolphin
 Summary:        KDE File Manager
-Version:        24.08.3
-Release:        2%{?dist}
+Version:        24.12.0
+Release:        1%{?dist}
 
 License:        GPLv2+
 URL:            https://invent.kde.org/system/dolphin
 %apps_source
 
 BuildRequires:  desktop-file-utils
+BuildRequires:  extra-cmake-modules
+BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 BuildRequires:  systemd-rpm-macros
 
-BuildRequires:  extra-cmake-modules
-BuildRequires:  kf6-rpm-macros
-
-BuildRequires:  cmake(PlasmaActivities)
 BuildRequires:  cmake(KF6Baloo)
 BuildRequires:  cmake(KF6BalooWidgets)
 BuildRequires:  cmake(KF6Bookmarks)
@@ -30,6 +28,7 @@ BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6FileMetaData)
+BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KCMUtils)
@@ -52,6 +51,7 @@ BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  cmake(KF6UserFeedback)
 BuildRequires:  cmake(packagekitqt6)
 BuildRequires:  cmake(Phonon4Qt6)
+BuildRequires:  cmake(PlasmaActivities)
 
 # BuildRequires:  cmake(Qt6Qml)
 
@@ -154,6 +154,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
 - Remove Qt6 version constraints
 

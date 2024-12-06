@@ -1,4 +1,4 @@
-%global commit0 036df3ea18decead22a45ac260a8f5be09edfe7d
+%global commit0 6a1ea0b30bdf347cf6948882c825b83e04c85aa3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    kdenlive
 Summary: Non-linear video editor
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: (GPL-2.0-only or GPL-3.0-only) and GPL-2.0-or-later and GPL-3.0-or-later and LGPL-3.0-only and BSD-3-Clause and CC0-1.0
@@ -54,7 +54,6 @@ BuildRequires: cmake(Qt6Quick)
 BuildRequires: cmake(Qt6QuickControls2)
 BuildRequires: cmake(Qt6Svg)
 BuildRequires: cmake(Qt6UiPlugin)
-BuildRequires: cmake(Qt5Widgets)
 BuildRequires: cmake(Qt6NetworkAuth)
 
 BuildRequires: librttr-devel
@@ -67,7 +66,6 @@ Requires: /usr/bin/ffmpeg
 # Require version of mlt with qt6 support
 Requires: mlt%{?_isa} >= 7.22.0-4
 Suggests: dvgrab
-#qt5-qtquickcontrols is still required rfbz #5701 and #5702
 Requires: frei0r-plugins
 Requires: kf6-qqc2-desktop-style
 Requires: kf6-kirigami2
@@ -90,12 +88,7 @@ Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 
 
 %build
-# disabling QCH as some files don't seem to end up installed in the right place
-%{cmake_kf6} \
-  -DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON -Wno-dev \
-  -DQT_MAJOR_VERSION=6 \
-  -DBUILD_QCH:BOOL=OFF
-
+%cmake_kf6
 %cmake_build
 
 
@@ -135,6 +128,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

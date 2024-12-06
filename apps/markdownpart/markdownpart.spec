@@ -1,4 +1,4 @@
-%global commit0 11bb5da9cab299f1d1b4cb3d265eff4f8d034feb
+%global commit0 e2d2c8bebc3d682a52e5b3d4c5bf68bc1a56c5a7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,13 +6,11 @@
 
 Name:           markdownpart
 Summary:        Markdown KPart
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 License:        LGPL-2.1-or-later
 URL:            https://apps.kde.org/categories/utilities/
 %apps_source
-
-Patch:          qt6.6.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
@@ -57,6 +55,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/%{app_id}.
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

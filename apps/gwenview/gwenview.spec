@@ -1,12 +1,12 @@
-%global commit0 55615af1516c53b825f2a4b28c53434fc5fca54c
+%global commit0 0b7c04cfe0c5adf871b482bcb3ec2c5ed26b8c7d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    gwenview
 Summary: An image viewer
 Epoch:   1
-Version: 24.08.3
-Release: 2%{?dist}
+Version: 24.12.0
+Release: 1%{?dist}
 
 # app: GPLv2+
 # lib:  IJG and (LGPLv2 or LGPLv3 or LGPLv3+ (KDE e.V.)) and LGPLv2+ and GPLv2+
@@ -20,6 +20,7 @@ BuildRequires: libappstream-glib
 BuildRequires: kf6-rpm-macros
 
 BuildRequires: cmake(KF6Baloo)
+BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6GuiAddons)
 BuildRequires: cmake(KF6I18n)
@@ -31,6 +32,7 @@ BuildRequires: cmake(KF6Parts)
 BuildRequires: cmake(KF6Purpose)
 BuildRequires: cmake(KF6WidgetsAddons)
 BuildRequires: cmake(KF6WindowSystem)
+
 BuildRequires: cmake(PlasmaActivities)
 
 BuildRequires: cmake(Qt6Concurrent)
@@ -116,6 +118,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 1:24.12.0-1
+- Update to 24.12.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 1:24.08.3-2
 - Remove Qt6 version constraints
 

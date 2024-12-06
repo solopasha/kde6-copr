@@ -1,10 +1,10 @@
-%global commit0 bdf92b8eab46876398f64cdf28b36d18b5154d55
+%global commit0 e922e5d9161e4634b67982a7bf73a787cdcdf8f4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kcolorchooser
 Summary: A color chooser 
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: MIT
@@ -56,6 +56,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

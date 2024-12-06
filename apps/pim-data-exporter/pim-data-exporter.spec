@@ -1,4 +1,4 @@
-%global commit0 8bdf05dcdb106c2c6fb222cf5bb49f9573d37682
+%global commit0 bcd565c1cd9561aff7578a9e327591049810551b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    pim-data-exporter
 Summary: Pim Data Exporter
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -36,7 +36,6 @@ BuildRequires: cmake(KF6WidgetsAddons)
 BuildRequires: cmake(KF6WidgetsAddons)
 BuildRequires: cmake(KF6XmlGui)
 BuildRequires: cmake(KPim6Akonadi)
-BuildRequires: cmake(KPim6AkonadiNotes)
 BuildRequires: cmake(KPim6IdentityManagementCore)
 BuildRequires: cmake(KPim6MailCommon)
 BuildRequires: cmake(KPim6MailTransport)
@@ -104,6 +103,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

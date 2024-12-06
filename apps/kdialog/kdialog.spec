@@ -1,17 +1,15 @@
-%global commit0 a2ca7bbcd8547ffa7809faff49b1b5e41b6e5c9b
+%global commit0 3ee0a13729fef50f7897df96949c57bce0049ccb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kdialog
 Summary: Nice dialog boxes from shell scripts
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://apps.kde.org/kdialog/
 %apps_source
-
-Patch:   qt6.6.patch
 
 BuildRequires: desktop-file-utils
 
@@ -57,6 +55,9 @@ KDialog can be used to show nice dialog boxes from shell scripts.
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

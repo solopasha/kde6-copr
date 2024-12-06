@@ -1,4 +1,4 @@
-%global commit0 f1aac35f8f316e6d60bb64d7b92361a96aa5cb8f
+%global commit0 ed555722d8597664ef229459d442813b05622e7f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -9,14 +9,12 @@
 
 Name:    kwalletmanager5
 Summary: Manage KDE passwords
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://invent.kde.org/utils/%{base_name}
 %apps_source
-
-Patch:   qt6.6.patch
 
 ## upstreamable patches
 # better/sane defaults (no autoclose mostly)
@@ -93,6 +91,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

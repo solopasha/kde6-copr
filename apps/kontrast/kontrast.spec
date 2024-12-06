@@ -1,9 +1,9 @@
-%global commit0 654572cff13f42d762f184e8b4227b43cf8d4910
+%global commit0 cd90609dc05d461b2e82b9d766f15b22b49793d3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:          kontrast
-Version:       24.08.3
+Version:       24.12.0
 Release:       1%{?dist}
 Summary:       Color contrast checker
 # BSD, CC0 are only for build files
@@ -17,12 +17,12 @@ BuildRequires: gettext
 BuildRequires: kf6-rpm-macros
 BuildRequires: libappstream-glib
 
-BuildRequires: cmake(FutureSQL6)
 BuildRequires: cmake(KF6CoreAddons)
+BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6Kirigami)
-BuildRequires: cmake(QCoro6Core)
+
 BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6DBus)
 BuildRequires: cmake(Qt6Gui)
@@ -32,7 +32,9 @@ BuildRequires: cmake(Qt6Sql)
 BuildRequires: cmake(Qt6Svg)
 BuildRequires: cmake(Qt6Widgets)
 
+BuildRequires: cmake(FutureSQL6)
 BuildRequires: cmake(KF6KirigamiAddons)
+BuildRequires: cmake(QCoro6Core)
 
 Requires:      hicolor-icon-theme
 Requires:      kf6-filesystem
@@ -76,6 +78,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

@@ -1,10 +1,10 @@
-%global commit0 2ceff2b1f1d5de57f9a0daa39a38ec99a6c6a5b5
+%global commit0 7009e692bdd34d0c47f364e7aa86a734fbe89842
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           krdc
 Summary:        Remote desktop client
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later
@@ -19,6 +19,7 @@ BuildRequires:  libappstream-glib
 BuildRequires:  cmake(KF6Bookmarks)
 BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DNSSD)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6I18n)
@@ -99,9 +100,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %{_kf6_datadir}/applications/org.kde.krdc.desktop
 %{_kf6_datadir}/config.kcfg/krdc.kcfg
 %{_kf6_datadir}/icons/hicolor/*/apps/*krdc.*
+%{_kf6_datadir}/mime/packages/org.kde.krdc-mime.xml
 %{_kf6_datadir}/qlogging-categories6/krdc.categories
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
-
 
 %files libs
 %{_kf6_libdir}/libkrdccore.so.%{version_no_git}
@@ -115,6 +116,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

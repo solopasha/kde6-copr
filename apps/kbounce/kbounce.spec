@@ -1,10 +1,10 @@
-%global commit0 bcb63e78a43cc556d1b211f8254bb5368360a1c2
+%global commit0 41ae5db389a0531830716075c67700435c3321f3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kbounce
 Summary: Ball bouncing game
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: LGPLv2+ and GFDL
@@ -86,6 +86,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

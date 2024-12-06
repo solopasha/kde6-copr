@@ -1,10 +1,10 @@
-%global commit0 81b79f3589239a8aee1198fcf2e4152494814384
+%global commit0 b2efccb4bfbbaa90b159595574d2ba106f7e13b7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kde-dev-scripts
 Summary: KDE SDK scripts
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPL-2.0-only AND GPL-2.0-or-later AND LGPL-2.0-only AND BSD-2-Clause
@@ -22,12 +22,6 @@ Requires:       optipng
 
 BuildArch:      noarch
 
-Conflicts:      kdesdk-common < 4.10.80
-Provides:       kdesdk-scripts = %{version}-%{release}
-Obsoletes:      kdesdk-scripts < 4.10.80
-
-Conflicts: kde-l10n < 17.08.3-2
-
 %description
 KDE SDK scripts
 
@@ -38,7 +32,7 @@ KDE SDK scripts
 
 
 %build
-%cmake_kf6 -DBUILD_WITH_QT6=ON
+%cmake_kf6
 %cmake_build
 
 
@@ -139,6 +133,9 @@ rm -fv %{buildroot}%{_kf6_bindir}/krazy-licensecheck
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

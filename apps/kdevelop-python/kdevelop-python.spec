@@ -1,4 +1,4 @@
-%global commit0 0af0f232e7d109c9f2754412863f791068bf05af
+%global commit0 73245ab5dcc9c198fca45d41eda8b132807ee494
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:           kdevelop-python
 Summary:        KDevelop Python language support
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later
@@ -69,6 +69,9 @@ rm -r %{buildroot}%{_kf6_datadir}/kdevpythonsupport/documentation_files/{PyKDE4,
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

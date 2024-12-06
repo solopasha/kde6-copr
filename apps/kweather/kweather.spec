@@ -1,9 +1,9 @@
-%global commit0 6d9a58f8ebd08066738d7506f4c3418ec835be22
+%global commit0 169230a47393c88c43d47fd3d2d54289798cbd0c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kweather
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 License:        GPLv2+
 Summary:        Convergent KDE weather application
@@ -20,10 +20,12 @@ BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6KirigamiAddons)
 BuildRequires:  cmake(KF6Notifications)
+
 BuildRequires:  cmake(Plasma)
 BuildRequires:  cmake(KWeatherCore)
 
@@ -89,6 +91,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_qtplugindir}/plasma/applets/plasma_applet_%{name}_1x4.so
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

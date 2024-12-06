@@ -1,9 +1,9 @@
-%global commit0 e711039c5ac7448e3ba74c2f16fc06c2419c0e68
+%global commit0 3b09883574d77cb6dedb8395271d4307cfbd7138
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:          kjournald
-Version:       24.08.3
+Version:       24.12.0
 Release:       1%{?dist}
 Summary:       Framework for interacting with systemd-journald
 
@@ -30,13 +30,13 @@ BuildRequires: cmake(Qt6Widgets)
 
 # QML module dependencies
 Requires:      kf6-kirigami%{?_isa}
+Requires:      %{name}-libs%{?_isa} = %{version}-%{release}
 
 %description
 %{summary}.
 
 %package       libs
 Summary:       Library files for kjournald
-Requires:      %{name} = %{version}
 %description   libs
 
 %prep
@@ -64,12 +64,16 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.kj
 %{_kf6_datadir}/applications/org.kde.kjournaldbrowser.desktop
 %{_kf6_datadir}/qlogging-categories6/kjournald.categories
 %{_kf6_metainfodir}/org.kde.kjournaldbrowser.appdata.xml
+%{_kf6_qmldir}/org/kde/kjournald/
 
 %files libs
 %{_kf6_libdir}/libkjournald.so.%{version_no_git}
 %{_kf6_libdir}/libkjournald.so.0
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

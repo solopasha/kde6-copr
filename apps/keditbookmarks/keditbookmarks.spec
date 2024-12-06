@@ -1,10 +1,10 @@
-%global commit0 79ba75cca3d427b3132e82b8e071482387f61863
+%global commit0 c144780ba69d66c1e2047f74ec7d7a101d6eff02
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    keditbookmarks
 Summary: Bookmark organizer and editor
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 # Documentation is GFDL, rest GPLv2 and GPLv3 (note: NOT any later version)
@@ -12,16 +12,15 @@ License: GPLv2 and GPLv3 and GFDL
 URL:     https://www.kde.org/
 %apps_source
 
-Patch:   qt6.6.patch
-
 BuildRequires: desktop-file-utils
-
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
+
 BuildRequires: cmake(KF6Bookmarks)
 BuildRequires: cmake(KF6Codecs)
 BuildRequires: cmake(KF6ConfigWidgets)
 BuildRequires: cmake(KF6CoreAddons)
+BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6IconThemes)
@@ -80,6 +79,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

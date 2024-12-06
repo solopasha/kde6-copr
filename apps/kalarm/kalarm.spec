@@ -1,4 +1,4 @@
-%global commit0 987635f1d462c0b939a7c47a32f63e873bb4f851
+%global commit0 a3b097c66af3d77d36a8cf40f1bec4a5918436b1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    kalarm
 Summary: Personal Alarm Scheduler
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -104,9 +104,11 @@ xvfb-run -a bash -c "%ctest"
 %{_kf6_datadir}/dbus-1/system.d/org.kde.kalarm.rtcwake.conf
 %{_kf6_datadir}/icons/hicolor/*/apps/kalarm.png
 %{_kf6_datadir}/kalarm/
+%{_kf6_datadir}/kconf_update/kalarm.upd
 %{_kf6_datadir}/knotifications6/kalarm.notifyrc
 %{_kf6_datadir}/polkit-1/actions/org.kde.kalarm.rtcwake.policy
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
+%{_kf6_libdir}/kconf_update_bin/kalarm-3.10.0-run_mode
 %{_kf6_libdir}/libkalarmcalendar.so.6{,.*}
 %{_kf6_libdir}/libkalarmplugin.so.6{,.*}
 %{_kf6_libexecdir}/kauth/kalarm_helper
@@ -114,8 +116,10 @@ xvfb-run -a bash -c "%ctest"
 %{_kf6_qtplugindir}/pim6/kalarm/akonadiplugin.so
 %{_kf6_sysconfdir}/xdg/autostart/kalarm.autostart.desktop
 
-
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

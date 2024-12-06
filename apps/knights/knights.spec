@@ -1,44 +1,51 @@
-%global commit0 6820936ecb7ad81b731a4ed43bb32d0a3758b413
+%global commit0 84d459476afe259371225950b64039417aa205e8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-Name:		knights
-Version:	24.08.3
-Release:	1%{?dist}
-Summary:	A chess board for KDE
-
+Name:           knights
+Version:        24.12.0
+Release:        1%{?dist}
+Summary:        A chess board for KDE
 # KDE e.V. may determine that future GPL versions are accepted
-License: GPL-2.0-only OR GPL-3.0-only
-URL:     https://invent.kde.org/games/knights
+License:        GPL-2.0-only OR GPL-3.0-only
+URL:            https://invent.kde.org/games/knights
 %apps_source
 
-BuildRequires:  libkdegames-devel >= 22.03.80
-BuildRequires:  gettext
+BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules >= 5.240.0
-BuildRequires:  kf6-kdbusaddons-devel
-BuildRequires:  kf6-kconfigwidgets-devel
-BuildRequires:  kf6-kcrash-devel
-BuildRequires:  kf6-kxmlgui-devel
-BuildRequires:  kf6-kio-devel
-BuildRequires:  kf6-kplotting-devel
-BuildRequires:  kf6-kdoctools-devel
-BuildRequires:  kf6-ktextwidgets-devel
-BuildRequires:  kf6-kwallet-devel
-BuildRequires:  kf6-plasma-devel
-BuildRequires:  kf6-ksvg-devel
-BuildRequires:  kf6-kcolorscheme-devel
-BuildRequires:  qt6-qtsvg-devel
-BuildRequires:  qt6-qt5compat-devel
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-Requires:	gnuchess
+BuildRequires:  cmake(KF6ConfigWidgets)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
+BuildRequires:  cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Plotting)
+BuildRequires:  cmake(KF6Svg)
+BuildRequires:  cmake(KF6TextWidgets)
+BuildRequires:  cmake(KF6Wallet)
+BuildRequires:  cmake(KF6XmlGui)
+
+BuildRequires:  cmake(Qt6Concurrent)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Svg)
+BuildRequires:  cmake(Qt6Widgets)
+
+BuildRequires:  cmake(KDEGames6)
+BuildRequires:  cmake(Plasma)
+
+Requires:       gnuchess
 
 %description
 Knights is a chess board for KDE that supports playing against
 computer engines that support the XBoard protocol like GNUChess and also
 multiplayer games over the internet on FICS. It features automatic rule
 checking, themes, and nice animations
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
@@ -48,28 +55,29 @@ checking, themes, and nice animations
 %cmake_kf6
 %cmake_build
 
-
 %install
 %cmake_install
-%find_lang %{name}
+%find_lang %{name} --with-html
 
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.knights.desktop
 
 %files -f %{name}.lang
 %doc README* ChangeLog DESIGN doc/
-%{_bindir}/%{name}
-%{_datadir}/dbus-1/interfaces/org.kde.Knights.xml
-%{_datadir}/%{name}
-%{_datadir}/icons/hicolor/*/apps/%{name}.*
+%{_kf6_bindir}/%{name}
+%{_kf6_datadir}/%{name}/
 %{_kf6_datadir}/applications/org.kde.knights.desktop
-%{_datadir}/config.kcfg/%{name}.kcfg
-%{_datadir}/metainfo/org.kde.knights.appdata.xml
-%exclude %{_datadir}/doc/HTML/
-%{_datadir}/qlogging-categories6/knights*categories
-%{_datadir}/knsrcfiles/knights.knsrc
+%{_kf6_datadir}/config.kcfg/%{name}.kcfg
+%{_kf6_datadir}/dbus-1/interfaces/org.kde.Knights.xml
+%{_kf6_datadir}/icons/hicolor/*/apps/%{name}.*
+%{_kf6_datadir}/knsrcfiles/knights.knsrc
+%{_kf6_datadir}/metainfo/org.kde.knights.appdata.xml
+%{_kf6_datadir}/qlogging-categories6/knights*categories
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

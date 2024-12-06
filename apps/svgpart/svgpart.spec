@@ -1,10 +1,10 @@
-%global commit0 013d4b24d44ed79fd2b6e8ac1b953e7a5f21d921
+%global commit0 089e5cfb0a8abbbdbb36e7cdf4be5502302dc4ba
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           svgpart
 Summary:        SVG KPart
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later
@@ -57,6 +57,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.metainfo.xml
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

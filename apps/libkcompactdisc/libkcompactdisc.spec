@@ -1,9 +1,9 @@
-%global commit0 e39bdd6548fba5955ec8e3a919bc4ffcb76ede99
+%global commit0 75861bbea81ffcc6c18e95abbd9c90c62032bc78
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    libkcompactdisc
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 Summary: A KDE compact disc library
 
@@ -13,7 +13,6 @@ URL:     https://www.kde.org/applications/multimedia/
 %apps_source
 
 BuildRequires: extra-cmake-modules
-BuildRequires: kf5-rpm-macros
 BuildRequires: kf6-rpm-macros
 
 BuildRequires: cmake(KF6I18n)
@@ -22,18 +21,10 @@ BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6DBus)
 BuildRequires: cmake(Phonon4Qt6)
 
-BuildRequires: cmake(KF5I18n)
-BuildRequires: cmake(KF5Solid)
-BuildRequires: cmake(Qt5Core)
-BuildRequires: cmake(Qt5DBus)
-BuildRequires: cmake(Phonon4Qt5)
-
 BuildRequires: pkgconfig(alsa)
 
 Obsoletes:     kf5-libkcompactdisc < 24.01.75
-Provides:      kf5-libkcompactdisc = %{version}-%{release}
 Obsoletes:     %{name}-qt5 < 24.02.1
-Provides:      %{name}-qt5 = %{version}-%{release}
 
 %description
 %{summary}.
@@ -41,9 +32,7 @@ Provides:      %{name}-qt5 = %{version}-%{release}
 %package        devel
 Summary:        Development files for %{name}
 Obsoletes:      kf5-libkcompactdisc-devel < 24.01.75
-Provides:       kf5-libkcompactdisc-devel = %{version}-%{release}
 Obsoletes:      %{name}-qt5-devel < 24.02.1
-Provides:       %{name}-qt5-devel = %{version}-%{release}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 %description devel
 %{summary}.
@@ -55,20 +44,10 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %build
-%global _vpath_builddir %{_target_platform}-qt6
-%cmake_kf6 -DQT_MAJOR_VERSION=6
+%cmake_kf6
 %cmake_build
-
-%global _vpath_builddir %{_target_platform}-qt5
-%cmake_kf5 -DQT_MAJOR_VERSION=5
-%cmake_build
-
 
 %install
-%global _vpath_builddir %{_target_platform}-qt5
-%cmake_install
-
-%global _vpath_builddir %{_target_platform}-qt6
 %cmake_install
 
 %find_lang %{name} --all-name --with-html --with-man
@@ -77,20 +56,18 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %files -f %{name}.lang
 %license COPYING*
 %{_kf6_libdir}/libKCompactDisc6.so.5*
-%{_kf5_libdir}/libKF5CompactDisc.so.5*
 
 %files devel
 %{_includedir}/KCompactDisc6/
 %{_kf6_libdir}/libKCompactDisc6.so
 %{_kf6_libdir}/cmake/KCompactDisc6/
 %{_qt6_archdatadir}/mkspecs/modules/qt_KCompactDisc.pri
-%{_kf5_includedir}/KCompactDisc/
-%{_kf5_libdir}/libKF5CompactDisc.so
-%{_kf5_libdir}/cmake/KF5CompactDisc/
-%{_qt5_archdatadir}/mkspecs/modules/qt_KCompactDisc.pri
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

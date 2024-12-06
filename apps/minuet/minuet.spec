@@ -1,9 +1,9 @@
-%global commit0 a0dc33ead8d7bbffa8460dff0cc3d0603e3d20e1
+%global commit0 be8175d521feea52d013b9b00695135caefe8a85
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           minuet
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 Summary:        A KDE Software for Music Education
 #OFL license for bundled Bravura.otf font
@@ -71,9 +71,7 @@ Data files for Minuet.
 chmod -x src/app/org.kde.%{name}.desktop
 
 %build
-%cmake_kf6 \
-	-DQT_MAJOR_VERSION=6
-
+%cmake_kf6 -DQT_MAJOR_VERSION=6
 %cmake_build
 
 %install
@@ -105,6 +103,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/org.kde.%{name}.desk
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

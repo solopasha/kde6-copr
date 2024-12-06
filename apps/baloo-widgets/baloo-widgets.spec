@@ -1,10 +1,10 @@
-%global commit0 54cbcb5f418e7b5f49513e86692965b5aa62b29c
+%global commit0 61cf152f93eae5cc46e9d1b483a966aa830ee7ce
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    baloo-widgets
 Summary: Widgets for Baloo
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 # # KDE e.V. may determine that future LGPL versions are accepted
@@ -44,7 +44,7 @@ Requires: kf6-kio-devel
 
 
 %build
-%cmake_kf6 -DBUILD_WITH_QT6=ON
+%cmake_kf6
 %cmake_build
 
 
@@ -70,6 +70,9 @@ Requires: kf6-kio-devel
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

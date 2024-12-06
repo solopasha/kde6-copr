@@ -1,4 +1,4 @@
-%global commit0 91d407f9162ba73264db77df2950a7f481c10a61
+%global commit0 5d640402703f4e2a3b098448eb2b16b63318b1fe
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    kmail-account-wizard
 Summary: KMail Account Wizard
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPLv2+
@@ -40,8 +40,8 @@ BuildRequires: cmake(Qt6QuickControls2)
 BuildRequires: cmake(Qt6Test)
 BuildRequires: cmake(Qt6Widgets)
 
-Requires:      kf6-kirigami2
-Requires:      kf6-kirigami-addons
+Requires:      kf6-kirigami%{?_isa}
+Requires:      kf6-kirigami-addons%{?_isa}
 
 %if 0%{?tests}
 BuildRequires: dbus-x11
@@ -83,6 +83,9 @@ xvfb-run -a bash -c "%ctest"
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

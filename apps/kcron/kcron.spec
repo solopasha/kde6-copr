@@ -1,10 +1,10 @@
-%global commit0 e7b40090396f664c74e4b82953259a707f804735
+%global commit0 77f1f11d01308dce88b144949efe86f6d01450a8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kcron
 Summary: Cron KDE configuration module
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPLv2+
@@ -24,7 +24,10 @@ BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6KCMUtils)
-BuildRequires: cmake(KF6KIO)
+
+BuildRequires: cmake(KF6KirigamiAddons)
+
+Requires:      kf6-kirigami-addons%{?_isa}
 
 %description
 Systemsettings module for the cron task scheduler.
@@ -56,10 +59,13 @@ Systemsettings module for the cron task scheduler.
 %{_kf6_datadir}/qlogging-categories6/kcron*
 %{_kf6_libexecdir}/kauth/kcron_helper
 %{_kf6_metainfodir}/org.kde.kcron.metainfo.xml
-%{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/kcm_cron.so
+%{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_cron.so
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

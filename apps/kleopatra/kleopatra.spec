@@ -1,9 +1,9 @@
-%global commit0 fafd7312c62765abe4409f2e88cc66ec3ea64ed6
+%global commit0 2970ea4f3aa90ecd9ed2d8cc993ed4d6b5ebe731
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kleopatra
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 Summary: KDE certificate manager and unified crypto GUI
 License: GPLv2+ and GFDL
@@ -22,6 +22,7 @@ BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6ItemModels)
@@ -86,15 +87,15 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop ||:
 
 %files -f %{name}.lang
 %license LICENSES/*
+%config(noreplace) %{_sysconfdir}/xdg/kleopatradebugcommandsrc
 %{_kf6_bindir}/kleopatra
 %{_kf6_bindir}/kwatchgnupg
 %{_kf6_datadir}/applications/kleopatra_import.desktop
 %{_kf6_datadir}/applications/org.kde.kleopatra.desktop
 %{_kf6_datadir}/applications/org.kde.kwatchgnupg.desktop
-%{_kf6_datadir}/icons/hicolor/*/apps/k{,watchgnupg,leopatra}.*
+%{_kf6_datadir}/icons/hicolor/*/apps/kleopatra.png
+%{_kf6_datadir}/icons/hicolor/*/apps/org.kde.kwatchgnupg.{svg,png}
 %{_kf6_datadir}/kio/servicemenus/*.desktop
-%{_kf6_datadir}/kleopatra/
-%{_kf6_datadir}/kwatchgnupg/
 %{_kf6_datadir}/mime/packages/application-vnd-kde-kleopatra.xml
 %{_kf6_datadir}/mime/packages/kleopatra-mime.xml
 %{_kf6_datadir}/qlogging-categories6/kleopatra.*
@@ -107,6 +108,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop ||:
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

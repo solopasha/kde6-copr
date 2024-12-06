@@ -1,10 +1,10 @@
-%global commit0 c4303f6a0ac4f5a44b59a013c1cfa612a7ddfb4f
+%global commit0 b246994ee6eff79103dccb8bde5e7682c9e171e4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kdenetwork-filesharing
 Summary: Network filesharing
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 # KDE e.V. may determine that future GPL versions are accepted
@@ -69,6 +69,9 @@ Recommends: samba-usershares
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

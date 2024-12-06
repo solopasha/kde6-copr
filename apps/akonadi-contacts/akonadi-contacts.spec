@@ -1,11 +1,11 @@
-%global commit0 2318f15ca3d917ad9a8ca8a722086a428dd6a1ac
+%global commit0 41738cf0e362c358eda873e637d93a9131a084f0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 #global tests 1
 
 Name:    akonadi-contacts
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 Summary: The Akonadi Contacts Library
 
@@ -21,6 +21,7 @@ BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6Contacts)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KIO)
@@ -109,6 +110,9 @@ xvfb-run -a bash -c "%ctest"
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

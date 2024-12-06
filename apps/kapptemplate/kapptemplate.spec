@@ -1,17 +1,15 @@
-%global commit0 dd69aae1df93844d6a16c9dc8abcea1b87d8c912
+%global commit0 53d4149210af46869d2915c58788adb5b9a9a930
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kapptemplate
 Summary: KDE Template generator
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPLv2+
 URL:     https://apps.kde.org/kapptemplate/
 %apps_source
-
-## upstream patches
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
@@ -22,16 +20,20 @@ BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6Gui)
 BuildRequires: cmake(Qt6Widgets)
 
-BuildRequires: cmake(KF6CoreAddons)
-BuildRequires: cmake(KF6ConfigWidgets)
-BuildRequires: cmake(KF6Completion)
 BuildRequires: cmake(KF6Archive)
-BuildRequires: cmake(KF6KIO)
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6DocTools)
+BuildRequires: cmake(KF6Completion)
+BuildRequires: cmake(KF6ConfigWidgets)
+BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6Crash)
+BuildRequires: cmake(KF6DocTools)
+BuildRequires: cmake(KF6I18n)
+BuildRequires: cmake(KF6KIO)
 BuildRequires: cmake(KF6XmlGui)
 
+BuildRequires: cmake(KF6KirigamiAddons)
+
+Requires:      kf6-kirigami-addons%{?_isa}
+Requires:      kf6-kitemmodels%{?_isa}
 
 %description
 Factory for the easy creation of KDE/Qt components and programs
@@ -63,14 +65,17 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %license LICENSES/*
 %{_kf6_bindir}/%{name}
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
-%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
+%{_kf6_datadir}/config.kcfg/%{name}.kcfg
 %{_kf6_datadir}/icons/hicolor/*/apps/%{name}.*
 %{_kf6_datadir}/kdevappwizard/
-%{_kf6_datadir}/config.kcfg/%{name}.kcfg
 %{_kf6_datadir}/qlogging-categories6/%{name}.*
+%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

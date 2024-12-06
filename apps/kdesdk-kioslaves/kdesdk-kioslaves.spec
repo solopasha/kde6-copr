@@ -1,47 +1,36 @@
-%global commit0 dd67469612a4a69fcc480b989c28f179eaa00d20
+%global commit0 30514bf0c540c796c75f9f59df50f3dff697acb0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global base_name kdesdk-kio
-Name:    kdesdk-kioslaves
-Summary: KDESDK KIOslaves
-Version: 24.08.3
-Release: 1%{?dist}
 
-License: GPLv2 and GPLv2+
-URL:     https://cgit.kde.org/%{name}.git
+Name:           kdesdk-kioslaves
+Summary:        KIO workers useful for software development
+Version:        24.12.0
+Release:        1%{?dist}
+
+License:        GPLv2 and GPLv2+
+URL:            https://cgit.kde.org/%{name}.git
 %apps_source
 
-BuildRequires: perl-generators
+BuildRequires:  perl-generators
 
-BuildRequires: extra-cmake-modules
-BuildRequires: kf6-rpm-macros
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6KIO)
+BuildRequires:  extra-cmake-modules
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KIO)
 
-# translations moved here
-Conflicts: kde-l10n < 17.03
-
-Conflicts:      kdesdk-common < 4.10.80
-Provides:       kdesdk-kioslave = %{version}-%{release}
-Obsoletes:      kdesdk-kioslave < 4.10.80
-
-Provides: kio5-perldoc = %{version}-%{release}
+Provides:       kio5-perldoc = %{version}-%{release}
 
 %description
-KDE SDK kioslaves:
-* perldoc KIOSlave
-
+%{summary}.
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
-%cmake_kf6 \
-	-DQT_MAJOR_VERSION=6
-
+%cmake_kf6 -DQT_MAJOR_VERSION=6
 %cmake_build
 
 %install
@@ -49,13 +38,14 @@ KDE SDK kioslaves:
 
 %find_lang %{base_name} --all-name
 
-
 %files -f %{base_name}.lang
 %{_kf6_plugindir}/kio/perldoc.so
 %{_kf6_datadir}/kio_perldoc/
 
+%changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
 
-%changelog	
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

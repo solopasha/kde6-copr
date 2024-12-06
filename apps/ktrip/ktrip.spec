@@ -1,9 +1,9 @@
-%global commit0 18061e610c69363a29544ce0e1036a5876d9497b
+%global commit0 051802eac62ea992037f2ae40ed763bc5b5d3602
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           ktrip
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 License:        GPLv2+
 Summary:        Public transport navigation, allows you to find journeys between specified locations, departures for a specific station and shows real-time delay and disruption information
@@ -25,6 +25,7 @@ BuildRequires: cmake(Qt6Widgets)
 
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6CoreAddons)
+BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6KirigamiAddons)
 BuildRequires: cmake(KF6QQC2DesktopStyle)
@@ -68,6 +69,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 
