@@ -1,4 +1,4 @@
-%global commit0 db961a9108040895274fbbe047e125b6c192cf4c
+%global commit0 954e7346cee771bd594f1a721de8c8a799b78693
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    kdnssd
 Summary: KDE Network Monitor for DNS-SD services (Zeroconf)
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 # KDE e.V. may determine that future GPL versions are accepted
@@ -15,26 +15,19 @@ URL:     https://invent.kde.org/network/kio-zeroconf
 %apps_source
 
 BuildRequires:  extra-cmake-modules
+BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6DNSSD)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(Qt6Core)
-BuildRequires:  kf6-rpm-macros
 
-BuildRequires:  cmake(KF5DBusAddons)
-BuildRequires:  cmake(KF5DNSSD)
-BuildRequires:  cmake(KF5I18n)
-BuildRequires:  cmake(KF5KIO)
-BuildRequires:  cmake(Qt5Core)
-BuildRequires:  kf5-rpm-macros
+BuildRequires:  cmake(Qt6Core)
 
 Obsoletes:      %{name}-common < 24.02.1
 Provides:       %{name}-common = %{version}-%{release}
 Obsoletes:      %{name}-qt5 < 24.02.1
-Provides:       %{name}-qt5 = %{version}-%{release}
 
 # new upstream name in 4.12.95
 Provides: kio-zeroconf = %{version}-%{release}
@@ -56,20 +49,11 @@ Provides:  kdenetwork-kdnssd = 7:%{version}-%{release}
 
 
 %build
-%global _vpath_builddir %{_target_platform}-qt6
 %cmake_kf6 -DQT_MAJOR_VERSION=6
-%cmake_build
-
-%global _vpath_builddir %{_target_platform}-qt5
-%cmake_kf5 -DQT_MAJOR_VERSION=5
 %cmake_build
 
 
 %install
-%global _vpath_builddir %{_target_platform}-qt5
-%cmake_install
-
-%global _vpath_builddir %{_target_platform}-qt6
 %cmake_install
 
 %find_lang kio5-zeroconf --all-name
@@ -86,11 +70,12 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.ki
 %{_kf6_metainfodir}/org.kde.kio_zeroconf.metainfo.xml
 %{_kf6_plugindir}/kded/dnssdwatcher.so
 %{_kf6_plugindir}/kio/zeroconf.so
-%{_kf5_plugindir}/kded/dnssdwatcher.so
-%{_kf5_plugindir}/kio/zeroconf.so
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

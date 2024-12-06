@@ -1,4 +1,4 @@
-%global commit0 bc80fcd169dcd8a54af31ab3a4bbd56429fb7e31
+%global commit0 087af99e494e153153155fbc54761a4160076d2b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    kaddressbook
 Summary: Contact Manager
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -33,6 +33,7 @@ BuildRequires:  cmake(KPim6GrantleeTheme)
 BuildRequires:  cmake(KPim6KontactInterface)
 BuildRequires:  cmake(KPim6LdapCore)
 BuildRequires:  cmake(KPim6Libkdepim)
+BuildRequires:  cmake(KPim6PimCommonActivities)
 BuildRequires:  cmake(KPim6PimCommonAkonadi)
 
 %if 0%{?tests}
@@ -112,6 +113,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

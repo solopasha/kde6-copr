@@ -1,9 +1,9 @@
-%global commit0 60eba8a348be207180ecbbfedfdc7296efcc5688
+%global commit0 b532a554a2f330494aac44bbd3b73201c45e1305
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    libgravatar
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 Summary: Gravatar support library
 
@@ -15,11 +15,11 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(KF6TextWidgets)
-
 BuildRequires:  cmake(KF6WidgetsAddons)
+
 BuildRequires:  cmake(KPim6PimCommon)
 
 BuildRequires:  cmake(Qt6Network)
@@ -67,6 +67,9 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

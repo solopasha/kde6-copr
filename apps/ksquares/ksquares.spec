@@ -1,10 +1,10 @@
-%global commit0 50a26731c9bea08366ff2b888e0304dfecfaa2e7
+%global commit0 5588025acd1c81eef8f8239bbe28fe766c6e72df
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    ksquares
 Summary: Connect the dots to create squares
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
@@ -86,6 +86,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

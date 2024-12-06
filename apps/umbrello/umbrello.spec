@@ -1,10 +1,10 @@
-%global commit0 3e1ff1923ccd205ef710a7b64748d33fb2873ab9
+%global commit0 a0a3b633b73f11962931530ce38bedc0ce98f053
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    umbrello
 Summary: UML modeler and UML diagram tool
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND (GPL-2.0-only OR GPL-3.0-only)
@@ -59,10 +59,6 @@ BuildRequires: llvm-devel
 BuildRequires: doxygen
 #BuildRequires: cmake(Qt5Help)
 
-Conflicts:      kdesdk-common < 4.10.80
-Provides:       kdesdk-umbrello = %{version}-%{release}
-Obsoletes:      kdesdk-umbrello < 4.10.80
-
 %description
 GUI for diagramming Unified Modeling Language (UML)
 
@@ -99,6 +95,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.umbrello.
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

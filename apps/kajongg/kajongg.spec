@@ -1,10 +1,10 @@
-%global commit0 3583e0160e3390c71a0dfe9b61fc1cad745a4447
+%global commit0 bc46c13ac74a1ccfd0a506384dd10b4061472c33
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kajongg
 Summary: Classical Mah Jongg game for four players
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPL-2.0-only AND GFDL-1.1-or-later
@@ -86,6 +86,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

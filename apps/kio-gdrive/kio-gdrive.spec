@@ -1,9 +1,9 @@
-%global commit0 d3df5b0d0eb6e5942d42dccd16d5f79ccc4f2239
+%global commit0 d561773b0aa8ca708753ed58eed612f9f8ed2fb8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kio-gdrive
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 Summary:        An Google Drive KIO slave for KDE
 
@@ -15,7 +15,6 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
 BuildRequires:  intltool
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  kf5-rpm-macros
 BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(KAccounts6)
@@ -32,20 +31,6 @@ BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6Widgets)
 
-BuildRequires:  cmake(KAccounts)
-
-BuildRequires:  cmake(KF5DocTools)
-BuildRequires:  cmake(KF5I18n)
-BuildRequires:  cmake(KF5KIO)
-BuildRequires:  cmake(KF5Notifications)
-BuildRequires:  cmake(KF5Purpose)
-
-BuildRequires:  cmake(KPim5GAPI)
-
-BuildRequires:  cmake(Qt5Gui)
-BuildRequires:  cmake(Qt5Network)
-BuildRequires:  cmake(Qt5Widgets)
-
 Obsoletes:      kio-gdrive-qt5 < 24.02.0-2
 
 %description
@@ -58,31 +43,22 @@ Provides KIO Access to Google Drive using the gdrive:/// protocol.
 
 
 %build
-%global _vpath_builddir %{_target_platform}-qt5
-%cmake_kf5 -DQT_MAJOR_VERSION=5
-%cmake_build
-
-%global _vpath_builddir %{_target_platform}-qt6
-%cmake_kf6 -DQT_MAJOR_VERSION=6
+%cmake_kf6
 %cmake_build
 
 
 %install
-%global _vpath_builddir %{_target_platform}-qt5
 %cmake_install
 
-%global _vpath_builddir %{_target_platform}-qt6
-%cmake_install
-
-%find_lang kio5_gdrive --all-name --with-html
+%find_lang kio_gdrive --all-name --with-html
 
 
 %check
-desktop-file-validate %{buildroot}%{_datadir}/remoteview/*.desktop
-appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml ||:
+desktop-file-validate %{buildroot}%{_kf6_datadir}/remoteview/*.desktop
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_datadir}/metainfo/*.xml ||:
 
 
-%files -f kio5_gdrive.lang
+%files -f kio_gdrive.lang
 %license COPYING
 %doc HACKING README.md
 %{_kf6_datadir}/accounts/services/kde/google-drive.service
@@ -97,16 +73,11 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.xml ||:
 %{_kf6_plugindir}/purpose/purpose_gdrive.so
 %{_qt6_plugindir}/kaccounts/daemonplugins/gdrive.so
 
-%dir %{_kf5_plugindir}/kfileitemaction/
-%{_kf5_plugindir}/kfileitemaction/gdrivecontextmenuaction.so
-%{_kf5_plugindir}/kio/gdrive.so
-%{_kf5_plugindir}/propertiesdialog/gdrivepropertiesplugin.so
-%{_kf5_plugindir}/purpose/purpose_gdrive.so
-%{_kf5_datadir}/knotifications5/gdrive.notifyrc
-%{_qt5_plugindir}/kaccounts/daemonplugins/gdrive.so
-
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

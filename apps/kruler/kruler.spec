@@ -1,11 +1,11 @@
-%global commit0 adfc2a993e7238cee9dc41552970cd0f43d63505
+%global commit0 c0cdcd8aff3ec15ae34429049a808a58801af263
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kruler
-Summary: A screen ruler and color measurement tool 
-Version: 24.08.3
-Release: 2%{?dist}
+Summary: A screen ruler and color measurement tool
+Version: 24.12.0
+Release: 1%{?dist}
 
 License: GPLv2 and GFDL
 URL:     https://www.kde.org/applications/graphics/kruler/
@@ -13,24 +13,22 @@ URL:     https://www.kde.org/applications/graphics/kruler/
 
 BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
-BuildRequires: gettext
+BuildRequires: libappstream-glib
+
 BuildRequires: cmake(KF6CoreAddons)
+BuildRequires: cmake(KF6Crash)
+BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6Notifications)
 BuildRequires: cmake(KF6StatusNotifierItem)
 BuildRequires: cmake(KF6WindowSystem)
 BuildRequires: cmake(KF6XmlGui)
-BuildRequires: cmake(KF6DocTools)
+
 BuildRequires: pkgconfig(Qt6Widgets)
-BuildRequires: pkgconfig(xcb)
 BuildRequires: qt6-qtbase-private-devel
-BuildRequires: libappstream-glib
 
-# when split occurred
-Conflicts: kdegraphics < 7:4.6.95-10
+BuildRequires: pkgconfig(xcb)
 
-# translations moved here
-Conflicts: kde-l10n < 17.03
 
 %description
 %{summary}.
@@ -59,17 +57,19 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 %files -f %{name}.lang
 %license LICENSES/*
-#doc README
 %{_kf6_bindir}/%{name}
+%{_kf6_datadir}/%{name}/
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
-%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 %{_kf6_datadir}/icons/hicolor/*/actions/%{name}*
 %{_kf6_datadir}/icons/hicolor/*/apps/%{name}.*
-%{_kf6_datadir}/%{name}/
 %{_kf6_datadir}/knotifications6/%{name}.notifyrc
+%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
 - Remove Qt6 version constraints
 

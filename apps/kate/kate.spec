@@ -1,4 +1,4 @@
-%global commit0 26c0c44d2239fd334c36ee4b18e6d2f71fed2d38
+%global commit0 cff4b0ae92e61d0a802bd8a4d55de5557279cea8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,8 +6,8 @@
 
 Name:    kate
 Summary: Advanced Text Editor
-Version: 24.08.3
-Release: 2%{?dist}
+Version: 24.12.0
+Release: 1%{?dist}
 
 # kwrite LGPLv2+
 # kate: app LGPLv2, plugins, LGPLv2 and LGPLv2+ and GPLv2+
@@ -15,8 +15,6 @@ Release: 2%{?dist}
 License: LGPLv2 and LGPLv2+ and GPLv2+
 URL:     https://apps.kde.org/kate/
 %apps_source
-
-Patch:   https://invent.kde.org/utilities/kate/-/commit/ca8a77baea474e792a38617204677fd1627ab8ca.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: gettext
@@ -183,6 +181,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
 - Remove Qt6 version constraints
 

@@ -1,9 +1,9 @@
-%global commit0 460889c4a46cde77551324defe10641d63a7f84b
+%global commit0 8ef00ab88b164c39e60358127ae42237818d2382
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           audex
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 Summary:        Audio ripper
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-2.0-or-later
@@ -72,6 +72,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.au
 %{_kf6_metainfodir}/org.kde.audex.appdata.xml
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

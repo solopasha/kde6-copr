@@ -1,10 +1,10 @@
-%global commit0 fb6aabeab34ff91bdad0f74b484834bd54996654
+%global commit0 72225bd6d2b0ad42bbce6fd2a0b8a9bd1e1e342b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kgpg
 Summary: Manage GPG encryption keys
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LicenseRef-KDE-Accepted-GPL
@@ -98,6 +98,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

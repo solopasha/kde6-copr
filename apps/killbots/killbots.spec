@@ -1,10 +1,10 @@
-%global commit0 40e152b38646db0b4533347af7f48720f338c11e
+%global commit0 896a63980f99475613530f49dbbc6d7db63af2ae
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    killbots
 Summary: A simple game of evading killer robots
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
@@ -86,6 +86,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

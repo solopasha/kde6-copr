@@ -1,10 +1,10 @@
-%global commit0 a2395305bfb4d54646115cf96763eac76b372ef1
+%global commit0 166db36d6aa4388b354218082e3ed73da56bb634
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           libkcddb
-Version:        24.08.3
-Release:        2%{?dist}
+Version:        24.12.0
+Release:        1%{?dist}
 Summary:        CDDB retrieval library
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -89,6 +89,9 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Sat Nov 30 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
 - Drop Qt5
 

@@ -1,4 +1,4 @@
-%global commit0 e94e19beb48d790bc752aa5619a9b6c14fabb8d5
+%global commit0 70234c6864c6a5f91f7fd7d9a1be17272df15af0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -17,13 +17,12 @@
 
 Name:    okular
 Summary: A document viewer
-Version: 24.08.3
-Release: 3%{?dist}
+Version: 24.12.0
+Release: 1%{?dist}
 
 License: GPL-2.0-only
 URL:     https://www.kde.org/applications/graphics/okular/
 %apps_source
-Patch:   https://invent.kde.org/graphics/okular/-/commit/1135eeeb6eb6365dcc426f462aa9991664a749a0.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib
@@ -100,7 +99,7 @@ Conflicts: okular5
 %package mobile
 Summary: Document viewer for plasma mobile
 Requires: %{name}-part%{?_isa} = %{version}-%{release}
-Requires: kf6-kirigami2%{_isa}
+Requires: kf6-kirigami%{_isa}
 Requires: kf6-kirigami-addons%{_isa}
 Conflicts: okular5-mobile
 %description mobile
@@ -145,7 +144,7 @@ sed -i -e 's|^add_subdirectory( mobile )|#add_subdirectory( mobile )|' CMakeList
 
 %build
 %cmake_kf6 -DOKULAR_UI=both \
-	-DFORCE_NOT_REQUIRED_DEPENDENCIES="CHM;LibZip;DjVuLibre;EPub;"
+  -DFORCE_NOT_REQUIRED_DEPENDENCIES="CHM;LibZip;DjVuLibre;EPub;"
 
 %cmake_build
 
@@ -197,7 +196,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.ok
 %{_kf6_libdir}/libOkular6Core.so
 
 %files libs
-%{_kf6_libdir}/libOkular6Core.so.2{,.*}
+%{_kf6_libdir}/libOkular6Core.so.3{,.*}
 
 %files part -f okular-part.lang
 %if 0%{?fedora}
@@ -210,6 +209,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.ok
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-3
 - Remove Qt6 version constraints
 

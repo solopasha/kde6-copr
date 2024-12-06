@@ -1,9 +1,9 @@
-%global commit0 3b3be957e1d2aba95975ecccfc116847bbd5506a
+%global commit0 25e2b21ff2ea275c71ace7e47143845564090a7d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           skanlite
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 Summary:        Lightweight scanning program
 # Actually: GPLv2 or GPLv3 or any later Version approved by KDE e.V.
@@ -15,21 +15,23 @@ BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
-BuildRequires:  libappstream-glib
-BuildRequires:  libpng-devel
 BuildRequires:  kf6-rpm-macros
+BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(Qt6Core)
-BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(Qt6Core5Compat)
+BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6XmlGui)
+
 BuildRequires:  cmake(KSaneWidgets6)
 
+BuildRequires:  libpng-devel
 
 %description
 Skanlite is a light-weight scanning application based on libksane.
@@ -41,7 +43,7 @@ Skanlite is a light-weight scanning application based on libksane.
 
 
 %build
-%cmake_kf6 -DBUILD_WITH_QT6=ON
+%cmake_kf6
 %cmake_build
 
 
@@ -66,6 +68,9 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/org.kde.
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

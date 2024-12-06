@@ -1,9 +1,9 @@
-%global commit0 c99212fc503d47a3de9a2d8d023bc54984418584
+%global commit0 7c2d727164e2b3ecfe3bc193e97f9d347b2ee98e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kmime
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 Summary: The KMime Library
 
@@ -63,6 +63,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

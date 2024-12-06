@@ -1,11 +1,11 @@
-%global commit0 b01df16182984bfa22f277d08dddea08d5ab2d40
+%global commit0 503478c466fc68930bc4e1ef9face301c98a0fec
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 #global tests 1
 
 Name:    akonadi-calendar
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 Summary: The Akonadi Calendar Library
 
@@ -18,6 +18,7 @@ BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6CalendarCore)
 BuildRequires:  cmake(KF6Codecs)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
@@ -111,6 +112,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

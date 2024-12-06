@@ -1,10 +1,10 @@
-%global commit0 d0457b0d6507ac013b1a9dcb5e052a280e7a9c57
+%global commit0 12ded0a76f90e7eea28fe8a1414ff23f512666ee
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:    messagelib
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 Summary: KDE Message libraries
 
@@ -16,6 +16,7 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  extra-cmake-modules
 
 BuildRequires:  cmake(KF6Archive)
+BuildRequires:  cmake(KF6CalendarCore)
 BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Completion)
@@ -67,9 +68,10 @@ BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Qt6WebEngineWidgets)
 BuildRequires:  cmake(Qt6Widgets)
 
-BuildRequires:  cmake(Qca-qt6)
 BuildRequires:  cmake(Gpgmepp)
 BuildRequires:  cmake(QGpgmeQt6)
+
+BuildRequires:  pkgconfig(openssl)
 
 %if %{fedora} >= 40
 Obsoletes:      kf5-%{name} < 24.01.80
@@ -169,6 +171,9 @@ Requires:       cmake(Qt6WebEngineWidgets)
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

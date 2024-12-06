@@ -1,11 +1,11 @@
-%global commit0 3e283b53452798c5c03aa2d1482dc9299bf16204
+%global commit0 ebc4123bec4074d3a3e2792e7721ef8bde09c9f2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 #global tests 1
 
 Name:           zanshin
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 Summary:        Todo/action management software
 
@@ -18,6 +18,7 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(KF6CalendarCore)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Parts)
 BuildRequires:  cmake(KF6Runner)
@@ -102,6 +103,9 @@ time \
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

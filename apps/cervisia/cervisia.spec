@@ -1,40 +1,35 @@
-%global commit0 1916ddc1701646b6bbcbdcca640674e0fe3193a8
+%global commit0 e9ceaa95634cd3e5508e3674a9f26879913c9cab
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-Name:    cervisia
-Summary: CVS frontend
-Version: 24.08.3
-Release: 1%{?dist}
+Name:           cervisia
+Summary:        CVS frontend
+Version:        24.12.0
+Release:        1%{?dist}
 
-License: GPL-2.0-or-later AND LGPL-2.0-or-later AND GFDL-1.2-or-later
-URL:     https://invent.kde.org/sdk/%{name}.git
+License:        GPL-2.0-or-later AND LGPL-2.0-or-later AND GFDL-1.2-or-later
+URL:            https://invent.kde.org/sdk/%{name}.git
 %apps_source
 
-BuildRequires: desktop-file-utils
-BuildRequires: libappstream-glib
-BuildRequires: extra-cmake-modules
-BuildRequires: kf5-rpm-macros
-BuildRequires: cmake(KF5Parts)
-BuildRequires: cmake(KF5DBusAddons)
-BuildRequires: cmake(KF5DocTools)
-BuildRequires: cmake(KF5Init)
-BuildRequires: cmake(KF5IconThemes)
-BuildRequires: cmake(KF5Notifications)
-BuildRequires: cmake(KF5WidgetsAddons)
-BuildRequires: cmake(KF5ItemViews)
-BuildRequires: cmake(KF5Su)
-BuildRequires: cmake(Qt5DBus)
-BuildRequires: cmake(Qt5Widgets)
+BuildRequires:  desktop-file-utils
+BuildRequires:  extra-cmake-modules
+BuildRequires:  kf5-rpm-macros
+BuildRequires:  libappstream-glib
+
+BuildRequires:  cmake(KF5DBusAddons)
+BuildRequires:  cmake(KF5DocTools)
+BuildRequires:  cmake(KF5IconThemes)
+BuildRequires:  cmake(KF5Init)
+BuildRequires:  cmake(KF5ItemViews)
+BuildRequires:  cmake(KF5Notifications)
+BuildRequires:  cmake(KF5Parts)
+BuildRequires:  cmake(KF5Su)
+BuildRequires:  cmake(KF5WidgetsAddons)
+
+BuildRequires:  cmake(Qt5DBus)
+BuildRequires:  cmake(Qt5Widgets)
 
 %{?kf5_kinit_requires}
-
-# translations moved here
-Conflicts: kde-l10n < 17.03
-
-Conflicts:      kdesdk-common < 4.10.80
-Provides:       kdesdk-cervisia = %{version}-%{release}
-Obsoletes:      kdesdk-cervisia < 4.10.80
 
 %description
 Cervisia is a CVS frontend for KDE
@@ -65,26 +60,29 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.cervisia.
 %license COPYING*
 %doc ChangeLog README
 %{_kf5_bindir}/cervisia
-%{_kf5_datadir}/icons/hicolor/*/*/*
-%{_kf5_qtplugindir}/cervisiapart5.so
-%{_kf5_libdir}/libkdeinit5_cervisia.so
-%{_kf5_datadir}/applications/org.kde.cervisia.desktop
-%{_kf5_metainfodir}/org.kde.cervisia.appdata.xml
-%{_kf5_datadir}/config.kcfg/cervisiapart.kcfg
-%{_kf5_datadir}/dbus-1/interfaces/org.kde.cervisia5.*.xml
-%{_kf5_datadir}/kservices5/org.kde.cervisiapart5.desktop
-%{_mandir}/man1/cervisia*
 %{_kf5_bindir}/cvsaskpass
 %{_kf5_bindir}/cvsservice5
-%{_kf5_libdir}/libkdeinit5_cvsaskpass.so
-%{_kf5_libdir}/libkdeinit5_cvsservice.so
+%{_kf5_datadir}/applications/org.kde.cervisia.desktop
+%{_kf5_datadir}/config.kcfg/cervisiapart.kcfg
+%{_kf5_datadir}/dbus-1/interfaces/org.kde.cervisia5.*.xml
+%{_kf5_datadir}/icons/hicolor/*/*/*
 %{_kf5_datadir}/knotifications5/cervisia.notifyrc
+%{_kf5_datadir}/kservices5/org.kde.cervisiapart5.desktop
 %{_kf5_datadir}/kservices5/org.kde.cvsservice5.desktop
 %{_kf5_datadir}/kxmlgui5/cervisia/
 %{_kf5_datadir}/kxmlgui5/cervisiapart/
+%{_kf5_libdir}/libkdeinit5_cervisia.so
+%{_kf5_libdir}/libkdeinit5_cvsaskpass.so
+%{_kf5_libdir}/libkdeinit5_cvsservice.so
+%{_kf5_metainfodir}/org.kde.cervisia.appdata.xml
+%{_kf5_qtplugindir}/cervisiapart5.so
+%{_mandir}/man1/cervisia*
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

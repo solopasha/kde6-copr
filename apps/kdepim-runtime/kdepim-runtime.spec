@@ -1,4 +1,4 @@
-%global commit0 645228fc5c8ec84b02033510a915c733882ebd95
+%global commit0 4523b9ede57b4597cfa188942147bd9916a15ab2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -7,7 +7,7 @@
 Name:    kdepim-runtime
 Summary: KDE PIM Runtime Environment
 Epoch:   1
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPLv2
@@ -31,7 +31,6 @@ BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6NotifyConfig)
 BuildRequires:  cmake(KF6TextCustomEditor)
-BuildRequires:  cmake(KF6TextWidgets)
 BuildRequires:  cmake(KF6Wallet)
 BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(KF6DocTools)
@@ -40,7 +39,6 @@ BuildRequires:  cmake(KPim6Akonadi)
 BuildRequires:  cmake(KPim6AkonadiCalendar)
 BuildRequires:  cmake(KPim6AkonadiContactWidgets)
 BuildRequires:  cmake(KPim6AkonadiMime)
-BuildRequires:  cmake(KPim6AkonadiNotes)
 BuildRequires:  cmake(KPim6CalendarUtils)
 BuildRequires:  cmake(KPim6GAPI)
 BuildRequires:  cmake(KPim6IdentityManagementWidgets)
@@ -49,6 +47,7 @@ BuildRequires:  cmake(KPim6LdapWidgets)
 BuildRequires:  cmake(KPim6MailTransport)
 BuildRequires:  cmake(KPim6Mbox)
 BuildRequires:  cmake(KPim6Mime)
+BuildRequires:  cmake(KPim6PimCommonActivities)
 
 BuildRequires:  cmake(Qt6Concurrent)
 BuildRequires:  cmake(Qt6DBus)
@@ -143,6 +142,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 1:24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 1:24.08.3-1
 - Update to 24.08.3
 

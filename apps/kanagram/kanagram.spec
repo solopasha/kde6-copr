@@ -1,10 +1,10 @@
-%global commit0 4d4f4cb611f34d81fcd2bf0c2865d5c9b5fe963b
+%global commit0 46c7fedb4f65706c3fb3fc312b393f1543733d2b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kanagram
 Summary: Letter Order Game
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPLv2+
@@ -79,6 +79,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

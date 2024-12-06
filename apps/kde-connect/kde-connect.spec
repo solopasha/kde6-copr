@@ -1,12 +1,12 @@
-%global commit0 4ac6e7e825848f39814d6906e135f45f44914859
+%global commit0 be31b435196c2924d45ebb89d8db806d7bb91e4d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global base_name kdeconnect-kde
 
 Name:    kde-connect
-Version: 24.08.3
-Release: 2%{?dist}
+Version: 24.12.0
+Release: 1%{?dist}
 License: GPLv2+
 Summary: KDE Connect client for communication with smartphones
 URL:     https://community.kde.org/KDEConnect
@@ -65,7 +65,7 @@ Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       kdeconnectd = %{version}-%{release}
 
 Requires:       fuse-sshfs
-Requires:       kf6-kirigami2%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-kirigami-addons%{?_isa}
 
 %description
@@ -162,6 +162,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop ||:
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
 - Remove Qt6 version constraints
 

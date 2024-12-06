@@ -1,4 +1,4 @@
-%global commit0 9b5357032081676d6af4cd0b954eff7ed75b70d2
+%global commit0 ba5b3c3c4168356f178287948cb0efd59b06cd66
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -7,42 +7,52 @@
 %undefine _include_frame_pointers
 
 Name:           kwave
-Version: 24.08.3
-Release: 1%{?dist}
+Version:        24.12.0
+Release:        1%{?dist}
 Summary:        Sound Editor for KDE
-Summary(de):    Sound-Editor für KDE
 
 # See the file LICENSES for the licensing scenario
 License:        GPLv2+ and BSD and CC-BY-SA
-URL:            http://kwave.sourceforge.net
+URL:            https://invent.kde.org/multimedia/kwave
 %apps_source
 
+BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
-BuildRequires:  cmake(Qt5Multimedia)
-BuildRequires:  cmake(KF5Archive)
-BuildRequires:  cmake(KF5CoreAddons)
-BuildRequires:  cmake(KF5WidgetsAddons)
-BuildRequires:  cmake(KF5I18n)
-BuildRequires:  cmake(KF5Completion)
-BuildRequires:  cmake(KF5KIO)
-BuildRequires:  cmake(KF5IconThemes)
-BuildRequires:  cmake(KF5Crash)
-BuildRequires:  cmake(KF5DBusAddons)
-BuildRequires:  cmake(KF5TextWidgets)
-BuildRequires:  cmake(KF5DocTools)
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  libappstream-glib
+
+BuildRequires:  cmake(KF6Archive)
+BuildRequires:  cmake(KF6Completion)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6ConfigWidgets)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
+BuildRequires:  cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6IconThemes)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6TextWidgets)
+BuildRequires:  cmake(KF6WidgetsAddons)
+BuildRequires:  cmake(KF6XmlGui)
+
+BuildRequires:  cmake(Qt6Concurrent)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6Multimedia)
+
 BuildRequires:  alsa-lib-devel
 BuildRequires:  audiofile-devel >= 0.3.0
-BuildRequires:  desktop-file-utils
+
 BuildRequires:  fftw-devel >= 3.0
 BuildRequires:  flac-devel
 BuildRequires:  gettext
 BuildRequires:  id3lib-devel >= 3.8.1
-BuildRequires:  libappstream-glib
+
 BuildRequires:  libmad-devel
 BuildRequires:  libsamplerate-devel
 BuildRequires:  libvorbis-devel
 BuildRequires:  opus-devel
-BuildRequires:  poxml
 BuildRequires:  pulseaudio-libs-devel >= 0.9.16
 # 'convert' needed for doc generation
 BuildRequires:  ImageMagick
@@ -55,64 +65,53 @@ including multi-channel files. Kwave includes some plugins to transform audio
 files in several ways and presents a graphical view with a complete zoom- and
 scroll capability.
 
-%description -l de
-Mit Kwave können Sie ein- oder mehrkanalige Audio-Dateien aufnehmen, wieder-
-geben, importieren und bearbeiten. Kwave verfügt über Plugins zum Umwandeln
-von Audio-Dateien auf verschiedene Weise. Die grafische Oberfläche bietet
-alle Möglichkeiten für Änderungen der Ansichtsgröße und zum Rollen.
-
 %package doc
 Summary:        User manuals for %{name}
 License:        GFDL
 BuildArch:      noarch
 
-
 %description doc
 This package contains arch-independent files for %{name}, especially the
 HTML documentation.
-
-%description doc -l de
-Dieses Paket enthält architekturunabhängige Dateien für %{name},
-speziell die HTML-Dokumentation.
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
 %build
-%cmake_kf5 \
+%cmake_kf6 \
    -DWITH_MP3=ON
-
 %cmake_build
 
 %install
 %cmake_install
-gzip -dS z %{buildroot}%{_datadir}/icons/hicolor/scalable/actions/*.svgz
 gzip -dS z %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/kwave.svgz
 
 %find_lang %{name}
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf5_metainfodir}/org.kde.%{name}.appdata.xml
-desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.desktop
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.desktop
 
 %files -f %{name}.lang
-%doc AUTHORS CHANGES README TODO
+%doc AUTHORS README.md TODO CHANGES
 %license GNU-LICENSE LICENSES
-%{_kf5_bindir}/%{name}
-%{_kf5_datadir}/applications/org.kde.%{name}.desktop
-%{_kf5_metainfodir}/org.kde.%{name}.appdata.xml
-%{_kf5_datadir}/icons/hicolor/*/apps/%{name}.*
-%{_kf5_datadir}/icons/hicolor/*/actions/%{name}*
-%{_kf5_datadir}/%{name}/
-%{_kf5_qtplugindir}/%{name}/
-%{_kf5_libdir}/lib%{name}.so.*
-%{_kf5_libdir}/lib%{name}gui.so.*
+%{_kf6_bindir}/%{name}
+%{_kf6_datadir}/%{name}/
+%{_kf6_datadir}/applications/org.kde.%{name}.desktop
+%{_kf6_datadir}/icons/hicolor/*/apps/%{name}.*
+%{_kf6_libdir}/lib%{name}.so.*
+%{_kf6_libdir}/lib%{name}gui.so.*
+%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
+%{_kf6_qtplugindir}/%{name}/
 
 %files doc
-%{_kf5_docdir}/HTML/*/%{name}
+%{_kf6_docdir}/HTML/*/%{name}
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

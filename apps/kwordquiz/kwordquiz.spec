@@ -1,10 +1,10 @@
-%global commit0 24fa148c1cc5fa9f94ebe63e32b995d1e5a3cdf4
+%global commit0 a2323a5a0fcacbb377017a76e1f1803448d2a379
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kwordquiz
-Summary: Flash Card Trainer 
-Version: 24.08.3
+Summary: Flash Card Trainer
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPLv2+
@@ -60,7 +60,6 @@ Requires: qt6-qtmultimedia%{?_isa}
 
 %build
 %cmake_kf6
-
 %cmake_build
 
 
@@ -90,6 +89,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

@@ -1,10 +1,10 @@
-%global commit0 e1e4c637b74f97b54f6f50227352a216750eb28f
+%global commit0 2261819f020aa83197e0e3c5f6a3b645c954a0cb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kdegraphics-thumbnailers
 Summary: Thumbnailers for various graphic types
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 # most sources GPLv2+, dscparse.* GPL, gscreator.* LGPLv2+,
@@ -21,16 +21,7 @@ BuildRequires: cmake(QMobipocket6)
 BuildRequires: cmake(Qt6Gui)
 BuildRequires: cmake(KDcrawQt6)
 
-BuildRequires: kf5-rpm-macros
-BuildRequires: cmake(KF5Archive)
-BuildRequires: cmake(KF5KExiv2)
-BuildRequires: cmake(KF5KIO)
-BuildRequires: cmake(QMobipocket)
-BuildRequires: cmake(Qt5Gui)
-BuildRequires: cmake(KF5KDcraw)
-
 Obsoletes:     %{name}-qt5 < 24.02.1
-Provides:      %{name}-qt5 = %{version}-%{release}
 
 %description
 %{summary}.
@@ -42,20 +33,11 @@ Provides:      %{name}-qt5 = %{version}-%{release}
 
 
 %build
-%global _vpath_builddir %{_target_platform}-qt6
 %cmake_kf6 -DQT_MAJOR_VERSION=6
-%cmake_build
-
-%global _vpath_builddir %{_target_platform}-qt5
-%cmake_kf5 -DQT_MAJOR_VERSION=5
 %cmake_build
 
 
 %install
-%global _vpath_builddir %{_target_platform}-qt5
-%cmake_install
-
-%global _vpath_builddir %{_target_platform}-qt6
 %cmake_install
 
 
@@ -66,13 +48,12 @@ Provides:      %{name}-qt5 = %{version}-%{release}
 %{_kf6_plugindir}/thumbcreator/gsthumbnail.so
 %{_kf6_plugindir}/thumbcreator/mobithumbnail.so
 %{_kf6_plugindir}/thumbcreator/rawthumbnail.so
-%{_kf5_plugindir}/thumbcreator/blenderthumbnail.so
-%{_kf5_plugindir}/thumbcreator/gsthumbnail.so
-%{_kf5_plugindir}/thumbcreator/mobithumbnail.so
-%{_kf5_plugindir}/thumbcreator/rawthumbnail.so
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

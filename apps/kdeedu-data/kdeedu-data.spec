@@ -1,10 +1,10 @@
-%global commit0 a32cea9a28e6fac36b5091b5dfd80788afb6ed97
+%global commit0 60e41d75af80b71af5b3f23b09900d4dec966921
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kdeedu-data
 Summary: Shared icons, artwork and data files for educational applications
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPLv2
@@ -44,6 +44,9 @@ Requires: hicolor-icon-theme
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

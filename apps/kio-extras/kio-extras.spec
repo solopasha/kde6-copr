@@ -1,10 +1,10 @@
-%global commit0 8df813894bd98aff56c0def874e9e4289e8e7f5d
+%global commit0 16702b0a650d757303491fcf8eec3293bf4babbf
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kio-extras
-Version: 24.08.3
-Release: 2%{?dist}
+Version: 24.12.0
+Release: 1%{?dist}
 Summary: Additional components to increase the functionality of KIO Framework
 
 License: GPLv2+
@@ -60,6 +60,8 @@ BuildRequires:  taglib-devel > 1.11
 # This package provides plugins for KIO
 Supplements:    kf6-kio-core
 
+Recommends:     ripgrep
+
 # Merged into main package
 Provides:       kio-extras-info = %{version}-%{release}
 Obsoletes:      kio-extras-info < %{version}-%{release}
@@ -93,18 +95,19 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %license LICENSES/*
 
 %{_kf6_plugindir}/kded/
+%{_kf6_plugindir}/kfileitemaction/
 %{_kf6_plugindir}/kio/
 %{_kf6_plugindir}/kiod/
 %{_kf6_plugindir}/thumbcreator/
-%{_kf6_plugindir}/kfileitemaction/
 
-%{_datadir}/config.kcfg/jpegcreatorsettings5.kcfg
-%{_datadir}/dbus-1/services/org.kde.kmtpd5.service
-%{_datadir}/applications/kcm_*
-%{_datadir}/mime/packages/org.kde.kio.smb.xml
-%{_datadir}/remoteview/
-%{_datadir}/konqueror/
-%{_datadir}/kio_info/
+%{_kf6_datadir}/applications/kcm_*
+%{_kf6_datadir}/config.kcfg/jpegcreatorsettings5.kcfg
+%{_kf6_datadir}/dbus-1/services/org.kde.kmtpd5.service
+%{_kf6_datadir}/kio_filenamesearch/
+%{_kf6_datadir}/kio_info/
+%{_kf6_datadir}/konqueror/
+%{_kf6_datadir}/mime/packages/org.kde.kio.smb.xml
+%{_kf6_datadir}/remoteview/
 
 %{_kf6_datadir}/qlogging-categories6/kio-extras*
 %{_kf6_datadir}/solid/actions/solid_afc.desktop
@@ -124,6 +127,9 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
 - rebuilt
 

@@ -1,4 +1,4 @@
-%global commit0 9593cc64b4409ec5d9a8a8faae6227aab5943347
+%global commit0 1adca2b4bb90b160514dc42a5ceca2db5fa8a7c1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,8 +6,8 @@
 #global tests 1
 
 Name:    konqueror
-Version: 24.08.3
-Release: 2%{?dist}
+Version: 24.12.0
+Release: 1%{?dist}
 Summary: KDE File Manager and Browser
 
 License: GPLv2+ and LGPLv2+ and GFDL
@@ -197,6 +197,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
 - Remove Qt6 version constraints
 

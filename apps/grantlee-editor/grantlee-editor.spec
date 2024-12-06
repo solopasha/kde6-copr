@@ -1,4 +1,4 @@
-%global commit0 1a603073ca2c8bcbe93a230bee8d8fbfa586b440
+%global commit0 b2fedce1fac9361f837b99cd8bf390fc9080be5b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    grantlee-editor
 Summary: KMail Theme Editor
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -91,6 +91,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

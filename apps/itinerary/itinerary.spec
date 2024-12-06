@@ -1,10 +1,10 @@
-%global commit0 d50f8a09766498efb3e762d3c28b6813f28f6478
+%global commit0 250af9086b9462df63c9d40ef30d39e54470439b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           itinerary
-Version:        24.08.3
-Release:        3%{?dist}
+Version:        24.12.0
+Release:        1%{?dist}
 Summary:        Itinerary and boarding pass management application
 
 License:        Apache-2.0 and BSD-3-Clause and LGPL-2.0-or-later AND CC0-1.0
@@ -102,6 +102,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_qt6_qmldir}/org/kde/solidextras/
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-3
 - Remove Qt6 version constraints
 

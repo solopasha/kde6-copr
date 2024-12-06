@@ -1,9 +1,9 @@
-%global commit0 2d3fe22e6880c96bfa0647ae46cc9fc2eee6b261
+%global commit0 8c8ebb53e1b4fe3c48cd2a8e36483c65df7028cd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kalk
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND GPL-3.0-or-later
 Summary:        %{name} is a convergent calculator for Plasma.
@@ -29,9 +29,8 @@ BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6QuickControls2)
 
 # QML module dependencies
-Requires:       kf6-kirigami2%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-kirigami-addons%{?_isa}
-Requires:       qt6-qt5compat%{?_isa}
 
 %description
 %{summary}.
@@ -53,16 +52,16 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %files -f %{name}.lang
+%license LICENSES/*
 %{_kf6_bindir}/%{name}
-
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/icons/hicolor/scalable/apps/org.kde.%{name}.svg
-
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
-%license LICENSES/*
-
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

@@ -1,9 +1,9 @@
-%global commit0 a56be6ffcaeb61d27f87a26bdf6e01aa81133b4c
+%global commit0 a568268ff6d78aa2a17d1e18c273476fb04ba359
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    calendarsupport
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 Summary: KDE PIM library for calendar and even handling
 
@@ -24,7 +24,6 @@ BuildRequires:  cmake(KF6TextCustomEditor)
 
 BuildRequires:  cmake(KPim6Akonadi)
 BuildRequires:  cmake(KPim6AkonadiCalendar)
-BuildRequires:  cmake(KPim6AkonadiNotes)
 BuildRequires:  cmake(KPim6CalendarUtils)
 BuildRequires:  cmake(KPim6IdentityManagementCore)
 BuildRequires:  cmake(KPim6Mime)
@@ -80,6 +79,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

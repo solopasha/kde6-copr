@@ -1,47 +1,48 @@
-%global commit0 29ebbda4afbc814b81d492eb19b87ecf45497b61
+%global commit0 d07e676c26ca49a7ff12221e790410e8c737fa57
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-Name:    kmix
-Summary: KDE volume control
-Version: 24.08.3
-Release: 1%{?dist}
+Name:           kmix
+Summary:        KDE volume control
+Version:        24.12.0
+Release:        1%{?dist}
 
-License: CC0-1.0 AND GPL-2.0-or-later
-URL:     https://invent.kde.org/multimedia/%{name}
+License:        CC0-1.0 AND GPL-2.0-or-later
+URL:            https://invent.kde.org/multimedia/%{name}
 %apps_source
 
-## upstream patches
-
-## upstreamable patches
 # disable autostart by default (on newer plasma releases that use plasma-pa)
 Patch2:  kmix-21.04.0-autostart_disable.patch
 
-BuildRequires: desktop-file-utils
-BuildRequires: libappstream-glib
+BuildRequires:  desktop-file-utils
+BuildRequires:  libappstream-glib
+BuildRequires:  extra-cmake-modules
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires: pkgconfig(alsa)
-# FIXME/TODO: kf5 build seems to expects libcanberra cmake support, update? -- rex
-BuildRequires: pkgconfig(libcanberra)
-BuildRequires: pkgconfig(libpulse)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6ConfigWidgets)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
+BuildRequires:  cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6GlobalAccel)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6Notifications)
+BuildRequires:  cmake(KF6Solid)
+BuildRequires:  cmake(KF6StatusNotifierItem)
+BuildRequires:  cmake(KF6WidgetsAddons)
+BuildRequires:  cmake(KF6WindowSystem)
+BuildRequires:  cmake(KF6XmlGui)
 
-BuildRequires: extra-cmake-modules
-BuildRequires: kf5-rpm-macros
-BuildRequires: cmake(KF5Config)
-BuildRequires: cmake(KF5ConfigWidgets)
-BuildRequires: cmake(KF5Crash)
-BuildRequires: cmake(KF5DBusAddons)
-BuildRequires: cmake(KF5DocTools)
-BuildRequires: cmake(KF5GlobalAccel)
-BuildRequires: cmake(KF5I18n)
-BuildRequires: cmake(KF5Notifications)
-BuildRequires: cmake(KF5Solid)
-BuildRequires: cmake(KF5WidgetsAddons)
-BuildRequires: cmake(KF5WindowSystem)
-BuildRequires: cmake(KF5XmlGui)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6Xml)
 
-BuildRequires: pkgconfig(Qt5Gui)
-
+BuildRequires:  pkgconfig(alsa)
+BuildRequires:  pkgconfig(libcanberra)
+BuildRequires:  pkgconfig(libpulse)
 
 %description
 %{summary}.
@@ -53,7 +54,7 @@ BuildRequires: pkgconfig(Qt5Gui)
 
 
 %build
-%cmake_kf5
+%cmake_kf6 -DQT_MAJOR_VERSION=6
 %cmake_build
 
 
@@ -64,37 +65,37 @@ BuildRequires: pkgconfig(Qt5Gui)
 
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf5_metainfodir}/org.kde.kmix.appdata.xml
-desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kmix.desktop
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.kmix.appdata.xml
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.kmix.desktop
 
 
 %files -f %{name}.lang
 %doc AUTHORS ChangeLog TODO
 %license COPYING*
-%{_datadir}/dbus-1/interfaces/org.kde.kmix.control.xml
-%{_datadir}/dbus-1/interfaces/org.kde.kmix.mixer.xml
-%{_datadir}/dbus-1/interfaces/org.kde.kmix.mixset.xml
-%{_datadir}/icons/hicolor/*/*/kmix.*
-%{_kf5_bindir}/kmix
-%{_kf5_bindir}/kmixctrl
-%{_kf5_bindir}/kmixremote
-%{_kf5_datadir}/applications/org.kde.kmix.desktop
-%{_kf5_metainfodir}/org.kde.kmix.appdata.xml
-%{_kf5_datadir}/config.kcfg/kmixsettings.kcfg
-%{_kf5_datadir}/kmix/
-%{_kf5_datadir}/kxmlgui5/kmix/
-%{_kf5_datadir}/qlogging-categories5/kmix*
-%{_sysconfdir}/xdg/autostart/restore_kmix_volumes.desktop
+%{_kf6_bindir}/kmix
+%{_kf6_bindir}/kmixctrl
+%{_kf6_bindir}/kmixremote
+%{_kf6_datadir}/applications/org.kde.kmix.desktop
+%{_kf6_datadir}/config.kcfg/kmixsettings.kcfg
+%{_kf6_datadir}/dbus-1/interfaces/org.kde.kmix.control.xml
+%{_kf6_datadir}/dbus-1/interfaces/org.kde.kmix.mixer.xml
+%{_kf6_datadir}/dbus-1/interfaces/org.kde.kmix.mixset.xml
+%{_kf6_datadir}/icons/hicolor/*/*/kmix.*
+%{_kf6_datadir}/kmix/
+%{_kf6_datadir}/knotifications6/kmix.notifyrc
+%{_kf6_datadir}/kxmlgui5/kmix/kmixui.rc
+%{_kf6_datadir}/qlogging-categories6/kmix*
+%{_kf6_libdir}/libkmixcore.so.%{version_no_git}
+%{_kf6_libdir}/libkmixcore.so.6
+%{_kf6_metainfodir}/org.kde.kmix.appdata.xml
 %{_sysconfdir}/xdg/autostart/kmix_autostart.desktop
-%{_kf5_datadir}/knotifications5/kmix.notifyrc
-%{_kf5_datadir}/kservices5/kmixctrl_restore.desktop
-# -libs subpkg?
-%{_kf5_libdir}/libkmixcore.so.5*
-%{_kf5_libdir}/libkmixcore.so.%{lua: print((macros.version:gsub('[%^~].*', '')))}
-%{_kf5_plugindir}/kded/kmixd.so
+%{_sysconfdir}/xdg/autostart/restore_kmix_volumes.desktop
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

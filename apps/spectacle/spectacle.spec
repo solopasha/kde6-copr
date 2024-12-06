@@ -1,24 +1,24 @@
-%global commit0 4912338e39d0c835e7a4f2d129c20b9ca37c0f5f
+%global commit0 63e467413f006968aed09906651af991ced21159
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    spectacle
 Summary: Screenshot capture utility
-Version: 24.08.3
-Release: 2%{?dist}
+Version: 24.12.0
+Release: 1%{?dist}
 
 License: GPLv2
 URL:     https://www.kde.org/applications/graphics/spectacle/
 %apps_source
 
 BuildRequires: desktop-file-utils
-BuildRequires: libappstream-glib
-
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
+BuildRequires: libappstream-glib
 
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6CoreAddons)
+BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DBusAddons)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6GlobalAccel)
@@ -55,6 +55,8 @@ BuildRequires: pkgconfig(xcb-xfixes)
 
 # for systemd-related macros
 BuildRequires:  systemd-devel
+
+Recommends:    qt6-qtimageformats%{?_isa}
 
 %description
 %{summary}.
@@ -100,6 +102,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.spectacle
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
 - Remove Qt6 version constraints
 

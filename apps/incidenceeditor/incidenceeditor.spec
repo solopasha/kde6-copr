@@ -1,9 +1,9 @@
-%global commit0 8e7f0dcb3b96c675afc2c2dfa2d58578d4ff3494
+%global commit0 5f8bb9647f750df467fcb1f4d313c28f7a8a31f4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    incidenceeditor
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 Summary: KDE PIM library for creating and editing calendar incidences
 
@@ -16,6 +16,7 @@ BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6CalendarCore)
 BuildRequires:  cmake(KF6Codecs)
+BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KIO)
@@ -92,6 +93,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

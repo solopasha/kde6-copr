@@ -1,18 +1,16 @@
-%global commit0 c51610cb25b03b4985bae2e771ee3ac70164d012
+%global commit0 085d7dda16becbc113d38621b348ebe660e1c02a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:    ksystemlog
 Summary: System Log Viewer for KDE
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     http://www.kde.org/applications/system/ksystemlog/
 %apps_source
-
-Patch:   qt6.6.patch
 
 ## downstream patches
 # fix ksystemlog to find log files in fedora locations
@@ -25,6 +23,7 @@ BuildRequires: cmake(KF6Archive)
 BuildRequires: cmake(KF6Completion)
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6CoreAddons)
+BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6ItemViews)
@@ -81,6 +80,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

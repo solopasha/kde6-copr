@@ -1,10 +1,10 @@
-%global commit0 f4894e4777f7eea22fcda5364396014353b2de41
+%global commit0 d94f31725643097ed16bf4537f5121f9e0dfd4f0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    ktouch
 Summary: Touch Typing Tutor
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -86,6 +86,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

@@ -1,9 +1,9 @@
-%global commit0 c5d02295c438eadf57afa1cbd52bd4d81005eb1c
+%global commit0 133879775e6665519e6c0a49441c3f7c40e4315d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           krecorder
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 License:        BSD-3-Clause AND CC-BY-4.0 AND CC0-1.0 AND GPL-3.0-or-later
 Summary:        Convergent KDE audio recording application
@@ -64,6 +64,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

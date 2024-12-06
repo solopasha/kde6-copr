@@ -1,10 +1,10 @@
-%global commit0 f5b71f856bdd68516229f70b9f443237ccf81f7f
+%global commit0 3e7ea95b8cee8c791d56f3da877860a145b5030b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kdegraphics-mobipocket
 Summary: A collection of plugins to handle mobipocket files
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPLv2+
@@ -17,12 +17,7 @@ BuildRequires: cmake(Qt6Gui)
 BuildRequires: cmake(Qt6Core5Compat)
 BuildRequires: cmake(KF6KIO)
 
-BuildRequires: kf5-rpm-macros
-BuildRequires: cmake(Qt5Gui)
-BuildRequires: cmake(KF5KIO)
-
 Obsoletes:     %{name}-qt5 < 24.02.1
-Provides:      %{name}-qt5 = %{version}-%{release}
 
 %description
 %{summary}.
@@ -30,7 +25,6 @@ Provides:      %{name}-qt5 = %{version}-%{release}
 %package    devel
 Summary:    Development files for %{name}
 Obsoletes:  %{name}-qt5-devel < 24.02.1
-Provides:   %{name}-qt5-devel = %{version}-%{release}
 Requires:   %{name}%{?_isa} = %{version}-%{release}
 %description devel
 %{summary}.
@@ -41,38 +35,28 @@ Requires:   %{name}%{?_isa} = %{version}-%{release}
 
 
 %build
-%global _vpath_builddir %{_target_platform}-qt6
 %cmake_kf6 -DQT_MAJOR_VERSION=6
-%cmake_build
-
-%global _vpath_builddir %{_target_platform}-qt5
-%cmake_kf5 -DQT_MAJOR_VERSION=5
 %cmake_build
 
 
 %install
-%global _vpath_builddir %{_target_platform}-qt5
-%cmake_install
-
-%global _vpath_builddir %{_target_platform}-qt6
 %cmake_install
 
 
 %files
 %license COPYING
 %{_kf6_libdir}/libQMobipocket6.so.2*
-%{_kf5_libdir}/libqmobipocket.so.2*
 
 %files devel
-%{_includedir}/QMobipocket/
 %{_includedir}/QMobipocket6/
-%{_kf5_libdir}/cmake/QMobipocket/
-%{_kf5_libdir}/libqmobipocket.so
 %{_kf6_libdir}/cmake/QMobipocket6/
 %{_kf6_libdir}/libQMobipocket6.so
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

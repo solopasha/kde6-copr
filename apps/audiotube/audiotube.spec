@@ -1,9 +1,9 @@
-%global commit0 ede759d8c3ed264b3b5cc4e14dd11e1f90b950b5
+%global commit0 b8567799ac1cd4ece0fc5abb8846cd0912a013c0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           audiotube
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 License:        (GPL-2.0-only OR GPL-3.0-only) AND GPL-2.0-or-later AND LGPL-2.1-or-later AND CC0-1.0
 Summary:        AudioTube can search YouTube Music, list albums and artists, play automatically generated playlists, albums and allows to put your own playlist together.
@@ -42,11 +42,11 @@ BuildRequires:  python3-ytmusicapi
 BuildRequires:  yt-dlp
 
 Requires:       hicolor-icon-theme
+Requires:       kf6-kconfig%{?_isa}
+Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-purpose%{?_isa}
-Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       python3-ytmusicapi
-Requires:       qt6-qt5compat%{?_isa}
 Requires:       yt-dlp
 
 %description
@@ -78,6 +78,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

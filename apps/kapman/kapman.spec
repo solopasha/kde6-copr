@@ -1,10 +1,10 @@
-%global commit0 15a468e0f07affdc000a4bcef4bc5c3be608bb51
+%global commit0 420a90abdbe93ad15f7f64fcd6a5227867b3b1fe
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kapman
 Summary: A collecting game
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
@@ -85,6 +85,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

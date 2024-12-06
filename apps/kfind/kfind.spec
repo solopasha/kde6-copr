@@ -1,25 +1,24 @@
-%global commit0 1a221cf9bee85540c4f61c2bd5ed64734706d5b9
+%global commit0 1d52f32aa69f9ec7baf017a1d55eb6fee424f1dc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kfind
 Summary: KDE Find File Utility
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later
 URL:     https://apps.kde.org/kfind/
 %apps_source
 
-Patch:   qt6.6.patch
-
 BuildRequires: desktop-file-utils
-BuildRequires: libappstream-glib
-
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
+BuildRequires: libappstream-glib
+
 BuildRequires: cmake(KF6Archive)
 BuildRequires: cmake(KF6CoreAddons)
+BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6FileMetaData)
 BuildRequires: cmake(KF6I18n)
@@ -58,15 +57,18 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 %files -f %{name}.lang
 %license LICENSES/*
-%{_kf6_datadir}/qlogging-categories6/kfind.*
 %{_kf6_bindir}/%{name}
-%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/icons/hicolor/*/apps/kfind.*
+%{_kf6_datadir}/qlogging-categories6/kfind.*
+%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 %{_mandir}/man1/kfind.1*
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

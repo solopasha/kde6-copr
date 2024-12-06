@@ -1,22 +1,23 @@
-%global commit0 4fffce0ec50ef2a3888ab171b94db470014a5f60
+%global commit0 ab8443dd04f03bb48e01f2170e6b737695c02bf3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           keysmith
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 License:        GPLv3+
 Summary:        Convergent OTP client
 URL:            https://invent.kde.org/utilities/keysmith
 %apps_source
 
-BuildRequires:  gcc-c++
 BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  desktop-file-utils
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 
+BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Kirigami)
@@ -52,7 +53,6 @@ OTP client for Plasma Mobile and Desktop
 %cmake_install
 %find_lang %{name}
 
-
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.desktop
@@ -66,6 +66,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

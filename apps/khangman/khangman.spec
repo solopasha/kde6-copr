@@ -1,11 +1,10 @@
-%global commit0 7e6d749281334b0c298f42175802e93d2c8139e6
+%global commit0 faf46ecdbc422890ab781a15a7b8194c5d4bf3cf
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-
 Name:    khangman
-Summary: Hangman game 
-Version: 24.08.3
+Summary: Hangman game
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPLv2+
@@ -29,7 +28,6 @@ BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6Completion)
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6CoreAddons)
-BuildRequires: cmake(KF6ConfigWidgets)
 BuildRequires: cmake(KF6NewStuff)
 BuildRequires: cmake(KF6Notifications)
 BuildRequires: cmake(KF6XmlGui)
@@ -44,7 +42,6 @@ Requires: dustin-domestic-manners-fonts
 Requires: kdeedu-data
 # qml deps
 Requires: kf6-knewstuff%{?_isa}
-Requires: qt6-qt5compat%{?_isa}
 Requires: qt6-qtmultimedia%{?_isa}
 
 %description
@@ -58,7 +55,6 @@ Requires: qt6-qtmultimedia%{?_isa}
 
 %build
 %cmake_kf6
-
 %cmake_build
 
 
@@ -95,6 +91,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

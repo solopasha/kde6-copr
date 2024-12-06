@@ -1,9 +1,9 @@
-%global commit0 fbd1ad270251777f8c2c55f10c73181660c7e828
+%global commit0 770175d407849ace9de91819ce6b0b2c8fc03beb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kosmindoormap
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 Summary: OSM multi-floor indoor map renderer
 
@@ -94,6 +94,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKOSMIndoorRouting.so
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

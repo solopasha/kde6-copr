@@ -1,9 +1,9 @@
-%global commit0 fdb3b2b05bf853f0bf8ba998f8204ba8fd394214
+%global commit0 e927cb3715e51b1c7ce042d38a76fb8eb46f4123
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    mimetreeparser
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 Summary: Parser for MIME trees
 
@@ -30,7 +30,7 @@ BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  cmake(Gpgmepp)
 
-Requires:       kf6-kirigami2
+Requires:       kf6-kirigami%{?_isa}
 
 %description
 %{summary}.
@@ -80,6 +80,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

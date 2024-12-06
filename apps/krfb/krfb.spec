@@ -1,11 +1,11 @@
-%global commit0 64be56a456c84bf3d943071f5c60441ab19c5022
+%global commit0 a62d1676f52919d3f906f3c2c2b5e0d9709df83f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    krfb
 Summary: Desktop sharing
-Version: 24.08.3
-Release: 2%{?dist}
+Version: 24.12.0
+Release: 1%{?dist}
 
 License: GPL-2.0-only AND LGPL-2.1-only AND GFDL-1.2-no-invariants-only
 URL:     https://www.kde.org/applications/network/krfb/
@@ -107,6 +107,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.xml
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
 - Remove Qt6 version constraints
 

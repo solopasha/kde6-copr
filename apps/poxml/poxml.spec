@@ -1,10 +1,10 @@
-%global commit0 747b01fa302f27f37f2d3e5da5bbc017df46b6f3
+%global commit0 368786692c6320dbd35a79ac739abbaf4b31903b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           poxml
 Summary:        Text utilities from kdesdk
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 
 License:        GPLv2+
@@ -57,6 +57,9 @@ xml2pot
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

@@ -1,4 +1,4 @@
-%global commit0 ce4229fec76c9f4a9032f59cdb4145d6c8f9e34e
+%global commit0 a6ae8b867d370a99659a7ab512963f3b82abb770
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    akregator
 Summary: Feed Reader
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -42,6 +42,7 @@ BuildRequires: cmake(KPim6KontactInterface)
 BuildRequires: cmake(KPim6Libkdepim)
 BuildRequires: cmake(KPim6MessageViewer)
 BuildRequires: cmake(KPim6PimCommon)
+BuildRequires: cmake(KPim6PimCommonActivities)
 BuildRequires: cmake(KPim6WebEngineViewer)
 
 BuildRequires: cmake(Qt6PrintSupport)
@@ -117,6 +118,9 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

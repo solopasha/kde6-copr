@@ -1,9 +1,9 @@
-%global commit0 11fc5d00ec9a41460520687d61bc8c7a6a3bfaba
+%global commit0 7c0791fe0a8a4cd08e37e22ad2e7946f3f426a86
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kmbox
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 Summary: The KMbox Library
 
@@ -57,6 +57,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

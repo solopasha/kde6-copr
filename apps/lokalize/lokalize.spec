@@ -1,17 +1,15 @@
-%global commit0 06f74d9c1717e79c66d6a907e382c19df24ad248
+%global commit0 56cfc8f0a938a000cf36bc74e43ef3830e5152dc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           lokalize
 Summary:        Computer-aided translation system
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND GFDL-1.2-or-later AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-or-later
 URL:            https://invent.kde.org/sdk/%{name}
 %apps_source
-
-Patch:          qt6.6.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
@@ -94,6 +92,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

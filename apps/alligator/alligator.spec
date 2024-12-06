@@ -1,25 +1,27 @@
-%global commit0 eeca05e113c1c5518189b3fabccd65fea62e399a
+%global commit0 d507d4a9a441cd5daa3584f8efd328a07bed6cce
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           alligator
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 License:        GPLv2 or GPLv3
 Summary:        Kirigami-based RSS reader
 URL:            https://invent.kde.org/plasma-mobile/alligator
 %apps_source
 
-BuildRequires:  gcc-c++
 BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  desktop-file-utils
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6KirigamiAddons)
 BuildRequires:  cmake(KF6Syndication)
 
@@ -32,7 +34,7 @@ BuildRequires:  cmake(Qt6Test)
 
 Requires:       hicolor-icon-theme
 # QML module dependencies
-Requires:       kf6-kirigami2%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-kirigami-addons%{?_isa}
 
 %description
@@ -63,8 +65,10 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 %{_kf6_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
-
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

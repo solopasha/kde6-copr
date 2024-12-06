@@ -1,9 +1,9 @@
-%global commit0 a7682ed5ec6591a45f7b02ded9efc56e13b098c1
+%global commit0 47533aa610dbbee55b60db6735bb94f6d604f2e6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    pimcommon
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 Summary: PIM common libraries
 
@@ -47,6 +47,8 @@ BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(Qt6Xml)
 
+BuildRequires:  cmake(PlasmaActivities)
+
 Obsoletes:      %{name}-akonadi < 24.02.2-2
 
 %description
@@ -65,6 +67,7 @@ Requires:       cmake(KPim6Akonadi)
 Requires:       cmake(KPim6AkonadiContactWidgets)
 Requires:       cmake(KPim6IMAP)
 Requires:       cmake(KPim6Libkdepim)
+Requires:       cmake(PlasmaActivities)
 Requires:       cmake(Qt6DBus)
 Requires:       cmake(Qt6Gui)
 Requires:       cmake(Qt6Widgets)
@@ -93,20 +96,27 @@ developing applications that use %{name}.
 %license LICENSES/*
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
 %{_kf6_libdir}/libKPim6PimCommon.so.*
+%{_kf6_libdir}/libKPim6PimCommonActivities.so.*
 %{_kf6_libdir}/libKPim6PimCommonAkonadi.so.*
-%{_qt6_plugindir}/designer/pimcommon6akonadiwidgets.so
-%{_qt6_plugindir}/designer/pimcommon6widgets.so
 
 %files devel
 %{_includedir}/KPim6/PimCommon/
+%{_includedir}/KPim6/PimCommonActivities/
 %{_includedir}/KPim6/PimCommonAkonadi/
 %{_kf6_libdir}/cmake/KPim6PimCommon/
+%{_kf6_libdir}/cmake/KPim6PimCommonActivities/
 %{_kf6_libdir}/cmake/KPim6PimCommonAkonadi/
 %{_kf6_libdir}/libKPim6PimCommon.so
+%{_kf6_libdir}/libKPim6PimCommonActivities.so
 %{_kf6_libdir}/libKPim6PimCommonAkonadi.so
+%{_qt6_plugindir}/designer/pimcommon6akonadiwidgets.so
+%{_qt6_plugindir}/designer/pimcommon6widgets.so
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

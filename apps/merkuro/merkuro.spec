@@ -1,26 +1,27 @@
-%global commit0 a83defb4ba165811c923d17a7e9c5c1dca7fe866
+%global commit0 b9f9661f0d324d7d0cbe35f9e101309fcb5e68ba
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-Name:		    merkuro
-Version:	    24.08.3
-Release:	    1%{?dist}
-Summary:	    A calendar application using Akonadi to sync with external services (Nextcloud, GMail, ...)
+Name:           merkuro
+Version:        24.12.0
+Release:        1%{?dist}
+Summary:        A calendar application using Akonadi to sync with external services (Nextcloud, GMail, ...)
 
-License:	    GPL-3.0-or-later
-URL:		    https://invent.kde.org/pim/%{name}
+License:        GPL-3.0-or-later
+URL:            https://invent.kde.org/pim/%{name}
 %apps_source
 
-BuildRequires:	desktop-file-utils
-BuildRequires:	extra-cmake-modules
-BuildRequires:	gcc-c++
-BuildRequires:	kf6-rpm-macros
-BuildRequires:	libappstream-glib
+BuildRequires:  desktop-file-utils
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(KF6CalendarCore)
 BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6Contacts)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
@@ -59,18 +60,22 @@ BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(QGpgmeQt6)
 
 # QML module dependencies
-Requires:	kf6-kirigami%{?_isa}
-Requires:   kf6-kirigami-addons%{?_isa}
-Requires:	kf6-kitemmodels%{?_isa}
+Requires:       kf6-kirigami-addons%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-kitemmodels%{?_isa}
+Requires:       kf6-prison%{?_isa}
+Requires:       qt6-qt5compat%{?_isa}
+Requires:       qt6-qtlocation%{?_isa}
+Requires:       qt6-qtpositioning%{?_isa}
 
 # kalendar has been renamed to merkuro
-Obsoletes:	kalendar < 23.08
-Provides:	kalendar = %{version}-%{release}
-Provides:	kalendar%{?_isa} = %{version}-%{release}
+Obsoletes:      kalendar < 23.08
+Provides:       kalendar = %{version}-%{release}
+Provides:       kalendar%{?_isa} = %{version}-%{release}
 
 # handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
 # Package doesn't build on arches that qtwebengine is not built on.
-ExclusiveArch:	%{qt6_qtwebengine_arches}
+ExclusiveArch:  %{qt6_qtwebengine_arches}
 
 %description
 Merkuro is a application suite designed to make handling your emails, \
@@ -109,6 +114,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 %{_kf6_bindir}/merkuro-mail
 %{_kf6_datadir}/applications/org.kde.merkuro.calendar.desktop
 %{_kf6_datadir}/applications/org.kde.merkuro.contact.desktop
+%{_kf6_datadir}/applications/org.kde.merkuro.desktop
 %{_kf6_datadir}/applications/org.kde.merkuro.mail.desktop
 %{_kf6_datadir}/icons/hicolor/*/apps/org.kde.merkuro*.png
 %{_kf6_datadir}/knotifications6/merkuro.mail.notifyrc
@@ -124,6 +130,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

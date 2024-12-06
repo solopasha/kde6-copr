@@ -1,9 +1,9 @@
-%global commit0 cc243a3b74d1e3c89b84efae7bb94d29b80abfb5
+%global commit0 d285b8a27f44d398aa8dbc7da353f05f1bd19e72
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kopeninghours
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 Summary: Library for parsing and evaluating OSM opening hours expressions
 
@@ -67,6 +67,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKOpeningHours.so
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

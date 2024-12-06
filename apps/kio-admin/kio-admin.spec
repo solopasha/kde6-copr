@@ -1,9 +1,9 @@
-%global commit0 42df7f87785715b01e6d40fb6eb5ea5d565e7463
+%global commit0 2f02ba9b60de5d2b0a3e759cc3d43ee5f7cb99ab
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kio-admin
-Version:        24.08.3
+Version:        24.12.0
 Release:        1%{?dist}
 Summary:        Manage files as administrator using the admin:// KIO protocol
 License:        (GPL-2.0-only or GPL-3.0-only) and BSD-3-Clause and CC0-1.0 and FSFAP
@@ -63,6 +63,9 @@ operations in root-scope.
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

@@ -1,17 +1,15 @@
-%global commit0 46c4b19afffc3c9300eb595ee1bf28118944177a
+%global commit0 051cdbcb466c67f9d5c9f3751f68222b9375107a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kdebugsettings
 Summary: Configure debug output from Qt5 applications
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: LGPL-2.0-or-later
 URL:     https://www.kde.org/applications/utilities/
 %apps_source
-
-Patch:   qt6.6.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
@@ -20,6 +18,7 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
@@ -65,6 +64,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.kdebugset
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

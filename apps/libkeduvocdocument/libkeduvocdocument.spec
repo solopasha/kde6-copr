@@ -1,10 +1,10 @@
-%global commit0 9b731cc35dc8df56c1b93d3125045f665adab657
+%global commit0 9bc6bc3b7a20452cd94ccf704c1264ab2ff40afb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    libkeduvocdocument
 Summary: Library to parse, convert, and manipulate KVTML files
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPLv2+
@@ -66,6 +66,9 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

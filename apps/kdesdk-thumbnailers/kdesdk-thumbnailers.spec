@@ -1,10 +1,10 @@
-%global commit0 fdd5c9c8f0d4081fc739149227c6fe7d2e1d95ab
+%global commit0 6186e63ad0e591c5127b0458692acfaaff379117
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kdesdk-thumbnailers
 Summary: Thumbnailers for KDE
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: GPLv2+
@@ -20,12 +20,6 @@ BuildRequires:  kf6-kio-devel
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  pkgconfig(Qt6Widgets)
 
-# translations moved here
-Conflicts: kde-l10n < 17.03
-
-Conflicts:      kdesdk-common < 4.10.80
-Obsoletes:      kde-thumbnailer-po <= 2.0
-Obsoletes:      kdesdk-thumbnailers < 4.10.80
 Provides:       kdesdk-thumbnailers = %{version}-%{release}
 Provides:       kde-thumbnailer-po = %{version}-%{release}
 
@@ -42,7 +36,7 @@ gettext translation templates
 
 %build
 %cmake_kf6 \
-	-DQT_MAJOR_VERSION=6
+  -DQT_MAJOR_VERSION=6
 
 %cmake_build
 
@@ -60,7 +54,10 @@ gettext translation templates
 %{_kf6_datadir}/config.kcfg/pocreatorsettings.kcfg
 
 
-%changelog	
+%changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 

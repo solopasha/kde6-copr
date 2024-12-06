@@ -4,7 +4,7 @@
 
 Name:    libkexiv2
 Summary: A wrapper around Exiv2 library
-Version: 24.08.3
+Version: 24.12.0
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later
@@ -101,6 +101,9 @@ Requires: cmake(Qt6Gui)
 
 
 %changelog
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
 * Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
 - Update to 24.08.3
 
