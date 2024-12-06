@@ -25,6 +25,9 @@ process_spec() {
         fi
         break
     done
+    if [[ -z "$newCommit" ]];then
+        exit 1
+    fi
 
     sed -i "s/$oldCommit/$newCommit/" "$1"
 

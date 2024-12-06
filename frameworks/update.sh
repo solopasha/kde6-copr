@@ -11,7 +11,6 @@ exclude_packages=(
 IFS=" " read -r -a exclude_rendered <<< "$(printf -- "--exclude=%s " "${exclude_packages[@]}")"
 
 process_spec() {
-    set -x
     baseName="$(sed -n 's/%global[[:space:]]\+\bframework\b[[:space:]]\+\(.*\)/\1/p' "$1")"
     if [[ -z "$baseName" ]]; then
         baseName="$(rpmspec -q --srpm --qf "%{name}" "$1")"
@@ -27,11 +26,14 @@ process_spec() {
             break
         fi
         message="$(gh api --method GET "repos/KDE/$baseName/commits/$commit" -q '.commit.message')"
-        if [[ "$message" =~ ^(SVN|GIT)_SILENT.*|Update[[:space:]]version[[:space:]]to|Update[[:digit:]]dependency[[:digit:]]version[[:digit:]]to|add[[:space:]]Alpine/musl[[:space:]]job ]]; then
+        if [[ "$message" =~ ^(SVN|GIT)_SILENT.*|Update[[:space:]]version[[:space:]]to|Update[[:space:]]dependency[[:space:]]version[[:space:]]to ]]; then
             continue
         fi
         break
     done
+    if [[ -z "$newCommit" ]];then
+        exit 1
+    fi
 
     sed -i "s/$oldCommit/$newCommit/" "$1"
 
