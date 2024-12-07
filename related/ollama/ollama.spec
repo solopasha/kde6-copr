@@ -8,7 +8,7 @@
 
 # https://github.com/ollama/ollama
 %global goipath         github.com/ollama/ollama
-Version:                0.4.7
+Version:                0.5.1
 
 %gometa -L -f
 
@@ -33,7 +33,6 @@ Source5:        ollama-tmpfiles.conf
 
 BuildRequires:  go-vendor-tools
 
-BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  systemd-rpm-macros
 
