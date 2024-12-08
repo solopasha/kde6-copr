@@ -1,6 +1,6 @@
-%global commit0 73ee284cebd6636ebcd197982a7f9fc68263c21f
+%global commit0 c2cdc045b4edf7437c04be7aa285305062aa2471
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:    plasma-vault
 Summary: Plasma Vault offers strong encryption features in a user-friendly way
