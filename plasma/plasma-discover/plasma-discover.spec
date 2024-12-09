@@ -1,6 +1,6 @@
-%global commit0 b4abe2c9321550d15ad09dd6a7447a7900353667
+%global commit0 86f272f8af1c2c72745b8ada9cb48513e0245127
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 16
+%global bumpver 17
 
 %global base_name discover
 %global flatpak_version 0.8.0
