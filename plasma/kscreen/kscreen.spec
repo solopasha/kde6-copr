@@ -1,6 +1,6 @@
-%global commit0 da4c5ee43e55e0f7f4bb200b454816551765e82a
+%global commit0 04ae348885e2cdc81e8ea1a1129668c662c0945b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 8
 
 Name:    kscreen
 Epoch:   1
