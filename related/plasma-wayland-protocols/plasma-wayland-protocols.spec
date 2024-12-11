@@ -2,8 +2,8 @@
 %global debug_package %{nil}
 
 Name:           plasma-wayland-protocols
-Version:        1.14.0
-Release:        3%{?dist}
+Version:        1.15.0
+Release:        2%{?dist}
 Summary:        Plasma Specific Protocols for Wayland
 
 License:        LGPLv2+ and MIT and BSD
@@ -12,9 +12,9 @@ URL:            https://invent.kde.org/libraries/%{name}
 Source0:        https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz
 Source1:        https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz.sig
 Source2:        signing-key.pgp
-Patch:          https://invent.kde.org/libraries/plasma-wayland-protocols/-/commit/365b5b14fcacf3df3ab71839df63a665cfece401.patch
-Patch:          https://invent.kde.org/libraries/plasma-wayland-protocols/-/commit/31f2a13995c66af1f567af04a7bd58c727b64a28.patch
-Patch:          https://invent.kde.org/libraries/plasma-wayland-protocols/-/commit/d08b85da7e012b73dc3f226675bf86e017b1a889.patch
+
+Patch:          https://invent.kde.org/libraries/plasma-wayland-protocols/-/commit/f0e2ea1bf2af40923bd62209d6b000d2e81b5c54.patch
+Patch:          https://invent.kde.org/libraries/plasma-wayland-protocols/-/commit/c26caed537713fd11ddf5cdeaddce66a3b994e0e.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  qt6-qtbase-devel
@@ -54,11 +54,11 @@ developing applications that use %{name}.
 
 
 %changelog
-* Tue Nov 19 2024 Pavel Solovev <daron439@gmail.com> - 1.14.0-3
-- pick upstream commit
-
-* Mon Nov 04 2024 Pavel Solovev <daron439@gmail.com> - 1.14.0-2
+* Wed Dec 11 2024 Pavel Solovev <daron439@gmail.com> - 1.15.0-2
 - pick upstream commits
+
+* Sat Dec 07 2024 Pavel Solovev <daron439@gmail.com> - 1.15.0-1
+- new version
 
 * Fri Jul 21 2023 Fedora Release Engineering <releng@fedoraproject.org> - 1.10.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
