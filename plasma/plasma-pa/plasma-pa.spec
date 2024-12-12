@@ -1,6 +1,6 @@
-%global commit0 319317bfe7821deaefc5feaae447e44bef743248
+%global commit0 57fb75d4c2dbe518eeb1f653359eba3e435118a7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 Name:    plasma-pa
 Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -61,10 +61,12 @@ Requires:       pulseaudio-daemon
 %cmake_install
 %find_lang %{name} --all-name --with-html
 
+
 %files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_datadir}/applications/kcm_pulseaudio.desktop
 %{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.volume/
+%{_kf6_datadir}/qlogging-categories6/plasmapa.categories
 %{_kf6_libdir}/libplasma-volume.so.%{version_no_git}
 %{_kf6_libdir}/libplasma-volume.so.6
 %{_kf6_metainfodir}/org.kde.plasma.volume.appdata.xml
