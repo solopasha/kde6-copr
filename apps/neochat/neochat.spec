@@ -4,12 +4,13 @@
 
 Name:    neochat
 Version: 24.12.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND BSD-3-Clause
 URL: https://invent.kde.org/network/%{name}
 Summary: Client for matrix, the decentralized communication protocol
 %apps_source
+Patch: https://invent.kde.org/network/neochat/-/commit/0d286db0c28beddf165e5b3e3a5d9a1510e1d357.patch
 
 BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6Quick)
@@ -124,6 +125,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_plugindir}/purpose/neochatshareplugin.so
 
 %changelog
+* Fri Dec 13 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-2
+- pick upstream commit
+
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 
