@@ -2,52 +2,44 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-Name:    ksanecore
-Summary: Library providing logic to interface scanners
-Version: 24.12.0
-Release: 1%{?dist}
+Name:           ksanecore
+Summary:        Library providing logic to interface scanners
+Version:        24.12.0
+Release:        2%{?dist}
 
-License: LGPL-2.1-only OR LGPL-3.0-only
-URL:     https://invent.kde.org/libraries/ksanecore
+License:        LGPL-2.1-only OR LGPL-3.0-only
+URL:            https://invent.kde.org/libraries/ksanecore
 %apps_source
 
-BuildRequires: cmake
-BuildRequires: extra-cmake-modules
-BuildRequires: gcc-c++
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires: kf6-rpm-macros
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(Qt6Core)
-BuildRequires: cmake(Qt6Gui)
+BuildRequires:  cmake(KF6I18n)
 
-BuildRequires: pkgconfig(sane-backends)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Gui)
+
+BuildRequires:  pkgconfig(sane-backends)
+
+Obsoletes:      %{name}-common < 24.12.0-2
+Provides:       %{name}-common = %{version}-%{release}
+Obsoletes:      %{name}-qt5 < 24.12.0-2
+Obsoletes:      %{name}-qt6 < 24.12.0-2
+Provides:       %{name}-qt6 = %{version}-%{release}
+Provides:       %{name}-qt6%{?_isa} = %{version}-%{release}
 
 %description
 %{summary}.
 
-%package qt6
-Summary: Qt6 library providing logic to interface scanners
-Obsoletes: %{name} < 24.01.85
-Obsoletes: %{name}-qt5 < 24.11.80
-Requires: %{name}-common = %{version}-%{release}
-%description qt6
+%package        devel
+Summary:        Development files for %{name}
+Obsoletes:      %{name}-qt5-devel < 24.11.80
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Gui)
+%description    devel
 %{summary}.
-
-%package qt6-devel
-Summary:  Development files for %{name}-qt6
-Obsoletes: %{name}-devel < 24.01.85
-Obsoletes: %{name}-qt5-devel < 24.11.80
-Requires: %{name}-qt6%{?_isa} = %{version}-%{release}
-Requires: cmake(Qt6Gui)
-%description qt6-devel
-%{summary}.
-
-%package common
-Summary: Files shared between the Qt5 and Qt6 versions of the library
-Conflicts: %{name} < 24.01
-%description common
-%{summary}.
-Provides internationalization files.
 
 
 %prep
@@ -59,25 +51,28 @@ Provides internationalization files.
 %cmake_kf6
 %cmake_build
 
+
 %install
 %cmake_install
 
 %find_lang %{name} --all-name --with-html
 
-%files common -f %{name}.lang
+
+%files -f %{name}.lang
 %doc README.md
 %license LICENSES/*
+%{_kf6_libdir}/libKSaneCore6.so.{1,%{version_no_git}}
 
-%files qt6
-%{_libdir}/libKSaneCore6.so.{1,%{version_no_git}}
-
-%files qt6-devel
+%files devel
 %{_includedir}/KSaneCore6/
-%{_libdir}/cmake/KSaneCore6/
-%{_libdir}/libKSaneCore6.so
+%{_kf6_libdir}/cmake/KSaneCore6/
+%{_kf6_libdir}/libKSaneCore6.so
 
 
 %changelog
+* Fri Dec 13 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-2
+- Adopt Fedora changes
+
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

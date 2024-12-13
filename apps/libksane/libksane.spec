@@ -2,49 +2,49 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-Name:    libksane
-Summary: SANE Library interface for KDE
-Version: 24.12.0
-Release: 1%{?dist}
+Name:           libksane
+Summary:        SANE Library interface for KDE
+Version:        24.12.0
+Release:        2%{?dist}
 
-License: CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/graphics/%{base_name}
+License:        CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/graphics/libksane
 %apps_source
 
-BuildRequires: extra-cmake-modules
-BuildRequires: kf6-rpm-macros
-BuildRequires: cmake(KF6TextWidgets)
-BuildRequires: cmake(KF6Wallet)
-BuildRequires: cmake(KF6WidgetsAddons)
-BuildRequires: cmake(Qt6Core)
-BuildRequires: cmake(Qt6Widgets)
-BuildRequires: cmake(KSaneCore6)
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires: pkgconfig(sane-backends)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6TextWidgets)
+BuildRequires:  cmake(KF6Wallet)
+BuildRequires:  cmake(KF6WidgetsAddons)
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Widgets)
+
+BuildRequires:  cmake(KSaneCore6)
+
+Obsoletes:      kf5-libksane < 24.01
+Obsoletes:      %{name}-common < 24.12.0-2
+Provides:       %{name}-common = %{version}-%{release}
+Obsoletes:      %{name}-qt5 < 24.12.0-2
+Obsoletes:      %{name}-qt6 < 24.12.0-2
+Provides:       %{name}-qt6 = %{version}-%{release}
+Provides:       %{name}-qt6%{?_isa} = %{version}-%{release}
 
 %description
 %{summary}.
 
-%package qt6
-Summary: Qt6 library providing logic to interface scanners
-Requires: %{name}-common = %{version}-%{release}
-Obsoletes: %{name}-qt5 < 24.11.80
-%description qt6
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Widgets)
+Obsoletes:      %{name}-qt5-devel < 24.11.80
+Obsoletes:      kf5-libksane-devel < 24.01
+%description    devel
 %{summary}.
-
-%package qt6-devel
-Summary:  Development files for %{name}-qt6
-Requires: %{name}-qt6%{?_isa} = %{version}-%{release}
-Obsoletes: %{name}-qt5-devel < 24.11.80
-%description qt6-devel
-%{summary}.
-
-%package common
-Summary: Files shared between the Qt5 and Qt6 versions of the library
-Conflicts: kf5-libksane < 24.01
-%description common
-%{summary}.
-Provides internationalization files.
 
 
 %prep
@@ -63,22 +63,23 @@ Provides internationalization files.
 %find_lang %{name} --all-name --with-html
 
 
-%files common -f %{name}.lang
+%files -f %{name}.lang
 %doc AUTHORS
 %license COPYING*
 %license LICENSES/*
-%{_datadir}/icons/hicolor/*/actions/*
+%{_kf6_datadir}/icons/hicolor/*/actions/*
+%{_kf6_libdir}/libKSaneWidgets6.so.{6,%{version_no_git}}
 
-%files qt6
-%{_libdir}/libKSaneWidgets6.so.{6,%{version_no_git}}
-
-%files qt6-devel
+%files devel
 %{_includedir}/KSaneWidgets6/
-%{_libdir}/cmake/KSaneWidgets6/
-%{_libdir}/libKSaneWidgets6.so
+%{_kf6_libdir}/cmake/KSaneWidgets6/
+%{_kf6_libdir}/libKSaneWidgets6.so
 
 
 %changelog
+* Fri Dec 13 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-2
+- Adopt Fedora changes
+
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 
