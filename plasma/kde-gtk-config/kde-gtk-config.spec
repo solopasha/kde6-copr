@@ -1,6 +1,6 @@
-%global commit0 c76787c5798345b43c59bc31888970ce0eb991d7
+%global commit0 ab2ecffb150a9abfb36013c3648b17e94821321e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 Name:    kde-gtk-config
 Summary: Configure the appearance of GTK apps in KDE
