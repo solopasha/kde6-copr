@@ -1,6 +1,6 @@
-%global commit0 88a064101fb5371c41c6036f3958411ba240a982
+%global commit0 c49553457d39d71943b880e1548130a07e8b6e1e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:           ksystemstats
 Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
