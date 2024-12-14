@@ -1,11 +1,11 @@
-%global commit0 689923ed5f22c3cf2fae160a06e706b84b6ab923
+%global commit0 5f7a05fdf8a86806fe69776556bd2cf16588688f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework solid
 
 Name:           kf6-%{framework}
-Version:        6.9.0
+Version:        6.9.1
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 integration module that provides hardware information
 License:        LGPL-2.1-or-later AND LGPL-2.1-only AND CCO-1.0 AND BSD-3-Clause AND LGPL-3.0-only
@@ -78,6 +78,9 @@ developing applications that use %{name}.
 %{_qt6_docdir}/*.tags
 
 %changelog
+* Sat Dec 14 2024 Pavel Solovev <daron439@gmail.com> - 6.9.1-1
+- Update to 6.9.1
+
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
 - Update to 6.9.0
 
