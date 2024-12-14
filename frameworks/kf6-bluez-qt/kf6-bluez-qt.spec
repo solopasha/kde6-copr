@@ -1,12 +1,12 @@
-%global commit0 4f7b971afb56b1043105884507b8c1b1f5dd7697
+%global commit0 f16304bd88f91a5e091f257dbcccfcd0768d9240
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 %global framework bluez-qt
 
 Name:           kf6-%{framework}
 Summary:        A Qt wrapper for Bluez
-Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.10.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only
@@ -66,6 +66,12 @@ Development files for %{name}.
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

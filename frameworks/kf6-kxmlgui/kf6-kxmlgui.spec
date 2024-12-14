@@ -1,11 +1,11 @@
-%global commit0 f40d24a6bec03e900320557f7b73273ff680ce1a
+%global commit0 dd6bf72880bd904d49025306b50cb1d74a34f4fc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 14
+%global bumpver 1
 
 %global framework kxmlgui
 
 Name:           kf6-%{framework}
-Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.10.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 solution for user-configurable main windows
 
@@ -29,8 +29,8 @@ BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6ItemViews)
 BuildRequires:  cmake(KF6WidgetsAddons)
 
-BuildRequires:  cmake(PySide6)
-BuildRequires:  cmake(Shiboken6)
+# BuildRequires:  cmake(PySide6)
+# BuildRequires:  cmake(Shiboken6)
 
 BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6PrintSupport)
@@ -78,7 +78,7 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kxmlgui5/
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6XmlGui.so.%{version_no_git}
 %{_kf6_libdir}/libKF6XmlGui.so.6
-%{python3_sitearch}/KXmlGui*.so
+#{python3_sitearch}/KXmlGui*.so
 %dir %{_kf6_datadir}/kxmlgui5/
 
 %files devel
@@ -90,6 +90,15 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kxmlgui5/
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
+- Remove Qt6 version constraints
+
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-2
 - rebuilt
 

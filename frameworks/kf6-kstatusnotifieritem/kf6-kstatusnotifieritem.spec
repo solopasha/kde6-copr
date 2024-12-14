@@ -1,11 +1,11 @@
-%global commit0 dbd14f260e0809ffceacdfeb0a6091104caa0efd
+%global commit0 c9b6c720b6b9c230d2bf6714c4c99a1f44611b22
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 %global framework kstatusnotifieritem
 
 Name:           kf6-%{framework}
-Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.10.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Implementation of Status Notifier Items
 
@@ -70,6 +70,15 @@ developing applications that use %{name}.
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
+- Remove Qt6 version constraints
+
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-2
 - rebuilt
 

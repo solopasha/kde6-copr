@@ -1,11 +1,11 @@
-%global commit0 d3ad6ecfce08ae8c09622214829f3cad299fed6c
+%global commit0 32eb5670229d3d030e8698d209f455d60331ab8f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 1
 
 %global framework kdbusaddons
 
 Name:           kf6-%{framework}
-Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.10.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with various classes on top of QtDBus
 License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only
@@ -65,6 +65,15 @@ developing applications that use %{name}.
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
+- Remove Qt6 version constraints
+
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-2
 - rebuilt
 

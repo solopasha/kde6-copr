@@ -1,11 +1,11 @@
-%global commit0 fb665a1dfbf00d8da9393aabcbf43082e3051db7
+%global commit0 015489e2fab3f866281a2c6f48960b67ed2e7ec0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 1
 
 %global framework qqc2-desktop-style
 
 Name:           kf6-%{framework}
-Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.10.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        QtQuickControls2 style for consistency between QWidget and QML apps
 License:        CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KFQF-Accepted-GPL
@@ -61,6 +61,15 @@ between QWidget-based and QML-based apps.
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
+- Remove Qt6 version constraints
+
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-2
 - rebuilt
 

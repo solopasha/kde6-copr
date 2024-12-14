@@ -1,11 +1,11 @@
-%global commit0 c15a23454ff5e7680e5ef273173693710387a89f
+%global commit0 425986923109c19f7f1d0ce214a188f0b68d67a5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 1
 
 %global framework kiconthemes
 
 Name:           kf6-%{framework}
-Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.10.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 integration module with icon themes
 
@@ -81,6 +81,15 @@ developing applications that use %{name}.
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
+- Remove Qt6 version constraints
+
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-2
 - rebuilt
 

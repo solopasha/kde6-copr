@@ -1,11 +1,11 @@
-%global commit0 692083440918bd65bece429233b71f2dd17d8de3
+%global commit0 701c0835edb7008ecc0ef6b9d98783bd6c614e7f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 11
+%global bumpver 1
 
 %global framework kwidgetsaddons
 
 Name:           kf6-%{framework}
-Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.10.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with various classes on top of QtWidgets
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later
@@ -19,8 +19,8 @@ BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(Qt6Widgets)
 
-BuildRequires:  cmake(PySide6)
-BuildRequires:  cmake(Shiboken6)
+# BuildRequires:  cmake(PySide6)
+# BuildRequires:  cmake(Shiboken6)
 
 Requires:       kf6-filesystem
 
@@ -55,7 +55,7 @@ developing applications that use %{name}.
 %{_kf6_datadir}/qlogging-categories6/*categories
 %{_kf6_libdir}/libKF6WidgetsAddons.so.%{version_no_git}
 %{_kf6_libdir}/libKF6WidgetsAddons.so.6
-%{python3_sitearch}/KWidgetsAddons*.so
+#{python3_sitearch}/KWidgetsAddons*.so
 
 %files devel
 %{_kf6_includedir}/KWidgetsAddons/
@@ -66,6 +66,12 @@ developing applications that use %{name}.
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

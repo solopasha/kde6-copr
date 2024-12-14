@@ -1,11 +1,11 @@
-%global commit0 8bcddf903f10a671928f341ee2cf23c92365a675
+%global commit0 9d32bef85289ecc0b827b6cab956e6d826861f6e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 1
 
 %global framework knotifications
 
 Name:           kf6-%{framework}
-Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.10.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 solution with abstraction for system notifications
 License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
@@ -23,8 +23,8 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Qml)
 
-BuildRequires:  cmake(PySide6)
-BuildRequires:  cmake(Shiboken6)
+# BuildRequires:  cmake(PySide6)
+# BuildRequires:  cmake(Shiboken6)
 
 BuildRequires:  pkgconfig(libcanberra)
 
@@ -64,7 +64,7 @@ mkdir -p %{buildroot}/%{_kf6_datadir}/knotifications6
 %{_kf6_libdir}/libKF6Notifications.so.%{version_no_git}
 %{_kf6_libdir}/libKF6Notifications.so.6
 %{_kf6_qmldir}/org/kde/notification/
-%{python3_sitearch}/KNotifications*.so
+#{python3_sitearch}/KNotifications*.so
 %dir %{_kf6_datadir}/knotifications6
 
 %files devel
@@ -75,6 +75,12 @@ mkdir -p %{buildroot}/%{_kf6_datadir}/knotifications6
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Fri Oct 04 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-1
 - Update to 6.7.0
 

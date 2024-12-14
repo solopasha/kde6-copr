@@ -1,11 +1,11 @@
-%global commit0 81cc24f60149fe39791ff0fa1946b309e45056b7
+%global commit0 0a3f036d64749099df652b145fd5df008e1d0ebe
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 1
 
 %global framework kguiaddons
 
 Name:           kf6-%{framework}
-Version:        6.9.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.10.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with various classes on top of QtGui
 
@@ -23,8 +23,8 @@ BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  qt6-qtbase-private-devel
 
-BuildRequires:  cmake(PySide6)
-BuildRequires:  cmake(Shiboken6)
+# BuildRequires:  cmake(PySide6)
+# BuildRequires:  cmake(Shiboken6)
 
 BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  pkgconfig(wayland-client)
@@ -66,7 +66,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6GuiAddons.so.%{version_no_git}
 %{_kf6_libdir}/libKF6GuiAddons.so.6
 %{_kf6_qmldir}/org/kde/guiaddons/
-%{python3_sitearch}/KGuiAddons*.so
+#{python3_sitearch}/KGuiAddons*.so
 
 %files devel
 %{_kf6_includedir}/KGuiAddons/
@@ -77,6 +77,15 @@ developing applications that use %{name}.
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
+- Update to 6.9.0
+
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-2
+- Remove Qt6 version constraints
+
+* Sat Nov 02 2024 Pavel Solovev <daron439@gmail.com> - 6.8.0-1
+- Update to 6.8.0
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.7.0-2
 - rebuilt
 
