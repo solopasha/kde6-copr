@@ -6,7 +6,7 @@ Name:           marble
 Summary:        Virtual globe and world atlas
 Epoch:          1
 Version:        24.12.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 License:        Apache-2.0 AND BSD-3-Clause AND CC0-1.0 AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND MIT AND (LGPL-2.1-only WITH Qt-LGPL-exception-1.1)
 URL:            https://apps.kde.org/marble/
@@ -98,6 +98,7 @@ Requires:       %{name}-common = %{epoch}:%{version}-%{release}
 
 %package        common
 Summary:        Common files of %{name}
+Obsoletes:      kf5-libkgeomap < 20.08.4
 BuildArch:      noarch
 %description    common
 %{summary}.
@@ -132,6 +133,7 @@ Requires:       %{name}-widget-data = %{epoch}:%{version}-%{release}
 %package        widget-qt6-devel
 Summary:        Development files for Qt5 Marble Widget
 Obsoletes:      %{name}-widget-qt5-devel < 1:24.11.80
+Obsoletes:      kf5-libkgeomap-devel < 20.08.4
 Requires:       %{name}-widget-qt6%{?_isa} = %{epoch}:%{version}-%{release}
 %description    widget-qt6-devel
 %{summary}.
@@ -228,6 +230,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
+* Sat Dec 14 2024 Pavel Solovev <daron439@gmail.com> - 1:24.12.0-2
+- Obsolete kf5-libkgeomap
+
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 1:24.12.0-1
 - Update to 24.12.0
 
