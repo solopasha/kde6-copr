@@ -1,6 +1,6 @@
-%global commit0 ff0a517a1adacbd72f36a4acdaedab8d7a8b1ebf
+%global commit0 e3d0fbe5f7d60b9e5e8a3efb8e6930d49a143d7f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 10
+%global bumpver 11
 
 Name:    plasma-nm
 Summary: Plasma for managing network connections

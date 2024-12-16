@@ -1,6 +1,6 @@
-%global commit0 6629bb2cce372e708e2a316734ae548136b25862
+%global commit0 5eb183a94efa58bc8a2cec9c641b44b4b3dcf9fb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global base_name    plasma-thunderbolt
 
