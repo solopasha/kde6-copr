@@ -3,7 +3,7 @@
 
 Name:           plasma-wayland-protocols
 Version:        1.15.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Plasma Specific Protocols for Wayland
 
 License:        LGPLv2+ and MIT and BSD
@@ -15,6 +15,7 @@ Source2:        signing-key.pgp
 
 Patch:          https://invent.kde.org/libraries/plasma-wayland-protocols/-/commit/f0e2ea1bf2af40923bd62209d6b000d2e81b5c54.patch
 Patch:          https://invent.kde.org/libraries/plasma-wayland-protocols/-/commit/c26caed537713fd11ddf5cdeaddce66a3b994e0e.patch
+Patch:          https://invent.kde.org/libraries/plasma-wayland-protocols/-/commit/1b3df765d21c370694e8173d17edbb09cc1b5091.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  qt6-qtbase-devel
@@ -54,6 +55,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Wed Dec 18 2024 Pavel Solovev <daron439@gmail.com> - 1.15.0-3
+- pick upstream commit
+
 * Wed Dec 11 2024 Pavel Solovev <daron439@gmail.com> - 1.15.0-2
 - pick upstream commits
 
