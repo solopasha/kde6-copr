@@ -90,7 +90,7 @@ of a daemon (a KDED module) and a KCModule for its configuration.
 %find_lang powerdevil6 --with-html --all-name
 
 # Don't bother with -devel
-rm -fv %{buildroot}/%{_libdir}/libpowerdevil{configcommonprivate,core,ui}.so
+rm -fv %{buildroot}/%{_libdir}/libpowerdevilcore.so
 
 
 %files -f powerdevil6.lang
@@ -111,8 +111,6 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevil{configcommonprivate,core,ui}.so
 %{_kf6_datadir}/qlogging-categories6/batterymonitor.categories
 %{_kf6_datadir}/qlogging-categories6/brightness.categories
 %{_kf6_datadir}/qlogging-categories6/powerdevil.categories
-%{_kf6_libdir}/libpowerdevilconfigcommonprivate.so.%{version_no_git}
-%{_kf6_libdir}/libpowerdevilconfigcommonprivate.so.6
 %{_kf6_libdir}/libpowerdevilcore.so.%{version_no_git}
 %{_kf6_libdir}/libpowerdevilcore.so.2
 %{_kf6_libexecdir}/kauth/backlighthelper
