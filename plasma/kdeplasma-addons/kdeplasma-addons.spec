@@ -1,6 +1,6 @@
-%global commit0 1847f759a23373c5c88a463ae4dc676f2f2f8f26
+%global commit0 5473c69c7672d25ed317c4577f60636f39adb03f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 10
+%global bumpver 11
 
 Name:    kdeplasma-addons
 Summary: Additional Plasmoids for Plasma 6
