@@ -1,18 +1,15 @@
-%global commit0 98f73dbf47c34677ade41528bb3166b8531ccb78
+%global commit0 0fe6544079a23769e8f19ee2f09b5c149f404d5a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           dolphin
 Summary:        KDE File Manager
-Version:        24.12.0
-Release:        2%{?dist}
+Version:        24.12.0.1
+Release:        1%{?dist}
 
 License:        GPLv2+
 URL:            https://invent.kde.org/system/dolphin
 %apps_source
-Patch:          https://invent.kde.org/system/dolphin/-/commit/edfd598446cfd6d4348a3bfecd72b5665eef5bfc.patch
-Patch:          https://invent.kde.org/system/dolphin/-/commit/86609f89358243c08ebe4de8498a0fa6dff8370e.patch
-Patch:          https://invent.kde.org/system/dolphin/-/commit/0fe6544079a23769e8f19ee2f09b5c149f404d5a.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
@@ -157,6 +154,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Fri Dec 20 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0.1-1
+- Update to 24.12.0.1
+
 * Thu Dec 19 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-2
 - pick upstream commits
 
