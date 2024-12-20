@@ -1,6 +1,6 @@
-%global commit0 86e7577edfdb24c753171428fd2862d803e44383
+%global commit0 69348f21c209b4b3dce2992566e30e9fd396fc0c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 
 # Disable ufw for RHEL
