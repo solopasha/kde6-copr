@@ -2,16 +2,18 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 21
 
-Name:    powerdevil
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: Manages the power consumption settings of a Plasma Shell
+Name:           powerdevil
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        Manages the power consumption settings of a Plasma Shell
 
-License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
-URL:     https://invent.kde.org/plasma/%{name}
+License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  systemd-rpm-macros
 
@@ -55,34 +57,31 @@ BuildRequires:  pkgconfig(xcb-dpms)
 BuildRequires:  pkgconfig(xcb-randr)
 BuildRequires:  pkgconfig(xcb)
 
-Requires:       kf6-kitemmodels
-Requires:       kf6-kirigami
+Requires:       kf6-kitemmodels%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
 
 # Request a power-profiles-daemon implementation
-Recommends: ppd-service
+Recommends:     ppd-service
 %if 0%{?fedora} && 0%{?fedora} < 41
 # Prefer ppd
-Suggests: power-profiles-daemon
+Suggests:       power-profiles-daemon
 %else
 # Prefer tuned-ppd
-Suggests: tuned-ppd
+Suggests:       tuned-ppd
 %endif
-Recommends: ddcutil
+Recommends:     ddcutil
 
 %description
 Powerdevil is an utility for powermanagement. It consists
 of a daemon (a KDED module) and a KCModule for its configuration.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
@@ -91,7 +90,6 @@ of a daemon (a KDED module) and a KCModule for its configuration.
 
 # Don't bother with -devel
 rm -fv %{buildroot}/%{_libdir}/libpowerdevilcore.so
-
 
 %files -f powerdevil6.lang
 %license LICENSES/*
@@ -123,10 +121,9 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevilcore.so
 %{_kf6_qmldir}/org/kde/plasma/private/brightnesscontrolplugin/
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_powerdevilprofilesconfig.so
 %{_kf6_qtplugindir}/powerdevil/
+%{_kf6_sysconfdir}/xdg/autostart/powerdevil.desktop
 %{_libexecdir}/org_kde_powerdevil
-%{_sysconfdir}/xdg/autostart/powerdevil.desktop
 %{_userunitdir}/plasma-powerdevil.service
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

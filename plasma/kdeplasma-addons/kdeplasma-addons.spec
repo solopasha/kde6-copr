@@ -1,32 +1,31 @@
 %global commit0 5473c69c7672d25ed317c4577f60636f39adb03f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 11
+%global bumpver 12
 
-Name:    kdeplasma-addons
-Summary: Additional Plasmoids for Plasma 6
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           kdeplasma-addons
+Summary:        Additional Plasmoids for Plasma 6
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
-URL:     https://invent.kde.org/plasma/%{name}
+License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-%ifarch %{qt6_qtwebengine_arches}
-BuildRequires:  cmake(Qt6WebEngineQuick)
-%endif
-
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
+BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6Declarative)
 BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6Holidays)
 BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6JobWidgets)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6NewStuff)
@@ -37,43 +36,41 @@ BuildRequires:  cmake(KF6Sonnet)
 BuildRequires:  cmake(KF6UnitConversion)
 BuildRequires:  cmake(KF6XmlGui)
 
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Core5Compat)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Test)
+BuildRequires:  cmake(Qt6WebEngineQuick)
+BuildRequires:  cmake(Qt6Widgets)
+
 BuildRequires:  cmake(Plasma)
 BuildRequires:  cmake(Plasma5Support)
-BuildRequires:  cmake(PlasmaActivities)
+BuildRequires:  cmake(PlasmaQuick)
 
 BuildRequires:  libicu-devel
-BuildRequires:  libxcb-devel
-BuildRequires:  cmake(Qt6Core5Compat)
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtdeclarative-devel
-BuildRequires:  xcb-util-image-devel
-BuildRequires:  xcb-util-keysyms-devel
-
-BuildRequires:  libappstream-glib
-BuildRequires:  plasma-workspace-devel
-BuildRequires:  libksysguard-devel
-
-# for notes.svgz
-Requires:       libplasma%{?_isa}
 
 # Quickshare applet runtime dep
-BuildRequires:  cmake(KF6Purpose)
 Recommends:     kf6-purpose%{?_isa}
 
 Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-kitemmodels%{?_isa}
+Requires:       libplasma%{?_isa}
 Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtquick3d%{?_isa}
 
 %description
 %{summary}.
 
-%package -n kate-krunner-plugin
-Summary: KRunner plugin for searching Kate sessions
-Requires: kate
-Supplements: kate
+%package -n     kate-krunner-plugin
+Summary:        KRunner plugin for searching Kate sessions
+Requires:       kate
+Supplements:    kate
 # Before the split
-Conflicts: kdeplasma-addons < 6.1.2-2
+Conflicts:      kdeplasma-addons < 6.1.2-2
 %description -n kate-krunner-plugin
 %{summary}.
 
@@ -103,6 +100,8 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 
 %files -f kdeplasmaaddons5_qt.lang
 %license LICENSES/*.txt
+%{_kf6_datadir}/dbus-1/system-services/org.kde.kameleonhelper.service
+%{_kf6_datadir}/dbus-1/system.d/org.kde.kameleonhelper.conf
 %{_kf6_datadir}/icons/hicolor/*/apps/fifteenpuzzle.*
 %{_kf6_datadir}/icons/hicolor/scalable/apps/accessories-dictionary.svgz
 %{_kf6_datadir}/knotifications6/plasma_applet_timer.notifyrc
@@ -115,19 +114,17 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 %{_kf6_datadir}/plasma/wallpapers/*
 %{_kf6_datadir}/polkit-1/actions/org.kde.kameleonhelper.policy
 %{_kf6_datadir}/qlogging-categories6/kdeplasma-addons.categories
-%{_kf6_datadir}/dbus-1/system-services/org.kde.kameleonhelper.service
-%{_kf6_datadir}/dbus-1/system.d/org.kde.kameleonhelper.conf
 %{_kf6_libdir}/libplasmapotdprovidercore.so.2{,.*}
 %{_kf6_libdir}/qt6/qml/org/kde/plasmacalendar/astronomicaleventsconfig/*
 %{_kf6_libexecdir}/kauth/kameleonhelper
 %{_kf6_metainfodir}/*.appdata.xml
 %{_kf6_qmldir}/org/kde/plasma/*
 %{_kf6_qtplugindir}/kf6/
-%exclude %{_kf6_plugindir}/krunner/krunner_katesessions.so
 %{_kf6_qtplugindir}/kwin/effects/configs/kwin_cube_config.so
 %{_kf6_qtplugindir}/plasma/applets/*.so
 %{_kf6_qtplugindir}/plasmacalendarplugins/
 %{_kf6_qtplugindir}/potd/
+%exclude %{_kf6_plugindir}/krunner/krunner_katesessions.so
 
 %files -n kate-krunner-plugin
 %{_kf6_plugindir}/krunner/krunner_katesessions.so
@@ -137,7 +134,6 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 %{_kf6_datadir}/kdevappwizard/templates/plasmapotdprovider.tar.bz2
 %{_kf6_libdir}/cmake/PlasmaPotdProvider/
 %{_kf6_libdir}/libplasmapotdprovidercore.so
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

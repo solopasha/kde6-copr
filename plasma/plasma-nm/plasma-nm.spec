@@ -2,13 +2,13 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 12
 
-Name:    plasma-nm
-Summary: Plasma for managing network connections
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           plasma-nm
+Summary:        Plasma for managing network connections
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
-URL:     https://invent.kde.org/plasma/%{name}
+License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
 %ifarch %{qt6_qtwebengine_arches}
@@ -69,7 +69,6 @@ Provides:       kde-plasma-nm = %{version}-%{release}
 %description
 Plasma applet and editor for managing your network connections in KDE 4 using
 the default NetworkManager service.
-
 
 %package        openvpn
 Summary:        OpenVPN support for %{name}
@@ -175,11 +174,9 @@ Requires:       NetworkManager-iodine
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6 %{!?with_openconnect:-DBUILD_OPENCONNECT=OFF}
 %cmake_build
-
 
 %install
 %cmake_install
@@ -219,14 +216,13 @@ rm -f %{buildroot}/usr/share/locale/*/LC_MESSAGES/plasmanetworkmanagement_openco
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
-
 %files -f plasma_applet_org.kde.plasma.networkmanagement.lang -f plasmanetworkmanagement-kded.lang -f plasmanetworkmanagement-libs.lang -f plasmanetworkmanagement-kcm.lang
-%{_libdir}/libplasmanm_internal.so
-%{_libdir}/libplasmanm_editor.so
+%{_kf6_libdir}/libplasmanm_internal.so
+%{_kf6_libdir}/libplasmanm_editor.so
 # plasma-nm applet
 %{_qt6_qmldir}/org/kde/plasma/networkmanagement/
 %{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.networkmanagement/
-%{_datadir}/qlogging-categories6/plasma-nm.categories
+%{_kf6_datadir}/qlogging-categories6/plasma-nm.categories
 # plasma-nm notifications
 %{_kf6_datadir}/knotifications6/networkmanagement.notifyrc
 # plasma-nm kded
@@ -236,7 +232,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 # kcm
 %{_qt6_plugindir}/plasma/kcms/systemsettings_qwidgets/kcm_networkmanagement.so
-%{_datadir}/kcm_networkmanagement/qml/
+%{_kf6_datadir}/kcm_networkmanagement/qml/
 %{_kf6_datadir}/applications/kcm_networkmanagement.desktop
 %{_kf6_datadir}/applications/org.kde.vpnimport.desktop
 

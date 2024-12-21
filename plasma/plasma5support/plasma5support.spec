@@ -2,20 +2,19 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 6
 
-Name:    plasma5support
-Summary: Support components for porting from KF5/Qt5 to KF6/Qt6
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           plasma5support
+Summary:        Support components for porting from KF5/Qt5 to KF6/Qt6
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
-URL:     https://invent.kde.org/plasma/%{name}
+License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  extra-cmake-modules
 BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  qt6-qtbase-devel
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Gui)

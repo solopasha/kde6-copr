@@ -4,13 +4,13 @@
 
 %global base_name oxygen
 
-Name:    plasma-%{base_name}
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: Plasma and Qt widget style and window decorations for Plasma
+Name:           plasma-%{base_name}
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        Plasma and Qt widget style and window decorations for Plasma
 
-License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only) AND MIT
-URL:     https://invent.kde.org/plasma/%{base_name}
+License:        CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only) AND MIT
+URL:            https://invent.kde.org/plasma/%{base_name}
 %plasma_source
 
 # Misc
@@ -92,11 +92,9 @@ Obsoletes:      plasma-oxygen-common < 5.1.1-2
 %description -n oxygen-cursor-themes
 %{summary}.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 mkdir -p qt6build
@@ -121,7 +119,6 @@ pushd qt5build
 popd
 
 %find_lang oxygen --with-qt --all-name
-
 
 %files -f oxygen.lang
 %license LICENSES/*
@@ -157,7 +154,6 @@ popd
 %{_datadir}/icons/Oxygen_White/
 %{_datadir}/icons/Oxygen_Yellow/
 %{_datadir}/icons/Oxygen_Zion/
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

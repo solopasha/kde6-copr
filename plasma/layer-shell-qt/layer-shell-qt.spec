@@ -2,27 +2,28 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 6
 
-Name:    layer-shell-qt
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: Library to easily use clients based on wlr-layer-shell
+Name:           layer-shell-qt
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        Library to easily use clients based on wlr-layer-shell
 
-License: BSD-3-Clause AND CC0-1.0 AND LGPL-3.0-or-later AND MIT
-URL:     https://invent.kde.org/plasma/%{name}
+License:        BSD-3-Clause AND CC0-1.0 AND LGPL-3.0-or-later AND MIT
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires: extra-cmake-modules
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires: qt6-qtbase-devel
-BuildRequires: qt6-qtbase-private-devel
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6WaylandClient)
+BuildRequires:  qt6-qtbase-private-devel
 
-BuildRequires: cmake(Qt6WaylandClient)
-BuildRequires: cmake(Qt6Qml)
-
-BuildRequires: libxkbcommon-devel
-BuildRequires: plasma-wayland-protocols-devel
-BuildRequires: wayland-devel
-BuildRequires: wayland-protocols-devel
+BuildRequires:  pkgconfig(wayland-protocols)
+BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  wayland-devel
 
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
@@ -30,27 +31,23 @@ BuildRequires: wayland-protocols-devel
 This component is meant for applications to be able to easily use clients
 based on wlr-layer-shell
 
-%package devel
-Summary:  Developer files for %{name}
-Requires: %{name}%{?_isa} = %{version}-%{release}
-Requires: cmake(Qt6Gui)
-%description devel
+%package        devel
+Summary:        Developer files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Gui)
+%description    devel
 %{summary}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
 
-
 %install
 %cmake_install
-
 
 %files
 %license LICENSES/*
@@ -61,9 +58,8 @@ Requires: cmake(Qt6Gui)
 
 %files devel
 %{_includedir}/LayerShellQt/
-%{_libdir}/libLayerShellQtInterface.so
-%{_libdir}/cmake/LayerShellQt/
-
+%{_kf6_libdir}/cmake/LayerShellQt/
+%{_kf6_libdir}/libLayerShellQtInterface.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}

@@ -2,77 +2,64 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 5
 
+%bcond backend_ufw %[%{undefined rhel}]
 
-# Disable ufw for RHEL
-%if 0%{?rhel}
-%bcond_with ufw
-%else
-%bcond_without ufw
-%endif
+Name:           plasma-firewall
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        Control Panel for your system firewall
 
-Name:    plasma-firewall
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: Control Panel for your system firewall
-
-License: BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL
-URL:     https://invent.kde.org/plasma/%{name}
+License:        BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires: gcc-c++
-BuildRequires: make
-BuildRequires: cmake
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  libappstream-glib
 
-BuildRequires: extra-cmake-modules
-BuildRequires: kf6-rpm-macros
-BuildRequires: cmake(KF6Auth)
-BuildRequires: cmake(KF6Config)
-BuildRequires: cmake(KF6CoreAddons)
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6KCMUtils)
+BuildRequires:  cmake(KF6Auth)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KCMUtils)
 
-BuildRequires: cmake(Qt6Core)
-BuildRequires: cmake(Qt6DBus)
-BuildRequires: cmake(Qt6Qml)
-BuildRequires: cmake(Qt6Quick)
-BuildRequires: cmake(Qt6Test)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Test)
 
-BuildRequires: desktop-file-utils
-BuildRequires: libappstream-glib
-
-# Owns KCM directories
-Requires: kf6-kcmutils%{?_isa}
-
-Requires: %{name}-backend = %{version}-%{release}
-Suggests: %{name}-firewalld
+Requires:       %{name}-backend = %{version}-%{release}
+Suggests:       %{name}-firewalld
 
 %description
 %{summary}.
 
-%package firewalld
-Summary: FirewallD backend for Plasma Firewall
-Requires: %{name}%{?_isa} = %{version}-%{release}
-Provides: %{name}-backend = %{version}-%{release}
-Conflicts: %{name}-backend
-Requires: firewalld
-
-%description firewalld
+%package        firewalld
+Summary:        FirewallD backend for Plasma Firewall
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Provides:       %{name}-backend = %{version}-%{release}
+Conflicts:      %{name}-backend
+Requires:       firewalld
+%description    firewalld
 This package provides the backend code for Plasma Firewall
 to interface with FirewallD.
 
-%if %{with ufw}
-%package ufw
-Summary: UFW backend for Plasma Firewall
-Requires: %{name}%{?_isa} = %{version}-%{release}
-Provides: %{name}-backend = %{version}-%{release}
-Conflicts: %{name}-backend
-Requires: ufw
+%if %{with backend_ufw}
+%package        ufw
+Summary:        UFW backend for Plasma Firewall
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Provides:       %{name}-backend = %{version}-%{release}
+Conflicts:      %{name}-backend
+Requires:       ufw
 # For dbus directories
-Requires: dbus-common
+Requires:       dbus-common
 # For polkit directories
-Requires: polkit
-
-%description ufw
+Requires:       polkit
+%description    ufw
 This package provides the backend code for Plasma Firewall
 to interface with the Uncomplicated Firewall (UFW).
 %endif
@@ -93,40 +80,39 @@ to interface with the Uncomplicated Firewall (UFW).
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.metainfo.xml || :
 desktop-file-validate %{buildroot}%{_datadir}/applications/kcm_firewall.desktop
 
-%if ! %{with ufw}
+%if ! %{with backend_ufw}
 # Delete ufw stuff when we don't need it
-rm -rfv %{buildroot}%{_qt6_plugindir}/kf6/plasma_firewall/ufwbackend.so
+rm -rfv %{buildroot}%{_kf6_plugindir}/plasma_firewall/ufwbackend.so
 rm -rfv %{buildroot}%{_libexecdir}/kde_ufw_plugin_helper.py
-rm -rfv %{buildroot}%{_datadir}/dbus-1/system-services/org.kde.ufw.service
-rm -rfv %{buildroot}%{_datadir}/dbus-1/system.d/org.kde.ufw.conf
-rm -rfv %{buildroot}%{_datadir}/kcm_ufw/defaults
-rm -rfv %{buildroot}%{_datadir}/polkit-1/actions/org.kde.ufw.policy
+rm -rfv %{buildroot}%{_kf6_datadir}/dbus-1/system-services/org.kde.ufw.service
+rm -rfv %{buildroot}%{_kf6_datadir}/dbus-1/system.d/org.kde.ufw.conf
+rm -rfv %{buildroot}%{_kf6_datadir}/kcm_ufw/defaults
+rm -rfv %{buildroot}%{_kf6_datadir}/polkit-1/actions/org.kde.ufw.policy
 rm -rfv %{buildroot}%{_kf6_libexecdir}/kauth/kde_ufw_plugin_helper
 %endif
 
 %files -f %{name}.lang
 %license LICENSES/*.txt
-%{_libdir}/libkcm_firewall_core.so
-%{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_firewall.so
-%dir %{_qt6_plugindir}/kf6/plasma_firewall
-%{_datadir}/applications/kcm_firewall.desktop
-%{_metainfodir}/org.kde.plasma.firewall.metainfo.xml
+%{_kf6_datadir}/applications/kcm_firewall.desktop
+%{_kf6_libdir}/libkcm_firewall_core.so
+%{_kf6_metainfodir}/org.kde.plasma.firewall.metainfo.xml
+%{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_firewall.so
+%dir %{_kf6_plugindir}/plasma_firewall
 
 %files firewalld
-%{_qt6_plugindir}/kf6/plasma_firewall/firewalldbackend.so
+%{_kf6_plugindir}/plasma_firewall/firewalldbackend.so
 
-%if %{with ufw}
+%if %{with backend_ufw}
 %files ufw
-%{_qt6_plugindir}/kf6/plasma_firewall/ufwbackend.so
-%{_libexecdir}/kde_ufw_plugin_helper.py
+%{_kf6_datadir}/dbus-1/system-services/org.kde.ufw.service
+%{_kf6_datadir}/dbus-1/system.d/org.kde.ufw.conf
+%dir %{_kf6_datadir}/kcm_ufw
+%{_kf6_datadir}/kcm_ufw/defaults
+%{_kf6_datadir}/polkit-1/actions/org.kde.ufw.policy
 %{_kf6_libexecdir}/kauth/kde_ufw_plugin_helper
-%{_datadir}/dbus-1/system-services/org.kde.ufw.service
-%{_datadir}/dbus-1/system.d/org.kde.ufw.conf
-%dir %{_datadir}/kcm_ufw
-%{_datadir}/kcm_ufw/defaults
-%{_datadir}/polkit-1/actions/org.kde.ufw.policy
+%{_kf6_plugindir}/plasma_firewall/ufwbackend.so
+%{_libexecdir}/kde_ufw_plugin_helper.py
 %endif
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

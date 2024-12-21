@@ -4,57 +4,53 @@
 
 %global base_name milou
 
-Name:    plasma-%{base_name}
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: A dedicated KDE search application built on top of Baloo
+Name:           plasma-%{base_name}
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        A dedicated KDE search application built on top of Baloo
 
-License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
-URL:     https://invent.kde.org/plasma/%{base_name}.git
+License:        CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
+URL:            https://invent.kde.org/plasma/%{base_name}.git
 %plasma_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
-BuildRequires:  cmake(KF6Baloo)
-BuildRequires:  cmake(KF6Declarative)
+BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6ItemModels)
 BuildRequires:  cmake(KF6Runner)
 BuildRequires:  cmake(KF6Svg)
+
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Widgets)
+
 BuildRequires:  cmake(Plasma)
-BuildRequires:  qt6-qtbase-devel
 
 Requires:       kf6-filesystem
 
-Obsoletes:      kde-plasma-milou < 5.0.0
-Provides:       kde-plasma-milou = %{version}-%{release}
-
 %description
 %{summary}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
 %find_lang milou --with-qt --all-name
 
-
 %files -f milou.lang
 %license LICENSES/*
-%{_kf6_qmldir}/org/kde/milou/
 %{_kf6_datadir}/plasma/plasmoids/org.kde.milou/
 %{_kf6_metainfodir}/org.kde.milou.appdata.xml
-
+%{_kf6_qmldir}/org/kde/milou/
 
 %changelog
 %{?kde_snapshot_changelog_entry}

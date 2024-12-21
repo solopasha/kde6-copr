@@ -4,16 +4,16 @@
 
 %global base_name breeze-plymouth
 
-Name:    plymouth-theme-breeze
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: Breeze theme for Plymouth
+Name:           plymouth-theme-breeze
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        Breeze theme for Plymouth
 
-License: GPLv3
-URL:     https://invent.kde.org/plasma/breeze-plymouth
+License:        GPLv3
+URL:            https://invent.kde.org/plasma/breeze-plymouth
 %plasma_source
 
-Source10: plymouth-theme-breeze.conf
+Source10:       plymouth-theme-breeze.conf
 
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  extra-cmake-modules
@@ -28,11 +28,9 @@ Requires:       plymouth-plugin-script
 %description
 %{summary}.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 %cmake_kf6
@@ -44,14 +42,12 @@ Requires:       plymouth-plugin-script
 install -D -m644 -p %{SOURCE10} \
   %{buildroot}%{_prefix}/lib/dracut/dracut.conf.d/10-plymouth-theme-breeze.conf
 
-
 %files
 %license LICENSES/*.txt
-%{_libdir}/plymouth/breeze-text.so
 %{_datadir}/plymouth/themes/breeze-text/
 %{_datadir}/plymouth/themes/breeze/
+%{_libdir}/plymouth/breeze-text.so
 %{_prefix}/lib/dracut/dracut.conf.d/10-plymouth-theme-breeze.conf
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

@@ -2,16 +2,16 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 15
 
-Name:    libplasma
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: Plasma is the foundation of the KDE user interface (v6)
+Name:           libplasma
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        Plasma is the foundation of the KDE user interface (v6)
 
-# LicenseRef-QtCommercial is also in the licenses, but is being omitted as it is optional.
-License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only) AND Qt-LGPL-exception-1.1
-URL:     https://invent.kde.org/plasma/plasma-framework
+License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only) AND Qt-LGPL-exception-1.1
+URL:            https://invent.kde.org/plasma/plasma-framework
 %plasma_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
@@ -43,7 +43,7 @@ BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  cmake(PlasmaActivities)
 
 BuildRequires:  cmake(PlasmaWaylandProtocols)
-
+BuildRequires:  libxcb-devel
 BuildRequires:  wayland-devel
 
 Requires:       kf6-filesystem
@@ -65,7 +65,6 @@ Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6Package)
 Requires:       qt6-qtbase-devel
-Requires:       cmake(KF6Service)
 Requires:       cmake(KF6WindowSystem)
 Obsoletes:      kf6-plasma-devel < 1:%{version}-%{release}
 Provides:       kf6-plasma-devel = 1:%{version}-%{release}

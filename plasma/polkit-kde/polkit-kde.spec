@@ -2,60 +2,53 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 2
 
-%global         base_name polkit-kde-agent-1
+%global base_name polkit-kde-agent-1
 
-Name:    polkit-kde
-Summary: PolicyKit integration for KDE Desktop
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           polkit-kde
+Summary:        PolicyKit integration for KDE Desktop
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: GPL-2.0-or-later AND CC0-1.0
-URL:     https://invent.kde.org/plasma/%{base_name}
+License:        GPL-2.0-or-later AND CC0-1.0
+URL:            https://invent.kde.org/plasma/%{base_name}
 %plasma_source
 
-## upstreamable patches
-
-
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  systemd-rpm-macros
-BuildRequires:  qt6-qtbase-devel
 
-BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  cmake(KF6DBusAddons)
-BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
-BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6IconThemes)
-BuildRequires:  cmake(KF6Notifications)
-BuildRequires:  cmake(KF6Declarative)
+BuildRequires:  cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6WindowSystem)
 
-BuildRequires:  polkit-qt6-1-devel
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Widgets)
 
-Provides: PolicyKit-authentication-agent = %{version}-%{release}
-Provides: polkit-kde-1 = %{version}-%{release}
-Provides: polkit-kde-agent-1 = %{version}-%{release}
+BuildRequires:  cmake(PolkitQt6-1)
 
-Obsoletes: PolicyKit-kde < 4.5
+Provides:       PolicyKit-authentication-agent = %{version}-%{release}
+Provides:       polkit-kde-1 = %{version}-%{release}
+Provides:       polkit-kde-agent-1 = %{version}-%{release}
 
 # Add explicit dependency on polkit, since polkit-libs were split out
-Requires: polkit
+Requires:       polkit
 
 %description
 Provides Policy Kit Authentication Agent that nicely fits to KDE.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
-%cmake_kf6 \
-  -DKDE_INSTALL_LIBEXECDIR:PATH=%{_kf6_libexecdir}
-
+%cmake_kf6
 %cmake_build
 
 %install
@@ -63,15 +56,13 @@ Provides Policy Kit Authentication Agent that nicely fits to KDE.
 
 %find_lang polkit-kde-authentication-agent-1
 
-
 %files -f polkit-kde-authentication-agent-1.lang
 %license LICENSES/*
-%{_kf6_libexecdir}/polkit-kde-authentication-agent-1
-%{_sysconfdir}/xdg/autostart/polkit-kde-authentication-agent-1.desktop
-%{_kf6_datadir}/knotifications6/policykit1-kde.notifyrc
 %{_kf6_datadir}/applications/org.kde.polkit-kde-authentication-agent-1.desktop
+%{_kf6_datadir}/knotifications6/policykit1-kde.notifyrc
+%{_kf6_sysconfdir}/xdg/autostart/polkit-kde-authentication-agent-1.desktop
+%{_libexecdir}/polkit-kde-authentication-agent-1
 %{_userunitdir}/plasma-polkit-agent.service
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

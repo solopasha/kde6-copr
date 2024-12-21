@@ -2,75 +2,75 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 8
 
-Name:    kde-gtk-config
-Summary: Configure the appearance of GTK apps in KDE
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           kde-gtk-config
+Summary:        Configure the appearance of GTK apps in KDE
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only)
-URL:     https://invent.kde.org/plasma/%{name}
+License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only)
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtsvg-devel
 
-BuildRequires:  cmake(KDecoration3)
 BuildRequires:  cmake(KF6ColorScheme)
-BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6GuiAddons)
+BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6WindowSystem)
 
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Svg)
+
+BuildRequires:  cmake(KDecoration3)
+
 BuildRequires:  gsettings-desktop-schemas-devel
-BuildRequires:  gtk3-devel
+BuildRequires:  pkgconfig(gio-2.0)
+BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  pkgconfig(gobject-2.0)
+BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  gtk2-devel
 BuildRequires:  sassc
 
 # dir ownership
 Requires:       breeze-gtk-common
-# need kcmshell5 from kde-cli-tools
-Requires:       kde-cli-tools
 
 # runtime dep checked-for at buildtime
 BuildRequires:  xsettingsd
-Requires:     xsettingsd
+Requires:       xsettingsd
 
 %description
 This is a System Settings configuration module for configuring the
 appearance of GTK apps in KDE.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 %cmake_kf6
 %cmake_build
 
-
 %install
 %cmake_install
 
-
 %files
 %license LICENSES/*.txt
-%{_datadir}/kcm-gtk-module/
-%{_datadir}/kconf_update/gtkconfig.upd
-%{_datadir}/kconf_update/remove_window_decorations_from_gtk_css.sh
-%{_datadir}/qlogging-categories6/kde-gtk-config.categories
-%{_datadir}/themes/Breeze/window_decorations.css
+%{_kf6_datadir}/kcm-gtk-module/
+%{_kf6_datadir}/kconf_update/gtkconfig.upd
+%{_kf6_datadir}/kconf_update/remove_window_decorations_from_gtk_css.sh
+%{_kf6_datadir}/qlogging-categories6/kde-gtk-config.categories
+%{_kf6_datadir}/themes/Breeze/window_decorations.css
+%{_kf6_libdir}/gtk-3.0/modules/libcolorreload-gtk-module.so
+%{_kf6_libdir}/gtk-3.0/modules/libwindow-decorations-gtk-module.so
+%{_kf6_libdir}/kconf_update_bin/gtk_theme
+%{_kf6_libdir}/kconf_update_bin/remove_deprecated_gtk4_option
 %{_kf6_plugindir}/kded/gtkconfig.so
-%{_libdir}/gtk-3.0/modules/libcolorreload-gtk-module.so
-%{_libdir}/gtk-3.0/modules/libwindow-decorations-gtk-module.so
-%{_libdir}/kconf_update_bin/gtk_theme
-%{_libdir}/kconf_update_bin/remove_deprecated_gtk4_option
 %{_libexecdir}/gtk3_preview
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

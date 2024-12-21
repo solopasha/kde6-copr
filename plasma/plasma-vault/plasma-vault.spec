@@ -2,35 +2,43 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 6
 
-Name:    plasma-vault
-Summary: Plasma Vault offers strong encryption features in a user-friendly way
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           plasma-vault
+Summary:        Plasma Vault offers strong encryption features in a user-friendly way
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/plasma/%{name}
+License:        CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(PlasmaActivities)
+
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
+BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DBusAddons)
-BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(Plasma)
-BuildRequires:  cmake(KF6IconThemes)
-BuildRequires:  cmake(KF6NetworkManagerQt)
 BuildRequires:  cmake(KF6ItemModels)
-BuildRequires:  cmake(KSysGuard)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6NetworkManagerQt)
+BuildRequires:  cmake(KF6Service)
+BuildRequires:  cmake(KF6WidgetsAddons)
 
 BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Widgets)
+
+BuildRequires:  cmake(KSysGuard)
+BuildRequires:  cmake(Plasma)
+BuildRequires:  cmake(PlasmaActivities)
 
 ## Runtime backends
-Recommends: cryfs
-Recommends: fuse-encfs
+Recommends:     cryfs
+Recommends:     fuse-encfs
 
 %description
 Plasma Vault allows to lock and encrypt sets of documents and hide them from
@@ -44,20 +52,17 @@ prying eyes even when the user is logged in.
 %cmake_kf6
 %cmake_build
 
-
 %install
 %cmake_install
 %find_lang %{name} --all-name
 
 %files -f %{name}.lang
 %license LICENSES/*
-%{_kf6_plugindir}/kded/plasmavault.so
-%dir %{_qt6_plugindir}/plasma/applets/
-%{_qt6_plugindir}/plasma/applets/org.kde.plasma.vault.so
-%{_qt6_plugindir}/kf6/kfileitemaction/plasmavaultfileitemaction.so
 %{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.vault/
 %{_kf6_metainfodir}/org.kde.plasma.vault.appdata.xml
-
+%{_kf6_plugindir}/kded/plasmavault.so
+%{_kf6_qtplugindir}/kf6/kfileitemaction/plasmavaultfileitemaction.so
+%{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.vault.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}

@@ -2,22 +2,21 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 8
 
-%global  base_name breeze
+%global base_name breeze
 
-Name:    plasma-breeze
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: Artwork, styles and assets for the Breeze visual style for the Plasma Desktop
+Name:           plasma-breeze
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        Artwork, styles and assets for the Breeze visual style for the Plasma Desktop
 
-License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND MIT
-URL:     https://invent.kde.org/plasma/%{base_name}.git
+License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND MIT
+URL:            https://invent.kde.org/plasma/%{base_name}.git
 %plasma_source
 
-# Misc
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
-BuildRequires:  gettext
+BuildRequires:  gcc-c++
 
-# Qt5
 BuildRequires:  kf5-rpm-macros
 BuildRequires:  cmake(KF5Config)
 BuildRequires:  cmake(KF5CoreAddons)
@@ -31,7 +30,6 @@ BuildRequires:  cmake(Qt5Quick)
 BuildRequires:  cmake(Qt5Widgets)
 BuildRequires:  cmake(Qt5X11Extras)
 
-# Qt6
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KDecoration3)
 BuildRequires:  cmake(KF6ColorScheme)
@@ -59,7 +57,6 @@ Provides:       %{name}-devel = %{version}-%{release}
 %description
 %{summary}.
 
-
 %package        qt6
 Summary:        Breeze application style for Qt6
 Requires:       %{name}-common = %{version}-%{release}
@@ -86,11 +83,9 @@ Provides:       breeze-cursor-themes = %{version}-%{release}
 %description -n breeze-cursor-theme
 %{summary}.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 mkdir -p qt6build
@@ -105,7 +100,6 @@ pushd qt5build
 %cmake_build
 popd
 
-
 %install
 pushd qt5build
 %cmake_install
@@ -117,17 +111,16 @@ popd
 
 %find_lang breeze --all-name
 
-
 %files -f breeze.lang
 %license LICENSES/*.txt
-%{_bindir}/breeze-settings6
-%{_bindir}/kcursorgen
+%{_kf6_bindir}/breeze-settings6
+%{_kf6_bindir}/kcursorgen
 %{_kf6_datadir}/applications/breezestyleconfig.desktop
 %{_kf6_datadir}/applications/kcm_breezedecoration.desktop
+%{_kf6_libdir}/cmake/Breeze/
 %{_kf6_qtplugindir}/kstyle_config/breezestyleconfig.so
 %{_kf6_qtplugindir}/org.kde.kdecoration3.kcm/kcm_breezedecoration.so
 %{_kf6_qtplugindir}/org.kde.kdecoration3/org.kde.breeze.so
-%{_libdir}/cmake/Breeze/
 
 %files qt5
 %{_kf5_qtplugindir}/styles/breeze5.so
@@ -136,19 +129,19 @@ popd
 %{_kf6_qtplugindir}/styles/breeze6.so
 
 %files common
-%{_datadir}/color-schemes/*.colors
-%{_datadir}/kstyle/themes/breeze.themerc
-%{_datadir}/icons/hicolor/*/apps/breeze-settings.*
-%dir %{_datadir}/QtCurve/
-%{_datadir}/QtCurve/Breeze.qtcurve
-%{_datadir}/wallpapers/Next/
+%{_kf6_datadir}/color-schemes/*.colors
+%{_kf6_datadir}/icons/hicolor/*/apps/breeze-settings.*
+%{_kf6_datadir}/kstyle/themes/breeze.themerc
+%dir %{_kf6_datadir}/QtCurve
+%{_kf6_datadir}/QtCurve/Breeze.qtcurve
+%{_kf6_datadir}/wallpapers/Next/
 
 %files -n breeze-cursor-theme
-%dir %{_kf6_datadir}/icons/Breeze_Light/
+%dir %{_kf6_datadir}/icons/Breeze_Light
 %{_kf6_datadir}/icons/Breeze_Light/cursors/
 %{_kf6_datadir}/icons/Breeze_Light/cursors_scalable/
 %{_kf6_datadir}/icons/Breeze_Light/index.theme
-%dir %{_kf6_datadir}/icons/breeze_cursors/
+%dir %{_kf6_datadir}/icons/breeze_cursors
 %{_kf6_datadir}/icons/breeze_cursors/cursors/
 %{_kf6_datadir}/icons/breeze_cursors/cursors_scalable/
 %{_kf6_datadir}/icons/breeze_cursors/index.theme

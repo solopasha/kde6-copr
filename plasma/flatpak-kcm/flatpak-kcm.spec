@@ -2,27 +2,30 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 4
 
-Name:          flatpak-kcm
-Version:       6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release:       1%{?dist}
-License:       BSD-2-Clause and BSD-3-Clause and CC0-1.0 and GPL-2.0-or-later
-Summary:       Flatpak Permissions Management KCM
-Url:           https://invent.kde.org/plasma/flatpak-kcm
-
+Name:           flatpak-kcm
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+License:        BSD-2-Clause and BSD-3-Clause and CC0-1.0 and GPL-2.0-or-later
+Summary:        Flatpak Permissions Management KCM
+URL:            https://invent.kde.org/plasma/flatpak-kcm
 %plasma_source
 
-BuildRequires: extra-cmake-modules
-BuildRequires: gcc-c++
-BuildRequires: kf6-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires: cmake(KF6Declarative)
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6ItemModels)
-BuildRequires: cmake(KF6KCMUtils)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6ItemModels)
+BuildRequires:  cmake(KF6KCMUtils)
 
-BuildRequires: cmake(Qt6Svg)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Svg)
 
-BuildRequires: pkgconfig(flatpak)
+BuildRequires:  pkgconfig(flatpak)
 
 %description
 %{summary}.
@@ -39,6 +42,9 @@ BuildRequires: pkgconfig(flatpak)
 %cmake_install
 
 %find_lang kcm_flatpak
+
+%check
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files -f kcm_flatpak.lang
 %license LICENSES/*

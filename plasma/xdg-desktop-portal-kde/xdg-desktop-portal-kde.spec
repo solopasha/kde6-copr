@@ -2,16 +2,18 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 11
 
-Name:    xdg-desktop-portal-kde
-Summary: Backend implementation for xdg-desktop-portal using Qt/KF5
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           xdg-desktop-portal-kde
+Summary:        Backend implementation for xdg-desktop-portal using Qt/KF5
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
-URL:     https://invent.kde.org/plasma/%{name}
+License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  systemd-rpm-macros
 
@@ -47,6 +49,7 @@ BuildRequires:  cmake(KWayland)
 BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-protocols)
+BuildRequires:  pkgconfig(xkbcommon)
 
 Requires:       xdg-desktop-portal
 # See https://bugzilla.redhat.com/show_bug.cgi?id=2240211
@@ -57,33 +60,28 @@ Supplements:    plasma-desktop
 A backend implementation for xdg-desktop-portal that is using Qt/KF5 and various
 pieces of KDE infrastructure.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
 
 %find_lang %{name}
 
-
 %files -f %{name}.lang
 %license LICENSES/*
+%{_kf6_datadir}/applications/org.freedesktop.impl.portal.desktop.kde.desktop
+%{_kf6_datadir}/dbus-1/services/org.freedesktop.impl.portal.desktop.kde.service
+%{_kf6_datadir}/knotifications6/xdg-desktop-portal-kde.notifyrc
+%{_kf6_datadir}/qlogging-categories6/xdp-kde.categories
+%{_kf6_datadir}/xdg-desktop-portal/portals/kde.portal
 %{_libexecdir}/%{name}
-%{_datadir}/dbus-1/services/org.freedesktop.impl.portal.desktop.kde.service
-%{_datadir}/xdg-desktop-portal/portals/kde.portal
-%{_datadir}/applications/org.freedesktop.impl.portal.desktop.kde.desktop
-%{_datadir}/knotifications6/xdg-desktop-portal-kde.notifyrc
-%{_datadir}/qlogging-categories6/xdp-kde.categories
 %{_userunitdir}/plasma-xdg-desktop-portal-kde.service
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

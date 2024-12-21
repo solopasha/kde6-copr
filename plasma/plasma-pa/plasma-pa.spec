@@ -2,19 +2,22 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 7
 
-Name:    plasma-pa
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: Plasma applet for audio volume management using PulseAudio
+Name:           plasma-pa
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        Plasma applet for audio volume management using PulseAudio
 
-License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
-URL:     https://invent.kde.org/plasma/%{name}
+License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
-BuildRequires:  cmake(KF6ConfigWidgets)
+BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6Declarative)
@@ -22,45 +25,44 @@ BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
-BuildRequires:  cmake(KF6Notifications)
-BuildRequires:  cmake(KF6Package)
 BuildRequires:  cmake(KF6StatusNotifierItem)
 BuildRequires:  cmake(KF6Svg)
 
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Widgets)
+
 BuildRequires:  cmake(Plasma)
+
 BuildRequires:  cmake(KF6PulseAudioQt)
-
-BuildRequires:  pkgconfig(libpulse)
 BuildRequires:  pkgconfig(libcanberra)
-BuildRequires:  qt6-qtbase-devel
+BuildRequires:  pkgconfig(libpulse)
 
-BuildRequires:  perl-generators
-
-Requires:       kf6-kirigami
-Requires:       kf6-kirigami-addons
-Requires:       kf6-kitemmodels
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-kirigami-addons%{?_isa}
+Requires:       kf6-kitemmodels%{?_isa}
 
 Requires:       pulseaudio-daemon
 
-
 %description
 %{summary}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
 %find_lang %{name} --all-name --with-html
 
+%check
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files -f %{name}.lang
 %license LICENSES/*
@@ -73,7 +75,6 @@ Requires:       pulseaudio-daemon
 %{_kf6_plugindir}/kded/audioshortcutsservice.so
 %{_kf6_qmldir}/org/kde/plasma/private/volume/
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_pulseaudio.so
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

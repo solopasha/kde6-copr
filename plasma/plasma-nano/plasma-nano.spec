@@ -4,11 +4,11 @@
 
 %global orig_name org.kde.plasma.nano
 
-Name:    plasma-nano
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND MIT
-URL:     https://invent.kde.org/plasma/plasma-nano
+Name:           plasma-nano
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND MIT
+URL:            https://invent.kde.org/plasma/plasma-nano
 %plasma_source
 
 Summary: A minimalist Plasma shell for developing custom experiences on embedded devices.
@@ -20,7 +20,6 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  hicolor-icon-theme
 BuildRequires:  desktop-file-utils
-
 
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
@@ -45,7 +44,6 @@ Requires:       libplasma%{?_isa}
 Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtdeclarative%{?_isa}
 
-
 %description
 %{Summary}
 
@@ -67,7 +65,6 @@ Requires:       qt6-qtdeclarative%{?_isa}
 #{_kf6_metainfodir}/org.kde.plasma.nano.desktoptoolbox.appdata.xml
 %{_kf6_datadir}/plasma/shells/%{orig_name}/
 %{_kf6_qmldir}/org/kde/plasma/private/nanoshell/
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

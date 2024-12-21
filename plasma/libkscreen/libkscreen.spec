@@ -2,39 +2,38 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 11
 
-Name:    libkscreen
-Summary: KDE display configuration library
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           libkscreen
+Summary:        KDE display configuration library
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: GPL-2.0-or-later
-URL:     https://invent.kde.org/plasma/%{name}
+License:        GPL-2.0-or-later
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-# KDE Frameworks
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  systemd-rpm-macros
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Test)
+BuildRequires:  cmake(Qt6WaylandClient)
+BuildRequires:  qt6-qtbase-private-devel
+
 BuildRequires:  cmake(KF6Config)
 
-# Fedora
-BuildRequires:  kf6-rpm-macros
-Requires:       kf6-filesystem
-
-# Misc
-BuildRequires:  systemd-rpm-macros
+BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  libX11-devel
-BuildRequires:  libXrandr-devel
 BuildRequires:  libxcb-devel
+BuildRequires:  libXrandr-devel
 BuildRequires:  pkgconfig(xcb-dpms)
 BuildRequires:  wayland-devel
 
-# KDE Plasma
-BuildRequires:  plasma-wayland-protocols-devel
-
-# Qt
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtbase-private-devel
-BuildRequires:  qt6-qtwayland-devel
-BuildRequires:  cmake(Qt6WaylandClient)
+Requires:       kf6-filesystem
 
 %description
 LibKScreen is a library that provides access to current configuration

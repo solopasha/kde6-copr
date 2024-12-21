@@ -2,13 +2,13 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 3
 
-Name:    ksshaskpass
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: A ssh-add helper that uses kwallet and kpassworddialog
+Name:           ksshaskpass
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        A ssh-add helper that uses kwallet and kpassworddialog
 
-License: GPLv2
-URL:     https://invent.kde.org/plasma/ksshaskpass
+License:        GPLv2
+URL:            https://invent.kde.org/plasma/ksshaskpass
 %plasma_source
 
 BuildRequires:  desktop-file-utils
@@ -26,16 +26,13 @@ BuildRequires:  cmake(Qt6Core)
 %description
 %{summary}.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
@@ -49,10 +46,8 @@ SSH_ASKPASS=%{_kf6_bindir}/ksshaskpass
 export SSH_ASKPASS
 EOF
 
-
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
-
 
 %files -f ksshaskpass.lang
 %doc ChangeLog
@@ -61,7 +56,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_bindir}/ksshaskpass
 %{_kf6_datadir}/applications/org.kde.ksshaskpass.desktop
 %{_kf6_mandir}/man1/ksshaskpass.1.*
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

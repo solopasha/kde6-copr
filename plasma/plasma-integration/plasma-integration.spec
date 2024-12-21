@@ -2,23 +2,20 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 10
 
-Name:    plasma-integration
-Summary: Qt Platform Theme integration plugin for Plasma
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           plasma-integration
+Summary:        Qt Platform Theme integration plugin for Plasma
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/plasma/%{name}
+License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  kf6-rpm-macros
-BuildRequires:  kf5-rpm-macros
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
-BuildRequires:  wayland-devel
-BuildRequires:  cmake(PlasmaWaylandProtocols) >= 1.6.0
-
-BuildRequires:  pkgconfig(x11)
-BuildRequires:  pkgconfig(xcursor)
+BuildRequires:  gcc-c++
+BuildRequires:  kf5-rpm-macros
+BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  cmake(Qt6Widgets)
@@ -58,6 +55,11 @@ BuildRequires:  cmake(KF5WindowSystem)
 BuildRequires:  cmake(KF5Wayland)
 BuildRequires:  cmake(KF5GuiAddons)
 BuildRequires:  cmake(KF5XmlGui)
+
+BuildRequires:  pkgconfig(x11)
+BuildRequires:  pkgconfig(xcursor)
+BuildRequires:  wayland-devel
+BuildRequires:  cmake(PlasmaWaylandProtocols)
 
 BuildRequires:  plasma-breeze-devel
 Requires:       plasma-breeze
@@ -107,7 +109,6 @@ Requires:       kf5-qqc2-breeze-style
 
 %files qt5
 %{_qt5_plugindir}/platformthemes/KDEPlasmaPlatformTheme5.so
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

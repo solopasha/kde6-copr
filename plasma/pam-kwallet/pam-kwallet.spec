@@ -2,60 +2,54 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 2
 
+%global base_name kwallet-pam
 
-%global  base_name kwallet-pam
-
-Name:    pam-kwallet
-Summary: PAM module for KWallet
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-License: LGPL-2.0-or-later
-URL:     https://invent.kde.org/plasma/%{base_name}.git
+Name:           pam-kwallet
+Summary:        PAM module for KWallet
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+License:        LGPL-2.0-or-later
+URL:            https://invent.kde.org/plasma/%{base_name}.git
 %plasma_source
 
-## upstream patches
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  systemd-rpm-macros
 
-## upstreamable patches
+BuildRequires:  cmake(KF6Wallet)
 
-Provides: %{base_name} = %{version}-%{release}
+BuildRequires:  pam-devel
+BuildRequires:  pkgconfig(libgcrypt)
+BuildRequires:  socat
 
-BuildRequires: extra-cmake-modules
-BuildRequires: kf6-rpm-macros
-BuildRequires: systemd-rpm-macros
-BuildRequires: libgcrypt-devel >= 1.5.0
-BuildRequires: pam-devel
-BuildRequires: cmake(KF6Wallet)
-BuildRequires: socat
+Provides:       %{base_name} = %{version}-%{release}
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1155873
-Requires: socat
+Requires:       socat
 # pam module makes little sense without the actually kwallet service
-Requires: kf6-kwallet
+Requires:       kf6-kwallet
 
 %description
 %{summary}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
 
-
 %install
 %cmake_install
 
-
 %files
+%{_kf6_libdir}/security/pam_kwallet5.so
+%{_libexecdir}/pam_kwallet_init
 %{_sysconfdir}/xdg/autostart/pam_kwallet_init.desktop
 %{_userunitdir}/plasma-kwallet-pam.service
-%{_libexecdir}/pam_kwallet_init
-%{_libdir}/security/pam_kwallet5.so
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

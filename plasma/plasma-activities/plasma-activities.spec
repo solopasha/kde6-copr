@@ -2,25 +2,32 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 4
 
-Name:    plasma-activities
-Summary: Core components for the KDE's Activities System
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           plasma-activities
+Summary:        Core components for the KDE's Activities System
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND MIT
-URL:     https://invent.kde.org/plasma/%{name}
+License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND MIT
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  boost-devel
-BuildRequires:  extra-cmake-modules
 BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  kf6-rpm-macros
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtdeclarative-devel
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Sql)
+BuildRequires:  cmake(Qt6Widgets)
+
+BuildRequires:  boost-devel
 
 Requires:       kf6-filesystem
 
@@ -34,10 +41,10 @@ Provides:       kactivities = %{version}-%{release}
 A KDE Frameworks 6 Tier 3 API for using and interacting with Activities as a
 consumer, application adding information to them or as an activity manager.
 
-%package devel
+%package        devel
 Summary:        Developer files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       qt6-qtbase-devel
+Requires:       cmake(Qt6Core)
 Obsoletes:      kf6-kactivities-devel < 1:%{version}-%{release}
 Provides:       kf6-kactivities-devel = 1:%{version}-%{release}
 Obsoletes:      kactivities-devel < 5.27.80-2

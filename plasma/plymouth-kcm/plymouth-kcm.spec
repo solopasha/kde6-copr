@@ -2,21 +2,24 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 4
 
-%global base_name    plymouth-kcm
+%global base_name plymouth-kcm
 
-Name:    plymouth-kcm
-Summary: Plymouth configuration module for systemsettings
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           plymouth-kcm
+Summary:        Plymouth configuration module for systemsettings
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later
-URL:     https://invent.kde.org/plasma/%{base_name}
+License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later
+URL:            https://invent.kde.org/plasma/%{base_name}
 %plasma_source
 
 ## FIXME/TODO: document why this patch is needed, ideally work to make upstreamable
 Patch1:         0001-fedora.patch
 
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  plymouth-devel
 
@@ -34,39 +37,37 @@ BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6NewStuff)
 BuildRequires:  cmake(KF6NewStuffCore)
 
-Requires:   plymouth
+Requires:       plymouth
 
 %description
 This is a System Settings configuration module for configuring the
 plymouth splash screen.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 %cmake_kf6
 %cmake_build
 
-
 %install
 %cmake_install
 %find_lang kcm_plymouth --all-name --with-html
 
+%check
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files -f kcm_plymouth.lang
 %license LICENSES/*
+%{_kf6_bindir}/kplymouththemeinstaller
+%{_kf6_datadir}/applications/kcm_plymouth.desktop
+%{_kf6_datadir}/dbus-1/system-services/org.kde.kcontrol.kcmplymouth.service
 %{_kf6_datadir}/dbus-1/system.d/org.kde.kcontrol.kcmplymouth.conf
-%{_datadir}/knsrcfiles/plymouth.knsrc
-%{_bindir}/kplymouththemeinstaller
-%{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_plymouth.so
+%{_kf6_datadir}/knsrcfiles/plymouth.knsrc
+%{_kf6_datadir}/polkit-1/actions/org.kde.kcontrol.kcmplymouth.policy
 %{_kf6_libexecdir}/kauth/plymouthhelper
-%{_datadir}/dbus-1/system-services/org.kde.kcontrol.kcmplymouth.service
-%{_datadir}/applications/kcm_plymouth.desktop
-%{_datadir}/polkit-1/actions/org.kde.kcontrol.kcmplymouth.policy
-
+%{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_plymouth.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}

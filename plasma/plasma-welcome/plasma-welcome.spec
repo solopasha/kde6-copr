@@ -9,40 +9,42 @@ Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPL-2.0-or-later and BSD-3-Clause
 Summary:        Plasma Welcome
-Url:            https://invent.kde.org/plasma/%{name}
-
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-# Upstream patches
-
-BuildRequires:  gcc-c++
-BuildRequires:  qt6-qtbase-devel
 BuildRequires:  desktop-file-utils
-BuildRequires:  libappstream-glib
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
+BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(Qt6Core)
-BuildRequires:  cmake(Qt6Quick)
-BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6Svg)
 
-BuildRequires:  cmake(KF6Kirigami)
-BuildRequires:  cmake(KF6KirigamiAddons)
-BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
+BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DBusAddons)
-BuildRequires:  cmake(KF6NewStuff)
-BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(KF6Service)
-BuildRequires:  cmake(Plasma)
+BuildRequires:  cmake(KF6JobWidgets)
 BuildRequires:  cmake(KF6KCMUtils)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Kirigami)
+BuildRequires:  cmake(KF6NewStuff)
+BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6Svg)
+BuildRequires:  cmake(KF6WindowSystem)
 
-Requires:       kf6-kuserfeedback
+BuildRequires:  cmake(KF6KirigamiAddons)
+BuildRequires:  cmake(Plasma)
+
+Requires:       kf6-kuserfeedback%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-kirigami-addons%{?_isa}
 
 Provides:       plasma-welcome-app = %{version}-%{release}
 Obsoletes:      plasma-welcome-app < 5.27.0-2
@@ -73,7 +75,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{orgname}.deskto
 %{_kf6_datadir}/applications/%{orgname}.desktop
 %{_kf6_metainfodir}/%{orgname}.*.xml
 %{_kf6_plugindir}/kded/kded_plasma-welcome.so
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

@@ -11,33 +11,25 @@ License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND G
 URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  systemd-rpm-macros
 
-BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
-BuildRequires:  cmake(KF6DBusAddons)
-BuildRequires:  cmake(KF6DocTools)
-BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6IconThemes)
-BuildRequires:  cmake(KF6ItemViews)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6NetworkManagerQt)
-BuildRequires:  cmake(KF6NewStuff)
-BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Solid)
-BuildRequires:  cmake(KF6WindowSystem)
 
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  cmake(KSysGuard)
 
-BuildRequires:  libnl3-devel
 BuildRequires:  lm_sensors-devel
-BuildRequires:  systemd-devel
-BuildRequires:  pkgconfig(libpcap)
+BuildRequires:  pkgconfig(libnl-3.0)
+BuildRequires:  pkgconfig(libudev)
 
 %description
 KSystemStats is a daemon that collects statistics about the running system.

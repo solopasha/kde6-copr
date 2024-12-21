@@ -36,29 +36,24 @@ Provides:       %{base_name} = %{version}-%{release}
 %description
 %{summary}.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
 install -m644 -p %{SOURCE10} .
 
-
 %build
 # blank
-
 
 %install
 mkdir -p %{buildroot}%{_grubthemedir}/breeze
 find breeze/ -type f -and -not -iname \*.license -print0 \
   | xargs -0 -n100 cp -v -t %{buildroot}%{_grubthemedir}/breeze
 
-
 %files
 %license LICENSES
 %doc README.fedora
 %{_grubthemedir}/breeze
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

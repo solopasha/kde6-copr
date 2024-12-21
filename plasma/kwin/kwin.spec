@@ -4,104 +4,97 @@
 
 %bcond x11 1
 
-Name:    kwin
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: KDE Window manager
+Name:           kwin
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Window manager
 
-License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
-URL:     https://userbase.kde.org/KWin
+License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
+URL:            https://userbase.kde.org/KWin
 %plasma_source
 
-# Base
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  systemd-rpm-macros
 
-# Qt
-BuildRequires:  cmake(QAccessibilityClient6)
-BuildRequires:  qt6-qtbase-devel
-# KWinQpaPlugin (and others?)
-BuildRequires:  qt6-qtbase-private-devel
-BuildRequires:  qt6-qtsensors-devel
-BuildRequires:  qt6-qttools-devel
-BuildRequires:  qt6-qtwayland-devel
-BuildRequires:  cmake(Qt6Core5Compat)
-BuildRequires:  cmake(Qt6Svg)
-
-# X11/OpenGL
-BuildRequires:  pkgconfig(libxcvt)
-BuildRequires:  mesa-libGL-devel
-BuildRequires:  mesa-libEGL-devel
-BuildRequires:  mesa-libgbm-devel
-BuildRequires:  libxkbcommon-devel
-BuildRequires:  libxkbcommon-x11-devel
-BuildRequires:  libX11-devel
-BuildRequires:  libXi-devel
-BuildRequires:  libxcb-devel
-BuildRequires:  libICE-devel
-BuildRequires:  libSM-devel
-BuildRequires:  libXcursor-devel
-BuildRequires:  xcb-util-wm-devel
-BuildRequires:  xcb-util-image-devel
-BuildRequires:  xcb-util-keysyms-devel
-BuildRequires:  xcb-util-cursor-devel
-BuildRequires:  xcb-util-devel
-BuildRequires:  libepoxy-devel
-BuildRequires:  libcap-devel
-
-BuildRequires:  lcms2-devel
-BuildRequires:  glib2-devel
-BuildRequires:  pipewire-devel
-
-# Wayland
-BuildRequires:  cmake(KWayland)
-BuildRequires:  wayland-devel
-BuildRequires:  wayland-protocols-devel
-BuildRequires:  libxkbcommon-devel >= 0.4
-BuildRequires:  pkgconfig(libinput) >= 0.10
-BuildRequires:  pkgconfig(libudev)
-
-# KF6
-BuildRequires:  cmake(KF6Completion)
+BuildRequires:  cmake(KF6Auth)
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6Declarative)
+BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6GlobalAccel)
+BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6IdleTime)
+BuildRequires:  cmake(KF6KCMUtils)
+BuildRequires:  cmake(KF6Kirigami)
+BuildRequires:  cmake(KF6NewStuff)
 BuildRequires:  cmake(KF6Notifications)
+BuildRequires:  cmake(KF6Package)
 BuildRequires:  cmake(KF6Service)
-BuildRequires:  cmake(Plasma)
+BuildRequires:  cmake(KF6Svg)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  cmake(KF6DocTools)
-BuildRequires:  cmake(KF6KCMUtils)
-BuildRequires:  cmake(KF6NewStuff)
-BuildRequires:  cmake(PlasmaActivities)
-BuildRequires:  cmake(KF6Declarative)
-BuildRequires:  cmake(KF6IconThemes)
-BuildRequires:  cmake(KF6IdleTime)
-BuildRequires:  cmake(KF6TextWidgets)
-BuildRequires:  cmake(KF6Kirigami)
-BuildRequires:  cmake(KF6Runner)
-BuildRequires:  cmake(KF6Svg)
-BuildRequires:  cmake(KF6GuiAddons)
-BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6XmlGui)
 
+BuildRequires:  cmake(Qt6Concurrent)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Core5Compat)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Sensors)
+BuildRequires:  cmake(Qt6Svg)
+BuildRequires:  cmake(Qt6UiTools)
+BuildRequires:  cmake(Qt6WaylandClient)
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  qt6-qtbase-private-devel
+
+BuildRequires:  cmake(Breeze)
 BuildRequires:  cmake(KDecoration3)
-BuildRequires:  kscreenlocker-devel
-BuildRequires:  plasma-breeze-devel
-BuildRequires:  plasma-wayland-protocols-devel
 BuildRequires:  cmake(KGlobalAccelD)
-BuildRequires:  libdisplay-info-devel
-BuildRequires:  pkgconfig(freetype2)
+BuildRequires:  cmake(KScreenLocker)
+BuildRequires:  cmake(KWayland)
+BuildRequires:  cmake(Plasma)
+BuildRequires:  cmake(PlasmaActivities)
+
+BuildRequires:  cmake(PlasmaWaylandProtocols)
+BuildRequires:  cmake(QAccessibilityClient6)
+BuildRequires:  hwdata-devel
+BuildRequires:  libcap-devel
+BuildRequires:  libX11-devel
+BuildRequires:  libxcb-devel
+BuildRequires:  libXi-devel
+BuildRequires:  mesa-libEGL-devel
+BuildRequires:  mesa-libgbm-devel
+BuildRequires:  mesa-libGL-devel
+BuildRequires:  pkgconfig(epoxy)
 BuildRequires:  pkgconfig(fontconfig)
-BuildRequires:  pkgconfig(libeis-1.0)
+BuildRequires:  pkgconfig(freetype2)
+BuildRequires:  pkgconfig(lcms2)
 BuildRequires:  pkgconfig(libcanberra)
+BuildRequires:  pkgconfig(libdisplay-info)
+BuildRequires:  pkgconfig(libdrm)
+BuildRequires:  pkgconfig(libeis-1.0)
+BuildRequires:  pkgconfig(libinput)
+BuildRequires:  pkgconfig(libpipewire-0.3)
+BuildRequires:  pkgconfig(libudev)
+BuildRequires:  pkgconfig(libxcvt)
+BuildRequires:  pkgconfig(wayland-protocols)
+BuildRequires:  pkgconfig(xkbcommon-x11)
+BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pkgconfig(xwayland)
+BuildRequires:  wayland-devel
+BuildRequires:  xcb-util-cursor-devel
+BuildRequires:  xcb-util-devel
+BuildRequires:  xcb-util-image-devel
+BuildRequires:  xcb-util-keysyms-devel
+BuildRequires:  xcb-util-wm-devel
 
 ## Runtime deps
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
@@ -129,7 +122,6 @@ Summary:        KDE Window Manager with Wayland support
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       %{name}-common%{?_isa} = %{version}-%{release}
 Requires:       (kwayland-integration%{?_isa} >= %{majmin_ver_kf6} if qt5-qtbase%{?_isa})
-BuildRequires:  pkgconfig(xwayland)
 Requires:       xorg-x11-server-Xwayland
 %if ! %{with x11}
 # Obsolete kwin-x11 as we are dropping the package
@@ -186,11 +178,9 @@ BuildArch:      noarch
 %description    doc
 %{summary}.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 %cmake_kf6
@@ -213,7 +203,6 @@ ln -sr %{buildroot}%{_kf6_bindir}/kwin_wayland %{buildroot}%{_bindir}/kwin
 # Delete x11 session stuff
 rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwin_x11.service
 %endif
-
 
 %files
 %{_bindir}/kwin
@@ -271,7 +260,6 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 
 %files doc -f %{name}-doc.lang
 %license LICENSES/*.txt
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

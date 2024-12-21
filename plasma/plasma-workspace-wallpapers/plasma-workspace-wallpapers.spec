@@ -2,12 +2,12 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 2
 
-Name:    plasma-workspace-wallpapers
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: Additional wallpapers for Plasma workspace
-License: LGPLv3
-URL:     https://invent.kde.org/plasma/plasma-workspace-wallpapers
+Name:           plasma-workspace-wallpapers
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        Additional wallpapers for Plasma workspace
+License:        LGPLv3
+URL:            https://invent.kde.org/plasma/plasma-workspace-wallpapers
 %plasma_source
 
 BuildArch: noarch
@@ -21,55 +21,51 @@ Requires:       kde-filesystem
 %description
 %{summary}.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 %cmake_kf6 -DBUILD_WITH_QT6=ON
 %cmake_build
 
-
 %install
 %cmake_install
 
-
 %files
 %license COPYING.LGPL3
-%{_datadir}/wallpapers/Altai/
-%{_datadir}/wallpapers/Autumn/
-%{_datadir}/wallpapers/BytheWater/
-%{_datadir}/wallpapers/Canopee/
-%{_datadir}/wallpapers/Cascade/
-%{_datadir}/wallpapers/Cluster/
-%{_datadir}/wallpapers/ColdRipple/
-%{_datadir}/wallpapers/ColorfulCups/
-%{_datadir}/wallpapers/DarkestHour/
-%{_datadir}/wallpapers/Elarun/
-%{_datadir}/wallpapers/EveningGlow/
-%{_datadir}/wallpapers/FallenLeaf/
-%{_datadir}/wallpapers/Flow/
-%{_datadir}/wallpapers/FlyingKonqui/
-%{_datadir}/wallpapers/Grey/
-%{_datadir}/wallpapers/Honeywave/
-%{_datadir}/wallpapers/IceCold/
-%{_datadir}/wallpapers/Kay/
-%{_datadir}/wallpapers/Kite/
-%{_datadir}/wallpapers/Kokkini/
-%{_datadir}/wallpapers/MilkyWay/
-%{_datadir}/wallpapers/Mountain/
-%{_datadir}/wallpapers/OneStandsOut/
-%{_datadir}/wallpapers/Opal/
-%{_datadir}/wallpapers/PastelHills/
-%{_datadir}/wallpapers/Patak/
-%{_datadir}/wallpapers/Path/
-%{_datadir}/wallpapers/SafeLanding/
-%{_datadir}/wallpapers/ScarletTree/
-%{_datadir}/wallpapers/Shell/
-%{_datadir}/wallpapers/summer_1am/
-%{_datadir}/wallpapers/Volna/
+%{_kf6_datadir}/wallpapers/Altai/
+%{_kf6_datadir}/wallpapers/Autumn/
+%{_kf6_datadir}/wallpapers/BytheWater/
+%{_kf6_datadir}/wallpapers/Canopee/
+%{_kf6_datadir}/wallpapers/Cascade/
+%{_kf6_datadir}/wallpapers/Cluster/
+%{_kf6_datadir}/wallpapers/ColdRipple/
+%{_kf6_datadir}/wallpapers/ColorfulCups/
+%{_kf6_datadir}/wallpapers/DarkestHour/
+%{_kf6_datadir}/wallpapers/Elarun/
+%{_kf6_datadir}/wallpapers/EveningGlow/
+%{_kf6_datadir}/wallpapers/FallenLeaf/
+%{_kf6_datadir}/wallpapers/Flow/
+%{_kf6_datadir}/wallpapers/FlyingKonqui/
+%{_kf6_datadir}/wallpapers/Grey/
+%{_kf6_datadir}/wallpapers/Honeywave/
+%{_kf6_datadir}/wallpapers/IceCold/
+%{_kf6_datadir}/wallpapers/Kay/
+%{_kf6_datadir}/wallpapers/Kite/
+%{_kf6_datadir}/wallpapers/Kokkini/
+%{_kf6_datadir}/wallpapers/MilkyWay/
+%{_kf6_datadir}/wallpapers/Mountain/
+%{_kf6_datadir}/wallpapers/OneStandsOut/
+%{_kf6_datadir}/wallpapers/Opal/
+%{_kf6_datadir}/wallpapers/PastelHills/
+%{_kf6_datadir}/wallpapers/Patak/
+%{_kf6_datadir}/wallpapers/Path/
+%{_kf6_datadir}/wallpapers/SafeLanding/
+%{_kf6_datadir}/wallpapers/ScarletTree/
+%{_kf6_datadir}/wallpapers/Shell/
+%{_kf6_datadir}/wallpapers/summer_1am/
+%{_kf6_datadir}/wallpapers/Volna/
 
 %changelog
 %{?kde_snapshot_changelog_entry}

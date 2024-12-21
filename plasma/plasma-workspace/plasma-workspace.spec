@@ -335,7 +335,6 @@ BuildArch:      noarch
 %description -n plasma-lookandfeel-fedora
 %{summary}.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
@@ -349,7 +348,6 @@ cat >> lookandfeel/CMakeLists.txt <<EOL
 plasma_install_package(org.fedoraproject.fedora org.fedoraproject.fedora.desktop look-and-feel lookandfeel)
 EOL
 
-
 %build
 %cmake_kf6 \
   -DINSTALL_SDDM_WAYLAND_SESSION:BOOL=ON \
@@ -357,7 +355,6 @@ EOL
   -DGLIBC_LOCALE_PREGENERATED:BOOL=ON \
   -DGLIBC_LOCALE_GEN:BOOL=OFF
 %cmake_build
-
 
 %install
 %cmake_install
@@ -403,16 +400,13 @@ grep libkworkspace.mo all.lang > libkworkspace6.lang
 # any translations not used elsewhere, include in main pkg
 cat *.lang | sort | uniq -u > %{name}.lang
 
-
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
-
 
 %post
 if [ -s /usr/sbin/setsebool ] ; then
   setsebool -P selinuxuser_execmod 1 ||:
 fi
-
 
 %files common
 %license LICENSES
@@ -589,7 +583,6 @@ fi
 
 %files -n plasma-lookandfeel-fedora
 %{_kf6_datadir}/plasma/look-and-feel/org.fedoraproject.fedora.desktop/
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

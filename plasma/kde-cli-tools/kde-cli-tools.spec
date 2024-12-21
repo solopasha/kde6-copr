@@ -2,16 +2,19 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 5
 
-Name:    kde-cli-tools
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: Tools based on KDE Frameworks 5 to better interact with the system
+Name:           kde-cli-tools
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        Tools based on KDE Frameworks 5 to better interact with the system
 
-License: Artistic-2.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
-URL:     https://invent.kde.org/plasma/%{name}
+License:        Artistic-2.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(Qt6DBus)
@@ -43,22 +46,19 @@ Requires:       kdesu = 1:%{version}-%{release}
 Provides several KDE and Plasma specific command line tools to allow
 better interaction with the system.
 
-%package -n kdesu
-Summary: Runs a program with elevated privileges
-Epoch: 1
+%package -n     kdesu
+Summary:        Runs a program with elevated privileges
+Epoch:          1
 %description -n kdesu
 %{summary}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
@@ -66,44 +66,45 @@ Epoch: 1
 
 ln -s %{_kf6_libexecdir}/kdesu %{buildroot}%{_bindir}/kdesu
 
+%check
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files -f kdeclitools_qt.lang
-%{_bindir}/kbroadcastnotification
-%{_bindir}/kdecp
-%{_bindir}/kdecp5
-%{_bindir}/kde-inhibit
-%{_bindir}/kdemv
-%{_bindir}/kdemv5
-%{_bindir}/kde-open
-%{_bindir}/kde-open5
-%{_bindir}/keditfiletype
-%{_bindir}/keditfiletype5
-%{_bindir}/kinfo
-%{_bindir}/kioclient
-%{_bindir}/kioclient5
-%{_bindir}/kmimetypefinder
-%{_bindir}/kmimetypefinder5
-%{_bindir}/kstart
-%{_bindir}/kstart5
-%{_bindir}/ksvgtopng
-%{_bindir}/ksvgtopng5
-%{_bindir}/plasma-open-settings
+%{_kf6_bindir}/kbroadcastnotification
+%{_kf6_bindir}/kde-inhibit
+%{_kf6_bindir}/kde-open
+%{_kf6_bindir}/kde-open5
+%{_kf6_bindir}/kdecp
+%{_kf6_bindir}/kdecp5
+%{_kf6_bindir}/kdemv
+%{_kf6_bindir}/kdemv5
+%{_kf6_bindir}/keditfiletype
+%{_kf6_bindir}/keditfiletype5
+%{_kf6_bindir}/kinfo
+%{_kf6_bindir}/kioclient
+%{_kf6_bindir}/kioclient5
+%{_kf6_bindir}/kmimetypefinder
+%{_kf6_bindir}/kmimetypefinder5
+%{_kf6_bindir}/kstart
+%{_kf6_bindir}/kstart5
+%{_kf6_bindir}/ksvgtopng
+%{_kf6_bindir}/ksvgtopng5
+%{_kf6_bindir}/plasma-open-settings
+%{_kf6_datadir}/applications/kcm_filetypes.desktop
+%{_kf6_datadir}/applications/org.kde.keditfiletype.desktop
+%{_kf6_datadir}/applications/org.kde.plasma.settings.open.desktop
+%{_kf6_datadir}/doc/HTML/*/kcontrol6
 %{_kf6_libexecdir}/kdeeject
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/kcm_filetypes.so
-%{_datadir}/doc/HTML/*/kcontrol6
-%{_datadir}/applications/org.kde.keditfiletype.desktop
-%{_datadir}/applications/org.kde.plasma.settings.open.desktop
-%{_datadir}/applications/kcm_filetypes.desktop
 %{zsh_completions_dir}/_kde-inhibit
 
 %files -n kdesu
 %{_bindir}/kdesu
-%{_kf6_libexecdir}/kdesu
-%{_mandir}/man1/kdesu.1.gz
-%{_mandir}/*/man1/kdesu.1.gz
 ## FIXME: %%lang'ify
 %{_datadir}/doc/HTML/*/kdesu
-
+%{_kf6_libexecdir}/kdesu
+%{_mandir}/*/man1/kdesu.1.gz
+%{_mandir}/man1/kdesu.1.gz
 
 %changelog
 %{?kde_snapshot_changelog_entry}

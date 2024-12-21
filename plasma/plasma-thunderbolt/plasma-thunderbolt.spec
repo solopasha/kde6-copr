@@ -2,33 +2,33 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 4
 
-%global base_name    plasma-thunderbolt
+Name:           plasma-thunderbolt
+Summary:        Plasma integration for controlling Thunderbolt devices
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-Name:    plasma-thunderbolt
-Summary: Plasma integration for controlling Thunderbolt devices
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-
-License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LicenseRef-KDE-Accepted-GPL
-URL:     https://invent.kde.org/plasma/%{base_name}
+License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LicenseRef-KDE-Accepted-GPL
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DBusAddons)
-BuildRequires:  cmake(KF6Declarative)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6Notifications)
 
-BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Quick)
 
-BuildRequires:  desktop-file-utils
-
 Requires:       bolt
+Requires:       kf6-kirigami
 
 %description
 Plasma Sytem Settings module and a KDED module to handle authorization of
@@ -37,11 +37,9 @@ Thunderbolt devices connected to the computer. There's also a shared library
 system-wide bolt daemon, which does the actual hard work of talking to the
 kernel.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 %cmake_kf6
@@ -57,11 +55,11 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/kcm_bolt.desktop
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*
-%{_kf6_libdir}/libkbolt.so
-%{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_bolt.so
-%{_kf6_qtplugindir}/kf6/kded/kded_bolt.so
-%{_kf6_datadir}/knotifications6/kded_bolt.notifyrc
 %{_kf6_datadir}/applications/kcm_bolt.desktop
+%{_kf6_datadir}/knotifications6/kded_bolt.notifyrc
+%{_kf6_libdir}/libkbolt.so
+%{_kf6_qtplugindir}/kf6/kded/kded_bolt.so
+%{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_bolt.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}

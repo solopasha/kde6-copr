@@ -2,31 +2,36 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 4
 
-Name:    kactivitymanagerd
-Summary: Plasma service to manage user's activities
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           kactivitymanagerd
+Summary:        Plasma service to manage user's activities
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/plasma/%{name}
+License:        CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  systemd-rpm-macros
-BuildRequires:  extra-cmake-modules
+
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
-BuildRequires:  cmake(Qt6Core5Compat)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Sql)
+BuildRequires:  cmake(Qt6Widgets)
 
-BuildRequires:  cmake(KF6Crash)
-BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  cmake(KF6GlobalAccel)
-BuildRequires:  cmake(KF6XmlGui)
-BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6WindowSystem)
+BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  boost-devel
 
@@ -43,33 +48,29 @@ Provides:       kactivities = %{version}-%{release}
 %description
 %{summary}.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
 
 %find_lang kactivities6 --with-qt
 
-
 %files -f kactivities6.lang
 %license LICENSES/*
 %doc README.md
-%{_kf6_datadir}/qlogging-categories6/kactivitymanagerd.categories
-%{_libexecdir}/kactivitymanagerd
-%{_kf6_libdir}/libkactivitymanagerd_plugin.so
 %{_kf6_datadir}/dbus-1/services/org.kde.ActivityManager.service
 %{_kf6_datadir}/krunner/dbusplugins/plasma-runnners-activities.desktop
-%{_userunitdir}/plasma-kactivitymanagerd.service
+%{_kf6_datadir}/qlogging-categories6/kactivitymanagerd.categories
+%{_kf6_libdir}/libkactivitymanagerd_plugin.so
+%{_libexecdir}/kactivitymanagerd
 %{_qt6_plugindir}/kactivitymanagerd1/
+%{_userunitdir}/plasma-kactivitymanagerd.service
 
 %changelog
 %{?kde_snapshot_changelog_entry}

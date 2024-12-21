@@ -2,33 +2,37 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 4
 
-Name:    qqc2-breeze-style
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: QtQuickControls2 breeze style
+Name:           qqc2-breeze-style
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        QtQuickControls2 breeze style
 
-License: CC0-1.0 and GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
-URL:     https://invent.kde.org/plasma/%{name}
+License:        CC0-1.0 and GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires: cmake
-BuildRequires: gcc-c++
-BuildRequires: extra-cmake-modules
-BuildRequires: kf6-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires: cmake(KF6ColorScheme)
-BuildRequires: cmake(KF6Config)
-BuildRequires: cmake(KF6CoreAddons)
-BuildRequires: cmake(KF6GuiAddons)
-BuildRequires: cmake(KF6IconThemes)
-BuildRequires: cmake(KF6KirigamiPlatform)
-BuildRequires: cmake(KF6QuickCharts)
+BuildRequires:  cmake(KF6ColorScheme)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6GuiAddons)
+BuildRequires:  cmake(KF6IconThemes)
+BuildRequires:  cmake(KF6KirigamiPlatform)
+BuildRequires:  cmake(KF6QuickCharts)
 
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtdeclarative-devel
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6QuickControls2)
+BuildRequires:  cmake(Qt6QuickTemplates2)
 
-Requires:       kf6-kquickcharts
-
+Requires:       kf6-kquickcharts%{?_isa}
 
 %description
 This is a pure Qt Quick/Kirigami Qt Quick Controls style.
@@ -37,22 +41,19 @@ This is a pure Qt Quick/Kirigami Qt Quick Controls style.
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
 
-
 %install
 %cmake_install
-
 
 %files
 %doc README.md
 %license LICENSES/*.txt
+%{_kf6_libdir}/cmake/QQC2BreezeStyle/
 %{_kf6_plugindir}/kirigami/platform/org.kde.breeze.so
 %{_qt6_qmldir}/org/kde/breeze/
-%{_kf6_libdir}/cmake/QQC2BreezeStyle/
 
 %changelog
 %{?kde_snapshot_changelog_entry}

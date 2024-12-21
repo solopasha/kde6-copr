@@ -4,47 +4,50 @@
 
 %global base_name wacomtablet
 
-Name:    kcm_wacomtablet
-Summary: KDE Control module for Wacom Graphictablets
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           kcm_wacomtablet
+Summary:        KDE Control module for Wacom Graphictablets
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: GPL-2.0-or-later
-URL:     https://invent.kde.org/plasma/wacomtablet
+License:        GPL-2.0-or-later
+URL:            https://invent.kde.org/plasma/wacomtablet
 %plasma_source
 
-BuildRequires: desktop-file-utils
-BuildRequires: extra-cmake-modules
-BuildRequires: kf6-rpm-macros
-BuildRequires: libappstream-glib
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  libappstream-glib
 
-BuildRequires: cmake(Qt6Core)
-BuildRequires: cmake(Qt6DBus)
-BuildRequires: cmake(Qt6Gui)
-BuildRequires: cmake(Qt6Qml)
-BuildRequires: cmake(Qt6Widgets)
-BuildRequires: qt6-qtbase-private-devel
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  qt6-qtbase-private-devel
 
-BuildRequires: cmake(KF6Config)
-BuildRequires: cmake(KF6CoreAddons)
-BuildRequires: cmake(KF6DBusAddons)
-BuildRequires: cmake(KF6DocTools)
-BuildRequires: cmake(KF6GlobalAccel)
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6KCMUtils)
-BuildRequires: cmake(KF6KIO)
-BuildRequires: cmake(KF6Notifications)
-BuildRequires: cmake(Plasma)
-BuildRequires: cmake(KF6WidgetsAddons)
-BuildRequires: cmake(KF6WindowSystem)
-BuildRequires: cmake(KF6XmlGui)
-BuildRequires: cmake(Plasma5Support)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6GlobalAccel)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KCMUtils)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Notifications)
+BuildRequires:  cmake(KF6WidgetsAddons)
+BuildRequires:  cmake(KF6WindowSystem)
+BuildRequires:  cmake(KF6XmlGui)
 
-BuildRequires: pkgconfig(libwacom)
-BuildRequires: pkgconfig(xcb-xinput)
-BuildRequires: pkgconfig(xi)
-BuildRequires: pkgconfig(xorg-wacom)
-BuildRequires: pkgconfig(xrandr)
+BuildRequires:  cmake(Plasma)
+BuildRequires:  cmake(Plasma5Support)
+
+BuildRequires:  pkgconfig(libwacom)
+BuildRequires:  pkgconfig(xcb-xinput)
+BuildRequires:  pkgconfig(xi)
+BuildRequires:  pkgconfig(xorg-wacom)
+BuildRequires:  pkgconfig(xrandr)
 
 ExcludeArch: s390 s390x
 
@@ -57,35 +60,30 @@ Provides:      plasma-wacomtablet = %{version}-%{release}
 This module implements a GUI for the Wacom Linux Drivers and extends it
 with profile support to handle different button/pen layouts per profile.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
 
 %find_lang %{name} --all-name --with-html
 
-
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 
-
 %files -f %{name}.lang
 %doc AUTHORS
 %license COPYING
-%{_datadir}/dbus-1/interfaces/org.kde.Wacom.xml
 %{_kf6_bindir}/kde_wacom_tabletfinder
-%{_kf6_datadir}/applications/kde_wacom_tabletfinder.desktop
 %{_kf6_datadir}/applications/kcm_wacomtablet.desktop
+%{_kf6_datadir}/applications/kde_wacom_tabletfinder.desktop
+%{_kf6_datadir}/dbus-1/interfaces/org.kde.Wacom.xml
 %{_kf6_datadir}/knotifications6/wacomtablet.notifyrc
 %{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.wacomtablet/
 %{_kf6_datadir}/plasma5support/services/wacomtablet.operations
@@ -94,9 +92,8 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 %{_kf6_metainfodir}/org.kde.plasma.wacomtablet.appdata.xml
 %{_kf6_metainfodir}/org.kde.wacomtablet.metainfo.xml
 %{_kf6_plugindir}/kded/wacomtablet.so
-%{_qt6_plugindir}/plasma5support/dataengine/plasma_engine_wacomtablet.so
 %{_qt6_plugindir}/plasma/kcms/systemsettings_qwidgets/kcm_wacomtablet.so
-
+%{_qt6_plugindir}/plasma5support/dataengine/plasma_engine_wacomtablet.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}

@@ -2,13 +2,13 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 6
 
-Name:    kwayland-integration
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: Provides integration plugins for various KDE Frameworks for Wayland
+Name:           kwayland-integration
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        Provides integration plugins for various KDE Frameworks for Wayland
 
-License: CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only AND LGPL-3.0-only)
-URL:     https://invent.kde.org/plasma/%{name}
+License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only AND LGPL-3.0-only)
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
 BuildRequires:  qt5-qtbase-devel
@@ -34,26 +34,21 @@ Requires:       kf5-filesystem
 %description
 %{summary}.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 %cmake_kf5
 %cmake_build
 
-
 %install
 %cmake_install
-
 
 %files
 %license LICENSES/*
 %{_kf5_datadir}/qlogging-categories5/kwindowsystem.kwayland.categories
 %{_kf5_plugindir}/kwindowsystem/KF5WindowSystemKWaylandPlugin.so
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

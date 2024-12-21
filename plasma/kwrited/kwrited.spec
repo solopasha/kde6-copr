@@ -2,37 +2,37 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 3
 
-Name:    kwrited
-Summary: KDE Write Daemon
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           kwrited
+Summary:        KDE Write Daemon
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: CC0-1.0 AND GPL-2.0-or-later
-URL:     https://invent.kde.org/plasma/%{name}
+License:        CC0-1.0 AND GPL-2.0-or-later
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(KF6Pty)
+
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Notifications)
-BuildRequires:  cmake(KF6DBusAddons)
-BuildRequires:  qt6-qtbase-devel
+BuildRequires:  cmake(KF6Pty)
+
+BuildRequires:  cmake(Qt6Gui)
 
 # Owns /usr/share/knotifications5
 Requires:       kf6-knotifications
 
-# TODO: Remove once kwrited is split from kde-workspace
-Conflicts:      kde-workspace < 5.0.0-1
-
 %description
 %{summary}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 %cmake_kf6
@@ -43,8 +43,8 @@ Conflicts:      kde-workspace < 5.0.0-1
 
 %files
 %license LICENSES/*
-%{_qt6_plugindir}/kf6/kded/kwrited.so
 %{_kf6_datadir}/knotifications6/kwrited.notifyrc
+%{_qt6_plugindir}/kf6/kded/kwrited.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}

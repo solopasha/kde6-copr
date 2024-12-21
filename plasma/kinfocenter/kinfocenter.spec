@@ -2,95 +2,73 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 9
 
-Name:    kinfocenter
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: KDE Info Center
+Name:           kinfocenter
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Info Center
 
-License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/plasma/%{name}
+License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  qt6-qtbase-devel
-
-BuildRequires:  kf6-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  libappstream-glib
 
-BuildRequires:  cmake(KF6Completion)
+BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(Plasma)
+BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6Solid)
-BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  cmake(KF6XmlGui)
-BuildRequires:  cmake(KF6Declarative)
-BuildRequires:  cmake(KF6Package)
-BuildRequires:  cmake(KF6DocTools)
-BuildRequires:  cmake(KF6Auth)
-BuildRequires:  mesa-libGL-devel
-BuildRequires:  mesa-libGLES-devel
-BuildRequires:  mesa-libEGL-devel
-BuildRequires:  mesa-libGLU-devel
-BuildRequires:  libX11-devel
-BuildRequires:  pciutils-devel
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Widgets)
+
 BuildRequires:  pkgconfig(libusb-1.0)
 BuildRequires:  pkgconfig(libdrm)
-BuildRequires:  desktop-file-utils
-BuildRequires:  libappstream-glib
-%ifnarch s390 s390x
-BuildRequires:  libraw1394-devel
-%endif
 
-BuildRequires: cmake(KF6Kirigami)
-Requires: kf6-kirigami2%{?_isa}
-
-# Optional
-BuildRequires:  cmake(KWayland)
-
-# runtime query of usb.ids, oui.txt
-Requires: hwdata
+Requires:       kf6-kirigami%{?_isa}
 
 # Runtime Dependancies
-Requires: plasma-systemsettings
-Requires: wayland-utils
-Requires: dmidecode
-Requires: vulkan-tools
-Requires: xdpyinfo
-Requires: egl-utils
-Requires: fwupd
-Requires: aha
-Requires: clinfo
-Requires: pulseaudio-utils
+Requires:       plasma-systemsettings
+Requires:       wayland-utils
+Requires:       dmidecode
+Requires:       vulkan-tools
+Requires:       xdpyinfo
+Requires:       egl-utils
+Requires:       fwupd
+Requires:       aha
+Requires:       clinfo
+Requires:       pulseaudio-utils
+Requires:       hwdata
 
 %description
 %{summary}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
 %find_lang %{name} --all-name --with-html
 
-
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml || :
-
 
 %files -f %{name}.lang
 %{_kf6_bindir}/kinfocenter
@@ -104,11 +82,10 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 %{_kf6_datadir}/polkit-1/actions/org.kde.kinfocenter.dmidecode.policy
 %{_kf6_libdir}/libKInfoCenterInternal.so
 %{_kf6_libexecdir}/kauth/kinfocenter-dmidecode-helper
+%{_kf6_qmldir}/org/kde/kinfocenter/
 %{_kf6_qtplugindir}/plasma/kcms/*.so
 %{_kf6_qtplugindir}/plasma/kcms/kinfocenter/*.so
 %{_libexecdir}/kinfocenter-opengl-helper
-%{_qt6_archdatadir}/qml/org/kde/kinfocenter/
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

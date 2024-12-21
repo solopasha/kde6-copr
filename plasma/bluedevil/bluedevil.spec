@@ -2,17 +2,21 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 6
 
-Name:    bluedevil
-Summary: Bluetooth stack for KDE
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           bluedevil
+Summary:        Bluetooth stack for KDE
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: GPL-2.0-or-later
-URL:     https://invent.kde.org/plasma/bluedevil
+License:        GPL-2.0-or-later
+URL:            https://invent.kde.org/plasma/bluedevil
 %plasma_source
 
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
+BuildRequires:  shared-mime-info
 
 BuildRequires:  cmake(KF6BluezQt)
 BuildRequires:  cmake(KF6CoreAddons)
@@ -22,34 +26,34 @@ BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6JobWidgets)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6Notifications)
+BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6Svg)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  cmake(Plasma)
 
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtdeclarative-devel
-BuildRequires:  shared-mime-info
-BuildRequires:  desktop-file-utils
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Widgets)
+
+BuildRequires:  cmake(Plasma)
 
 Provides:       dbus-bluez-pin-helper
 
 Requires:       bluez >= 5
 Requires:       bluez-obexd
-Requires:       kf6-kded
+Requires:       kf6-kded%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
 Requires:       pulseaudio-module-bluetooth
-
-Requires:       kf6-kirigami
 
 %description
 BlueDevil is the bluetooth stack for KDE.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 %cmake_kf6
@@ -60,10 +64,8 @@ BlueDevil is the bluetooth stack for KDE.
 
 %find_lang %{name} --all-name --with-html
 
-
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
-
 
 %files -f %{name}.lang
 %doc README
@@ -75,15 +77,15 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/bluedevilwizard/
 %{_kf6_datadir}/knotifications6/bluedevil.notifyrc
 %{_kf6_datadir}/mime/packages/bluedevil-mime.xml
-%{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.bluetooth
+%{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.bluetooth/
 %{_kf6_datadir}/qlogging-categories6/bluedevil.categories
 %{_kf6_datadir}/remoteview/bluetooth-network.desktop
 %{_kf6_metainfodir}/org.kde.plasma.bluetooth.appdata.xml
-%{_kf6_plugindir}/kded/*.so
-%{_kf6_plugindir}/kio/*.so
+%{_kf6_plugindir}/kded/bluedevil.so
+%{_kf6_plugindir}/kio/kio_bluetooth.so
+%{_kf6_plugindir}/kio/kio_obexftp.so
 %{_kf6_qmldir}/org/kde/plasma/private/bluetooth/
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_bluetooth.so
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

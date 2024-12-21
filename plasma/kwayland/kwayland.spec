@@ -2,31 +2,30 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 6
 
-Name:       kwayland
-Version:    6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release:    1%{?dist}
-Summary:    KDE Frameworks 6 library that wraps Client and Server Wayland libraries
+Name:           kwayland
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 library that wraps Client and Server Wayland libraries
 
-License:    BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND MIT-CMU AND MIT
-URL:        https://invent.kde.org/plasma/%{name}
+License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND MIT-CMU AND MIT
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
 BuildRequires:  cmake
-BuildRequires:  gcc-c++
-BuildRequires:  appstream
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  make
-BuildRequires:  qt6-qtbase-devel
+
+BuildRequires:  cmake(Qt6Concurrent)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  qt6-qtbase-private-devel
-BuildRequires:  qt6-qttools-devel
-BuildRequires:  wayland-devel
-BuildRequires:  wayland-protocols-devel
 
 BuildRequires:  cmake(PlasmaWaylandProtocols)
-BuildRequires:  cmake(Qt6WaylandClient)
+BuildRequires:  pkgconfig(wayland-protocols)
+BuildRequires:  wayland-devel
 
-Requires:   kf6-filesystem
+Requires:       kf6-filesystem
 
 # Renamed from kf6-kwayland
 Obsoletes:      kf6-kwayland < 1:%{version}-%{release}
@@ -35,27 +34,23 @@ Provides:       kf6-kwayland = 1:%{version}-%{release}
 %description
 %{summary}.
 
-%package    devel
-Summary:    Development files for %{name}
-Requires:   %{name} = %{version}-%{release}
-Requires:   qt6-qtbase-devel
-Obsoletes:  kf6-kwayland-devel < 1:%{version}-%{release}
-Provides:   kf6-kwayland-devel = 1:%{version}-%{release}
-
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake(Qt6Gui)
+Obsoletes:      kf6-kwayland-devel < 1:%{version}-%{release}
+Provides:       kf6-kwayland-devel = 1:%{version}-%{release}
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
@@ -63,13 +58,11 @@ developing applications that use %{name}.
 %files
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_datadir}/qlogging-categories6/*categories
+%{_kf6_datadir}/qlogging-categories6/kwayland*categories
 %{_kf6_libdir}/libKWaylandClient.so.%{version_no_git}
 %{_kf6_libdir}/libKWaylandClient.so.6
 
 %files devel
-%doc README.md
-%license LICENSES/*.txt
 %{_includedir}/KWayland/
 %{_kf6_libdir}/cmake/KWayland/
 %{_kf6_libdir}/libKWaylandClient.so

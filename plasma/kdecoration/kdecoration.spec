@@ -13,10 +13,14 @@ URL:            https://invent.kde.org/plasma/kdecoration
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  qt6-qtbase-devel
 
 BuildRequires:  cmake(KF6I18n)
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Test)
 
 Requires:       kf6-filesystem
 

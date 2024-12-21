@@ -2,73 +2,70 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 4
 
-%global  base_name systemsettings
+%global base_name systemsettings
 
-Name:    plasma-%{base_name}
-Summary: KDE System Settings application
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           plasma-%{base_name}
+Summary:        KDE System Settings application
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-or-later AND (GPL-2.0-only OR GPL-3.0-only)
-URL:     https://invent.kde.org/plasma/%{base_name}
+License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-or-later AND (GPL-2.0-only OR GPL-3.0-only)
+URL:            https://invent.kde.org/plasma/%{base_name}
 %plasma_source
 
-BuildRequires: desktop-file-utils
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires: extra-cmake-modules
-BuildRequires: kf6-rpm-macros
-BuildRequires: cmake(KF6Crash)
-BuildRequires: cmake(KF6ItemViews)
-BuildRequires: cmake(KF6KCMUtils)
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6KIO)
-BuildRequires: cmake(KF6Service)
-BuildRequires: cmake(KF6IconThemes)
-BuildRequires: cmake(KF6WidgetsAddons)
-BuildRequires: cmake(KF6WindowSystem)
-BuildRequires: cmake(KF6XmlGui)
-BuildRequires: cmake(KF6DBusAddons)
-BuildRequires: cmake(KF6Config)
-BuildRequires: cmake(KF6DocTools)
-BuildRequires: cmake(PlasmaActivities)
-BuildRequires: cmake(KF6ItemModels)
-BuildRequires: cmake(KF6GuiAddons)
-BuildRequires: cmake(KF6Runner)
-BuildRequires: cmake(KF6Auth)
+BuildRequires:  cmake(KF6Auth)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6Crash)
+BuildRequires:  cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6GuiAddons)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6IconThemes)
+BuildRequires:  cmake(KF6ItemModels)
+BuildRequires:  cmake(KF6ItemViews)
+BuildRequires:  cmake(KF6JobWidgets)
+BuildRequires:  cmake(KF6KCMUtils)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Kirigami)
+BuildRequires:  cmake(KF6Runner)
+BuildRequires:  cmake(KF6Service)
+BuildRequires:  cmake(KF6WidgetsAddons)
+BuildRequires:  cmake(KF6WindowSystem)
+BuildRequires:  cmake(KF6XmlGui)
 
-BuildRequires: cmake(Qt6Qml)
-BuildRequires: cmake(Qt6Quick)
-BuildRequires: cmake(Qt6QuickWidgets)
-BuildRequires: cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6QuickWidgets)
+BuildRequires:  cmake(Qt6Widgets)
 
-BuildRequires: cmake(KF6Kirigami)
-BuildRequires: plasma-workspace-devel
+BuildRequires:  cmake(PlasmaActivities)
 
-Requires:      kf6-kirigami%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
 
 %description
 %{summary}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
 
 %find_lang systemsettings6 --with-qt --with-html --all-name
 
-
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
-
 
 %files -f systemsettings6.lang
 %license LICENSES/*
@@ -81,7 +78,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_kf6_datadir}/systemsettings/
 %{_kf6_datadir}/zsh/site-functions/_systemsettings
 %{_kf6_plugindir}/krunner/krunner_systemsettings.so
-
 
 %changelog
 %{?kde_snapshot_changelog_entry}

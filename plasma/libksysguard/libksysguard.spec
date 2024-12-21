@@ -2,53 +2,42 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 8
 
-Name:    libksysguard
-Summary: Library for managing processes running on the system
-Version: 6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           libksysguard
+Summary:        Library for managing processes running on the system
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/plasma/%{name}
+License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-# kf6 required
+
 BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6IconThemes)
-BuildRequires:  cmake(KF6JobWidgets)
-BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6NewStuff)
 BuildRequires:  cmake(KF6Package)
 BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6Solid)
-BuildRequires:  cmake(KF6WidgetsAddons)
-BuildRequires:  cmake(KF6WindowSystem)
-# qt6 required
-BuildRequires:  qt6-qttools-devel
+
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Widgets)
-BuildRequires:  cmake(Qt6Core5Compat)
 
-# Qt6 Web packages do not exist on those architectures.
-%ifarch %{qt6_qtwebengine_arches}
-BuildRequires:  cmake(Qt6WebEngineWidgets)
-BuildRequires:  cmake(Qt6WebChannel)
-%endif
-
-BuildRequires:  pkgconfig(libpcap)
-BuildRequires:  pkgconfig(libnl-3.0) pkgconfig(libnl-route-3.0)
 BuildRequires:  libcap-devel
 BuildRequires:  libXres-devel
 BuildRequires:  lm_sensors-devel
+BuildRequires:  pkgconfig(libnl-3.0)
+BuildRequires:  pkgconfig(libnl-route-3.0)
+BuildRequires:  pkgconfig(libpcap)
 BuildRequires:  zlib-devel
-BuildRequires:  pkgconfig(x11)
 
 Requires:       %{name}-common = %{version}-%{release}
 Requires:       qt6-qt5compat%{?_isa}
@@ -65,15 +54,14 @@ Requires:       cmake(Qt6Network)
 Requires:       cmake(Qt6Widgets)
 Requires:       cmake(KF6Config)
 Requires:       cmake(KF6I18n)
+%description    devel
+The %{name}-devel package contains libraries and header files for
+developing applications that use %{name}.
 
 %package        common
 Summary:        Runtime data files shared by libksysguard and ksysguard-libs
 %description    common
 %{summary}.
-
-%description    devel
-The %{name}-devel package contains libraries and header files for
-developing applications that use %{name}.
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
@@ -102,11 +90,11 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKSysGuardSystemStats.so.2
 %{_kf6_libdir}/libprocesscore.so.%{version_no_git}
 %{_kf6_libdir}/libprocesscore.so.10
-%dir %{_libexecdir}/ksysguard
-%caps(cap_net_raw=ep) %{_libexecdir}/ksysguard/ksgrd_network_helper
 %{_qt6_plugindir}/kf6/packagestructure/ksysguard_sensorface.so
 %{_qt6_plugindir}/ksysguard/
 %{_qt6_qmldir}/org/kde/ksysguard/
+%dir %{_libexecdir}/ksysguard
+%caps(cap_net_raw=ep) %{_libexecdir}/ksysguard/ksgrd_network_helper
 
 %files common
 %{_kf6_datadir}/dbus-1/system-services/org.kde.ksysguard.processlisthelper.service
@@ -823,7 +811,6 @@ developing applications that use %{name}.
 
 * Wed Jun 11 2014 Daniel Vrátil <dvratil@redhat.com> - 4.97.0-2.20140611git887e946
 - Update to latest git snapshot
-
 
 * Sat May 17 2014 Daniel Vrátil <dvratil@redhat.com> - 4.96.0-2.20140514git87ae01f
 - Fix Source
