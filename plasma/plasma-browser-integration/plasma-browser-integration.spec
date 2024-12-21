@@ -1,6 +1,6 @@
-%global commit0 55dd51f572e52b98eb7571e6107d6c5a7c956f94
+%global commit0 ebf6606463d73e7dd0a658340b369ab495da9b4a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:           plasma-browser-integration
 Summary:        %{name} provides components necessary to integrate browsers into the Plasma Desktop
@@ -74,6 +74,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/krunner/dbusplugins/plasma-runner-browserhistory.desktop
 %{_kf6_datadir}/krunner/dbusplugins/plasma-runner-browsertabs.desktop
 %{_kf6_libdir}/mozilla/native-messaging-hosts/org.kde.plasma.browser_integration.json
+%{_kf6_plugindir}/kded/browserintegrationflatpakintegrator.so
 %{_kf6_plugindir}/kded/browserintegrationreminder.so
 
 %changelog
