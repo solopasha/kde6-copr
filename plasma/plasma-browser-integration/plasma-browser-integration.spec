@@ -1,6 +1,6 @@
 %global commit0 ebf6606463d73e7dd0a658340b369ab495da9b4a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 Name:           plasma-browser-integration
 Summary:        %{name} provides components necessary to integrate browsers into the Plasma Desktop
