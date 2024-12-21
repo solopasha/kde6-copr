@@ -12,9 +12,10 @@ URL:           https://invent.kde.org/plasma/%{name}
 %plasma_source
 
 BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macro
+BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
