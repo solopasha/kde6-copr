@@ -1,88 +1,91 @@
-%global commit0 58801b1cb58919ec1f619acbc644d6f7a9c384d0
+%global commit0 aa4fa29cf3cfb37be52cbe3654a4333abb935489
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-Name:    spectacle
-Summary: Screenshot capture utility
-Version: 24.08.2
-Release: 2%{?dist}
+Name:           spectacle
+Summary:        Screenshot capture utility
+Epoch:          1
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: GPLv2
-URL:     https://www.kde.org/applications/graphics/spectacle/
+License:        LGPL-2.0-or-later AND GPL-2.0-or-later AND (LGPL-2.1-only OR LGPL-3.0-only)
+URL:            https://invent.kde.org/graphics/spectacle
 %apps_source
 
-Patch:   https://invent.kde.org/graphics/spectacle/-/commit/7f0a1cc0e8afb1589fb6f37e17a80c824f17a52f.patch
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  libappstream-glib
+BuildRequires:  systemd-rpm-macros
 
-BuildRequires: desktop-file-utils
-BuildRequires: libappstream-glib
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
+BuildRequires:  cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6GlobalAccel)
+BuildRequires:  cmake(KF6GuiAddons)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6KirigamiPlatform)
+BuildRequires:  cmake(KF6Notifications)
+BuildRequires:  cmake(KF6Prison)
+BuildRequires:  cmake(KF6Purpose)
+BuildRequires:  cmake(KF6StatusNotifierItem)
+BuildRequires:  cmake(KF6WidgetsAddons)
+BuildRequires:  cmake(KF6WindowSystem)
+BuildRequires:  cmake(KF6XmlGui)
 
-BuildRequires: extra-cmake-modules
-BuildRequires: kf6-rpm-macros
+BuildRequires:  cmake(Qt6Concurrent)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Multimedia)
+BuildRequires:  cmake(Qt6PrintSupport)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6QuickControls2)
+BuildRequires:  cmake(Qt6QuickTemplates2)
+BuildRequires:  cmake(Qt6Test)
+BuildRequires:  cmake(Qt6WaylandClient)
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  qt6-qtbase-private-devel
 
-BuildRequires: cmake(KF6Config)
-BuildRequires: cmake(KF6CoreAddons)
-BuildRequires: cmake(KF6DBusAddons)
-BuildRequires: cmake(KF6DocTools)
-BuildRequires: cmake(KF6GlobalAccel)
-BuildRequires: cmake(KF6GuiAddons)
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6KIO)
-BuildRequires: cmake(KF6KirigamiPlatform)
-BuildRequires: cmake(KF6Notifications)
-BuildRequires: cmake(KF6Prison)
-BuildRequires: cmake(KF6Purpose)
-BuildRequires: cmake(KF6StatusNotifierItem)
-BuildRequires: cmake(KF6WindowSystem)
-BuildRequires: cmake(KF6XmlGui)
+BuildRequires:  cmake(KPipeWire)
+BuildRequires:  cmake(LayerShellQt)
 
-BuildRequires: cmake(KPipeWire)
-BuildRequires: cmake(LayerShellQt)
-BuildRequires: cmake(PlasmaWaylandProtocols)
+BuildRequires:  cmake(OpenCV)
+BuildRequires:  cmake(PlasmaWaylandProtocols)
+BuildRequires:  cmake(ZXing)
+BuildRequires:  pkgconfig(wayland-client)
+BuildRequires:  pkgconfig(xcb-cursor)
+BuildRequires:  pkgconfig(xcb-image)
+BuildRequires:  pkgconfig(xcb-randr)
+BuildRequires:  pkgconfig(xcb-util)
+BuildRequires:  pkgconfig(xcb-xfixes)
 
-BuildRequires: qt6-qtbase-private-devel
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
-BuildRequires: cmake(Qt6DBus)
-BuildRequires: cmake(Qt6PrintSupport)
-BuildRequires: cmake(Qt6QuickControls2)
-BuildRequires: cmake(Qt6Quick)
-BuildRequires: cmake(Qt6WaylandClient)
-BuildRequires: cmake(Qt6Multimedia)
-
-BuildRequires: cmake(OpenCV)
-BuildRequires: cmake(ZXing)
-BuildRequires: pkgconfig(wayland-client)
-BuildRequires: pkgconfig(xcb-cursor)
-BuildRequires: pkgconfig(xcb-image)
-BuildRequires: pkgconfig(xcb-util)
-BuildRequires: pkgconfig(xcb-xfixes)
-
-# for systemd-related macros
-BuildRequires:  systemd-devel
+Requires:       qt6-qtimageformats%{?_isa}
 
 %description
 %{summary}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
 
 %find_lang %{name} --all-name --with-html --with-man
 
-
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.spectacle.appdata.xml
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.spectacle.desktop
-
 
 %files -f %{name}.lang
 %license LICENSES/*
@@ -101,8 +104,17 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.spectacle
 %{_kf6_metainfodir}/org.kde.spectacle.appdata.xml
 %{_userunitdir}/app-org.kde.spectacle.service
 
-
 %changelog
+%{?kde_snapshot_changelog_entry}
+* Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
+- Update to 24.12.0
+
+* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-2
+- Remove Qt6 version constraints
+
+* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 24.08.3-1
+- Update to 24.08.3
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 24.08.2-2
 - rebuilt
 
