@@ -1,6 +1,6 @@
-%global commit0 cf53353ce8250284f09ab716ba16d0173c27e32c
+%global commit0 148850fcd4470f7d886baaf95fc9705db2b9fb42
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework kdeclarative
 
@@ -62,6 +62,8 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_libdir}/libKF6CalendarEvents.so.%{version_no_git}
 %{_kf6_libdir}/libKF6CalendarEvents.so.6
+%{_kf6_libdir}/libkquickcontrolsprivate.so.%{version_no_git}
+%{_kf6_libdir}/libkquickcontrolsprivate.so.0
 %{_kf6_qmldir}/org/kde/draganddrop/
 %{_kf6_qmldir}/org/kde/graphicaleffects/
 %{_kf6_qmldir}/org/kde/kquickcontrols/
@@ -72,6 +74,7 @@ developing applications that use %{name}.
 %{_kf6_includedir}/KDeclarative/
 %{_kf6_libdir}/cmake/KF6Declarative/
 %{_kf6_libdir}/libKF6CalendarEvents.so
+%{_kf6_libdir}/libkquickcontrolsprivate.so
 %{_qt6_docdir}/*.tags
 
 %changelog
