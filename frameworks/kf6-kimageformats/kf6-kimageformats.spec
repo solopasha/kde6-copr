@@ -1,6 +1,6 @@
-%global commit0 1cb294545fe7368ee5fedc483a9faa5160e1631b
+%global commit0 0b2c6d725db366e3b18770e9af8487377c5e9108
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 %global framework kimageformats
 
@@ -45,7 +45,7 @@ image formats.
 %autosetup -n %{sourcerootdir} -p1
 
 %build
-%cmake_kf6 -DKIMAGEFORMATS_HEIF=ON
+%cmake_kf6 -DKIMAGEFORMATS_HEIF=ON -DKIMAGEFORMATS_DDS=OFF
 %cmake_build
 
 %install
