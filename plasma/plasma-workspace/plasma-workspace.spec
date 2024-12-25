@@ -1,6 +1,6 @@
-%global commit0 4029f2e07ee5a39eeffc22898da8a2a4760b2bf5
+%global commit0 5f700877e98c3a74ff17138e0b2ce023a85d6c3f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 50
+%global bumpver 51
 
 %bcond x11 1
 
@@ -118,7 +118,6 @@ BuildRequires:  pkgconfig(icu-io)
 BuildRequires:  pkgconfig(icu-uc)
 BuildRequires:  pkgconfig(iso-codes)
 BuildRequires:  pkgconfig(libcanberra)
-BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(libpipewire-0.3)
 BuildRequires:  pkgconfig(libqalculate)
 BuildRequires:  pkgconfig(libudev)
