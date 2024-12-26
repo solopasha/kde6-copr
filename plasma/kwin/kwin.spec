@@ -1,6 +1,6 @@
-%global commit0 e311c67c1cea43e4514df2fcd1fe6bafde18aadd
+%global commit0 c76a544639f109e679b7dc97423905af380ca6a6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 60
+%global bumpver 61
 
 %bcond x11 1
 

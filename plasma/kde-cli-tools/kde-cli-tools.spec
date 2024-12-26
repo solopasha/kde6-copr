@@ -1,6 +1,6 @@
-%global commit0 a1d36b7ce70f5869c8916965cd8ba21080e238ff
+%global commit0 57bc14ae83c0a1a11150f88089afb002d1764e47
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 Name:           kde-cli-tools
 Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
