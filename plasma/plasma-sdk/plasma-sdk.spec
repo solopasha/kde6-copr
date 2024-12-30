@@ -92,6 +92,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.appdata.
 %{_kf6_datadir}/applications/org.kde.plasma.themeexplorer.desktop
 %{_kf6_datadir}/applications/org.kde.plasmaengineexplorer.desktop
 %{_kf6_datadir}/applications/org.kde.plasmoidviewer.desktop
+%{_kf6_datadir}/icons/hicolor/scalable/apps/org.kde.iconexplorer.svg
 %{_kf6_datadir}/kpackage/genericqml/org.kde.plasma.lookandfeelexplorer/
 %{_kf6_datadir}/kpackage/genericqml/org.kde.plasma.themeexplorer/
 %{_kf6_datadir}/plasma/shells/org.kde.plasma.plasmoidviewershell
