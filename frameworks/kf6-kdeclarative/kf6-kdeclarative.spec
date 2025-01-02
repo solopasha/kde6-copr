@@ -1,6 +1,6 @@
-%global commit0 148850fcd4470f7d886baaf95fc9705db2b9fb42
+%global commit0 c4806f70441a62c221b3566ad37e806193250fb4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global framework kdeclarative
 
