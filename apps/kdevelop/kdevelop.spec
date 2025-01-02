@@ -8,7 +8,7 @@ Name:           kdevelop
 Summary:        Integrated Development Environment for C++/C
 Epoch:          9
 Version:        24.12.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL-2.0-only
 URL:            http://www.kdevelop.org/
 %apps_source
@@ -211,6 +211,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{rpmmacrodir}/macros.kdevelop
 
 %changelog
+* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 9:24.12.0-2
+- rebuilt
+
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 9:24.12.0-1
 - Update to 24.12.0
 
