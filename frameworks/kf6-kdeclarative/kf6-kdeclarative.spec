@@ -74,7 +74,6 @@ developing applications that use %{name}.
 %{_kf6_includedir}/KDeclarative/
 %{_kf6_libdir}/cmake/KF6Declarative/
 %{_kf6_libdir}/libKF6CalendarEvents.so
-%{_kf6_libdir}/libkquickcontrolsprivate.so
 %{_qt6_docdir}/*.tags
 
 %changelog
