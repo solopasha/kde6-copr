@@ -12,8 +12,6 @@ Release: 1%{?dist}
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
 %plasma_source
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/d5a123f997a06bacafcc2e0b68c43c75ef90f9a0.patch
-Patch:   https://invent.kde.org/plasma/plasma-workspace/-/commit/7357e228ba88a6a16acc9f97628ce6fd4f40e2ab.patch
 
 Source11:       startkderc
 Source15:       fedora-lookandfeel.json
