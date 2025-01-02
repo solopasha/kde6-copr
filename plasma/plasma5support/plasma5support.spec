@@ -1,10 +1,10 @@
-%global commit0 e2a69620e3b5cc513a94fd671e1dee31345c531b
+%global commit0 1ed773ed51b79ccac033787c6f7ce48469769b3f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    plasma5support
 Summary: Support components for porting from KF5/Qt5 to KF6/Qt6
-Version: 6.2.4
+Version: 6.2.5
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -82,6 +82,9 @@ Provides:       kf6-plasma5support-devel = 1:%{version}-%{release}
 %{_kf6_libdir}/libPlasma5Support.so
 
 %changelog
+* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
+- Update to 6.2.5
+
 * Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
 - Update to 6.2.4
 

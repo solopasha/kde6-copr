@@ -1,10 +1,10 @@
-%global commit0 7ef4745bc25ffd0d74ef2e7ec9e569628d72e3b7
+%global commit0 38cc0ef745cf63ec7f745c1c3f58f462cbf906b1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kde-cli-tools
-Version: 6.2.4
-Release: 2%{?dist}
+Version: 6.2.5
+Release: 1%{?dist}
 Summary: Tools based on KDE Frameworks 5 to better interact with the system
 
 License: Artistic-2.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -106,6 +106,9 @@ ln -s %{_kf6_libexecdir}/kdesu %{buildroot}%{_bindir}/kdesu
 
 
 %changelog
+* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
+- Update to 6.2.5
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-2
 - Remove Qt6 version constraints
 

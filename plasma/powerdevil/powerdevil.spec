@@ -1,10 +1,10 @@
-%global commit0 c225f2ed0454ca00334aca6aa85f7fc445873e9f
+%global commit0 a0528dadb61ba3cc413b345a2132feb0022e4135
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    powerdevil
-Version: 6.2.4
-Release: 2%{?dist}
+Version: 6.2.5
+Release: 1%{?dist}
 Summary: Manages the power consumption settings of a Plasma Shell
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -130,6 +130,9 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevil{configcommonprivate,core,ui}.so
 
 
 %changelog
+* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
+- Update to 6.2.5
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-2
 - Remove Qt6 version constraints
 

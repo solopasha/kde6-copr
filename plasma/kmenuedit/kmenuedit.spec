@@ -1,10 +1,10 @@
-%global commit0 76bff5c34e7de9e2678a1b018e101f6044d06d80
+%global commit0 72b7dfd179d0f931f71817a9cdda01e60bc19fc7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:          kmenuedit
 Summary:       KDE menu editor
-Version:       6.2.4
+Version:       6.2.5
 Release:       1%{?dist}
 
 License:       GPL-2.0-or-later OR GPL-2.0-only
@@ -66,6 +66,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kmenuedit.des
 
 
 %changelog
+* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
+- Update to 6.2.5
+
 * Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
 - Update to 6.2.4
 

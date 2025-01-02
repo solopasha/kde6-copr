@@ -1,9 +1,9 @@
-%global commit0 bed387ea4d82137bbf07c14dd9028a2a5991430e
+%global commit0 e2996f879add9c9ea3bc9e2b0cadcc7cb431a142
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kinfocenter
-Version: 6.2.4
+Version: 6.2.5
 Release: 1%{?dist}
 Summary: KDE Info Center
 
@@ -114,6 +114,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 
 
 %changelog
+* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
+- Update to 6.2.5
+
 * Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
 - Update to 6.2.4
 

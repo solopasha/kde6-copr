@@ -1,11 +1,11 @@
-%global commit0 4d569ee3007be3c93d39dfc8ebe4d1524ff194b7
+%global commit0 6a90f43146e4f4bb57f841efa5289c2708c51534
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global base_name breeze-plymouth
 
 Name:    plymouth-theme-breeze
-Version: 6.2.4
+Version: 6.2.5
 Release: 1%{?dist}
 Summary: Breeze theme for Plymouth
 
@@ -54,6 +54,9 @@ install -D -m644 -p %{SOURCE10} \
 
 
 %changelog
+* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
+- Update to 6.2.5
+
 * Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
 - Update to 6.2.4
 

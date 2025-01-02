@@ -1,9 +1,9 @@
-%global commit0 28474f4a5c0cc0d5fddac27a47df17b9ab0aa37d
+%global commit0 a363463f85403e66a210af624d1ac71e88fb60d9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    plasma-workspace-wallpapers
-Version: 6.2.4
+Version: 6.2.5
 Release: 1%{?dist}
 Summary: Additional wallpapers for Plasma workspace
 License: LGPLv3
@@ -72,6 +72,9 @@ Requires:       kde-filesystem
 %{_datadir}/wallpapers/Volna/
 
 %changelog
+* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
+- Update to 6.2.5
+
 * Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
 - Update to 6.2.4
 

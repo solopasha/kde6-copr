@@ -1,9 +1,9 @@
-%global commit0 8d872ee942cf64112a75b1989f53de477028d8e9
+%global commit0 17f5e0480616f18a6a0703d8541e26a56ad5776d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    ksystemstats
-Version: 6.2.4
+Version: 6.2.5
 Release: 1%{?dist}
 Summary: KSystemStats is a daemon that collects statistics about the running system.
 
@@ -73,6 +73,9 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 %{_qt6_plugindir}/ksystemstats/
 
 %changelog
+* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
+- Update to 6.2.5
+
 * Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
 - Update to 6.2.4
 

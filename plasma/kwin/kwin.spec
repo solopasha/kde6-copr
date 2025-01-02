@@ -1,4 +1,4 @@
-%global commit0 25475f2a80f8c13cb3736110a9b2dedf78a0821e
+%global commit0 2205260bfdecd4af45bdc6245354dca3ae744231
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -7,15 +7,14 @@
 %bcond x11 1
 
 Name:    kwin
-Version: 6.2.4
-Release: 3%{?dist}
+Version: 6.2.5
+Release: 1%{?dist}
 Summary: KDE Window manager
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://userbase.kde.org/KWin
 %plasma_source
 Patch:   https://invent.kde.org/plasma/kwin/-/commit/88c260ab261cb79425cbe5755c6c2758a4b3c19f.patch
-Patch:   https://invent.kde.org/plasma/kwin/-/commit/da1bebbb4480cfc26467ad3b31737b0df044b551.patch
 
 # Base
 BuildRequires:  extra-cmake-modules
@@ -284,6 +283,9 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 
 
 %changelog
+* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
+- Update to 6.2.5
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-3
 - Remove Qt6 version constraints
 

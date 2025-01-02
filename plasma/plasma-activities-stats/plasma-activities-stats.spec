@@ -1,10 +1,10 @@
-%global commit0 882905c2c9ce56562adb62e39d992f071ae4afc9
+%global commit0 fe660eef4db23bc00ffe9fdd6ea9e9b96e009a8e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    plasma-activities-stats
 Summary: A KDE Frameworks 6 Tier 3 library for accessing the usage data collected by the activities system
-Version: 6.2.4
+Version: 6.2.5
 Release: 1%{?dist}
 
 License: CC0-1.0, GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -71,6 +71,9 @@ Provides:       kactivities-stats-devel = %{version}-%{release}
 %{_kf6_libdir}/pkgconfig/PlasmaActivitiesStats.pc
 
 %changelog
+* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
+- Update to 6.2.5
+
 * Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
 - Update to 6.2.4
 

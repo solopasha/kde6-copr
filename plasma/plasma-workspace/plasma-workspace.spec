@@ -1,4 +1,4 @@
-%global commit0 c6b87a8488d9789b94783f6e887aa9067a4ded6c
+%global commit0 21bd07c3f2d69be8fa8e80849edb0558f9dd9d99
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,8 +6,8 @@
 
 Name:    plasma-workspace
 Summary: Plasma workspace, applications and applets
-Version: 6.2.4
-Release: 3%{?dist}
+Version: 6.2.5
+Release: 1%{?dist}
 
 License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:     https://invent.kde.org/plasma/%{name}
@@ -713,6 +713,9 @@ fi
 
 
 %changelog
+* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
+- Update to 6.2.5
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-3
 - Remove Qt6 version constraints
 

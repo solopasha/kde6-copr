@@ -1,11 +1,11 @@
-%global commit0 51ff05e0b480069e3b7e4a6e6fb31867f6ae421a
+%global commit0 0625ff66cbafa3e7f3db6b3138f36b33948890cd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kscreen
 Epoch:   1
-Version: 6.2.4
-Release: 2%{?dist}
+Version: 6.2.5
+Release: 1%{?dist}
 Summary: KDE Display Management software
 
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later (GPL-2.0-only OR GPL-3.0-only)
@@ -71,6 +71,9 @@ KCM and KDED modules for managing displays in KDE.
 
 
 %changelog
+* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 1:6.2.5-1
+- Update to 6.2.5
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 1:6.2.4-2
 - Remove Qt6 version constraints
 

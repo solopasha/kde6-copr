@@ -1,9 +1,9 @@
-%global commit0 5a47aa1159d31c1998d3a2addde2266226a2cb23
+%global commit0 d1de7125322a10deb452e15fd6e029e4cf673bc9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kwayland-integration
-Version: 6.2.4
+Version: 6.2.5
 Release: 1%{?dist}
 Summary: Provides integration plugins for various KDE Frameworks for Wayland
 
@@ -56,6 +56,9 @@ Requires:       kf5-filesystem
 
 
 %changelog
+* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
+- Update to 6.2.5
+
 * Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
 - Update to 6.2.4
 

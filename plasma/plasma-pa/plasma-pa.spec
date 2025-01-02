@@ -1,9 +1,9 @@
-%global commit0 c71aac689f8c500efc1164964c934d22795cc75f
+%global commit0 857bb275ec51c1812f29b2cf1eed3a6fd8035b7e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    plasma-pa
-Version: 6.2.4
+Version: 6.2.5
 Release: 1%{?dist}
 Summary: Plasma applet for audio volume management using PulseAudio
 
@@ -74,6 +74,9 @@ Requires:       pulseaudio-daemon
 
 
 %changelog
+* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
+- Update to 6.2.5
+
 * Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
 - Update to 6.2.4
 

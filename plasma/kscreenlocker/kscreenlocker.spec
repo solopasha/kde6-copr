@@ -1,10 +1,10 @@
-%global commit0 5f2e32686931ba16c1a9bddfa89bb9d3f65723d0
+%global commit0 25dd7c3ac7c17f8ca73e9572205d99aff67519e2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kscreenlocker
-Version:        6.2.4
-Release:        2%{?dist}
+Version:        6.2.5
+Release:        1%{?dist}
 Summary:        Library and components for secure lock screen architecture
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -90,6 +90,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
+- Update to 6.2.5
+
 * Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-2
 - Remove Qt6 version constraints
 

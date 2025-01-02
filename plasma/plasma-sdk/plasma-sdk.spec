@@ -1,9 +1,9 @@
-%global commit0 3b506eb839a8b4aea5a1a9995527fb9ad4558bb0
+%global commit0 27b2b8610048d416d6507f1c1f820421245661a8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    plasma-sdk
-Version: 6.2.4
+Version: 6.2.5
 Release: 1%{?dist}
 Summary: Development tools for Plasma 6
 
@@ -108,6 +108,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.plasmoidviewe
 %{_mandir}/man1/kqml.1.gz
 
 %changelog
+* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
+- Update to 6.2.5
+
 * Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
 - Update to 6.2.4
 
