@@ -1,11 +1,11 @@
-%global commit0 b53105e8e60ace82c30a0b543bdbb1cfdd459c7e
+%global commit0 472d7ab81c74bb78f99ab37f56beaef667ebb850
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kcmutils
 
 Name:           kf6-%{framework}
-Version:        6.9.0
+Version:        6.10.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 addon with extra API to write KConfigModules
 
@@ -93,6 +93,9 @@ mkdir -p %{buildroot}%{_kf6_qtplugindir}/kcms
 %{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
+- Update to 6.10.0
+
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
 - Update to 6.9.0
 

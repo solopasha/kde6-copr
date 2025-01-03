@@ -1,11 +1,11 @@
-%global commit0 b293b1e29781f09280a19f5ce2522e24e15adc5c
+%global commit0 b51d016199d23d8e7892c12031166ce25acedf45
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework sonnet
 
 Name:           kf6-%{framework}
-Version:        6.9.0
+Version:        6.10.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 solution for spell checking
 License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later
@@ -121,6 +121,9 @@ developing applications that use %{name}.
 %{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
+- Update to 6.10.0
+
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
 - Update to 6.9.0
 

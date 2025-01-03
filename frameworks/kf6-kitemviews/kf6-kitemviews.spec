@@ -1,11 +1,11 @@
-%global commit0 4ce17edbbba96165310e152a3c0eb844dd025437
+%global commit0 d0b1092a864abfb0cdfc41aa557f0b9419c2b111
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kitemviews
 
 Name:           kf6-%{framework}
-Version:        6.9.0
+Version:        6.10.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with item views
 License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later
@@ -61,6 +61,9 @@ developing applications that use %{name}.
 %{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
+- Update to 6.10.0
+
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
 - Update to 6.9.0
 

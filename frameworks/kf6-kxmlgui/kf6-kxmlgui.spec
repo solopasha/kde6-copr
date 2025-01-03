@@ -1,11 +1,11 @@
-%global commit0 96a37fd4948276aa6b3c068e398ac23df9add457
+%global commit0 8ff73a13ae1666c28b30312e51c8d8d62067dd89
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kxmlgui
 
 Name:           kf6-%{framework}
-Version:        6.9.0
+Version:        6.10.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 solution for user-configurable main windows
 
@@ -89,6 +89,9 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kxmlgui5/
 %{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
+- Update to 6.10.0
+
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
 - Update to 6.9.0
 

@@ -1,4 +1,4 @@
-%global commit0 18762b85399bf47b21f2761026be4e7c4c4edcdc
+%global commit0 395a3a4595c5815534d59f3592dbb4f311166263
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:           kf6-ksvg
 Summary:        Components for handling SVGs
-Version:        6.9.0
+Version:        6.10.0
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -69,6 +69,9 @@ developing applications that use %{name}.
 %{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
+- Update to 6.10.0
+
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
 - Update to 6.9.0
 

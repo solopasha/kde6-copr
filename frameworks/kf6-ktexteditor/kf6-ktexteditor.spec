@@ -1,11 +1,11 @@
-%global commit0 c24752b8bb780f17c5b0207dba1f11227eda3a2a
+%global commit0 15807d6d0c8f8e9c12208edb60c4da293d0acffe
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework ktexteditor
 
 Name:           kf6-%{framework}
-Version:        6.9.0
+Version:        6.10.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 with advanced embeddable text editor
 
@@ -96,6 +96,9 @@ mkdir -p %{buildroot}%{_kf6_qtplugindir}/ktexteditor
 %{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
+- Update to 6.10.0
+
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
 - Update to 6.9.0
 

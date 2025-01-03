@@ -1,11 +1,11 @@
-%global commit0 a4baa08269e2c61c941a7dc4ea5039027ad6eafc
+%global commit0 13f9460595a2709c46777c1200809cff2e004ff3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kdeclarative
 
 Name:           kf6-%{framework}
-Version:        6.9.0
+Version:        6.10.0
 Release:        1%{?dist}
 Summary:        Integration of QML and KDE work spaces
 
@@ -62,6 +62,8 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_libdir}/libKF6CalendarEvents.so.%{version_no_git}
 %{_kf6_libdir}/libKF6CalendarEvents.so.6
+%{_kf6_libdir}/libkquickcontrolsprivate.so.%{version_no_git}
+%{_kf6_libdir}/libkquickcontrolsprivate.so.0
 %{_kf6_qmldir}/org/kde/draganddrop/
 %{_kf6_qmldir}/org/kde/graphicaleffects/
 %{_kf6_qmldir}/org/kde/kquickcontrols/
@@ -75,6 +77,9 @@ developing applications that use %{name}.
 %{_qt6_docdir}/*.tags
 
 %changelog
+* Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
+- Update to 6.10.0
+
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
 - Update to 6.9.0
 
