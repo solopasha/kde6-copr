@@ -1,9 +1,9 @@
-%global commit0 25e2b21ff2ea275c71ace7e47143845564090a7d
+%global commit0 37bb58d019d4813fca05a83ebfdfb6949b3b8476
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           skanlite
-Version:        24.12.0
+Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Lightweight scanning program
 # Actually: GPLv2 or GPLv3 or any later Version approved by KDE e.V.
@@ -68,6 +68,7 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/org.kde.
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

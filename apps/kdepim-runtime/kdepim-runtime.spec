@@ -1,4 +1,4 @@
-%global commit0 4523b9ede57b4597cfa188942147bd9916a15ab2
+%global commit0 2511381f2496236cfb528a06c23b3b1c61d60a9d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -7,7 +7,7 @@
 Name:    kdepim-runtime
 Summary: KDE PIM Runtime Environment
 Epoch:   1
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2
@@ -142,6 +142,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 1:24.12.0-1
 - Update to 24.12.0
 

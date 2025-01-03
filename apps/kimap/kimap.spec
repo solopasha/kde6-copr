@@ -1,9 +1,9 @@
-%global commit0 54c6243ee487a58430b975304830c2636adbe213
+%global commit0 19acee4bdeee4cb82b0d0adfe432ed45a84e37cb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kimap
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The KIMAP Library
 
@@ -71,6 +71,7 @@ developing applications that use %{name}.
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

@@ -1,10 +1,10 @@
-%global commit0 76f98cfefb6cea497300b39fd11335853d8ad4f4
+%global commit0 6d803acf77a238fd32fc5c6483f4ec6b976d46b4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kblocks
 Summary: A classic falling blocks game
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
@@ -88,6 +88,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

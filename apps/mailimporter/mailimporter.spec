@@ -1,9 +1,9 @@
-%global commit0 220a81a21c62c663d77ef496bdcbbf51857e741f
+%global commit0 e6ca82e9d5251766728e63b5e218fc37b2a2c2f7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    mailimporter
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Mail importer library
 
@@ -86,6 +86,7 @@ Requires:       %{name}-akonadi%{?_isa} = %{version}-%{release}
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

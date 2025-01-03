@@ -1,11 +1,11 @@
-%global commit0 e4048a430e214d74dfce830660d762ba26790bf7
+%global commit0 b957aa3ed0099eebcaa51cecd741067096dfd70a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global base_name elisa
 
 Name:       elisa-player
-Version:    24.12.0
+Version:    25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:    1%{?dist}
 Summary:    Elisa music player
 
@@ -99,6 +99,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.el
 %{_kf6_libdir}/elisa/
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

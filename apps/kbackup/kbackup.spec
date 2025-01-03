@@ -1,9 +1,9 @@
-%global commit0 f986c4c4d7818b1998c7dfe7aec0892aae8937de
+%global commit0 68c551a4f3228def710d6376fd24853da1e98675
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kbackup
-Version:        24.12.0
+Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Back up your data in a simple, user friendly way
 
@@ -81,6 +81,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

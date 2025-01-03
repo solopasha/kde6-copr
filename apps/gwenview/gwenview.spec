@@ -1,11 +1,11 @@
-%global commit0 0b7c04cfe0c5adf871b482bcb3ec2c5ed26b8c7d
+%global commit0 2bac5de0c993db046fad1ae287434a2b044a8472
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    gwenview
 Summary: An image viewer
 Epoch:   1
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # app: GPLv2+
@@ -118,6 +118,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 1:24.12.0-1
 - Update to 24.12.0
 

@@ -1,4 +1,4 @@
-%global commit0 ef209a33e8f3390099461e96d20176c578235a24
+%global commit0 ff3113977858a64a9df52086801bc2fb4be7eee0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 %global _lto_cflags %{nil}
 
 Name:    libkgapi
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Library to access to Google services
 
@@ -88,6 +88,7 @@ resources.
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

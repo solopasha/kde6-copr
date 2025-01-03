@@ -1,4 +1,4 @@
-%global commit0 70234c6864c6a5f91f7fd7d9a1be17272df15af0
+%global commit0 33d546b6a79e789492d05f261711e5367f65fa60
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -17,7 +17,7 @@
 
 Name:    okular
 Summary: A document viewer
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-only
@@ -209,6 +209,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.ok
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

@@ -1,10 +1,10 @@
-%global commit0 2261819f020aa83197e0e3c5f6a3b645c954a0cb
+%global commit0 5b392b693d082e99763a0b98201b7b4c475a0d3f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kdegraphics-thumbnailers
 Summary: Thumbnailers for various graphic types
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # most sources GPLv2+, dscparse.* GPL, gscreator.* LGPLv2+,
@@ -51,6 +51,7 @@ Obsoletes:     %{name}-qt5 < 24.02.1
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

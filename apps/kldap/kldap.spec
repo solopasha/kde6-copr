@@ -1,9 +1,9 @@
-%global commit0 3315dff6d525c95a4e11617be2b051cddbe663f6
+%global commit0 d5b6860548547766175fe687e6a8980ba0b0a86c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kldap
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The KLDAP Library
 
@@ -74,6 +74,7 @@ developing applications that use %{name}.
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

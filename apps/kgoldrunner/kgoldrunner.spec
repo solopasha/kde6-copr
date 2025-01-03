@@ -1,10 +1,10 @@
-%global commit0 08750cc8869da71f9732b147c6b3c400d05a1e4d
+%global commit0 e6ae1a22d7b38bfb60cb94ebc12fdb590a3ee169
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kgoldrunner
 Summary: A game of action and puzzle solving
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL
@@ -76,6 +76,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

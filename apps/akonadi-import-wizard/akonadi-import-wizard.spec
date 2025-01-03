@@ -1,4 +1,4 @@
-%global commit0 e633fb3ded83dca7c14918a22fd03fc94edc234a
+%global commit0 bc51e03d24f85707c6e5fd90941499f7692aedbf
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    akonadi-import-wizard
 Summary: Akonadi Import Wizard
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -98,6 +98,7 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

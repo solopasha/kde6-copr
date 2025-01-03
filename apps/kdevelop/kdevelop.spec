@@ -1,4 +1,4 @@
-%global commit0 4262d7e6363738cd0403260b068ed717c32ba61f
+%global commit0 5ec3a1d75ac6760fc50824f27dbc2e5c0c1f4ee1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -7,7 +7,7 @@
 Name:           kdevelop
 Summary:        Integrated Development Environment for C++/C
 Epoch:          9
-Version:        24.12.0
+Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        2%{?dist}
 License:        GPL-2.0-only
 URL:            http://www.kdevelop.org/
@@ -211,6 +211,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{rpmmacrodir}/macros.kdevelop
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 9:24.12.0-2
 - rebuilt
 

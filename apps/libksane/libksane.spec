@@ -1,10 +1,10 @@
-%global commit0 8ad57e14053e4e0dad29f8c3773b7e0f6f33e7fc
+%global commit0 01e0c4393cdd7b0c966b11dd5dc92b25b766fd0a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           libksane
 Summary:        SANE Library interface for KDE
-Version:        24.12.0
+Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        2%{?dist}
 
 License:        CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
@@ -77,6 +77,7 @@ Obsoletes:      kf5-libksane-devel < 24.01
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 13 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-2
 - Adopt Fedora changes
 

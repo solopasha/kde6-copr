@@ -1,4 +1,4 @@
-%global commit0 090d7f6ad86b690b7d300fcc1211f0ffab04ac01
+%global commit0 3ca612a2e0a7e53235addf25326298cb82070e3d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    kontact
 Summary: Personal Information Manager
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -101,6 +101,7 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

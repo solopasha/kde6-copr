@@ -1,4 +1,4 @@
-%global commit0 33fe859e63eb11433b11a93e1da0547353719d35
+%global commit0 3d4a7ec2a4c8b0a319f70c1e2a0e21163dda7e9b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    akonadiconsole
 Summary: Akonadi developer tool
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -93,6 +93,7 @@ xvfb-run -a bash -c "%ctest"
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

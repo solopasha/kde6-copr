@@ -1,10 +1,10 @@
-%global commit0 0fe6544079a23769e8f19ee2f09b5c149f404d5a
+%global commit0 ca0b23fdc76b4eb27265ade9632e0a3e6f50dce0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           dolphin
 Summary:        KDE File Manager
-Version:        24.12.0.1
+Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPLv2+
@@ -154,6 +154,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 20 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0.1-1
 - Update to 24.12.0.1
 

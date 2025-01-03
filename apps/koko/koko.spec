@@ -1,9 +1,9 @@
-%global commit0 75082e4ce7e155bda04a3fda31d7e99cc458d267
+%global commit0 7be70c5c42e8fa222e14edba68b959ab31bad07e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           koko
-Version:        24.12.0
+Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPLv2+ and GPLv3 and LGPLv2 and LGPLv2+ and CC0 and BSD
 Summary:        An Image gallery application
@@ -84,6 +84,7 @@ cp %{SOURCE12} src/
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

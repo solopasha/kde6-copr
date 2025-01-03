@@ -1,4 +1,4 @@
-%global commit0 30514bf0c540c796c75f9f59df50f3dff697acb0
+%global commit0 ef4d77e388d5e832f1a05323df1d981341465928
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:           kdesdk-kioslaves
 Summary:        KIO workers useful for software development
-Version:        24.12.0
+Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPLv2 and GPLv2+
@@ -43,6 +43,7 @@ Provides:       kio5-perldoc = %{version}-%{release}
 %{_kf6_datadir}/kio_perldoc/
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

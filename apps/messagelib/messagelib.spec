@@ -1,10 +1,10 @@
-%global commit0 12ded0a76f90e7eea28fe8a1414ff23f512666ee
+%global commit0 05e938bd50db197a1d090a24991af6b9d385043a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:    messagelib
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: KDE Message libraries
 
@@ -171,6 +171,7 @@ Requires:       cmake(Qt6WebEngineWidgets)
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

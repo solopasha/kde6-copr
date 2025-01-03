@@ -1,9 +1,9 @@
-%global commit0 16702b0a650d757303491fcf8eec3293bf4babbf
+%global commit0 55bab6e5913b27ba1198cd012bb7649566fa5dc5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kio-extras
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Additional components to increase the functionality of KIO Framework
 
@@ -18,13 +18,6 @@ BuildRequires:  gperf
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 
-BuildRequires:  cmake(Qt6)
-BuildRequires:  cmake(Qt6Core5Compat)
-BuildRequires:  cmake(Qt6Qml)
-BuildRequires:  cmake(Qt6Svg)
-BuildRequires:  cmake(QCoro6)
-BuildRequires:  cmake(PlasmaActivities)
-BuildRequires:  cmake(PlasmaActivitiesStats)
 BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
@@ -36,22 +29,33 @@ BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Solid)
 BuildRequires:  cmake(KF6SyntaxHighlighting)
 BuildRequires:  cmake(KF6TextWidgets)
-BuildRequires:  cmake(KDSoapWSDiscoveryClient)
-BuildRequires:  cmake(KExiv2Qt6)
+
+BuildRequires:  cmake(Qt6)
+BuildRequires:  cmake(Qt6Core5Compat)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Svg)
+
+BuildRequires:  cmake(PlasmaActivities)
+BuildRequires:  cmake(PlasmaActivitiesStats)
 
 BuildRequires:  cmake(KDSoap) >= 1.9
+BuildRequires:  cmake(KDSoapWSDiscoveryClient)
+BuildRequires:  cmake(KExiv2Qt6)
+BuildRequires:  cmake(OpenEXR)
+BuildRequires:  cmake(QCoro6)
 BuildRequires:  libjpeg-devel
 BuildRequires:  libmtp-devel
 BuildRequires:  libsmbclient-devel
 BuildRequires:  libssh-devel
-BuildRequires:  cmake(OpenEXR)
 BuildRequires:  perl-generators
 BuildRequires:  phonon-qt6-devel
 BuildRequires:  pkgconfig(libimobiledevice-1.0)
 BuildRequires:  pkgconfig(libplist-2.0)
+BuildRequires:  pkgconfig(libproxy-1.0)
 BuildRequires:  pkgconfig(libtirpc)
 BuildRequires:  pkgconfig(shared-mime-info)
 BuildRequires:  pkgconfig(xcursor)
@@ -120,6 +124,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %{_kf6_qtplugindir}/kfileaudiopreview.so
 %{_kf6_qtplugindir}/kcm_trash.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/kcm_*.so
+%{_libexecdir}/wpad-detector-helper
 
 %files devel
 %{_includedir}/KioArchive6/*.h
@@ -127,6 +132,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

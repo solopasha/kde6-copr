@@ -1,4 +1,4 @@
-%global commit0 a3b097c66af3d77d36a8cf40f1bec4a5918436b1
+%global commit0 0969b06ede59c7d1ccdce1bd91564f7300d5ef76
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    kalarm
 Summary: Personal Alarm Scheduler
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -117,6 +117,7 @@ xvfb-run -a bash -c "%ctest"
 %{_kf6_sysconfdir}/xdg/autostart/kalarm.autostart.desktop
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

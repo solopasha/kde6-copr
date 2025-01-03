@@ -1,10 +1,10 @@
-%global commit0 2575aa0badb27bf699c6b2a683439ce0cd479a0e
+%global commit0 cb5480f926dc35d0f3ecb84e63b26d4def8d16de
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    lskat
 Summary: A fun and engaging card game
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: LGPLv2 and GFDL
@@ -85,6 +85,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

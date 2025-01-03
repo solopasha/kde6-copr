@@ -1,9 +1,9 @@
-%global commit0 aa32aff28bac7c42a97bd10b22148fc0b3138554
+%global commit0 382ab61471cc91bd6d91122091f8e79e19100ca4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    libksieve
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Sieve support library
 
@@ -97,6 +97,7 @@ Requires:       cmake(KF6SyntaxHighlighting)
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

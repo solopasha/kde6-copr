@@ -1,10 +1,10 @@
-%global commit0 5c15b5118a8191e4eefcd2fe3a41de8c62220c18
+%global commit0 9e7a13ec94c31516658b0b158a347654bc84d7bd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    analitza
 Summary: Library of mathematical features
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+
@@ -72,6 +72,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

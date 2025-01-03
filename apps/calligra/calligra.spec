@@ -1,4 +1,4 @@
-%global commit0 0d3abbb378f7d149f898b22347936f9bd2ca0aaf
+%global commit0 fb1b134e305fa794396c2d50ebaaa017bc053dc9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -14,7 +14,7 @@
 #global external_lilypond_fonts 1
 
 Name:    calligra
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: An integrated office suite
 
@@ -507,6 +507,7 @@ done
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

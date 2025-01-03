@@ -1,4 +1,4 @@
-%global commit0 1b1d28571bd21043251afde625d64dcd29532899
+%global commit0 c0369a93ac966cc6517b80bde04b2839a6b62142
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -8,7 +8,7 @@
 
 Name:    pim-sieve-editor
 Summary: Sieve Editor
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -88,6 +88,7 @@ xvfb-run -a bash -c "%ctest"
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

@@ -1,4 +1,4 @@
-%global commit0 0192052a807df4a6e8dab048807894db45d49ec9
+%global commit0 f3ce664ea7cf4667485d9d50253b867957d7729f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    mbox-importer
 Summary: MBox Importer
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -73,6 +73,7 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

@@ -1,10 +1,10 @@
-%global commit0 23d1edaedcf471aa26e051bc6bfceb38a13f9d5c
+%global commit0 9800b7e5a651976c266368b4617f11cd3094e115
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    sweeper
 Summary: Clean unwanted traces the user leaves on the system
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: LGPLv2+
@@ -66,6 +66,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.sweeper.d
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

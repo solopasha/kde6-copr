@@ -1,9 +1,9 @@
-%global commit0 84d459476afe259371225950b64039417aa205e8
+%global commit0 62b2462c9022a2878cdd6103603350775aedda52
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           knights
-Version:        24.12.0
+Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        A chess board for KDE
 # KDE e.V. may determine that future GPL versions are accepted
@@ -75,6 +75,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.knights.d
 %{_kf6_datadir}/qlogging-categories6/knights*categories
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

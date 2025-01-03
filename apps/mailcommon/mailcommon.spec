@@ -1,9 +1,9 @@
-%global commit0 720baf8435b044861e4399ec773e17d9548259ea
+%global commit0 d9696596abb27cb7690f5451ed881b0881d2d00a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    mailcommon
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Mail applications support library
 
@@ -107,6 +107,7 @@ Requires:       cmake(KF6Completion)
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

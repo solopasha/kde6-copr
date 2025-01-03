@@ -1,9 +1,9 @@
-%global commit0 c53042689ebe87c332d0e2c8b96bdbb3492a24e4
+%global commit0 a849bd1b7402fa34b8efe26d5dc8ac58cbda6f1d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    ktnef
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The KTNef Library
 
@@ -66,6 +66,7 @@ developing applications that use %{name}.
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

@@ -1,10 +1,10 @@
-%global commit0 8c2b5d2071ef3b432a30402db32ba3090d5c8187
+%global commit0 50f189fd25676307eaebecb398fc9b28d3fc644a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kolourpaint
 Summary: An easy-to-use paint program
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: BSD
@@ -84,6 +84,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

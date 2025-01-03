@@ -1,11 +1,11 @@
-%global commit0 25630cd229bd454754ba8e2dcca9909d7ea694e1
+%global commit0 934f6c8433535013a00a45f974bedc092a778e29
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:    bovo
 Summary: Five in a row game
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code GPLv2+, docs GFDL
@@ -70,6 +70,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

@@ -1,4 +1,4 @@
-%global commit0 eff9a1af23e7d44a721c1265b333be4017d98d3d
+%global commit0 b1cb95426687ebcbbb9ddcb8ba4d2defee85fb27
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:    kmail
 Summary: Mail client
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL
@@ -172,6 +172,7 @@ xvfb-run -a bash -c "%ctest" || :
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

@@ -1,9 +1,9 @@
-%global commit0 7c0791fe0a8a4cd08e37e22ad2e7946f3f426a86
+%global commit0 ad0f9ee5ac9dd9247a507ac0d0cceb2c359e3582
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kmbox
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The KMbox Library
 
@@ -57,6 +57,7 @@ developing applications that use %{name}.
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

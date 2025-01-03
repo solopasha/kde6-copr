@@ -1,10 +1,10 @@
-%global commit0 a2e89aaa66d0a29fd54db15fb5147eb4f091fe95
+%global commit0 3c0e8cf4bcd8838dc3a049546edf9559404043cb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           ksanecore
 Summary:        Library providing logic to interface scanners
-Version:        24.12.0
+Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        2%{?dist}
 
 License:        LGPL-2.1-only OR LGPL-3.0-only
@@ -70,6 +70,7 @@ Requires:       cmake(Qt6Gui)
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 13 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-2
 - Adopt Fedora changes
 

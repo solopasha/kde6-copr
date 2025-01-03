@@ -1,10 +1,10 @@
-%global commit0 5890ce93e585d03a46a2863767aca6f029f965bb
+%global commit0 d3ba04b535e9f6442a1dbcb66943b3f43e28dd19
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    bomber
 Summary: Arcade bombing game
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code LGPLv2+, docs GFDL
@@ -76,6 +76,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

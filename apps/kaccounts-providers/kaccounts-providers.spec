@@ -1,9 +1,9 @@
-%global commit0 ea60f0193efceffad704435c772ed77cad12f6e3
+%global commit0 9e6e682aed984ca455d2fceb6938cc8ae9d45446
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kaccounts-providers
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Additional service providers for KAccounts framework
 License: GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -67,6 +67,7 @@ Supplements:    kaccounts-integration-qt6
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

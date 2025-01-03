@@ -1,10 +1,10 @@
-%global commit0 bdbccf1c46ec4ecfa63e236c33d71040c87ae44d
+%global commit0 715850d45285fb020ab529d4872fb179d8f158d5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:    kmousetool
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: A program that clicks the mouse for you
 
@@ -74,6 +74,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop ||:
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

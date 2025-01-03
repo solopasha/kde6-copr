@@ -1,9 +1,9 @@
-%global commit0 8e2d0aa661594bbaba7723c101c7669a913a30db
+%global commit0 b9a3abc7017258e1adffeb2b49d67b2fb31162af
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           accessibility-inspector
-Version:        24.12.0
+Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        (LGPL-2.1-only OR LGPL-3.0-only) AND CC0-1.0
 Summary:        Inspect your application accessibility tree
@@ -59,6 +59,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_metainfodir}/org.kde.accessibilityinspector.metainfo.xml
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

@@ -1,9 +1,9 @@
-%global commit0 ee02abfe376afabaf017dc97fa97023761ad8e07
+%global commit0 09af6fe0a79b90d6c69ab07ccf43dfe914a61646
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    neochat
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 2%{?dist}
 
 License: GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND BSD-3-Clause
@@ -125,6 +125,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_plugindir}/purpose/neochatshareplugin.so
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 13 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-2
 - pick upstream commit
 

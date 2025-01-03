@@ -1,9 +1,9 @@
-%global commit0 b0bc69ef6faaaa9446c8dbeca66445d926357078
+%global commit0 62808871ed81da1e2cdd503798e832e789ed342a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    akonadi-search
-Version: 24.12.0
+Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The Akonadi Search library and indexing agent
 
@@ -100,6 +100,7 @@ developing applications that use %{name}.
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

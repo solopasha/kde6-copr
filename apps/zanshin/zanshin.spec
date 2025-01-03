@@ -1,11 +1,11 @@
-%global commit0 ebc4123bec4074d3a3e2792e7721ef8bde09c9f2
+%global commit0 1b4ea5254ec6e667efd6a6720b188af1558499fa
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 #global tests 1
 
 Name:           zanshin
-Version:        24.12.0
+Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Todo/action management software
 
@@ -103,6 +103,7 @@ time \
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

@@ -1,11 +1,11 @@
-%global commit0 76897a2cf0ed51861f66ce17830bbf7d0454e6ac
+%global commit0 05752e42b3cf998c9c73c6887159640b141b6124
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           marble
 Summary:        Virtual globe and world atlas
 Epoch:          1
-Version:        24.12.0
+Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        2%{?dist}
 
 License:        Apache-2.0 AND BSD-3-Clause AND CC0-1.0 AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND MIT AND (LGPL-2.1-only WITH Qt-LGPL-exception-1.1)
@@ -230,6 +230,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Sat Dec 14 2024 Pavel Solovev <daron439@gmail.com> - 1:24.12.0-2
 - Obsolete kf5-libkgeomap
 
