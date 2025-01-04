@@ -1,14 +1,16 @@
-%global orig_name kirigami-addons
+%global commit0 c39405cbe93c2853fcca87d836deef8b36fec3d7
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
+%global base_name kirigami-addons
 
 Name:           kf6-kirigami-addons
-Version:        1.6.0
+Version:        1.6.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        BSD-2-Clause AND CC-BY-SA-4.0 AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND LicenseRef-KFQF-Accepted-GPL
 Summary:        Convergent visual components ("widgets") for Kirigami-based applications
 Url:            https://invent.kde.org/libraries/kirigami-addons
-Source:         https://download.kde.org/stable/%{orig_name}/%{orig_name}-%{version}.tar.xz
-Source:         https://download.kde.org/stable/%{orig_name}/%{orig_name}-%{version}.tar.xz.sig
-Source:         signing-key.pgp
+%apps_source
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
@@ -69,7 +71,7 @@ or Plasma).
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{orig_name}-%{version} -p1
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6
@@ -77,12 +79,12 @@ or Plasma).
 
 %install
 %cmake_install
-%find_lang %{orig_name}6 --all-name
+%find_lang %{base_name}6 --all-name
 
-%files -f %{orig_name}6.lang
+%files -f %{base_name}6.lang
 %doc README.md
 %license LICENSES/
-%{_kf6_libdir}/libKirigamiAddonsStatefulApp.so.%{version}
+%{_kf6_libdir}/libKirigamiAddonsStatefulApp.so.%{version_no_git}
 %{_kf6_libdir}/libKirigamiAddonsStatefulApp.so.6
 %{_kf6_qmldir}/org/kde/kirigamiaddons/
 
@@ -94,6 +96,7 @@ or Plasma).
 %{_kf6_libdir}/libKirigamiAddonsStatefulApp.so
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Sun Dec 01 2024 Pavel Solovev <daron439@gmail.com> - 1.6.0-1
 - new version
 
