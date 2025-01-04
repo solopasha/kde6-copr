@@ -1,6 +1,6 @@
 %global commit0 9e7a13ec94c31516658b0b158a347654bc84d7bd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    analitza
 Summary: Library of mathematical features
