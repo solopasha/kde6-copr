@@ -4,13 +4,12 @@
 
 Name:    neochat
 Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 2%{?dist}
+Release: 1%{?dist}
 
 License: GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND BSD-3-Clause
 URL: https://invent.kde.org/network/%{name}
 Summary: Client for matrix, the decentralized communication protocol
 %apps_source
-Patch: https://invent.kde.org/network/neochat/-/commit/0d286db0c28beddf165e5b3e3a5d9a1510e1d357.patch
 
 BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6Quick)

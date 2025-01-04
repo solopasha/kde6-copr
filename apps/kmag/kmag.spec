@@ -18,6 +18,7 @@ BuildRequires: gcc-c++
 BuildRequires: kf6-rpm-macros
 BuildRequires: libappstream-glib
 
+BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6KIO)

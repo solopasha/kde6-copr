@@ -86,7 +86,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %{_kf6_bindir}/%{name}
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/dbus-1/services/org.kde.%{name}.service
-%{_kf6_datadir}/icons/hicolor/scalable/actions/%{name}*.svg
 %{_kf6_datadir}/icons/hicolor/scalable/apps/org.kde.%{name}.svg
 %{_kf6_datadir}/knotifications6/%{name}.notifyrc
 %{_kf6_datadir}/qlogging-categories6/%{name}.categories

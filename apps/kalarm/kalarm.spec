@@ -32,6 +32,7 @@ BuildRequires: cmake(KF6GlobalAccel)
 BuildRequires: cmake(KF6GuiAddons)
 BuildRequires: cmake(KF6Holidays)
 BuildRequires: cmake(KF6I18n)
+BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6ItemModels)
 BuildRequires: cmake(KF6JobWidgets)
 BuildRequires: cmake(KF6KIO)
@@ -60,6 +61,7 @@ BuildRequires: cmake(Qt6Network)
 BuildRequires: cmake(Qt6Widgets)
 
 BuildRequires: pkgconfig(libvlc)
+BuildRequires: pkgconfig(mpv)
 
 %if 0%{?tests}
 BuildRequires: dbus-x11
@@ -114,6 +116,8 @@ xvfb-run -a bash -c "%ctest"
 %{_kf6_libexecdir}/kauth/kalarm_helper
 %{_kf6_metainfodir}/org.kde.kalarm.appdata.xml
 %{_kf6_qtplugindir}/pim6/kalarm/akonadiplugin.so
+%{_kf6_qtplugindir}/pim6/kalarm/audioplugin_mpv.so
+%{_kf6_qtplugindir}/pim6/kalarm/audioplugin_vlc.so
 %{_kf6_sysconfdir}/xdg/autostart/kalarm.autostart.desktop
 
 %changelog

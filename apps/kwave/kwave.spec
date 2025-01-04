@@ -85,7 +85,6 @@ HTML documentation.
 
 %install
 %cmake_install
-gzip -dS z %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/kwave.svgz
 
 %find_lang %{name}
 

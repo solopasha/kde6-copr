@@ -25,6 +25,7 @@ BuildRequires: kf6-knewstuff-devel
 BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DBusAddons)
 BuildRequires: cmake(KF6DocTools)
+BuildRequires: cmake(KF6IconThemes)
 BuildRequires: pkgconfig(Qt6Widgets) pkgconfig(Qt6Qml) pkgconfig(Qt6Quick) pkgconfig(Qt6QuickWidgets) pkgconfig(Qt6Svg) pkgconfig(Qt6Concurrent)
 BuildRequires: libkdegames-devel >= %{majmin_ver_kf6}
 %if 0%{?fedora} > 19
@@ -568,7 +569,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 - 4.10.1
 
 * Wed Feb 13 2013 Rex Dieter <rdieter@fedoraproject.org> 4.10.0-2
-- License: GPLv2+ and GFDL 
+- License: GPLv2+ and GFDL
 - update Summary, %%description
 
 * Thu Feb 07 2013 Rex Dieter <rdieter@fedoraproject.org> 4.10.0-1

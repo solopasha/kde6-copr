@@ -16,13 +16,14 @@ BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib
 
 BuildRequires: extra-cmake-modules
-BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6ConfigWidgets)
+BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DBusAddons)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6I18n)
+BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6KIO)
 BuildRequires: cmake(KF6NewStuff)
 BuildRequires: cmake(KF6TextWidgets)

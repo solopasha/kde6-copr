@@ -24,11 +24,12 @@ BuildRequires: cmake(KF6ConfigWidgets)
 BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DBusAddons)
+BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6I18n)
+BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6TextWidgets)
 BuildRequires: cmake(KF6WidgetsAddons)
 BuildRequires: cmake(KF6XmlGui)
-BuildRequires: cmake(KF6DocTools)
 
 BuildRequires: cmake(KDEGames6)
 
@@ -38,7 +39,7 @@ colored balls around the game board, gathering them into the lines
 of the same color by five. Once the line is complete it is removed
 from the board, therefore freeing precious space. In the same time
 the new balls keep arriving by three after each move, filling up the
-game board.  
+game board.
 
 Kolor Lines cannot be won, and is played against the high score
 exclusively. The game ends once the whole game board is filled up with

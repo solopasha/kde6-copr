@@ -61,6 +61,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.sweeper.d
 %{_kf6_bindir}/sweeper
 %{_kf6_datadir}/applications/org.kde.sweeper.desktop
 %{_kf6_datadir}/dbus-1/interfaces/org.kde.sweeper.xml
+%{_kf6_datadir}/icons/hicolor/scalable/apps/sweeper.svg
 %{_kf6_datadir}/qlogging-categories6/sweeper*
 %{_kf6_metainfodir}/org.kde.sweeper.appdata.xml
 

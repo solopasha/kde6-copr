@@ -24,6 +24,7 @@ BuildRequires: kf6-knewstuff-devel
 BuildRequires: kf6-kxmlgui-devel
 BuildRequires: kf6-rpm-macros
 BuildRequires: cmake(KF6Crash)
+BuildRequires: cmake(KF6IconThemes)
 
 BuildRequires: libkdegames-devel >= %{majmin_ver_kf6}
 BuildRequires: libkmahjongg-devel >= %{majmin_ver_kf6}
@@ -64,12 +65,12 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_bindir}/%{name}
-%{_kf6_datadir}/qlogging-categories6/%{name}*
-%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
-%{_kf6_datadir}/sounds/%{name}
 %{_kf6_datadir}/config.kcfg/%{name}.kcfg
 %{_kf6_datadir}/icons/hicolor/*/*/*
+%{_kf6_datadir}/qlogging-categories6/%{name}*
+%{_kf6_datadir}/sounds/%{name}
+%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 
 %changelog

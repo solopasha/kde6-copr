@@ -63,6 +63,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 %{_kf6_bindir}/%{name}
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/icons/hicolor/scalable/apps/%{name}.svg
+%{_kf6_datadir}/qlogging-categories6/alligator.categories
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %changelog

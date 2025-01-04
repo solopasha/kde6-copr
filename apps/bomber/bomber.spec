@@ -28,6 +28,7 @@ BuildRequires: kf6-kio-devel
 BuildRequires: kf6-kxmlgui-devel
 BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DocTools)
+BuildRequires: cmake(KF6IconThemes)
 
 BuildRequires: pkgconfig(phonon4qt6)
 BuildRequires: pkgconfig(Qt6Widgets)
@@ -49,7 +50,6 @@ buildings.
 
 %build
 %cmake_kf6
-
 %cmake_build
 
 
@@ -68,11 +68,11 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %doc AUTHORS
 %license LICENSES/*
 %{_kf6_bindir}/%{name}
-%{_kf6_datadir}/applications/org.kde.%{name}.desktop
-%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
-%{_kf6_datadir}/icons/hicolor/*/*/*
 %{_kf6_datadir}/%{name}/
+%{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/config.kcfg/%{name}.kcfg
+%{_kf6_datadir}/icons/hicolor/*/*/*
+%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 
 %changelog

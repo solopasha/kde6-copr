@@ -10,6 +10,7 @@ Summary: Library for parsing and evaluating OSM opening hours expressions
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/libraries/%{name}
 %apps_source
+Patch:   revert.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
@@ -55,7 +56,7 @@ developing applications that use %{name}.
 %doc README.md
 %{_kf6_datadir}/qlogging-categories6/org_kde_kopeninghours.categories
 %{_kf6_libdir}/libKOpeningHours.so.1
-%{_kf6_libdir}/libKOpeningHours.so.24*
+%{_kf6_libdir}/libKOpeningHours.so.25*
 %{_qt6_qmldir}/org/kde/kopeninghours/
 %{python3_sitelib}/PyKOpeningHours/
 

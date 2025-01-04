@@ -24,11 +24,12 @@ BuildRequires: cmake(KF6ConfigWidgets)
 BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DBusAddons)
+BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6I18n)
+BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6TextWidgets)
 BuildRequires: cmake(KF6WidgetsAddons)
 BuildRequires: cmake(KF6XmlGui)
-BuildRequires: cmake(KF6DocTools)
 
 BuildRequires: cmake(KDEGames6)
 
@@ -61,11 +62,11 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_bindir}/%{name}*
-%{_kf6_datadir}/applications/org.kde.%{name}.desktop
-%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
-%{_kf6_datadir}/icons/hicolor/*/apps/%{name}.*
 %{_kf6_datadir}/%{name}/
+%{_kf6_datadir}/applications/org.kde.%{name}.desktop
+%{_kf6_datadir}/icons/hicolor/*/apps/%{name}.*
 %{_kf6_datadir}/qlogging-categories6/%{name}*
+%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 
 %changelog

@@ -4,7 +4,7 @@
 
 %global kf6min 5.240.0
 %global qt6min 6.5.0
-%global sover 12
+%global sover 13
 
 Name:           kpmcore
 Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

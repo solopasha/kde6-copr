@@ -32,6 +32,7 @@ BuildRequires:  cmake(Qt6Svg)
 
 BuildRequires:  cmake(KF6QQC2DesktopStyle)
 BuildRequires:  pkgconfig(libsodium)
+BuildRequires:  pkgconfig(openssl)
 
 Requires:       hicolor-icon-theme
 Requires:       kf6-kirigami-addons%{?_isa}
@@ -62,7 +63,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 %license COPYING LICENSES/*.txt
 %{_kf6_bindir}/%{name}
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
-%{_kf6_datadir}/icons/hicolor/scalable/apps/%{name}.svg
+%{_kf6_datadir}/icons/hicolor/scalable/apps/org.kde.%{name}.svg
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %changelog

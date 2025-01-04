@@ -29,6 +29,7 @@ BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6Holidays)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
+BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Parts)
 BuildRequires:  cmake(KF6Prison)
@@ -126,6 +127,7 @@ Supplements:    korganizer
 %{_kf6_qtplugindir}/pim6/contacteditor/editorpageplugins/cryptopageplugin.so
 %{_kf6_libdir}/libkaddressbookmergelibprivate.so*
 %{_kf6_qtplugindir}/pim6/kaddressbook/
+%{_kf6_qtplugindir}/pim6/kcms/kleopatra/kcm_kmail_gnupgsystem.so
 
 # KMail
 %{_kf6_bindir}/kmail_*.sh

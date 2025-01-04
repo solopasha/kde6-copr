@@ -95,7 +95,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/config.kcfg/kget*
 %{_kf6_datadir}/dbus-1/services/org.kde.kget.service
-%{_kf6_datadir}/icons/hicolor/*/apps/kget.*
+%{_kf6_datadir}/icons/hicolor/*/apps/org.kde.kget.*
 %{_kf6_datadir}/kget/
 %{_kf6_datadir}/kio/servicemenus/kget_{download,plugin}.desktop
 %{_kf6_datadir}/knotifications6/kget*

@@ -27,6 +27,7 @@ BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DBusAddons)
 BuildRequires: cmake(KF6DocTools)
+BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6ItemViews)
 BuildRequires: cmake(KF6KIO)
 BuildRequires: cmake(KF6Notifications)
@@ -43,7 +44,7 @@ BuildRequires: cmake(KPim6Mime)
 BuildRequires: cmake(KPim6PimCommonAkonadi)
 BuildRequires: cmake(KF6UserFeedback)
 BuildRequires: cmake(Qt6Test)
-BuildRequires: cmake(Qt6Widgets) 
+BuildRequires: cmake(Qt6Widgets)
 
 %if 0%{?tests}
 BuildRequires: dbus-x11

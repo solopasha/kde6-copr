@@ -24,6 +24,7 @@ BuildRequires: kf6-knewstuff-devel
 BuildRequires: kf6-kxmlgui-devel
 BuildRequires: kf6-rpm-macros
 BuildRequires: cmake(KF6Crash)
+BuildRequires: cmake(KF6IconThemes)
 
 BuildRequires: libappstream-glib
 BuildRequires: libkdegames-devel >= %{majmin_ver_kf6}

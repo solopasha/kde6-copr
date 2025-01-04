@@ -23,6 +23,7 @@ BuildRequires: pkgconfig(x11)
 
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
+BuildRequires: cmake(KF6Archive)
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DBusAddons)
@@ -171,6 +172,7 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_plugindir}/ktexteditor/openlinkplugin.so
 %{_kf6_plugindir}/ktexteditor/rainbowparens.so
 %{_kf6_plugindir}/ktexteditor/tabswitcherplugin.so
+%{_kf6_plugindir}/ktexteditor/templateplugin.so
 %{_kf6_plugindir}/ktexteditor/textfilterplugin.so
 
 %files -n kwrite -f kwrite.lang
