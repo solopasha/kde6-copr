@@ -1,7 +1,6 @@
-%global commit0 0621cfd8ebbae795a9b64bca9c077a8e692e33f4
+%global commit0 589079e2070dfa61263c5235d7ab6c7647111911
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
-
+%global bumpver 2
 
 Name:    klettres
 Summary: Learn the alphabet and read some syllables in different languages
@@ -19,12 +18,12 @@ BuildRequires: kf6-rpm-macros
 BuildRequires: libappstream-glib
 
 BuildRequires: cmake(Qt6Core)
-BuildRequires: cmake(Qt6Svg)
+BuildRequires: cmake(Qt6Multimedia)
 BuildRequires: cmake(Qt6Network)
+BuildRequires: cmake(Qt6Svg)
 BuildRequires: cmake(Qt6Test)
 BuildRequires: cmake(Qt6Widgets)
 
-BuildRequires: cmake(Phonon4Qt6)
 BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6I18n)
@@ -47,7 +46,6 @@ very first sounds of a new language, for children or for adults.
 
 %build
 %cmake_kf6
-
 %cmake_build
 
 
@@ -64,15 +62,14 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 %files -f %{name}.lang
 %license COPYING*
-#doc README
 %{_kf6_bindir}/%{name}*
-%{_kf6_datadir}/knsrcfiles/%{name}.knsrc
-%{_kf6_datadir}/applications/org.kde.%{name}.desktop
-%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
-%{_kf6_datadir}/icons/hicolor/*/apps/%{name}.*
 %{_kf6_datadir}/%{name}/
+%{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/config.kcfg/%{name}.kcfg
+%{_kf6_datadir}/icons/hicolor/*/apps/%{name}.*
+%{_kf6_datadir}/knsrcfiles/%{name}.knsrc
 %{_kf6_datadir}/qlogging-categories6/%{name}*
+%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 
 %changelog
