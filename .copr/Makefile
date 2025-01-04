@@ -3,8 +3,8 @@ specfile = $(notdir $(spec))
 
 prepare:
 	dnf install --nodocs --setopt=install_weak_deps=0 --disablerepo=\* \
-				--repofrompath 'kde6,https://download.copr.fedorainfracloud.org/results/solopasha/kde6/fedora-40-x86_64/' \
-				--setopt='kde6.gpgkey=https://download.copr.fedorainfracloud.org/results/solopasha/kde6/pubkey.gpg' \
+				--repofrompath 'plasma-unstable,https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/fedora-41-x86_64/' \
+				--setopt='plasma-unstable.gpgkey=https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/pubkey.gpg' \
 				kf6-srpm-macros
 
 goprep:
