@@ -1,7 +1,6 @@
 %global commit0 6dbf4a1aaa091f6166f446f8e4cc5236320c0f10
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
-
+%global bumpver 2
 
 Name:    parley
 Summary: Vocabulary Trainer
@@ -42,6 +41,7 @@ BuildRequires: cmake(KF6Notifications)
 BuildRequires: libkeduvocdocument-devel >= %{majmin_ver_kf6}
 BuildRequires: pkgconfig(libxml-2.0)
 BuildRequires: pkgconfig(libxslt)
+BuildRequires: pkgconfig(xrender)
 
 Recommends: translate-shell
 
