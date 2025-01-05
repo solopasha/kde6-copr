@@ -98,7 +98,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %{_kf6_bindir}/%{name}
 %{_kf6_datadir}/%{name}/
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
-%{_kf6_datadir}/icons/hicolor/*/apps/%{name}.*
+%{_kf6_datadir}/icons/hicolor/scalable/apps/org.kde.%{name}.svg
 %{_kf6_libdir}/lib%{name}.so.*
 %{_kf6_libdir}/lib%{name}gui.so.*
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml

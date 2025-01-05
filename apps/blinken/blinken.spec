@@ -2,8 +2,8 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 2
 
-Name:    blinken 
-Summary: Memory Enhancement Game 
+Name:    blinken
+Summary: Memory Enhancement Game
 Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
@@ -20,6 +20,7 @@ BuildRequires: libappstream-glib
 BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6Widgets)
 BuildRequires: cmake(Qt6Svg)
+BuildRequires: cmake(Qt6Multimedia)
 
 BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6I18n)
@@ -28,8 +29,6 @@ BuildRequires: cmake(KF6GuiAddons)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6DBusAddons)
 BuildRequires: cmake(KF6Crash)
-
-BuildRequires: cmake(Phonon4Qt6)
 
 Requires: hicolor-icon-theme
 Requires: sj-stevehand-fonts
@@ -65,7 +64,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 
 
 %files -f %{name}.lang
-%doc AUTHORS 
+%doc AUTHORS
 %license LICENSES/*
 %{_kf6_bindir}/%{name}
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
