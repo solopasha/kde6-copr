@@ -4,8 +4,6 @@
 
 #global tests 1
 
-%global framework sieveeditor
-
 Name:    pim-sieve-editor
 Summary: Sieve Editor
 Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -58,7 +56,6 @@ on a mail server.
 %build
 %cmake_kf6 \
   -DBUILD_TESTING:BOOL=%{?tests:ON}%{!?tests:OFF}
-
 %cmake_build
 
 
@@ -73,7 +70,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %if 0%{?tests}
 xvfb-run -a bash -c "%ctest"
 %endif
-
 
 
 %files -f %{name}.lang

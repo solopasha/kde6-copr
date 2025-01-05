@@ -8,7 +8,7 @@ Release: 1%{?dist}
 Summary: KDE PIM library for calendar and even handling
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LicenseRef-KDE-Accepted-GPL
-URL:     https://invent.kde.org/pim/%{framework}
+URL:     https://invent.kde.org/pim/calendarsupport
 %apps_source
 
 BuildRequires:  extra-cmake-modules
@@ -64,7 +64,6 @@ developing applications that use %{name}.
 %cmake_install
 
 %find_lang %{name} --all-name --with-html
-
 
 
 %files -f %{name}.lang

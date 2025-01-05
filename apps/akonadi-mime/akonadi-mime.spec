@@ -8,7 +8,7 @@ Release: 1%{?dist}
 Summary: The Akonadi Mime Library
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/pim/%{framework}
+URL:     https://invent.kde.org/pim/akonadi-mime
 %apps_source
 
 BuildRequires:  extra-cmake-modules
@@ -27,16 +27,13 @@ BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  pkgconfig(libxslt)
 BuildRequires:  pkgconfig(shared-mime-info)
 
-%if %{fedora} >= 40
 Obsoletes:      kf5-akonadi-mime < 24.01.80-1
-%endif
 
 %description
 %{summary}.
 
 %package   devel
 Summary:   Development files for %{name}
-Conflicts: kf5-akonadi-mime-devel < 23.08.3-2
 Requires:  %{name}%{?_isa} = %{version}-%{release}
 Requires:  cmake(KPim6Akonadi)
 %description    devel

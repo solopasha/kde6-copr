@@ -8,7 +8,7 @@ Release: 1%{?dist}
 Summary: KDE PIM library for Grantlee template system
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later
-URL:     http://invent.kde.org/pim/%{framework}
+URL:     https://invent.kde.org/pim/grantleetheme
 %apps_source
 
 BuildRequires:  extra-cmake-modules
@@ -24,14 +24,11 @@ BuildRequires:  cmake(KF6XmlGui)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6TextTemplate)
 
-Conflicts:      kf5-%{name} < 23.08.3-2
-
 %description
 %{summary}.
 
 %package        devel
 Summary:        Development files for %{name}
-Conflicts:      kf5-%{name}-devel < 23.08.3
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6TextTemplate)
 %description    devel

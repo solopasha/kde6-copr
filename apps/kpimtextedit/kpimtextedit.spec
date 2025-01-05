@@ -2,14 +2,13 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-
 Name:    kpimtextedit
 Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The KPimTextEdit Library
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/frameworks/kpimtextedit
+URL:     https://invent.kde.org/pim/kpimtextedit
 %apps_source
 
 BuildRequires:  kf6-rpm-macros
@@ -17,10 +16,7 @@ BuildRequires:  extra-cmake-modules
 
 BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KIO)
@@ -36,14 +32,11 @@ BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  cmake(Qt6Widgets)
 
-Conflicts:      kf5-kpimtextedit < 23.08.3-2
-
 %description
 %{summary}.
 
 %package        devel
 Summary:        Development files for %{name}
-Conflicts:      kf5-kpimtextedit-devel < 23.08.3-2
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6TextWidgets)
 Requires:       cmake(KF6TextEditTextToSpeech)

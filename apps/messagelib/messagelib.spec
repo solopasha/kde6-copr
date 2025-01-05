@@ -2,14 +2,13 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
-
 Name:    messagelib
 Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: KDE Message libraries
 
 License: BSD-3-Clause AND BSL-1.0 AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/pim/%{framework}/
+URL:     https://invent.kde.org/pim/messagelib
 %apps_source
 
 BuildRequires:  kf6-rpm-macros
@@ -73,9 +72,7 @@ BuildRequires:  cmake(QGpgmeQt6)
 
 BuildRequires:  pkgconfig(openssl)
 
-%if %{fedora} >= 40
 Obsoletes:      kf5-%{name} < 24.01.80
-%endif
 
 %description
 %{summary}.

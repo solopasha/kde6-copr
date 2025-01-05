@@ -8,7 +8,7 @@ Release: 1%{?dist}
 Summary: KDE PIM library for displaying events and calendars
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
-URL:     https://invent.kde.org/pim/%{framework}
+URL:     https://invent.kde.org/pim/eventviews
 %apps_source
 
 BuildRequires:  extra-cmake-modules

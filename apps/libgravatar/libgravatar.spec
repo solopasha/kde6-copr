@@ -8,7 +8,7 @@ Release: 1%{?dist}
 Summary: Gravatar support library
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later
-URL:     https://invent.kde.org/pim/%{framework}
+URL:     https://invent.kde.org/pim/libgravatar
 %apps_source
 
 BuildRequires:  extra-cmake-modules
@@ -25,14 +25,11 @@ BuildRequires:  cmake(KPim6PimCommon)
 BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6Widgets)
 
-Conflicts:      kf5-%{name} < 23.08.3-2
-
 %description
 %{summary}.
 
 %package        devel
 Summary:        Development files for %{name}
-Conflicts:      kf5-%{name}-devel < 23.08.3-2
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 %description    devel
 %{summary}.
@@ -63,7 +60,6 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %{_kf6_libdir}/libKPim6Gravatar.so
 %{_kf6_libdir}/cmake/KPim6Gravatar/
 %{_includedir}/KPim6/Gravatar/
-
 
 
 %changelog
