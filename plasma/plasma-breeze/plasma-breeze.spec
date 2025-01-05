@@ -1,23 +1,22 @@
-%global commit0 9b6cbc8658c610fcc3e45b33cd28ca88d95bb482
+%global commit0 1c29fec85b2b8703e9394a47207d1cabcee35635
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 9
 
-%global  base_name breeze
+%global base_name breeze
 
-Name:    plasma-breeze
-Version: 6.2.5
-Release: 1%{?dist}
-Summary: Artwork, styles and assets for the Breeze visual style for the Plasma Desktop
+Name:           plasma-breeze
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        Artwork, styles and assets for the Breeze visual style for the Plasma Desktop
 
-License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND MIT
-URL:     https://invent.kde.org/plasma/%{base_name}.git
+License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND MIT
+URL:            https://invent.kde.org/plasma/%{base_name}.git
 %plasma_source
 
-# Misc
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
-BuildRequires:  gettext
+BuildRequires:  gcc-c++
 
-# Qt5
 BuildRequires:  kf5-rpm-macros
 BuildRequires:  cmake(KF5Config)
 BuildRequires:  cmake(KF5CoreAddons)
@@ -31,9 +30,8 @@ BuildRequires:  cmake(Qt5Quick)
 BuildRequires:  cmake(Qt5Widgets)
 BuildRequires:  cmake(Qt5X11Extras)
 
-# Qt6
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(KDecoration2)
+BuildRequires:  cmake(KDecoration3)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
@@ -47,6 +45,7 @@ BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Widgets)
 
 Requires:       (%{name}-qt5 if qt5-qtbase-gui)
@@ -57,7 +56,6 @@ Provides:       %{name}-devel = %{version}-%{release}
 
 %description
 %{summary}.
-
 
 %package        qt6
 Summary:        Breeze application style for Qt6
@@ -85,11 +83,9 @@ Provides:       breeze-cursor-themes = %{version}-%{release}
 %description -n breeze-cursor-theme
 %{summary}.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 mkdir -p qt6build
@@ -104,7 +100,6 @@ pushd qt5build
 %cmake_build
 popd
 
-
 %install
 pushd qt5build
 %cmake_install
@@ -116,16 +111,16 @@ popd
 
 %find_lang breeze --all-name
 
-
 %files -f breeze.lang
 %license LICENSES/*.txt
-%{_bindir}/breeze-settings6
+%{_kf6_bindir}/breeze-settings6
+%{_kf6_bindir}/kcursorgen
 %{_kf6_datadir}/applications/breezestyleconfig.desktop
 %{_kf6_datadir}/applications/kcm_breezedecoration.desktop
+%{_kf6_libdir}/cmake/Breeze/
 %{_kf6_qtplugindir}/kstyle_config/breezestyleconfig.so
-%{_kf6_qtplugindir}/org.kde.kdecoration2.kcm/kcm_breezedecoration.so
-%{_kf6_qtplugindir}/org.kde.kdecoration2/org.kde.breeze.so
-%{_libdir}/cmake/Breeze/
+%{_kf6_qtplugindir}/org.kde.kdecoration3.kcm/kcm_breezedecoration.so
+%{_kf6_qtplugindir}/org.kde.kdecoration3/org.kde.breeze.so
 
 %files qt5
 %{_kf5_qtplugindir}/styles/breeze5.so
@@ -134,33 +129,25 @@ popd
 %{_kf6_qtplugindir}/styles/breeze6.so
 
 %files common
-%{_datadir}/color-schemes/*.colors
-%{_datadir}/kstyle/themes/breeze.themerc
-%{_datadir}/icons/hicolor/*/apps/breeze-settings.*
-%dir %{_datadir}/QtCurve/
-%{_datadir}/QtCurve/Breeze.qtcurve
-%{_datadir}/wallpapers/Next/
+%{_kf6_datadir}/color-schemes/*.colors
+%{_kf6_datadir}/icons/hicolor/*/apps/breeze-settings.*
+%{_kf6_datadir}/kstyle/themes/breeze.themerc
+%dir %{_kf6_datadir}/QtCurve
+%{_kf6_datadir}/QtCurve/Breeze.qtcurve
+%{_kf6_datadir}/wallpapers/Next/
 
 %files -n breeze-cursor-theme
-%dir %{_kf6_datadir}/icons/Breeze_Light/
+%dir %{_kf6_datadir}/icons/Breeze_Light
 %{_kf6_datadir}/icons/Breeze_Light/cursors/
 %{_kf6_datadir}/icons/Breeze_Light/cursors_scalable/
 %{_kf6_datadir}/icons/Breeze_Light/index.theme
-%dir %{_kf6_datadir}/icons/breeze_cursors/
+%dir %{_kf6_datadir}/icons/breeze_cursors
 %{_kf6_datadir}/icons/breeze_cursors/cursors/
 %{_kf6_datadir}/icons/breeze_cursors/cursors_scalable/
 %{_kf6_datadir}/icons/breeze_cursors/index.theme
 
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

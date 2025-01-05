@@ -1,22 +1,25 @@
-%global commit0 0e546579eda0c4c09a1dde418a02a9093dc90629
+%global commit0 f2cc1b826a05e4d7123200699a1d57ef34cc6a56
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 5
 
-%global base_name    plymouth-kcm
+%global base_name plymouth-kcm
 
-Name:    plymouth-kcm
-Summary: Plymouth configuration module for systemsettings
-Version: 6.2.5
-Release: 1%{?dist}
+Name:           plymouth-kcm
+Summary:        Plymouth configuration module for systemsettings
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later
-URL:     https://invent.kde.org/plasma/%{base_name}
+License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later
+URL:            https://invent.kde.org/plasma/%{base_name}
 %plasma_source
 
 ## FIXME/TODO: document why this patch is needed, ideally work to make upstreamable
 Patch1:         0001-fedora.patch
 
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  plymouth-devel
 
@@ -34,50 +37,40 @@ BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6NewStuff)
 BuildRequires:  cmake(KF6NewStuffCore)
 
-Requires:   plymouth
+Requires:       plymouth
 
 %description
 This is a System Settings configuration module for configuring the
 plymouth splash screen.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 %cmake_kf6
 %cmake_build
 
-
 %install
 %cmake_install
 %find_lang kcm_plymouth --all-name --with-html
 
+%check
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files -f kcm_plymouth.lang
 %license LICENSES/*
+%{_kf6_bindir}/kplymouththemeinstaller
+%{_kf6_datadir}/applications/kcm_plymouth.desktop
+%{_kf6_datadir}/dbus-1/system-services/org.kde.kcontrol.kcmplymouth.service
 %{_kf6_datadir}/dbus-1/system.d/org.kde.kcontrol.kcmplymouth.conf
-%{_datadir}/knsrcfiles/plymouth.knsrc
-%{_bindir}/kplymouththemeinstaller
-%{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_plymouth.so
+%{_kf6_datadir}/knsrcfiles/plymouth.knsrc
+%{_kf6_datadir}/polkit-1/actions/org.kde.kcontrol.kcmplymouth.policy
 %{_kf6_libexecdir}/kauth/plymouthhelper
-%{_datadir}/dbus-1/system-services/org.kde.kcontrol.kcmplymouth.service
-%{_datadir}/applications/kcm_plymouth.desktop
-%{_datadir}/polkit-1/actions/org.kde.kcontrol.kcmplymouth.policy
-
+%{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_plymouth.so
 
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

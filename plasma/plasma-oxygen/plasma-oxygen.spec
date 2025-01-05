@@ -1,16 +1,16 @@
-%global commit0 8ba9463c38c320772ecf975de6438742b66242c6
+%global commit0 a01d4f61803701f05717f8417e31643a630e2b34
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 10
 
 %global base_name oxygen
 
-Name:    plasma-%{base_name}
-Version: 6.2.5
-Release: 1%{?dist}
-Summary: Plasma and Qt widget style and window decorations for Plasma
+Name:           plasma-%{base_name}
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        Plasma and Qt widget style and window decorations for Plasma
 
-License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only) AND MIT
-URL:     https://invent.kde.org/plasma/%{base_name}
+License:        CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only) AND MIT
+URL:            https://invent.kde.org/plasma/%{base_name}
 %plasma_source
 
 # Misc
@@ -36,7 +36,7 @@ BuildRequires:  cmake(Qt5X11Extras)
 
 # Qt6
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(KDecoration2)
+BuildRequires:  cmake(KDecoration3)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Config)
@@ -92,11 +92,9 @@ Obsoletes:      plasma-oxygen-common < 5.1.1-2
 %description -n oxygen-cursor-themes
 %{summary}.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 mkdir -p qt6build
@@ -122,7 +120,6 @@ popd
 
 %find_lang oxygen --with-qt --all-name
 
-
 %files -f oxygen.lang
 %license LICENSES/*
 %{_bindir}/oxygen-settings6
@@ -135,8 +132,8 @@ popd
 %{_kf6_datadir}/plasma/look-and-feel/org.kde.oxygen/
 %{_kf6_metainfodir}/org.kde.oxygen.appdata.xml
 %{_kf6_qtplugindir}/kstyle_config/kstyle_oxygen_config.so
-%{_kf6_qtplugindir}/org.kde.kdecoration2.kcm/kcm_oxygendecoration.so
-%{_kf6_qtplugindir}/org.kde.kdecoration2/org.kde.oxygen.so
+%{_kf6_qtplugindir}/org.kde.kdecoration3.kcm/kcm_oxygendecoration.so
+%{_kf6_qtplugindir}/org.kde.kdecoration3/org.kde.oxygen.so
 
 %files qt5
 %{_bindir}/oxygen-demo5
@@ -158,20 +155,8 @@ popd
 %{_datadir}/icons/Oxygen_Yellow/
 %{_datadir}/icons/Oxygen_Zion/
 
-
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-2
-- Remove Qt6 version constraints
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 

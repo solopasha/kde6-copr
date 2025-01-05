@@ -1,42 +1,43 @@
-%global commit0 ace563cf3d32dd016f452293c98bf54faca1ea6d
+%global commit0 4ea5e2b608b53208b1f67c7d66c775f5095aa438
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 6
 
-Name:    kglobalacceld
-Summary: Daemon providing Global Keyboard Shortcut functionality
-Version: 6.2.5
-Release: 1%{?dist}
+Name:           kglobalacceld
+Summary:        Daemon providing Global Keyboard Shortcut functionality
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/plasma/%{name}
+License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  extra-cmake-modules
 BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtbase-private-devel
-BuildRequires:  qt6-qtbase-gui
-BuildRequires:  cmake(Qt6DBus)
-BuildRequires:  cmake(Qt6Gui)
-BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  systemd-rpm-macros
+
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
-BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(KF6GlobalAccel)
-BuildRequires:  cmake(KF6Service)
-BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6JobWidgets)
-BuildRequires:  pkgconfig(xcb)
-BuildRequires:  pkgconfig(xkbcommon) >= 0.5.0
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Service)
+BuildRequires:  cmake(KF6WindowSystem)
+
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  qt6-qtbase-private-devel
+
 BuildRequires:  pkgconfig(xcb-keysyms)
-BuildRequires:  pkgconfig(xcb-xkb)
 BuildRequires:  pkgconfig(xcb-record)
+BuildRequires:  pkgconfig(xcb-xkb)
 BuildRequires:  pkgconfig(xcb-xtest)
-BuildRequires:  systemd
+BuildRequires:  pkgconfig(xcb)
+BuildRequires:  pkgconfig(xkbcommon)
 
 Requires:       kf6-filesystem
 
@@ -46,7 +47,8 @@ Requires:       kf6-filesystem
 %package        devel
 Summary:        Developer files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       qt6-qtbase-devel
+Requires:       cmake(Qt6DBus)
+Requires:       cmake(Qt6Widgets)
 %description    devel
 %{summary}.
 
@@ -76,18 +78,7 @@ Requires:       qt6-qtbase-devel
 %{_kf6_libdir}/cmake/KGlobalAccelD/
 
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-2
-- Remove Qt6 version constraints
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 

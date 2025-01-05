@@ -1,10 +1,10 @@
-%global commit0 b00757338db2bae2fa6f3a36fb2f47b1b8157c04
+%global commit0 e5a5ac0cf9d8bace86a7c29a15484263d6e15a4e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 9
 
 Name:           kdecoration
 Summary:        A plugin-based library to create window decorations
-Version:        6.2.5
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        LGPLv2
@@ -13,11 +13,14 @@ URL:            https://invent.kde.org/plasma/kdecoration
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  qt6-qtbase-devel
 
-BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Test)
 
 Requires:       kf6-filesystem
 
@@ -43,33 +46,25 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %find_lang %{name}
 # create/own plugin dir
-mkdir -p %{buildroot}%{_kf6_qtplugindir}/org.kde.kdecoration2/
+mkdir -p %{buildroot}%{_kf6_qtplugindir}/org.kde.kdecoration3/
 
 %files -f %{name}.lang
 %license LICENSES/*.txt
-%{_kf6_libdir}/libkdecorations2.so.%{version_no_git}
-%{_kf6_libdir}/libkdecorations2.so.6
-%{_kf6_libdir}/libkdecorations2private.so.%{version_no_git}
-%{_kf6_libdir}/libkdecorations2private.so.11
-%dir %{_kf6_qtplugindir}/org.kde.kdecoration2/
+%{_kf6_libdir}/libkdecorations3.so.%{version_no_git}
+%{_kf6_libdir}/libkdecorations3.so.6
+%{_kf6_libdir}/libkdecorations3private.so.%{version_no_git}
+%{_kf6_libdir}/libkdecorations3private.so.1
+%dir %{_kf6_qtplugindir}/org.kde.kdecoration3/
 
 %files devel
-%{_includedir}/KDecoration2/
-%{_kf6_includedir}/kdecoration2_version.h
-%{_kf6_libdir}/cmake/KDecoration2/
-%{_kf6_libdir}/libkdecorations2.so
-%{_kf6_libdir}/libkdecorations2private.so
+%{_includedir}/KDecoration3/
+%{_kf6_includedir}/kdecoration3_version.h
+%{_kf6_libdir}/cmake/KDecoration3/
+%{_kf6_libdir}/libkdecorations3.so
+%{_kf6_libdir}/libkdecorations3private.so
 
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

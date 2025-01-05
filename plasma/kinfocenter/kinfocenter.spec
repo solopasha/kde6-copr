@@ -1,128 +1,94 @@
-%global commit0 e2996f879add9c9ea3bc9e2b0cadcc7cb431a142
+%global commit0 c8b29931be6f5f3ba3b4b135102dac0d8c2a28f1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 11
 
-Name:    kinfocenter
-Version: 6.2.5
-Release: 1%{?dist}
-Summary: KDE Info Center
+Name:           kinfocenter
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Info Center
 
-License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/plasma/%{name}
+License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  qt6-qtbase-devel
-
-BuildRequires:  kf6-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  libappstream-glib
 
-BuildRequires:  cmake(KF6Completion)
+BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(Plasma)
+BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6Solid)
-BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  cmake(KF6XmlGui)
-BuildRequires:  cmake(KF6Declarative)
-BuildRequires:  cmake(KF6Package)
-BuildRequires:  cmake(KF6DocTools)
-BuildRequires:  cmake(KF6Auth)
-BuildRequires:  mesa-libGL-devel
-BuildRequires:  mesa-libGLES-devel
-BuildRequires:  mesa-libEGL-devel
-BuildRequires:  mesa-libGLU-devel
-BuildRequires:  libX11-devel
-BuildRequires:  pciutils-devel
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Widgets)
+
 BuildRequires:  pkgconfig(libusb-1.0)
-BuildRequires:  desktop-file-utils
-BuildRequires:  libappstream-glib
-%ifnarch s390 s390x
-BuildRequires:  libraw1394-devel
-%endif
+BuildRequires:  pkgconfig(libdrm)
 
-BuildRequires: cmake(KF6Kirigami)
-Requires: kf6-kirigami2%{?_isa}
-
-# Optional
-BuildRequires:  cmake(KWayland)
-
-# runtime query of usb.ids, oui.txt
-Requires: hwdata
+Requires:       kf6-kirigami%{?_isa}
 
 # Runtime Dependancies
-Requires: plasma-systemsettings
-Requires: wayland-utils
-Requires: dmidecode
-Requires: vulkan-tools
-Requires: xdpyinfo
-Requires: egl-utils
-Requires: fwupd
-Requires: aha
-Requires: clinfo
-Requires: pulseaudio-utils
-
-# When kinfocenter was split out from kde-workspace
-Conflicts:      kde-workspace < 4.11.15-3
+Requires:       plasma-systemsettings
+Requires:       wayland-utils
+Requires:       dmidecode
+Requires:       vulkan-tools
+Requires:       xdpyinfo
+Requires:       egl-utils
+Requires:       fwupd
+Requires:       aha
+Requires:       clinfo
+Requires:       pulseaudio-utils
+Requires:       hwdata
 
 %description
 %{summary}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
 %find_lang %{name} --all-name --with-html
 
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kinfocenter.desktop
-desktop-file-validate %{buildroot}%{_datadir}/applications/kcm_about-distro.desktop
-desktop-file-validate %{buildroot}%{_datadir}/applications/kcm_energyinfo.desktop
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml || :
 
 %files -f %{name}.lang
-%{_datadir}/applications/kcm_energyinfo.desktop
-%{_bindir}/kinfocenter
-%{_kf6_libdir}/libKInfoCenterInternal.so
-%{_kf6_qtplugindir}/plasma/kcms/*.so
-%{_kf6_qtplugindir}/plasma/kcms/kinfocenter/*.so
-%{_datadir}/metainfo/org.kde.kinfocenter.appdata.xml
-%{_sysconfdir}/xdg/menus/kinfocenter.menu
-%{_datadir}/applications/org.kde.kinfocenter.desktop
-%{_datadir}/applications/kcm_about-distro.desktop
+%{_kf6_bindir}/kinfocenter
+%{_kf6_datadir}/applications/kcm_about-distro.desktop
+%{_kf6_datadir}/applications/kcm_energyinfo.desktop
+%{_kf6_datadir}/applications/org.kde.kinfocenter.desktop
 %{_kf6_datadir}/dbus-1/system-services/org.kde.kinfocenter.dmidecode.service
 %{_kf6_datadir}/dbus-1/system.d/org.kde.kinfocenter.dmidecode.conf
-%{_datadir}/desktop-directories/kinfocenter.directory
 %{_kf6_datadir}/kinfocenter/
+%{_kf6_datadir}/metainfo/org.kde.kinfocenter.appdata.xml
 %{_kf6_datadir}/polkit-1/actions/org.kde.kinfocenter.dmidecode.policy
-%{_qt6_archdatadir}/qml/org/kde/kinfocenter/
+%{_kf6_libdir}/libKInfoCenterInternal.so
 %{_kf6_libexecdir}/kauth/kinfocenter-dmidecode-helper
-
+%{_kf6_qmldir}/org/kde/kinfocenter/
+%{_kf6_qtplugindir}/plasma/kcms/*.so
+%{_kf6_qtplugindir}/plasma/kcms/kinfocenter/*.so
+%{_libexecdir}/kinfocenter-opengl-helper
 
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

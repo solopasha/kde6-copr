@@ -1,9 +1,9 @@
-%global commit0 25dd7c3ac7c17f8ca73e9572205d99aff67519e2
+%global commit0 6c733737511246b1cdb590a493378252a3450b24
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 10
 
 Name:           kscreenlocker
-Version:        6.2.5
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Library and components for secure lock screen architecture
 
@@ -11,36 +11,41 @@ License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later A
 URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  cmake(LayerShellQt)
-
-BuildRequires:  perl-generators
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtbase-private-devel
-BuildRequires:  cmake(Qt6Quick)
-
-BuildRequires:  kf6-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IdleTime)
 BuildRequires:  cmake(KF6KCMUtils)
-BuildRequires:  cmake(KF6Notifications)
-BuildRequires:  cmake(PlasmaQuick)
-BuildRequires:  cmake(KF6Screen)
-BuildRequires:  cmake(KF6Svg)
-BuildRequires:  cmake(KF6XmlGui)
 BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Solid)
+BuildRequires:  cmake(KF6Svg)
+BuildRequires:  cmake(KF6WindowSystem)
+BuildRequires:  cmake(KF6XmlGui)
 
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Test)
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  qt6-qtbase-private-devel
+
+BuildRequires:  cmake(KF6Screen)
+BuildRequires:  cmake(LayerShellQt)
+BuildRequires:  cmake(PlasmaQuick)
+
+BuildRequires:  /usr/bin/loginctl
 BuildRequires:  libX11-devel
-BuildRequires:  xcb-util-keysyms-devel
-BuildRequires:  wayland-devel
-BuildRequires:  pkgconfig(xi)
-
-BuildRequires:  libXcursor-devel
 BuildRequires:  pam-devel
+BuildRequires:  pkgconfig(xcb-keysyms)
+BuildRequires:  pkgconfig(xcb-xtest)
+BuildRequires:  pkgconfig(xi)
+BuildRequires:  wayland-devel
 
 %description
 %{summary}.
@@ -52,22 +57,21 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
 
 %find_lang %{name} --with-qt --all-name
 
+%check
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files -f %{name}.lang
 %license COPYING
@@ -88,20 +92,8 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/ScreenSaverDBusInterface/
 %{_kf6_libdir}/libKScreenLocker.so
 
-
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-2
-- Remove Qt6 version constraints
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 

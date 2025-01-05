@@ -1,11 +1,11 @@
 %global commit0 446df092eb17b43309cd558a3b4a63526b6e7fb3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 3
 
 %global         base_name breeze-grub
 
 Name:           grub2-breeze-theme
-Version:        6.2.5
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Breeze theme for GRUB
 License:        BSD-2-Clause AND CC-BY-SA-4.0 AND GPL-2.0-or-later WITH Font-exception-2.0 AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only)
@@ -36,40 +36,27 @@ Provides:       %{base_name} = %{version}-%{release}
 %description
 %{summary}.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
 install -m644 -p %{SOURCE10} .
 
-
 %build
 # blank
-
 
 %install
 mkdir -p %{buildroot}%{_grubthemedir}/breeze
 find breeze/ -type f -and -not -iname \*.license -print0 \
   | xargs -0 -n100 cp -v -t %{buildroot}%{_grubthemedir}/breeze
 
-
 %files
 %license LICENSES
 %doc README.fedora
 %{_grubthemedir}/breeze
 
-
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

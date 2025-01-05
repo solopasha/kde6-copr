@@ -1,24 +1,21 @@
-%global commit0 1e5d71748e84c9a04b1809fff0268f837637a4b0
+%global commit0 397af4245a26e003b9255c437a15964a81e8fbfd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 11
 
-Name:    plasma-integration
-Summary: Qt Platform Theme integration plugin for Plasma
-Version: 6.2.5
-Release: 1%{?dist}
+Name:           plasma-integration
+Summary:        Qt Platform Theme integration plugin for Plasma
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/plasma/%{name}
+License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  kf6-rpm-macros
-BuildRequires:  kf5-rpm-macros
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
-BuildRequires:  wayland-devel
-BuildRequires:  cmake(PlasmaWaylandProtocols) >= 1.6.0
-
-BuildRequires:  pkgconfig(x11)
-BuildRequires:  pkgconfig(xcursor)
+BuildRequires:  gcc-c++
+BuildRequires:  kf5-rpm-macros
+BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  cmake(Qt6Widgets)
@@ -59,6 +56,11 @@ BuildRequires:  cmake(KF5Wayland)
 BuildRequires:  cmake(KF5GuiAddons)
 BuildRequires:  cmake(KF5XmlGui)
 
+BuildRequires:  pkgconfig(x11)
+BuildRequires:  pkgconfig(xcursor)
+BuildRequires:  wayland-devel
+BuildRequires:  cmake(PlasmaWaylandProtocols)
+
 BuildRequires:  plasma-breeze-devel
 Requires:       plasma-breeze
 Requires:       breeze-cursor-theme
@@ -68,6 +70,7 @@ Recommends:     plasma-workspace
 Requires:       qqc2-breeze-style
 
 Requires:       (%{name}-qt5 if qt5-qtbase-gui)
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 %description
 %{summary}.
@@ -107,23 +110,8 @@ Requires:       kf5-qqc2-breeze-style
 %files qt5
 %{_qt5_plugindir}/platformthemes/KDEPlasmaPlatformTheme5.so
 
-
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-2
-- Remove Qt6 version constraints
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Sat Nov 16 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-2
-- Don't depend on the exact version of Qt5
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 

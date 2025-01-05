@@ -1,58 +1,46 @@
-%global commit0 7061a9d2968a891819e414aed223ade901816b4f
+%global commit0 883e09cd37b26790db25d1564892d153eda58e03
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 3
 
 Name:           oxygen-sounds
-Version:        6.2.5
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        The Oxygen Sound Theme
 
 License:        LGPL-3.0-or-later AND CC0-1.0 AND CC-BY-3.0 AND BSD-2-Clause
 URL:            https://invent.kde.org/plasma/oxygen-sounds
+BuildArch:      noarch
 %plasma_source
-
-Provides:       oxygen-sound-theme = %{version}-%{release}
-Obsoletes:      oxygen-sound-theme <= 5.24.50
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  qt6-qtbase-devel
 
-BuildArch:      noarch
+Provides:       oxygen-sound-theme = %{version}-%{release}
+Obsoletes:      oxygen-sound-theme <= 5.24.50
 
 %description
 %{summary}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
 %build
-%{cmake_kf6} -DBUILD_WITH_QT6=ON
-%{cmake_build}
+%cmake_kf6 -DBUILD_WITH_QT6=ON
+%cmake_build
 
 %install
-%{cmake_install}
-
+%cmake_install
 
 %files
 %license LICENSES/*.txt
 %{_kf6_datadir}/sounds/Oxygen-*
 %{_kf6_datadir}/sounds/oxygen/
 
-
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

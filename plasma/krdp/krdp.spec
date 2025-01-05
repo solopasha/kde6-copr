@@ -1,12 +1,9 @@
-%global commit0 855015ff80c871c1f6397b4c534d93e5cd2f2656
+%global commit0 1eb0679eb703745424b80f5fb9eaf527ed462787
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
-
-%global qt6minver 6.6.0
-%global kf6minver 6.2
+%global bumpver 11
 
 Name:           krdp
-Version:        6.2.5
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Desktop sharing using RDP
 
@@ -15,10 +12,11 @@ URL:            https://invent.kde.org/plasma/krdp
 %plasma_source
 
 BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules >= %{kf6minver}
+BuildRequires:  desktop-file-utils
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 BuildRequires:  systemd-rpm-macros
-BuildRequires:  qt6-qtbase-private-devel >= %{qt6minver}
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
@@ -28,16 +26,19 @@ BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6StatusNotifierItem)
 
-BuildRequires:  cmake(Qt6Core) >= %{qt6minver}
-BuildRequires:  cmake(Qt6Gui) >= %{qt6minver}
-BuildRequires:  cmake(Qt6Network) >= %{qt6minver}
-BuildRequires:  cmake(Qt6DBus) >= %{qt6minver}
-BuildRequires:  cmake(Qt6WaylandClient) >= %{qt6minver}
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6WaylandClient)
+BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  (cmake(FreeRDP-Server) >= 2.10 with cmake(FreeRDP-Server) < 3)
 BuildRequires:  (cmake(FreeRDP) >= 2.10 with cmake(FreeRDP) < 3)
 BuildRequires:  (cmake(WinPR) >= 2.10 with cmake(WinPR) < 3)
-BuildRequires:  cmake(KPipeWire) >= 5.27.80
+BuildRequires:  cmake(KPipeWire)
 BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  cmake(Qt6Keychain)
 BuildRequires:  pkgconfig(xkbcommon)
@@ -55,32 +56,30 @@ Provides:       %{name}-server%{?_isa} = %{version}-%{release}
 %package        libs
 Summary:        Library for creating an RDP server
 Requires:       /usr/bin/openssl
-
 %description    libs
 %{summary}.
 
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
-
 %description    devel
 %{summary}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
 
 %find_lang %{name} --all-name
+
+%check
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files -f %{name}.lang
 %doc README.md
@@ -97,9 +96,8 @@ Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 %{_kf6_libdir}/libKRdp.so.6{,.*}
 
 %files devel
-%{_kf6_libdir}/libKRdp.so
 %{_kf6_libdir}/cmake/KRdp/
-
+%{_kf6_libdir}/libKRdp.so
 
 %post
 %systemd_user_post plasma-krdp_server.service
@@ -110,20 +108,8 @@ Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 %postun
 %systemd_user_postun plasma-krdp_server.service
 
-
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-2
-- Remove Qt6 version constraints
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 

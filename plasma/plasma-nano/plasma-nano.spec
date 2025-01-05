@@ -1,14 +1,14 @@
-%global commit0 efe69bca523addc324e53281cabcdd7b283d7578
+%global commit0 779591244fd3811aff02fbbade03c0b96220f094
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 6
 
 %global orig_name org.kde.plasma.nano
 
-Name:    plasma-nano
-Version: 6.2.5
-Release: 1%{?dist}
-License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND MIT
-URL:     https://invent.kde.org/plasma/plasma-nano
+Name:           plasma-nano
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND MIT
+URL:            https://invent.kde.org/plasma/plasma-nano
 %plasma_source
 
 Summary: A minimalist Plasma shell for developing custom experiences on embedded devices.
@@ -20,7 +20,6 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  hicolor-icon-theme
 BuildRequires:  desktop-file-utils
-
 
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
@@ -45,7 +44,6 @@ Requires:       libplasma%{?_isa}
 Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtdeclarative%{?_isa}
 
-
 %description
 %{Summary}
 
@@ -68,17 +66,8 @@ Requires:       qt6-qtdeclarative%{?_isa}
 %{_kf6_datadir}/plasma/shells/%{orig_name}/
 %{_kf6_qmldir}/org/kde/plasma/private/nanoshell/
 
-
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

@@ -1,14 +1,14 @@
-%global commit0 d1de7125322a10deb452e15fd6e029e4cf673bc9
+%global commit0 caab97ff7d9531fa40783f80040db19b4c54a42c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 7
 
-Name:    kwayland-integration
-Version: 6.2.5
-Release: 1%{?dist}
-Summary: Provides integration plugins for various KDE Frameworks for Wayland
+Name:           kwayland-integration
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        Provides integration plugins for various KDE Frameworks for Wayland
 
-License: CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only AND LGPL-3.0-only)
-URL:     https://invent.kde.org/plasma/%{name}
+License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only AND LGPL-3.0-only)
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
 BuildRequires:  qt5-qtbase-devel
@@ -34,40 +34,24 @@ Requires:       kf5-filesystem
 %description
 %{summary}.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 %cmake_kf5
 %cmake_build
 
-
 %install
 %cmake_install
-
 
 %files
 %license LICENSES/*
 %{_kf5_datadir}/qlogging-categories5/kwindowsystem.kwayland.categories
 %{_kf5_plugindir}/kwindowsystem/KF5WindowSystemKWaylandPlugin.so
 
-
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Sat Nov 16 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-2
-- Don't depend on the exact version of Qt5
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

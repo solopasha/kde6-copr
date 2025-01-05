@@ -1,58 +1,48 @@
-%global commit0 17f5e0480616f18a6a0703d8541e26a56ad5776d
+%global commit0 c812bff0abcdde36962acb94a7b061dd0190c55d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 6
 
-Name:    ksystemstats
-Version: 6.2.5
-Release: 1%{?dist}
-Summary: KSystemStats is a daemon that collects statistics about the running system.
+Name:           ksystemstats
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KSystemStats is a daemon that collects statistics about the running system.
 
-License: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LicenseRef-KDE-Accepted-GPL
-URL:     https://invent.kde.org/plasma/%{name}
+License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LicenseRef-KDE-Accepted-GPL
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires: extra-cmake-modules
-BuildRequires: kf6-rpm-macros
-BuildRequires: systemd-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  systemd-rpm-macros
 
-BuildRequires: cmake(KF6Config)
-BuildRequires: cmake(KF6CoreAddons)
-BuildRequires: cmake(KF6Crash)
-BuildRequires: cmake(KF6DBusAddons)
-BuildRequires: cmake(KF6DocTools)
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6IconThemes)
-BuildRequires: cmake(KF6ItemViews)
-BuildRequires: cmake(KF6KIO)
-BuildRequires: cmake(KF6NetworkManagerQt)
-BuildRequires: cmake(KF6NewStuff)
-BuildRequires: cmake(KF6Notifications)
-BuildRequires: cmake(KF6Solid)
-BuildRequires: cmake(KF6WindowSystem)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6NetworkManagerQt)
+BuildRequires:  cmake(KF6Solid)
 
-BuildRequires: cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6Widgets)
 
-BuildRequires: cmake(KSysGuard)
+BuildRequires:  cmake(KSysGuard)
 
-BuildRequires:  libnl3-devel
 BuildRequires:  lm_sensors-devel
-BuildRequires:  systemd-devel
-BuildRequires:  pkgconfig(libpcap)
+BuildRequires:  pkgconfig(libnl-3.0)
+BuildRequires:  pkgconfig(libudev)
 
 %description
 KSystemStats is a daemon that collects statistics about the running system.
 
-%package devel
-Summary:  Developer files for %{name}
-Requires: %{name}%{?_isa} = %{version}-%{release}
-%description devel
+%package        devel
+Summary:        Developer files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+%description    devel
 %{summary}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 %cmake_kf6
@@ -62,26 +52,18 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 %cmake_install
 %find_lang ksystemstats_plugins
 
-
 %files -f ksystemstats_plugins.lang
 %doc README.md
 %license LICENSES/*
-%{_kf6_bindir}/ksystemstats
 %{_kf6_bindir}/kstatsviewer
-%{_datadir}/dbus-1/services/org.kde.ksystemstats1.service
-%{_userunitdir}/plasma-ksystemstats.service
+%{_kf6_bindir}/ksystemstats
+%{_kf6_datadir}/dbus-1/services/org.kde.ksystemstats1.service
+%{_kf6_datadir}/qlogging-categories6/ksystemstats.categories
 %{_qt6_plugindir}/ksystemstats/
+%{_userunitdir}/plasma-ksystemstats.service
 
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

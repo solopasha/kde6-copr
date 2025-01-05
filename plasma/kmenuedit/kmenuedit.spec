@@ -1,59 +1,56 @@
-%global commit0 72b7dfd179d0f931f71817a9cdda01e60bc19fc7
+%global commit0 54cdcccfb8845505d21fc31211f5322f52af8a72
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 6
 
 Name:          kmenuedit
 Summary:       KDE menu editor
-Version:       6.2.5
+Version:       6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:       1%{?dist}
 
 License:       GPL-2.0-or-later OR GPL-2.0-only
 URL:           https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires: desktop-file-utils
-BuildRequires: extra-cmake-modules
-BuildRequires: kf6-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires: cmake(Qt6Core)
-BuildRequires: cmake(Qt6DBus)
-BuildRequires: cmake(Qt6Xml)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Xml)
 
-BuildRequires: cmake(KF6Crash)
-BuildRequires: cmake(KF6DBusAddons)
-BuildRequires: cmake(KF6DocTools)
-BuildRequires: cmake(KF6GlobalAccel)
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6IconThemes)
-BuildRequires: cmake(KF6ItemViews)
-BuildRequires: cmake(KF6KIO)
-BuildRequires: cmake(KF6Sonnet)
-BuildRequires: cmake(KF6WindowSystem)
-BuildRequires: cmake(KF6XmlGui)
+BuildRequires:  cmake(KF6Crash)
+BuildRequires:  cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6GlobalAccel)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6IconThemes)
+BuildRequires:  cmake(KF6ItemViews)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Sonnet)
+BuildRequires:  cmake(KF6WindowSystem)
+BuildRequires:  cmake(KF6XmlGui)
 
 %description
 %{summary}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
 
 %find_lang %{name} --with-html --all-name
 
-
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kmenuedit.desktop
-
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files -f kmenuedit.lang
 %license LICENSES/GPL-2.0-only.txt LICENSES/GPL-2.0-or-later.txt
@@ -64,17 +61,8 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kmenuedit.des
 %{_kf6_datadir}/metainfo/org.kde.kmenuedit.appdata.xml
 %{_kf6_datadir}/qlogging-categories6/kmenuedit.categories
 
-
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

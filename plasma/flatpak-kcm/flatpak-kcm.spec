@@ -1,27 +1,31 @@
-%global commit0 0decdd8e5602e7e48a4b06aef132bce3b3ca3ee5
+%global commit0 b41976051cd9ec9d177342077f0ae07370e9f9ce
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 6
 
-Name:          flatpak-kcm
-Version:       6.2.5
-Release:       1%{?dist}
-License:       BSD-2-Clause and BSD-3-Clause and CC0-1.0 and GPL-2.0-or-later
-Summary:       Flatpak Permissions Management KCM
-URL:           https://invent.kde.org/plasma/flatpak-kcm
+Name:           flatpak-kcm
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+License:        BSD-2-Clause and BSD-3-Clause and CC0-1.0 and GPL-2.0-or-later
+Summary:        Flatpak Permissions Management KCM
+URL:            https://invent.kde.org/plasma/flatpak-kcm
 %plasma_source
 
-BuildRequires: extra-cmake-modules
-BuildRequires: gcc-c++
-BuildRequires: kf6-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires: cmake(KF6Declarative)
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6ItemModels)
-BuildRequires: cmake(KF6KCMUtils)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6ItemModels)
+BuildRequires:  cmake(KF6KCMUtils)
 
-BuildRequires: cmake(Qt6Svg)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Svg)
 
-BuildRequires: pkgconfig(flatpak)
+BuildRequires:  pkgconfig(flatpak)
 
 %description
 %{summary}.
@@ -39,21 +43,16 @@ BuildRequires: pkgconfig(flatpak)
 
 %find_lang kcm_flatpak
 
+%check
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
+
 %files -f kcm_flatpak.lang
 %license LICENSES/*
 %{_kf6_datadir}/applications/kcm_flatpak.desktop
 %{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_flatpak.so
 
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

@@ -1,43 +1,39 @@
-%global commit0 e3ca5ca18021809e178a18da9a01f4c620851059
+%global commit0 25c9d4e88b5e0a3db05c1a25a88a3585946395f9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 14
 
-Name:    libkscreen
-Summary: KDE display configuration library
-Version: 6.2.5
-Release: 1%{?dist}
+Name:           libkscreen
+Summary:        KDE display configuration library
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: GPL-2.0-or-later
-URL:     https://invent.kde.org/plasma/%{name}
+License:        GPL-2.0-or-later
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-# KDE Frameworks
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  systemd-rpm-macros
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Test)
+BuildRequires:  cmake(Qt6WaylandClient)
+BuildRequires:  qt6-qtbase-private-devel
+
 BuildRequires:  cmake(KF6Config)
 
-# Fedora
-BuildRequires:  kf6-rpm-macros
-Requires:       kf6-filesystem
-
-# Misc
-BuildRequires:  systemd-rpm-macros
+BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  libX11-devel
-BuildRequires:  libXrandr-devel
 BuildRequires:  libxcb-devel
+BuildRequires:  libXrandr-devel
 BuildRequires:  pkgconfig(xcb-dpms)
 BuildRequires:  wayland-devel
 
-# KDE Plasma
-BuildRequires:  plasma-wayland-protocols-devel
-
-# Qt
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtbase-private-devel
-BuildRequires:  qt6-qtwayland-devel
-BuildRequires:  cmake(Qt6WaylandClient)
-
-# Renamed from libkscreen-qt5
-Obsoletes:      libkscreen-qt5 < %{version}-%{release}
+Requires:       kf6-filesystem
 
 %description
 LibKScreen is a library that provides access to current configuration
@@ -85,18 +81,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/pkgconfig/KF6Screen.pc
 
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-2
-- Remove Qt6 version constraints
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 

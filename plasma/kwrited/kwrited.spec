@@ -1,38 +1,38 @@
-%global commit0 75d1fd6aa191c417e894434fbaf4ce4ec7e26981
+%global commit0 7606940a55410b4dda8a6f41b4b6605cf11c9e16
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 4
 
-Name:    kwrited
-Summary: KDE Write Daemon
-Version: 6.2.5
-Release: 1%{?dist}
+Name:           kwrited
+Summary:        KDE Write Daemon
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: CC0-1.0 AND GPL-2.0-or-later
-URL:     https://invent.kde.org/plasma/%{name}
+License:        CC0-1.0 AND GPL-2.0-or-later
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake(KF6Pty)
+
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Notifications)
-BuildRequires:  cmake(KF6DBusAddons)
-BuildRequires:  qt6-qtbase-devel
+BuildRequires:  cmake(KF6Pty)
+
+BuildRequires:  cmake(Qt6Gui)
 
 # Owns /usr/share/knotifications5
 Requires:       kf6-knotifications
 
-# TODO: Remove once kwrited is split from kde-workspace
-Conflicts:      kde-workspace < 5.0.0-1
-
 %description
 %{summary}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 %cmake_kf6
@@ -43,19 +43,11 @@ Conflicts:      kde-workspace < 5.0.0-1
 
 %files
 %license LICENSES/*
-%{_qt6_plugindir}/kf6/kded/kwrited.so
 %{_kf6_datadir}/knotifications6/kwrited.notifyrc
+%{_qt6_plugindir}/kf6/kded/kwrited.so
 
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

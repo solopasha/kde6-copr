@@ -1,58 +1,64 @@
-%global commit0 0625ff66cbafa3e7f3db6b3138f36b33948890cd
+%global commit0 f2cb71fb3b5d1c4d19acb1071afb2235901d1941
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 13
 
-Name:    kscreen
-Epoch:   1
-Version: 6.2.5
-Release: 1%{?dist}
-Summary: KDE Display Management software
+Name:           kscreen
+Epoch:          1
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Display Management software
 
-License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later (GPL-2.0-only OR GPL-3.0-only)
-URL:     https://invent.kde.org/plasma/%{name}
+License:        CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later (GPL-2.0-only OR GPL-3.0-only)
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  systemd-rpm-macros
 
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtbase-private-devel
-BuildRequires:  qt6-qtsensors-devel
-
-BuildRequires:  cmake(LayerShellQt)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
-BuildRequires:  cmake(Plasma)
-BuildRequires:  cmake(PlasmaQuick)
-BuildRequires:  cmake(KF6Screen)
 BuildRequires:  cmake(KF6Svg)
 BuildRequires:  cmake(KF6XmlGui)
 
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Sensors)
+BuildRequires:  cmake(Qt6Test)
+BuildRequires:  qt6-qtbase-private-devel
+
+BuildRequires:  cmake(KF6Screen)
+BuildRequires:  cmake(LayerShellQt)
+BuildRequires:  cmake(Plasma)
+BuildRequires:  cmake(PlasmaQuick)
+
 BuildRequires:  pkgconfig(xcb-atom)
+BuildRequires:  pkgconfig(xcb)
 BuildRequires:  pkgconfig(xi)
 
 %description
 KCM and KDED modules for managing displays in KDE.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
 
 %find_lang %{name} --with-kde --all-name
 
+%check
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files -f %{name}.lang
 %license LICENSES
@@ -69,20 +75,8 @@ KCM and KDED modules for managing displays in KDE.
 %{_libexecdir}/kscreen_osd_service
 %{_userunitdir}/plasma-kscreen-osd.service
 
-
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 1:6.2.5-1
-- Update to 6.2.5
-
-* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 1:6.2.4-2
-- Remove Qt6 version constraints
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 1:6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 1:6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 1:6.2.2-2
 - rebuilt
 

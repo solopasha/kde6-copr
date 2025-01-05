@@ -1,50 +1,41 @@
-%global commit0 2144b05d9d81abc966157c6bb4b5f1b0fba1c4c1
+%global commit0 af66ba8623ee37cce25353cd86d42a62ee0314c4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 10
 
-Name:    kpipewire
-Summary: Set of convenient classes to use PipeWire in Qt projects
-Version: 6.2.5
-Release: 1%{?dist}
+Name:           kpipewire
+Summary:        Set of convenient classes to use PipeWire in Qt projects
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only
-URL:     https://invent.kde.org/plasma/%{name}
+License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-# Compile Tools
 BuildRequires:  cmake
-BuildRequires:  gcc-c++
-
-# Fedora
-BuildRequires:  kf6-rpm-macros
-Requires:       kf6-filesystem
-
-# KDE Frameworks
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
 
-# Misc
-BuildRequires:  libdrm-devel
-BuildRequires:  libepoxy-devel
-BuildRequires:  mesa-libgbm-devel
-BuildRequires:  pipewire-devel
-BuildRequires:  wayland-devel
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  qt6-qtbase-private-devel
+
+BuildRequires:  pkgconfig(epoxy)
+BuildRequires:  pkgconfig(gbm)
 BuildRequires:  pkgconfig(libavcodec)
 BuildRequires:  pkgconfig(libavfilter)
 BuildRequires:  pkgconfig(libavformat)
 BuildRequires:  pkgconfig(libavutil)
+BuildRequires:  pkgconfig(libdrm)
+BuildRequires:  pkgconfig(libpipewire-0.3)
 BuildRequires:  pkgconfig(libswscale)
+BuildRequires:  pkgconfig(libva-drm)
 BuildRequires:  pkgconfig(libva)
-
-# Plasma
-BuildRequires:  plasma-wayland-protocols-devel
-
-# Qt
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qtbase-private-devel
-BuildRequires:  qt6-qtdeclarative-devel
-BuildRequires:  qt6-qtwayland-devel
 
 %description
 It is developed in C++ and it's main use target is QML components.
@@ -63,14 +54,10 @@ Summary:        Development files for %{name}
 # This requires pipewire headers to be installed
 Requires:       pipewire-devel
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Provides:       kpipewire-devel = %{version}-%{release}
-Provides:       kpipewire-devel%{?_isa} = %{version}-%{release}
-Obsoletes:      kpipewire-devel <= 1:5.2.0
 
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
@@ -79,7 +66,6 @@ developing applications that use %{name}.
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
@@ -105,18 +91,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKPipeWireRecord.so
 
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Mon Dec 02 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-2
-- Remove Qt6 version constraints
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 

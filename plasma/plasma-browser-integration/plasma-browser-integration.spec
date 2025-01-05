@@ -1,29 +1,25 @@
-%global commit0 d692ec42ce706c851aac6ea4b3430c43dd578ac1
+%global commit0 ebf6606463d73e7dd0a658340b369ab495da9b4a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 6
 
-Name:    plasma-browser-integration
-Summary: %{name} provides components necessary to integrate browsers into the Plasma Desktop
-Version: 6.2.5
-Release: 1%{?dist}
+Name:           plasma-browser-integration
+Summary:        %{name} provides components necessary to integrate browsers into the Plasma Desktop
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: GPL-2.0-or-later AND GPL-3.0-or-later AND MIT
-URL:     https://invent.kde.org/plasma/plasma-browser-integration
+License:        GPL-2.0-or-later AND GPL-3.0-or-later AND MIT
+URL:            https://invent.kde.org/plasma/plasma-browser-integration
 %plasma_source
 
-## downstream patches
-
-## upstream patches
-
-## upstreamable patches
-
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Widgets)
-BuildRequires:  cmake(Qt6Quick)
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
@@ -38,10 +34,9 @@ BuildRequires:  cmake(KF6Purpose)
 BuildRequires:  cmake(KF6Runner)
 BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6StatusNotifierItem)
-BuildRequires:  cmake(PlasmaActivities)
-BuildRequires:  cmake(KF6ItemModels)
 
 BuildRequires:  cmake(LibTaskManager)
+BuildRequires:  cmake(PlasmaActivities)
 
 Supplements:    (plasma-workspace and chromium)
 Supplements:    (plasma-workspace and firefox)
@@ -52,23 +47,22 @@ Supplements:    (plasma-workspace and firefox)
 For more information, see
 https://community.kde.org/Plasma/Browser_Integration
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 %cmake_kf6 \
   -DMOZILLA_DIR:PATH=%{_libdir}/mozilla
 %cmake_build
 
-
 %install
 %cmake_install
 
 %find_lang %{name} --all-name
 
+%check
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files -f %{name}.lang
 %license LICENSES/*
@@ -76,23 +70,15 @@ https://community.kde.org/Plasma/Browser_Integration
 %config %{_sysconfdir}/opt/chrome/native-messaging-hosts/org.kde.plasma.browser_integration.json
 %config %{_sysconfdir}/opt/edge/native-messaging-hosts/org.kde.plasma.browser_integration.json
 %{_kf6_bindir}/plasma-browser-integration-host
-%{_kf6_libdir}/mozilla/native-messaging-hosts/org.kde.plasma.browser_integration.json
-%{_kf6_plugindir}/kded/browserintegrationreminder.so
+%{_kf6_datadir}/applications/org.kde.plasma.browser_integration.host.desktop
 %{_kf6_datadir}/krunner/dbusplugins/plasma-runner-browserhistory.desktop
 %{_kf6_datadir}/krunner/dbusplugins/plasma-runner-browsertabs.desktop
-%{_kf6_datadir}/applications/org.kde.plasma.browser_integration.host.desktop
-
+%{_kf6_libdir}/mozilla/native-messaging-hosts/org.kde.plasma.browser_integration.json
+%{_kf6_plugindir}/kded/browserintegrationflatpakintegrator.so
+%{_kf6_plugindir}/kded/browserintegrationreminder.so
 
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

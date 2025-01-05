@@ -1,127 +1,115 @@
-%global commit0 9cf5e17607da5886bf01ae94b10cc05b2034c63e
+%global commit0 8756b9f72c71cd5fb35f05b96395aab74232d14b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 10
 
-%global  base_name print-manager
+%global base_name print-manager
 
-Name:    plasma-print-manager
-Summary: Printer management for KDE
-Version: 6.2.5
-Release: 1%{?dist}
+Name:           plasma-print-manager
+Summary:        Printer management for KDE
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
-URL:     https://invent.kde.org/plasma/%{base_name}
+License:        BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
+URL:            https://invent.kde.org/plasma/%{base_name}
 %plasma_source
 
-BuildRequires: desktop-file-utils
-BuildRequires: extra-cmake-modules
-BuildRequires: kf6-rpm-macros
+BuildRequires:  desktop-file-utils
+BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires: cmake(KF6Config)
-BuildRequires: cmake(KF6ConfigWidgets)
-BuildRequires: cmake(KF6CoreAddons)
-BuildRequires: cmake(KF6DBusAddons)
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6IconThemes)
-BuildRequires: cmake(KF6KCMUtils)
-BuildRequires: cmake(KF6KIO)
-BuildRequires: cmake(KF6Kirigami)
-BuildRequires: cmake(KF6KirigamiAddons)
-BuildRequires: cmake(KF6Notifications)
-BuildRequires: cmake(Plasma)
-BuildRequires: cmake(KF6WidgetsAddons)
-BuildRequires: cmake(KF6WindowSystem)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6ConfigWidgets)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6IconThemes)
+BuildRequires:  cmake(KF6KCMUtils)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Kirigami)
+BuildRequires:  cmake(KF6Notifications)
+BuildRequires:  cmake(KF6WidgetsAddons)
+BuildRequires:  cmake(KF6WindowSystem)
 
-BuildRequires: qt6-qtbase-devel
-BuildRequires: cmake(Qt6Core5Compat)
-BuildRequires: cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Widgets)
 
-BuildRequires: cups-devel >= 1.5.0
+BuildRequires:  cmake(Plasma)
+
+BuildRequires:  cups-devel >= 1.5.0
 # /usr/bin/smbspool (runtime dep, but checked-for at build-time)
-BuildRequires: cups
-BuildRequires: samba-client
+BuildRequires:  cups
+BuildRequires:  samba-client
 
 # Renamed from kde-print-manager
 Obsoletes:      kde-print-manager < 1:%{version}-%{release}
 Provides:       kde-print-manager = 1:%{version}-%{release}
 
-Requires: plasma-workspace
+Requires:       plasma-workspace
 
-Requires: %{name}-libs%{?_isa} = %{version}-%{release}
+Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 # currently requires local cups for majority of proper function
-Requires: cups
+Requires:       cups
 # required for the com.redhat.NewPrinterNotification D-Bus service
-Requires: system-config-printer-libs
+Requires:       system-config-printer-libs
 # /usr/bin/smbspool
-Recommends: samba-client
+Recommends:     samba-client
 
 %description
 Printer management for KDE.
 
-%package  libs
-Summary:  Runtime files for %{name}
-Requires: %{name} = %{version}-%{release}
+%package        libs
+Summary:        Runtime files for %{name}
+Requires:       %{name} = %{version}-%{release}
 Obsoletes:      kde-print-manager-libs < 1:%{version}-%{release}
 Provides:       kde-print-manager-libs = 1:%{version}-%{release}
-%description libs
+%description    libs
 %{summary}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
 
 %find_lang %{name} --all-name --with-html
 
-
 %check
-desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.kde-add-printer.desktop
-desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.ConfigurePrinter.desktop
-desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.PrintQueue.desktop
-
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files -f %{name}.lang
 %license LICENSES/*
-%{_bindir}/kde-add-printer
-%{_bindir}/kde-print-queue
-%{_bindir}/configure-printer
-%{_kf6_qmldir}/org/kde/plasma/printmanager/
+%{_kf6_bindir}/configure-printer
+%{_kf6_bindir}/kde-add-printer
+%{_kf6_bindir}/kde-print-queue
+%{_kf6_datadir}/applications/kcm_printer_manager.desktop
+%{_kf6_datadir}/applications/org.kde.ConfigurePrinter.desktop
+%{_kf6_datadir}/applications/org.kde.kde-add-printer.desktop
+%{_kf6_datadir}/applications/org.kde.PrintQueue.desktop
+%{_kf6_datadir}/knotifications6/printmanager.notifyrc
 %{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.printmanager/
 %{_kf6_datadir}/qlogging-categories6/pmlogs.categories
-%{_kf6_datadir}/knotifications6/printmanager.notifyrc
-%{_kf6_datadir}/applications/kcm_printer_manager.desktop
-%{_kf6_datadir}/applications/org.kde.kde-add-printer.desktop
-%{_kf6_datadir}/applications/org.kde.ConfigurePrinter.desktop
-%{_kf6_datadir}/applications/org.kde.PrintQueue.desktop
 %{_kf6_metainfodir}/org.kde.plasma.printmanager.appdata.xml
 %{_kf6_metainfodir}/org.kde.print-manager.metainfo.xml
+%{_kf6_qmldir}/org/kde/plasma/printmanager/
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_printer_manager.so
-
 
 %files libs
 %{_kf6_libdir}/libkcupslib.so.%{version_no_git}
 %{_kf6_plugindir}/kded/printmanager.so
 
-
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

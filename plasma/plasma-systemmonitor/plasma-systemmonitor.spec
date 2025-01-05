@@ -1,69 +1,74 @@
-%global commit0 2cbcb115b7f0c16e3a2564817a1a703de56dae3c
+%global commit0 b5a119ed0a421e5b07218a5386fa5b47193c3430
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 18
 
-Name:    plasma-systemmonitor
-Version: 6.2.5
-Release: 1%{?dist}
-Summary: An application for monitoring system resources
+Name:           plasma-systemmonitor
+Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        An application for monitoring system resources
 
-License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/plasma/%{name}
+License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires: extra-cmake-modules
-BuildRequires: kf6-rpm-macros
-BuildRequires: cmake(KF6Config)
-BuildRequires: cmake(KF6Crash)
-BuildRequires: cmake(KF6DBusAddons)
-BuildRequires: cmake(KF6Declarative)
-BuildRequires: cmake(KF6GlobalAccel)
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6IconThemes)
-BuildRequires: cmake(KF6ItemModels)
-BuildRequires: cmake(KF6KIO)
-BuildRequires: cmake(KF6Kirigami)
-BuildRequires: cmake(KF6KirigamiAddons)
-BuildRequires: cmake(KF6NewStuff)
-BuildRequires: cmake(KF6Package)
-BuildRequires: cmake(KF6Service)
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
+BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
 
-BuildRequires: libksysguard-devel
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6Crash)
+BuildRequires:  cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6GlobalAccel)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6ItemModels)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6NewStuff)
+BuildRequires:  cmake(KF6Package)
+BuildRequires:  cmake(KF6Service)
+BuildRequires:  cmake(KF6WindowSystem)
 
-BuildRequires: qt6-qtbase-devel
-BuildRequires: qt6-qtdeclarative-devel
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Widgets)
 
-Requires: kf6-kirigami2%{?_isa}
-Requires: ksystemstats%{?_isa}
+BuildRequires:  cmake(KSysGuard)
 
-Obsoletes:     ksysguard < 5.22.0-11
-Obsoletes:     ksysguardd < 5.22.0-11
+BuildRequires:  cmake(KF6KirigamiAddons)
+
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-kquickcharts%{?_isa}
+Requires:       ksystemstats%{?_isa}
+
+Obsoletes:      ksysguard < 5.22.0-11
+Obsoletes:      ksysguardd < 5.22.0-11
 
 %description
 An interface for monitoring system sensors, process information and other system
 resources.
 
-
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
-
 
 %build
 %cmake_kf6
 %cmake_build
 
-
 %install
 %cmake_install
 %find_lang %{name} --all-name --with-html
 
+%check
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
+
 %files -f %{name}.lang
 %license LICENSES/*.txt
 %{_kf6_bindir}/plasma-systemmonitor
-%{_kf6_datadir}/kglobalaccel/org.kde.plasma-systemmonitor.desktop
 %{_kf6_datadir}/applications/org.kde.plasma-systemmonitor.desktop
 %{_kf6_datadir}/config.kcfg/systemmonitor.kcfg
+%{_kf6_datadir}/kglobalaccel/org.kde.plasma-systemmonitor.desktop
 %{_kf6_datadir}/knsrcfiles/
 %{_kf6_datadir}/ksysguard/sensorfaces/
 %{_kf6_datadir}/metainfo/org.kde.plasma-systemmonitor.metainfo.xml
@@ -74,15 +79,7 @@ resources.
 %{_kf6_qmldir}/org/kde/ksysguard/
 
 %changelog
-* Thu Jan 02 2025 Pavel Solovev <daron439@gmail.com> - 6.2.5-1
-- Update to 6.2.5
-
-* Tue Nov 26 2024 Pavel Solovev <daron439@gmail.com> - 6.2.4-1
-- Update to 6.2.4
-
-* Tue Nov 05 2024 Pavel Solovev <daron439@gmail.com> - 6.2.3-1
-- Update to 6.2.3
-
+%{?kde_snapshot_changelog_entry}
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 
