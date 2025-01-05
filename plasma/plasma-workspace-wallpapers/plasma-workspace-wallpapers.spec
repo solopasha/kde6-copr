@@ -1,6 +1,6 @@
-%global commit0 a45a928114af6c4e85bfe4d76582b4828e7cf6d8
+%global commit0 151fd8934ccd31ee7d9feea71753606e5bf93976
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:           plasma-workspace-wallpapers
 Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -56,6 +56,7 @@ Requires:       kde-filesystem
 %{_kf6_datadir}/wallpapers/Kokkini/
 %{_kf6_datadir}/wallpapers/MilkyWay/
 %{_kf6_datadir}/wallpapers/Mountain/
+%{_kf6_datadir}/wallpapers/Nexus/
 %{_kf6_datadir}/wallpapers/OneStandsOut/
 %{_kf6_datadir}/wallpapers/Opal/
 %{_kf6_datadir}/wallpapers/PastelHills/

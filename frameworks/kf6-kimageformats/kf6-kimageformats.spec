@@ -1,6 +1,6 @@
-%global commit0 e6a0f8758b5fc62f569635df971e06b8ff9ac365
+%global commit0 c97ee00f5e8c0c1caf836fa68416157b1a153e3a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global framework kimageformats
 
@@ -24,6 +24,7 @@ BuildRequires:  cmake(Qt6PrintSupport)
 
 BuildRequires:  cmake(Imath)
 BuildRequires:  cmake(OpenEXR)
+BuildRequires:  cmake(OpenJPEG)
 BuildRequires:  pkgconfig(libavif)
 BuildRequires:  pkgconfig(libheif)
 BuildRequires:  pkgconfig(libjxl_threads)
@@ -61,6 +62,7 @@ image formats.
 %{_kf6_qtplugindir}/imageformats/kimg_exr.so
 %{_kf6_qtplugindir}/imageformats/kimg_hdr.so
 %{_kf6_qtplugindir}/imageformats/kimg_heif.so
+%{_kf6_qtplugindir}/imageformats/kimg_jp2.so
 %{_kf6_qtplugindir}/imageformats/kimg_jxl.so
 %{_kf6_qtplugindir}/imageformats/kimg_kra.so
 %{_kf6_qtplugindir}/imageformats/kimg_ora.so
