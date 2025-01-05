@@ -1,11 +1,11 @@
-%global commit0 d0e90d78de2c4a85f20d51626b440b2e799825e9
+%global commit0 d617330bfed89e3a4c8f81e5e9479f97f956b0c4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kunitconversion
 
 Name:           kf6-%{framework}
-Version:        6.9.0
+Version:        6.11.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Converting physical units
 
@@ -70,6 +70,10 @@ developing applications that use %{name}.
 %{_qt6_docdir}/*.tags
 
 %changelog
+%{?kde_snapshot_changelog_entry}
+* Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
+- Update to 6.10.0
+
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
 - Update to 6.9.0
 

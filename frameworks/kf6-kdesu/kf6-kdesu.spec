@@ -1,11 +1,11 @@
-%global commit0 b38d1fcef668615f56f9f6c101878f3b83062b66
+%global commit0 7bc8242153d42480011dbdfd5c8b8c17d4b3a871
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kdesu
 
 Name:           kf6-%{framework}
-Version:        6.9.0
+Version:        6.11.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        User interface for running shell commands with root privileges
 
@@ -70,6 +70,10 @@ developing applications that use %{name}.
 %{_qt6_docdir}/*.tags
 
 %changelog
+%{?kde_snapshot_changelog_entry}
+* Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
+- Update to 6.10.0
+
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
 - Update to 6.9.0
 

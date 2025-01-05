@@ -1,11 +1,11 @@
-%global commit0 ec49f3b1a7849ffc54e62b20d5223ff43b30caa6
+%global commit0 96ec7a56de772af0f759bdec4e0a52b1c6520f04
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework ktexttemplate
 
 Name:           kf6-%{framework}
-Version:        6.9.0
+Version:        6.11.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Separates the structure of documents from their data
 License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later
@@ -60,6 +60,10 @@ developing applications that use %{name}.
 %{_qt6_docdir}/*.tags
 
 %changelog
+%{?kde_snapshot_changelog_entry}
+* Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
+- Update to 6.10.0
+
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
 - Update to 6.9.0
 

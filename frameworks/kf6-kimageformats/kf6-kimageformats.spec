@@ -1,11 +1,11 @@
-%global commit0 ceb1c46feab6f8a2a7aea1f89eff91815354701d
+%global commit0 e6a0f8758b5fc62f569635df971e06b8ff9ac365
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework kimageformats
 
 Name:           kf6-%{framework}
-Version:        6.9.0
+Version:        6.11.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with additional image plugins for QtGui
 License:        LGPLv2+
@@ -22,14 +22,14 @@ BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6PrintSupport)
 
-BuildRequires:  pkgconfig(libjxl_threads)
-BuildRequires:  pkgconfig(libjxl)
-BuildRequires:  pkgconfig(libraw_r)
-BuildRequires:  pkgconfig(libraw)
 BuildRequires:  cmake(Imath)
 BuildRequires:  cmake(OpenEXR)
 BuildRequires:  pkgconfig(libavif)
 BuildRequires:  pkgconfig(libheif)
+BuildRequires:  pkgconfig(libjxl_threads)
+BuildRequires:  pkgconfig(libjxl)
+BuildRequires:  pkgconfig(libraw_r)
+BuildRequires:  pkgconfig(libraw)
 BuildRequires:  pkgconfig(zlib)
 
 Requires:       kf6-filesystem
@@ -56,6 +56,7 @@ image formats.
 %license LICENSES/*.txt
 %{_kf6_qtplugindir}/imageformats/kimg_ani.so
 %{_kf6_qtplugindir}/imageformats/kimg_avif.so
+%{_kf6_qtplugindir}/imageformats/kimg_dds.so
 %{_kf6_qtplugindir}/imageformats/kimg_eps.so
 %{_kf6_qtplugindir}/imageformats/kimg_exr.so
 %{_kf6_qtplugindir}/imageformats/kimg_hdr.so
@@ -77,6 +78,10 @@ image formats.
 %{_kf6_qtplugindir}/imageformats/kimg_xcf.so
 
 %changelog
+%{?kde_snapshot_changelog_entry}
+* Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
+- Update to 6.10.0
+
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
 - Update to 6.9.0
 

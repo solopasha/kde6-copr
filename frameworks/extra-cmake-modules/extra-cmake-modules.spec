@@ -1,11 +1,11 @@
-%global commit0 44700a805ad41302a81eebd1fe885b9ca18bf7c8
+%global commit0 d12c232b242493919e0ca8b3dbda32650bd0e443
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework extra-cmake-modules
 
 Name:           extra-cmake-modules
-Version:        6.9.0
+Version:        6.11.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Extra modules and scripts for CMake
 
@@ -54,6 +54,10 @@ Requires:       ((python3-devel and python3-build and python3-setuptools and pyt
 %{_kf6_mandir}/man7/ecm*.7*
 
 %changelog
+%{?kde_snapshot_changelog_entry}
+* Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
+- Update to 6.10.0
+
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 6.9.0-1
 - Update to 6.9.0
 
