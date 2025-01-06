@@ -1,12 +1,12 @@
-%global commit0 58bea4c676810a23c107da506e0a45f0d0f81858
+%global commit0 179ec10a4ddcb8ee67a5b0ce96ee448379fe8fb2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:           marble
 Summary:        Virtual globe and world atlas
 Epoch:          1
 Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release:        2%{?dist}
+Release:        1%{?dist}
 
 License:        Apache-2.0 AND BSD-3-Clause AND CC0-1.0 AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND MIT AND (LGPL-2.1-only WITH Qt-LGPL-exception-1.1)
 URL:            https://apps.kde.org/marble/

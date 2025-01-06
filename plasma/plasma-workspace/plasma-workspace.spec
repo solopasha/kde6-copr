@@ -1,6 +1,6 @@
-%global commit0 4d8ffea78a95593cc9580fca7396929e0928d326
+%global commit0 b951133cfef2f3b054aff5f5cbbdf97ebca4acdc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 59
+%global bumpver 60
 
 %bcond x11 1
 
@@ -561,7 +561,6 @@ fi
 %{_kf6_libdir}/libbatterycontrol.so
 %{_kf6_libdir}/libcolorcorrect.so
 %{_kf6_libdir}/libklipper.so
-%{_kf6_libdir}/libkmpris.so
 %{_kf6_libdir}/libkworkspace6.so
 %{_kf6_libdir}/libtaskmanager.so
 %{_kf6_libdir}/libweather_ion.so
