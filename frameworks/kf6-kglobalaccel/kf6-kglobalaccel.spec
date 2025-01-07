@@ -1,6 +1,6 @@
 %global commit0 71cd67c7f1fed8a9cd575a34e793898bcdf81129
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global framework kglobalaccel
 
