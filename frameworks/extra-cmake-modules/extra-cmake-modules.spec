@@ -15,8 +15,6 @@ URL:            https://invent.kde.org/frameworks/extra-cmake-modules
 
 BuildArch:      noarch
 
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  python3-sphinx
 BuildRequires:  python3-sphinxcontrib-qthelp
 
@@ -34,17 +32,6 @@ Requires:       ((python3-devel and python3-build and python3-setuptools and pyt
 
 %description
 %{summary}.
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
 
 %files
 %doc README.rst

@@ -12,12 +12,9 @@ Release:        1%{?dist}
 License:        MIT AND CC0-1.0 AND BSD-3-Clause
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
+BuildOption: -DENABLE_DOCS:BOOL=OFF
 
-BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(Qt6Charts)
@@ -56,26 +53,15 @@ Provides:       kuserfeedback-console%{?_isa} = %{version}-%{release}
 %description    console
 Analytics and administration tool for UserFeedback servers.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6 \
-   -DENABLE_DOCS:BOOL=OFF
-%cmake_build
-
-%install
-%cmake_install
-
-%find_lang userfeedbackconsole6 --with-qt
-%find_lang userfeedbackprovider6 --with-qt
+%install -a
+%find_lang_kf6 userfeedbackconsole6_qt
+%find_lang_kf6 userfeedbackprovider6_qt
 
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.kuserfeedback-console.appdata.xml
-desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kuserfeedback-console.desktop
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.kuserfeedback-console.desktop
 
-%files -f userfeedbackprovider6.lang
+%files -f userfeedbackprovider6_qt.lang
 %doc README.md
 %license LICENSES/*
 %{_kf6_bindir}/userfeedbackctl
@@ -95,7 +81,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kuserfeedback
 %{_kf6_libdir}/libKF6UserFeedbackCore.so
 %{_kf6_libdir}/libKF6UserFeedbackWidgets.so
 
-%files console -f userfeedbackconsole6.lang
+%files console -f userfeedbackconsole6_qt.lang
 %{_kf6_bindir}/UserFeedbackConsole
 %{_kf6_datadir}/applications/org.kde.kuserfeedback-console.desktop
 %{_kf6_metainfodir}/org.kde.kuserfeedback-console.appdata.xml

@@ -12,11 +12,7 @@ Summary:        User interface for running shell commands with root privileges
 License:        CC0-1.0 AND GPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
-
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
+BuildOption: -DKDESU_USE_SUDO_DEFAULT:BOOL=TRUE
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
@@ -26,8 +22,6 @@ BuildRequires:  cmake(KF6Pty)
 BuildRequires:  cmake(Qt6Core)
 
 BuildRequires:  pkgconfig(x11)
-
-Requires:       kf6-filesystem
 
 %description
 %{summary}.
@@ -42,22 +36,10 @@ developing applications that use %{name}.
 
 %qch_package
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6 -DKDESU_USE_SUDO_DEFAULT:BOOL=TRUE
-%cmake_build
-
-%install
-%cmake_install
-%find_lang kdesu6_qt --all-name
-
-%files -f kdesu6_qt.lang
+%files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_datadir}/qlogging-categories6/*
+%{_kf6_datadir}/qlogging-categories6/ksu.categories
 %{_kf6_libdir}/libKF6Su.so.%{version_no_git}
 %{_kf6_libdir}/libKF6Su.so.6
 %{_kf6_libexecdir}/kdesu_stub

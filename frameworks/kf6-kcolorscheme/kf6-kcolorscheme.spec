@@ -12,18 +12,11 @@ License:        BSD-2-Clause and CC0-1.0 and LGPL-2.0-or-later and LGPL-2.1-only
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 
 BuildRequires:  qt6-qtbase-private-devel
-
-Requires:       kf6-filesystem
 
 %description
 %{summary}.
@@ -38,19 +31,7 @@ developing applications that use %{name}.
 
 %qch_package
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-%find_lang kcolorscheme6 --all-name
-
-%files -f kcolorscheme6.lang
+%files -f %{name}.lang
 %doc README.md
 %license LICENSES/*
 %{_kf6_datadir}/qlogging-categories6/kcolorscheme.categories

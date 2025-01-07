@@ -11,11 +11,7 @@ Summary:        KDE Frameworks 6 Tier 1 addon with additional image plugins for 
 License:        LGPLv2+
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
-
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
+BuildOption: -DKIMAGEFORMATS_HEIF:BOOL=ON
 
 BuildRequires:  cmake(KF6Archive)
 
@@ -33,24 +29,11 @@ BuildRequires:  pkgconfig(libraw_r)
 BuildRequires:  pkgconfig(libraw)
 BuildRequires:  pkgconfig(zlib)
 
-Requires:       kf6-filesystem
-
 %description
 This framework provides additional image format plugins for QtGui.  As
 such it is not required for the compilation of any other software, but
 may be a runtime requirement for Qt-based software to support certain
 image formats.
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6 -DKIMAGEFORMATS_HEIF=ON
-%cmake_build
-
-%install
-%cmake_install
 
 %files
 %doc README.md

@@ -13,11 +13,6 @@ License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-l
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
@@ -30,8 +25,6 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6UiPlugin)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
-
-Requires:       kf6-filesystem
 
 %description
 KConfigWidgets provides easy-to-use classes to create configuration dialogs, as
@@ -49,18 +42,6 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %qch_package
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-%find_lang %{name} --with-man --all-name
 
 %files -f %{name}.lang
 %doc README.md

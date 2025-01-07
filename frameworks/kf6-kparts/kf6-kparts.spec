@@ -13,11 +13,6 @@ License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-l
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
@@ -30,8 +25,6 @@ BuildRequires:  cmake(KF6XmlGui)
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(Qt6Xml)
-
-Requires:       kf6-filesystem
 
 %description
 KDE Frameworks 6 Tier 3 solution for KParts
@@ -48,17 +41,7 @@ developing applications that use %{name}.
 
 %qch_package
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-%find_lang %{name} --all-name --with-html
+%install -a
 # create/own parts plugin dir
 mkdir -p %{buildroot}%{_kf6_plugindir}/parts/
 

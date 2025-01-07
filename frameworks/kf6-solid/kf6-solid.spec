@@ -12,11 +12,6 @@ License:        LGPL-2.1-or-later AND LGPL-2.1-only AND CCO-1.0 AND BSD-3-Clause
 URL:            https://invent.kde.org/frameworks/solid
 %frameworks_meta
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Xml)
@@ -33,8 +28,6 @@ Recommends:     media-player-info
 Recommends:     udisks2
 Recommends:     upower
 
-Requires:       kf6-filesystem
-
 %description
 Solid provides the following features for application developers:
  - Hardware Discovery
@@ -50,18 +43,6 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %qch_package
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-%find_lang_kf6 solid6_qt
 
 %files -f solid6_qt.lang
 %doc README.md TODO

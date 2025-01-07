@@ -12,15 +12,8 @@ License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-onl
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Network)
-
-Requires:       kf6-filesystem
 
 %description
 Attica is a Qt library that implements the Open Collaboration Services API
@@ -35,17 +28,6 @@ Requires:       cmake(Qt6Network)
 %{summary}.
 
 %qch_package
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
 
 %files
 %doc AUTHORS ChangeLog README.md

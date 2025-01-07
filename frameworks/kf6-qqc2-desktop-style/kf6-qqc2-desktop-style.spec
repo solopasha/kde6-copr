@@ -12,11 +12,6 @@ License:        CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only A
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6IconThemes)
@@ -31,24 +26,15 @@ BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
 
-Requires:       kf6-kirigami
-Requires:       kf6-sonnet
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-sonnet%{?_isa}
 
 %description
 This is a style for QtQuickControls 2 that uses QWidget's QStyle for
 painting, making possible to achieve an higher degree of consistency
 between QWidget-based and QML-based apps.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
+%install -a
 %find_lang_kf6 qqc2desktopstyle_qt
 
 %files -f qqc2desktopstyle_qt.lang

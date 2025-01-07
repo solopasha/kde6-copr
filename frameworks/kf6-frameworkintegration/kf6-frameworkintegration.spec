@@ -12,11 +12,6 @@ License:        CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-3.0-onl
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6I18n)
@@ -31,8 +26,6 @@ BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  cmake(AppStreamQt)
 BuildRequires:  cmake(packagekitqt6)
-
-Requires:       kf6-filesystem
 
 %description
 Framework Integration is a set of plugins responsible for better integration of
@@ -54,17 +47,6 @@ Requires:       cmake(KF6IconThemes)
 Requires:       cmake(KF6WidgetsAddons)
 %description    devel
 The %{name}-devel package contains files to develop for %{name}.
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
 
 %files
 %doc README.md

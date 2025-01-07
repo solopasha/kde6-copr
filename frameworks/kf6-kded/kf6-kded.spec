@@ -13,11 +13,6 @@ License:        CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
@@ -29,8 +24,6 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  systemd-rpm-macros
-
-Requires:       kf6-filesystem
 
 %description
 KDED stands for KDE Daemon which isn't very descriptive. KDED runs
@@ -47,17 +40,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-%find_lang kded6 --with-man --without-mo
+%install -a
 # create/own this
 mkdir -p %{buildroot}%{_kf6_plugindir}/kded
 
@@ -67,7 +50,7 @@ mkdir -p %{buildroot}%{_kf6_plugindir}/kded
 %preun
 %systemd_user_preun plasma-kded6.service
 
-%files -f kded6.lang
+%files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_bindir}/kded6

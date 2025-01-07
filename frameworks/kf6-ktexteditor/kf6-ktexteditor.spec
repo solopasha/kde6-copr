@@ -13,11 +13,6 @@ License:        BSD-2-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6Config)
@@ -35,8 +30,6 @@ BuildRequires:  cmake(Qt6TextToSpeech)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  pkgconfig(editorconfig)
-
-Requires:       kf6-filesystem
 
 %description
 KTextEditor provides a powerful text editor component that you can embed in your
@@ -59,17 +52,7 @@ developing applications that use %{name}.
 
 %qch_package
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-%find_lang %{name} --all-name
+%install -a
 # create/own dirs
 mkdir -p %{buildroot}%{_kf6_qtplugindir}/ktexteditor
 

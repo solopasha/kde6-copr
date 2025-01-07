@@ -21,9 +21,8 @@ Release:        1%{?dist}
 License:        LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-or-later AND CC-BY-SA-4.0
 URL:            https://invent.kde.org/frameworks/breeze-icons
 %frameworks_meta
-
-BuildRequires:  extra-cmake-modules
-BuildRequires:  kf6-rpm-macros
+BuildOption(conf): -DBINARY_ICONS_RESOURCE:BOOL=%{?with_install_rcc:ON}%{!?with_install_rcc:OFF}
+BuildOption(conf): -DSKIP_INSTALL_ICONS:BOOL=%{?with_install_icons:OFF}%{!?with_install_icons:ON}
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Gui)
@@ -76,20 +75,7 @@ Obsoletes:      breeze-icon-theme-devel < 6.3.0-2
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6 \
-  -DBINARY_ICONS_RESOURCE:BOOL=%{?with_install_rcc:ON}%{!?with_install_rcc:OFF} \
-  -DSKIP_INSTALL_ICONS:BOOL=%{?with_install_icons:OFF}%{!?with_install_icons:ON} \
-  %{nil}
-
-%cmake_build
-
-%install
-%cmake_install
+%install -a
 
 %if %{with install_icons}
 

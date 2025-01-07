@@ -12,11 +12,6 @@ License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND L
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(KF6Attica)
 BuildRequires:  cmake(KF6Completion)
@@ -33,8 +28,6 @@ BuildRequires:  cmake(KF6Package)
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtdeclarative-devel
 
-Requires:       kf6-filesystem
-
 %description
 KDE Frameworks 6 Tier 3 module for downloading and sharing additional
 application data like plugins, themes, motives, etc.
@@ -50,18 +43,6 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %qch_package
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-%find_lang %{name} --all-name
 
 %files -f %{name}.lang
 %doc README.md

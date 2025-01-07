@@ -12,11 +12,6 @@ License:        LGPL-2.0-or-later AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  cmake
-BuildRequires:  gcc-c++
-BuildRequires:  extra-cmake-modules
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Network)
@@ -25,7 +20,6 @@ BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  pkgconfig(gio-2.0)
 BuildRequires:  pkgconfig(libnm)
 
-Requires:       kf6-filesystem
 Recommends:     NetworkManager
 
 %description
@@ -44,17 +38,6 @@ Qt libraries and header files for developing applications
 that use NetworkManager.
 
 %qch_package
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
 
 %files
 %doc README.md

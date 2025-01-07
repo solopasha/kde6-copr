@@ -14,11 +14,6 @@ URL:            https://invent.kde.org/frameworks/%{framework}
 
 Patch100:       baloo-5.67.0-baloofile_config.patch
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
@@ -69,14 +64,6 @@ Summary:        Runtime libraries for %{name}
 %{summary}.
 
 %qch_package
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
 
 %install
 %cmake_install

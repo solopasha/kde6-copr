@@ -12,11 +12,7 @@ Summary:        KDE Frameworks 6 Tier 2 module providing Pty abstraction
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
-
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
+BuildOption: -DUTEMPTER_EXECUTABLE:PATH=/usr/libexec/utempter/utempter
 
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
@@ -25,7 +21,6 @@ BuildRequires:  cmake(Qt6Core)
 
 BuildRequires:  libutempter-devel
 
-Requires:       kf6-filesystem
 # runtime calls %%_libexexdir/utempter/utempter
 Requires:       libutempter
 
@@ -41,19 +36,6 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %qch_package
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-# If seems to, for some reason, not find utempter without the following:
-%cmake_kf6 -DUTEMPTER_EXECUTABLE:PATH=/usr/libexec/utempter/utempter
-%cmake_build
-
-%install
-%cmake_install
-%find_lang %{name} --all-name --with-man
 
 %files -f %{name}.lang
 %doc README.md

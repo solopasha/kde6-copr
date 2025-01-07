@@ -13,11 +13,6 @@ License:        BSD-2-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
@@ -39,8 +34,6 @@ BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(Qt6Xml)
 BuildRequires:  qt6-qtbase-private-devel
 
-Requires:       kf6-filesystem
-
 %description
 KDE Frameworks 6 Tier 3 solution for user-configurable main windows.
 
@@ -58,19 +51,9 @@ developing applications that use %{name}.
 
 %qch_package
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
+%install -a
 # Own the kxmlgui directory
 mkdir -p %{buildroot}%{_kf6_datadir}/kxmlgui5/
-%find_lang %{name} --all-name
 
 %files -f %{name}.lang
 %doc README.md

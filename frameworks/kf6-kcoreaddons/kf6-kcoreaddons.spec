@@ -12,11 +12,6 @@ License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later A
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Network)
@@ -26,8 +21,6 @@ BuildRequires:  cmake(Qt6Qml)
 # BuildRequires:  cmake(PySide6)
 
 BuildRequires:  pkgconfig(libudev)
-
-Requires:       kf6-filesystem
 
 %description
 KCoreAddons provides classes built on top of QtCore to perform various tasks
@@ -44,19 +37,6 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %qch_package
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-
-%find_lang kcoreaddons6_qt --all-name --with-qt
 
 %files -f kcoreaddons6_qt.lang
 %doc README.md

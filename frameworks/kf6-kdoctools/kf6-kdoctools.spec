@@ -15,10 +15,6 @@ URL:     https://invent.kde.org/frameworks/%{framework}
 
 BuildRequires:  docbook-dtds
 BuildRequires:  docbook-style-xsl
-BuildRequires:  cmake
-BuildRequires:  kf6-rpm-macros
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
 BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  libxml2-devel
@@ -42,21 +38,7 @@ Requires:       perl(Any::URI::Escape)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-
 %qch_package
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-
-%install
-%cmake_install
-%find_lang %{name} --all-name --with-man --with-html
 
 %files -f %{name}.lang
 %doc README.md

@@ -13,11 +13,6 @@ License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-or-later
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6WindowSystem)
 
@@ -25,8 +20,6 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
 
 BuildRequires:  cmake(PolkitQt6-1)
-
-Requires:       kf6-filesystem
 
 %description
 %{summary}.
@@ -40,18 +33,6 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %qch_package
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-%find_lang_kf6 kauth6_qt
 
 %files -f kauth6_qt.lang
 %doc README.md

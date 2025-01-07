@@ -12,11 +12,6 @@ License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.1-or-later AND MIT
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  cmake
-BuildRequires:  gcc-c++
-BuildRequires:  extra-cmake-modules
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
@@ -32,7 +27,6 @@ BuildRequires:  pkgconfig(xscrnsaver)
 BuildRequires:  wayland-devel
 BuildRequires:  wayland-protocols-devel
 
-Requires:       kf6-filesystem
 Requires:       %{name}-x11%{?_isa} = %{version}-%{release}
 
 %description
@@ -54,17 +48,6 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %qch_package
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
 
 %files
 %doc README.md

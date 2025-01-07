@@ -14,11 +14,6 @@ License:        CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-onl
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DocTools)
@@ -28,8 +23,6 @@ BuildRequires:  cmake(Qt6Xml)
 
 # for the Administration category
 # Recommends:       redhat-menus
-
-Requires:       kf6-filesystem
 
 %description
 KDE Frameworks 6 Tier 3 solution for advanced plugin and service
@@ -46,17 +39,7 @@ developing applications that use %{name}.
 
 %qch_package
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-%find_lang %{name} --all-name --with-man
+%install -a
 mkdir -p %{buildroot}%{_kf6_datadir}/kservices6
 mkdir -p %{buildroot}%{_kf6_datadir}/kservicetypes6
 
