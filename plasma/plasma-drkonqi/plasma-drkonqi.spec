@@ -11,15 +11,14 @@ Release:        1%{?dist}
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:            https://invent.kde.org/plasma/%{base_name}
 %plasma_source
+BuildOption(conf): -DWITH_PYTHON_VENDORING:BOOL=OFF
+BuildOption(conf): -DWITH_GDB12:BOOL=ON
 
 ## upstreamable Patches
 # dnf debuginfo-install
 Patch52:        drkonqi-installdbgsymbols.patch
 
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  systemd-rpm-macros
 
 BuildRequires:  cmake(KF6Config)
@@ -61,22 +60,10 @@ Requires:       polkit
 %description
 %{summary}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6 -DWITH_PYTHON_VENDORING=OFF -DWITH_GDB12=ON
-%cmake_build
-
-%install
-%cmake_install
+%install -a
 # installdbgsymbols script
 install -p -D -m755 src/doc/examples/installdbgsymbols_fedora.sh \
     %{buildroot}%{_libexecdir}/installdbgsymbols.sh
-
-%find_lang all --with-html --with-qt --all-name
-grep drkonqi.mo all.lang > plasma-drkonqi.lang
 
 %post
 %systemd_user_post drkonqi-sentry-postman.service
@@ -90,7 +77,7 @@ grep drkonqi.mo all.lang > plasma-drkonqi.lang
 %check
 desktop-file-validate %{buildroot}/%{_kf6_datadir}/applications/*.desktop
 
-%files -f plasma-drkonqi.lang
+%files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_bindir}/drkonqi-coredump-gui
 %{_kf6_bindir}/drkonqi-sentry-data

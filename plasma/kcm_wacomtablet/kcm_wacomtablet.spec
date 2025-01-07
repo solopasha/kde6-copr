@@ -13,11 +13,7 @@ License:        GPL-2.0-or-later
 URL:            https://invent.kde.org/plasma/wacomtablet
 %plasma_source
 
-BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(Qt6Core)
@@ -59,19 +55,6 @@ Provides:      plasma-wacomtablet = %{version}-%{release}
 %description
 This module implements a GUI for the Wacom Linux Drivers and extends it
 with profile support to handle different button/pen layouts per profile.
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-
-%find_lang %{name} --all-name --with-html
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop

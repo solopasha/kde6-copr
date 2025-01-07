@@ -12,6 +12,10 @@ Release:        1%{?dist}
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
+BuildOption(conf): -DINSTALL_SDDM_WAYLAND_SESSION:BOOL=ON
+BuildOption(conf): -DPLASMA_X11_DEFAULT_SESSION:BOOL=OFF
+BuildOption(conf): -DGLIBC_LOCALE_PREGENERATED:BOOL=ON
+BuildOption(conf): -DGLIBC_LOCALE_GEN:BOOL=OFF
 
 Source11:       startkderc
 Source15:       fedora-lookandfeel.json
@@ -33,11 +37,7 @@ Patch106:       plasma-workspace-6.0.0-enable-open-terminal-action.patch
 # default to enable the lock/logout actions
 Patch107:       plasma-workspace-6.0.0-enable-lock-logout-action.patch
 
-BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(KF6Archive)
@@ -334,10 +334,7 @@ BuildArch:      noarch
 %description -n plasma-lookandfeel-fedora
 %{summary}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
+%prep -a
 # Populate initial lookandfeel package
 cp -a lookandfeel/org.kde.breeze lookandfeel/org.fedoraproject.fedora
 # Overwrite settings to configure twilight mode
@@ -346,14 +343,6 @@ install -m 0644 %{SOURCE15} lookandfeel/org.fedoraproject.fedora/metadata.json
 cat >> lookandfeel/CMakeLists.txt <<EOL
 plasma_install_package(org.fedoraproject.fedora org.fedoraproject.fedora.desktop look-and-feel lookandfeel)
 EOL
-
-%build
-%cmake_kf6 \
-  -DINSTALL_SDDM_WAYLAND_SESSION:BOOL=ON \
-  -DPLASMA_X11_DEFAULT_SESSION:BOOL=OFF \
-  -DGLIBC_LOCALE_PREGENERATED:BOOL=ON \
-  -DGLIBC_LOCALE_GEN:BOOL=OFF
-%cmake_build
 
 %install
 %cmake_install

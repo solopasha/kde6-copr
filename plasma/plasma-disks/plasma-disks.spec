@@ -11,11 +11,7 @@ License:        BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-3.0-
 URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6CoreAddons)
@@ -36,18 +32,6 @@ Requires:       smartmontools
 %description
 Plasma Disks monitors S.M.A.R.T. data of disks and alerts the user when
 signs of imminent failure appear.
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-%find_lang %{name} --all-name
 
 %check
 desktop-file-validate %{buildroot}/%{_kf6_datadir}/applications/*.desktop

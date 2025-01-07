@@ -16,11 +16,7 @@ URL:            https://invent.kde.org/plasma/%{base_name}
 ## FIXME/TODO: document why this patch is needed, ideally work to make upstreamable
 Patch1:         0001-fedora.patch
 
-BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  plymouth-devel
 
 BuildRequires:  cmake(Qt6Core)
@@ -43,22 +39,10 @@ Requires:       plymouth
 This is a System Settings configuration module for configuring the
 plymouth splash screen.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-%find_lang kcm_plymouth --all-name --with-html
-
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
-%files -f kcm_plymouth.lang
+%files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_bindir}/kplymouththemeinstaller
 %{_kf6_datadir}/applications/kcm_plymouth.desktop

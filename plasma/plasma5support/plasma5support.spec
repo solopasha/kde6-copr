@@ -11,11 +11,6 @@ License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Qml)
@@ -64,19 +59,7 @@ Provides:       kf6-plasma5support-devel = 1:%{version}-%{release}
 %description    devel
 %{summary}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-%find_lang libplasma5support --all-name
-
-%files -f libplasma5support.lang
+%files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/plasma5support/

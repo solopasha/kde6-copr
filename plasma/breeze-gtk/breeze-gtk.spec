@@ -13,14 +13,10 @@ URL:            https://invent.kde.org/plasma/%{name}
 
 BuildArch:      noarch
 
-BuildRequires:  cmake
 BuildRequires:  gtk2-engines
 BuildRequires:  plasma-breeze-devel
 BuildRequires:  python3-cairo-devel
 BuildRequires:  sassc
-
-BuildRequires:  extra-cmake-modules
-BuildRequires:  kf6-rpm-macros
 
 # not used directly, but is an indirect dep from ECMQueryQmake.cmake
 # probably should be fixed there -- rex
@@ -60,17 +56,6 @@ Requires:       %{name}-common = %{version}-%{release}
 Supplements:    (plasma-breeze and gtk4)
 %description    gtk4
 %{summary}.
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
 
 %files
 # empty metapackage

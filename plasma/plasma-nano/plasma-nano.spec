@@ -13,11 +13,7 @@ URL:            https://invent.kde.org/plasma/plasma-nano
 
 Summary: A minimalist Plasma shell for developing custom experiences on embedded devices.
 
-BuildRequires:  gcc-c++
-BuildRequires:  cmake
 BuildRequires:  libappstream-glib
-BuildRequires:  extra-cmake-modules
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  hicolor-icon-theme
 BuildRequires:  desktop-file-utils
 
@@ -47,19 +43,7 @@ Requires:       qt6-qtdeclarative%{?_isa}
 %description
 %{Summary}
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-%find_lang plasma_shell_%{orig_name} --all-name
-
-%files -f plasma_shell_%{orig_name}.lang
+%files -f %{name}.lang
 %license LICENSES/*.txt
 %doc README.md
 #{_kf6_metainfodir}/org.kde.plasma.nano.desktoptoolbox.appdata.xml

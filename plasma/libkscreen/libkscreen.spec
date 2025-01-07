@@ -11,10 +11,6 @@ License:        GPL-2.0-or-later
 URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  systemd-rpm-macros
 
 BuildRequires:  cmake(Qt6Core)
@@ -46,16 +42,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
+%install -a
 %find_lang_kf6 libkscreen6_qt
 
 %files -f libkscreen6_qt.lang

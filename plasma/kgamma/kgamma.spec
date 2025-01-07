@@ -12,11 +12,7 @@ License:        CC0-1.0 AND GPL-2.0-or-later
 URL:            https://invent.kde.org/plasma/kgamma
 %plasma_source
 
-BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
@@ -33,23 +29,10 @@ BuildRequires:  pkgconfig(xxf86vm)
 %description
 %{summary}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-
-%find_lang kcmkgamma --all-name --with-html
-
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
-%files -f kcmkgamma.lang
+%files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_datadir}/applications/kcm_kgamma.desktop
 %{_kf6_datadir}/kgamma/

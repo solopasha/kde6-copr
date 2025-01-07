@@ -11,10 +11,8 @@ License:        LGPL-3.0-or-later AND CC0-1.0 AND CC-BY-3.0 AND BSD-2-Clause
 URL:            https://invent.kde.org/plasma/oxygen-sounds
 BuildArch:      noarch
 %plasma_source
+BuildOption:    -DBUILD_WITH_QT6=ON
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  qt6-qtbase-devel
 
 Provides:       oxygen-sound-theme = %{version}-%{release}
@@ -22,17 +20,6 @@ Obsoletes:      oxygen-sound-theme <= 5.24.50
 
 %description
 %{summary}.
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6 -DBUILD_WITH_QT6=ON
-%cmake_build
-
-%install
-%cmake_install
 
 %files
 %license LICENSES/*.txt

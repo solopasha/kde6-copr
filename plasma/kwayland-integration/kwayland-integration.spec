@@ -16,7 +16,6 @@ BuildRequires:  qt5-qtbase-static
 BuildRequires:  qt5-qtbase-private-devel
 BuildRequires:  qt5-qtwayland-devel
 
-BuildRequires:  extra-cmake-modules
 BuildRequires:  kf5-rpm-macros
 BuildRequires:  gnupg2
 
@@ -34,16 +33,8 @@ Requires:       kf5-filesystem
 %description
 %{summary}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
+%conf
 %cmake_kf5
-%cmake_build
-
-%install
-%cmake_install
 
 %files
 %license LICENSES/*

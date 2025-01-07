@@ -17,6 +17,10 @@ Release:        1%{?dist}
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
 URL:            https://invent.kde.org/plasma/discover
 %plasma_source
+BuildOption(conf): -DPACKAGEKIT_AUTOREMOVE:BOOL=ON
+%if 0%{?fedora}
+BuildOption(conf): -DBUILD_RpmOstreeBackend:BOOL=ON
+%endif
 
 ## override some defaults, namely to enable offline updates
 Source10:       discoverrc
@@ -27,11 +31,7 @@ Source10:       discoverrc
 # It is double the time that Fedora repos are set to in DNF (6h).
 Patch200:       discover-pk-refresh-timer.patch
 
-BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(KF6Archive)
@@ -174,18 +174,6 @@ Supplements:    ((%{name} and rpm-ostree) unless dnf)
 %description    rpm-ostree
 Plasma Discover backend for rpm-ostree support in %{name}.
 %endif
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6 \
-  -DPACKAGEKIT_AUTOREMOVE:BOOL=ON \
-%if 0%{?fedora}
-  -DBUILD_RpmOstreeBackend:BOOL=ON
-%endif
-%cmake_build
 
 %install
 %cmake_install

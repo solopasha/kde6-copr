@@ -11,11 +11,6 @@ License:        CC0-1.0, GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND 
 URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(KF6Config)
 
 BuildRequires:  cmake(Qt6Core)
@@ -44,17 +39,6 @@ Obsoletes:      kactivities-stats-devel < %{version}-%{release}
 Provides:       kactivities-stats-devel = %{version}-%{release}
 %description    devel
 %{summary}.
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
 
 %files
 %doc README.md

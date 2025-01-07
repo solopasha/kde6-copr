@@ -9,28 +9,16 @@ Summary:        Additional wallpapers for Plasma workspace
 License:        LGPLv3
 URL:            https://invent.kde.org/plasma/plasma-workspace-wallpapers
 %plasma_source
+BuildOption:    -DBUILD_WITH_QT6=ON
 
 BuildArch: noarch
 
-BuildRequires:  extra-cmake-modules
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  qt6-qtbase-devel
 
 Requires:       kde-filesystem
 
 %description
 %{summary}.
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6 -DBUILD_WITH_QT6=ON
-%cmake_build
-
-%install
-%cmake_install
 
 %files
 %license COPYING.LGPL3

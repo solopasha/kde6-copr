@@ -11,11 +11,6 @@ License:        LGPLv2
 URL:            https://invent.kde.org/plasma/kdecoration
 %plasma_source
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(KF6I18n)
 
 BuildRequires:  cmake(Qt6Core)
@@ -33,18 +28,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %description    devel
 %{summary}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-
-%find_lang %{name}
+%install -a
 # create/own plugin dir
 mkdir -p %{buildroot}%{_kf6_qtplugindir}/org.kde.kdecoration3/
 

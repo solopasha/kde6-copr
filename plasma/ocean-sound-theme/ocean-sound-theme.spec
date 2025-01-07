@@ -11,27 +11,12 @@ License:        CC0-1.0 AND BSD-2-Clause AND CC-BY-SA-4.0
 URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  extra-cmake-modules
-BuildRequires:  kf6-rpm-macros
-BuildRequires:  cmake
-
 BuildRequires:  cmake(Qt6Core)
 
 Requires:       kf6-filesystem
 
 %description
 %{summary}.
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
 
 %files
 %doc README.md

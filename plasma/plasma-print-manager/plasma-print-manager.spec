@@ -14,11 +14,6 @@ URL:            https://invent.kde.org/plasma/%{base_name}
 %plasma_source
 
 BuildRequires:  desktop-file-utils
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6CoreAddons)
@@ -70,19 +65,6 @@ Obsoletes:      kde-print-manager-libs < 1:%{version}-%{release}
 Provides:       kde-print-manager-libs = 1:%{version}-%{release}
 %description    libs
 %{summary}.
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-
-%find_lang %{name} --all-name --with-html
 
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop

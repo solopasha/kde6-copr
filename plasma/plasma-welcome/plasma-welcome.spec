@@ -13,9 +13,6 @@ URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(Qt6Core)
@@ -51,18 +48,6 @@ Obsoletes:      plasma-welcome-app < 5.27.0-2
 
 %description
 A Friendly onboarding wizard for Plasma.
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-%find_lang %{name} --all-name --with-html
 
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/%{orgname}.*.xml || :

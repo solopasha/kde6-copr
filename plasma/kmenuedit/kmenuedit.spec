@@ -11,11 +11,7 @@ License:       GPL-2.0-or-later OR GPL-2.0-only
 URL:           https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
@@ -35,19 +31,6 @@ BuildRequires:  cmake(KF6XmlGui)
 
 %description
 %{summary}.
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-
-%find_lang %{name} --with-html --all-name
 
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop

@@ -11,10 +11,6 @@ License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later A
 URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
 
@@ -64,23 +60,11 @@ Provides:       plasmate = %{version}-%{release}
 %description
 Plasma SDK contains tools for plasma development
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-%find_lang plasmasdk6 --with-man --with-qt --all-name
-
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.appdata.xml || :
 
-%files -f plasmasdk6.lang
+%files -f %{name}.lang
 %license LICENSES/*.txt
 %{_kf6_bindir}/iconexplorer
 %{_kf6_bindir}/kqml

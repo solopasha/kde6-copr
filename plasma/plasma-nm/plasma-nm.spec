@@ -15,11 +15,10 @@ URL:            https://invent.kde.org/plasma/%{name}
 %bcond openconnect 1
 %else
 %bcond openconnect 0
+BuildOption(conf): -DBUILD_OPENCONNECT:BOOL=OFF
 %endif
 
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  cmake(QCoro6)
@@ -169,14 +168,6 @@ Requires:       NetworkManager-iodine
 %description    iodine
 %{summary}.
 %endif
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6 %{!?with_openconnect:-DBUILD_OPENCONNECT=OFF}
-%cmake_build
 
 %install
 %cmake_install

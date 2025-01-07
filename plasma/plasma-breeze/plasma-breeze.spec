@@ -13,10 +13,6 @@ License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later A
 URL:            https://invent.kde.org/plasma/%{base_name}.git
 %plasma_source
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-
 BuildRequires:  kf5-rpm-macros
 BuildRequires:  cmake(KF5Config)
 BuildRequires:  cmake(KF5CoreAddons)
@@ -30,7 +26,6 @@ BuildRequires:  cmake(Qt5Quick)
 BuildRequires:  cmake(Qt5Widgets)
 BuildRequires:  cmake(Qt5X11Extras)
 
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KDecoration3)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
@@ -83,10 +78,6 @@ Provides:       breeze-cursor-themes = %{version}-%{release}
 %description -n breeze-cursor-theme
 %{summary}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
 %build
 mkdir -p qt6build
 pushd qt6build
@@ -109,9 +100,9 @@ pushd qt6build
 %cmake_install
 popd
 
-%find_lang breeze --all-name
+%find_lang %{name} --all-name
 
-%files -f breeze.lang
+%files -f %{name}.lang
 %license LICENSES/*.txt
 %{_kf6_bindir}/breeze-settings6
 %{_kf6_bindir}/kcursorgen

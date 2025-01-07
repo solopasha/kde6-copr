@@ -11,11 +11,6 @@ License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND G
 URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
-
 BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
@@ -63,19 +58,7 @@ Summary:        Runtime data files shared by libksysguard and ksysguard-libs
 %description    common
 %{summary}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-%find_lang ksysguard_qt6 --with-qt --with-kde --all-name
-
-%files -f ksysguard_qt6.lang
+%files -f %{name}.lang
 %license LICENSES
 %{_kf6_datadir}/dbus-1/interfaces/org.kde.ksystemstats1.xml
 %{_kf6_datadir}/ksysguard/

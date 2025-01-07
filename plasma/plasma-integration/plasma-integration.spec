@@ -11,16 +11,10 @@ License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND L
 URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf5-rpm-macros
-BuildRequires:  kf6-rpm-macros
-
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  cmake(Qt6Widgets)
-BuildRequires:  cmake(Qt6DBus)
-BuildRequires:  pkgconfig(Qt6QuickControls2)
 BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(KF6Config)
@@ -36,14 +30,15 @@ BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6StatusNotifierItem)
 BuildRequires:  cmake(KF6XmlGui)
 
+BuildRequires:  cmake(Qt5DBus)
+BuildRequires:  cmake(Qt5QuickControls2)
 BuildRequires:  cmake(Qt5WaylandClient)
 BuildRequires:  cmake(Qt5Widgets)
-BuildRequires:  cmake(Qt5DBus)
 BuildRequires:  cmake(Qt5X11Extras)
-BuildRequires:  pkgconfig(Qt5QuickControls2)
 BuildRequires:  qt5-qtbase-static
 BuildRequires:  qt5-qtbase-private-devel
 
+BuildRequires:  kf5-rpm-macros
 BuildRequires:  cmake(KF5Config)
 BuildRequires:  cmake(KF5ConfigWidgets)
 BuildRequires:  cmake(KF5I18n)
@@ -80,10 +75,6 @@ Summary:        Qt5 support for %{name}
 Requires:       kf5-qqc2-breeze-style
 %description    qt5
 %{summary}.
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
 
 %build
 %global _vpath_builddir %{_target_platform}-qt6

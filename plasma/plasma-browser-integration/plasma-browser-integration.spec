@@ -10,12 +10,9 @@ Release:        1%{?dist}
 License:        GPL-2.0-or-later AND GPL-3.0-or-later AND MIT
 URL:            https://invent.kde.org/plasma/plasma-browser-integration
 %plasma_source
+BuildOption:    -DMOZILLA_DIR:PATH=%{_libdir}/mozilla
 
-BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
@@ -46,20 +43,6 @@ Supplements:    (plasma-workspace and firefox)
 
 For more information, see
 https://community.kde.org/Plasma/Browser_Integration
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6 \
-  -DMOZILLA_DIR:PATH=%{_libdir}/mozilla
-%cmake_build
-
-%install
-%cmake_install
-
-%find_lang %{name} --all-name
 
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop

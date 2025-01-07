@@ -20,10 +20,6 @@ Source20:       https://src.fedoraproject.org/lookaside/pkgs/plasma-workspace/br
 Patch100:       plasma-desktop-5.90.0-default_favorites.patch
 Patch101:       hide-virtual-keyboard-indicator-on-sddm.patch
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  desktop-file-utils
 BuildRequires:  systemd-rpm-macros
 
@@ -192,15 +188,8 @@ BuildArch:      noarch
 %description -n sddm-breeze
 %{summary}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1 -a20
-
+%prep -a
 sed '/falkon\|debian/d' -i kde-mimeapps.list
-
-%build
-%cmake_kf6
-%cmake_build
 
 %install
 %cmake_install

@@ -14,7 +14,6 @@ URL:            https://invent.kde.org/plasma/%{base_name}
 %plasma_source
 
 # Misc
-BuildRequires:  extra-cmake-modules
 BuildRequires:  gettext
 BuildRequires:  libxcb-devel
 
@@ -35,7 +34,6 @@ BuildRequires:  cmake(Qt5Widgets)
 BuildRequires:  cmake(Qt5X11Extras)
 
 # Qt6
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KDecoration3)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Completion)
@@ -92,10 +90,6 @@ Obsoletes:      plasma-oxygen-common < 5.1.1-2
 %description -n oxygen-cursor-themes
 %{summary}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
 %build
 mkdir -p qt6build
 pushd qt6build
@@ -118,9 +112,9 @@ pushd qt5build
 %cmake_install
 popd
 
-%find_lang oxygen --with-qt --all-name
+%find_lang %{name} --all-name
 
-%files -f oxygen.lang
+%files -f %{name}.lang
 %license LICENSES/*
 %{_bindir}/oxygen-settings6
 %{_kf6_datadir}/applications/kcm_oxygendecoration.desktop
@@ -147,7 +141,7 @@ popd
 %{_libdir}/liboxygenstyleconfig6.so.*
 %{_kf6_qtplugindir}/styles/oxygen6.so
 
-%files -n   oxygen-cursor-themes
+%files -n oxygen-cursor-themes
 %{_datadir}/icons/KDE_Classic/
 %{_datadir}/icons/Oxygen_Black/
 %{_datadir}/icons/Oxygen_Blue/

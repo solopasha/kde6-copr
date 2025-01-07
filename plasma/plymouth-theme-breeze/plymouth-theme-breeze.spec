@@ -15,9 +15,6 @@ URL:            https://invent.kde.org/plasma/breeze-plymouth
 
 Source10:       plymouth-theme-breeze.conf
 
-BuildRequires:  kf6-rpm-macros
-BuildRequires:  extra-cmake-modules
-
 BuildRequires:  plymouth-devel
 
 Provides:       %{base_name} = %{version}-%{release}
@@ -28,17 +25,7 @@ Requires:       plymouth-plugin-script
 %description
 %{summary}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-
+%install -a
 install -D -m644 -p %{SOURCE10} \
   %{buildroot}%{_prefix}/lib/dracut/dracut.conf.d/10-plymouth-theme-breeze.conf
 

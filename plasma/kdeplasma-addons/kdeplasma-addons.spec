@@ -11,10 +11,6 @@ License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later A
 URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(KF6Auth)
@@ -83,22 +79,10 @@ Requires:       cmake(KF6CoreAddons)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-%find_lang kdeplasmaaddons5_qt --with-qt --all-name
-
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml ||:
 
-%files -f kdeplasmaaddons5_qt.lang
+%files -f %{name}.lang
 %license LICENSES/*.txt
 %{_kf6_datadir}/dbus-1/system-services/org.kde.kameleonhelper.service
 %{_kf6_datadir}/dbus-1/system.d/org.kde.kameleonhelper.conf

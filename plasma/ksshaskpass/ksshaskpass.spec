@@ -12,8 +12,6 @@ URL:            https://invent.kde.org/plasma/ksshaskpass
 %plasma_source
 
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DocTools)
@@ -26,19 +24,7 @@ BuildRequires:  cmake(Qt6Core)
 %description
 %{summary}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-
-%find_lang ksshaskpass
-
+%install -a
 # Setup environment variables
 mkdir -p %{buildroot}%{_sysconfdir}/xdg/plasma-workspace/env/
 cat >    %{buildroot}%{_sysconfdir}/xdg/plasma-workspace/env/ksshaskpass.sh << EOF
@@ -49,7 +35,7 @@ EOF
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
-%files -f ksshaskpass.lang
+%files -f %{name}.lang
 %doc ChangeLog
 %license LICENSES/*
 %config(noreplace) %{_sysconfdir}/xdg/plasma-workspace/env/ksshaskpass.sh

@@ -11,10 +11,6 @@ License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND G
 URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  systemd-rpm-macros
 
 BuildRequires:  cmake(KF6CoreAddons)
@@ -40,19 +36,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %description    devel
 %{summary}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-%find_lang ksystemstats_plugins
-
-%files -f ksystemstats_plugins.lang
+%files -f %{name}.lang
 %doc README.md
 %license LICENSES/*
 %{_kf6_bindir}/kstatsviewer

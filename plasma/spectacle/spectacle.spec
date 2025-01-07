@@ -12,11 +12,7 @@ License:        LGPL-2.0-or-later AND GPL-2.0-or-later AND (LGPL-2.1-only OR LGP
 URL:            https://invent.kde.org/graphics/spectacle
 %apps_source
 
-BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 BuildRequires:  systemd-rpm-macros
 
@@ -69,19 +65,6 @@ Requires:       qt6-qtimageformats%{?_isa}
 
 %description
 %{summary}.
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-
-%find_lang %{name} --all-name --with-html --with-man
 
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.spectacle.appdata.xml
@@ -489,5 +472,4 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.spectacle
 
 * Sun Jan 10 2016 Rex Dieter <rdieter@fedoraproject.org> 15.12.1-1
 - spectacle-15.12.1
-
 

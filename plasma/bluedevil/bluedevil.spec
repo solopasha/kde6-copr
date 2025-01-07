@@ -11,11 +11,7 @@ License:        GPL-2.0-or-later
 URL:            https://invent.kde.org/plasma/bluedevil
 %plasma_source
 
-BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  shared-mime-info
 
 BuildRequires:  cmake(KF6BluezQt)
@@ -50,19 +46,6 @@ Requires:       pulseaudio-module-bluetooth
 
 %description
 BlueDevil is the bluetooth stack for KDE.
-
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-
-%find_lang %{name} --all-name --with-html
 
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop

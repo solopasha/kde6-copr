@@ -15,7 +15,6 @@ URL:            https://invent.kde.org/plasma/%{base_name}.git
 Source10: README.fedora
 
 BuildRequires:  findutils
-BuildRequires:  kf6-rpm-macros
 
 # matches grub2 pkg archs
 ExcludeArch:    s390 s390x %{arm}
@@ -36,16 +35,11 @@ Provides:       %{base_name} = %{version}-%{release}
 %description
 %{summary}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-install -m644 -p %{SOURCE10} .
-
 %build
 # blank
 
 %install
+install -m644 -p %{SOURCE10} .
 mkdir -p %{buildroot}%{_grubthemedir}/breeze
 find breeze/ -type f -and -not -iname \*.license -print0 \
   | xargs -0 -n100 cp -v -t %{buildroot}%{_grubthemedir}/breeze
@@ -53,7 +47,7 @@ find breeze/ -type f -and -not -iname \*.license -print0 \
 %files
 %license LICENSES
 %doc README.fedora
-%{_grubthemedir}/breeze
+%{_grubthemedir}/breeze/
 
 %changelog
 %{?kde_snapshot_changelog_entry}

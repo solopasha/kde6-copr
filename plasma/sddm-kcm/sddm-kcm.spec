@@ -11,11 +11,7 @@ License:        GPL-2.0-or-later AND GPL-3.0-only AND CC0-1.0 AND (GPL-2.0-only 
 URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(KF6Auth)
@@ -39,22 +35,10 @@ Requires:       sddm
 This is a System Settings configuration module for configuring the
 SDDM Display Manager
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-%find_lang kcmsddm6_qt --with-qt --all-name
-
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
-%files -f kcmsddm6_qt.lang
+%files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_bindir}/sddmthemeinstaller
 %{_kf6_datadir}/applications/kcm_sddm.desktop

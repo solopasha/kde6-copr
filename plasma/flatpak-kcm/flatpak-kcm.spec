@@ -10,11 +10,7 @@ Summary:        Flatpak Permissions Management KCM
 URL:            https://invent.kde.org/plasma/flatpak-kcm
 %plasma_source
 
-BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
@@ -30,23 +26,10 @@ BuildRequires:  pkgconfig(flatpak)
 %description
 %{summary}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-
-%find_lang kcm_flatpak
-
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
-%files -f kcm_flatpak.lang
+%files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_datadir}/applications/kcm_flatpak.desktop
 %{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_flatpak.so

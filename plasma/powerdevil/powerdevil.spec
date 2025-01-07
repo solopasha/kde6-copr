@@ -11,10 +11,6 @@ License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later A
 URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 BuildRequires:  systemd-rpm-macros
 
 BuildRequires:  cmake(KF6Auth)
@@ -75,23 +71,11 @@ Recommends:     ddcutil
 Powerdevil is an utility for powermanagement. It consists
 of a daemon (a KDED module) and a KCModule for its configuration.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-
-%find_lang powerdevil6 --with-html --all-name
-
+%install -a
 # Don't bother with -devel
 rm -fv %{buildroot}/%{_libdir}/libpowerdevilcore.so
 
-%files -f powerdevil6.lang
+%files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_datadir}/applications/kcm_powerdevilprofilesconfig.desktop
 %{_kf6_datadir}/dbus-1/system-services/org.kde.powerdevil.backlighthelper.service

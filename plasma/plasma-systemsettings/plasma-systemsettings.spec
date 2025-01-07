@@ -13,11 +13,7 @@ License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later A
 URL:            https://invent.kde.org/plasma/%{base_name}
 %plasma_source
 
-BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6Config)
@@ -51,23 +47,10 @@ Requires:       kf6-kirigami%{?_isa}
 %description
 %{summary}.
 
-%prep
-%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
-
-%build
-%cmake_kf6
-%cmake_build
-
-%install
-%cmake_install
-
-%find_lang systemsettings6 --with-qt --with-html --all-name
-
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
-%files -f systemsettings6.lang
+%files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_bindir}/systemsettings
 %{_kf6_datadir}/applications/kdesystemsettings.desktop
