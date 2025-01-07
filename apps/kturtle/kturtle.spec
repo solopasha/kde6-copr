@@ -1,6 +1,6 @@
-%global commit0 64063533ad392834c08a28b1ee44ad2893941304
+%global commit0 ef5926dc439db6e302d4ffbdb27e4987525aec77
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kturtle
 Summary: Educational Programming Environment 

@@ -1,6 +1,6 @@
-%global commit0 b5a119ed0a421e5b07218a5386fa5b47193c3430
+%global commit0 102591077b771d195704bf27d028b720ca4e95bd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 18
+%global bumpver 19
 
 Name:           plasma-systemmonitor
 Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -68,6 +68,8 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_bindir}/plasma-systemmonitor
 %{_kf6_datadir}/applications/org.kde.plasma-systemmonitor.desktop
 %{_kf6_datadir}/config.kcfg/systemmonitor.kcfg
+%{_kf6_datadir}/kconf_update/plasma-systemmonitor-replace-vmpss.py
+%{_kf6_datadir}/kconf_update/plasma-systemmonitor.upd
 %{_kf6_datadir}/kglobalaccel/org.kde.plasma-systemmonitor.desktop
 %{_kf6_datadir}/knsrcfiles/
 %{_kf6_datadir}/ksysguard/sensorfaces/

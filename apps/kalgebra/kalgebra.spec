@@ -1,6 +1,6 @@
-%global commit0 bda7427bdd019382df301ff7c33a0e48608d3615
+%global commit0 e6104d2f1524d6019bb4633fcc916c3c28f6fdd8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 
 Name:    kalgebra
