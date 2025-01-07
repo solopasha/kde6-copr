@@ -45,9 +45,20 @@
         macros.sourcerootdir = rpm.expand("%{framework}-%{version}")
     end
 
+    print("BuildSystem:    cmake_kf6\\n")
+
     if macros._kf6_build_qch == "1" then
         print("BuildRequires: doxygen qt6-doc-devel\\n")
     end
+
+    if macros.name ~= "extra-cmake-modules" then
+        print("BuildRequires:  extra-cmake-modules\\n")
+        print("BuildRequires:  gcc-c++\\n")
+    end
+    print("BuildRequires:  cmake\\n")
+    print("BuildRequires:  kf6-rpm-macros\\n")
+
+    print("Requires:       kf6-filesystem\\n")
 
 }
 
@@ -92,3 +103,7 @@ Summary: Developer Documentation files for %{name}\
 Developer Documentation files for %{name} for use with KDevelop or QtCreator.\
 %files %{?1:%{1}-}doc\
 %{_qt6_docdir}/*.qch
+
+%buildsystem_cmake_kf6_conf() %nil
+%buildsystem_cmake_kf6_build() %nil
+%buildsystem_cmake_kf6_install() %nil
