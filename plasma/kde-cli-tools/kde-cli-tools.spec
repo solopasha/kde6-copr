@@ -54,6 +54,10 @@ ln -s %{_kf6_libexecdir}/kdesu %{buildroot}%{_bindir}/kdesu
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
+%install -a
+%find_lang kdesu --with-html --with-man
+sed '/kdesu/d;/man/d' -i %{name}.lang
+
 %files -f %{name}.lang
 %{_kf6_bindir}/kbroadcastnotification
 %{_kf6_bindir}/kde-inhibit
@@ -78,18 +82,14 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/applications/kcm_filetypes.desktop
 %{_kf6_datadir}/applications/org.kde.keditfiletype.desktop
 %{_kf6_datadir}/applications/org.kde.plasma.settings.open.desktop
-%{_kf6_datadir}/doc/HTML/*/kcontrol6
 %{_kf6_libexecdir}/kdeeject
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/kcm_filetypes.so
 %{zsh_completions_dir}/_kde-inhibit
 
-%files -n kdesu
+%files -n kdesu -f kdesu.lang
 %{_bindir}/kdesu
-## FIXME: %%lang'ify
-%{_datadir}/doc/HTML/*/kdesu
 %{_kf6_libexecdir}/kdesu
-%{_mandir}/*/man1/kdesu.1.gz
-%{_mandir}/man1/kdesu.1.gz
+%{_mandir}/man1/kdesu.1.*
 
 %changelog
 %{?kde_snapshot_changelog_entry}
