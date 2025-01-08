@@ -50,10 +50,10 @@ BuildRequires:  cmake(KPim6TemplateParser)
 BuildRequires:  cmake(QGpgmeQt6)
 BuildRequires:  cmake(Qt6Core5Compat)
 BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Multimedia)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(Qt6Xml)
 
-BuildRequires:  cmake(Phonon4Qt6)
 BuildRequires:  cmake(Gpgmepp)
 
 Obsoletes:      kf5-%{name} < 24.01.75
