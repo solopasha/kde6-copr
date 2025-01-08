@@ -35,6 +35,8 @@ Provides:       %{base_name} = %{version}-%{release}
 %description
 %{summary}.
 
+%conf
+
 %build
 # blank
 
