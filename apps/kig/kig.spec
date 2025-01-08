@@ -1,6 +1,6 @@
-%global commit0 68a2dae12848bc0ea71dfbe3dc569a7ab8dce456
+%global commit0 bc80002cd00666d0bf261765b33af3e3b60f85e3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global _python3_include %(%{__python3} -Ic "from distutils.sysconfig import get_python_inc; print(get_python_inc())")
 %global _python3_lib /usr/%{_lib}/lib%(basename %{_python3_include}).so
