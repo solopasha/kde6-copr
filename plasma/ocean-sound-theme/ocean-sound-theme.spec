@@ -9,7 +9,7 @@ Release:        1%{?dist}
 BuildArch:      noarch
 License:        CC0-1.0 AND BSD-2-Clause AND CC-BY-SA-4.0
 URL:            https://invent.kde.org/plasma/%{name}
-%plasma_source
+%plasma_source -n
 
 BuildRequires:  cmake(Qt6Core)
 

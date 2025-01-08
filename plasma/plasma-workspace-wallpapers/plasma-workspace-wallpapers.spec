@@ -8,7 +8,7 @@ Release:        1%{?dist}
 Summary:        Additional wallpapers for Plasma workspace
 License:        LGPLv3
 URL:            https://invent.kde.org/plasma/plasma-workspace-wallpapers
-%plasma_source
+%plasma_source -n
 BuildOption:    -DBUILD_WITH_QT6=ON
 
 BuildArch: noarch

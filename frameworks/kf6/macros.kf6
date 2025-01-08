@@ -47,6 +47,7 @@
     -DKDE_INSTALL_PLUGINDIR:PATH=%{_qt6_plugindir} \\\
     -DKDE_INSTALL_QMLDIR:PATH=%{_kf6_qmldir} \\\
     -DKDE_INSTALL_QTPLUGINDIR:PATH=%{_qt6_plugindir} \\\
+    -DKDE_INSTALL_QTQCHDIR:PATH=%{_qt6_docdir} \\\
     -DKDE_INSTALL_QTQUICKIMPORTSDIR:PATH=%{_qt6_importdir} \\\
     -DKDE_INSTALL_SYSCONFDIR:PATH=%{_kf6_sysconfdir} \\\
     -DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON
@@ -71,7 +72,7 @@
 
 %kde_snapshot_changelog_entry %{lua:
         assert(os.setlocale('C'))
-        local entry = "* "..os.date("%a %b %d %Y").." KDE snapshot - "..macros.version.."\\n"..
+        local entry = "* "..os.date("%a %b %d %Y").." KDE snapshot - "..rpm.expand("%{?epoch:%{epoch}:}%{version}-%{release}").."\\n"..
                       "- This is an automated snapshot build ".."%s".."\\n\\n"
         return string.format(entry, "")
 }

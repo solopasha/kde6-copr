@@ -2,7 +2,7 @@ Name:    kf6
 # This version MUST remain in sync with KF6 versions!
 # XXX: Yes, it's 5.x still, this is synced with the version set in extra-cmake-modules
 Version: 6.11.0~
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Filesystem and RPM macros for KDE Frameworks 6
 License: BSD-3-Clause
 URL:     http://www.kde.org
@@ -12,6 +12,7 @@ Source2: macros.aaa-kf6-srpm
 Source3: kde_maps.lua
 Source4: kde.lua
 Source5: macros.kf5-compat-srpm
+Source6: kde_gear.lua
 
 %description
 Filesystem and RPM macros for KDE Frameworks 6
@@ -81,6 +82,7 @@ sed -i \
   -e "s|@@kf6_VERSION@@|%{version}|g" \
   %{buildroot}%{_rpmconfigdir}/macros.d/macros.kf6
 
+install -Dpm0644 %{_sourcedir}/kde_gear.lua %{buildroot}%{_rpmluadir}/fedora/srpm/kde_gear.lua
 install -Dpm0644 %{_sourcedir}/kde_maps.lua %{buildroot}%{_rpmluadir}/fedora/srpm/kde_maps.lua
 install -Dpm0644 %{_sourcedir}/kde.lua %{buildroot}%{_rpmluadir}/fedora/srpm/kde.lua
 
@@ -121,6 +123,9 @@ install -Dpm0644 %{_sourcedir}/kde.lua %{buildroot}%{_rpmluadir}/fedora/srpm/kde
 %files qch
 
 %changelog
+* Wed Jan 08 2025 Pavel Solovev <daron439@gmail.com> - 6.11.0~-3
+- Unify macros
+
 * Tue Jan 07 2025 Pavel Solovev <daron439@gmail.com> - 6.11.0~-2
 - Add buildsystem
 

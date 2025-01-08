@@ -11,7 +11,7 @@ Summary:        Extra modules and scripts for CMake
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND MIT
 URL:            https://invent.kde.org/frameworks/extra-cmake-modules
-%frameworks_meta
+%frameworks_meta -n
 
 BuildArch:      noarch
 

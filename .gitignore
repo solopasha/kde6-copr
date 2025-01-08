@@ -5,3 +5,4 @@ deps.db
 *.tar.bz*
 *.log
 results_*
+.vscode/

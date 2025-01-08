@@ -10,7 +10,7 @@ Summary:        The Oxygen Sound Theme
 License:        LGPL-3.0-or-later AND CC0-1.0 AND CC-BY-3.0 AND BSD-2-Clause
 URL:            https://invent.kde.org/plasma/oxygen-sounds
 BuildArch:      noarch
-%plasma_source
+%plasma_source -n
 BuildOption:    -DBUILD_WITH_QT6=ON
 
 BuildRequires:  qt6-qtbase-devel
