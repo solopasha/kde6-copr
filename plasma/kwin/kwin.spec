@@ -144,6 +144,7 @@ Provides:       firstboot(windowmanager) = kwin_x11
 Summary:        Common files for KWin X11 and KWin Wayland
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       kwayland%{?_isa} >= %{majmin_ver_kf6}
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 %description    common
 %{summary}.
 
