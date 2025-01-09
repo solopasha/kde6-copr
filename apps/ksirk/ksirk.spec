@@ -1,6 +1,6 @@
-%global commit0 96eae180239410008a1eee6d6f1691c05893a097
+%global commit0 8355dc4c384b00d5cbe952686b27df14999022ce
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    ksirk
 Summary: Conquer-the-world strategy game

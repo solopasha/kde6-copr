@@ -1,6 +1,6 @@
-%global commit0 5384d4402d9b9dee21221a82e033718ac0a68df4
+%global commit0 83f1b0c24904586e973c89db152e6d08a4422bd3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:           tokodon
 Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

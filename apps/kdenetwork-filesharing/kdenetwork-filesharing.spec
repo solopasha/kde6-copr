@@ -1,11 +1,11 @@
-%global commit0 9121b5fcdf3c062834cc90c1f0526d1f301edafb
+%global commit0 e2f94a695312a3dd808245b7887d021d68f92fef
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kdenetwork-filesharing
 Summary: Network filesharing
 Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 2%{?dist}
+Release: 1%{?dist}
 
 # KDE e.V. may determine that future GPL versions are accepted
 License: GPL-2.0-only OR GPL-3.0-only

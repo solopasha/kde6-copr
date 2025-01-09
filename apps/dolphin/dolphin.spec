@@ -1,6 +1,6 @@
-%global commit0 67c045c768f961cfe072d31555463817cdfbae93
+%global commit0 863c1be871d7dbd16800cf7400284783d52352d5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:           dolphin
 Summary:        KDE File Manager
@@ -61,6 +61,10 @@ Recommends:     konsole-part%{?_isa}
 Recommends:     kio-fuse%{?_isa}
 Recommends:     kio-extras%{?_isa}
 Recommends:     %{name}-plugins
+
+Recommends:     kf6-kimageformats%{?_isa}
+Recommends:     qt6-qtimageformats%{?_isa}
+Recommends:     ffmpegthumbs%{?_isa}
 
 %description
 %{summary}.

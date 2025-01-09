@@ -1,6 +1,6 @@
-%global commit0 8c7b1e81162091a424d42951945c820ac6847150
+%global commit0 02afd760cb11282f79b2ec6efac2a72de404567a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           qmlkonsole
 Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
