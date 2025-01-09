@@ -17,8 +17,6 @@ BuildOption(conf): -DPLASMA_X11_DEFAULT_SESSION:BOOL=OFF
 BuildOption(conf): -DGLIBC_LOCALE_PREGENERATED:BOOL=ON
 BuildOption(conf): -DGLIBC_LOCALE_GEN:BOOL=OFF
 
-Patch:          https://invent.kde.org/plasma/plasma-workspace/-/commit/8a6c6e8f995c179bcc5dd1d3e2efbecf0a232f2f.patch
-
 Source11:       startkderc
 Source15:       fedora-lookandfeel.json
 
