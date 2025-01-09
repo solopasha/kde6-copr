@@ -1,12 +1,12 @@
-%global commit0 f2cc1b826a05e4d7123200699a1d57ef34cc6a56
+%global commit0 3702c806c4be03312859056e5ca146e284c593b3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 1
 
 %global base_name plymouth-kcm
 
 Name:           plymouth-kcm
 Summary:        Plymouth configuration module for systemsettings
-Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later
@@ -55,6 +55,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 6.2.90-1
+- Update to 6.2.90
+
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

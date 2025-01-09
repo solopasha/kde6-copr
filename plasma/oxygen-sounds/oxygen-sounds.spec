@@ -1,9 +1,9 @@
-%global commit0 883e09cd37b26790db25d1564892d153eda58e03
+%global commit0 da69c04b22a0c713837ed3a0736cd17a209032a6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 Name:           oxygen-sounds
-Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        The Oxygen Sound Theme
 
@@ -28,6 +28,9 @@ Obsoletes:      oxygen-sound-theme <= 5.24.50
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 6.2.90-1
+- Update to 6.2.90
+
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 

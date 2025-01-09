@@ -1,9 +1,9 @@
-%global commit0 fcf28649d0f6c3aa04e7ea1e58f9dc9020138048
+%global commit0 bc276b1ab53567064de7d48978a3b61e0e09d127
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 24
+%global bumpver 1
 
 Name:           powerdevil
-Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Manages the power consumption settings of a Plasma Shell
 
@@ -111,6 +111,9 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevilcore.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 6.2.90-1
+- Update to 6.2.90
+
 * Thu Oct 31 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-2
 - rebuilt
 

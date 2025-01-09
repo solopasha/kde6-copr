@@ -1,11 +1,11 @@
-%global commit0 799485f822d4582557c4976e504cac4f9a835c80
+%global commit0 3164c61f86b1568a1391cf1646f9a48d23b6c386
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:           spectacle
 Summary:        Screenshot capture utility
 Epoch:          1
-Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        LGPL-2.0-or-later AND GPL-2.0-or-later AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -89,6 +89,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.spectacle
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 1:6.2.90-1
+- Update to 6.2.90
+
 * Fri Dec 06 2024 Pavel Solovev <daron439@gmail.com> - 24.12.0-1
 - Update to 24.12.0
 

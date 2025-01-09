@@ -1,9 +1,9 @@
-%global commit0 501efa61e9d8e4b859032959055fce9084c7c85a
+%global commit0 1acaf86bc0660068b8d218a3be085836e907be0e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 1
 
 Name:           qqc2-breeze-style
-Version:        6.2.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        QtQuickControls2 breeze style
 
@@ -41,6 +41,9 @@ This is a pure Qt Quick/Kirigami Qt Quick Controls style.
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 6.2.90-1
+- Update to 6.2.90
+
 * Tue Oct 22 2024 Pavel Solovev <daron439@gmail.com> - 6.2.2-1
 - Update to 6.2.2
 
