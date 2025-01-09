@@ -1,6 +1,6 @@
 %global commit0 4ed4ddd3a875abc3861cffdc60beba9e8127f3c6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 %global framework extra-cmake-modules
 
@@ -29,6 +29,8 @@ Requires:       (cmake(Qt5LinguistTools) if qt5-qtbase-devel)
 Requires:       (cmake(Qt6LinguistTools) if qt6-qtbase-devel)
 
 Requires:       ((python3-devel and python3-build and python3-setuptools and python3-wheel) if (cmake(Shiboken6) and cmake(PySide6) and rpm-build))
+
+Requires:       (spirv-tools if qt6-qtshadertools-devel)
 
 %description
 %{summary}.
