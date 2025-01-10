@@ -1,6 +1,6 @@
-%global commit0 4d05c11c17105b324a3afeec29af81106f82547b
+%global commit0 c6c5739188dc6fe4236f55112e1e97ae0b7dd5af
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           kscreen
 Epoch:          1
@@ -20,6 +20,7 @@ BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6Svg)
+BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  cmake(Qt6DBus)

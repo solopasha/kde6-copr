@@ -1,6 +1,6 @@
-%global commit0 137fd41e0282378f7b18953543fc4824956aa275
+%global commit0 488359d0499b200f514f1951e9f1105612f2990b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           kongress
 Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
