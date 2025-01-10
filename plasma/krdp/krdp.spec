@@ -1,6 +1,6 @@
-%global commit0 ce3e45338dddc8106fd43e7a82e63663108eacd8
+%global commit0 f1647b657f3af89f51cb7641760cf29311e0506b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           krdp
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -72,7 +72,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/qlogging-categories6/kcm_krdpserver.categories
 %{_kf6_datadir}/qlogging-categories6/krdp.categories
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_krdpserver.so
-%{_userunitdir}/plasma-krdp_server.service
+%{_userunitdir}/app-org.kde.krdpserver.service
 
 %files libs
 %license LICENSES/LGPL-*.txt LICENSES/LicenseRef-KDE-*
@@ -83,13 +83,13 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_libdir}/libKRdp.so
 
 %post
-%systemd_user_post plasma-krdp_server.service
+%systemd_user_post app-org.kde.krdpserver.service
 
 %preun
-%systemd_user_preun plasma-krdp_server.service
+%systemd_user_preun app-org.kde.krdpserver.service
 
 %postun
-%systemd_user_postun plasma-krdp_server.service
+%systemd_user_postun app-org.kde.krdpserver.service
 
 %changelog
 %{?kde_snapshot_changelog_entry}

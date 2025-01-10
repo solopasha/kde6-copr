@@ -1,6 +1,6 @@
-%global commit0 c87b2abc50fd2e242ccfe4ee8ea0005572c06e1b
+%global commit0 13b89c4b193f6497f8cb67620f1adceb496a8d7d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 %global framework kholidays
 

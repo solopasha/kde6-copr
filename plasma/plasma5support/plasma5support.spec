@@ -1,6 +1,6 @@
 %global commit0 5ce6aeda8eba0a78b0724666780c057e6285241c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           plasma5support
 Summary:        Support components for porting from KF5/Qt5 to KF6/Qt6
@@ -45,7 +45,11 @@ Obsoletes:      kf6-plasma5support < 1:%{version}-%{release}
 Provides:       kf6-plasma5support = 1:%{version}-%{release}
 
 Obsoletes:      plasma-workspace-geolocation < 6.2.80
+Provides:       plasma-workspace-geolocation = %{version}-%{release}
+Provides:       plasma-workspace-geolocation%{?_isa} = %{version}-%{release}
 Obsoletes:      plasma-workspace-geolocation-libs < 6.2.80
+Provides:       plasma-workspace-geolocation-libs = %{version}-%{release}
+Provides:       plasma-workspace-geolocation-libs%{?_isa} = %{version}-%{release}
 
 %description
 %{summary}.
@@ -81,6 +85,9 @@ Provides:       kf6-plasma5support-devel = 1:%{version}-%{release}
 
 %changelog
 %{?kde_snapshot_changelog_entry}
+* Fri Jan 10 2025 Pavel Solovev <daron439@gmail.com> - 6.2.90-2
+- Add missing provides
+
 * Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 6.2.90-1
 - Update to 6.2.90
 
