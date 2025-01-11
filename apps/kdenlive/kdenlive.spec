@@ -57,9 +57,12 @@ BuildRequires: cmake(Qt6UiPlugin)
 BuildRequires: cmake(Qt6NetworkAuth)
 
 BuildRequires: librttr-devel
+BuildRequires: pkgconfig(libavcodec)
+BuildRequires: pkgconfig(libavformat)
+BuildRequires: pkgconfig(libavutil)
+BuildRequires: pkgconfig(libswresample)
 BuildRequires: pkgconfig(libv4l2)
-BuildRequires: pkgconfig(mlt++-7) >= 7.12.0
-
+BuildRequires: pkgconfig(mlt++-7)
 
 Requires: dvdauthor
 Requires: /usr/bin/ffmpeg
