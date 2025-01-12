@@ -34,6 +34,8 @@ BuildRequires:  cmake(KF6QQC2DesktopStyle)
 BuildRequires:  pkgconfig(libsodium)
 BuildRequires:  pkgconfig(openssl)
 
+BuildRequires:  qt6qml(org.kde.prison.scanner)
+Requires:       qt6qml(org.kde.prison.scanner)
 Requires:       hicolor-icon-theme
 Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-kirigami%{?_isa}
