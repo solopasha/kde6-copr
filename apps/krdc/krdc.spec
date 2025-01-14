@@ -41,8 +41,9 @@ BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  cmake(PlasmaActivities)
 
 BuildRequires:  freerdp
-BuildRequires:  (cmake(FreeRDP) >= 2.10 with cmake(FreeRDP) < 3)
-BuildRequires:  (cmake(FreeRDP-Client) >= 2.10 with cmake(FreeRDP-Client) < 3)
+BuildRequires:  cmake(FreeRDP) >= 3
+BuildRequires:  cmake(FreeRDP-Client) >= 3
+BuildRequires:  fuse3-devel
 BuildRequires:  pkgconfig(libssh)
 BuildRequires:  pkgconfig(libvncserver)
 
