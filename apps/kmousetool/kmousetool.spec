@@ -1,6 +1,6 @@
-%global commit0 715850d45285fb020ab529d4872fb179d8f158d5
+%global commit0 df847e3fa8aaef1bea74fe51bd14c78f144a2193
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 
 Name:    kmousetool

@@ -1,6 +1,6 @@
-%global commit0 064b2f99f91752c556f318bc13fe3b2eda9086ef
+%global commit0 0bd91b5898e55482e79fbe4cf8108adacdca17f1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kaccounts-integration
 Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
