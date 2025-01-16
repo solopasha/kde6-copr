@@ -1,6 +1,6 @@
-%global commit0 eb82c28b8668e4f4654cf0e9bce8eed505ac8da7
+%global commit0 e4805056b0b2c79c049d814e0425a8de1e66d5d0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 %global base_name discover
 # enable snap support (or not)

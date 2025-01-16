@@ -1,6 +1,6 @@
-%global commit0 eb77b8799e9d2e4f85dd6859914f4d121dc4f838
+%global commit0 39073afce2ef22ef99dab47a1d9ede29325c2941
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 Name:          arianna
 Version:       25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

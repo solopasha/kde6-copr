@@ -1,6 +1,6 @@
-%global commit0 c2a729a25630cc014a51d26d9ae24a157616809a
+%global commit0 adc08ad66303f966cc21956bd2c81d277a0b3a0c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 # Opt out of https://fedoraproject.org/wiki/Changes/fno-omit-frame-pointer
 # https://bugzilla.redhat.com/show_bug.cgi?id=2265381
