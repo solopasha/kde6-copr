@@ -31,6 +31,7 @@ BuildRequires: cmake(KF6KirigamiAddons)
 BuildRequires: cmake(KF6QQC2DesktopStyle)
 BuildRequires: cmake(KF6QuickCharts)
 BuildRequires: cmake(KF6WindowSystem)
+BuildRequires: cmake(KF6ColorScheme)
 
 BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6Gui)
