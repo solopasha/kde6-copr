@@ -1,6 +1,6 @@
-%global commit0 9dfc026977a45e72cda8af6f0da3ec27be49ba5d
+%global commit0 233e3b53588cec2f488e664652a02271f198d133
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           kglobalacceld
 Summary:        Daemon providing Global Keyboard Shortcut functionality
