@@ -35,6 +35,7 @@ BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Keychain)
+BuildRequires:  cmake(Qt6Multimedia)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6Svg)
@@ -44,7 +45,7 @@ BuildRequires:  cmake(Qt6WebView)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  cmake(KUnifiedPush)
-BuildRequires:  cmake(MpvQt)
+BuildRequires:  pkgconfig(openssl)
 
 Requires:       hicolor-icon-theme
 
