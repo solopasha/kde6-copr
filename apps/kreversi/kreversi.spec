@@ -1,6 +1,6 @@
-%global commit0 583777b015cd4fba69abe6681f2b6e268dfa7441
+%global commit0 b71b54f5dc9fdbe4979f152fc7de8cd7061100fc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kreversi
 Summary: Reversi board game

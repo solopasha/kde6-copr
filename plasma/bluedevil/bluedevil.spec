@@ -1,6 +1,6 @@
-%global commit0 fb55c15011467e5959de902994c5fb9de90a265a
+%global commit0 2d823901583864ccf00ecd103f0ba1b9dd03f5f2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           bluedevil
 Summary:        Bluetooth stack for KDE
