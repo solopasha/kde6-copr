@@ -42,12 +42,11 @@ BuildRequires:  cmake(QAccessibilityClient6)
 
 %install
 %cmake_install
+%find_lang accessibilityinspector
 
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
-
-%find_lang accessibilityinspector
 
 %files -f accessibilityinspector.lang
 %license LICENSES/*.txt
