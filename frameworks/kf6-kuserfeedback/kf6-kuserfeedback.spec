@@ -1,6 +1,6 @@
-%global commit0 0a6af136b0401e3d04af65f280f05c547c341a3f
+%global commit0 039a429151df6050303a825dc4a6127001528294
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 %global framework kuserfeedback
 
