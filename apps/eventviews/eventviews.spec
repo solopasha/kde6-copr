@@ -1,6 +1,6 @@
-%global commit0 b26d96615cf85e94c2f15e845204fd926013b60f
+%global commit0 15a83df3911c212be954316354b3101da965421a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    eventviews
 Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
