@@ -11,6 +11,10 @@ License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND L
 URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
+%if "%{?copr_projectname}" == "plasma-unstable-qt6.9"
+Patch:          rename.diff
+%endif
+
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6WaylandClient)

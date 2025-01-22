@@ -13,6 +13,10 @@ License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND G
 URL:            https://userbase.kde.org/KWin
 %plasma_source
 
+%if "%{?copr_projectname}" == "plasma-unstable-qt6.9"
+Patch:          rename.diff
+%endif
+
 BuildRequires:  systemd-rpm-macros
 
 BuildRequires:  cmake(KF6Auth)
