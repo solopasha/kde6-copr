@@ -1,6 +1,6 @@
-%global commit0 d10209596319d31a1e5bee7dc34c7b33cba2c493
+%global commit0 542524345878cc7cd6e30a5e38a0a4e56f8d8b80
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 %global base_name elisa
 
