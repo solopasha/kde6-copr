@@ -1,6 +1,6 @@
-%global commit0 ab0e0c4a16de48931db644fa9343ad6ec94c0283
+%global commit0 a801fb06c9d34893d2109df5f789ca1b5f7cedd6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 14
+%global bumpver 15
 
 %bcond x11 1
 
@@ -88,6 +88,7 @@ BuildRequires:  cmake(Qt6Sql)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(Breeze)
