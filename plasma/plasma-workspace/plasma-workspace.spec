@@ -465,6 +465,8 @@ fi
 %{_kf6_datadir}/polkit-1/actions/org.kde.fontinst.policy
 %{_kf6_datadir}/qlogging-categories6/*.categories
 %{_kf6_datadir}/solid/
+%dir %{_kf6_datadir}/timezonefiles
+%{_kf6_datadir}/timezonefiles/timezones.json
 %{_kf6_datadir}/xdg-desktop-portal/kde-portals.conf
 %{_kf6_datadir}/zsh/site-functions/_plasmashell
 %{_kf6_metainfodir}/*.xml
