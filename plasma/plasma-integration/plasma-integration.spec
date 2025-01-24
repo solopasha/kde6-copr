@@ -1,6 +1,6 @@
-%global commit0 cf0b4e1bc7abc2bcb71cd0e1eb6e2a121dba9603
+%global commit0 6643b289f253f7958277473ab145d9d9eae72cc8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           plasma-integration
 Summary:        Qt Platform Theme integration plugin for Plasma
@@ -10,10 +10,6 @@ Release:        1%{?dist}
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
 URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
-
-%if "%{?copr_projectname}" == "plasma-unstable-qt6.9"
-Patch:          rename.diff
-%endif
 
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6QuickControls2)

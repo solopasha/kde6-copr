@@ -1,6 +1,6 @@
-%global commit0 126c6056ecefd303353b9d42379abe63b774200c
+%global commit0 358def4ae30c8f896f891c4387ec45a0539f8148
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 14
+%global bumpver 15
 
 %bcond x11 1
 
@@ -12,10 +12,6 @@ Summary:        KDE Window manager
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:            https://userbase.kde.org/KWin
 %plasma_source
-
-%if "%{?copr_projectname}" == "plasma-unstable-qt6.9"
-Patch:          rename.diff
-%endif
 
 BuildRequires:  systemd-rpm-macros
 
