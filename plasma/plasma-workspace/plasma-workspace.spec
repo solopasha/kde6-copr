@@ -1,6 +1,6 @@
 %global commit0 6dd835abc2220260ee85643c3a0fc78b539ee4cc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 17
+%global bumpver 18
 
 %bcond x11 1
 
@@ -157,6 +157,7 @@ Requires:       kf6-kglobalaccel%{?_isa}
 Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-kquickcharts%{?_isa}
 Requires:       qt6-qt5compat%{?_isa}
+Requires:       qt6-qtlocation%{?_isa}
 
 Recommends:     plasma-pa
 Recommends:     plasma-welcome
