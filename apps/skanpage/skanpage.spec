@@ -11,8 +11,6 @@ License:  GPLv3 and GPLv2 and CC0-1.0 and BSD
 URL:      https://invent.kde.org/utilities/%{name}
 %apps_source
 
-Patch:    flags.patch
-
 BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
