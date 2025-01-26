@@ -1,0 +1,58 @@
+Submodule fedora-kiwi-descriptions contains modified content
+diff --git a/fedora-kiwi-descriptions/components/desktops/kde.xml b/fedora-kiwi-descriptions/components/desktops/kde.xml
+index 0c7b9db..d7cfaf9 100644
+--- a/fedora-kiwi-descriptions/components/desktops/kde.xml
++++ b/fedora-kiwi-descriptions/components/desktops/kde.xml
+@@ -23,19 +23,47 @@
+ 		<ignore name="kipi-plugins"/> <!-- ~8 megs + drags in marble -->
+ 		<ignore name="krusader"/> <!-- ~4 megs -->
+ 		<ignore name="ktorrent"/> <!-- ~15 megs -->
++		<ignore name="@input-methods"/>
++		<ignore name="*gtk2*"/>
++		<ignore name="abrt-cli"/>
++		<ignore name="abrt-desktop"/>
++		<ignore name="akonadi-server-mysql"/>
++		<ignore name="akonadi-server"/>
++		<ignore name="at"/>
++		<ignore name="crontabs"/>
++		<ignore name="dragon"/>
++		<ignore name="gtk*-immodule-xim"/>
++		<ignore name="ibus-anthy"/>
++		<ignore name="ibus-chewing"/>
++		<ignore name="ibus-gtk*"/>
++		<ignore name="ibus-hangul"/>
++		<ignore name="ibus-libpinyin"/>
++		<ignore name="ibus-m17n"/>
++		<ignore name="ibus-panel"/>
++		<ignore name="ibus-setup"/>
++		<ignore name="ibus-typing-booster"/>
++		<ignore name="ibus-xinit"/>
++		<ignore name="ibus"/>
++		<ignore name="im-chooser"/>
++		<ignore name="imsettings*"/>
++		<ignore name="kamoso"/>
++		<ignore name="kmahjongg"/>
++		<ignore name="kmines"/>
++		<ignore name="kpat"/>
++		<ignore name="kwebkitpart"/>
++		<ignore name="maliit-keyboard"/>
++		<ignore name="NetworkManager-libreswan-gnome"/>
++		<ignore name="qt5-qtbase"/>
+ 	</packages>
+ 	<packages type="image" patternType="plusRecommended" profiles="KDE-Desktop">
+ 		<!-- install env-group to resolve RhBug:1891500 -->
+ 		<namedCollection name="kde-desktop-environment"/>
+ 		<namedCollection name="kde-apps"/>
+ 		<namedCollection name="kde-media"/>
+-		<namedCollection name="kde-pim"/>
+-		<namedCollection name="kde-spin-initial-setup"/>
+ 		<namedCollection name="firefox"/>
+-		<namedCollection name="libreoffice"/>
+-		<package name="libreoffice-draw"/>
+-		<package name="libreoffice-math"/>
+ 		<package name="fuse"/>
++		<package name="haruna"/>
++		<package name="initial-setup"/>
+ 		<package name="kde-l10n"/>
+ 	</packages>
+ 	<packages type="image" patternType="plusRecommended" profiles="KDE-Mobile">

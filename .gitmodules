@@ -1,0 +1,4 @@
+[submodule "fedora-kiwi-descriptions"]
+	path = fedora-kiwi-descriptions
+	url = https://pagure.io/fedora-kiwi-descriptions
+	branch = f41

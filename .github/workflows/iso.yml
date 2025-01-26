@@ -1,0 +1,93 @@
+on:
+  schedule:
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+
+name: ISO
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    container:
+      image: registry.fedoraproject.org/fedora-minimal:latest
+      options: --privileged
+
+    steps:
+      - name: Prepare
+        run: |
+          dnf -y install --nodocs --setopt=install_weak_deps=0 kiwi-cli kiwi-systemdeps git-core distribution-gpg-keys patch zstd
+
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+
+      - name: Customize kiwi-descriptions
+        run: |
+          patch -Np1 -i .github/custom.diff
+          mkdir -p fedora-kiwi-descriptions/root/etc/yum.repos.d
+
+          cat << 'EOF' > fedora-kiwi-descriptions/root/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable.repo
+          name=Copr repo for kde-gear-unstable owned by solopasha
+          baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/kde-gear-unstable/fedora-$releasever-$basearch/
+          type=rpm-md
+          skip_if_unavailable=True
+          gpgcheck=1
+          gpgkey=https://download.copr.fedorainfracloud.org/results/solopasha/kde-gear-unstable/pubkey.gpg
+          repo_gpgcheck=0
+          enabled=1
+          enabled_metadata=1
+
+          [coprdep:copr.fedorainfracloud.org:solopasha:plasma-unstable]
+          name=Copr copr.fedorainfracloud.org/solopasha/kde-gear-unstable runtime dependency #1 - solopasha/plasma-unstable
+          baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/fedora-$releasever-$basearch/
+          type=rpm-md
+          skip_if_unavailable=True
+          gpgcheck=1
+          gpgkey=https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/pubkey.gpg
+          repo_gpgcheck=0
+          enabled=1
+          enabled_metadata=1
+          EOF
+
+      - name: Get date
+        id: get-date
+        run: |
+          echo "date=$(date -u "+%Y%m%d.%H%M")" >> $GITHUB_OUTPUT
+
+      - name: Restore cache
+        id: cache
+        uses: actions/cache/restore@v4
+        with:
+          path: /var/cache/kiwi
+          key: iso-build-${{ steps.get-date.outputs.date }}
+          restore-keys: iso-build-
+
+      - name: Build
+        run: |
+          kiwi-ng --type=iso --profile=KDE-Desktop-Live --kiwi-file=Fedora.kiwi \
+            system build --description=fedora-kiwi-descriptions --target-dir=out-build \
+            --set-type-attr=volid=Fedora-KDE-Live-41 --set-type-attr=application_id=Fedora-KDE_Desktop-Live-41 --set-type-attr=publisher=solopasha \
+            --add-repo='https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/fedora-$releasever-$basearch/,rpm-md,plasma-unstable,98,false,true,{https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/pubkey.gpg}' \
+            --add-repo='https://download.copr.fedorainfracloud.org/results/solopasha/kde-gear-unstable/fedora-$releasever-$basearch/,rpm-md,kde-gear-unstable,98,false,true,{https://download.copr.fedorainfracloud.org/results/solopasha/kde-gear-unstable/pubkey.gpg}'
+
+      - name: Bundle
+        run: |
+          kiwi-ng result bundle --target-dir=out-build --bundle-dir=out --id="${{ steps.get-date.outputs.date }}-unstable-minimal" --bundle-format %N-%v-%I.%A
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: iso-build-${{ steps.get-date.outputs.date }}
+          path: out/*
+          retention-days: 21
+          compression-level: 0
+
+      - name: Save cache
+        id: cache-save
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: /var/cache/kiwi
+          key: ${{ steps.cache.outputs.cache-primary-key }}
