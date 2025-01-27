@@ -1,6 +1,6 @@
-%global commit0 f1647b657f3af89f51cb7641760cf29311e0506b
+%global commit0 df4d9d4ea68cccb35da0a5b55a32652c58b54acd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           krdp
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -84,12 +84,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %post
 %systemd_user_post app-org.kde.krdpserver.service
-
-%preun
-%systemd_user_preun app-org.kde.krdpserver.service
-
-%postun
-%systemd_user_postun app-org.kde.krdpserver.service
 
 %changelog
 %{?kde_snapshot_changelog_entry}
