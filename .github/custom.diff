@@ -1,4 +1,16 @@
 Submodule fedora-kiwi-descriptions contains modified content
+diff --git a/fedora-kiwi-descriptions/Fedora.kiwi b/fedora-kiwi-descriptions/Fedora.kiwi
+index c29b052..2afb6e3 100644
+--- a/fedora-kiwi-descriptions/Fedora.kiwi
++++ b/fedora-kiwi-descriptions/Fedora.kiwi
+@@ -13,6 +13,7 @@
+ 		<keytable>us</keytable>
+ 		<timezone>UTC</timezone>
+ 		<release-version>41</release-version>
++		<rpm-check-signatures>true</rpm-check-signatures>
+ 	</preferences>
+ 	<include from="this://./repositories/core.xml"/>
+ 	<include from="this://./components/common.xml"/>
 diff --git a/fedora-kiwi-descriptions/components/desktops/kde.xml b/fedora-kiwi-descriptions/components/desktops/kde.xml
 index 0c7b9db..3d53b54 100644
 --- a/fedora-kiwi-descriptions/components/desktops/kde.xml
@@ -61,3 +73,20 @@ index 0c7b9db..3d53b54 100644
  	</packages>
  	<packages type="image" patternType="plusRecommended" profiles="KDE-Mobile">
  		<!-- install env-group to resolve RhBug:1891500 -->
+diff --git a/fedora-kiwi-descriptions/repositories/core-nonrawhide.xml b/fedora-kiwi-descriptions/repositories/core-nonrawhide.xml
+index 514e7e3..298da7e 100644
+--- a/fedora-kiwi-descriptions/repositories/core-nonrawhide.xml
++++ b/fedora-kiwi-descriptions/repositories/core-nonrawhide.xml
+@@ -1,10 +1,10 @@
+ <image>
+-	<repository type="rpm-md" alias="fedora" sourcetype="metalink">
++	<repository type="rpm-md" alias="fedora" package_gpgcheck="true" sourcetype="metalink">
+ 		<source path="https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&amp;arch=$basearch">
+ 			<signing key="file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-primary"/>
+ 		</source>
+ 	</repository>
+-	<repository type="rpm-md" alias="updates" sourcetype="metalink">
++	<repository type="rpm-md" alias="updates" package_gpgcheck="true" sourcetype="metalink">
+ 		<source path="https://mirrors.fedoraproject.org/metalink?repo=updates-released-f$releasever&amp;arch=$basearch">
+ 			<signing key="file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-primary"/>
+ 		</source>
