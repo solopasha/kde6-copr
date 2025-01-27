@@ -1,9 +1,9 @@
 Submodule fedora-kiwi-descriptions contains modified content
 diff --git a/fedora-kiwi-descriptions/components/desktops/kde.xml b/fedora-kiwi-descriptions/components/desktops/kde.xml
-index 0c7b9db..d7cfaf9 100644
+index 0c7b9db..3d53b54 100644
 --- a/fedora-kiwi-descriptions/components/desktops/kde.xml
 +++ b/fedora-kiwi-descriptions/components/desktops/kde.xml
-@@ -23,19 +23,47 @@
+@@ -23,20 +23,52 @@
  		<ignore name="kipi-plugins"/> <!-- ~8 megs + drags in marble -->
  		<ignore name="krusader"/> <!-- ~4 megs -->
  		<ignore name="ktorrent"/> <!-- ~15 megs -->
@@ -54,5 +54,10 @@ index 0c7b9db..d7cfaf9 100644
 +		<package name="haruna"/>
 +		<package name="initial-setup"/>
  		<package name="kde-l10n"/>
++		<package name="langpacks-core-en"/>
++		<package name="langpacks-en"/>
++		<package name="langpacks-fonts-en"/>
++		<package name="pipewire-jack-audio-connection-kit"/>
  	</packages>
  	<packages type="image" patternType="plusRecommended" profiles="KDE-Mobile">
+ 		<!-- install env-group to resolve RhBug:1891500 -->
