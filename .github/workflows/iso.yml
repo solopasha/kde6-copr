@@ -29,6 +29,7 @@ jobs:
           mkdir -p fedora-kiwi-descriptions/root/etc/yum.repos.d
 
           cat << 'EOF' > fedora-kiwi-descriptions/root/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable.repo
+          [copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable]
           name=Copr repo for kde-gear-unstable owned by solopasha
           baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/kde-gear-unstable/fedora-$releasever-$basearch/
           type=rpm-md
