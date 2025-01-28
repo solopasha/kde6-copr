@@ -1,6 +1,6 @@
-%global commit0 64573ba7103352863d110d285f901194d57ebb89
+%global commit0 b706373ef6e819173d6aea45bf137c425054c12f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           kcalc
 Summary:        Scientific Calculator

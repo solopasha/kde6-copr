@@ -1,11 +1,11 @@
-%global commit0 3c0e8cf4bcd8838dc3a049546edf9559404043cb
+%global commit0 c89cd1e5977e6f357a06892edb4b8be7697ba211
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           ksanecore
 Summary:        Library providing logic to interface scanners
 Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release:        2%{?dist}
+Release:        1%{?dist}
 
 License:        LGPL-2.1-only OR LGPL-3.0-only
 URL:            https://invent.kde.org/libraries/ksanecore
