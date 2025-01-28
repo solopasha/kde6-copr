@@ -103,7 +103,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop ||:
 
 %files libs
 %{_kf6_libdir}/libkleopatraclientcore.so.*
-%{_kf6_libdir}/libkleopatraclientgui.so.*
 
 
 %changelog

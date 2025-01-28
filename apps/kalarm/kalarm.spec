@@ -105,6 +105,7 @@ xvfb-run -a bash -c "%ctest"
 %{_kf6_datadir}/dbus-1/system-services/org.kde.kalarm.rtcwake.service
 %{_kf6_datadir}/dbus-1/system.d/org.kde.kalarm.rtcwake.conf
 %{_kf6_datadir}/icons/hicolor/*/apps/kalarm.png
+%{_kf6_datadir}/icons/hicolor/22x22/actions/kalarm-{,part}disabled.png
 %{_kf6_datadir}/kalarm/
 %{_kf6_datadir}/kconf_update/kalarm.upd
 %{_kf6_datadir}/knotifications6/kalarm.notifyrc
