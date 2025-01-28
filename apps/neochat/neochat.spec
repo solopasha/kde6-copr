@@ -1,6 +1,6 @@
-%global commit0 bf6f4a951e7a74f0695a3b2d05c93ca952569a54
+%global commit0 5f4bde96e9a6f82033b588f7468146dcffb71239
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 21
+%global bumpver 22
 
 Name:    neochat
 Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
