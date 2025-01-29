@@ -1,8 +1,11 @@
-%global wayland_min_version 1.4
+%global commit0 1b1962118fafdd626ff2eaa5ffbef6e6a5baaa08
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global bumpver 1
+
 %global debug_package %{nil}
 
 Name:           plasma-wayland-protocols
-Version:        1.16.0
+Version:        1.16.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Plasma Specific Protocols for Wayland
 
@@ -25,8 +28,8 @@ developing applications that use %{name}.
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -p1
+%{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
+%autosetup -n %{sourcerootdir} -p1
 
 %build
 %cmake_kf6 -DQT_MAJOR_VERSION=6
