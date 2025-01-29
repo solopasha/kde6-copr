@@ -31,8 +31,7 @@ BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  pkgconfig(gmp)
 BuildRequires:  pkgconfig(mpfr)
-
-
+BuildRequires:  libmpc-devel
 
 %description
 KCalc is a calculator which offers many more mathematical
