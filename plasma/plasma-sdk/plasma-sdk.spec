@@ -1,6 +1,6 @@
-%global commit0 b3a7d3bd0f955d187e43acb7198f8053b3de0ae5
+%global commit0 29c390c08b6ba80c5521359807e9ed4c4fa8013e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           plasma-sdk
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -18,6 +18,7 @@ BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6I18n)
