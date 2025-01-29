@@ -1,6 +1,6 @@
-%global commit0 1319e3dee54c2c3e408053bb6ad11b0d6a017b00
+%global commit0 6a790866fbd99903ffdcce1629a9b3af4056ce99
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:           kweathercore
 Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -10,14 +10,18 @@ Summary:        Library to facilitate retrieval of weather information
 URL:            https://invent.kde.org/libraries/kweathercore
 %apps_source
 
-BuildRequires:  gcc-c++
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6Positioning)
-BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(Qt6Qml)
+
 BuildRequires:  cmake(KF6Holidays)
+BuildRequires:  cmake(KF6I18n)
 
 %description
 Get weather forecast and alerts anywhere on the earth easy. KWeatherCore
@@ -50,8 +54,9 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %files -f %{name}6.lang
 %license LICENSES/*.txt
-%{_kf6_libdir}/libKWeatherCore.so.2*
+%{_kf6_libdir}/libKWeatherCore.so.%{version_no_git}
 %{_kf6_libdir}/libKWeatherCore.so.6
+%{_kf6_qmldir}/org/kde/weathercore/
 
 %files devel
 %{_includedir}/kweathercore_version.h
