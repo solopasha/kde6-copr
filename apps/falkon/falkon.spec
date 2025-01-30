@@ -1,6 +1,6 @@
-%global commit0 479572a70cffba8cabca9d57bd68c0b573d3daf0
+%global commit0 32472fdf91c9ed57057563b5a35b7a2a1e4f738c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 # build Python plugins (disabled by default due to #2048781)
 %bcond_with python
