@@ -1,6 +1,6 @@
-%global commit0 df4d9d4ea68cccb35da0a5b55a32652c58b54acd
+%global commit0 0fcf4e51e4683d9253ad226c3d8b663651cec9e0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:           krdp
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -31,13 +31,14 @@ BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  qt6-qtbase-private-devel
 
-BuildRequires:  (cmake(FreeRDP-Server) >= 2.10 with cmake(FreeRDP-Server) < 3)
-BuildRequires:  (cmake(FreeRDP) >= 2.10 with cmake(FreeRDP) < 3)
-BuildRequires:  (cmake(WinPR) >= 2.10 with cmake(WinPR) < 3)
+BuildRequires:  cmake(FreeRDP-Server) >= 3
+BuildRequires:  cmake(FreeRDP) >= 3
+BuildRequires:  cmake(WinPR) >= 3
 BuildRequires:  cmake(KPipeWire)
 BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  cmake(Qt6Keychain)
 BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  wayland-devel
 BuildRequires:  /usr/bin/winpr-makecert
 Requires:       /usr/bin/winpr-makecert
 
