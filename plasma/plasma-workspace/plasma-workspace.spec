@@ -1,6 +1,6 @@
-%global commit0 a023d96836bbaa6fd9a8a04ea92368558e7e5f9c
+%global commit0 6f95ebdf7f223c943291acf3bb77db6c90260760
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 23
+%global bumpver 24
 
 %bcond x11 1
 
@@ -155,6 +155,7 @@ Requires:       kf6-kded%{?_isa}
 Requires:       kf6-kdoctools%{?_isa}
 Requires:       kf6-kglobalaccel%{?_isa}
 Requires:       kf6-kirigami-addons%{?_isa}
+Requires:       kf6-kitemmodels%{?_isa}
 Requires:       kf6-kquickcharts%{?_isa}
 Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtlocation%{?_isa}

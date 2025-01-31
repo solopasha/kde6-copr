@@ -1,6 +1,6 @@
-%global commit0 92262eab2ae23a3dd46519f5b0d00c6dfe68fd16
+%global commit0 02875a35ae044bebdc695f79446c1605d0ba43ed
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 14
+%global bumpver 15
 
 %global framework kio
 
@@ -176,6 +176,8 @@ Recommends:     switcheroo-control
 %files file-widgets
 %{_kf6_libdir}/libKF6KIOFileWidgets.so.%{version_no_git}
 %{_kf6_libdir}/libKF6KIOFileWidgets.so.6
+%dir %{_kf6_plugindir}/kio_dnd
+%{_kf6_plugindir}/kio_dnd/dropintonewfolder.so
 
 %files devel
 %{_kf6_datadir}/kdevappwizard/templates/kioworker6.tar.bz2

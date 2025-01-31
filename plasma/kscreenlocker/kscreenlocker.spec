@@ -1,6 +1,6 @@
-%global commit0 0b208d59e86445f1a102c3e934dbd774d08c0714
+%global commit0 485869dddaa36cbf26bdf7bc4f4d81e46669243c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:           kscreenlocker
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -29,7 +29,6 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Qt6Widgets)
-BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(KF6Screen)
 BuildRequires:  cmake(LayerShellQt)
