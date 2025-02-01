@@ -1,6 +1,6 @@
-%global commit0 8ebf9a96fa74398378681f37a4f00ce750533db1
+%global commit0 25af802746bcd3520c4f124c9710179f25bdb80d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           cervisia
 Summary:        CVS frontend
@@ -71,9 +71,6 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.cervisia.
 %{_kf5_datadir}/kservices5/org.kde.cvsservice5.desktop
 %{_kf5_datadir}/kxmlgui5/cervisia/
 %{_kf5_datadir}/kxmlgui5/cervisiapart/
-%{_kf5_libdir}/libkdeinit5_cervisia.so
-%{_kf5_libdir}/libkdeinit5_cvsaskpass.so
-%{_kf5_libdir}/libkdeinit5_cvsservice.so
 %{_kf5_metainfodir}/org.kde.cervisia.appdata.xml
 %{_kf5_qtplugindir}/cervisiapart5.so
 %{_mandir}/man1/cervisia*
