@@ -67,12 +67,11 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.cervisia.
 %{_kf5_datadir}/dbus-1/interfaces/org.kde.cervisia5.*.xml
 %{_kf5_datadir}/icons/hicolor/*/*/*
 %{_kf5_datadir}/knotifications5/cervisia.notifyrc
-%{_kf5_datadir}/kservices5/org.kde.cervisiapart5.desktop
 %{_kf5_datadir}/kservices5/org.kde.cvsservice5.desktop
 %{_kf5_datadir}/kxmlgui5/cervisia/
 %{_kf5_datadir}/kxmlgui5/cervisiapart/
 %{_kf5_metainfodir}/org.kde.cervisia.appdata.xml
-%{_kf5_qtplugindir}/cervisiapart5.so
+%{_kf5_plugindir}/parts/cervisiapart.so
 %{_mandir}/man1/cervisia*
 
 
