@@ -118,35 +118,22 @@ Supplements:    korganizer
 %{_kf6_libdir}/libfolderconfiguresettings.so.6{,.*}
 %{_kf6_libdir}/libkmailconfirmbeforedeleting.so.6{,.*}
 %{_kf6_libdir}/libopenurlwithconfigure.so.6{,.*}
+%{_kf6_qtplugindir}/pim6/
 
 %{_kf6_qmldir}/org/kde/plasma/PimCalendars/
-%{_kf6_qtplugindir}/pim6/mailtransport/mailtransport_sendplugin.so
-%{_kf6_qtplugindir}/pim6/webengineviewer/
 %{_kf6_qtplugindir}/plasmacalendarplugins/pimevents.so
 %{_kf6_qtplugindir}/plasmacalendarplugins/pimevents/
-%{_kf6_qtplugindir}/pim6/contacteditor/editorpageplugins/cryptopageplugin.so
 %{_kf6_libdir}/libkaddressbookmergelibprivate.so*
-%{_kf6_qtplugindir}/pim6/kaddressbook/
-%{_kf6_qtplugindir}/pim6/kcms/kleopatra/kcm_kmail_gnupgsystem.so
 
 # KMail
 %{_kf6_bindir}/kmail_*.sh
 %{_kf6_libdir}/libkmailmarkdown.so.*
 %{_kf6_libdir}/libkmailquicktextpluginprivate.so.*
-%{_kf6_qtplugindir}/pim6/akonadi/
-%{_kf6_qtplugindir}/pim6/importwizard/
-%{_kf6_qtplugindir}/pim6/kmail/
-%{_kf6_qtplugindir}/pim6/libksieve/
-%{_kf6_qtplugindir}/pim6/templateparser/
 %{_kf6_sysconfdir}/xdg/kmail.antispamrc
 %{_kf6_sysconfdir}/xdg/kmail.antivirusrc
 
 # PimCommon
 %{_kf6_libdir}/libshorturlpluginprivate.so*
-%{_kf6_qtplugindir}/pim6/pimcommon/
-
-# BodyPartFormatter, MessageViewer, MessageViewer_headers
-%{_kf6_qtplugindir}/pim6/messageviewer/
 
 
 %changelog
