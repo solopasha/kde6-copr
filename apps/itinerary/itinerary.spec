@@ -1,6 +1,6 @@
-%global commit0 d3264e9b2381b2517b29009e3b7380d8cc0b1579
+%global commit0 e82767174e11267d1f59c2b74543353c1294790e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 23
+%global bumpver 24
 
 Name:           itinerary
 Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
