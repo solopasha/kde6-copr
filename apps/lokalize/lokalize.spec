@@ -1,6 +1,6 @@
-%global commit0 37ba0659705b2828042cf621fddf1fc56b80db7c
+%global commit0 b0368b424bb815dc505e10e4eb305a80dafb8875
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 8
 
 Name:           lokalize
 Summary:        Computer-aided translation system
