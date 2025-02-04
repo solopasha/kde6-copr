@@ -1,6 +1,6 @@
 %global commit0 eb5f37d58b5f61125adae33b5dafc3ccc60a9f2c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global base_name kdev-python
 

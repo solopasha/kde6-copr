@@ -1,6 +1,6 @@
 %global commit0 90d80a47cb5e4d850993a2fd73577e7d5b4a8c06
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           massif-visualizer
 Summary:        Visualizer for Massif heap memory profiler data files
