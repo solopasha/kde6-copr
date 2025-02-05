@@ -80,10 +80,6 @@ ExcludeArch: %{ix86}
 Kdenlive is an intuitive and powerful multi-track video editor, including most
 recent video technologies.
 
-%package        doc
-Summary:        Developer Documentation files for %{name}
-%description    doc
-Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
@@ -112,21 +108,20 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %files -f %{name}.lang
 %doc AUTHORS README.md
 %license COPYING LICENSES/*
-%{_kf6_bindir}/kdenlive_render
 %{_kf6_bindir}/%{name}
+%{_kf6_bindir}/kdenlive_render
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
-%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
+%{_kf6_datadir}/config.kcfg/kdenlivesettings.kcfg
+%{_kf6_datadir}/icons/*/*/*/*
 %{_kf6_datadir}/kdenlive/
+%{_kf6_datadir}/knotifications6/kdenlive.notifyrc
+%{_kf6_datadir}/knsrcfiles/*.knsrc
 %{_kf6_datadir}/mime/packages/org.kde.kdenlive.xml
 %{_kf6_datadir}/mime/packages/westley.xml
-%{_kf6_datadir}/icons/*/*/*/*
-%{_kf6_datadir}/config.kcfg/kdenlivesettings.kcfg
-%{_kf6_datadir}/knotifications6/kdenlive.notifyrc
-%{_datadir}/knsrcfiles/*.knsrc
 %{_kf6_datadir}/qlogging-categories6/kdenlive.categories
-%{_kf6_mandir}/man1/kdenlive.1*
 %{_kf6_mandir}/man1/kdenlive_render.1*
-# consider subpkg for multilib
+%{_kf6_mandir}/man1/kdenlive.1*
+%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 %{_kf6_plugindir}/thumbcreator/mltpreview.so
 
 

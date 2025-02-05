@@ -30,12 +30,6 @@ BuildRequires:  pkgconfig(libudev)
 %description
 KSystemStats is a daemon that collects statistics about the running system.
 
-%package        devel
-Summary:        Developer files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
-%description    devel
-%{summary}.
-
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*

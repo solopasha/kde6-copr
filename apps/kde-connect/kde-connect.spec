@@ -88,12 +88,6 @@ Requires: %{name} = %{version}-%{release}
 %description libs
 %{summary}.
 
-%package devel
-Summary: Development files for %{name}
-Requires: %{name}-libs%{?_isa} = %{version}-%{release}
-%description devel
-%{summary}.
-
 %package nautilus
 Summary: KDEConnect extention for nautilus
 Requires: kdeconnectd = %{version}-%{release}
@@ -148,8 +142,8 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop ||:
 %{zsh_completions_dir}/_kdeconnect
 
 %files -n kdeconnectd
-%{_datadir}/dbus-1/services/org.kde.kdeconnect.service
 %{_bindir}/kdeconnectd
+%{_datadir}/dbus-1/services/org.kde.kdeconnect.service
 %{_sysconfdir}/xdg/autostart/org.kde.kdeconnect.daemon.desktop
 
 %files libs
