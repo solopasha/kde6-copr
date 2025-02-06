@@ -1,6 +1,6 @@
 %global commit0 ac333b19c73a3ca760114410095fd9643efb07ef
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           layer-shell-qt
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -19,8 +19,6 @@ BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  wayland-devel
-
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 %description
 This component is meant for applications to be able to easily use clients
