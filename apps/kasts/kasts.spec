@@ -1,6 +1,6 @@
-%global commit0 130548ee95c7a2a8ff932988197ac0a5bc89fe9f
+%global commit0 9eea99675c4600ca2557d9cf4ef7f38635716222
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 10
+%global bumpver 11
 
 Name:           kasts
 Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

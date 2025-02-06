@@ -1,6 +1,6 @@
-%global commit0 79e5b8ac7c1e121ee87c653150ceb3a91b086aa1
+%global commit0 87adb3a8ddeca6b3cd219e33b50ae9e4a0b88c58
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 Name:           xdg-desktop-portal-kde
 Summary:        Backend implementation for xdg-desktop-portal using Qt/KF5
