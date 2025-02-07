@@ -1,11 +1,11 @@
-%global commit0 9097783ffb06eefc3bced74c27840c6ec8e96059
+%global commit0 2b4fdb99e8bd686b970f4b8b353c6176dd811723
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 %global framework kauth
 
 Name:           kf6-%{framework}
-Version:        6.11.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.12.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 module to perform actions as privileged user
 # LGPL-2.0-or-later is also in the project's LICENSES, but is unused according to reuse.

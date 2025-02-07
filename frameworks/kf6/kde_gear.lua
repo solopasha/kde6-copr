@@ -235,6 +235,7 @@ return {
     ["plasmatube"] = true,
     ["poxml"] = true,
     ["qmlkonsole"] = true,
+    ["qrca"] = true,
     ["rocs"] = true,
     ["signon-kwallet-extension"] = true,
     ["skanlite"] = true,
