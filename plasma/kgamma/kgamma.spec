@@ -1,6 +1,6 @@
-%global commit0 8c788c0bea2c53e7ff67ecbae3471fe45b498019
+%global commit0 e82e8146b3919e0b02c7c2c0b1ba02aa57bc0ae1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           kgamma
 Summary:        A monitor calibration tool
