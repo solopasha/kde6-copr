@@ -1,6 +1,6 @@
-%global commit0 ac333b19c73a3ca760114410095fd9643efb07ef
+%global commit0 c8c8e3e983f406c909952a98438682da79cafd79
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           layer-shell-qt
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}

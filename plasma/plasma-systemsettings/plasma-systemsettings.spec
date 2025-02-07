@@ -1,6 +1,6 @@
-%global commit0 eda067537330d249b7284b060fbc36812e026033
+%global commit0 ad8f95c6d13857346cc811d73bc7dceede2454c3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global base_name systemsettings
 

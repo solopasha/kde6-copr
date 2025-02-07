@@ -1,6 +1,6 @@
-%global commit0 5ce6aeda8eba0a78b0724666780c057e6285241c
+%global commit0 a5c879a31e32a70f164e27f2963fac1379a7ce80
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           plasma5support
 Summary:        Support components for porting from KF5/Qt5 to KF6/Qt6
