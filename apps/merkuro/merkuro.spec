@@ -120,7 +120,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 %{_kf6_datadir}/applications/org.kde.merkuro.mail.desktop
 %{_kf6_datadir}/icons/hicolor/*/apps/org.kde.merkuro*.png
 %{_kf6_datadir}/knotifications6/merkuro.mail.notifyrc
-%{_kf6_datadir}/plasma/plasmoids/org.kde.merkuro.contact/
+%{_kf6_datadir}/plasma/plasmoids/org.kde.merkuro.contact.applet/
 %{_kf6_datadir}/qlogging-categories6/akonadi.quick.categories
 %{_kf6_datadir}/qlogging-categories6/merkuro.categories
 %{_kf6_datadir}/qlogging-categories6/merkuro.contact.categories
