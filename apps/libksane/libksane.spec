@@ -1,6 +1,6 @@
-%global commit0 01e0c4393cdd7b0c966b11dd5dc92b25b766fd0a
+%global commit0 3862422bf3c2eb25501324846ee334fb6060bab4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           libksane
 Summary:        SANE Library interface for KDE

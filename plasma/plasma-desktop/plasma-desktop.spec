@@ -1,6 +1,6 @@
-%global commit0 66f584808174710ac2519eace363ac0ecc7b8c22
+%global commit0 7d2a21aa60f1a94e83cb001914ceefec8dbc79a2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 27
+%global bumpver 28
 
 Name:           plasma-desktop
 Summary:        Plasma Desktop shell

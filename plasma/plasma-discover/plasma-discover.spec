@@ -1,6 +1,6 @@
-%global commit0 330e7fece258b9114487d10b5d766424bc07636d
+%global commit0 0275af47fe52cccde5cbc5c8d6c22bb0c9956c31
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 19
+%global bumpver 20
 
 %global base_name discover
 # enable snap support (or not)
@@ -250,6 +250,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/applications/org.kde.discover.snap.desktop
 %{_kf6_datadir}/dbus-1/system-services/org.kde.discover.libsnapclient.service
 %{_kf6_datadir}/dbus-1/system.d/org.kde.discover.libsnapclient.conf
+%{_kf6_datadir}/icons/hicolor/scalable/apps/snapdiscover.svg
 %{_kf6_datadir}/polkit-1/actions/org.kde.discover.libsnapclient.policy
 %{_kf6_libexecdir}/kauth/libsnap_helper
 %{_kf6_metainfodir}/org.kde.discover.snap.appdata.xml

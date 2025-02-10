@@ -1,6 +1,6 @@
-%global commit0 fc7274675ccbe3569b3312efefe992383466d0a0
+%global commit0 f63e886a7c25f05bd03e54e9c6f571250588135a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 Name:           kinfocenter
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}

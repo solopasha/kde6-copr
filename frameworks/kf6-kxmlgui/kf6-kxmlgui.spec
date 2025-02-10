@@ -1,6 +1,6 @@
-%global commit0 4e9ed25299d793f366f3336b298c0c0e1db018c3
+%global commit0 8859a12447d3264342e9b5e007680b303e19ae5b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework kxmlgui
 
@@ -42,6 +42,7 @@ Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6Config)
 Requires:       cmake(KF6ConfigWidgets)
+Requires:       cmake(KF6GuiAddons)
 Requires:       cmake(Qt6DBus)
 Requires:       cmake(Qt6Widgets)
 Requires:       cmake(Qt6Xml)
