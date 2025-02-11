@@ -81,7 +81,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{
 %{_kf6_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 %{_kf6_libdir}/libKMediaSession.so
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
-
+%{_kf6_qmldir}/org/kde/kmediasession/
 
 %changelog
 %{?kde_snapshot_changelog_entry}
