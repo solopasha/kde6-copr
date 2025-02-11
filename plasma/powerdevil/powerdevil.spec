@@ -1,6 +1,6 @@
-%global commit0 e93b7548a381a95de20c3a838f8d72d1d457770f
+%global commit0 078d22c06619e7259cb587e901e29dd3e4415f85
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 14
+%global bumpver 15
 
 Name:           powerdevil
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
