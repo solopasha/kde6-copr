@@ -2,10 +2,6 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 10
 
-# Opt out of https://fedoraproject.org/wiki/Changes/fno-omit-frame-pointer
-# https://bugzilla.redhat.com/show_bug.cgi?id=2265381
-%undefine _include_frame_pointers
-
 Name:           kwave
 Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}

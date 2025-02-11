@@ -233,7 +233,6 @@ Obsoletes:      bismuth < 3.1.4-4
 Obsoletes:      latte-dock < 0.10.9-4
 Obsoletes:      latte-dock-lang < 0.10.9-4
 Obsoletes:      lightly < 0.4.1-7
-Obsoletes:      applet-window-buttons < 0.13.0
 
 %description
 Plasma 6 libraries and runtime components

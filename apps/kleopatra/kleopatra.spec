@@ -52,17 +52,10 @@ BuildRequires:  pkgconfig(gpg-error)
 BuildRequires:  pkgconfig(libassuan)
 BuildRequires:  pkgconfig(shared-mime-info)
 
-Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+Obsoletes:      %{name}-libs < 25.04
 
 %description
 %{summary}.
-
-%package        libs
-Summary:        Runtime libraries for Kleopatra
-Requires:       %{name} = %{version}-%{release}
-%description    libs
-%{summary}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
@@ -100,9 +93,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop ||:
 %{_kf6_datadir}/mime/packages/kleopatra-mime.xml
 %{_kf6_datadir}/qlogging-categories6/kleopatra.*
 %{_kf6_metainfodir}/org.kde.kleopatra.appdata.xml
-
-%files libs
-%{_kf6_libdir}/libkleopatraclientcore.so.*
 
 
 %changelog

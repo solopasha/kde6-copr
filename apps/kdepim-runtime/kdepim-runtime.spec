@@ -137,7 +137,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_kf6_plugindir}/kio/akonadi.so
 # todo: enumerate akonadi config plugins -- rdieter
 %{_kf6_qtplugindir}/pim6/akonadi/config/
-%{_kf6_qtplugindir}/pim6/kcms/kaddressbook/kcm_ldap.so
+%{_kf6_qtplugindir}/pim6/kcms/common/kcm_ldap.so
 %{_kf6_qtplugindir}/pim6/mailtransport/mailtransport_akonadiplugin.so
 
 
