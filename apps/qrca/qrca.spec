@@ -1,6 +1,6 @@
-%global commit0 32907771dc117c6dbbd9bc7b0e5897e42ae1c333
+%global commit0 e49ad66150ee366adbe5a48aeec767271d77c081
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:           qrca
 Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

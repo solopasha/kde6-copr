@@ -1,6 +1,6 @@
-%global commit0 3257286d7e38e2f64d45263d96623db73cc00d3e
+%global commit0 67857e7391e6f7ccd4e176a874cc8914bcb34b92
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 %global framework kio
 
