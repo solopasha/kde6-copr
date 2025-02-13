@@ -2,6 +2,8 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 38
 
+%global _lto_cflags %{nil}
+
 %bcond x11 1
 
 Name:           kwin

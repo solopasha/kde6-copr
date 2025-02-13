@@ -86,7 +86,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop ||:
 %{_kf6_datadir}/applications/kleopatra_import.desktop
 %{_kf6_datadir}/applications/org.kde.kleopatra.desktop
 %{_kf6_datadir}/applications/org.kde.kwatchgnupg.desktop
-%{_kf6_datadir}/icons/hicolor/*/apps/kleopatra.png
+%{_kf6_datadir}/icons/hicolor/*/apps/kleopatra.{svg,png}
 %{_kf6_datadir}/icons/hicolor/*/apps/org.kde.kwatchgnupg.{svg,png}
 %{_kf6_datadir}/kio/servicemenus/*.desktop
 %{_kf6_datadir}/mime/packages/application-vnd-kde-kleopatra.xml
