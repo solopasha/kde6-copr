@@ -97,13 +97,13 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
 %{_kf6_metainfodir}/org.kde.kaddressbook.appdata.xml
 
-
 %files libs
 %{_kf6_libdir}/libkaddressbookprivate.so.*
 %{_kf6_libdir}/libKPim6AddressbookImportExport.so.*
 %{_kf6_qtplugindir}/kaddressbookpart.so
 %{_kf6_qtplugindir}/pim6/kontact/kontact_kaddressbookplugin.so
 %{_qt6_plugindir}/pim6/kcms/kaddressbook/kaddressbook_config_activities.so
+%{_qt6_plugindir}/pim6/kcms/kaddressbook/kaddressbook_config_ldap.so
 %{_qt6_plugindir}/pim6/kcms/kaddressbook/kaddressbook_config_plugins.so
 %{_qt6_plugindir}/pim6/kcms/kaddressbook/kaddressbook_config_userfeedback.so
 
