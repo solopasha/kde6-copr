@@ -1,6 +1,6 @@
 %global commit0 83ebc1603dc34997cd4320bc3a299c39237d7a73
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global base_name kdev-php
 
