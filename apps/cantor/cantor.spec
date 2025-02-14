@@ -1,6 +1,6 @@
-%global commit0 d7288cfba2e11aaa5c36cedbc847287afa5b22d3
+%global commit0 83983aa940f6aa1ccda9f73cbd9725facff831cc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:           cantor
 Summary:        KDE Frontend to Mathematical Software
