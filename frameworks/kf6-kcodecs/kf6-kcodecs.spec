@@ -1,6 +1,6 @@
-%global commit0 eb5e11add3facdc3554f0bcc16a121ecd92ca3ff
+%global commit0 ab0a558b65892f64522e2f47014846e3ce88916e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework kcodecs
 
@@ -11,8 +11,6 @@ Summary:        KDE Frameworks 6 Tier 1 addon with string manipulation methods
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND MIT AND MPL-1.1
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
-
-BuildRequires:  gperf
 
 BuildRequires:  cmake(Qt6Core)
 

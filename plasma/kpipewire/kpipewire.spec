@@ -1,6 +1,6 @@
-%global commit0 6bb330e4d9981fe36a2519a03011f6ea5f2ee9e6
+%global commit0 1bc78f0b848a5422dd13bd766b5b0c965e9d368f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:           kpipewire
 Summary:        Set of convenient classes to use PipeWire in Qt projects
