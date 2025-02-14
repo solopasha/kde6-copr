@@ -37,7 +37,6 @@ BuildRequires:  cmake(KF6TextWidgets)
 BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  cmake(Qt6Core)
-BuildRequires:  cmake(Qt6Core5Compat)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Help)
 BuildRequires:  cmake(Qt6PrintSupport)
