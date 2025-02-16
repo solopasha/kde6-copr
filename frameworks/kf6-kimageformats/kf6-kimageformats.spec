@@ -1,6 +1,6 @@
-%global commit0 e9fa4b66106ff400c86bf11b805839ccf29b50b0
+%global commit0 74a734efedea3ada6e0062202be93bb783b4cff3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 %global framework kimageformats
 
