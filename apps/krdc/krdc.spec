@@ -1,6 +1,6 @@
 %global commit0 546b408738b2fd336c7297de247cc58701a8f09d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 11
+%global bumpver 12
 
 Name:           krdc
 Summary:        Remote desktop client
@@ -46,6 +46,7 @@ BuildRequires:  cmake(FreeRDP-Client) >= 3
 BuildRequires:  fuse3-devel
 BuildRequires:  pkgconfig(libssh)
 BuildRequires:  pkgconfig(libvncserver)
+BuildRequires:  wayland-devel
 
 # see icon hack in %%install
 BuildRequires:  breeze-icon-theme
