@@ -1,6 +1,6 @@
-%global commit0 063c46aea3f371cc17153527d781f24e54d57a1b
+%global commit0 2c14c44ad0b5f3b71ada8c251dc0a85e3fa9a7f8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:          kjournald
 Version:       25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -20,6 +20,7 @@ BuildRequires: libappstream-glib
 BuildRequires: systemd-devel
 
 BuildRequires: cmake(KF6CoreAddons)
+BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6I18n)
 
 BuildRequires: cmake(Qt6Core)
