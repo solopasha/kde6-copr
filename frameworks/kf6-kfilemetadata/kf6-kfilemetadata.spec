@@ -1,6 +1,6 @@
-%global commit0 807efafc58e54b8b3dcb9ec0dbed3f1bbc0b45b2
+%global commit0 628d9bf3b8544c71ea70ddb2a08988fc98917c64
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global framework kfilemetadata
 

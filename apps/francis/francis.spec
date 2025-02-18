@@ -1,6 +1,6 @@
-%global commit0 836f1091c2dd91fbccf9a87a5f0e45211b058d69
+%global commit0 f45f41f571781459233cf5ed424534119fa4a9ab
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           francis
 Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
