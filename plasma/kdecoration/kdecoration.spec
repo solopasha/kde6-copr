@@ -1,6 +1,6 @@
-%global commit0 6895f5094519cf2d4bdc6f8840df905b4b67f2ae
+%global commit0 60f9dbc00b237b3af51c3d371a9e6af5de563b92
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:           kdecoration
 Summary:        A plugin-based library to create window decorations
@@ -18,6 +18,8 @@ BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Test)
 
 Requires:       kf6-filesystem
+
+Obsoletes:      applet-window-buttons < 0.13.0
 
 %description
 %{summary}.
@@ -37,7 +39,7 @@ mkdir -p %{buildroot}%{_kf6_qtplugindir}/org.kde.kdecoration3/
 %{_kf6_libdir}/libkdecorations3.so.%{version_no_git}
 %{_kf6_libdir}/libkdecorations3.so.6
 %{_kf6_libdir}/libkdecorations3private.so.%{version_no_git}
-%{_kf6_libdir}/libkdecorations3private.so.1
+%{_kf6_libdir}/libkdecorations3private.so.2
 %dir %{_kf6_qtplugindir}/org.kde.kdecoration3/
 
 %files devel
