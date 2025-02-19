@@ -1,6 +1,6 @@
-%global commit0 ee1e8088ce93da62362d82fab59c932dc55478b5
+%global commit0 349dcfd3a478dd79baac8c13049735070653c7e5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 Name:           alligator
 Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
