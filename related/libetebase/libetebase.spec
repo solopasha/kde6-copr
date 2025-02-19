@@ -7,8 +7,8 @@
 %global crate libetebase
 
 Name:           libetebase
-Version:        0.5.6
-Release:        %autorelease -b3
+Version:        0.5.7
+Release:        %autorelease
 Summary:        C library for etebase
 
 SourceLicense:  BSD-3-Clause
@@ -16,7 +16,7 @@ SourceLicense:  BSD-3-Clause
 License:        # FIXME
 # LICENSE.dependencies contains a full license breakdown
 
-URL:            https://github.com/etesync/libetebase/
+URL:            https://github.com/etesync/libetebase
 Source:         %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 Patch:          configurable-libdir-support.patch
 
