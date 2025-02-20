@@ -1,6 +1,6 @@
 %global commit0 9abfa306bdd6a527ef375f0dabcc3fa4015da3af
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           aurorae
 Summary:        Aurorae decoration engine
@@ -28,6 +28,8 @@ BuildRequires:  cmake(Qt6UiTools)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  cmake(KDecoration3)
+
+Conflicts:      kwin-common < 6.3.80~48.gitd2276e5
 
 %description
 Aurorae is a themeable window decoration for KWin.
