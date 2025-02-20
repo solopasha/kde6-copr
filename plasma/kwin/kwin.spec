@@ -1,4 +1,4 @@
-%global commit0 a033e23d586bf8dd29d05beae98d6807548d04ed
+%global commit0 d2276e502f2089087c95535c5fee17b551a40a82
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 48
 
@@ -12,6 +12,11 @@ Summary:        KDE Window manager
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:            https://userbase.kde.org/KWin
 %plasma_source
+
+%if "%{?copr_projectname}" == "plasma-unstable-qt6.9"
+%global _default_patch_fuzz 2
+Patch:          revert.patch
+%endif
 
 BuildRequires:  systemd-rpm-macros
 
@@ -143,6 +148,7 @@ Provides:       firstboot(windowmanager) = kwin_x11
 %package        common
 Summary:        Common files for KWin X11 and KWin Wayland
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+Requires:       aurorae%{?_isa} >= %{majmin_ver_kf6}
 Requires:       kwayland%{?_isa} >= %{majmin_ver_kf6}
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 %description    common
@@ -212,12 +218,10 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 %{_kf6_libdir}/kconf_update_bin/kwin5_update_default_rules
 %{_kf6_qtplugindir}/kf6/packagestructure/kwin_*.so
 %{_kf6_qtplugindir}/kwin/
-%{_kf6_qtplugindir}/org.kde.kdecoration3/*.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/*.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/*.so
 %{_libexecdir}/kwin_killer_helper
 %{_libexecdir}/kwin-applywindowdecoration
-%{_qt6_plugindir}/org.kde.kdecoration3.kcm/kcm_auroraedecoration.so
 %{_qt6_qmldir}/org/kde/kwin/
 
 %files wayland
