@@ -190,6 +190,7 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_libdir}/libkonqsidebarplugin.so
 
 %files -n kwebenginepart
+%config(noreplace) %{_sysconfdir}/xdg/konqautofiltersrc
 %{_kf6_datadir}/kconf_update/webengine*
 %{_kf6_datadir}/webenginepart/
 %{_kf6_libdir}/libkwebenginepart.so
