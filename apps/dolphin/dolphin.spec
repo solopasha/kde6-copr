@@ -1,6 +1,6 @@
-%global commit0 387dafe8e191f65399c37acf35379da0e2f0f5d5
+%global commit0 b4dedc0d0df2c8b191192476d7787630180e51c7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 19
+%global bumpver 20
 
 Name:           dolphin
 Summary:        KDE File Manager
