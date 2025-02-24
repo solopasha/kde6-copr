@@ -1,6 +1,6 @@
-%global commit0 92e3a9419a96d1fa4af5fc748cd3c97a19baffb3
+%global commit0 09139cb7a719382a759bcd30cccbb04365536c01
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kmines
 Summary: A classic Minesweeper game

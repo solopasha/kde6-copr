@@ -1,6 +1,6 @@
-%global commit0 d411627c839eab1562bf71b632583e27c27377b8
+%global commit0 321dd9d6428f8de6575c08d24de233211c243a5b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    incidenceeditor
 Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
