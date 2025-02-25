@@ -133,6 +133,8 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %{_kf6_datadir}/dolphin/dolphinpartactions.desktop
 %{_kf6_datadir}/kconf_update/dolphin_detailsmodesettings.upd
 %{_kf6_datadir}/kconf_update/dolphin_directorysizemode.*
+%{_kf6_datadir}/kconf_update/dolphin_statusandlocationbarssettings.upd
+%{_kf6_libdir}/kconf_update_bin/dolphin_25.04_update_statusandlocationbarssettings
 %dir %{_kf6_datadir}/kglobalaccel/
 %{_kf6_datadir}/kglobalaccel/org.kde.dolphin.desktop
 %{_kf6_datadir}/zsh/site-functions/_dolphin
