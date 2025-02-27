@@ -30,8 +30,8 @@ BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  pkgconfig(libdrm)
+BuildRequires:  pkgconfig(libudev)
 BuildRequires:  pkgconfig(libusb-1.0)
-BuildRequires:  pkgconfig(udev)
 
 Requires:       kf6-kirigami%{?_isa}
 
