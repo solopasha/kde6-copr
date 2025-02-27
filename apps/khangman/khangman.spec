@@ -1,6 +1,6 @@
-%global commit0 b167dcdb8f9792ee18f42d5be84c984359b28f70
+%global commit0 294ef65f252281d377c8a764e32c0aff17a74303
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    khangman
 Summary: Hangman game
