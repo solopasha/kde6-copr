@@ -169,6 +169,12 @@ Requires:       NetworkManager-iodine
 %{summary}.
 %endif
 
+%package        mobile
+Summary:        Mobile support for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+%description    mobile
+%{summary}.
+
 %install
 %cmake_install
 
@@ -203,6 +209,9 @@ rm -f %{buildroot}/usr/share/locale/*/LC_MESSAGES/plasmanetworkmanagement_openco
 %find_lang plasmanetworkmanagement_sshui
 %find_lang plasmanetworkmanagement_iodineui
 %endif
+%find_lang kcm_mobile_wifi
+%find_lang kcm_cellular_network
+%find_lang kcm_mobile_hotspot
 
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
@@ -269,6 +278,14 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %files iodine -f plasmanetworkmanagement_iodineui.lang
 %{_kf6_qtplugindir}/plasma/network/vpn/plasmanetworkmanagement_iodineui.so
 %endif
+
+%files mobile -f kcm_mobile_wifi.lang -f kcm_cellular_network.lang -f kcm_mobile_hotspot.lang
+%{_kf6_datadir}/applications/kcm_cellular_network.desktop
+%{_kf6_datadir}/applications/kcm_mobile_hotspot.desktop
+%{_kf6_datadir}/applications/kcm_mobile_wifi.desktop
+%{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_cellular_network.so
+%{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_mobile_hotspot.so
+%{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_mobile_wifi.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}
