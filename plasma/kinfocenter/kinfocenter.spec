@@ -1,6 +1,6 @@
-%global commit0 7cc7fe9783a68e086369bd0b96b280082097d60a
+%global commit0 fc2e540dc6f4784c2602a520f4b3285355213f5a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 11
+%global bumpver 12
 
 Name:           kinfocenter
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -29,8 +29,9 @@ BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Widgets)
 
-BuildRequires:  pkgconfig(libusb-1.0)
 BuildRequires:  pkgconfig(libdrm)
+BuildRequires:  pkgconfig(libusb-1.0)
+BuildRequires:  pkgconfig(udev)
 
 Requires:       kf6-kirigami%{?_isa}
 
