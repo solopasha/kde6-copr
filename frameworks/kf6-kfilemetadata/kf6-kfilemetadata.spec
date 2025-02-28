@@ -47,6 +47,7 @@ Requires:       cmake(Qt6Core)
 
 %files -f %{name}.lang
 %license LICENSES/*.txt
+%{_kf6_bindir}/kfilemetadata_dump6
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
 %{_kf6_libdir}/libKF6FileMetaData.so.%{version_no_git}
 %{_kf6_libdir}/libKF6FileMetaData.so.3
