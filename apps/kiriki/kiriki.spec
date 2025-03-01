@@ -1,6 +1,6 @@
-%global commit0 c3150b4a2a03df26761685abc7ed79ba7d58524f
+%global commit0 166cccc01308655d198f7c2535e38375dc787799
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kiriki
 Summary: A dice game

@@ -1,6 +1,6 @@
-%global commit0 e1879bc31e41985b78fbcef741c1261de8203776
+%global commit0 531620f5af73f0b33eef336ef72d9472123033fa
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    kget
 Summary: Download manager
