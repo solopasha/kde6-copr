@@ -1,6 +1,6 @@
-%global commit0 7bd91116b3be1ddf11266da84708f852c9ca2a88
+%global commit0 d2c30e7701f85c986f08361a3ce166d082162eca
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:    dolphin-plugins
 Summary: Dolphin plugins
