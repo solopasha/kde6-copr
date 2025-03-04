@@ -1,6 +1,6 @@
-%global commit0 575354ce8c3c2608657e1a43cfa1ff3d2a44cbb5
+%global commit0 cfd0cde99aabe1020e0c4245823e7254d43252b9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    juk
 Summary: Music player

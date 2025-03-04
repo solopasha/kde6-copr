@@ -1,6 +1,6 @@
-%global commit0 7c5e35c65b6139a58d0aafb0b0797e6977d8b6e9
+%global commit0 c1cc377459cfa770d41796f236d27ee6aa0e7bc1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:    calendarsupport
 Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

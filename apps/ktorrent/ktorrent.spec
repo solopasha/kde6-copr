@@ -1,6 +1,6 @@
-%global commit0 c7821d792db24d0fdc4f4404d7f14327a2245fdd
+%global commit0 e4a75d449d44d4124d95f4c060b745abf819bc7b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:    ktorrent
 Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
