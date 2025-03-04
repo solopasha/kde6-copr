@@ -1,6 +1,6 @@
-%global commit0 7f2a0c560e4393ddc3687fb51974d3e6bd16cb04
+%global commit0 93b124047600ebfffe354191b14b7f42775c1e0f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    libgravatar
 Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -16,11 +16,9 @@ BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
+BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6WidgetsAddons)
-
-BuildRequires:  cmake(KPim6PimCommon)
 
 BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6Widgets)
@@ -57,9 +55,9 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %{_kf6_libdir}/libKPim6Gravatar.so.*
 
 %files devel
-%{_kf6_libdir}/libKPim6Gravatar.so
-%{_kf6_libdir}/cmake/KPim6Gravatar/
 %{_includedir}/KPim6/Gravatar/
+%{_kf6_libdir}/cmake/KPim6Gravatar/
+%{_kf6_libdir}/libKPim6Gravatar.so
 
 
 %changelog
