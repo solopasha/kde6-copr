@@ -77,7 +77,7 @@
         return string.format(entry, "")
 }
 
-%buildsystem_default_prep() \
+%buildsystem_cmake_kf6_prep() \
     %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'} \
     %autosetup -C -p1 %*
 
