@@ -1,6 +1,6 @@
-%global commit0 c846db167e6d737da7476e148457ad0499abdb53
+%global commit0 82c52ce209383f764e46051d3628c46e1e16e5c9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 24
+%global bumpver 25
 
 Name:           powerdevil
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -77,6 +77,7 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevilcore.so
 
 %files -f %{name}.lang
 %license LICENSES/*
+%{_kf6_datadir}/applications/kcm_mobile_power.desktop
 %{_kf6_datadir}/applications/kcm_powerdevilprofilesconfig.desktop
 %{_kf6_datadir}/dbus-1/system-services/org.kde.powerdevil.backlighthelper.service
 %{_kf6_datadir}/dbus-1/system-services/org.kde.powerdevil.chargethresholdhelper.service
@@ -103,6 +104,7 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevilcore.so
 %{_kf6_plugindir}/krunner/krunner_powerdevil.so
 %{_kf6_qmldir}/org/kde/plasma/private/batterymonitor/
 %{_kf6_qmldir}/org/kde/plasma/private/brightnesscontrolplugin/
+%{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_mobile_power.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_powerdevilprofilesconfig.so
 %{_kf6_qtplugindir}/powerdevil/
 %{_kf6_sysconfdir}/xdg/autostart/powerdevil.desktop
