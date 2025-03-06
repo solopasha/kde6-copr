@@ -1,6 +1,6 @@
-%global commit0 2c548bb6267cfd752350d7741d149fb2fb81866b
+%global commit0 e81305f0a365c6cef34f6738d56c2cb9109cbfde
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 11
+%global bumpver 12
 
 %global base_name breeze
 

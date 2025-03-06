@@ -1,6 +1,6 @@
-%global commit0 ffe931944ae6efcf18253c15eff2642f409f80b3
+%global commit0 a4dd61140145f20a949e9dc07e6384424d655b43
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 26
+%global bumpver 27
 
 Name:           kasts
 Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -36,12 +36,14 @@ BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
+BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6KirigamiAddons)
 BuildRequires:  cmake(KF6Syndication)
 BuildRequires:  cmake(KF6ThreadWeaver)
+BuildRequires:  cmake(KF6WindowSystem)
 
 BuildRequires:  taglib-devel
 BuildRequires:  pkgconfig(libvlc)
