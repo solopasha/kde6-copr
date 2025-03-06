@@ -13,11 +13,12 @@ License: (GPL-2.0-only or GPL-3.0-only) and GPL-2.0-or-later and GPL-3.0-or-late
 URL:     http://www.kdenlive.org
 %apps_source
 
-BuildRequires: gcc-c++
 BuildRequires: cmake
 BuildRequires: desktop-file-utils
-BuildRequires: libappstream-glib
+BuildRequires: gcc-c++
 BuildRequires: gettext
+BuildRequires: git-core
+BuildRequires: libappstream-glib
 
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
@@ -84,6 +85,7 @@ recent video technologies.
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
+sed '/add/s/deps)/deps EXCLUDE_FROM_ALL)/' -i CMakeLists.txt
 
 
 %build
