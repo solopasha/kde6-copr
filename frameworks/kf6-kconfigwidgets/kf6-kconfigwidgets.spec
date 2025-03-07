@@ -1,11 +1,11 @@
-%global commit0 1b73e2d5a63b81684d11461af87b9dac3b8b2eb9
+%global commit0 6af6e8cb88980947eb8c3c748776f1fc1671596a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 %global framework kconfigwidgets
 
 Name:           kf6-%{framework}
-Version:        6.12.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.13.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 addon for creating configuration dialogs
 # The following licenses are in LICENSES but go unused: BSD-3-Clause, MIT

@@ -1,11 +1,11 @@
-%global commit0 2762bf2c32df51259aa1429b7aa8a6620cd436ac
+%global commit0 cda964d464c2c94bb9de31b8c50c904e5fbf0b6b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 12
+%global bumpver 1
 
 %global framework kio
 
 Name:           kf6-%{framework}
-Version:        6.12.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.13.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 solution for filesystem abstraction
 

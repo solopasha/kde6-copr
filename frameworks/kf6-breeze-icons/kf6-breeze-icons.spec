@@ -1,6 +1,6 @@
-%global commit0 e75e113649bb39ba976405112fa13e7ba49f1fd7
+%global commit0 af0ddaefac81d759bd41db714559e61a4db6adab
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 9
+%global bumpver 1
 
 # If KF7 still provides these icons, then their installation should then
 # be disabled in KF6 builds.
@@ -12,7 +12,7 @@
 
 Name:           kf6-%{framework}
 Summary:        Breeze icon theme library
-Version:        6.12.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.13.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 # skladnik.svg is CC-BY-SA-4.0
 # folder-edit-sign-encrypt.svg is LGPL-2.1-or-later

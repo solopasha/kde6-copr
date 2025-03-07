@@ -1,11 +1,11 @@
-%global commit0 22d4e9c10b947ec0b0ad8b7b175586bb15451402
+%global commit0 f635f2e19e4d155c1aad6b5bfd1e8a9a4bd43a7f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 %global framework syntax-highlighting
 
 Name:           kf6-%{framework}
-Version:        6.12.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.13.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Syntax highlighting engine for Kate syntax definitions
 License:        MIT AND BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND LGPL-2.0-or-later

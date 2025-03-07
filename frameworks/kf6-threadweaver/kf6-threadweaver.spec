@@ -1,11 +1,11 @@
-%global commit0 f3e1801852a9fa27db7775131e5c00882d5d32a1
+%global commit0 83e1c6cb398a094ae9bbf1fb6356931d5ca52347
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 %global framework threadweaver
 
 Name:           kf6-%{framework}
-Version:        6.12.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.13.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon for advanced thread management
 License:        CC0-1.0 AND LGPL-2.0-or-later

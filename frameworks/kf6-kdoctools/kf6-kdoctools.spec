@@ -1,27 +1,28 @@
-%global commit0 a38179ba2d72b52f70cc09300e651b8f45a97957
+%global commit0 88914c952466ae7f6688a1e9010a0c8ecbe1328a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kdoctools
 
-Name:    kf6-%{framework}
-Version: 6.12.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: KDE Frameworks 6 Tier 2 addon for generating documentation
+Name:           kf6-%{framework}
+Version:        6.13.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 2 addon for generating documentation
 
-License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/frameworks/%{framework}
+License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  docbook-dtds
-BuildRequires:  docbook-style-xsl
 BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  docbook-dtds
+BuildRequires:  docbook-style-xsl
 BuildRequires:  libxml2-devel
 BuildRequires:  libxslt-devel
 BuildRequires:  perl-generators
 BuildRequires:  perl(Any::URI::Escape)
-BuildRequires:  qt6-qtbase-devel
+
 Requires:       docbook-dtds
 Requires:       docbook-style-xsl
 
@@ -43,19 +44,19 @@ developing applications that use %{name}.
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_libdir}/libKF6DocTools.so.%{version_no_git}
-%{_kf6_libdir}/libKF6DocTools.so.6
 %{_kf6_bindir}/checkXML6
 %{_kf6_bindir}/meinproc6
+%{_kf6_datadir}/kf6/kdoctools/
+%{_kf6_libdir}/libKF6DocTools.so.%{version_no_git}
+%{_kf6_libdir}/libKF6DocTools.so.6
 %{_kf6_mandir}/man1/*.1*
 %{_kf6_mandir}/man7/*.7*
-%{_kf6_datadir}/kf6/kdoctools/
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KDocTools/
-%{_kf6_libdir}/libKF6DocTools.so
 %{_kf6_libdir}/cmake/KF6DocTools/
+%{_kf6_libdir}/libKF6DocTools.so
+%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

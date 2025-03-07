@@ -1,11 +1,11 @@
-%global commit0 057d89d39d3ffe08e3f20a50c66853d8f37d2a57
+%global commit0 7f1d591e9c5b5c735d982aecfb3ab19ed89c2211
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 1
 
 %global framework kcmutils
 
 Name:           kf6-%{framework}
-Version:        6.12.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.13.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 addon with extra API to write KConfigModules
 

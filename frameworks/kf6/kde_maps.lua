@@ -494,6 +494,7 @@ return {
     ["kwayland"] = "plasma/kwayland",
     ["kwayland-integration"] = "plasma/kwayland-integration",
     ["kwin"] = "plasma/kwin",
+    ["kwin-x11"] = "plasma/kwin-x11",
     ["kwrited"] = "plasma/kwrited",
     ["lancelot"] = "plasma/lancelot",
     ["latte-dock"] = "plasma/latte-dock",

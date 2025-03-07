@@ -1,11 +1,11 @@
-%global commit0 c21b7c31ccca5bf200b1001334bc2356cb591c94
+%global commit0 f49746b954958cf486fdcaf8b4ff3c4cf425fc80
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 %global framework kstatusnotifieritem
 
 Name:           kf6-%{framework}
-Version:        6.12.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.13.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Implementation of Status Notifier Items
 

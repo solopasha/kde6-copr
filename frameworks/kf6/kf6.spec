@@ -1,55 +1,56 @@
-Name:    kf6
+Name:           kf6
 # This version MUST remain in sync with KF6 versions!
-Version: 6.12.0~
-Release: 4%{?dist}
-Summary: Filesystem and RPM macros for KDE Frameworks 6
-License: BSD-3-Clause
-URL:     http://www.kde.org
-Source0: macros.kf6
-Source1: LICENSE
-Source2: macros.aaa-kf6-srpm
-Source3: kde_maps.lua
-Source4: kde.lua
-Source5: macros.kf5-compat-srpm
-Source6: kde_gear.lua
+Version:        6.13.0~
+Release:        1%{?dist}
+Summary:        Filesystem and RPM macros for KDE Frameworks 6
+License:        BSD-3-Clause
+URL:            http://www.kde.org
+
+Source0:        macros.kf6
+Source1:        LICENSE
+Source2:        macros.aaa-kf6-srpm
+Source3:        kde_maps.lua
+Source4:        kde.lua
+Source5:        macros.kf5-compat-srpm
+Source6:        kde_gear.lua
 
 %description
 Filesystem and RPM macros for KDE Frameworks 6
 
-%package filesystem
-Summary: Filesystem for KDE Frameworks 6
+%package        filesystem
+Summary:        Filesystem for KDE Frameworks 6
 %if 0%{?fedora} >= 39 || 0%{?rhel} >= 10
-Requires: kde-filesystem >= 5
+Requires:       kde-filesystem >= 5
 %endif
-%description filesystem
+%description    filesystem
 Filesystem for KDE Frameworks 6.
 
-%package rpm-macros
-Summary: RPM macros for KDE Frameworks 6
-Requires: cmake >= 3
-Requires: qt6-rpm-macros >= 6
-Requires: %{name}-srpm-macros = %{version}-%{release}
+%package        rpm-macros
+Summary:        RPM macros for KDE Frameworks 6
+Requires:       cmake >= 3
+Requires:       qt6-rpm-macros >= 6
+Requires:       %{name}-srpm-macros = %{version}-%{release}
 # misc build environment dependencies
-Requires: gcc-c++
-Requires: gnupg2
-Requires: ninja-build
-BuildArch: noarch
-%description rpm-macros
+Requires:       gcc-c++
+Requires:       gnupg2
+Requires:       ninja-build
+BuildArch:      noarch
+%description    rpm-macros
 RPM macros for building KDE Frameworks 6 packages.
 
-%package srpm-macros
-Summary: SRPM macros for KDE Frameworks 6
-Obsoletes: kf5-srpm-macros < 5.116.0-2
-BuildArch: noarch
-%description srpm-macros
+%package        srpm-macros
+Summary:        SRPM macros for KDE Frameworks 6
+Obsoletes:      kf5-srpm-macros < 5.116.0-2
+BuildArch:      noarch
+%description    srpm-macros
 RPM macros for building KDE SRPM packages.
 
-%package qch
-Summary: QCH metapackage
-Recommends: qt6-doc
-BuildArch: noarch
-%description qch
-QCH metapackage
+%package        qch
+Summary:        QCH metapackage
+Recommends:     qt6-doc
+BuildArch:      noarch
+%description    qch
+QCH metapackage.
 
 %install
 # See macros.kf6 where the directories are specified
@@ -122,6 +123,9 @@ install -Dpm0644 %{_sourcedir}/kde.lua %{buildroot}%{_rpmluadir}/fedora/srpm/kde
 %files qch
 
 %changelog
+* Fri Mar 07 2025 Pavel Solovev <daron439@gmail.com> - 6.13.0~-1
+- new version
+
 * Wed Mar 05 2025 Pavel Solovev <daron439@gmail.com> - 6.12.0~-4
 - rebuilt
 
