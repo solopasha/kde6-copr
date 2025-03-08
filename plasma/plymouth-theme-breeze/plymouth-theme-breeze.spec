@@ -1,6 +1,6 @@
 %global commit0 9c671bdfdc4aa965d416811decc309d4e082f668
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global base_name breeze-plymouth
 

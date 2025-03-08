@@ -1,6 +1,6 @@
-%global commit0 7748bd8c4de9ebdbcf98642d64ffa30b3ca62bfd
+%global commit0 0e8eb784fb87a005fd051fae0ea8e561f5edd412
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:           plasma-disks
 Summary:        Hard disk health monitoring for KDE Plasma
