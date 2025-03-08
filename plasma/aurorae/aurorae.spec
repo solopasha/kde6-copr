@@ -37,7 +37,7 @@ It supports theme files consisting of several SVG files for decoration and butto
 Themes can be installed and selected directly in the configuration module of KWin
 decorations.
 
-%files
+%files -f %{name}.lang
 %{_kf6_datadir}/knsrcfiles/aurorae.knsrc
 %{_kf6_datadir}/kwin/aurorae/
 %{_kf6_datadir}/kwin/decorations/kwin4_decoration_qml_plastik/
