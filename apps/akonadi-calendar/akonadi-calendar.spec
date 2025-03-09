@@ -1,11 +1,11 @@
-%global commit0 09dacf194aa694c2fc07ec92f771f7c80040b24f
+%global commit0 9f2acf9ea52a12aef88026a9ea2e2465fe4fcb45
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 1
 
 #global tests 1
 
 Name:    akonadi-calendar
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The Akonadi Calendar Library
 

@@ -1,9 +1,9 @@
-%global commit0 268e978c81765026375a766b0d8dd73b8303a1ec
+%global commit0 57ad77c2d07d431c8ab1c4b0d51fa56b1954dd81
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 Name:           ghostwriter
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-3.0-or-later AND Apache-2.0 AND CC-BY-4.0 AND CC-BY-SA-4.0 AND MPL-1.1 AND BSD AND LGPL-3.0-only AND MIT AND ISC

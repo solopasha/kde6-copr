@@ -1,10 +1,10 @@
-%global commit0 ce360cce9333f0395f512c9739e963aa31a0cf11
+%global commit0 660868921a7797abacb4ba15476a8076a8064882
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 Name:    kcachegrind
 Summary: GUI to profilers such as Valgrind
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2 and GFDL

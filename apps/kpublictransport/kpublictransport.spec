@@ -1,9 +1,9 @@
-%global commit0 4d19224f1ef7ccb8ac2dbf27aa7d9c0a26bf8992
+%global commit0 fb610e26fa175025bd95997642bc9c6e1841fac5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 39
+%global bumpver 1
 
 Name:           kpublictransport
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        BSD and CC0-1.0 and LGPLv2+ and MIT and ODbL-1.0
 Summary:        Library to assist with accessing public transport timetables and other data

@@ -1,10 +1,10 @@
-%global commit0 cf43a235f6e0130eea103ed0df5e2fa78b6ba9d1
+%global commit0 f2c5976ae94f1a1d164b191d9f2ef3edde14ee01
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 Name:    kanagram
 Summary: Letter Order Game
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+

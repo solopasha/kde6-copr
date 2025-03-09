@@ -1,10 +1,10 @@
-%global commit0 f5c3c0677d14b3da613f6b51da59f26d0a14e531
+%global commit0 93976ba3a7ed304ded71ce0b940ff5457b09477b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kbruch
 Summary: Practice Fractions 
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+

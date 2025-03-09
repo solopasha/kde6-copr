@@ -1,10 +1,10 @@
-%global commit0 ecc46a92e1f5e203632bb9befc4390efb020463c
+%global commit0 5240fe26817ef0501f279418aad961aeefe4ab6c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    ktuberling
 Summary: Picture game for children
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later AND GFDL-1.2-or-later

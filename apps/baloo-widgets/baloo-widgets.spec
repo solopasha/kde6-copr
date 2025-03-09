@@ -1,10 +1,10 @@
-%global commit0 8b69de1110b20a24ef41842efd7d1bb634568de0
+%global commit0 0f14a74b92b4e9b504dc7a7dd5d49f00d10de293
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    baloo-widgets
 Summary: Widgets for Baloo
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # # KDE e.V. may determine that future LGPL versions are accepted

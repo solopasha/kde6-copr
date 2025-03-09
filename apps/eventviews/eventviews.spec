@@ -1,9 +1,9 @@
-%global commit0 f9a741b054f28c68ac3cdc96ff85add9f398606e
+%global commit0 363b3ed004e9cbd9e3de4bc2c2e110cb412bc5bc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 1
 
 Name:    eventviews
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: KDE PIM library for displaying events and calendars
 

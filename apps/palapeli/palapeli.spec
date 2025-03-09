@@ -1,10 +1,10 @@
-%global commit0 2401b9767c9757b239070bf2f437bb50f378a050
+%global commit0 06702396eb2349c5accd4f8daae4fc1d71fd3a99
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           palapeli
 Summary:        A jigsaw puzzle game
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPLv2+ and GFDL

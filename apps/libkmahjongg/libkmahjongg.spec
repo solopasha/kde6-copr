@@ -1,11 +1,11 @@
-%global commit0 ca44167145ffc74fea01d9ed3a7d3ccb905676d2
+%global commit0 483508e53e9b22e18463cf092aa2b97bc56c3f1b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:    libkmahjongg
 Summary: Common code, backgrounds and tile sets for games using Mahjongg tiles
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+

@@ -1,10 +1,10 @@
-%global commit0 0a2a7bf68516918f8928d4c8e6ae0c9af4209eaf
+%global commit0 6ddf8d01d4088b75b40e8cbe0bc38f8c3fa75a65
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    granatier
 Summary: Place bombs to kill enemies and remove obstacles
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later AND GFDL-1.2-or-later

@@ -1,9 +1,9 @@
-%global commit0 cb901e2a119252432aaecaa1ea7825b3bfeb8458
+%global commit0 1ff9220eecfaa15cbed0939b959cf0e58d829d19
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:           minuet
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        A KDE Software for Music Education
 #OFL license for bundled Bravura.otf font

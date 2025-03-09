@@ -1,9 +1,9 @@
-%global commit0 b7aeeaa2470fd343ed80967835657b38e760306c
+%global commit0 613351deb1bcd5db528ac0b4861e050633c480ba
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    ffmpegthumbs
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: KDE ffmpegthumbnailer service
 

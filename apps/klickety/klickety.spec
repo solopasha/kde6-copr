@@ -1,10 +1,10 @@
-%global commit0 8b938a92946d98ed08d9f8579ff983d7681d452a
+%global commit0 526d10a5c9d6e922e5e79c6ee55baf801e671536
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    klickety
 Summary: Destroy groups of blocks
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

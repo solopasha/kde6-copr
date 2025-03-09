@@ -1,9 +1,9 @@
-%global commit0 b9a3abc7017258e1adffeb2b49d67b2fb31162af
+%global commit0 9501f30adf387639dd78eac46df83a7e31d0c42b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           accessibility-inspector
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        (LGPL-2.1-only OR LGPL-3.0-only) AND CC0-1.0
 Summary:        Inspect your application accessibility tree

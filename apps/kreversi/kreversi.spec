@@ -1,10 +1,10 @@
-%global commit0 b71b54f5dc9fdbe4979f152fc7de8cd7061100fc
+%global commit0 725cef3892b2100c91becbdb42746891c92639d6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    kreversi
 Summary: Reversi board game
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

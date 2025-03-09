@@ -1,10 +1,10 @@
-%global commit0 55702f05463b2227efd483daaabe3c6b16cea2c4
+%global commit0 8ebaa882baaccab4c09a46d6943886f77e4cb303
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 1
 
 Name:           ksanecore
 Summary:        Library providing logic to interface scanners
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        LGPL-2.1-only OR LGPL-3.0-only

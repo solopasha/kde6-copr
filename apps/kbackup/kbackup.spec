@@ -1,9 +1,9 @@
-%global commit0 68c551a4f3228def710d6376fd24853da1e98675
+%global commit0 194778fff7721b3cdbcce87a800b23bed6a64bd1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kbackup
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Back up your data in a simple, user friendly way
 

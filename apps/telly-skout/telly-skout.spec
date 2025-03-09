@@ -1,9 +1,9 @@
-%global commit0 2fdc06c1d5e3960d93a20a5bbc44affbe5389759
+%global commit0 b325febeee9224023b539aa5b13a8989bb096ad9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 1
 
 Name:           telly-skout
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Convergent TV guide based on Kirigami
 License:        LGPL-2.1-or-later

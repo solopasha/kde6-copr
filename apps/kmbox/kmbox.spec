@@ -1,9 +1,9 @@
-%global commit0 ad0f9ee5ac9dd9247a507ac0d0cceb2c359e3582
+%global commit0 863e528d23b8aad8e09b4e71ad21db60c4465784
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kmbox
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The KMbox Library
 

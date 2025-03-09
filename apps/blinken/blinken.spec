@@ -1,10 +1,10 @@
-%global commit0 7cd86ae70480bbfdabd85f1cd7ad8bdc09d7f900
+%global commit0 fef68dbac054f3634b8fef5762ec447c357c79d8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 Name:    blinken
 Summary: Memory Enhancement Game
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later

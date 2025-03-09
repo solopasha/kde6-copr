@@ -1,12 +1,12 @@
-%global commit0 adfc82520e98bc08178758c840ce246d28329654
+%global commit0 fdc5ad94513b82408a36fe77879d615c60b7cf2a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 1
 
 #global tests 1
 
 Name:    pim-sieve-editor
 Summary: Sieve Editor
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL

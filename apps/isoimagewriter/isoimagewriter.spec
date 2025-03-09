@@ -1,9 +1,9 @@
-%global commit0 afdc81c21974e0ab0fee908bb612cd0a730e49dd
+%global commit0 7ca6410a9b24834c796ebdd10e3d3253b5f74f2b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:           isoimagewriter
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE ISO Image Writer, a tool to write a .iso file to a USB disk
 

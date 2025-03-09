@@ -1,9 +1,9 @@
-%global commit0 82ade5580d3ba646898fb7b3cb121390e1e1ece0
+%global commit0 6e5ac4f6dfdc45226b56fdf910a415c9bb60f3e5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 8
+%global bumpver 1
 
 Name:           alligator
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPLv2 or GPLv3
 Summary:        Kirigami-based RSS reader

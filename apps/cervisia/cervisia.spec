@@ -1,10 +1,10 @@
-%global commit0 a9154561918e157fc1b135bee606cc816954c40f
+%global commit0 c82b7f63cca1b1e8f4b12adfd87cfb3922b30624
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 Name:           cervisia
 Summary:        CVS frontend
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later AND LGPL-2.0-or-later AND GFDL-1.2-or-later

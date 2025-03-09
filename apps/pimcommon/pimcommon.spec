@@ -1,9 +1,9 @@
-%global commit0 ea892ba120fc8f10c03c4476922944b05b7cc731
+%global commit0 68c2ee12f1ad976fb22678f073333aea50ca0532
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 10
+%global bumpver 1
 
 Name:    pimcommon
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: PIM common libraries
 

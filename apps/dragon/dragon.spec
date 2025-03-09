@@ -1,10 +1,10 @@
-%global commit0 840098cd4d16bc6b373594937d832f4b11dfd76f
+%global commit0 6e7bba2c9e19fe59923c7ffc9fc86445a29d28e1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    dragon
 Summary: Media player
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code: KDE e.V. may determine that future GPL versions are accepted

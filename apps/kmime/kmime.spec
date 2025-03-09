@@ -1,9 +1,9 @@
-%global commit0 9ac39c7438d9f929fb02ec1b0fcd7ff8860dfc5e
+%global commit0 c591a4a469a1776f7328a9f1a69eb5caa891516f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 Name:    kmime
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The KMime Library
 

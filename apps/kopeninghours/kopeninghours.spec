@@ -1,9 +1,9 @@
-%global commit0 4de37dd6b63683294b12f9281b26c75ec7f2e5f9
+%global commit0 cc21f6dd743c9fbcd229e4e104629f508b8bf6c8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 Name:    kopeninghours
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Library for parsing and evaluating OSM opening hours expressions
 

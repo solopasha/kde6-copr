@@ -1,11 +1,11 @@
-%global commit0 d871a09ca330eb245867e05ec88908e5cf8867be
+%global commit0 1137d00a33c81cd29986b7aacd723c9a5c27f825
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 
 Name:           kmplot
 Summary:        Mathematical Function Plotter
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later

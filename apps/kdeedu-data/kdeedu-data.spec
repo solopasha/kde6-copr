@@ -1,10 +1,10 @@
-%global commit0 60e41d75af80b71af5b3f23b09900d4dec966921
+%global commit0 1b473a8d94ad0f761b7b3be433b4d606f68d8ef4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kdeedu-data
 Summary: Shared icons, artwork and data files for educational applications
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2

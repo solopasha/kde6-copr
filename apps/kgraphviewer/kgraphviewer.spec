@@ -1,9 +1,9 @@
-%global commit0 5cf1e253e649224bd083b47e6171d46efc01470e
+%global commit0 b5c33042102c38382d835631668135dc86c094dc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kgraphviewer
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPL-2.0-only
 Summary:        Graphviz DOT graph file viewer

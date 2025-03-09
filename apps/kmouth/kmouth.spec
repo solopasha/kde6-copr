@@ -1,9 +1,9 @@
-%global commit0 64dc2fa3163a76b112532684fe12f49ba34c4988
+%global commit0 03627778883d48cd24b806c0914e5d9a2b68387a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kmouth
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: A program that speaks for you
 

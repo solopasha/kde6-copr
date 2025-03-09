@@ -1,12 +1,12 @@
-%global commit0 a03de7916f4cf5e4af26e24f1eec2c55499eeca6
+%global commit0 09e4270c494bbffeb0518a4bc9f51ab14db7c396
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 53
+%global bumpver 1
 
 %global _lto_cflags %{nil}
 
 Name:    kdenlive
 Summary: Non-linear video editor
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: (GPL-2.0-only or GPL-3.0-only) and GPL-2.0-or-later and GPL-3.0-or-later and LGPL-3.0-only and BSD-3-Clause and CC0-1.0

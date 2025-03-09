@@ -1,10 +1,10 @@
-%global commit0 354ff39d2cd5bc5bbcbe57ed231faa510fc63a87
+%global commit0 dfdbf3a762988419355f0e8483b385536cb96c31
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    libkexiv2
 Summary: A wrapper around Exiv2 library
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later

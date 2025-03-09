@@ -1,10 +1,10 @@
-%global commit0 166cccc01308655d198f7c2535e38375dc787799
+%global commit0 18475347d12187d8ba9393f7194b0f37b4043971
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    kiriki
 Summary: A dice game
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

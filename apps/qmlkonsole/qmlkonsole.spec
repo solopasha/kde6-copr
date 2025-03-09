@@ -1,9 +1,9 @@
-%global commit0 d50581940fe60927424cad98f6731f3e96c07135
+%global commit0 83deea26521e0d455cc22eca6a9538a4e128725d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 Name:           qmlkonsole
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPLv2+
 Summary:        Terminal app for Plasma Mobile

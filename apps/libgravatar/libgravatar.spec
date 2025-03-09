@@ -1,9 +1,9 @@
-%global commit0 93b124047600ebfffe354191b14b7f42775c1e0f
+%global commit0 3226360568bd4f6e380cff85ce39a6f9867c9903
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    libgravatar
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Gravatar support library
 

@@ -1,10 +1,10 @@
-%global commit0 95921defcd75e956f83b409e363cbb559304e56c
+%global commit0 8b505412c59c4a97857fe627ab466024ad2eea7e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kblackbox
 Summary: A game of hide and seek played on a grid of boxes
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

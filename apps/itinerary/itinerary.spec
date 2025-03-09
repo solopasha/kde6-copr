@@ -1,9 +1,9 @@
-%global commit0 f8e03a46d7b45e18a94edc49da8d271d88fc65bc
+%global commit0 8aee4c4e021ebd2b58646da99a3be94f3c87da0d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 40
+%global bumpver 1
 
 Name:           itinerary
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Itinerary and boarding pass management application
 

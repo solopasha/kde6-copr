@@ -1,13 +1,13 @@
-%global commit0 8b4b5c86cfd278fa0cf3e05f6ad2cd33ca1bd600
+%global commit0 1cd4c42bdd21918a4dd0da196aeab0a28baa7b85
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 1
 
 %global kf6min 5.240.0
 %global qt6min 6.5.0
 %global sover 13
 
 Name:           kpmcore
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Library for managing partitions by KDE programs
 License:        GPL-3.0-or-later AND MIT AND CC-BY-4.0 AND CC0-1.0

@@ -1,9 +1,9 @@
-%global commit0 ac8c7605bac257e0d61239b8b64d0de8acb134e4
+%global commit0 cc8659f6832b58783e57b8066fa1d28b285b55ea
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 25
+%global bumpver 1
 
 Name:           tokodon
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPL-2.0-only OR GPL-3.0-only AND CC0-1.0 AND LGPL-2.1-or-later
 Summary:        Kirigami-based mastodon client

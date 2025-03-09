@@ -1,9 +1,9 @@
-%global commit0 bd338b1a9e63166af8e1802039104123e6e4b1bc
+%global commit0 70d898009422b695a8d638cc889d43402eb1585b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 28
+%global bumpver 1
 
 Name:           kasts
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPLv2 and GPLv2+ and GPLv3+ and BSD and LGPLv3+
 Summary:        A mobile podcast application

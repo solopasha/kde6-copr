@@ -1,10 +1,10 @@
-%global commit0 61b86fc0c554a6a7e00cfd05ed2c05bd2dadd5fd
+%global commit0 78a613da718c12d2e9b677ef2b7bf939ea41d350
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kubrick
 Summary: Puzzle cube solving game
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

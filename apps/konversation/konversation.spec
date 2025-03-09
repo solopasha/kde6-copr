@@ -1,9 +1,9 @@
-%global commit0 53f42ad3ce85618bf91c765636df2da1ad02c697
+%global commit0 7034e342199e0442cca7f39d671f183d4860633f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           konversation
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        A user friendly IRC client
 

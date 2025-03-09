@@ -1,10 +1,10 @@
-%global commit0 c13f78982edd932b25943b0342d9d9e1346a9e71
+%global commit0 50fe00e8d2e603b5ad66983831880d1d2efe681d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kdesdk-thumbnailers
 Summary: Thumbnailers for KDE
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+

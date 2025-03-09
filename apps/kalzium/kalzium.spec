@@ -1,6 +1,6 @@
-%global commit0 2d9d917ff295e5fc0a0605335f1a43cd69a10fe3
+%global commit0 8fc1cf3be41dc65dead80eef8e7970cbac4c7d68
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 %if ! 0%{?bootstrap}
 # The Kalzium solver needs OCaml with native compilation support (ocamlopt) and
@@ -14,7 +14,7 @@
 
 Name:    kalzium
 Summary: Periodic Table of Elements
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later

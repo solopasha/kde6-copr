@@ -1,9 +1,9 @@
-%global commit0 bfd0c6046b104622b5acc3c2a95f954af6445bd5
+%global commit0 58f94481ebe8e30b0c8079e5be6126cad5a43928
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 9
+%global bumpver 1
 
 Name:    kosmindoormap
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: OSM multi-floor indoor map renderer
 

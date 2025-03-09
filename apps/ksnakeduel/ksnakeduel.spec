@@ -1,11 +1,11 @@
-%global commit0 0905be6b616587edd6bdc6090d25293da3a20b70
+%global commit0 0dc782c33f531b2d9fcb88c3b41d7d4b27b865ad
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:    ksnakeduel
 Summary: Snake duel game
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

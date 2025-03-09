@@ -1,9 +1,9 @@
-%global commit0 c1cc377459cfa770d41796f236d27ee6aa0e7bc1
+%global commit0 52b5de930135ed454195bee143aa3a421ae3ecdb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 Name:    calendarsupport
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: KDE PIM library for calendar and even handling
 

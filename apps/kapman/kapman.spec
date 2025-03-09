@@ -1,10 +1,10 @@
-%global commit0 44a038a282e7fdff61aa29a9e3d3884f7c10a154
+%global commit0 c479b7bc659e4400c1d2e14fbeae156c12562df8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kapman
 Summary: A collecting game
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

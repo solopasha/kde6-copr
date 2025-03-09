@@ -1,10 +1,10 @@
-%global commit0 8fcc2f6cca4c228cd268cec1e52d42da811c16e8
+%global commit0 894ef0eca39ec6e9c6ef3b1472f6868fed38f08a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kde-dev-scripts
 Summary: KDE SDK scripts
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-only AND GPL-2.0-or-later AND LGPL-2.0-only AND BSD-2-Clause

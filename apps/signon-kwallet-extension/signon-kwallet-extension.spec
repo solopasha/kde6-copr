@@ -1,10 +1,10 @@
-%global commit0 a9f3d41e230bdfe4db9035d19ac6c40ef7aff069
+%global commit0 bb239b7b92b9790a78b81928dab2ea350d4ef377
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:    signon-kwallet-extension
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: KWallet integration for Sign-on framework
 

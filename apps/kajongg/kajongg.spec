@@ -1,10 +1,10 @@
-%global commit0 24fc8a0ed3d576744d6949b1a9c63fa7f2b38203
+%global commit0 b5ec2447adfa055f5b3da4c1b92c0d232693f486
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 Name:    kajongg
 Summary: Classical Mah Jongg game for four players
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-only AND GFDL-1.1-or-later

@@ -1,10 +1,10 @@
-%global commit0 551bec072d93b53716947c394eceffe90cf0e7e3
+%global commit0 40ad16ff5620435d32f3819552ffca0e18eaa48a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:           colord-kde
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Colord support for KDE
 

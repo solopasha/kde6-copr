@@ -1,9 +1,9 @@
-%global commit0 445a02e3f6ea1878451cc6a0d1728586cd7f6857
+%global commit0 ca593e7f28518cbe0aee484dcea560ccc2e65fe4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 9
+%global bumpver 1
 
 Name:           keysmith
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPLv3+
 Summary:        Convergent OTP client

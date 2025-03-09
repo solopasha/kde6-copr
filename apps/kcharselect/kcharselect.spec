@@ -1,10 +1,10 @@
-%global commit0 9347a4a12250687258a1950cff79a969b9364b9f
+%global commit0 b1e15c420c2e83ef9723c9f1b98ffb9e24ab06a2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kcharselect
 Summary: Character selector
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later

@@ -1,10 +1,10 @@
-%global commit0 7e01f72da7ef9e967281a011712d514bf33c2b99
+%global commit0 c49cd288d640ee0c91d1aa7bc31d5149bff2f89d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kshisen
 Summary: Shisen-Sho Mahjongg-like tile game
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

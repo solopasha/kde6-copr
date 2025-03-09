@@ -1,9 +1,9 @@
-%global commit0 dbeee98affbf23c920a7db0d3a5a0f7daf4ce361
+%global commit0 8fc081d4f875c2b6c1f15b654d67ac5d5677c3af
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 Name:           francis
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPL-3.0-or-later AND CC0-1.0 AND LGPL-2.1-or-later
 Summary:        Track your time

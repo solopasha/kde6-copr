@@ -1,9 +1,9 @@
-%global commit0 2d2c2ad36e4643ba2befca89fa11f26c0ba9e620
+%global commit0 d7535261f880fd2003c9b87d05bd05986256e485
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:          kontrast
-Version:       25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:       25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:       1%{?dist}
 Summary:       Color contrast checker
 # BSD, CC0 are only for build files

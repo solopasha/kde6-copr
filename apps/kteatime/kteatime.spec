@@ -1,10 +1,10 @@
-%global commit0 6bf9741a213ffb7410b9ba881e04b7c57f5ffff6
+%global commit0 68d8cd63dfd9aac45e5f8ab53565d873c99afce9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kteatime
 Summary: Handy timer for steeping tea
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+

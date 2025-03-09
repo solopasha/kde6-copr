@@ -1,10 +1,10 @@
-%global commit0 0341b78af8d1341cc43417f3c4378153d14d8eb6
+%global commit0 94a881b63c74551437e38a670f4edaf8d402a110
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 Name:           libktorrent
 Summary:        Torrent downloading library for KDE 6 applications
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 # CC0 is only for CI tooling, BSD3 for cmake macros, MIT for win32 support code
 License:        GPL-2.0-or-later

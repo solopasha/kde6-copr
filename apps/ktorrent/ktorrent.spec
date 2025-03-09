@@ -1,9 +1,9 @@
-%global commit0 e4a75d449d44d4124d95f4c060b745abf819bc7b
+%global commit0 8d754d6acf3e72351857bebfff4393173112b849
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 1
 
 Name:    ktorrent
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: A BitTorrent program
 

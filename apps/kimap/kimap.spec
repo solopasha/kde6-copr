@@ -1,9 +1,9 @@
-%global commit0 19acee4bdeee4cb82b0d0adfe432ed45a84e37cb
+%global commit0 c0f14cabb0bc9bdc0237a03081ec850373f4d0f0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kimap
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The KIMAP Library
 

@@ -1,10 +1,10 @@
-%global commit0 770f94a6bcaa43c258407ef2119fa7da3737ae6f
+%global commit0 3fa23f0bf76018734ef1514fdb91fbf043ce8f29
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    ksquares
 Summary: Connect the dots to create squares
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

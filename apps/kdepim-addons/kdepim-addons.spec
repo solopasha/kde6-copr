@@ -1,10 +1,10 @@
-%global commit0 74fb4582829d3ffcd0e0d5604a2ec1703bebc79d
+%global commit0 62d725c15c9bae864f6b3bf32773b7555ea160b6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 20
+%global bumpver 1
 
 
 Name:    kdepim-addons
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Additional plugins for KDE PIM applications
 

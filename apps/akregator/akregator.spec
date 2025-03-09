@@ -1,12 +1,12 @@
-%global commit0 5f21644588f08e3559fa824ce9af6b74e97259c9
+%global commit0 b9ba6a8a4cf4c773f5b13152351294546c0225a1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 14
+%global bumpver 1
 
 #global tests 1
 
 Name:    akregator
 Summary: Feed Reader
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL

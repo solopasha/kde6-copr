@@ -1,9 +1,9 @@
-%global commit0 7326a371259cfbb2f37144795ac6962b1164854f
+%global commit0 217d0235be53b849fcb777f546743ba4a83af015
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kontactinterface
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The Kontact Interface Library
 

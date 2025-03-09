@@ -1,9 +1,9 @@
-%global commit0 f34975153c5a3ee33597e07471f27d6551fb201d
+%global commit0 85e91dee767463a2b3abf69c8d46a1e77636637f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    ktnef
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The KTNef Library
 

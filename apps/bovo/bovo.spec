@@ -1,11 +1,11 @@
-%global commit0 934f6c8433535013a00a45f974bedc092a778e29
+%global commit0 b663275f7a02df85183b459d71ea54c9f105d3dc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 
 Name:    bovo
 Summary: Five in a row game
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code GPLv2+, docs GFDL

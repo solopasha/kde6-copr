@@ -1,10 +1,10 @@
-%global commit0 4f46852ccd75834a71b766e1a162558dcf1513ee
+%global commit0 9d375ff88b8b8b23786148f043a56d5880fa1c1a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    konquest
 Summary: Galactic conquest game
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

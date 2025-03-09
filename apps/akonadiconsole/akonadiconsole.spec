@@ -1,12 +1,12 @@
-%global commit0 57a09a3b5f2c818bbd1978d69505628c47b89bc7
+%global commit0 e02d9b748f546d6630d5e1cadcf13d69bd253c64
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 #global tests 1
 
 Name:    akonadiconsole
 Summary: Akonadi developer tool
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL

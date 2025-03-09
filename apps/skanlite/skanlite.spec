@@ -1,9 +1,9 @@
-%global commit0 f068ae6c13e03b0e167f67d89dfb67a9e1bd3c82
+%global commit0 47f26fc1c5c663b9cb6d1ed9ea3596265534a891
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:           skanlite
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Lightweight scanning program
 # Actually: GPLv2 or GPLv3 or any later Version approved by KDE e.V.

@@ -1,10 +1,10 @@
-%global commit0 e6f691efc86f94ed8cf642a1b33afaa6e92744ab
+%global commit0 7e5295fda09e7bb39039542e5a3add55937cce1e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 1
 
 Name:           cantor
 Summary:        KDE Frontend to Mathematical Software
-Version:        25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later

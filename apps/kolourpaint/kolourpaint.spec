@@ -1,10 +1,10 @@
-%global commit0 60d0098ec790b5f01d39d0688935be6218686e26
+%global commit0 8332aebb9a8d7bb59f206ea783eac04dd78c15fd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    kolourpaint
 Summary: An easy-to-use paint program
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: BSD

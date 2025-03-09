@@ -1,9 +1,9 @@
-%global commit0 716ae11941468c0891cd844dc6baaf3a0948a186
+%global commit0 f9c53ee3b03980fbed5e4692673aac275063fe78
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 31
+%global bumpver 1
 
 Name:    neochat
-Version: 25.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND BSD-3-Clause
