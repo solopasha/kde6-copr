@@ -128,7 +128,10 @@ Requires:       pkgconfig(wayland-server)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%files -f %{name}.lang
+%install -a
+rm -rf %{buildroot}%{_kf6_datadir}/{doc,locale}
+
+%files
 %license LICENSES/*.txt
 %{_kf6_bindir}/kwin_x11
 %{_kf6_datadir}/%{name}/
