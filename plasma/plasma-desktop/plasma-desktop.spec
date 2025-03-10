@@ -143,7 +143,7 @@ BuildRequires:  cmake(KF6Kirigami)
 Requires:       kf6-kirigami%{?_isa}
 BuildRequires:  cmake(KF6KirigamiAddons)
 Requires:       kf6-kirigami-addons%{?_isa}
-BuildRequires:  kf6-qqc2-desktop-style
+BuildRequires:  cmake(KF6QQC2DesktopStyle)
 Requires:       kf6-qqc2-desktop-style%{?_isa}
 BuildRequires:  kpipewire
 Requires:       kpipewire%{?_isa} >= %{majmin_ver_kf6}

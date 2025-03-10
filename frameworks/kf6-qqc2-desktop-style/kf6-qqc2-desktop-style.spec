@@ -1,6 +1,6 @@
 %global commit0 c41f8b5bddfc7d2273d307906f0760edaa987a2d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework qqc2-desktop-style
 
@@ -29,6 +29,12 @@ BuildRequires:  qt6-qtbase-private-devel
 Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-sonnet%{?_isa}
 
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+%description    devel
+Development files for %{name}.
+
 %description
 This is a style for QtQuickControls 2 that uses QWidget's QStyle for
 painting, making possible to achieve an higher degree of consistency
@@ -40,10 +46,12 @@ between QWidget-based and QML-based apps.
 %files -f qqc2desktopstyle_qt.lang
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_libdir}/cmake/KF6QQC2DesktopStyle/
 %{_kf6_plugindir}/kirigami/platform/org.kde.desktop.so
 %{_qt6_qmldir}/org/kde/desktop/
 %{_qt6_qmldir}/org/kde/qqc2desktopstyle/
+
+%files devel
+%{_kf6_libdir}/cmake/KF6QQC2DesktopStyle/
 
 %changelog
 %{?kde_snapshot_changelog_entry}
