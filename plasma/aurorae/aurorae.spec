@@ -1,6 +1,6 @@
-%global commit0 ceefa2c49c605dec39e7d85f10752656f295c0be
+%global commit0 77857281ebd098cb6f0b46d60ed149934122bac0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:           aurorae
 Summary:        Aurorae decoration engine
@@ -31,6 +31,12 @@ BuildRequires:  cmake(KDecoration3)
 
 Conflicts:      kwin-common < 6.3.80~48.gitd2276e5
 
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+%description    devel
+Development files for %{name}.
+
 %description
 Aurorae is a themeable window decoration for KWin.
 It supports theme files consisting of several SVG files for decoration and buttons.
@@ -45,6 +51,9 @@ decorations.
 %{_qt6_plugindir}/org.kde.kdecoration3/org.kde.kwin.aurorae.so
 %{_qt6_qmldir}/org/kde/kwin/decoration/
 %{_qt6_qmldir}/org/kde/kwin/decorations/plastik/
+
+%files devel
+%{_kf6_libdir}/cmake/Aurorae/
 
 %changelog
 %{?kde_snapshot_changelog_entry}
