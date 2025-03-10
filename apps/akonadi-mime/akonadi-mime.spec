@@ -1,6 +1,6 @@
-%global commit0 36a288ed6cd6d85e7401a852e2905e47dd748442
+%global commit0 307d5d44c87651e1ffc3a0de5b456085d795eb30
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    akonadi-mime
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

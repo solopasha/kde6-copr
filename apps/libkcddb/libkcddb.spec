@@ -1,6 +1,6 @@
-%global commit0 e049c08e62159b481f4726e79a41d184c4f43d39
+%global commit0 dd8758e825f8d2bf33e37258e486db5751c6bd32
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           libkcddb
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

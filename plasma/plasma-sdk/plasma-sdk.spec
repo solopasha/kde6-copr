@@ -1,6 +1,6 @@
-%global commit0 237dcee4f7688e2eb0e616286be28aff278a7f50
+%global commit0 a5b7da5c32701630bc9058489535ac21a768b78c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 8
+%global bumpver 9
 
 Name:           plasma-sdk
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
