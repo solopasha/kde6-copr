@@ -1,8 +1,6 @@
-%global commit0 dc34da07dcf35bbcc21a7d5aa295287e15295fc3
+%global commit0 1513506bf043440a88c9bf372f6f4af299a01b90
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 63
-
-%bcond x11 1
+%global bumpver 64
 
 Name:           kwin
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -10,7 +8,7 @@ Release:        1%{?dist}
 Summary:        KDE Window manager
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
-URL:            https://userbase.kde.org/KWin
+URL:            https://invent.kde.org/plasma/kwin
 %plasma_source
 
 %if "%{?copr_projectname}" == "plasma-unstable-qt6.9"
@@ -98,108 +96,66 @@ BuildRequires:  xcb-util-keysyms-devel
 BuildRequires:  xcb-util-wm-devel
 
 ## Runtime deps
-Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
-Requires:       %{name}-common%{?_isa} = %{version}-%{release}
+Requires:       (kwayland-integration%{?_isa} >= %{majmin_ver_kf6} if qt5-qtbase%{?_isa})
+Requires:       aurorae%{?_isa} >= %{majmin_ver_kf6}
+Requires:       kf6-kcmutils%{?_isa}
 Requires:       kf6-kconfig%{?_isa}
 Requires:       kf6-kdeclarative%{?_isa}
 Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-kitemmodels%{?_isa}
 Requires:       kf6-knewstuff%{?_isa}
 Requires:       kf6-kquickcharts%{?_isa}
+Requires:       kf6-ksvg%{?_isa}
 Requires:       kscreenlocker%{?_isa} >= %{majmin_ver_kf6}
+Requires:       kwayland%{?_isa} >= %{majmin_ver_kf6}
 Requires:       libplasma%{?_isa} >= %{majmin_ver_kf6}
 Requires:       plasma-milou%{?_isa} >= %{majmin_ver_kf6}
 Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtdeclarative%{?_isa}
 Requires:       qt6-qtmultimedia%{?_isa}
+Requires:       xorg-x11-server-Xwayland%{?_isa}
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
-Requires:       %{name}-wayland = %{version}-%{release}
+Obsoletes:      %{name}-common < 6.3.80~63.gitdc34da0-3
+Obsoletes:      %{name}-doc < 6.3.80~63.gitdc34da0-3
+Obsoletes:      %{name}-libs < 6.3.80~63.gitdc34da0-3
+Obsoletes:      %{name}-wayland < 6.3.80~63.gitdc34da0-3
+Provides:       %{name}-common = %{version}-%{release}
+Provides:       %{name}-common%{?_isa} = %{version}-%{release}
+Provides:       %{name}-doc = %{version}-%{release}
+Provides:       %{name}-libs = %{version}-%{release}
+Provides:       %{name}-libs%{?_isa} = %{version}-%{release}
+Provides:       %{name}-wayland = %{version}-%{release}
+Provides:       %{name}-wayland%{?_isa} = %{version}-%{release}
 
 %description
 %{summary}.
 
-%package        wayland
-Summary:        KDE Window Manager with Wayland support
-Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
-Requires:       %{name}-common%{?_isa} = %{version}-%{release}
-Requires:       (kwayland-integration%{?_isa} >= %{majmin_ver_kf6} if qt5-qtbase%{?_isa})
-Requires:       xorg-x11-server-Xwayland
-%if ! %{with x11}
-# Obsolete kwin-x11 as we are dropping the package
-Obsoletes:      %{name}-x11 < %{version}-%{release}
-%endif
-%description    wayland
-%{summary}.
-
-%if %{with x11}
-%package        x11
-Summary:        KDE Window Manager with X11 support
-Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
-Requires:       %{name}-common%{?_isa} = %{version}-%{release}
-Requires:       xorg-x11-server-Xorg
-# http://bugzilla.redhat.com/605675
-Provides:       firstboot(windowmanager) = kwin_x11
-# KWinX11Platform (and others?)
-
-%description    x11
-%{summary}.
-%endif
-
-%package        common
-Summary:        Common files for KWin X11 and KWin Wayland
-Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
-Requires:       aurorae%{?_isa} >= %{majmin_ver_kf6}
-Requires:       kwayland%{?_isa} >= %{majmin_ver_kf6}
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
-%description    common
-%{summary}.
-
-%package        libs
-Summary:        KWin runtime libraries
-%description    libs
-%{summary}.
-
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
-Requires:       %{name}-common%{?_isa} = %{version}-%{release}
-Requires:       cmake(Qt6Core)
-Requires:       cmake(Qt6Gui)
-Requires:       cmake(Qt6Quick)
 Requires:       cmake(KF6Config)
 Requires:       cmake(KF6CoreAddons)
 Requires:       cmake(KF6WindowSystem)
+Requires:       cmake(Qt6Core)
+Requires:       cmake(Qt6Gui)
+Requires:       cmake(Qt6Quick)
 Requires:       pkgconfig(wayland-server)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%package        doc
-Summary:        User manual for %{name}
-Requires:       %{name} = %{version}-%{release}
-BuildArch:      noarch
-%description    doc
-%{summary}.
-
 %install -a
-grep "%{_kf6_docdir}" %{name}.lang > %{name}-doc.lang
-cat %{name}.lang %{name}-doc.lang | sort | uniq -u > kwin6.lang
-
 # co-own Xwayland-session.d folder
 mkdir -p %{buildroot}%{_sysconfdir}/xdg/Xwayland-session.d
 
 # temporary(?) hack to allow initial-setup to use /usr/bin/kwin too
 ln -sr %{buildroot}%{_kf6_bindir}/kwin_wayland %{buildroot}%{_bindir}/kwin
 
-%if ! %{with x11}
-# Delete x11 session stuff
-rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwin_x11.service
-%endif
-
-%files
+%files -f %{name}.lang
+%license LICENSES/*.txt
 %{_bindir}/kwin
-
-%files common -f kwin6.lang
+%caps(cap_sys_nice=ep) %{_kf6_bindir}/kwin_wayland
+%{_kf6_bindir}/kwin_wayland_wrapper
 %{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/config.kcfg/kwin.kcfg
 %{_kf6_datadir}/config.kcfg/kwindecorationsettings.kcfg
@@ -210,12 +166,15 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 %{_kf6_datadir}/knotifications6/kwin.notifyrc
 %{_kf6_datadir}/knsrcfiles/*.knsrc
 %{_kf6_datadir}/krunner/dbusplugins/kwin-runner-windows.desktop
-%{_kf6_datadir}/kwin/
+%{_kf6_datadir}/kwin-wayland/
+%{_kf6_datadir}/qlogging-categories6/org_kde_kwin.categories
 %{_kf6_libdir}/kconf_update_bin/kwin-6.0-delete-desktop-switching-shortcuts
 %{_kf6_libdir}/kconf_update_bin/kwin-6.0-remove-breeze-tabbox-default
 %{_kf6_libdir}/kconf_update_bin/kwin-6.0-reset-active-mouse-screen
 %{_kf6_libdir}/kconf_update_bin/kwin-6.1-remove-gridview-expose-shortcuts
 %{_kf6_libdir}/kconf_update_bin/kwin5_update_default_rules
+%{_kf6_libdir}/libkcmkwincommon.so.6{,.*}
+%{_kf6_libdir}/libkwin.so.6{,.*}
 %{_kf6_qtplugindir}/kf6/packagestructure/kwin_*.so
 %{_kf6_qtplugindir}/kwin/
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/*.so
@@ -223,23 +182,8 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 %{_libexecdir}/kwin_killer_helper
 %{_libexecdir}/kwin-applywindowdecoration
 %{_qt6_qmldir}/org/kde/kwin/
-
-%files wayland
-%caps(cap_sys_nice=ep) %{_kf6_bindir}/kwin_wayland
-%{_kf6_bindir}/kwin_wayland_wrapper
 %{_userunitdir}/plasma-kwin_wayland.service
 %dir %{_sysconfdir}/xdg/Xwayland-session.d
-
-%if %{with x11}
-%files x11
-%{_kf6_bindir}/kwin_x11
-%{_userunitdir}/plasma-kwin_x11.service
-%endif
-
-%files libs
-%{_kf6_datadir}/qlogging-categories6/org_kde_kwin.categories
-%{_kf6_libdir}/libkcmkwincommon.so.6{,.*}
-%{_kf6_libdir}/libkwin.so.6{,.*}
 
 %files devel
 %{_includedir}/kwin/
@@ -247,9 +191,6 @@ rm -v %{buildroot}%{_kf6_bindir}/kwin_x11 %{buildroot}%{_userunitdir}/plasma-kwi
 %{_kf6_libdir}/cmake/KWin/
 %{_kf6_libdir}/cmake/KWinDBusInterface/
 %{_kf6_libdir}/libkwin.so
-
-%files doc -f %{name}-doc.lang
-%license LICENSES/*.txt
 
 %changelog
 %{?kde_snapshot_changelog_entry}
