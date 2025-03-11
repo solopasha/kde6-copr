@@ -1,6 +1,6 @@
 %global commit0 702d913f9d78309a742d5cae6458e5c7220f983a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1895674
 %global _lto_cflags %{nil}

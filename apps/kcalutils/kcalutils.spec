@@ -1,6 +1,6 @@
-%global commit0 4b7ee39115fbcefc8093fc82df1b4f7a02fe3cba
+%global commit0 cfce2237e2219644913aaa0c9b7df0a008a7b069
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 3
 
 Name:           kcalutils
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

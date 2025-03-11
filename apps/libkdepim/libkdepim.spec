@@ -1,6 +1,6 @@
-%global commit0 76dd9d83026816b328d67ab71184008a1edcc78b
+%global commit0 1b9af88eab2fd3941f15ac4b7483e021ea6ab67c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 3
 
 Name:    libkdepim
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
