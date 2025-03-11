@@ -12,6 +12,7 @@ Summary: The Akonadi Contacts Library
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/pim/akonadi-contacts
 %apps_source
+Patch: https://invent.kde.org/pim/akonadi-contacts/-/merge_requests/52.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
