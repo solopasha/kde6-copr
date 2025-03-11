@@ -1,6 +1,6 @@
 %global commit0 8cb8c6ebb11dc83a416e85160444f64f05bc4ae3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 8
 
 Name:           qqc2-breeze-style
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -29,15 +29,23 @@ BuildRequires:  cmake(Qt6QuickTemplates2)
 
 Requires:       kf6-kquickcharts%{?_isa}
 
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+%description    devel
+Development files for %{name}.
+
 %description
 This is a pure Qt Quick/Kirigami Qt Quick Controls style.
 
 %files
 %doc README.md
 %license LICENSES/*.txt
-%{_kf6_libdir}/cmake/QQC2BreezeStyle/
 %{_kf6_plugindir}/kirigami/platform/org.kde.breeze.so
 %{_qt6_qmldir}/org/kde/breeze/
+
+%files devel
+%{_kf6_libdir}/cmake/QQC2BreezeStyle/
 
 %changelog
 %{?kde_snapshot_changelog_entry}

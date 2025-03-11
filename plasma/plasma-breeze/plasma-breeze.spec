@@ -1,6 +1,6 @@
 %global commit0 e81305f0a365c6cef34f6738d56c2cb9109cbfde
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 13
+%global bumpver 14
 
 %global base_name breeze
 
@@ -46,9 +46,6 @@ BuildRequires:  cmake(Qt6Widgets)
 Requires:       (%{name}-qt5 if qt5-qtbase-gui)
 Requires:       %{name}-qt6
 
-# since we provide a cmake dev-like file
-Provides:       %{name}-devel = %{version}-%{release}
-
 %description
 %{summary}.
 
@@ -78,27 +75,30 @@ Provides:       breeze-cursor-themes = %{version}-%{release}
 %description -n breeze-cursor-theme
 %{summary}.
 
-%build
-mkdir -p qt6build
-pushd qt6build
-%cmake_kf6 -S .. -DBUILD_QT6=ON -DBUILD_QT5=OFF
-%cmake_build
-popd
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+%description    devel
+Development files for %{name}.
 
-mkdir -p qt5build
-pushd qt5build
-%cmake_kf5 -S .. -DBUILD_QT6=OFF -DBUILD_QT5=ON
+%conf
+%global _vpath_builddir %{_target_platform}-qt6
+%cmake_kf6 -DBUILD_QT6=ON -DBUILD_QT5=OFF
+
+%global _vpath_builddir %{_target_platform}-qt5
+%cmake_kf5 -DBUILD_QT6=OFF -DBUILD_QT5=ON
+
+%build
+%global _vpath_builddir %{_target_platform}-qt6
 %cmake_build
-popd
+%global _vpath_builddir %{_target_platform}-qt5
+%cmake_build
 
 %install
-pushd qt5build
+%global _vpath_builddir %{_target_platform}-qt5
 %cmake_install
-popd
-
-pushd qt6build
+%global _vpath_builddir %{_target_platform}-qt6
 %cmake_install
-popd
 
 %find_lang %{name} --all-name
 
@@ -108,7 +108,6 @@ popd
 %{_kf6_bindir}/kcursorgen
 %{_kf6_datadir}/applications/breezestyleconfig.desktop
 %{_kf6_datadir}/applications/kcm_breezedecoration.desktop
-%{_kf6_libdir}/cmake/Breeze/
 %{_kf6_qtplugindir}/kstyle_config/breezestyleconfig.so
 %{_kf6_qtplugindir}/org.kde.kdecoration3.kcm/kcm_breezedecoration.so
 %{_kf6_qtplugindir}/org.kde.kdecoration3/org.kde.breeze.so
@@ -136,6 +135,9 @@ popd
 %{_kf6_datadir}/icons/breeze_cursors/cursors/
 %{_kf6_datadir}/icons/breeze_cursors/cursors_scalable/
 %{_kf6_datadir}/icons/breeze_cursors/index.theme
+
+%files devel
+%{_kf6_libdir}/cmake/Breeze/
 
 %changelog
 %{?kde_snapshot_changelog_entry}

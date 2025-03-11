@@ -76,21 +76,27 @@ Requires:       kf5-qqc2-breeze-style
 %description    qt5
 %{summary}.
 
-%build
+%conf
 %global _vpath_builddir %{_target_platform}-qt6
 %cmake_kf6 -DBUILD_QT5=OFF -DBUILD_QT6=ON
-%cmake_build
 
 %global _vpath_builddir %{_target_platform}-qt5
 %cmake_kf5 -DBUILD_QT5=ON -DBUILD_QT6=OFF
+
+%build
+%global _vpath_builddir %{_target_platform}-qt6
+%cmake_build
+
+%global _vpath_builddir %{_target_platform}-qt5
 %cmake_build
 
 %install
+%global _vpath_builddir %{_target_platform}-qt5
+%cmake_install
+
 %global _vpath_builddir %{_target_platform}-qt6
 %cmake_install
 
-%global _vpath_builddir %{_target_platform}-qt5
-%cmake_install
 %find_lang plasmaintegration5
 
 %files -f plasmaintegration5.lang
