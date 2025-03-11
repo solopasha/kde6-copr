@@ -1,6 +1,9 @@
-%global commit0 f9c53ee3b03980fbed5e4692673aac275063fe78
+%global commit0 bac93e778ea3855357f5fb8869b52fc31b97a4d9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
+
+%global libquotient_commit fe1f64d9991fb179a170c903ae8c4577703b37ef
+%global libquotient_shortcommit %(c=%{libquotient_commit}; echo ${c:0:7})
 
 Name:    neochat
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -10,6 +13,8 @@ License: GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later
 URL: https://invent.kde.org/network/%{name}
 Summary: Client for matrix, the decentralized communication protocol
 %apps_source
+
+Source10: https://github.com/quotient-im/libQuotient/archive/%{libquotient_commit}/libQuotient-%{libquotient_shortcommit}.tar.gz
 
 BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6Quick)
@@ -48,7 +53,7 @@ BuildRequires: cmake(KQuickImageEditor)
 BuildRequires: cmake(KUnifiedPush)
 BuildRequires: cmake(QCoro6Core)
 BuildRequires: cmake(QCoro6Network)
-BuildRequires: cmake(QuotientQt6)
+#BuildRequires: cmake(QuotientQt6)
 
 BuildRequires: pkgconfig(icu-uc)
 BuildRequires: pkgconfig(libcmark)
@@ -61,6 +66,14 @@ BuildRequires: gcc
 BuildRequires: gcc-c++
 BuildRequires: kf6-rpm-macros
 BuildRequires: libappstream-glib
+
+BuildRequires: cmake(Olm)
+BuildRequires: cmake(Qt6Keychain)
+BuildRequires: cmake(Qt6Sql)
+BuildRequires: pkgconfig(openssl)
+BuildRequires: qt6-qtbase-private-devel
+
+Provides:      bundled(libquotient) = 0.10.0~1.git%{libquotient_shortcommit}
 
 Requires: breeze-icon-theme
 Requires: hicolor-icon-theme
@@ -96,10 +109,18 @@ notably Kirigami, KConfig and KI18n.
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
-%autosetup -n %{sourcerootdir} -p1
+%autosetup -n %{sourcerootdir} -p1 -a10
 
 %build
-%cmake_kf6
+pushd libQuotient-%{libquotient_commit}
+%cmake -GNinja \
+    -DCMAKE_INSTALL_PREFIX=%{_builddir}/libQuotient-build \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF
+%cmake_build
+cmake --install %{__cmake_builddir}
+popd
+%cmake_kf6 -DQuotientQt6_DIR=%{_builddir}/libQuotient-build/%{_lib}/cmake/QuotientQt6
 %cmake_build
 
 %install
