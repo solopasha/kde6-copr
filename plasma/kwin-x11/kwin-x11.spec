@@ -1,6 +1,6 @@
-%global commit0 26be6f5c420644917df5642adcccc4244e0b87e5
+%global commit0 f1df287bfefbbec4d39a318a96873e7b7aa4ecfe
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 66
+%global bumpver 67
 
 Name:           kwin-x11
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -128,9 +128,8 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %install -a
-rm -rf %{buildroot}%{_kf6_datadir}/{doc,locale}
 
-%files
+%files -f %{name}.lang
 %license LICENSES/*.txt
 %{_kf6_bindir}/kwin_x11
 %{_kf6_datadir}/%{name}/

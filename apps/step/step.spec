@@ -1,6 +1,6 @@
-%global commit0 062a9598e3b263190fe06ff81368c37c40973e71
+%global commit0 a8922a7413bca381532b89fd7f9cfaa78e3e56aa
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    step
 Summary: Interactive Physics Simulator
