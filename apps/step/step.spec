@@ -2,80 +2,69 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 2
 
-Name:    step
-Summary: Interactive Physics Simulator
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           step
+Summary:        Interactive Physics Simulator
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: GPL-2.0-or-later
-URL:     https://invent.kde.org/edu/%{name}
+License:        GPL-2.0-or-later
+URL:            https://invent.kde.org/education/step
 %apps_source
 
-BuildRequires: cmake
-BuildRequires: gcc-c++
-BuildRequires: gettext
-BuildRequires: kf5-rpm-macros
-BuildRequires: extra-cmake-modules
-BuildRequires: libappstream-glib
-BuildRequires: desktop-file-utils
+BuildRequires:  desktop-file-utils
+BuildRequires:  libappstream-glib
 
-BuildRequires: cmake(KF5Crash)
-BuildRequires: cmake(KF5Config)
-BuildRequires: cmake(KF5I18n)
-BuildRequires: cmake(KF5IconThemes)
-BuildRequires: cmake(KF5KIO)
-BuildRequires: cmake(KF5NewStuff)
-BuildRequires: cmake(KF5Plotting)
-BuildRequires: cmake(KF5TextWidgets)
-BuildRequires: cmake(KF5XmlGui)
-BuildRequires: cmake(KF5DocTools)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6Crash)
+BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6IconThemes)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6NewStuff)
+BuildRequires:  cmake(KF6Plotting)
+BuildRequires:  cmake(KF6TextWidgets)
+BuildRequires:  cmake(KF6XmlGui)
 
-BuildRequires: cmake(Qt5Xml)
-BuildRequires: cmake(Qt5Svg)
-BuildRequires: cmake(Qt5OpenGL)
+BuildRequires:  cmake(Qt6OpenGLWidgets)
+BuildRequires:  cmake(Qt6Svg)
+BuildRequires:  cmake(Qt6Xml)
 
-BuildRequires: pkgconfig(eigen3)
-BuildRequires: pkgconfig(gsl)
-BuildRequires: pkgconfig(libqalculate)
+BuildRequires:  cmake(Eigen3)
+BuildRequires:  pkgconfig(gsl)
+BuildRequires:  pkgconfig(libqalculate)
 
 %description
 %{summary}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
-%cmake_kf5
+%cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
 
 %find_lang %{name} --all-name --with-html --with-qt
-echo '%lang(nn) %{_kf5_datadir}/locale/nn/LC_SCRIPTS/step/step.js' >> %{name}.lang
-
+echo '%lang(nn) %{_kf6_datadir}/locale/nn/LC_SCRIPTS/step/step.js' >> %{name}.lang
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf5_metainfodir}/org.kde.%{name}.appdata.xml
-desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.desktop
-
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.desktop
 
 %files -f %{name}.lang
 %doc README
-%{_kf5_bindir}/%{name}
-%{_kf5_datadir}/knsrcfiles/%{name}*.knsrc
-%{_kf5_datadir}/applications/org.kde.%{name}.desktop
-%{_kf5_metainfodir}/org.kde.%{name}.appdata.xml
-%{_kf5_datadir}/icons/hicolor/*/actions/*
-%{_kf5_datadir}/icons/hicolor/*/apps/%{name}*
-%{_kf5_datadir}/%{name}/
-%{_kf5_datadir}/config.kcfg/%{name}.kcfg
-%{_kf5_datadir}/mime/packages/org.kde.%{name}.xml
-
+%{_kf6_bindir}/%{name}
+%{_kf6_datadir}/%{name}/
+%{_kf6_datadir}/applications/org.kde.%{name}.desktop
+%{_kf6_datadir}/config.kcfg/%{name}.kcfg
+%{_kf6_datadir}/icons/hicolor/*/actions/*
+%{_kf6_datadir}/icons/hicolor/*/apps/%{name}*
+%{_kf6_datadir}/knsrcfiles/%{name}*.knsrc
+%{_kf6_datadir}/mime/packages/org.kde.%{name}.xml
+%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %changelog
 %{?kde_snapshot_changelog_entry}
