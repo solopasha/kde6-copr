@@ -1,6 +1,6 @@
-%global commit0 ae20612825a53606dd7be5cfe428f3a451c430d9
+%global commit0 d158ebab68a70d02e3908c49794ea9353ed2b851
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 #global tests 1
 
@@ -12,7 +12,6 @@ Summary: The Akonadi Contacts Library
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:     https://invent.kde.org/pim/akonadi-contacts
 %apps_source
-Patch: https://invent.kde.org/pim/akonadi-contacts/-/merge_requests/52.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros

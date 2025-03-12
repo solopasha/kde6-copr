@@ -1,6 +1,6 @@
-%global commit0 fc2c9e2c77b6027a1b772e51b410a4965848a37b
+%global commit0 20b14b373585c4599bbef052ac56fab3446c0e6f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 ## uncomment to enable bootstrap mode
 #global bootstrap 1
