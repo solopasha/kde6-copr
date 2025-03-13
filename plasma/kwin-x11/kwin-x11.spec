@@ -1,6 +1,6 @@
-%global commit0 f1df287bfefbbec4d39a318a96873e7b7aa4ecfe
+%global commit0 8d1ac65132831175d888e7ef9160b10adea66a66
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 67
+%global bumpver 68
 
 Name:           kwin-x11
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -74,8 +74,6 @@ BuildRequires:  pkgconfig(lcms2)
 BuildRequires:  pkgconfig(libcanberra)
 BuildRequires:  pkgconfig(libdisplay-info)
 BuildRequires:  pkgconfig(libdrm)
-BuildRequires:  pkgconfig(libinput)
-BuildRequires:  pkgconfig(libpipewire-0.3)
 BuildRequires:  pkgconfig(libudev)
 BuildRequires:  pkgconfig(libxcvt)
 BuildRequires:  pkgconfig(wayland-protocols)
