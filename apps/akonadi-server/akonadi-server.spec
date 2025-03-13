@@ -189,9 +189,9 @@ fi
 %{_kf6_bindir}/akonadi_agent_server
 %{_kf6_bindir}/akonadi_control
 %{_kf6_bindir}/akonadi_rds
+%{_kf6_bindir}/akonadi-db-migrator
 %{_kf6_bindir}/akonadictl
 %{_kf6_bindir}/akonadiserver
-%{_kf6_bindir}/akonadi-db-migrator
 %{_kf6_datadir}/akonadi/
 %{_kf6_datadir}/config.kcfg/resourcebase.kcfg
 %{_kf6_datadir}/dbus-1/interfaces/org.freedesktop.Akonadi.*.xml
@@ -201,11 +201,12 @@ fi
 %{_kf6_datadir}/mime/packages/akonadi-mime.xml
 %{_kf6_datadir}/qlogging-categories6/akonadi.*
 %{_kf6_libdir}/akonadi/
-%{_kf6_libdir}/libKPim6AkonadiAgentBase.so.*
-%{_kf6_libdir}/libKPim6AkonadiCore.so.*
-%{_kf6_libdir}/libKPim6AkonadiPrivate.so.*
-%{_kf6_libdir}/libKPim6AkonadiWidgets.so.*
-%{_kf6_libdir}/libKPim6AkonadiXml.so.*
+%{_kf6_libdir}/libKPim6AkonadiAgentBase.so.6{,.*}
+%{_kf6_libdir}/libKPim6AkonadiAgentWidgetBase.so.6{,.*}
+%{_kf6_libdir}/libKPim6AkonadiCore.so.6{,.*}
+%{_kf6_libdir}/libKPim6AkonadiPrivate.so.6{,.*}
+%{_kf6_libdir}/libKPim6AkonadiWidgets.so.6{,.*}
+%{_kf6_libdir}/libKPim6AkonadiXml.so.6{,.*}
 %{_kf6_qtplugindir}/designer/akonadi6widgets.so
 # akonadi_knut_resource
 %{_kf6_bindir}/akonadi_knut_resource
@@ -214,6 +215,7 @@ fi
 %files devel
 %{_includedir}/KPim6/Akonadi/
 %{_includedir}/KPim6/AkonadiAgentBase/
+%{_includedir}/KPim6/AkonadiAgentWidgetBase/
 %{_includedir}/KPim6/AkonadiCore/
 %{_includedir}/KPim6/AkonadiWidgets/
 %{_includedir}/KPim6/AkonadiXml/
@@ -225,6 +227,7 @@ fi
 %{_kf6_datadir}/kdevappwizard/templates/akonadiserializer.tar.bz2
 %{_kf6_libdir}/cmake/KPim6Akonadi/
 %{_kf6_libdir}/libKPim6AkonadiAgentBase.so
+%{_kf6_libdir}/libKPim6AkonadiAgentWidgetBase.so
 %{_kf6_libdir}/libKPim6AkonadiCore.so
 %{_kf6_libdir}/libKPim6AkonadiPrivate.so
 %{_kf6_libdir}/libKPim6AkonadiWidgets.so
