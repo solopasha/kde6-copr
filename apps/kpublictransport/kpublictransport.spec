@@ -47,16 +47,17 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %files -f %{name}.lang
 %{_kf6_datadir}/qlogging-categories6/org_kde_kpublictransport_onboard.categories
 %{_kf6_datadir}/qlogging-categories6/org_kde_kpublictransport.categories
-%{_kf6_libdir}/libKPublicTransport.so.%{version_no_git}
+%{_kf6_libdir}/libKPublicTransport.so.%{maj_ver_kf6}.%{min_ver_kf6}.*
 %{_kf6_libdir}/libKPublicTransport.so.1
-%{_kf6_libdir}/libKPublicTransportOnboard.so.%{version_no_git}
+%{_kf6_libdir}/libKPublicTransportOnboard.so.%{maj_ver_kf6}.%{min_ver_kf6}.*
 %{_kf6_libdir}/libKPublicTransportOnboard.so.1
 %{_kf6_qmldir}/org/kde/kpublictransport/
 
 %files devel
 %{_includedir}/KPublicTransport/
 %{_kf6_libdir}/cmake/KPublicTransport/
-%{_kf6_libdir}/*.so
+%{_kf6_libdir}/libKPublicTransport.so
+%{_kf6_libdir}/libKPublicTransportOnboard.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}
