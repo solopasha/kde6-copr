@@ -1,6 +1,6 @@
-%global commit0 89f4e1ca0f3a034491a2e9cf609fe64d4bf06e71
+%global commit0 ad95cde25244a79bcf0521c8ab1f5568f092d990
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           audiotube
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

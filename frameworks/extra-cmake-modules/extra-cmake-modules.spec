@@ -1,6 +1,6 @@
-%global commit0 0cd5e5bc2e16eed764ccdb52b67163e533562ab7
+%global commit0 cbda7ce74d74539ce0baef4a36198081dfb0265c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework extra-cmake-modules
 
