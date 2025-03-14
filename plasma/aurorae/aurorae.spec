@@ -47,6 +47,7 @@ decorations.
 %{_kf6_datadir}/knsrcfiles/aurorae.knsrc
 %{_kf6_datadir}/kwin/aurorae/
 %{_kf6_datadir}/kwin/decorations/kwin4_decoration_qml_plastik/
+%{_libexecdir}/plasma-apply-aurorae
 %{_qt6_plugindir}/org.kde.kdecoration3.kcm/kcm_auroraedecoration.so
 %{_qt6_plugindir}/org.kde.kdecoration3/org.kde.kwin.aurorae.so
 %{_qt6_qmldir}/org/kde/kwin/decoration/
