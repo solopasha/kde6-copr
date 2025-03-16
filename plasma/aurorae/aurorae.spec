@@ -1,6 +1,6 @@
-%global commit0 0ac165c478288b02b779b7b1ee54c2f207360ef3
+%global commit0 cc6a2486ea6c49b50a41ee1267e3f049e4f45e78
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 Name:           aurorae
 Summary:        Aurorae decoration engine
