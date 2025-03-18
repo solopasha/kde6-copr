@@ -1,6 +1,6 @@
-%global commit0 fc606c4b31530d38eec17e694925e5646f8efad0
+%global commit0 eace3a7653a54d627594edafc1ddf46f5c69c292
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 37
+%global bumpver 38
 
 %global base_name discover
 # enable snap support (or not)
@@ -197,7 +197,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files -f discover.lang
 %{_kf6_bindir}/plasma-discover
-%{_kf6_bindir}/plasma-discover-update
 %{_kf6_datadir}/applications/kcm_updates.desktop
 %{_kf6_datadir}/applications/org.kde.discover.desktop
 %{_kf6_datadir}/applications/org.kde.discover.urlhandler.desktop

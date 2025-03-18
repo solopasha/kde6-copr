@@ -1,11 +1,11 @@
-%global commit0 5843146206c64de08997969ae9479f3bd5fb4c8c
+%global commit0 098a6fa891dee3b04eee49a2e2c469a10f3b1023
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 %global debug_package %{nil}
 
 Name:           plasma-wayland-protocols
-Version:        1.16.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        1.17.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Plasma Specific Protocols for Wayland
 
