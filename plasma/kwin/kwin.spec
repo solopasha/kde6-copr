@@ -1,10 +1,10 @@
-%global commit0 165369e5495b58cc3860e1a47d50bcd800de4f90
+%global commit0 37cea484ee1e00c6d378c45070308bc4f2d956a1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 76
+%global bumpver 77
 
 Name:           kwin
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        KDE Window manager
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
