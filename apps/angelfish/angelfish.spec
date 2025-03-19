@@ -1,6 +1,6 @@
-%global commit0 105532d885a54aafd1e80662dc7c86ee0d6ba9b3
+%global commit0 0eb9aa111435399d6566c0bbccc5ddf65edca4c1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           angelfish
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

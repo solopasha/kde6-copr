@@ -1,6 +1,6 @@
-%global commit0 b5ec2447adfa055f5b3da4c1b92c0d232693f486
+%global commit0 6309d6c65e8630f7d6b1e5e9afc79b84a224c04f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kajongg
 Summary: Classical Mah Jongg game for four players

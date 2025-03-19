@@ -1,6 +1,6 @@
-%global commit0 3943ba4b3ae5358b4a9130eb2110d2825808bf81
+%global commit0 0c2ddaa5963679e4a425ec677abe094a2a913527
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    killbots
 Summary: A simple game of evading killer robots

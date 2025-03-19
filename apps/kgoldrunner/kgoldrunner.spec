@@ -1,6 +1,6 @@
-%global commit0 489d20959b014b26794e20b8da1d8630b136cc36
+%global commit0 5bc29e74312cc46e675dcc229f6089ea4b56d472
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kgoldrunner
 Summary: A game of action and puzzle solving

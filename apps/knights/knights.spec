@@ -1,6 +1,6 @@
-%global commit0 b5109d15b7ad4066d8d3abacff164b0e7a5d8cb8
+%global commit0 98503b2fbb49e6cc6443b4db1fd5eac6bf13cee0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           knights
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

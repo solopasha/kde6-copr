@@ -1,6 +1,6 @@
-%global commit0 13381952526575a59534d8acfa74ec43e60d5aa4
+%global commit0 41fc5cf2fc75b6d9d099b4075499d1be6e6d580b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    picmi
 Summary: A nonogram logic game

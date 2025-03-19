@@ -1,6 +1,6 @@
-%global commit0 6c5b8785c3bb1539d653501bd56bb11affd2dbc1
+%global commit0 2f009f25356913f9245c9073b9be4c755d01edc0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    lskat
 Summary: A fun and engaging card game

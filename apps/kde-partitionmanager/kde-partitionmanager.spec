@@ -1,6 +1,6 @@
-%global commit0 ff9acbaec92ce73cd228bb02abd1a39f9ebe4244
+%global commit0 06c432496081dad1899fdf808f4d555418b18eb4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global base_name partitionmanager
 

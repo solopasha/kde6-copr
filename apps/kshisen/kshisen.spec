@@ -1,6 +1,6 @@
-%global commit0 c49cd288d640ee0c91d1aa7bc31d5149bff2f89d
+%global commit0 b2956ac2425a9ed1cf439c293a15933f73989e94
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kshisen
 Summary: Shisen-Sho Mahjongg-like tile game

@@ -1,6 +1,6 @@
-%global commit0 47fe5538c8f7dcffd2d98fa776d8b6eb56b97330
+%global commit0 d597e843d793c5ecb00480b394848d7e0b49bf10
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    audiocd-kio
 Summary: KIO worker for accessing audio CDs

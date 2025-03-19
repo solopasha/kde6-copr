@@ -1,6 +1,6 @@
-%global commit0 c7abf921743dab39eaa3fafa0d137f4a41e9f486
+%global commit0 728e9a52985608ebaea5371b2d4b792911eb6276
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kbounce
 Summary: Ball bouncing game

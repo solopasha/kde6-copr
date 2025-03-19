@@ -1,6 +1,6 @@
-%global commit0 5240fe26817ef0501f279418aad961aeefe4ab6c
+%global commit0 d6e22618df18abe0726097f992a813779c3ec1c6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    ktuberling
 Summary: Picture game for children

@@ -1,6 +1,6 @@
-%global commit0 68d8cd63dfd9aac45e5f8ab53565d873c99afce9
+%global commit0 5104e7a826ab2ddee4d90406a5dac9c37d8dbacc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kteatime
 Summary: Handy timer for steeping tea

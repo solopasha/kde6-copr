@@ -1,6 +1,6 @@
-%global commit0 c479b7bc659e4400c1d2e14fbeae156c12562df8
+%global commit0 1f0ea61eaeeaefecbfe4324b89b2008b0ac45253
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kapman
 Summary: A collecting game

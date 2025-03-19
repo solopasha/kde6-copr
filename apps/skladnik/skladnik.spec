@@ -1,6 +1,6 @@
-%global commit0 8c9c0b94c37cc36cf70e8e0669711030096b3a90
+%global commit0 d0b51124f4a6c0e2bdaeb7df3b829cc31ae05a46
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           skladnik
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

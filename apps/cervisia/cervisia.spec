@@ -1,6 +1,6 @@
-%global commit0 c82b7f63cca1b1e8f4b12adfd87cfb3922b30624
+%global commit0 548b43faf7cec158a92eee064a0cd1656856ec1f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           cervisia
 Summary:        CVS frontend

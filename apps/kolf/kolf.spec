@@ -1,6 +1,6 @@
-%global commit0 8ebad46a71095a137d5d205ba03d07179ae17841
+%global commit0 74fe1d4864b7326118f4ab86f4458a2c516e6965
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kolf
 Summary: A miniature golf game

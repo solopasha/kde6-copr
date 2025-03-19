@@ -1,6 +1,6 @@
-%global commit0 b663275f7a02df85183b459d71ea54c9f105d3dc
+%global commit0 d07a5a53bccdbdb1675783946816df282e19bcb6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 
 Name:    bovo

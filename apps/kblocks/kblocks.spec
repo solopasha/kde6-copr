@@ -1,6 +1,6 @@
-%global commit0 8845230788addf62af426da0cf108d823a864544
+%global commit0 e9b6080ae0fae32005eedd1f15f9186f475e146e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kblocks
 Summary: A classic falling blocks game

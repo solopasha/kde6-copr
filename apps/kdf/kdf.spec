@@ -1,6 +1,6 @@
-%global commit0 a22f58fe9b13cf8ba9ec29175285490a711af69f
+%global commit0 59b0e991b750ab22c34089454be799740ec65032
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kdf
 Summary: View disk usage

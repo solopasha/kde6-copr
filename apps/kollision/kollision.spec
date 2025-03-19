@@ -1,6 +1,6 @@
-%global commit0 b5ceb0e74034de7ba161e57f62f23b393f94656e
+%global commit0 1f58055f1b8bd88044e2c74b2f8a10047471626c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kollision
 Summary: A simple ball dodging game
