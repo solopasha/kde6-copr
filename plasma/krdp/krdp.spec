@@ -1,6 +1,6 @@
-%global commit0 d3bcf7e3c97e567f205d86d6519a50032cf8b133
+%global commit0 a795058f6e91ff0da50222d8748f9ecf12b9c407
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 8
+%global bumpver 9
 
 Name:           krdp
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}

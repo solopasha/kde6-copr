@@ -1,6 +1,6 @@
-%global commit0 68a6bd31416db23f3673c3165f812de1425208ad
+%global commit0 309e8eb7434f0d26afd2ee829695e3c90c9654be
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 %global base_name oxygen
 
