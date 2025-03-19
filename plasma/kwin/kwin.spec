@@ -49,7 +49,6 @@ BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
 
-BuildRequires:  cmake(Breeze)
 BuildRequires:  cmake(KDecoration3)
 BuildRequires:  cmake(KGlobalAccelD)
 BuildRequires:  cmake(KScreenLocker)
@@ -104,6 +103,7 @@ Requires:       kf6-ksvg%{?_isa}
 Requires:       kscreenlocker%{?_isa} >= %{majmin_ver_kf6}
 Requires:       kwayland%{?_isa} >= %{majmin_ver_kf6}
 Requires:       libplasma%{?_isa} >= %{majmin_ver_kf6}
+Requires:       plasma-breeze%{?_isa} >= %{majmin_ver_kf6}
 Requires:       plasma-milou%{?_isa} >= %{majmin_ver_kf6}
 Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtdeclarative%{?_isa}

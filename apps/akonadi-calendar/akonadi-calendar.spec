@@ -88,7 +88,6 @@ xvfb-run -a bash -c "%ctest" || :
 %endif
 
 
-
 %files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_bindir}/kalendarac
@@ -97,18 +96,20 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_datadir}/knotifications6/kalendarac.notifyrc
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
 %{_kf6_datadir}/qlogging-categories6/org_kde_kalendarac.categories
-%{_kf6_libdir}/libKPim6AkonadiCalendar.so.*
+%{_kf6_libdir}/libKPim6AkonadiCalendar.so.6{,.*}
+%{_kf6_libdir}/libKPim6AkonadiCalendarCore.so.6{,.*}
 %{_kf6_qtplugindir}/akonadi_serializer_kcalcore.so
 %{_kf6_qtplugindir}/kf6/org.kde.kcalendarcore.calendars/libakonadicalendarplugin.so
 %{_kf6_sysconfdir}/xdg/autostart/org.kde.kalendarac.desktop
 
 
 %files devel
-%{_includedir}/KPim6/AkonadiCalendar/akonadi-calendar_version.h
-%{_includedir}/KPim6/AkonadiCalendar/akonadi/
-%{_includedir}/KPim6/AkonadiCalendar/Akonadi/
+%{_includedir}/KPim6/AkonadiCalendar/
+%{_includedir}/KPim6/AkonadiCalendarCore/
 %{_kf6_libdir}/cmake/KPim6AkonadiCalendar/
+%{_kf6_libdir}/cmake/KPim6AkonadiCalendarCore/
 %{_kf6_libdir}/libKPim6AkonadiCalendar.so
+%{_kf6_libdir}/libKPim6AkonadiCalendarCore.so
 
 
 %changelog
