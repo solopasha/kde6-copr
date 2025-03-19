@@ -129,6 +129,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 %files libs
 %{_kf6_libdir}/libakonadi-filestore.so.*
+%{_kf6_libdir}/libakonadi-singlefileresource-widget.so.*
 %{_kf6_libdir}/libakonadi-singlefileresource.so.*
 %{_kf6_libdir}/libfolderarchivesettings.so.*
 %{_kf6_libdir}/libkmindexreader.so.*
