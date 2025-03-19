@@ -1,4 +1,4 @@
 [submodule "fedora-kiwi-descriptions"]
 	path = fedora-kiwi-descriptions
-	url = https://pagure.io/fedora-kiwi-descriptions
+	url = https://github.com/solopasha/fedora-kiwi-descriptions.git
 	branch = f41
