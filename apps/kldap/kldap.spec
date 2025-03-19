@@ -1,6 +1,6 @@
 %global commit0 110dfa7c12361e900f7f410ed67abc4f49ad39ba
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:    kldap
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
