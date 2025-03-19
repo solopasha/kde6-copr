@@ -1,6 +1,6 @@
-%global commit0 6fdb01348fcc9f6c602eebded808faa1ec77b42f
+%global commit0 245f658d2f2f9c48a81e4691496305e39bb3a40d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework syndication
 

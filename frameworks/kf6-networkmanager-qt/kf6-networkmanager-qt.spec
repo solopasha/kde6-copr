@@ -1,6 +1,6 @@
-%global commit0 6ae2bdb7d38cf20b89af3dd8bea2d2728461db79
+%global commit0 4fbac44010bfe830e9f1d994a52bb3431d959e0b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework networkmanager-qt
 
