@@ -79,6 +79,7 @@ BuildRequires:  pkgconfig(packagekitqt6)
 
 BuildRequires:  qt6qml(org.kde.kitemmodels)
 Requires:       qt6qml(org.kde.kitemmodels)
+Requires:       qt6qml(org.kde.purpose)
 BuildRequires:  cmake(KF6KirigamiAddons)
 Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-kirigami%{?_isa}
