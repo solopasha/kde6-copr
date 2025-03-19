@@ -1,6 +1,6 @@
 %global commit0 ea75409f2c7008dc893335fed98fcb0243a0cdd0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 11
+%global bumpver 12
 
 Name:           merkuro
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -70,6 +70,7 @@ Requires:       kf6-prison%{?_isa}
 Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtlocation%{?_isa}
 Requires:       qt6-qtpositioning%{?_isa}
+Requires:       kf6-qqc2-desktop-style%{?_isa}
 
 # kalendar has been renamed to merkuro
 Obsoletes:      kalendar < 23.08

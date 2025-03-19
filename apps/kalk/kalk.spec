@@ -1,6 +1,6 @@
 %global commit0 b9b0a7c7fb1aa8817c29ada36116e6ae4a0e68e2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           kalk
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -31,6 +31,7 @@ BuildRequires:  cmake(Qt6QuickControls2)
 # QML module dependencies
 Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-kirigami-addons%{?_isa}
+Requires:       kf6-qqc2-desktop-style%{?_isa}
 
 %description
 %{summary}.

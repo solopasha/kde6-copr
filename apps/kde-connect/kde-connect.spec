@@ -1,6 +1,6 @@
 %global commit0 935ac72985b079cacd55d21ce4e5596a972c2074
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global base_name kdeconnect-kde
 
@@ -67,6 +67,7 @@ Requires:       kdeconnectd = %{version}-%{release}
 Requires:       fuse-sshfs
 Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-kirigami-addons%{?_isa}
+Requires:       kf6-qqc2-desktop-style%{?_isa}
 
 %description
 KDE Connect adds communication between KDE and your smartphone.

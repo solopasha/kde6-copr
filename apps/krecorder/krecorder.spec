@@ -1,6 +1,6 @@
 %global commit0 2a5cb21d1fa1fa757d3ddbcc231c4528270525fe
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           krecorder
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -32,10 +32,11 @@ BuildRequires:  cmake(KF6Kirigami)
 
 BuildRequires:  cmake(KF6KirigamiAddons)
 
-Requires:       kf6-kirigami
-Requires:       gstreamer1-plugins-good
+Requires:       gstreamer1-plugins-good%{?_isa}
 Requires:       hicolor-icon-theme
-Requires:       kf6-kirigami-addons
+Requires:       kf6-kirigami-addons%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-qqc2-desktop-style%{?_isa}
 
 %description
 Audio recorder for Plasma Mobile and other platforms

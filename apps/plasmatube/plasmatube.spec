@@ -1,6 +1,6 @@
 %global commit0 b644fa342e85c1c2921dae7d8e44a7348b244466
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:           plasmatube
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -37,7 +37,8 @@ BuildRequires:  cmake(Qt6Keychain)
 
 BuildRequires:  cmake(MpvQt)
 
-Requires:       kf6-purpose
+Requires:       kf6-purpose%{?_isa}
+Requires:       kf6-qqc2-desktop-style%{?_isa}
 Requires:       yt-dlp
 
 

@@ -1,6 +1,6 @@
 %global commit0 512200849fdb2b1c7b29e153f2b9eab2f054c8bd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    kapptemplate
 Summary: KDE Template generator
@@ -35,6 +35,7 @@ BuildRequires: cmake(KF6KirigamiAddons)
 
 Requires:      kf6-kirigami-addons%{?_isa}
 Requires:      kf6-kitemmodels%{?_isa}
+Requires:      kf6-qqc2-desktop-style%{?_isa}
 
 %description
 Factory for the easy creation of KDE/Qt components and programs

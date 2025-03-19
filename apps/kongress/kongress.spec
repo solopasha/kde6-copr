@@ -1,6 +1,6 @@
 %global commit0 d6c37929e0d9f428175fc9764f39f4d3c151e16b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           kongress
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -42,6 +42,7 @@ Requires:       kf6-kirigami%{?_isa}
 Requires:       kosmindoormap%{?_isa}
 Requires:       qt6-qtlocation%{?_isa}
 Requires:       qt6-qtpositioning%{?_isa}
+Requires:       kf6-qqc2-desktop-style%{?_isa}
 
 %description
 %{summary}.

@@ -1,6 +1,6 @@
 %global commit0 1ccd652c9a199f129047a734a9acbfc28eafab1a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:           kweather
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -43,6 +43,7 @@ Requires:       hicolor-icon-theme
 Requires:       kf6-kcoreaddons%{?_isa}
 Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-qqc2-desktop-style%{?_isa}
 
 Recommends:     (%{name}-plasma-applet%{?_isa} = %{version}-%{release} if plasma-workspace)
 

@@ -1,6 +1,6 @@
 %global commit0 2b97650385aa554d3fcbf9e65eb2e828b2b0f91f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    kwordquiz
 Summary: Flash Card Trainer
@@ -48,6 +48,7 @@ Requires: kf6-kirigami-addons%{?_isa}
 Requires: kf6-kitemmodels%{?_isa}
 Requires: kf6-knewstuff%{?_isa}
 Requires: qt6-qtmultimedia%{?_isa}
+Requires: kf6-qqc2-desktop-style%{?_isa}
 
 %description
 %{summary}.

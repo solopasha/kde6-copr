@@ -1,6 +1,6 @@
 %global commit0 12a159b1ee301caed1a15b98eb9f612ff59a7f7a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global klockd_name org.kde.kclockd
 %global orig_name org.kde.kclock
@@ -48,7 +48,7 @@ Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-ksvg%{?_isa}
 Requires:       qt6-qtmultimedia%{?_isa}
-
+Requires:       kf6-qqc2-desktop-style%{?_isa}
 
 %description
 A convergent clock application for Plasma.

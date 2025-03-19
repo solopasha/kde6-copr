@@ -1,6 +1,6 @@
 %global commit0 cf7ea70fb7652c154bd9395aa8a4b6a9ef7afd50
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 9
+%global bumpver 10
 
 Name:           plasma-integration
 Summary:        Qt Platform Theme integration plugin for Plasma
@@ -62,7 +62,8 @@ Requires:       breeze-cursor-theme
 Requires:       breeze-icon-theme
 Recommends:     plasma-workspace
 
-Requires:       qqc2-breeze-style
+Requires:       kf6-qqc2-desktop-style%{?_isa}
+Requires:       qqc2-breeze-style%{?_isa}
 
 Requires:       (%{name}-qt5 if qt5-qtbase-gui)
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}

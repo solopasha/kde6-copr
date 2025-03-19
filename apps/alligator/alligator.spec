@@ -1,6 +1,6 @@
 %global commit0 aab6dac26ba0a0c0f488fe18028d259ac2cccf7d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           alligator
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -36,6 +36,7 @@ Requires:       hicolor-icon-theme
 # QML module dependencies
 Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-kirigami-addons%{?_isa}
+Requires:       kf6-qqc2-desktop-style%{?_isa}
 
 %description
 Alligator is a convergent RSS/Atom feed reader.

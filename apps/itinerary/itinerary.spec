@@ -1,6 +1,6 @@
 %global commit0 fa4be5ef2e9858d2f0edf59dd01519cee8975817
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 8
 
 Name:           itinerary
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -64,12 +64,13 @@ BuildRequires:  desktop-file-utils
 Requires:       hicolor-icon-theme
 
 # Runtime requirements
-Requires:       qt6-qtlocation
-Requires:       qt6-qtmultimedia
-Requires:       kf6-kitemmodels
-Requires:       kf6-prison
-Requires:       kf6-kirigami
-Requires:       kf6-kirigami-addons
+Requires:       kf6-kirigami-addons%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-kitemmodels%{?_isa}
+Requires:       kf6-prison%{?_isa}
+Requires:       kf6-qqc2-desktop-style%{?_isa}
+Requires:       qt6-qtlocation%{?_isa}
+Requires:       qt6-qtmultimedia%{?_isa}
 
 %description
 %summary.

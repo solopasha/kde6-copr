@@ -1,6 +1,6 @@
 %global commit0 d2a73853e7ea560f08a34cc7659648b938284309
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           tokodon
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -57,6 +57,7 @@ Requires:       kf6-kitemmodels%{?_isa}
 Requires:       kf6-knotifications%{?_isa}
 Requires:       kf6-purpose%{?_isa}
 Requires:       kf6-sonnet%{?_isa}
+Requires:       kf6-qqc2-desktop-style%{?_isa}
 
 %description
 Tokodon is a Mastodon client for Plasma and Plasma Mobile.

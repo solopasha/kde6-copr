@@ -1,6 +1,6 @@
 %global commit0 8026971de3ff7da02b5664903d0a54498eb16f76
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           koko
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -53,6 +53,7 @@ Requires:       kf6-purpose%{?_isa}
 Requires:       kquickimageeditor-qt6%{?_isa}
 Requires:       qt6-qtdeclarative%{?_isa}
 Requires:       qt6-qtmultimedia%{?_isa}
+Requires:       kf6-qqc2-desktop-style%{?_isa}
 
 Obsoletes:      %{name}-devel < 24.05.0-2
 

@@ -1,6 +1,6 @@
 %global commit0 28b8d5b0132aa3d38c248415970be679d949fb0b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           calindori
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -17,28 +17,28 @@ BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 
-BuildRequires: cmake(Qt6Core)
-BuildRequires: cmake(Qt6Gui)
-BuildRequires: cmake(Qt6Qml)
-BuildRequires: cmake(Qt6Quick)
-BuildRequires: cmake(Qt6QuickControls2)
-BuildRequires: cmake(Qt6Svg)
-BuildRequires: cmake(Qt6Network)
-BuildRequires: cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6QuickControls2)
+BuildRequires:  cmake(Qt6Svg)
+BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6DBus)
 
-BuildRequires: cmake(KF6Config)
-BuildRequires: cmake(KF6Kirigami2)
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6CoreAddons)
-BuildRequires: cmake(KF6CalendarCore)
-BuildRequires: cmake(KF6Notifications)
-BuildRequires: cmake(KF6People)
-BuildRequires: cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6Kirigami2)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6CalendarCore)
+BuildRequires:  cmake(KF6Notifications)
+BuildRequires:  cmake(KF6People)
+BuildRequires:  cmake(KF6DBusAddons)
 
-
-Requires:      hicolor-icon-theme
-Requires:      kf6-kirigami
-Requires:      qt6-qtwayland
+Requires:       hicolor-icon-theme
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-qqc2-desktop-style%{?_isa}
+Requires:       qt6-qtwayland%{?_isa}
 
 %description
 %{summary}.

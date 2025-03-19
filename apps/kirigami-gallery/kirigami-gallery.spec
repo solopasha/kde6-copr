@@ -1,6 +1,6 @@
 %global commit0 4d0581064d136ebf5b6062755c1bb853a48fc2d5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    kirigami-gallery
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -30,6 +30,7 @@ BuildRequires: cmake(KF5Package)
 Requires:   kf6-kirigami%{?_isa}
 Requires:   kf6-kitemmodels%{?_isa}
 Requires:   breeze-icon-theme
+Requires:   kf6-qqc2-desktop-style%{?_isa}
 
 %description
 Example application which uses all features from kirigami,

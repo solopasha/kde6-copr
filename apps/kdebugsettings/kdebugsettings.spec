@@ -1,6 +1,6 @@
 %global commit0 63ae98d73e07e09b355c25d4b0eed0d30c539178
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kdebugsettings
 Summary: Configure debug output from Qt5 applications
@@ -26,6 +26,8 @@ BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  cmake(Qt6Widgets)
+
+Requires:       kf6-qqc2-desktop-style%{?_isa}
 
 
 %description

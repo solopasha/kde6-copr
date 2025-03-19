@@ -1,6 +1,6 @@
 %global commit0 91d2c9fdf15153276de255648733ca361be81cf4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 39
+%global bumpver 40
 
 %global base_name discover
 # enable snap support (or not)
@@ -82,6 +82,7 @@ Requires:       qt6qml(org.kde.kitemmodels)
 BuildRequires:  cmake(KF6KirigamiAddons)
 Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-qqc2-desktop-style%{?_isa}
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
 # Enable -packagekit and -flatpak by default

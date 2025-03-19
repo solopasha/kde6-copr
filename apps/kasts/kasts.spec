@@ -1,6 +1,6 @@
 %global commit0 6a98f44c6cc92010e79afc3d4def4c5bb02f0e03
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 Name:           kasts
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -53,6 +53,7 @@ BuildRequires:  pkgconfig(gstreamer-1.0)
 Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       qt6-qtmultimedia%{?_isa}
+Requires:       kf6-qqc2-desktop-style%{?_isa}
 
 %description
 %{summary}.

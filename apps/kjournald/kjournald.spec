@@ -1,6 +1,6 @@
 %global commit0 f0c3451f70d2e4a5003935199572220e2b1a7d2d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:          kjournald
 Version:       25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -31,6 +31,7 @@ BuildRequires: cmake(Qt6Widgets)
 
 # QML module dependencies
 Requires:      kf6-kirigami%{?_isa}
+Requires:      kf6-qqc2-desktop-style%{?_isa}
 Requires:      %{name}-libs%{?_isa} = %{version}-%{release}
 
 %description

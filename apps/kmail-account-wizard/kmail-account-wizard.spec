@@ -1,6 +1,6 @@
 %global commit0 56ced4672c20bbcf18c413dc2d89d93b34d4f985
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 #global tests 1
 
@@ -44,6 +44,7 @@ BuildRequires: cmake(Qt6Widgets)
 
 Requires:      kf6-kirigami%{?_isa}
 Requires:      kf6-kirigami-addons%{?_isa}
+Requires:      kf6-qqc2-desktop-style%{?_isa}
 
 %if 0%{?tests}
 BuildRequires: dbus-x11

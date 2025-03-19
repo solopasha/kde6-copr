@@ -1,6 +1,6 @@
 %global commit0 ad95cde25244a79bcf0521c8ab1f5568f092d990
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           audiotube
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -46,6 +46,7 @@ Requires:       kf6-kconfig%{?_isa}
 Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-purpose%{?_isa}
+Requires:       kf6-qqc2-desktop-style%{?_isa}
 Requires:       python3-ytmusicapi
 Requires:       yt-dlp
 

@@ -1,6 +1,6 @@
 %global commit0 8fc081d4f875c2b6c1f15b654d67ac5d5677c3af
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           francis
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -38,6 +38,7 @@ Requires:       qt6qml(org.kde.coreaddons)
 Requires:       qt6qml(org.kde.kirigami)
 Requires:       qt6qml(org.kde.kirigamiaddons.formcard)
 Requires:       qt6qml(org.kde.notification)
+Requires:       kf6-qqc2-desktop-style%{?_isa}
 
 %description
 Francis uses the well-known pomodoro technique to help you get more productive.

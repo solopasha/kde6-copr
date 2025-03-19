@@ -1,6 +1,6 @@
 %global commit0 30bb754667d8d1b30f28061953cd7c1a5c373a41
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           qrca
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -42,6 +42,7 @@ Requires:       qt6qml(org.kde.kirigamiaddons.formcard)
 Requires:       qt6qml(org.kde.prison)
 Requires:       qt6qml(org.kde.purpose)
 Requires:       qt6qml(QtMultimedia)
+Requires:       kf6-qqc2-desktop-style%{?_isa}
 
 %description
 Qrca is a simple application for Plasma Desktop and Plasma Mobile that lets
