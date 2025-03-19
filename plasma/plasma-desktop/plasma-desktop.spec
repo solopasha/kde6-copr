@@ -1,6 +1,6 @@
 %global commit0 93ced685d793546b62700186d26ca0e99c8d25c0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 67
+%global bumpver 68
 
 Name:           plasma-desktop
 Summary:        Plasma Desktop shell
@@ -83,6 +83,7 @@ BuildRequires:  cmake(AccountsQt6)
 BuildRequires:  cmake(KAccounts6)
 BuildRequires:  cmake(packagekitqt6)
 BuildRequires:  cmake(SDL2)
+BuildRequires:  desktop-backgrounds-compat
 BuildRequires:  intltool
 BuildRequires:  libxcb-devel
 BuildRequires:  pkgconfig(glib-2.0)
@@ -185,6 +186,7 @@ Recommends:     qt6-qtvirtualkeyboard
 Requires:       plasma-workspace >= %{majmin_ver_kf6}
 # /usr/share/backgrounds/default.png}
 Requires:       desktop-backgrounds-compat
+Requires:       kf6-kimageformats
 BuildArch:      noarch
 %description -n sddm-breeze
 %{summary}.
@@ -202,7 +204,11 @@ cp -alf %{buildroot}%{_datadir}/sddm/themes/breeze/ \
 install -m644 -p breeze-fedora/* \
         %{buildroot}%{_datadir}/sddm/themes/01-breeze-fedora/
 # Set Fedora background
-sed -i -e 's|^background=.*$|background=/usr/share/backgrounds/default.png|g' %{buildroot}%{_datadir}/sddm/themes/01-breeze-fedora/theme.conf
+bg_file_ext="jxl"
+if [ -f "/usr/share/backgrounds/default.png" ]; then
+bg_file_ext="png"
+fi
+sed -i -e "s|^background=.*$|background=/usr/share/backgrounds/default.${bg_file_ext}|g" %{buildroot}%{_datadir}/sddm/themes/01-breeze-fedora/theme.conf
 # Set Fedora distro vendor logo
 sed -i -e 's|^showlogo=.*$|showlogo=shown|g' %{buildroot}%{_datadir}/sddm/themes/01-breeze-fedora/theme.conf
 sed -i -e 's|^logo=.*$|logo=%{_datadir}/pixmaps/fedora_whitelogo.svg|g' %{buildroot}%{_datadir}/sddm/themes/01-breeze-fedora/theme.conf
