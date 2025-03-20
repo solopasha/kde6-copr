@@ -1,6 +1,6 @@
-%global commit0 67fb2e8166fc8678327d200f725be8bb0a6ee34f
+%global commit0 1223453c9e4f3ccc0e442cd0dd6bb59caf9ba68f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:    gwenview
 Summary: An image viewer
@@ -38,6 +38,8 @@ BuildRequires: cmake(PlasmaActivities)
 BuildRequires: cmake(Qt6Concurrent)
 BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6DBus)
+BuildRequires: cmake(Qt6Multimedia)
+BuildRequires: cmake(Qt6MultimediaWidgets)
 BuildRequires: cmake(Qt6OpenGLWidgets)
 BuildRequires: cmake(Qt6PrintSupport)
 BuildRequires: cmake(Qt6Svg)
@@ -49,7 +51,6 @@ BuildRequires: qt6-qtbase-private-devel
 BuildRequires: cmake(KDcrawQt6)
 BuildRequires: cmake(kImageAnnotator-Qt6)
 BuildRequires: cmake(kColorPicker-Qt6)
-BuildRequires: cmake(Phonon4Qt6)
 BuildRequires: pkgconfig(cfitsio)
 BuildRequires: pkgconfig(exiv2)
 BuildRequires: pkgconfig(lcms2)
