@@ -15,29 +15,31 @@ URL:            https://invent.kde.org/edu/%{name}
 %apps_source
 
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  kf5-rpm-macros
 BuildRequires:  libappstream-glib
 
-BuildRequires:  cmake(KF5Archive)
-BuildRequires:  cmake(KF5Config)
-BuildRequires:  cmake(KF5Crash)
-BuildRequires:  cmake(KF5I18n)
-BuildRequires:  cmake(KF5Kirigami2)
-BuildRequires:  cmake(KF5NewStuff)
-BuildRequires:  cmake(KF5DocTools)
+BuildRequires:  cmake(KF6Archive)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6Crash)
+BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6ItemModels)
+BuildRequires:  cmake(KF6Kirigami)
+BuildRequires:  cmake(KF6NewStuff)
+BuildRequires:  cmake(KF6XmlGui)
 
-BuildRequires:  cmake(Qt5Multimedia)
-BuildRequires:  cmake(Qt5Qml)
-BuildRequires:  cmake(Qt5Quick)
-BuildRequires:  cmake(Qt5Sql)
-BuildRequires:  cmake(Qt5Test)
-BuildRequires:  cmake(Qt5XmlPatterns)
+BuildRequires:  cmake(Qt6Multimedia)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Sql)
+BuildRequires:  cmake(Qt6Test)
+
+BuildRequires:  cmake(libxml2)
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
-Requires:       qt5-qtquickcontrols
-Requires:       kf5-kirigami2
-Requires:       kf5-kirigami2-addons
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-kirigami-addons%{?_isa}
+Requires:       kf6-knewstuff%{?_isa}
+Requires:       qt6-qtmultimedia%{?_isa}
 
 %description
 %{summary}.
@@ -55,7 +57,7 @@ Requires:       %{name} = %{version}-%{release}
 
 
 %build
-%cmake_kf5
+%cmake_kf6
 %cmake_build
 
 
@@ -66,25 +68,24 @@ Requires:       %{name} = %{version}-%{release}
 
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf5_metainfodir}/org.kde.%{name}.appdata.xml
-desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.desktop
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.desktop
 
 
 %files -f %{name}.lang
 %doc README*
 %license LICENSES/*
-%{_kf5_bindir}/artikulate
-%{_kf5_bindir}/artikulate_editor
-%{_kf5_datadir}/applications/org.kde.artikulate.desktop
-%{_kf5_datadir}/config.kcfg/artikulate.kcfg
-%{_kf5_datadir}/icons/hicolor/*/*/*
-%{_kf5_datadir}/knsrcfiles/artikulate.knsrc
-%{_kf5_metainfodir}/org.kde.artikulate.appdata.xml
+%{_kf6_bindir}/artikulate
+%{_kf6_bindir}/artikulate_editor
+%{_kf6_datadir}/applications/org.kde.artikulate.desktop
+%{_kf6_datadir}/config.kcfg/artikulate.kcfg
+%{_kf6_datadir}/icons/hicolor/*/*/*
+%{_kf6_datadir}/knsrcfiles/artikulate.knsrc
+%{_kf6_metainfodir}/org.kde.artikulate.appdata.xml
 
 %files libs
-%{_kf5_libdir}/libartikulatecore.so.0*
-%{_kf5_libdir}/libartikulatelearnerprofile.so.0*
-%{_kf5_libdir}/libartikulatesound.so.0*
+%{_kf6_libdir}/libartikulatecore.so.0*
+%{_kf6_libdir}/libartikulatelearnerprofile.so.0*
 
 
 %changelog
