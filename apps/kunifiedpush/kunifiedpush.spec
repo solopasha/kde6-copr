@@ -1,6 +1,6 @@
-%global commit0 81586ce80857ac754fb3afe765c3bc200b82cd24
+%global commit0 026e041facd716b4f2bdab11d30c5f10428c6b82
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 Name:           kunifiedpush
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

@@ -1,6 +1,6 @@
-%global commit0 f680aa8c74606c44de6f0a58eb243377a0ac46ff
+%global commit0 6b674e7d3fa910ece80aeca2dc411f3b0a2c8959
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 10
+%global bumpver 11
 
 Name:           plasma-sdk
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -89,7 +89,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.appdata.
 %{_kf6_metainfodir}/org.kde.plasma.themeexplorer.appdata.xml
 %{_kf6_metainfodir}/org.kde.plasmaengineexplorer.appdata.xml
 %{_kf6_metainfodir}/org.kde.plasmoidviewer.appdata.xml
-%{_kf6_qtplugindir}/ktexteditor/iconexplorerplugin.so
+%{_kf6_plugindir}/ktexteditor/iconexplorerplugin.so
 %{_mandir}/man1/kqml.1.*
 %{_mandir}/man1/plasmaengineexplorer.1.*
 %{_mandir}/man1/plasmoidviewer.1.*

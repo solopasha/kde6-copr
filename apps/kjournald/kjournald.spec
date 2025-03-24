@@ -1,6 +1,6 @@
-%global commit0 f0c3451f70d2e4a5003935199572220e2b1a7d2d
+%global commit0 8f1b7925268f1e2c1de177690d87b9c9e2bdbed5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:          kjournald
 Version:       25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

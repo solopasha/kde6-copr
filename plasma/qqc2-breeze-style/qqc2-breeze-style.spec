@@ -1,6 +1,6 @@
-%global commit0 7c4302dc21aaeb3e3c3be0c1299a14c72163f2fe
+%global commit0 819b6b5dc8652be875f6352a7aada9dfaa3d89c2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 9
+%global bumpver 10
 
 Name:           qqc2-breeze-style
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -17,7 +17,6 @@ BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KirigamiPlatform)
-BuildRequires:  cmake(KF6QuickCharts)
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
@@ -26,8 +25,6 @@ BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6QuickTemplates2)
-
-Requires:       kf6-kquickcharts%{?_isa}
 
 %package        devel
 Summary:        Development files for %{name}

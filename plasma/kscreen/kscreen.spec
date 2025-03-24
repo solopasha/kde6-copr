@@ -1,6 +1,6 @@
-%global commit0 e0f32bf0ee966fcbd174062233e0d4c704adb8d2
+%global commit0 c8d6dbfcc875a1fb743cd8981d6d91b608a7f2ec
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 17
+%global bumpver 18
 
 Name:           kscreen
 Epoch:          1
@@ -27,7 +27,6 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Sensors)
 BuildRequires:  cmake(Qt6Test)
-BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(KF6Screen)
 BuildRequires:  cmake(LayerShellQt)

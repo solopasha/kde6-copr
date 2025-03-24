@@ -1,6 +1,6 @@
-%global commit0 5d06a548023d43ed4622c67996e319ce9e3edc26
+%global commit0 605a12918027088c77ea76762ff43d200d4b967d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    ksudoku
 Summary: A logic-based symbol placement puzzle
