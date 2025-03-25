@@ -1,6 +1,6 @@
-%global commit0 4500efd25e050fd8454e9e25200968a2543a4ace
+%global commit0 867a1815f1560dcd974c1731be5a7307f15034ee
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 Name:    kidentitymanagement
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
