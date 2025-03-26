@@ -1,6 +1,6 @@
-%global commit0 c0d4bc5069ab745f785b454d65f986d2703cb8f9
+%global commit0 424d8e3f2107237ddcbf92b3bfcfa2c80bb20a25
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:           plasma-activities-stats
 Summary:        A KDE Frameworks 6 Tier 3 library for accessing the usage data collected by the activities system
