@@ -1,6 +1,6 @@
-%global commit0 3f0dffc8b070e44e7fc75b0a6d0f9a726960d7f8
+%global commit0 2553663479c42c25ef4e4e02dd3e0d0267fa2e38
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:    kwordquiz
 Summary: Flash Card Trainer

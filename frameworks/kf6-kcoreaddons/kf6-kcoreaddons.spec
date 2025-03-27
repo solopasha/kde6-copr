@@ -1,6 +1,6 @@
-%global commit0 93b699cdbe1e82f02db73dd359cad8a27b1c2c70
+%global commit0 f91ecec2ba4e243e298ab18bb35df023449b94f2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 %global framework kcoreaddons
 
