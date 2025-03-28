@@ -72,11 +72,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_bindir}/configure-printer
-%{_kf6_bindir}/kde-add-printer
 %{_kf6_bindir}/kde-print-queue
 %{_kf6_datadir}/applications/kcm_printer_manager.desktop
 %{_kf6_datadir}/applications/org.kde.ConfigurePrinter.desktop
-%{_kf6_datadir}/applications/org.kde.kde-add-printer.desktop
 %{_kf6_datadir}/applications/org.kde.PrintQueue.desktop
 %{_kf6_datadir}/knotifications6/printmanager.notifyrc
 %{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.printmanager/
