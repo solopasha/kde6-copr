@@ -67,6 +67,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %{_kf6_bindir}/filelight
 %{_kf6_datadir}/applications/org.kde.filelight.desktop
 %{_kf6_datadir}/icons/hicolor/*/*/*filelight.*
+%{_kf6_datadir}/kio/servicemenus/filelight.desktop
 %{_kf6_datadir}/qlogging-categories6/%{name}*
 %{_kf6_metainfodir}/org.kde.filelight.appdata.xml
 %{_sysconfdir}/xdg/filelightrc
