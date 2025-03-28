@@ -50,11 +50,13 @@ Requires:       kf6-ksvg%{?_isa}
 Requires:       qt6-qtmultimedia%{?_isa}
 Requires:       kf6-qqc2-desktop-style%{?_isa}
 
+Recommends:     (%{name}-plasma-applet%{?_isa} = %{version}-%{release} if plasmashell)
+
 %description
 A convergent clock application for Plasma.
 
 
-%package plasma-applet
+%package        plasma-applet
 Summary:        Plasma applet for kclock
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 # QML module dependencies
@@ -94,6 +96,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 %{_kf6_datadir}/dbus-1/services/org.kde.%{name}d.service
 %{_kf6_datadir}/icons/hicolor/scalable/apps/org.kde.%{name}.svg
 %{_kf6_datadir}/knotifications6/%{name}d.notifyrc
+%{_kf6_datadir}/krunner/dbusplugins/kclock-runner.desktop
 %{_kf6_metainfodir}/%{orig_name}.appdata.xml
 %{_kf6_sysconfdir}/xdg/autostart/%{klockd_name}-autostart.desktop
 
