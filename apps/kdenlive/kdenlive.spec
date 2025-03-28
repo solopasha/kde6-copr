@@ -98,6 +98,7 @@ sed '/add/s/deps)/deps EXCLUDE_FROM_ALL)/' -i CMakeLists.txt
 
 ## unpackaged files
 rm -rfv  %{buildroot}%{_datadir}/doc/Kdenlive/
+rm %{buildroot}%{_kf6_libdir}/libkdenliveLibplugin.a
 
 %find_lang %{name} --with-html --all-name
 
