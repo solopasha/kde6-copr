@@ -1,6 +1,6 @@
-%global commit0 b1d57cb38859fcd261b4ee3b85751b9d135989dc
+%global commit0 09931cbacdcfae5f10c7a230488c948e56268ddf
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 73
+%global bumpver 74
 
 Name:           plasma-desktop
 Summary:        Plasma Desktop shell
@@ -244,6 +244,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_kf6_datadir}/kcmmouse/
 %{_kf6_datadir}/kcmsolidactions/
 %{_kf6_datadir}/kglobalaccel/org.kde.plasma.emojier.desktop
+%{_kf6_datadir}/kglobalaccel/org.kde.touchpadshortcuts.desktop
 %{_kf6_datadir}/knotifications6/*.notifyrc
 %{_kf6_datadir}/knsrcfiles/
 %{_kf6_datadir}/plasma/*
