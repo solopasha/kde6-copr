@@ -1,6 +1,6 @@
-%global commit0 a6e1e37346275ed52222b8b269cf006b7d3406d8
+%global commit0 47fa76b31492cde07dd30c0aa15ff68f09eb70d4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:    kcachegrind
 Summary: GUI to profilers such as Valgrind

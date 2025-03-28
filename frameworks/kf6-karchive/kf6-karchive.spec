@@ -1,6 +1,6 @@
-%global commit0 42fd94a781477679ad5b5a456dfd8e2810c4790d
+%global commit0 af522fdec0b69cae1c8478783ca58debbc8526fe
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 %global framework karchive
 
@@ -15,6 +15,7 @@ URL:            https://invent.kde.org/frameworks/%{framework}
 BuildRequires:  cmake(Qt6Core)
 
 BuildRequires:  bzip2-devel
+BuildRequires:  openssl-devel
 BuildRequires:  pkgconfig(libzstd)
 BuildRequires:  xz-devel
 BuildRequires:  zlib-devel
