@@ -125,6 +125,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %{_kf6_mandir}/man1/kdenlive.1*
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 %{_kf6_plugindir}/thumbcreator/mltpreview.so
+%{_kf6_qmldir}/org/kde/kdenlive/
 
 
 %changelog
