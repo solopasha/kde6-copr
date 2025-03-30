@@ -122,6 +122,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %{_kf6_datadir}/mime/packages/org.kde.kdenlive.xml
 %{_kf6_datadir}/mime/packages/westley.xml
 %{_kf6_datadir}/qlogging-categories6/kdenlive.categories
+%{_kf6_datadir}/qlogging-categories6/kdenlive.renamecategories
 %{_kf6_mandir}/man1/kdenlive_render.1*
 %{_kf6_mandir}/man1/kdenlive.1*
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
