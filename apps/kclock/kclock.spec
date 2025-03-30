@@ -1,6 +1,6 @@
-%global commit0 27f18d10bd6b33cd38078e0f253c4bfd279a4596
+%global commit0 b812e614730d12fa47b5bf44e24ed1fe222d25e4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 10
+%global bumpver 11
 
 %global klockd_name org.kde.kclockd
 %global orig_name org.kde.kclock
@@ -38,6 +38,7 @@ BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6KirigamiAddons)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6StatusNotifierItem)
+BuildRequires:  cmake(KF6Svg)
 
 BuildRequires:  cmake(Plasma)
 
