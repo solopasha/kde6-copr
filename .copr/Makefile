@@ -1,4 +1,4 @@
-.PHONY: prepare srpm
+.PHONY: prepare srpm goprep
 specfile = $(notdir $(spec))
 
 prepare:
@@ -8,10 +8,17 @@ prepare:
 				--setopt='plasma-unstable.gpgkey=https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/pubkey.gpg' \
 				kf6-srpm-macros
 
+goprep:
+	dnf install --nodocs -y golang git-core go-vendor-tools rpmdevtools
+	spectool -g ./$(specfile)
+	go_vendor_archive create --config ./go-vendor-tools.toml ./$(specfile)
+
 %spec: FORCE
 	@:
 
 FORCE: ;
+
+gocryptfs.spec: goprep
 
 srpm: prepare $(specfile)
 	rpmbuild -bs --define "_sourcedir ${PWD}" --define "_specdir ${PWD}" \
