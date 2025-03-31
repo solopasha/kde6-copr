@@ -1,6 +1,6 @@
-%global commit0 e0ee7ebe7ef53f041718e7b982c64469ba76329b
+%global commit0 e839fbbdc93165e0ea127bd034386199cf302de2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 22
+%global bumpver 23
 
 Name:           merkuro
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

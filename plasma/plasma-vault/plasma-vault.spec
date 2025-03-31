@@ -1,6 +1,6 @@
-%global commit0 d233da2ce7eb6fcd388824d66fc3f73118ee5d52
+%global commit0 ba292cce35907707cab41e651fd86b847117ed73
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 11
+%global bumpver 12
 
 Name:           plasma-vault
 Summary:        Plasma Vault offers strong encryption features in a user-friendly way
@@ -34,6 +34,7 @@ BuildRequires:  cmake(PlasmaActivities)
 ## Runtime backends
 Recommends:     cryfs
 Recommends:     fuse-encfs
+Requires:       gocryptfs
 
 %description
 Plasma Vault allows to lock and encrypt sets of documents and hide them from
