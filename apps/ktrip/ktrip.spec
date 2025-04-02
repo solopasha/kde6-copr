@@ -1,6 +1,6 @@
-%global commit0 1d7a150e978c12908b5514bb6829d77d6daa2cc6
+%global commit0 2fe1be8de1b8a2004844da796f1d8a3b29efc0ed
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:           ktrip
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
