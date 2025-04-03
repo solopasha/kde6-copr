@@ -25,6 +25,8 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Qt6WebSockets)
 
+BuildRequires:  pkgconfig(openssl)
+
 Requires:       kf6-kirigami%{?_isa}
 
 %description
