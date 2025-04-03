@@ -1,6 +1,6 @@
-%global commit0 a425faa55b42ff8055906e8f9f87fdf0832343fc
+%global commit0 46a8c28618629be29663320dc5606f9f62c6c2c1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 12
+%global bumpver 13
 
 %global klockd_name org.kde.kclockd
 %global orig_name org.kde.kclock

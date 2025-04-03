@@ -1,6 +1,6 @@
-%global commit0 ba1c4016a11b560d9d1420550fb6a90f536ed99a
+%global commit0 58357702b5f61f03084859e84b7d8da044c7cf4b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:    granatier
 Summary: Place bombs to kill enemies and remove obstacles

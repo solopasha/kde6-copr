@@ -1,6 +1,6 @@
-%global commit0 0bfad23252d3a383751fa1cb6c10175297262f98
+%global commit0 2180a5f1ba8684bfb55ba465fec57f6e714081f3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 Name:    kimap
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
