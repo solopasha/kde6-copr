@@ -9,7 +9,7 @@ prepare:
 				kf6-srpm-macros
 
 goprep:
-	dnf install --nodocs -y golang git-core go-vendor-tools rpmdevtools
+	dnf install --nodocs -y golang git-core go-vendor-tools rpmdevtools python3-specfile
 	spectool -g ./$(specfile)
 	go_vendor_archive create --config ./go-vendor-tools.toml ./$(specfile)
 

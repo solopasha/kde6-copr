@@ -4,7 +4,7 @@
 %global gomodulesmode GO111MODULE=on
 # https://github.com/rfjakob/gocryptfs
 %global goipath         github.com/rfjakob/gocryptfs/v2
-Version:                2.5.2
+Version:                2.5.3
 
 %gometa -L -f
 
