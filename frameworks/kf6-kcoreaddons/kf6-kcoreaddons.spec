@@ -1,11 +1,11 @@
-%global commit0 cda56b3b641e7b85e3422bf24e8a24d32f20cc02
+%global commit0 1c6361d8188c7d21a6cce67d585da21d2086d06b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 9
+%global bumpver 1
 
 %global framework kcoreaddons
 
 Name:           kf6-%{framework}
-Version:        6.13.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.13.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Qt addon library with a collection of non-GUI utilities
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND MPL-1.1 AND LGPL-2.0-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-2.1-only WITH Qt-LGPL-exception-1.1
@@ -16,9 +16,6 @@ BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6Qml)
-
-# BuildRequires:  cmake(Shiboken6)
-# BuildRequires:  cmake(PySide6)
 
 BuildRequires:  pkgconfig(libudev)
 
@@ -37,6 +34,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %qch_package
+%kf6_python_bindings_package -t
 
 %files -f kcoreaddons6_qt.lang
 %doc README.md
@@ -47,7 +45,6 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6CoreAddons.so.%{version_no_git}
 %{_kf6_libdir}/libKF6CoreAddons.so.6
 %{_kf6_qmldir}/org/kde/coreaddons/
-#{python3_sitearch}/KCoreAddons.*.so
 
 %files devel
 %{_kf6_includedir}/KCoreAddons/

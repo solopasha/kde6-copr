@@ -1,11 +1,11 @@
-%global commit0 ac3377bb303860256628e6172bfa131b19c10ae0
+%global commit0 31d4eca455e976163f1123800518861b85d283aa
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 %global framework kunitconversion
 
 Name:           kf6-%{framework}
-Version:        6.13.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.13.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Converting physical units
 
@@ -17,9 +17,6 @@ BuildRequires:  cmake(KF6I18n)
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Network)
-
-# BuildRequires:  cmake(PySide6)
-# BuildRequires:  cmake(Shiboken6)
 
 %description
 KUnitConversion provides functions to convert values in different physical
@@ -35,6 +32,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %qch_package
+%kf6_python_bindings_package
 
 %files -f %{name}.lang
 %doc README.md
@@ -42,7 +40,6 @@ developing applications that use %{name}.
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6UnitConversion.so.%{version_no_git}
 %{_kf6_libdir}/libKF6UnitConversion.so.6
-#{python3_sitearch}/KUnitConversion*.so
 
 %files devel
 %{_kf6_includedir}/KUnitConversion/

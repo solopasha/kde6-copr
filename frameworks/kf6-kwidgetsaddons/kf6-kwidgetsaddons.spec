@@ -1,11 +1,11 @@
 %global commit0 1546c62968c843eb5d7dabbd52a488a99b277018
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 %global framework kwidgetsaddons
 
 Name:           kf6-%{framework}
-Version:        6.13.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.13.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with various classes on top of QtWidgets
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later
@@ -13,9 +13,6 @@ URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
 BuildRequires:  cmake(Qt6Widgets)
-
-# BuildRequires:  cmake(PySide6)
-# BuildRequires:  cmake(Shiboken6)
 
 %description
 KDE Frameworks 6 Tier 1 addon with various classes on top of QtWidgets.
@@ -29,6 +26,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %qch_package
+%kf6_python_bindings_package
 
 %files -f kwidgetsaddons6_qt.lang
 %doc README.md
@@ -36,7 +34,6 @@ developing applications that use %{name}.
 %{_kf6_datadir}/qlogging-categories6/*categories
 %{_kf6_libdir}/libKF6WidgetsAddons.so.%{version_no_git}
 %{_kf6_libdir}/libKF6WidgetsAddons.so.6
-#{python3_sitearch}/KWidgetsAddons*.so
 
 %files devel
 %{_kf6_includedir}/KWidgetsAddons/

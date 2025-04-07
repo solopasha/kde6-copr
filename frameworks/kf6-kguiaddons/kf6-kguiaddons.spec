@@ -1,11 +1,11 @@
-%global commit0 cf6ba6ba4614f3060aa9ebeb279e580121ad7d66
+%global commit0 b0cf4f53feeb96b906999c9d765e2320136f77c6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 %global framework kguiaddons
 
 Name:           kf6-%{framework}
-Version:        6.13.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.13.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with various classes on top of QtGui
 
@@ -17,9 +17,6 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  qt6-qtbase-private-devel
-
-# BuildRequires:  cmake(PySide6)
-# BuildRequires:  cmake(Shiboken6)
 
 BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  pkgconfig(wayland-client)
@@ -38,6 +35,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %qch_package
+%kf6_python_bindings_package
 
 %files
 %doc README.md
@@ -48,7 +46,6 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6GuiAddons.so.%{version_no_git}
 %{_kf6_libdir}/libKF6GuiAddons.so.6
 %{_kf6_qmldir}/org/kde/guiaddons/
-#{python3_sitearch}/KGuiAddons*.so
 
 %files devel
 %{_kf6_includedir}/KGuiAddons/

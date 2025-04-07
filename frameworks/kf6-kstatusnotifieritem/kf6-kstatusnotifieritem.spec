@@ -1,11 +1,11 @@
-%global commit0 354fda058b3f1d7a067709bbd5c615ea5d3253ba
+%global commit0 246142eda181e7312800b6898a3dd461e5205d40
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 %global framework kstatusnotifieritem
 
 Name:           kf6-%{framework}
-Version:        6.13.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.13.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Implementation of Status Notifier Items
 
@@ -35,6 +35,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %qch_package
+%kf6_python_bindings_package
 
 %files -f kstatusnotifieritem6_qt.lang
 %{_kf6_datadir}/dbus-1/interfaces/kf6_org.kde.StatusNotifierItem.xml

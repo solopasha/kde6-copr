@@ -44,6 +44,18 @@ Developer Documentation files for %{name} for use with KDevelop or QtCreator.\
 %files %{?1:%{1}-}doc\
 %{_qt6_docdir}/*.qch
 
+%kf6_python_bindings_package(t) \
+%package        -n python3-%{name}\
+Summary:        Python bindings for %{name}\
+BuildRequires:  cmake(Shiboken6)\
+BuildRequires:  cmake(PySide6)\
+%description    -n python3-%{name}\
+This package provides Python bindings for %{name}.\
+%files -n python3-%{name}\
+%{?-t:%{_kf6_datadir}/PySide6/typesystems/typesystem_%{framework}.xml}\
+%{?-t:%{_includedir}/PySide6/KCoreAddons/%{framework}_python.h}\
+%{python3_sitearch}/*.cpython-%{python3_version_nodots}*.so
+
 %buildsystem_cmake_kf6_conf() %nil
 %buildsystem_cmake_kf6_build() %nil
 %buildsystem_cmake_kf6_install() %nil

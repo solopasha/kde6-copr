@@ -1,11 +1,11 @@
 %global commit0 be70358fc877b137e262786ef02d4efcc391dab6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 1
 
 %global framework extra-cmake-modules
 
 Name:           extra-cmake-modules
-Version:        6.13.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.13.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Extra modules and scripts for CMake
 
@@ -28,7 +28,7 @@ Requires:       (kf6-rpm-macros if rpm-build)
 Requires:       (cmake(Qt5LinguistTools) if qt5-qtbase-devel)
 Requires:       (cmake(Qt6LinguistTools) if qt6-qtbase-devel)
 
-Requires:       ((python3-devel and python3-build and python3-setuptools and python3-wheel) if (cmake(Shiboken6) and cmake(PySide6) and rpm-build))
+Requires:       ((python3-devel and python3-build and python3-setuptools and python3-wheel and clang-devel) if (cmake(Shiboken6) and cmake(PySide6) and rpm-build))
 
 Requires:       (spirv-tools if qt6-qtshadertools-devel)
 

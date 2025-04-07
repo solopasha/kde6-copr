@@ -1,11 +1,11 @@
-%global commit0 8f440bc938aa97dd616fea1dfff704dd3a377176
+%global commit0 07c6351cb953cafb900840b7097c91bbb1ceaa64
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 %global framework kxmlgui
 
 Name:           kf6-%{framework}
-Version:        6.13.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.13.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 solution for user-configurable main windows
 
@@ -23,9 +23,6 @@ BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6ItemViews)
 BuildRequires:  cmake(KF6WidgetsAddons)
-
-# BuildRequires:  cmake(PySide6)
-# BuildRequires:  cmake(Shiboken6)
 
 BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6PrintSupport)
@@ -51,6 +48,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %qch_package
+%kf6_python_bindings_package
 
 %install -a
 # Own the kxmlgui directory
@@ -62,7 +60,6 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kxmlgui5/
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6XmlGui.so.%{version_no_git}
 %{_kf6_libdir}/libKF6XmlGui.so.6
-#{python3_sitearch}/KXmlGui*.so
 %dir %{_kf6_datadir}/kxmlgui5/
 
 %files devel
