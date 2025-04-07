@@ -1,6 +1,6 @@
-%global commit0 e5820bb3dac502a383ba1740b5d0a687a2985a4f
+%global commit0 efecf2948eac0f0cf249832e8c097fb5c3c96e88
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 16
+%global bumpver 17
 
 %global orgname org.kde.plasma-welcome
 

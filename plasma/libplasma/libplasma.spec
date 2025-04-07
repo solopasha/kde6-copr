@@ -1,6 +1,6 @@
-%global commit0 8033343076e59a292274790b1eccd4b4e17a6aaf
+%global commit0 1268f879061ab421703f7c9fade6f8e0f6a9e45d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 31
+%global bumpver 32
 
 Name:           libplasma
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}

@@ -1,6 +1,6 @@
-%global commit0 fd21b92fbe0941fbf9e852b79ace9455875498fc
+%global commit0 eb3c27dc217a63d8796f0d800bff48a18e3c6454
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:           breeze-gtk
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}

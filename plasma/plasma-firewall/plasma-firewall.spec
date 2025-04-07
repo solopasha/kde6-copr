@@ -1,6 +1,6 @@
-%global commit0 cd82b4b983f093719f39dcc15c8c3a317e7e8cf7
+%global commit0 63ed436f2a32f5badd85499d3eeedeff4301ff26
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 8
 
 %bcond backend_ufw %[%{undefined rhel}]
 
