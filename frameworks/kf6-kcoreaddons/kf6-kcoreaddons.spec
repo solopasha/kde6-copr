@@ -1,6 +1,6 @@
 %global commit0 1c6361d8188c7d21a6cce67d585da21d2086d06b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework kcoreaddons
 
@@ -34,7 +34,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %qch_package
-%kf6_python_bindings_package -t
+%kf6_python_bindings_package
 
 %files -f kcoreaddons6_qt.lang
 %doc README.md
@@ -47,6 +47,8 @@ developing applications that use %{name}.
 %{_kf6_qmldir}/org/kde/coreaddons/
 
 %files devel
+%{_includedir}/PySide6/KCoreAddons/%{framework}_python.h
+%{_kf6_datadir}/PySide6/typesystems/typesystem_%{framework}.xml
 %{_kf6_includedir}/KCoreAddons/
 %{_kf6_libdir}/cmake/KF6CoreAddons/
 %{_kf6_libdir}/libKF6CoreAddons.so
