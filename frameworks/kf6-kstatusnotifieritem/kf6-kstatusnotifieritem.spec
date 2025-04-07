@@ -1,6 +1,6 @@
-%global commit0 f13c0334ba472506ee8ba8a1fec6940c06903cfb
+%global commit0 354fda058b3f1d7a067709bbd5c615ea5d3253ba
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global framework kstatusnotifieritem
 

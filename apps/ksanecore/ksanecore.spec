@@ -1,6 +1,6 @@
-%global commit0 e464641b5d2b1018ec4a247fe0bb5c9096362982
+%global commit0 a43761c0a327106171b653fbf4ca9747c9089599
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:           ksanecore
 Summary:        Library providing logic to interface scanners

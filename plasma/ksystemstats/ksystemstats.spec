@@ -1,6 +1,6 @@
-%global commit0 685659f97cb1c3c8cf4c3393b1f6a57a1fdcc687
+%global commit0 924e43d5c899f6be0ed371ca6a5ea1b7d7c14abe
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 Name:           ksystemstats
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -23,6 +23,7 @@ BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  cmake(KSysGuard)
 
+BuildRequires:  libdrm-devel
 BuildRequires:  lm_sensors-devel
 BuildRequires:  pkgconfig(libnl-3.0)
 BuildRequires:  pkgconfig(libudev)
@@ -39,6 +40,7 @@ KSystemStats is a daemon that collects statistics about the running system.
 %{_kf6_datadir}/qlogging-categories6/ksystemstats.categories
 %{_qt6_plugindir}/ksystemstats/
 %{_userunitdir}/plasma-ksystemstats.service
+%caps(cap_perfmon=ep) %{_libexecdir}/ksystemstats_intel_helper
 
 %changelog
 %{?kde_snapshot_changelog_entry}

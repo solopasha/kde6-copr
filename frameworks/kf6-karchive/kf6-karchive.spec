@@ -1,6 +1,6 @@
-%global commit0 2bf86d9d8e078513cc5d9f00d8e95544d9990d6c
+%global commit0 6d377a9682486e5217333246b230f44ce045a936
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 8
+%global bumpver 9
 
 %global framework karchive
 

@@ -1,6 +1,6 @@
-%global commit0 166bac22eb2c74b7b80681848c82e92ab75fed1b
+%global commit0 824bdb3b762959a066c4dc35433e2d837fb5d1f7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 95
+%global bumpver 96
 
 Name:           kwin
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -134,6 +134,7 @@ Requires:       cmake(KF6WindowSystem)
 Requires:       cmake(Qt6Core)
 Requires:       cmake(Qt6Gui)
 Requires:       cmake(Qt6Quick)
+Requires:       pkgconfig(libdrm)
 Requires:       pkgconfig(wayland-server)
 %description    devel
 The %{name}-devel package contains libraries and header files for

@@ -1,6 +1,6 @@
-%global commit0 7fa3f19dc5b056f61cd4e8499d60d371215495b8
+%global commit0 87d110cee1b80d1735dbeb62f46bff4cafe883e6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           marble
 Summary:        Virtual globe and world atlas

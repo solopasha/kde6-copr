@@ -1,6 +1,6 @@
-%global commit0 f75a85069be86d9b79d53f05cd47503ba37caa05
+%global commit0 c44437e4d77a6143ce1a6c86192d8adc9e35847c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 
 Name:    kpat
