@@ -1,6 +1,6 @@
-%global commit0 2b66fe02a485b9e00388e79c2ff9c8a0475e4be9
+%global commit0 54822b34d31982641fde44e6075007e9dfe068b7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 %global selinuxtype targeted
 
@@ -18,6 +18,7 @@ Source11:       sddm-autologin.pam
 Source12:       sddm-greeter.pam
 
 Source20:       plasmalogin.fc
+Source21:       plasmalogin.te
 
 BuildSystem:    cmake_kf6
 
@@ -28,7 +29,14 @@ BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  systemd-rpm-macros
 
+BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KCMUtils)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Package)
+BuildRequires:  cmake(KF6WindowSystem)
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
@@ -39,6 +47,10 @@ BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6QuickTest)
 BuildRequires:  cmake(Qt6Test)
 
+BuildRequires:  cmake(LayerShellQt)
+BuildRequires:  cmake(LibKWorkspace)
+BuildRequires:  cmake(PlasmaQuick)
+
 BuildRequires:  pam-devel
 BuildRequires:  shadow-utils
 BuildRequires:  pkgconfig(libsystemd)
@@ -48,8 +60,9 @@ BuildRequires:  pkgconfig(xcb-cursor)
 BuildRequires:  pkgconfig(xcb-image)
 BuildRequires:  pkgconfig(xcb-xkb)
 
+Obsoletes:      plasma-login < 6.3.0~1.git41bcb26-2
+
 Requires:       systemd
-Requires:       plasma-login
 Requires:       (%{name}-selinux = %{version}-%{release} if selinux-policy-%{selinuxtype})
 
 %description
@@ -60,7 +73,6 @@ BuildArch:        noarch
 Summary:          SELinux support for %{name}
 BuildRequires:    selinux-policy-devel
 Requires(post):   %{name}
-Requires(post):   plasma-login
 Requires(preun):  %{name}
 Requires(preun):  policycoreutils
 %{?selinux_requires}
@@ -87,9 +99,8 @@ fi
 
 %install -a
 mkdir selinux
-cp -p %{SOURCE20} selinux/
+cp -p %{SOURCE20} %{SOURCE21} selinux/
 pushd selinux
-echo 'policy_module(plasmalogin,1.0)' > plasmalogin.te
 make -f %{_datadir}/selinux/devel/Makefile plasmalogin.pp
 bzip2 -9 plasmalogin.pp
 install -D -m 0644 plasmalogin.pp.bz2 %{buildroot}%{_datadir}/selinux/packages/%{selinuxtype}/plasmalogin.pp.bz2
@@ -101,6 +112,9 @@ install -Dpm 644 %{SOURCE12} %{buildroot}%{_sysconfdir}/pam.d/plasmalogin-greete
 
 mv %{buildroot}%{_datadir}/dbus-1/system.d/org.freedesktop.DisplayManager.conf \
    %{buildroot}%{_datadir}/dbus-1/system.d/org.freedesktop.DisplayManager-plasmalogin.conf
+
+%check
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %post
 %systemd_post plasmalogin.service
@@ -115,14 +129,27 @@ mv %{buildroot}%{_datadir}/dbus-1/system.d/org.freedesktop.DisplayManager.conf \
 %license LICENSE
 %doc README.md
 %config(noreplace) %{_sysconfdir}/pam.d/plasmalogin*
+%{_kf6_bindir}/plasma-login-wallpaper
 %{_kf6_bindir}/plasmalogin
+%{_kf6_bindir}/startplasma-login-wayland
+%{_kf6_datadir}/applications/kcm_plasmalogin.desktop
+%{_kf6_datadir}/dbus-1/system-services/org.kde.kcontrol.kcmplasmalogin.service
 %{_kf6_datadir}/dbus-1/system.d/org.freedesktop.DisplayManager-plasmalogin.conf
+%{_kf6_datadir}/dbus-1/system.d/org.kde.kcontrol.kcmplasmalogin.conf
 %{_kf6_datadir}/plasmalogin/
+%{_kf6_datadir}/polkit-1/actions/org.kde.kcontrol.kcmplasmalogin.policy
+%{_kf6_libexecdir}/kauth/kcmplasmalogin_authhelper
+%{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_plasmalogin.so
+%{_libexecdir}/plasma-login-greeter
 %{_libexecdir}/plasmalogin-helper
 %{_libexecdir}/plasmalogin-helper-start-x11user
 %{_sysusersdir}/plasmalogin.conf
 %{_tmpfilesdir}/plasmalogin.conf
 %{_unitdir}/plasmalogin.service
+%{_userunitdir}/plasma-login-kwin_wayland.service
+%{_userunitdir}/plasma-login-wayland.target
+%{_userunitdir}/plasma-login.service
+%{_userunitdir}/plasma-wallpaper.service
 
 %changelog
 %{?kde_snapshot_changelog_entry}

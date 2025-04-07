@@ -1,0 +1,8 @@
+policy_module(plasmalogin,1.0)
+
+gen_require(`
+    type xdm_t;
+    type xdm_unit_file_t;
+')
+
+allow xdm_t xdm_unit_file_t:service { status start stop };
