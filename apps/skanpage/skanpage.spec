@@ -1,6 +1,6 @@
 %global commit0 d424f8c1824d140db7b7992140809a22dea2c590
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 9
+%global bumpver 10
 
 Name:     skanpage
 Version:  25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -42,9 +42,10 @@ BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(Tesseract)
 BuildRequires:  cmake(Leptonica)
 
-Requires: qt6-qtquickcontrols2
 Requires: kf6-kirigami
+Requires: kf6-purpose
 Requires: kquickimageeditor-qt6
+Requires: tesseract
 
 Recommends: sane-backends-drivers-scanners
 
