@@ -11,13 +11,13 @@ jobs:
     permissions:
       contents: read
     container:
-      image: registry.fedoraproject.org/fedora-minimal:latest
+      image: registry.fedoraproject.org/fedora-minimal:42
       options: --privileged
 
     steps:
       - name: Prepare
         run: |
-          dnf -y install --nodocs --setopt=install_weak_deps=0 kiwi-cli kiwi-systemdeps git-core distribution-gpg-keys patch zstd
+          dnf -y up && dnf -y install --nodocs --setopt=install_weak_deps=0 kiwi-cli kiwi-systemdeps git-core distribution-gpg-keys patch zstd
 
       - uses: actions/checkout@v4
         with:
@@ -25,12 +25,23 @@ jobs:
 
       - name: Customize kiwi-descriptions
         run: |
-          patch -Np1 -i .github/custom.diff
+          patch -d fedora-kiwi-descriptions -Np1 < .github/custom.diff
           mkdir -p fedora-kiwi-descriptions/root/etc/yum.repos.d
 
-          cat << 'EOF' > fedora-kiwi-descriptions/root/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:solopasha:plasma-unstable.repo
-          [copr:copr.fedorainfracloud.org:solopasha:plasma-unstable]
-          name=Copr repo for plasma-unstable owned by solopasha
+          cat << 'EOF' > fedora-kiwi-descriptions/root/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable.repo
+          [copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable]
+          name=Copr repo for kde-gear-unstable owned by solopasha
+          baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/kde-gear-unstable/fedora-$releasever-$basearch/
+          type=rpm-md
+          skip_if_unavailable=True
+          gpgcheck=1
+          gpgkey=https://download.copr.fedorainfracloud.org/results/solopasha/kde-gear-unstable/pubkey.gpg
+          repo_gpgcheck=0
+          enabled=1
+          enabled_metadata=1
+
+          [coprdep:copr.fedorainfracloud.org:solopasha:plasma-unstable]
+          name=Copr copr.fedorainfracloud.org/solopasha/kde-gear-unstable runtime dependency #1 - solopasha/plasma-unstable
           baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/fedora-$releasever-$basearch/
           type=rpm-md
           skip_if_unavailable=True
@@ -58,8 +69,9 @@ jobs:
         run: |
           kiwi-ng --type=iso --profile=KDE-Desktop-Live --kiwi-file=Fedora.kiwi \
             system build --description=fedora-kiwi-descriptions --target-dir=out-build \
-            --set-type-attr=volid=Fedora-KDE-Live-41 --set-type-attr=application_id=Fedora-KDE_Desktop-Live-41 --set-type-attr=publisher=solopasha \
-            --add-repo='https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/fedora-$releasever-$basearch/,rpm-md,plasma-unstable,98,false,true,{https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/pubkey.gpg}'
+            --set-type-attr=volid=Fedora-KDE-Live-42 --set-type-attr=application_id=Fedora-KDE_Desktop-Live-42 --set-type-attr=publisher=solopasha \
+            --add-repo='https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/fedora-$releasever-$basearch/,rpm-md,plasma-unstable,98,false,true,{https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/pubkey.gpg}' \
+            --add-repo='https://download.copr.fedorainfracloud.org/results/solopasha/kde-gear-unstable/fedora-$releasever-$basearch/,rpm-md,kde-gear-unstable,98,false,true,{https://download.copr.fedorainfracloud.org/results/solopasha/kde-gear-unstable/pubkey.gpg}'
 
       - name: Bundle
         run: |

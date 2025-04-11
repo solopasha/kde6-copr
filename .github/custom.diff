@@ -1,21 +1,20 @@
-Submodule fedora-kiwi-descriptions contains modified content
-diff --git a/fedora-kiwi-descriptions/Fedora.kiwi b/fedora-kiwi-descriptions/Fedora.kiwi
-index c29b052..2afb6e3 100644
---- a/fedora-kiwi-descriptions/Fedora.kiwi
-+++ b/fedora-kiwi-descriptions/Fedora.kiwi
+diff --git a/Fedora.kiwi b/Fedora.kiwi
+index ff0022c..0284c02 100644
+--- a/Fedora.kiwi
++++ b/Fedora.kiwi
 @@ -13,6 +13,7 @@
  		<keytable>us</keytable>
  		<timezone>UTC</timezone>
- 		<release-version>41</release-version>
+ 		<release-version>42</release-version>
 +		<rpm-check-signatures>true</rpm-check-signatures>
  	</preferences>
  	<include from="this://./repositories/core.xml"/>
  	<include from="this://./components/common.xml"/>
-diff --git a/fedora-kiwi-descriptions/components/desktops/kde.xml b/fedora-kiwi-descriptions/components/desktops/kde.xml
-index 0c7b9db..3d53b54 100644
---- a/fedora-kiwi-descriptions/components/desktops/kde.xml
-+++ b/fedora-kiwi-descriptions/components/desktops/kde.xml
-@@ -23,20 +23,52 @@
+diff --git a/components/desktops/kde.xml b/components/desktops/kde.xml
+index f339652..7474fe3 100644
+--- a/components/desktops/kde.xml
++++ b/components/desktops/kde.xml
+@@ -22,21 +22,55 @@
  		<ignore name="kipi-plugins"/> <!-- ~8 megs + drags in marble -->
  		<ignore name="krusader"/> <!-- ~4 megs -->
  		<ignore name="ktorrent"/> <!-- ~15 megs -->
@@ -37,6 +36,8 @@ index 0c7b9db..3d53b54 100644
 +		<ignore name="ibus-m17n"/>
 +		<ignore name="ibus-panel"/>
 +		<ignore name="ibus-setup"/>
++		<ignore name="ibus-table-chinese-cangjie"/>
++		<ignore name="ibus-table-chinese"/>
 +		<ignore name="ibus-typing-booster"/>
 +		<ignore name="ibus-xinit"/>
 +		<ignore name="ibus"/>
@@ -56,10 +57,11 @@ index 0c7b9db..3d53b54 100644
  		<namedCollection name="kde-desktop-environment"/>
  		<namedCollection name="kde-apps"/>
  		<namedCollection name="kde-media"/>
--		<namedCollection name="kde-pim"/>
+-		<namedCollection name="kde-pim" arch="aarch64,ppc64le,x86_64"/>
 -		<namedCollection name="kde-spin-initial-setup"/>
  		<namedCollection name="firefox"/>
 -		<namedCollection name="libreoffice"/>
+ 		<namedCollection name="x86-emulation" arch="aarch64"/>
 -		<package name="libreoffice-draw"/>
 -		<package name="libreoffice-math"/>
  		<package name="fuse"/>
@@ -73,10 +75,10 @@ index 0c7b9db..3d53b54 100644
  	</packages>
  	<packages type="image" patternType="plusRecommended" profiles="KDE-Mobile">
  		<!-- install env-group to resolve RhBug:1891500 -->
-diff --git a/fedora-kiwi-descriptions/repositories/core-nonrawhide.xml b/fedora-kiwi-descriptions/repositories/core-nonrawhide.xml
+diff --git a/repositories/core-nonrawhide.xml b/repositories/core-nonrawhide.xml
 index 514e7e3..298da7e 100644
---- a/fedora-kiwi-descriptions/repositories/core-nonrawhide.xml
-+++ b/fedora-kiwi-descriptions/repositories/core-nonrawhide.xml
+--- a/repositories/core-nonrawhide.xml
++++ b/repositories/core-nonrawhide.xml
 @@ -1,10 +1,10 @@
  <image>
 -	<repository type="rpm-md" alias="fedora" sourcetype="metalink">
