@@ -1,11 +1,11 @@
-%global commit0 0d44282bcb2bb1fe679433d78699f2a3df76488c
+%global commit0 fafd07a4bf2f3125b48d02acab4d18d31aafa6ae
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework ktexteditor
 
 Name:           kf6-%{framework}
-Version:        6.13.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.14.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 with advanced embeddable text editor
 

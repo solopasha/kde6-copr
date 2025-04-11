@@ -1,11 +1,11 @@
-%global commit0 44bd123e6afe5367ef0b6e4fb7d1e5da4cccce41
+%global commit0 2d0a3912ab484c1fed6c32a7b528254c7f043056
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kcodecs
 
 Name:           kf6-%{framework}
-Version:        6.13.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.14.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with string manipulation methods
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND MIT AND MPL-1.1
