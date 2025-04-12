@@ -1,6 +1,6 @@
-%global commit0 7aa74873e7e5c7388cbbea6f18126bb9b8fd756d
+%global commit0 fdc55295110c052c11ac8b99ffd6968dac1efba4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 13
+%global bumpver 14
 
 Name:           kunifiedpush
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -19,6 +19,7 @@ BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6Service)
+BuildRequires:  cmake(KF6Solid)
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)

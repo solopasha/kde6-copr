@@ -1,47 +1,36 @@
-%global commit0 282c933882e9596369d444befb4d09cb0443172f
+%global commit0 c951fff6635d0ac24a71469171a505a1d7878426
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
-Name:    dragon
-Summary: Media player
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-
-# code: KDE e.V. may determine that future GPL versions are accepted
-# docs: GFDL
-License: ( GPL-2.0-only OR GPL-3.0-only ) AND GFDL-1.2-or-later
-URL:     https://apps.kde.org/dragonplayer/
+Name:           dragon
+Summary:        Media player
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+License:        (GPL-2.0-only OR GPL-3.0-only) AND LGPL-3.0-or-later
+URL:            https://apps.kde.org/dragonplayer/
 %apps_source
 
-## upstream patches
+BuildRequires:  desktop-file-utils
+BuildRequires:  libappstream-glib
 
-BuildRequires: desktop-file-utils
-BuildRequires: kf6-rpm-macros
-BuildRequires: extra-cmake-modules
-BuildRequires: libappstream-glib
-BuildRequires: cmake(Qt6Core)
-BuildRequires: cmake(Qt6Widgets)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Kirigami)
+BuildRequires:  cmake(KF6WindowSystem)
 
-BuildRequires: cmake(KF6Config)
-BuildRequires: cmake(KF6ConfigWidgets)
-BuildRequires: cmake(KF6CoreAddons)
-BuildRequires: cmake(KF6Crash)
-BuildRequires: cmake(KF6DBusAddons)
-BuildRequires: cmake(KF6DocTools)
-BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6JobWidgets)
-BuildRequires: cmake(KF6KIO)
-BuildRequires: cmake(KF6Parts)
-BuildRequires: cmake(KF6Solid)
-BuildRequires: cmake(KF6WidgetsAddons)
-BuildRequires: cmake(KF6WindowSystem)
-BuildRequires: cmake(KF6XmlGui)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Multimedia)
 
-BuildRequires: cmake(Phonon4Qt6)
+BuildRequires:  pkgconfig(libavcodec)
 
-Recommends:    vlc-plugin-ffmpeg
+Requires:       kf6-kconfig%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
 
-Provides:      dragonplayer = %{version}-%{release}
+Provides:       dragonplayer = %{version}-%{release}
 
 %description
 %{summary}.
@@ -72,14 +61,8 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.dragonpla
 %{_kf6_bindir}/dragon
 %{_kf6_datadir}/applications/org.kde.dragonplayer.desktop
 %{_kf6_datadir}/icons/hicolor/*/apps/dragonplayer.*
-%{_kf6_datadir}/icons/oxygen/*/actions/player-volume-muted.*
-%{_kf6_datadir}/kio/servicemenus/dragonplayer_play_dvd.desktop
-%{_kf6_datadir}/solid/actions/dragonplayer-openaudiocd.desktop
-%{_kf6_datadir}/solid/actions/dragonplayer-opendvd.desktop
-%{_kf6_mandir}/man1/dragon.1.*
 %{_kf6_metainfodir}/org.kde.dragonplayer.appdata.xml
-%{_kf6_plugindir}/parts/dragonpart.so
-%{_sysconfdir}/xdg/dragonplayerrc
+%{_kf6_qmldir}/org/kde/dragon/
 
 
 %changelog
