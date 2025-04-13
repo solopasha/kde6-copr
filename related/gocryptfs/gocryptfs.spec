@@ -4,7 +4,7 @@
 %global gomodulesmode GO111MODULE=on
 # https://github.com/rfjakob/gocryptfs
 %global goipath         github.com/rfjakob/gocryptfs/v2
-Version:                2.5.3
+Version:                2.5.4
 
 %gometa -L -f
 
@@ -43,7 +43,6 @@ Requires:       fuse3
 %build
 %{set_build_flags}
 export CGO_CFLAGS="$CFLAGS"
-export CGO_CPPFLAGS="$CPPFLAGS"
 export CGO_CXXFLAGS="$CXXFLAGS"
 export CGO_LDFLAGS="$LDFLAGS"
 export GO_LDFLAGS="-X main.GitVersion=%{version} \
@@ -72,7 +71,7 @@ install -Dpm644 Documentation/statfs.1 -t %{buildroot}%{_mandir}/man1
 
 %files -f %{go_vendor_license_filelist}
 %license vendor/modules.txt
-%doc README.md 
+%doc README.md
 %{_bindir}/gocryptfs
 %{_bindir}/gocryptfs-xray
 %{_bindir}/statfs
