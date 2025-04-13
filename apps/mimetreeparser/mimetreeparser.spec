@@ -1,6 +1,6 @@
-%global commit0 7f39d3d5078328c6d15e6dd19db412767c83e321
+%global commit0 bc4a60f44dda8eacc22dbc17578f823847c1e0b1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 9
+%global bumpver 10
 
 Name:    mimetreeparser
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

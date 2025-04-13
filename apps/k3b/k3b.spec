@@ -1,6 +1,6 @@
-%global commit0 ac2fc1835b5a75588e0a7449dfb92891a847ff7d
+%global commit0 644e2121c980952e3a6d935bb2161731ae072311
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    k3b
 Summary: CD/DVD/Blu-ray burning application
