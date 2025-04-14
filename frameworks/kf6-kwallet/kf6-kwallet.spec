@@ -1,6 +1,6 @@
-%global commit0 a0b72b7f57fd5fbf27d4cbceea6656917f202cc5
+%global commit0 4af84b4e8908764439cfe27d71d1d44ae0cdd116
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework kwallet
 
@@ -30,6 +30,7 @@ BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(Gpgmepp)
 BuildRequires:  cmake(Qca-qt6)
 BuildRequires:  pkgconfig(libgcrypt)
+BuildRequires:  pkgconfig(libsecret-1)
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       pinentry-gui
@@ -56,12 +57,14 @@ developing applications that use %{name}.
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
+%{_kf6_bindir}/ksecretd
 %{_kf6_bindir}/kwallet-query
 %{_kf6_bindir}/kwalletd6
-%{_kf6_datadir}/applications/org.kde.kwalletd6.desktop
+%{_kf6_datadir}/applications/org.kde.ksecretd.desktop
 %{_kf6_datadir}/dbus-1/services/org.kde.kwalletd5.service
 %{_kf6_datadir}/dbus-1/services/org.kde.kwalletd6.service
-%{_kf6_datadir}/knotifications6/kwalletd6.notifyrc
+%{_kf6_datadir}/dbus-1/services/org.kde.secretservicecompat.service
+%{_kf6_datadir}/knotifications6/ksecretd.notifyrc
 %{_kf6_datadir}/qlogging-categories6/%{framework}*
 %{_kf6_datadir}/xdg-desktop-portal/portals/kwallet.portal
 %{_kf6_mandir}/man1/kwallet-query.1.*
