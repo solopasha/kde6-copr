@@ -1,6 +1,6 @@
 %global commit0 825d4abf673a0dc2372527c301c19b49ca12cd52
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 %global base_name kwallet-pam
 
@@ -11,6 +11,7 @@ Release:        1%{?dist}
 License:        LGPL-2.0-or-later
 URL:            https://invent.kde.org/plasma/%{base_name}.git
 %plasma_source
+BuildOption(conf): -DKWALLETD_BIN_PATH=%{_kf6_bindir}/ksecretd
 
 BuildRequires:  systemd-rpm-macros
 
