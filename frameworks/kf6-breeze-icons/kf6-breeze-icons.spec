@@ -1,6 +1,6 @@
 %global commit0 4d2c0f5b14a849b34636bd03bbaf102495226b3c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 # If KF7 still provides these icons, then their installation should then
 # be disabled in KF6 builds.
@@ -51,8 +51,27 @@ Requires:       hicolor-icon-theme
 Requires:       system-logos
 # upstream name
 Provides:       breeze-icons = %{version}-%{release}
+# anaconda icon split out into fedora-only subpackage
+Obsoletes:      breeze-icon-theme < 6.14.0~1.git4d2c0f5-2
+Conflicts:      breeze-icon-theme < 6.14.0~1.git4d2c0f5-2
 %description -n breeze-icon-theme
 %{summary}.
+
+%if 0%{?fedora}
+%package -n     breeze-icon-theme-fedora
+Summary:        Breeze icon theme Fedora specific icons
+License:        LGPL-3.0-or-later
+BuildArch:      noarch
+Requires:       breeze-icon-theme = %{version}-%{release}
+# This is for Fedora only
+Requires:       fedora-release-common
+Supplements:    (breeze-icon-theme and fedora-release-kde)
+Obsoletes:      breeze-icon-theme < 6.14.0~1.git4d2c0f5-2
+Conflicts:      breeze-icon-theme < 6.14.0~1.git4d2c0f5-2
+%description -n breeze-icon-theme-fedora
+%{summary}.
+%endif
+
 %endif
 
 %if %{with install_rcc}
@@ -75,21 +94,13 @@ Obsoletes:      breeze-icon-theme-devel < 6.3.0-2
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
+%prep -a
+# Move Fedora installer icon out of normal breeze installs
+mkdir -p icons-fedora/apps/48
+mv icons/apps/48/org.fedoraproject.AnacondaInstaller.svg icons-fedora/apps/48
+
 %install -a
-
 %if %{with install_icons}
-
-# Do not use Fedora logo from upstream
-rm -rf %{buildroot}%{_datadir}/icons/breeze-dark/apps/48/org.fedoraproject.AnacondaInstaller.svg
-rm -rf %{buildroot}%{_datadir}/icons/breeze/apps/48/org.fedoraproject.AnacondaInstaller.svg
-# Use copy found in fedora-logos
-pushd %{buildroot}%{_datadir}/icons/breeze-dark/apps/48/
-ln -s ../../../hicolor/48x48/apps/org.fedoraproject.AnacondaInstaller.svg org.fedoraproject.AnacondaInstaller.svg
-popd
-pushd %{buildroot}%{_datadir}/icons/breeze/apps/48/
-ln -s ../../../hicolor/48x48/apps/org.fedoraproject.AnacondaInstaller.svg org.fedoraproject.AnacondaInstaller.svg
-popd
-
 ## icon optimizations
 du -s .
 hardlink -c -v %{buildroot}%{_datadir}/icons/
@@ -97,6 +108,11 @@ du -s .
 
 # %%ghost icon.cache
 touch %{buildroot}%{_kf6_datadir}/icons/{breeze,breeze-dark}/icon-theme.cache
+
+%if 0%{?fedora}
+install -pm 0644 icons-fedora/apps/48/org.fedoraproject.AnacondaInstaller.svg %{buildroot}%{_kf6_datadir}/icons/breeze/apps/48
+ln -sr %{buildroot}%{_kf6_datadir}/icons/breeze/apps/48/org.fedoraproject.AnacondaInstaller.svg %{buildroot}%{_kf6_datadir}/icons/breeze-dark/apps/48/org.fedoraproject.AnacondaInstaller.svg
+%endif
 
 ## trigger-based scriptlets
 %transfiletriggerin -n breeze-icon-theme -- %{_datadir}/icons/breeze
@@ -135,6 +151,15 @@ gtk-update-icon-cache --force %{_datadir}/icons/breeze-dark &>/dev/null || :
 %{_datadir}/icons/breeze-dark/*/
 %{_datadir}/icons/breeze-dark/index.theme
 %exclude %{_datadir}/icons/breeze/breeze-icons.rcc
+%if 0%{?fedora}
+%exclude %{_datadir}/icons/breeze*/apps/*/org.fedoraproject.AnacondaInstaller.svg
+%endif
+
+%if 0%{?fedora}
+%files -n breeze-icon-theme-fedora
+%{_datadir}/icons/breeze*/apps/*/org.fedoraproject.AnacondaInstaller.svg
+%endif
+
 %endif
 
 %if %{with install_rcc}
