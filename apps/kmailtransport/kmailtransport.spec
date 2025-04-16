@@ -1,6 +1,6 @@
-%global commit0 2e5501fb0c64660b000c9adaf735e11354fe11c8
+%global commit0 8b79a6823fafb67e1ce40072a40b3053ed2fa133
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 Name:    kmailtransport
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
