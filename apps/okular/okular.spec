@@ -174,7 +174,6 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.ok
 %{_kf6_datadir}/applications/okularApplication_*.desktop
 %{_kf6_datadir}/applications/org.kde.okular.desktop
 %{_kf6_datadir}/icons/hicolor/*/*/*
-%{_kf6_datadir}/kconf_update/okular.upd
 %{_kf6_datadir}/okular/
 %{_kf6_datadir}/qlogging-categories6/okular.categories
 %{_kf6_mandir}/man1/okular.1*
