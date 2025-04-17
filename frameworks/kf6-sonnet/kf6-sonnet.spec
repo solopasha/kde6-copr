@@ -1,6 +1,6 @@
-%global commit0 bd1facaca061645ba4577f5a0b912a7c28c628ea
+%global commit0 65b52b8e6c05ffc0abc71e21535fef10f99fdc1e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework sonnet
 

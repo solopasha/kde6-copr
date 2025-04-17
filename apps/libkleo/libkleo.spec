@@ -1,6 +1,6 @@
-%global commit0 ee159adcf263ebb32064d4046c2fa1f8f8373a6d
+%global commit0 bb095446d9e2b8883e4340c6fe41c32ee8fe302c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 10
+%global bumpver 11
 
 Name:    libkleo
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
