@@ -1,6 +1,6 @@
 %global commit0 a0e621b7153c9fcb4f5d5e9dda6223948bf83a6a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 9
+%global bumpver 10
 
 Name:    kio-extras
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -66,12 +66,13 @@ Supplements:    kf6-kio-core
 
 Recommends:     ripgrep
 
-# Merged into main package
-Provides:       kio-extras-info = %{version}-%{release}
-Obsoletes:      kio-extras-info < %{version}-%{release}
-
 %description
 %{summary}.
+
+%package        info
+Summary:        Info kioslave
+%description    info
+Kioslave for reading info pages.
 
 %package        devel
 Summary:        Development files for %{name}
@@ -98,33 +99,34 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %files -f kio-extras.lang
 %license LICENSES/*
 
-%{_kf6_plugindir}/kded/
-%{_kf6_plugindir}/kfileitemaction/
-%{_kf6_plugindir}/kio/
-%{_kf6_plugindir}/kiod/
-%{_kf6_plugindir}/thumbcreator/
-
 %{_kf6_datadir}/applications/kcm_*
 %{_kf6_datadir}/config.kcfg/jpegcreatorsettings5.kcfg
 %{_kf6_datadir}/dbus-1/services/org.kde.kmtpd5.service
 %{_kf6_datadir}/kio_filenamesearch/
-%{_kf6_datadir}/kio_info/
 %{_kf6_datadir}/konqueror/
 %{_kf6_datadir}/mime/packages/org.kde.kio.smb.xml
-%{_kf6_datadir}/remoteview/
-
 %{_kf6_datadir}/qlogging-categories6/kio-extras*
+%{_kf6_datadir}/remoteview/
 %{_kf6_datadir}/solid/actions/solid_afc.desktop
 %{_kf6_datadir}/solid/actions/solid_mtp.desktop
-
 %{_kf6_libdir}/libkioarchive6.so.6{,.*}
-
 %{_kf6_libexecdir}/smbnotifier
-
-%{_kf6_qtplugindir}/kfileaudiopreview.so
+%{_kf6_plugindir}/kded/
+%{_kf6_plugindir}/kfileitemaction/
+%exclude %{_kf6_plugindir}/kio/info.so
+%{_kf6_plugindir}/kio/
+%{_kf6_plugindir}/kiod/
+%{_kf6_plugindir}/thumbcreator/
 %{_kf6_qtplugindir}/kcm_trash.so
+%{_kf6_qtplugindir}/kfileaudiopreview.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/kcm_*.so
 %{_libexecdir}/wpad-detector-helper
+
+%files info
+%{_kf6_plugindir}/kio/info.so
+# perl deps, but required at runtime for the info kioslave to actually work:
+%dir %{_kf6_datadir}/kio_info/
+%{_kf6_datadir}/kio_info/kde-info2html*
 
 %files devel
 %{_includedir}/KioArchive6/*.h
