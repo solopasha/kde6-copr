@@ -49,6 +49,9 @@ Obsoletes:      plasma-welcome-app < 5.27.0-2
 %description
 A Friendly onboarding wizard for Plasma.
 
+%install -a
+rm %{buildroot}%{_kf6_libdir}/libplasma-welcome-publicplugin.a
+
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/%{orgname}.*.xml || :
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{orgname}.desktop
@@ -60,6 +63,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{orgname}.deskto
 %{_kf6_datadir}/applications/%{orgname}.desktop
 %{_kf6_metainfodir}/%{orgname}.*.xml
 %{_kf6_plugindir}/kded/kded_plasma-welcome.so
+%{_kf6_qmldir}/org/kde/plasma/welcome/
 
 %changelog
 %{?kde_snapshot_changelog_entry}
