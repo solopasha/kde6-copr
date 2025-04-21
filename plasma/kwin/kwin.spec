@@ -177,6 +177,7 @@ ln -sr %{buildroot}%{_kf6_bindir}/kwin_wayland %{buildroot}%{_bindir}/kwin
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/*.so
 %{_libexecdir}/kwin_killer_helper
 %{_libexecdir}/kwin-applywindowdecoration
+%{_libexecdir}/kwin-tabbox-preview
 %{_qt6_qmldir}/org/kde/kwin/
 %{_userunitdir}/plasma-kwin_wayland.service
 %dir %{_sysconfdir}/xdg/Xwayland-session.d
