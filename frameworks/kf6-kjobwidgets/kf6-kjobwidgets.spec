@@ -1,6 +1,6 @@
 %global commit0 aebcdf9a0d026ab99888ebf1e9b0d19a6acde5e5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework kjobwidgets
 

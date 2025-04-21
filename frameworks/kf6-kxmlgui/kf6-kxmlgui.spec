@@ -1,6 +1,6 @@
 %global commit0 204318c56704aacf486b4fd41c8ff52ac66df196
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global framework kxmlgui
 
