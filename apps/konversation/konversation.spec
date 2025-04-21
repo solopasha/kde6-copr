@@ -1,6 +1,6 @@
-%global commit0 1c2778a900b1af12875dd51d9b811a143bedff26
+%global commit0 231ad9e66f64d2e6280b4a1c6f54e18f5c19b4aa
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           konversation
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

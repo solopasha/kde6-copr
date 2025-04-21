@@ -1,6 +1,6 @@
-%global commit0 67b16552bae62f7db71e61d4aaf089f769a6606f
+%global commit0 8c5a36c997f967386502dc8c735df2236cc3201a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:           keysmith
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

@@ -1,6 +1,6 @@
-%global commit0 57ad77c2d07d431c8ab1c4b0d51fa56b1954dd81
+%global commit0 02511821a840659197aee2504fe74b25fec9bc9f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           ghostwriter
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

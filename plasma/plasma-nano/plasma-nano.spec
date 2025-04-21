@@ -1,6 +1,6 @@
-%global commit0 af580c2918fb38bb423f14ae7af8bc306723ca56
+%global commit0 6dede6256fdeeb32f95d6c5a9cc552b871aa4e37
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 8
+%global bumpver 9
 
 %global orig_name org.kde.plasma.nano
 

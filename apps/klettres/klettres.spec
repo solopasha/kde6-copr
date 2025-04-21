@@ -1,6 +1,6 @@
-%global commit0 57bbbfeccf5cc712af84baf75779e53945d36bf8
+%global commit0 1e45af3ac3b3a5c8df8280b9eee3e58a599428be
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    klettres
 Summary: Learn the alphabet and read some syllables in different languages
