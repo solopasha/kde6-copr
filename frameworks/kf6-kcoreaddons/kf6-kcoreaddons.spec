@@ -52,6 +52,7 @@ developing applications that use %{name}.
 %{_kf6_includedir}/KCoreAddons/
 %{_kf6_libdir}/cmake/KF6CoreAddons/
 %{_kf6_libdir}/libKF6CoreAddons.so
+%{_kf6_libdir}/pkgconfig/KF6CoreAddons.pc
 %{_qt6_docdir}/*.tags
 
 %changelog
