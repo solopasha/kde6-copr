@@ -1,6 +1,6 @@
-%global commit0 1acbc1f52f793682f87962d49dd82317fa330d60
+%global commit0 98e4cfc6c188556183e8a74116b7b55a102b4330
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 Name:    kmbox
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
