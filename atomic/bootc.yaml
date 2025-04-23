@@ -1,0 +1,4 @@
+# Add bootc for Bootable Container images
+# See: https://fedoraproject.org/wiki/Changes/DNFAndBootcInImageModeFedora
+packages:
+  - bootc

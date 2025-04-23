@@ -1,0 +1,65 @@
+include:
+  - common.yaml
+
+# Default to Kinoite and override in Kinoite Mobile manifests
+variables:
+  variant: "kinoite"
+
+conditional-include:
+  - if: variant == "kinoite"
+    include:
+      - kinoite-packages.yaml
+  - if: variant == "kinoite-mobile"
+    include:
+      - kinoite-mobile-packages.yaml
+
+# Default to Kinoite (Desktop). Overriden in the Kinoite Mobile manifest
+ref: solopasha/42/${basearch}/kinoite-unstable
+rojig:
+  name: fedora-kde
+  summary: "Fedora Kinoite with unstable packages"
+  license: MIT
+
+packages:
+  - fedora-release-kinoite
+  # Install some minor optional tools for KInfoCenter
+  - vulkan-tools
+  - xdpyinfo
+  # Includes a KIO & KCM (can not be Flatpak'ed), used by Dolphin and Gwenview
+  # See https://pagure.io/fedora-kde/SIG/issue/291
+  - kamera
+  # Make sure that previous Anaconda dependencies are kept in the image
+  # See: https://pagure.io/fedora-kde/SIG/issue/243
+  - mobile-broadband-provider-info
+  # Make sure that modem support is installed
+  - NetworkManager-ppp
+  # Install gdb to make getting backtraces work with DrKonqi
+  - gdb
+  # Explicitely not included via comps
+  # See: https://pagure.io/fedora-kde/SIG/issue/295
+  - plasma-welcome-fedora
+  # Make sure rpm-ostree support is installed
+  - plasma-discover-rpm-ostree
+
+# Make sure the following are not pulled in when Recommended by other packages
+exclude-packages:
+  - plasma-discover-offline-updates
+  - plasma-discover-packagekit
+  - plasma-pk-updates
+  # Manually excluded as recommended by gtk3 (and likely gtk4 in the future)
+  # See https://pagure.io/fedora-kde/SIG/issue/124
+  - tracker
+  - tracker-miners
+  - localsearch
+  - tinysparql
+  # Ensure we do not include X11 support
+  - plasma-x11
+  - plasma-workspace-x11
+  # Exclude mariadb server tools that bring in Perl
+  - mariadb-server-utils
+  # Get rid of Qt5
+  - maliit-keyboard
+  - qt5-qtbase
+
+add-files:
+  - ["coprs.repo", "/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable.repo"]

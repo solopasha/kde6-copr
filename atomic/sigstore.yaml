@@ -1,0 +1,3 @@
+docker:
+  @@REPO@@:
+    use-sigstore-attachments: true

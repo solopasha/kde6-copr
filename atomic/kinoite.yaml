@@ -1,0 +1,13 @@
+include:
+  - kinoite-common.yaml
+
+repos:
+  - fedora
+  - updates
+  - copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable
+  - coprdep:copr.fedorainfracloud.org:solopasha:plasma-unstable
+  - rpmfusion-free
+  - rpmfusion-free-updates
+  - rpmfusion-nonfree
+  - rpmfusion-nonfree-updates
+

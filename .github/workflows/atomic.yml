@@ -1,0 +1,128 @@
+name: Build and push image
+
+on:
+  push:
+    paths:
+      - 'atomic/**'
+      - '.github/workflows/atomic.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '0 8 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    container:
+      image: registry.fedoraproject.org/fedora:${{ vars.RELEASEVER }}
+      options: --privileged
+    env:
+      IMAGENAME: ghcr.io/${{ github.repository }}/kde-unstable
+
+    steps:
+      - name: Prepare
+        run: |
+          dnf -y up && dnf -y install \
+            bsdtar \
+            buildah \
+            dbus-daemon \
+            distribution-gpg-keys \
+            file \
+            git-core \
+            jq \
+            ostree \
+            podman \
+            rpm-ostree \
+            selinux-policy-targeted \
+            skopeo \
+            tar \
+            zstd
+          cat << EOF > /etc/containers/registries.d/sigstore.yaml
+          docker:
+            $IMAGENAME:
+              use-sigstore-attachments: true
+          EOF
+          cp /usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-free-fedora-$(rpm -E %fedora) /etc/pki/rpm-gpg/
+          cp /usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-nonfree-fedora-$(rpm -E %fedora) /etc/pki/rpm-gpg/
+          dnf clean all
+
+      - uses: actions/checkout@v4
+
+      - name: Fix path
+        run: |
+          sed -i "s|@@PATH@@|$IMAGENAME|" atomic/sigstore.yaml
+
+      - name: Get buildid
+        id: get-buildid
+        run: |
+          echo "buildid=$(date -u "+%Y%m%d.%H%M")" >> $GITHUB_OUTPUT
+
+      - name: Restore cache
+        id: cache
+        uses: actions/cache/restore@v4
+        with:
+          path: atomic/buildcache.tar.zst
+          key: build-${{ steps.get-buildid.outputs.buildid }}
+          restore-keys: build-
+
+      - name: Build
+        id: build
+        run: |
+          pushd atomic > /dev/null || exit 1
+          if [[ -f "buildcache.tar.zst" ]]; then
+            bsdtar --acls --xattrs -xpzf buildcache.tar.zst
+            rm buildcache.tar.zst
+          fi
+          mkdir -p repo cache
+          pushd repo > /dev/null || exit 1
+          ostree init --repo . --mode=bare-user
+          popd > /dev/null || exit 1
+
+          # Set option to reduce fsync for transient builds
+          ostree --repo=repo config set 'core.fsync' 'false'
+
+          version="$(rpm-ostree compose tree --print-only --repo=repo kinoite.yaml | jq -r '."mutate-os-release"')"
+          echo "version=${version}" >> $GITHUB_OUTPUT
+          echo "Composing kinoite ${version}.${{ steps.get-buildid.outputs.buildid }} ..."
+
+          rpm-ostree compose image --cachedir=cache --initialize \
+              "kinoite.yaml" \
+              "kinoite.ociarchive"
+
+      - name: Key
+        env:
+          SIGN_KEY: ${{ secrets.SIGN_KEY }}
+          SIGN_PASSPHRASE: ${{ secrets.SIGN_PASSPHRASE }}
+        run: |
+          pushd atomic > /dev/null || exit 1
+          echo "$SIGN_KEY" > ${{ github.repository_owner }}.private
+          echo "$SIGN_PASSPHRASE" > ${{ github.repository_owner }}.passphrase
+
+      - name: Push
+        env:
+          SKOPEO_ARGS: "--sign-by-sigstore-private-key ${{ github.repository_owner }}.private --sign-passphrase-file ${{ github.repository_owner }}.passphrase --retry-times 3 --dest-compress-format zstd"
+        run: |
+          skopeo login --username "${{ github.repository_owner }}" --password "${{ secrets.GITHUB_TOKEN }}" ghcr.io
+
+          pushd atomic > /dev/null || exit 1
+          skopeo copy ${SKOPEO_ARGS} \
+            "oci-archive:kinoite.ociarchive" \
+            "docker://${IMAGENAME}:${{ steps.build.outputs.version }}.${{ steps.get-buildid.outputs.buildid }}"
+
+          skopeo copy ${SKOPEO_ARGS} \
+            "docker://${IMAGENAME}:${{ steps.build.outputs.version }}.${{ steps.get-buildid.outputs.buildid }}" \
+            "docker://${IMAGENAME}:${{ steps.build.outputs.version }}"
+
+      - name: Compress the cache directory manually to preserve xattrs
+        run: |
+          pushd atomic > /dev/null || exit 1
+          bsdtar --xz --options xz:compression-level=9,zstd:threads=0 --acls --xattrs -cpaf buildcache.tar.zst cache
+
+      - name: Save cache
+        id: cache-save
+        uses: actions/cache/save@v4
+        with:
+          path: atomic/buildcache.tar.zst
+          key: ${{ steps.cache.outputs.cache-primary-key }}

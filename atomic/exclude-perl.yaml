@@ -1,0 +1,4 @@
+# Ensure that we do not include any Perl package
+exclude-packages:
+  - perl-interpreter
+  - perl-libs
