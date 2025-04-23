@@ -1,6 +1,6 @@
-%global commit0 54822b34d31982641fde44e6075007e9dfe068b7
+%global commit0 5502c1b47264147e48489076ca267b7ec620c129
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 8
 
 %global selinuxtype targeted
 
