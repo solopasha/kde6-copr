@@ -1,6 +1,6 @@
 %global commit0 4a9d7b07f47a65406864d891368be9d3b740fdf6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 99
+%global bumpver 100
 
 %bcond x11 1
 
@@ -29,7 +29,6 @@ Source102:      kde-smartcard
 ## in the repective pkgs themselves? -- rdieter)
 Source40:       ssh-agent.conf
 Source41:       spice-vdagent.conf
-Source42:       waitforkded.conf
 
 ## downstream Patches
 # default to enable open terminal action
@@ -381,7 +380,6 @@ mkdir -p %{buildroot}%{_userunitdir}/plasma-workspace@.target.d/
 
 install -m644 -p -D %{SOURCE40} %{buildroot}%{_userunitdir}/plasma-core.target.d/ssh-agent.conf
 install -m644 -p -D %{SOURCE41} %{buildroot}%{_userunitdir}/plasma-core.target.d/spice-vdagent.conf
-install -m644 -p -D %{SOURCE42} %{buildroot}%{_userunitdir}/plasma-plasmashell.service.d/waitforkded.conf
 
 %find_lang all --with-html --all-name
 
@@ -490,8 +488,6 @@ fi
 %dir %{_userunitdir}/plasma-core.target.d/
 %{_userunitdir}/plasma-core.target.d/spice-vdagent.conf
 %{_userunitdir}/plasma-core.target.d/ssh-agent.conf
-%dir %{_userunitdir}/plasma-plasmashell.service.d
-%{_userunitdir}/plasma-plasmashell.service.d/waitforkded.conf
 %{_userunitdir}/plasma-workspace-wayland.target
 %{_userunitdir}/plasma-workspace-x11.target
 %{_userunitdir}/plasma-workspace.target
