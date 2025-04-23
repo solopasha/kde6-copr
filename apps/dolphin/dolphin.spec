@@ -1,6 +1,6 @@
 %global commit0 0f75aa69ea5cd448553d80fc20b172ee5eb28092
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 18
+%global bumpver 19
 
 Name:           dolphin
 Summary:        KDE File Manager
@@ -99,6 +99,8 @@ Requires:       kf6-kio-devel%{?_isa}
 %install
 %cmake_install
 
+rm -rf %{buildroot}%{_kf6_datadir}/kconf_update/dolphin_directorysizemode.{upd,py}
+
 %find_lang dolphin --all-name --with-html
 
 %if 0%{?flatpak}
@@ -132,7 +134,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %dir %{_kf6_datadir}/dolphin
 %{_kf6_datadir}/dolphin/dolphinpartactions.desktop
 %{_kf6_datadir}/kconf_update/dolphin_detailsmodesettings.upd
-%{_kf6_datadir}/kconf_update/dolphin_directorysizemode.*
 %{_kf6_datadir}/kconf_update/dolphin_replace_view_mode_with_view_settings_in_toolbar.{upd,py}
 %{_kf6_datadir}/kconf_update/dolphin_statusandlocationbarssettings.upd
 %{_kf6_libdir}/kconf_update_bin/dolphin_25.04_update_statusandlocationbarssettings
