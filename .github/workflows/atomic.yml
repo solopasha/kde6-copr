@@ -52,7 +52,7 @@ jobs:
 
       - name: Fix path
         run: |
-          sed -i "s|@@PATH@@|$IMAGENAME|" atomic/sigstore.yaml
+          sed -i "s|@@REPO@@|$IMAGENAME|" atomic/sigstore.yaml
 
       - name: Get buildid
         id: get-buildid
