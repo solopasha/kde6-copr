@@ -22,6 +22,12 @@ BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6NetworkManagerQt)
 
+BuildRequires:  cmake(KF6KirigamiAddons)
+BuildRequires:  qt6qml(org.kde.kitemmodels)
+
+Requires:       kf6-kirigami-addons%{?_isa}
+Requires:       kf6-kitemmodels%{?_isa}
+
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
