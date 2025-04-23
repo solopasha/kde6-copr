@@ -118,7 +118,7 @@ jobs:
       - name: Compress the cache directory manually to preserve xattrs
         run: |
           pushd atomic > /dev/null || exit 1
-          bsdtar --xz --options xz:compression-level=9,zstd:threads=0 --acls --xattrs -cpaf buildcache.tar.zst cache
+          bsdtar --zstd --options zstd:compression-level=17,zstd:threads=0 --acls --xattrs -cpaf buildcache.tar.zst cache
 
       - name: Save cache
         id: cache-save
