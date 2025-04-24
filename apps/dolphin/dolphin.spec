@@ -99,8 +99,6 @@ Requires:       kf6-kio-devel%{?_isa}
 %install
 %cmake_install
 
-rm -rf %{buildroot}%{_kf6_datadir}/kconf_update/dolphin_directorysizemode.{upd,py}
-
 %find_lang dolphin --all-name --with-html
 
 %if 0%{?flatpak}
