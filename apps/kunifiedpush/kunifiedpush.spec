@@ -14,6 +14,7 @@ URL:            https://invent.kde.org/libraries/kunifiedpush
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
+BuildRequires:  systemd-rpm-macros
 
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
@@ -55,6 +56,9 @@ Requires:       cmake(Qt6Core)
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
+%post
+%systemd_user_post kunifiedpush-distributor.service
+
 %files -f kcm_push_notifications.lang
 %license LICENSES/*
 %doc README.md
@@ -64,6 +68,8 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_kf6_libdir}/libKUnifiedPush.so.{1,%{version_no_git}}
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_push_notifications.so
 %{_kf6_sysconfdir}/xdg/autostart/org.kde.kunifiedpush-distributor.desktop
+%{_userunitdir}/graphical-session.target.wants/kunifiedpush-distributor.service
+%{_userunitdir}/kunifiedpush-distributor.service
 %config(noreplace) %{_sysconfdir}/xdg/KDE/kunifiedpush-distributor.conf
 
 %files devel
