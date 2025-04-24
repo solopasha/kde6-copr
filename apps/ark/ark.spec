@@ -107,8 +107,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.ark.deskt
 %{_kf6_datadir}/applications/org.kde.ark.desktop
 %{_kf6_datadir}/config.kcfg/ark.kcfg
 %{_kf6_datadir}/icons/hicolor/*/apps/ark.*
-%{_kf6_datadir}/kconf_update/ark_add_hamburgermenu_to_toolbar.sh
-%{_kf6_datadir}/kconf_update/ark.upd
 %{_kf6_datadir}/qlogging-categories6/%{name}*
 %{_kf6_mandir}/man1/ark.1*
 %{_kf6_metainfodir}/org.kde.ark.appdata.xml

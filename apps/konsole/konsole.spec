@@ -119,7 +119,6 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_bindir}/konsoleprofile
 %{_kf6_datadir}/applications/org.kde.konsole.desktop
 %{_kf6_datadir}/kconf_update/konsole_add_hamburgermenu_to_toolbar.sh
-%{_kf6_datadir}/kconf_update/konsole.upd
 %{_kf6_datadir}/kglobalaccel/org.kde.konsole.desktop
 %{_kf6_datadir}/kio/servicemenus/konsolerun.desktop
 %{_kf6_datadir}/knotifications6/konsole.notifyrc
