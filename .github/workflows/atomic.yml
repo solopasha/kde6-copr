@@ -17,11 +17,15 @@ jobs:
       contents: read
     container:
       image: registry.fedoraproject.org/fedora:${{ vars.RELEASEVER }}
-      options: --privileged
+      options: --privileged --volume /:/run/host:rw
     env:
       IMAGENAME: ghcr.io/${{ github.repository }}/kde-unstable
 
     steps:
+      - name: Reclaim disk space
+        run: |
+          rm -rf /run/host/usr/local/lib/android /run/host/usr/share/dotnet /run/host/opt/ghc /run/host/opt/hostedtoolcac
+
       - name: Prepare
         run: |
           dnf -y up && dnf -y install \
@@ -75,21 +79,16 @@ jobs:
             bsdtar --acls --xattrs -xpzf buildcache.tar.zst
             rm buildcache.tar.zst
           fi
-          mkdir -p repo cache
-          pushd repo > /dev/null || exit 1
-          ostree init --repo . --mode=bare-user
-          popd > /dev/null || exit 1
+          mkdir -p cache
 
-          # Set option to reduce fsync for transient builds
-          ostree --repo=repo config set 'core.fsync' 'false'
-
-          version="$(rpm-ostree compose tree --print-only --repo=repo kinoite.yaml | jq -r '."mutate-os-release"')"
+          version="$(rpm-ostree compose tree --print-only kinoite.yaml | jq -r '."mutate-os-release"')"
           echo "version=${version}" >> $GITHUB_OUTPUT
           echo "Composing kinoite ${version}.${{ steps.get-buildid.outputs.buildid }} ..."
 
-          rpm-ostree compose image --cachedir=cache --initialize \
-              "kinoite.yaml" \
-              "kinoite.ociarchive"
+          rpm-ostree compose rootfs --cachedir=cache kinoite.yaml rootfs
+          rpm-ostree compose build-chunked-oci --bootc --format-version=1 \
+            --max-layers 99 --rootfs=rootfs \
+            --output containers-storage:localhost/kinoite:build
 
       - name: Key
         env:
@@ -108,7 +107,7 @@ jobs:
 
           pushd atomic > /dev/null || exit 1
           skopeo copy ${SKOPEO_ARGS} \
-            "oci-archive:kinoite.ociarchive" \
+            "containers-storage:localhost/kinoite:build" \
             "docker://${IMAGENAME}:${{ steps.build.outputs.version }}.${{ steps.get-buildid.outputs.buildid }}"
 
           skopeo copy ${SKOPEO_ARGS} \
