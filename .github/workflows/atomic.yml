@@ -63,13 +63,13 @@ jobs:
         run: |
           echo "buildid=$(date -u "+%Y%m%d.%H%M")" >> $GITHUB_OUTPUT
 
-      - name: Restore cache
-        id: cache
-        uses: actions/cache/restore@v4
-        with:
-          path: atomic/buildcache.tar.zst
-          key: build-${{ steps.get-buildid.outputs.buildid }}
-          restore-keys: build-
+      # - name: Restore cache
+      #   id: cache
+      #   uses: actions/cache/restore@v4
+      #   with:
+      #     path: atomic/buildcache.tar.zst
+      #     key: build-${{ steps.get-buildid.outputs.buildid }}
+      #     restore-keys: build-
 
       - name: Build
         id: build
@@ -114,14 +114,14 @@ jobs:
             "docker://${IMAGENAME}:${{ steps.build.outputs.version }}.${{ steps.get-buildid.outputs.buildid }}" \
             "docker://${IMAGENAME}:${{ steps.build.outputs.version }}"
 
-      - name: Compress the cache directory manually to preserve xattrs
-        run: |
-          pushd atomic > /dev/null || exit 1
-          bsdtar --zstd --options zstd:compression-level=17,zstd:threads=0 --acls --xattrs -cpaf buildcache.tar.zst cache
+      # - name: Compress the cache directory manually to preserve xattrs
+      #   run: |
+      #     pushd atomic > /dev/null || exit 1
+      #     bsdtar --zstd --options zstd:compression-level=17,zstd:threads=0 --acls --xattrs -cpaf buildcache.tar.zst cache
 
-      - name: Save cache
-        id: cache-save
-        uses: actions/cache/save@v4
-        with:
-          path: atomic/buildcache.tar.zst
-          key: ${{ steps.cache.outputs.cache-primary-key }}
+      # - name: Save cache
+      #   id: cache-save
+      #   uses: actions/cache/save@v4
+      #   with:
+      #     path: atomic/buildcache.tar.zst
+      #     key: ${{ steps.cache.outputs.cache-primary-key }}
