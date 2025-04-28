@@ -1,6 +1,6 @@
-%global commit0 87f016760b607f5612f72e63a2db7a6ad0f8b89a
+%global commit0 9f8c6f654f883c0e7b036e57d82d510c9ee1f102
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework ktextwidgets
 
@@ -13,7 +13,6 @@ License:        CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 
-BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6I18n)
