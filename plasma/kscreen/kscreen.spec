@@ -49,8 +49,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/applications/kcm_kscreen.desktop
 %{_kf6_datadir}/dbus-1/services/org.kde.kscreen.osdService.service
 %{_kf6_datadir}/kglobalaccel/org.kde.kscreen.desktop
-%{_kf6_datadir}/metainfo/org.kde.kscreen.appdata.xml
-%{_kf6_datadir}/plasma/plasmoids/org.kde.kscreen/
 %{_kf6_datadir}/qlogging-categories6/kscreen.categories
 %{_kf6_plugindir}/kded/kscreen.so
 %{_kf6_qtplugindir}/plasma/applets/org.kde.kscreen.so

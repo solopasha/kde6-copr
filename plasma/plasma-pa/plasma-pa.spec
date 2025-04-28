@@ -51,11 +51,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_datadir}/applications/kcm_pulseaudio.desktop
-%{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.volume/
 %{_kf6_datadir}/qlogging-categories6/plasmapa.categories
 %{_kf6_libdir}/libplasma-volume.so.%{version_no_git}
 %{_kf6_libdir}/libplasma-volume.so.6
-%{_kf6_metainfodir}/org.kde.plasma.volume.appdata.xml
 %{_kf6_plugindir}/kded/audioshortcutsservice.so
 %{_kf6_qmldir}/org/kde/plasma/private/volume/
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_pulseaudio.so
