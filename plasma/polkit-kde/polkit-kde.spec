@@ -20,6 +20,7 @@ BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6WindowSystem)
 
 BuildRequires:  cmake(Qt6Core)
@@ -43,7 +44,7 @@ Provides Policy Kit Authentication Agent that nicely fits to KDE.
 %files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_datadir}/applications/org.kde.polkit-kde-authentication-agent-1.desktop
-%{_kf6_datadir}/knotifications6/policykit1-kde.notifyrc
+%{_kf6_datadir}/knotifications6/polkit-kde-authentication-agent-1.notifyrc
 %{_kf6_libexecdir}/polkit-kde-authentication-agent-1
 %{_kf6_sysconfdir}/xdg/autostart/polkit-kde-authentication-agent-1.desktop
 %{_userunitdir}/plasma-polkit-agent.service
