@@ -1,6 +1,6 @@
 %global commit0 22f53e6bf8d329334dde142fb2a0b048ff36acda
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 24
+%global bumpver 25
 
 Name:           kinfocenter
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -48,7 +48,7 @@ Requires:       clinfo
 Requires:       pulseaudio-utils
 Requires:       hwdata
 Requires:       libdisplay-info-tools
-Requires:       lm_sensors
+Recommends:     lm_sensors
 
 %description
 %{summary}.
