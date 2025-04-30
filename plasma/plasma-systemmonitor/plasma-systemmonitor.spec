@@ -51,7 +51,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %license LICENSES/*.txt
 %{_kf6_bindir}/plasma-systemmonitor
 %{_kf6_datadir}/applications/org.kde.plasma-systemmonitor.desktop
-%{_kf6_datadir}/config.kcfg/systemmonitor.kcfg
 %{_kf6_datadir}/kconf_update/plasma-systemmonitor-replace-vmpss.py
 %{_kf6_datadir}/kconf_update/plasma-systemmonitor.upd
 %{_kf6_datadir}/kglobalaccel/org.kde.plasma-systemmonitor.desktop
