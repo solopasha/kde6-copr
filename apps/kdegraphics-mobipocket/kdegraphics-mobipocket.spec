@@ -7,7 +7,7 @@ Summary: A collection of plugins to handle mobipocket files
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
-License: GPLv2+
+License: GPL-2.0-or-later
 URL:     https://www.kde.org/applications/graphics/
 %apps_source
 
@@ -44,7 +44,7 @@ Requires:   %{name}%{?_isa} = %{version}-%{release}
 
 
 %files
-%license COPYING
+%license LICENSES/GPL-2.0-or-later.txt
 %{_kf6_libdir}/libQMobipocket6.so.2*
 
 %files devel
