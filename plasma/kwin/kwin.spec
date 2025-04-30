@@ -1,6 +1,6 @@
-%global commit0 619d1dc93eec8655b2639f8d2712f0e9beab577f
+%global commit0 9106a72e24fd445d99f9ff32eb9079b748bf3853
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 118
+%global bumpver 119
 
 Name:           kwin
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -10,7 +10,6 @@ Summary:        KDE Window manager
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:            https://invent.kde.org/plasma/kwin
 %plasma_source
-Patch:          https://invent.kde.org/plasma/kwin/-/merge_requests/7327.patch
 
 BuildRequires:  systemd-rpm-macros
 
