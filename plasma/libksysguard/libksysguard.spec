@@ -29,6 +29,7 @@ BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  libcap-devel
 BuildRequires:  libXres-devel
 BuildRequires:  lm_sensors-devel
+BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(libnl-3.0)
 BuildRequires:  pkgconfig(libnl-route-3.0)
 BuildRequires:  pkgconfig(libpcap)
