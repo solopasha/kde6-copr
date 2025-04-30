@@ -1,6 +1,6 @@
-%global commit0 5104e7a826ab2ddee4d90406a5dac9c37d8dbacc
+%global commit0 5d5ff4bfd6447d192fe23c1183d29b98844490fb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    kteatime
 Summary: Handy timer for steeping tea
@@ -29,6 +29,7 @@ BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6Notifications)
 BuildRequires: cmake(KF6NotifyConfig)
+BuildRequires: cmake(KF6StatusNotifierItem)
 BuildRequires: cmake(KF6TextWidgets)
 BuildRequires: cmake(KF6XmlGui)
 

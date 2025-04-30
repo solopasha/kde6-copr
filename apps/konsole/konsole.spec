@@ -1,6 +1,6 @@
-%global commit0 e8f22eb12bc43bbd285ee85e82e177e4b3919b92
+%global commit0 ded33be511a19395e678abd29e2cb5fb1ea36398
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 #global tests 1
 
@@ -118,14 +118,11 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_bindir}/konsole
 %{_kf6_bindir}/konsoleprofile
 %{_kf6_datadir}/applications/org.kde.konsole.desktop
-%{_kf6_datadir}/kconf_update/konsole_add_hamburgermenu_to_toolbar.sh
 %{_kf6_datadir}/kglobalaccel/org.kde.konsole.desktop
 %{_kf6_datadir}/kio/servicemenus/konsolerun.desktop
 %{_kf6_datadir}/knotifications6/konsole.notifyrc
 %{_kf6_datadir}/qlogging-categories6/konsole.*
 %{_kf6_datadir}/zsh/site-functions/_konsole
-%{_kf6_libdir}/kconf_update_bin/konsole_globalaccel
-%{_kf6_libdir}/kconf_update_bin/konsole_show_menubar
 %{_kf6_metainfodir}/org.kde.konsole.appdata.xml
 %if 0%{?flatpak}
 %{_kf6_datadir}/icons/hicolor/*/apps/utilities-terminal.*
