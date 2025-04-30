@@ -1,6 +1,6 @@
-%global commit0 5502c1b47264147e48489076ca267b7ec620c129
+%global commit0 ff2a7562b0963be3b355665fe61b4ee12b8e0749
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 8
+%global bumpver 9
 
 %global selinuxtype targeted
 
@@ -10,7 +10,7 @@ Version:        0.21.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later
-URL:            https://invent.kde.org/davidedmundson/plasma-login-manager
+URL:            https://invent.kde.org/plasma/plasma-login-manager
 Source0:        %{url}/-/archive/%{commit0}/%{name}-%{shortcommit0}.tar.gz
 
 Source10:       sddm.pam
