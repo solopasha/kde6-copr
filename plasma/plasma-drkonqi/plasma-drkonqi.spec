@@ -1,6 +1,6 @@
-%global commit0 8fd0ba78c76fbabae22ec81f4d9c4f8204d0df94
+%global commit0 affe13653b3347d7481a01bf33d3d6327249f638
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 23
+%global bumpver 24
 
 %global base_name drkonqi
 
@@ -46,6 +46,7 @@ BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(PolkitQt6-1)
 BuildRequires:  pkgconfig(libsystemd)
 
+Requires:       elfutils%{?_isa}
 Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-kitemmodels%{?_isa}
 Requires:       python3-psutil

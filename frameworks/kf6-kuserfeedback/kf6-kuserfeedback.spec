@@ -1,6 +1,6 @@
-%global commit0 af9ca2f95c39868276c4aeeca6c029b8a4968a51
+%global commit0 1c6c45fb64d8146cf0e55fafab149ae64ffbbf14
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 %global framework kuserfeedback
 
@@ -30,6 +30,12 @@ BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  bison
 BuildRequires:  flex
 
+Obsoletes:      %{name}-console < 6.14.0~4.gitaf9ca2f-2
+# Obsolete the qt5 version
+Obsoletes:      kuserfeedback-console < %{version}-%{release}
+Provides:       kuserfeedback-console = %{version}-%{release}
+Provides:       kuserfeedback-console%{?_isa} = %{version}-%{release}
+
 %description
 %{summary}.
 
@@ -42,29 +48,13 @@ Requires:       cmake(Qt6Widgets)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%package        console
-Summary:        Analytics and administration tool for UserFeedback servers
-Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       qt6-qtcharts%{?_isa}
-# Obsolete the qt5 version
-Obsoletes:      kuserfeedback-console < %{version}-%{release}
-Provides:       kuserfeedback-console = %{version}-%{release}
-Provides:       kuserfeedback-console%{?_isa} = %{version}-%{release}
-%description    console
-Analytics and administration tool for UserFeedback servers.
-
 %install -a
 %find_lang_kf6 userfeedbackconsole6_qt
 %find_lang_kf6 userfeedbackprovider6_qt
 
-%check
-appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.kuserfeedback-console.appdata.xml
-desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.kuserfeedback-console.desktop
-
-%files -f userfeedbackprovider6_qt.lang
+%files -f userfeedbackprovider6_qt.lang -f userfeedbackconsole6_qt.lang
 %doc README.md
 %license LICENSES/*
-%{_kf6_bindir}/userfeedbackctl
 %{_kf6_datadir}/qlogging-categories6/org_kde_UserFeedback.categories
 %{_kf6_libdir}/libKF6UserFeedbackCore.so.%{version_no_git}
 %{_kf6_libdir}/libKF6UserFeedbackCore.so.6
@@ -80,11 +70,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.kuserfeed
 %{_kf6_libdir}/cmake/KF6UserFeedback/
 %{_kf6_libdir}/libKF6UserFeedbackCore.so
 %{_kf6_libdir}/libKF6UserFeedbackWidgets.so
-
-%files console -f userfeedbackconsole6_qt.lang
-%{_kf6_bindir}/UserFeedbackConsole
-%{_kf6_datadir}/applications/org.kde.kuserfeedback-console.desktop
-%{_kf6_metainfodir}/org.kde.kuserfeedback-console.appdata.xml
 
 %changelog
 %{?kde_snapshot_changelog_entry}
