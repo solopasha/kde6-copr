@@ -32,14 +32,11 @@ BuildRequires: cmake(Qt6Widgets)
 # QML module dependencies
 Requires:      kf6-kirigami%{?_isa}
 Requires:      kf6-qqc2-desktop-style%{?_isa}
-Requires:      %{name}-libs%{?_isa} = %{version}-%{release}
+
+Obsoletes:     %{name}-libs < 25.07.70~6.git7b602d6-2
 
 %description
 %{summary}.
-
-%package       libs
-Summary:       Library files for kjournald
-%description   libs
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
@@ -52,8 +49,6 @@ Summary:       Library files for kjournald
 %install
 %cmake_install
 %find_lang %{name} --with-kde --with-man --all-name
-# unpackaged (headers not installed, no stable API)
-rm -f %{buildroot}%{_kf6_libdir}/libkjournald.so
 
 %check
 desktop-file-validate %{buildroot}/%{_kf6_datadir}/applications/org.kde.kjournaldbrowser.desktop
@@ -65,12 +60,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.kj
 %{_kf6_bindir}/kjournaldbrowser
 %{_kf6_datadir}/applications/org.kde.kjournaldbrowser.desktop
 %{_kf6_datadir}/qlogging-categories6/kjournald.categories
+%{_kf6_libdir}/libkjournald.so
 %{_kf6_metainfodir}/org.kde.kjournaldbrowser.appdata.xml
 %{_kf6_qmldir}/org/kde/kjournald/
-
-%files libs
-%{_kf6_libdir}/libkjournald.so.%{version_no_git}
-%{_kf6_libdir}/libkjournald.so.0
 
 %changelog
 %{?kde_snapshot_changelog_entry}
