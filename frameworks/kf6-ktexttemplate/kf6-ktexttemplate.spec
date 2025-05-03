@@ -1,11 +1,11 @@
-%global commit0 84f2e3940f4fc376fad9fdb11072be49cc923d60
+%global commit0 e03f46fde85ab4ebee1f8fdeb91e8208976efb2b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 %global framework ktexttemplate
 
 Name:           kf6-%{framework}
-Version:        6.14.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.15.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Separates the structure of documents from their data
 License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later

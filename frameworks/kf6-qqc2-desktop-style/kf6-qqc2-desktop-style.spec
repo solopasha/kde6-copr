@@ -1,11 +1,11 @@
-%global commit0 fc6a1892b946dfa7ddd34ba4eaaabc0131e1a9ae
+%global commit0 9f9ad5c0700fd578f35351b041ee78603d7a24f3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 %global framework qqc2-desktop-style
 
 Name:           kf6-%{framework}
-Version:        6.14.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.15.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        QtQuickControls2 style for consistency between QWidget and QML apps
 License:        CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KFQF-Accepted-GPL

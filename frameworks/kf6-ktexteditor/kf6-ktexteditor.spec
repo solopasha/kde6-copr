@@ -1,11 +1,11 @@
-%global commit0 4c02f034e40237a3a490255b15b6bcf6cdcc6f4a
+%global commit0 a3429f1c2f2a26104fc6612357019b0fefdc0ac7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 %global framework ktexteditor
 
 Name:           kf6-%{framework}
-Version:        6.14.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.15.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 with advanced embeddable text editor
 
@@ -15,6 +15,7 @@ URL:            https://invent.kde.org/frameworks/%{framework}
 
 BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(KF6Auth)
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)

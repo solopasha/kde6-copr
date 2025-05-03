@@ -1,11 +1,11 @@
-%global commit0 242e8614b1d07ef1ad42dfd6adad06c720436f5d
+%global commit0 9d2569c129c15f74f6f7bf6d98c4e10cb35c44be
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework syndication
 
 Name:           kf6-%{framework}
-Version:        6.14.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.15.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        The Syndication Library
 # Qt-Commercial-exception-1.0 is also found in the LICENSES folder, but is unused except for tests which we don't use anyway

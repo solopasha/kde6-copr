@@ -1,11 +1,11 @@
-%global commit0 aebcdf9a0d026ab99888ebf1e9b0d19a6acde5e5
+%global commit0 743979727ac490b4248454e2ff0e6ed408bfcb34
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 %global framework kjobwidgets
 
 Name:           kf6-%{framework}
-Version:        6.14.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.15.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 addon for KJobs
 # The following are in the LICENSES folder, but go unused: LGPL-3.0-only, LicenseRef-KDE-Accepted-LGPL

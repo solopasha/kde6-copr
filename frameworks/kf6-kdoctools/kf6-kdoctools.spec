@@ -1,11 +1,11 @@
-%global commit0 7919f0e1740621aefb1ea4704d4679380edc03f7
+%global commit0 56bda864e2018d8db97d369273b892465c4f4f00
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kdoctools
 
 Name:           kf6-%{framework}
-Version:        6.14.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.15.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 addon for generating documentation
 
