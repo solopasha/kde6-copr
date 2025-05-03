@@ -54,8 +54,9 @@ BuildRequires: pkgconfig(xdamage)
 BuildRequires: pkgconfig(xtst)
 BuildRequires: pkgconfig(zlib)
 
-BuildRequires: libjpeg-devel
 BuildRequires: libepoxy-devel
+BuildRequires: libjpeg-devel
+BuildRequires: lzo-devel
 
 Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 
