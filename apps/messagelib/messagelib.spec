@@ -1,14 +1,14 @@
-%global commit0 aa5e13c3d8ad43bbbe0acefe4b1fada43ba1ba55
+%global commit0 0cda411bbef07b160a70b89b4568f5a004e96598
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 13
+%global bumpver 14
 
-Name:    messagelib
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: KDE Message libraries
+Name:           messagelib
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        KDE Message libraries
 
-License: BSD-3-Clause AND BSL-1.0 AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
-URL:     https://invent.kde.org/pim/messagelib
+License:        BSD-3-Clause AND BSL-1.0 AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
+URL:            https://invent.kde.org/pim/messagelib
 %apps_source
 
 BuildRequires:  kf6-rpm-macros
@@ -34,12 +34,7 @@ BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6Sonnet)
 BuildRequires:  cmake(KF6SyntaxHighlighting)
-BuildRequires:  cmake(KF6TextAddonsWidgets)
-BuildRequires:  cmake(KF6TextAutoCorrectionWidgets)
-BuildRequires:  cmake(KF6TextCustomEditor)
-BuildRequires:  cmake(KF6TextEditTextToSpeech)
 BuildRequires:  cmake(KF6TextTemplate)
-BuildRequires:  cmake(KF6TextUtils)
 BuildRequires:  cmake(KF6TextWidgets)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6XmlGui)
@@ -58,6 +53,12 @@ BuildRequires:  cmake(KPim6Mbox)
 BuildRequires:  cmake(KPim6Mime)
 BuildRequires:  cmake(KPim6PimCommonAkonadi)
 BuildRequires:  cmake(KPim6TextEdit)
+
+BuildRequires:  cmake(KF6TextAddonsWidgets)
+BuildRequires:  cmake(KF6TextAutoCorrectionWidgets)
+BuildRequires:  cmake(KF6TextCustomEditor)
+BuildRequires:  cmake(KF6TextEditTextToSpeech)
+BuildRequires:  cmake(KF6TextUtils)
 
 BuildRequires:  cmake(Qt6Core5Compat)
 BuildRequires:  cmake(Qt6Gui)

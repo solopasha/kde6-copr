@@ -1,26 +1,22 @@
-%global commit0 5872302e5d313994ad0ea18a78b9fa8dc7218e1e
+%global commit0 96400ba3adfb6ec334a2c686cede074bfc14f1ef
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
-Name:    yakuake
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-Summary: A drop-down terminal emulator
+Name:           yakuake
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
+Summary:        A drop-down terminal emulator
 
 # KDE e.V. may determine that future GPL versions are accepted
-License: GPL-2.0-only OR GPL-3.0-only
-URL: https://kde.org/applications/system/org.kde.yakuake
+License:        GPL-2.0-only OR GPL-3.0-only
+URL:            https://apps.kde.org/yakuake
 %apps_source
 
-## upstream fixes
-
-# konsolepart
-Requires:       konsole-part
-
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gettext
+BuildRequires:  libappstream-glib
+
 BuildRequires:  cmake(KF6Archive)
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
@@ -33,61 +29,50 @@ BuildRequires:  cmake(KF6NewStuff)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6NotifyConfig)
 BuildRequires:  cmake(KF6Parts)
+BuildRequires:  cmake(KF6StatusNotifierItem)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  cmake(KF6StatusNotifierItem)
+
 BuildRequires:  cmake(KWayland)
+
 BuildRequires:  cmake(Qt6Core)
-BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(Qt6Svg)
+BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
 
-
-%if 0%{?fedora}
-%global appstream_validate 1
-BuildRequires:  libappstream-glib
-%endif
+Requires:       konsole-part
 
 %description
 Yakuake is a drop-down terminal emulator.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
 %cmake_kf6
-
 %cmake_build
-
 
 %install
 %cmake_install
 
 %find_lang %{name}
 
-
 %check
-%if 0%{?appstream_validate}
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.yakuake.appdata.xml
-%endif
-desktop-file-validate  %{buildroot}%{_kf6_datadir}/applications/org.kde.yakuake.desktop
-
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.yakuake.desktop
 
 %files -f %{name}.lang
 %doc AUTHORS ChangeLog TODO
 %license LICENSES/*
 %{_kf6_bindir}/yakuake
-%{_kf6_datadir}/knsrcfiles/yakuake.knsrc
-%{_kf6_metainfodir}/org.kde.yakuake.appdata.xml
 %{_kf6_datadir}/applications/org.kde.yakuake.desktop
-%{_kf6_datadir}/knotifications6/yakuake.notifyrc
-%{_kf6_datadir}/yakuake/
-%{_kf6_datadir}/icons/hicolor/*/apps/yakuake.*
 %{_kf6_datadir}/dbus-1/services/org.kde.yakuake.service
-
+%{_kf6_datadir}/icons/hicolor/*/apps/yakuake.*
+%{_kf6_datadir}/knotifications6/yakuake.notifyrc
+%{_kf6_datadir}/knsrcfiles/yakuake.knsrc
+%{_kf6_datadir}/yakuake/
+%{_kf6_metainfodir}/org.kde.yakuake.appdata.xml
 
 %changelog
 %{?kde_snapshot_changelog_entry}

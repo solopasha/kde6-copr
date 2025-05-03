@@ -1,6 +1,6 @@
-%global commit0 f9569eb19d3dad9693312015436a5419322a3a1b
+%global commit0 8637f27dff1ba11a1ae618800a3d42863974be44
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 23
+%global bumpver 24
 
 Name:           dolphin
 Summary:        KDE File Manager
@@ -21,6 +21,7 @@ BuildRequires:  cmake(KF6Baloo)
 BuildRequires:  cmake(KF6BalooWidgets)
 BuildRequires:  cmake(KF6Bookmarks)
 BuildRequires:  cmake(KF6Codecs)
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)

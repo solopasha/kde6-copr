@@ -1,6 +1,6 @@
-%global commit0 080c12bff761713238a2320a1ac39ae0c9969485
+%global commit0 c948d32f9abb62d7d88e238b24d08f4acc1149e3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 11
+%global bumpver 12
 
 Name:    mailcommon
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -16,6 +16,7 @@ BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(KF6Codecs)
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6DBusAddons)

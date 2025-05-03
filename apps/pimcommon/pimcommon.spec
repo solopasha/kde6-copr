@@ -1,6 +1,6 @@
-%global commit0 8867247f7d6db1fc9ad0cb65fae1d99dd53eeb38
+%global commit0 58a287c7f1d90eec5a3eeed61f47754156b32bf6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 11
+%global bumpver 12
 
 Name:    pimcommon
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -16,6 +16,7 @@ BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(KF6Codecs)
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6Contacts)
 BuildRequires:  cmake(KF6CoreAddons)

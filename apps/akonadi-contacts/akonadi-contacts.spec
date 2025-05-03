@@ -1,6 +1,6 @@
-%global commit0 c7f87f69e0c0a1117fd419d8298469c40f1ac6d2
+%global commit0 3947e88d947b7eca8eaef7170417e810b91c87c0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 11
+%global bumpver 12
 
 #global tests 1
 
@@ -17,6 +17,7 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6Codecs)
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6Contacts)

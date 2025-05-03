@@ -1,6 +1,6 @@
-%global commit0 6343aa7c67f657baaff9ac4e77be460eb7db8c93
+%global commit0 a456bac696d4bd95485ca5250cb945201906f207
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    juk
 Summary: Music player
@@ -40,11 +40,11 @@ BuildRequires: cmake(KF6XmlGui)
 BuildRequires: cmake(Qt6Concurrent)
 BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6Gui)
+BuildRequires: cmake(Qt6Multimedia)
 BuildRequires: cmake(Qt6Network)
 BuildRequires: cmake(Qt6Svg)
 BuildRequires: cmake(Qt6Test)
 BuildRequires: cmake(Qt6Widgets)
-BuildRequires: cmake(Phonon4Qt6)
 
 BuildRequires: pkgconfig(taglib)
 

@@ -1,6 +1,6 @@
-%global commit0 104de960b1f9431442b7b21995a3d5bebaea4d9f
+%global commit0 a8e2f375d223351225115c3deb114616282f037c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 22
+%global bumpver 23
 
 %global base_name akonadi
 %global mysql mysql
@@ -27,6 +27,7 @@ Source11:       akonadiserverrc.sqlite
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6CoreAddons)

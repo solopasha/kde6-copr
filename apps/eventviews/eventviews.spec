@@ -1,6 +1,6 @@
-%global commit0 34955afb2e6b61bb37529eb72387e9888ec615de
+%global commit0 9587234070ef4b830db8da881e8f826a71e1a1dc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 15
+%global bumpver 16
 
 Name:    eventviews
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -16,6 +16,7 @@ BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6CalendarCore)
 BuildRequires:  cmake(KF6Codecs)
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Contacts)
 BuildRequires:  cmake(KF6GuiAddons)

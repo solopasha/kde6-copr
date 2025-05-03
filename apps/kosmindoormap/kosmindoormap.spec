@@ -1,6 +1,6 @@
-%global commit0 58f94481ebe8e30b0c8079e5be6126cad5a43928
+%global commit0 439ab1fcebe4c1f51a0e422eff43493f3dca9283
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    kosmindoormap
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

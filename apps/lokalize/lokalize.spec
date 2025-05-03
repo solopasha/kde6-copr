@@ -1,6 +1,6 @@
-%global commit0 cd7f05452f55d9d783aad563d7821f7573bd32e5
+%global commit0 b4a09791c1b9a001bbcfdadc06b846a223b0a0e6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 15
+%global bumpver 16
 
 Name:           lokalize
 Summary:        Computer-aided translation system
@@ -16,6 +16,7 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
@@ -39,13 +40,13 @@ BuildRequires:  pkgconfig(hunspell)
 
 ## fixme
 # aka python-unversioned-command
-Requires: /usr/bin/python
-Requires: python3-dbus
-Requires: gettext
+Requires:       /usr/bin/python
+Requires:       python3-dbus
+Requires:       gettext
 # odf2xliff
-Requires: translate-toolkit
-Recommends: poxml
-Recommends: subversion
+Requires:       translate-toolkit
+Recommends:     poxml
+Recommends:     subversion
 
 %description
 Computer-aided translation system focusing on productivity and performance

@@ -1,16 +1,16 @@
-%global commit0 e4ee5058a18b61f7b453631100672480d7c0387f
+%global commit0 f4747228ccff2e4f049d6002b856cf61a0a04c21
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 13
+%global bumpver 14
 
 #global tests 1
 
-Name:    kaddressbook
-Summary: Contact Manager
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           kaddressbook
+Summary:        Contact Manager
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
-URL:     https://www.kde.org/applications/office/kaddressbook
+License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
+URL:            https://www.kde.org/applications/office/kaddressbook
 %apps_source
 
 BuildRequires:  desktop-file-utils
@@ -18,6 +18,7 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
@@ -102,10 +103,7 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_libdir}/libKPim6AddressbookImportExport.so.*
 %{_kf6_qtplugindir}/kaddressbookpart.so
 %{_kf6_qtplugindir}/pim6/kontact/kontact_kaddressbookplugin.so
-%{_qt6_plugindir}/pim6/kcms/kaddressbook/kaddressbook_config_activities.so
-%{_qt6_plugindir}/pim6/kcms/kaddressbook/kaddressbook_config_ldap.so
-%{_qt6_plugindir}/pim6/kcms/kaddressbook/kaddressbook_config_plugins.so
-%{_qt6_plugindir}/pim6/kcms/kaddressbook/kaddressbook_config_userfeedback.so
+%{_qt6_plugindir}/pim6/kcms/kaddressbook/
 
 %files devel
 %{_includedir}/KPim6/

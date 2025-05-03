@@ -1,6 +1,6 @@
-%global commit0 56ab028368fd1db928df34833ffba0f04c64cf43
+%global commit0 15cc5bfb9857497d38befe7ee04367a1cdcce2a6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 10
+%global bumpver 11
 
 # build Python plugins (disabled by default due to #2048781)
 %bcond_with python
@@ -42,7 +42,6 @@ BuildRequires:  cmake(Qt6WebEngineCore)
 BuildRequires:  cmake(Qt6WebEngineWidgets)
 BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Qt6DBus)
-BuildRequires:  cmake(Qt6Core5Compat)
 BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(KF6Archive)
