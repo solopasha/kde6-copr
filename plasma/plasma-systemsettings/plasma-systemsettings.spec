@@ -1,6 +1,6 @@
-%global commit0 3ecd6515ee53bdcd39c35ed4489e63fd018b91d3
+%global commit0 82558ded61a6dff8b3b875f63e3c264f579ac752
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 10
+%global bumpver 11
 
 %global base_name systemsettings
 
@@ -16,6 +16,7 @@ URL:            https://invent.kde.org/plasma/%{base_name}
 BuildRequires:  desktop-file-utils
 
 BuildRequires:  cmake(KF6Auth)
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
@@ -48,7 +49,7 @@ Requires:       kf6-kirigami%{?_isa}
 %{summary}.
 
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files -f %{name}.lang
 %license LICENSES/*

@@ -1,6 +1,6 @@
-%global commit0 0bcde07b31f845bfac7e3a8869457a87c2e38ca3
+%global commit0 31f39533a909dda966869f1e12ed008054087ba2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 107
+%global bumpver 108
 
 %bcond x11 1
 
@@ -42,6 +42,7 @@ BuildRequires:  libappstream-glib
 BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6Baloo)
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)

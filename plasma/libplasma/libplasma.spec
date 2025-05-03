@@ -1,6 +1,6 @@
-%global commit0 acea375854fa5d430646db49f2c397c58eca4f79
+%global commit0 f7caaba888bee92fe020429f48dafa8b82878d82
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 39
+%global bumpver 40
 
 Name:           libplasma
 Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -12,6 +12,7 @@ URL:            https://invent.kde.org/plasma/plasma-framework
 %plasma_source
 
 BuildRequires:  cmake(KF6Archive)
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6GlobalAccel)
