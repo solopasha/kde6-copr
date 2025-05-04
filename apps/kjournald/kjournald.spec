@@ -1,6 +1,6 @@
-%global commit0 3acd5613bd416f1b30a57699b427a09813ba11b7
+%global commit0 a05d7ca599dda27797d5c6443b1a7904c19bbfd8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 8
 
 Name:          kjournald
 Version:       25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -19,9 +19,11 @@ BuildRequires: kf6-rpm-macros
 BuildRequires: libappstream-glib
 BuildRequires: systemd-devel
 
+BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6I18n)
+BuildRequires: cmake(KF6Kirigami)
 
 BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6Quick)
@@ -29,7 +31,10 @@ BuildRequires: cmake(Qt6QuickControls2)
 BuildRequires: cmake(Qt6Test)
 BuildRequires: cmake(Qt6Widgets)
 
+BuildRequires: cmake(KF6KirigamiAddons)
+
 # QML module dependencies
+Requires:      kf6-kirigami-addons%{?_isa}
 Requires:      kf6-kirigami%{?_isa}
 Requires:      kf6-qqc2-desktop-style%{?_isa}
 
