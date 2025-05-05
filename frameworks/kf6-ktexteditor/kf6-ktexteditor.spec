@@ -51,8 +51,6 @@ Requires:       cmake(KF6SyntaxHighlighting)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
-
 %install -a
 # create/own dirs
 mkdir -p %{buildroot}%{_kf6_qtplugindir}/ktexteditor
@@ -77,7 +75,6 @@ mkdir -p %{buildroot}%{_kf6_qtplugindir}/ktexteditor
 %{_kf6_includedir}/KTextEditor/
 %{_kf6_libdir}/cmake/KF6TextEditor/
 %{_kf6_libdir}/libKF6TextEditor.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

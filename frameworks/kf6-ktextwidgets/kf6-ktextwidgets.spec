@@ -35,8 +35,6 @@ Requires:       cmake(Qt6Widgets)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
-
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
@@ -48,7 +46,6 @@ developing applications that use %{name}.
 %{_kf6_includedir}/KTextWidgets/
 %{_kf6_libdir}/cmake/KF6TextWidgets/
 %{_kf6_libdir}/libKF6TextWidgets.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

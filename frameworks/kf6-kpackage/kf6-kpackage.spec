@@ -32,8 +32,6 @@ Requires:       cmake(KF6CoreAddons)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
-
 %install -a
 # create/own dirs
 mkdir -p %{buildroot}%{_kf6_qtplugindir}/kpackage/packagestructure/
@@ -54,7 +52,6 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kpackage/
 %{_kf6_includedir}/KPackage/
 %{_kf6_libdir}/cmake/KF6Package/
 %{_kf6_libdir}/libKF6Package.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

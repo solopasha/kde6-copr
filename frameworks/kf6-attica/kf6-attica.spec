@@ -27,8 +27,6 @@ Requires:       cmake(Qt6Network)
 %description    devel
 %{summary}.
 
-%qch_package
-
 %files
 %doc AUTHORS ChangeLog README.md
 %license LICENSES/*.txt
@@ -41,7 +39,6 @@ Requires:       cmake(Qt6Network)
 %{_kf6_libdir}/cmake/KF6Attica/
 %{_kf6_libdir}/libKF6Attica.so
 %{_kf6_libdir}/pkgconfig/KF6Attica.pc
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

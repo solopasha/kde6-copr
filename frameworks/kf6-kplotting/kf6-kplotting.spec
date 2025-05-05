@@ -26,8 +26,6 @@ Requires:       cmake(Qt6Widgets)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
-
 %files
 %doc README.md
 %license LICENSES/*.txt
@@ -39,7 +37,6 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6Plotting/
 %{_kf6_libdir}/libKF6Plotting.so
 %{_kf6_qtplugindir}/designer/kplotting6widgets.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

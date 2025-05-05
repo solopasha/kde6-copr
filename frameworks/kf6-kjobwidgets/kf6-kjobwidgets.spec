@@ -33,7 +33,6 @@ Requires:       cmake(Qt6Widgets)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
 %kf6_python_bindings_package
 
 %files -f kjobwidgets6_qt.lang
@@ -48,7 +47,6 @@ developing applications that use %{name}.
 %{_kf6_includedir}/KJobWidgets/
 %{_kf6_libdir}/cmake/KF6JobWidgets/
 %{_kf6_libdir}/libKF6JobWidgets.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

@@ -133,8 +133,6 @@ Recommends:     switcheroo-control
 %description    gui
 %{summary}.
 
-%qch_package qch
-
 %files
 %license LICENSES/*.txt
 %doc README.md
@@ -193,7 +191,6 @@ Recommends:     switcheroo-control
 %{_kf6_libdir}/libKF6KIOWidgets.so
 %{_kf6_libdir}/libkuriikwsfiltereng_private.so
 %{_kf6_qtplugindir}/designer/*6widgets.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

@@ -63,8 +63,6 @@ Summary:        Runtime libraries for %{name}
 %description    libs
 %{summary}.
 
-%qch_package
-
 %install
 %cmake_install
 
@@ -119,7 +117,6 @@ cat baloo_file6.lang baloo_file_extractor6.lang \
 %{_kf6_libdir}/cmake/KF6Baloo/
 %{_kf6_libdir}/libKF6Baloo.so
 %{_kf6_libdir}/pkgconfig/KF6Baloo.pc
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

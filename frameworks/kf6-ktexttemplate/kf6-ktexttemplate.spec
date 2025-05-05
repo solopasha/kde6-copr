@@ -28,8 +28,6 @@ Requires:       cmake(Qt6Core)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
-
 %files
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/ktexttemplate.categories
@@ -41,7 +39,6 @@ developing applications that use %{name}.
 %{_kf6_includedir}/KTextTemplate/
 %{_kf6_libdir}/cmake/KF6TextTemplate/
 %{_kf6_libdir}/libKF6TextTemplate.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

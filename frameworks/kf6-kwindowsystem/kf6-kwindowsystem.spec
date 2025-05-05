@@ -41,8 +41,6 @@ Requires:       cmake(Qt6Gui)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
-
 %files -f kwindowsystem6_qt.lang
 %doc README.md
 %license LICENSES/*.txt
@@ -59,7 +57,6 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6WindowSystem/
 %{_kf6_libdir}/libKF6WindowSystem.so
 %{_kf6_libdir}/pkgconfig/KF6WindowSystem.pc
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

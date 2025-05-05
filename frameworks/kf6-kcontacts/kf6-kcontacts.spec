@@ -35,8 +35,6 @@ Requires:       cmake(KF6I18n)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
-
 %files -f %{name}.lang
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*%{framework}.*
@@ -48,7 +46,6 @@ developing applications that use %{name}.
 %{_kf6_includedir}/KContacts/
 %{_kf6_libdir}/cmake/KF6Contacts/
 %{_kf6_libdir}/libKF6Contacts.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

@@ -30,8 +30,6 @@ Requires:       qt6-qtbase-devel
 %description    devel
 Development files for %{name}.
 
-%qch_package
-
 %files
 %doc README.md
 %license LICENSES/*.txt
@@ -45,7 +43,6 @@ Development files for %{name}.
 %{_kf6_libdir}/cmake/KF6BluezQt/
 %{_kf6_libdir}/libKF6BluezQt.so
 %{_kf6_libdir}/pkgconfig/KF6BluezQt.pc
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

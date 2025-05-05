@@ -31,8 +31,6 @@ Requires:       cmake(Qt6DBus)
 Qt 6 libraries and header files for developing applications
 that use ModemManager.
 
-%qch_package
-
 %files
 %doc README README.md
 %license LICENSES/*
@@ -45,7 +43,6 @@ that use ModemManager.
 %{_kf6_includedir}/ModemManagerQt/
 %{_kf6_libdir}/cmake/KF6ModemManagerQt/
 %{_kf6_libdir}/libKF6ModemManagerQt.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

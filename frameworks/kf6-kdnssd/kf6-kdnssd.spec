@@ -29,8 +29,6 @@ Requires:       cmake(Qt6Network)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
-
 %files -f kdnssd6_qt.lang
 %doc README.md
 %license LICENSES/*.txt
@@ -41,7 +39,6 @@ developing applications that use %{name}.
 %{_kf6_includedir}/KDNSSD/
 %{_kf6_libdir}/cmake/KF6DNSSD/
 %{_kf6_libdir}/libKF6DNSSD.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

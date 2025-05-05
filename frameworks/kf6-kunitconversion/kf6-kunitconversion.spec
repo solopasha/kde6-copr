@@ -31,7 +31,6 @@ Requires:       cmake(Qt6Core)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
 %kf6_python_bindings_package
 
 %files -f %{name}.lang
@@ -45,7 +44,6 @@ developing applications that use %{name}.
 %{_kf6_includedir}/KUnitConversion/
 %{_kf6_libdir}/cmake/KF6UnitConversion/
 %{_kf6_libdir}/libKF6UnitConversion.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

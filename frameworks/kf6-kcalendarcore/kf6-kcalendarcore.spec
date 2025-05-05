@@ -30,8 +30,6 @@ Requires:       cmake(Qt6Gui)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
-
 %files
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*kcalendarcore.*
@@ -44,7 +42,6 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6CalendarCore/
 %{_kf6_libdir}/libKF6CalendarCore.so
 %{_kf6_libdir}/pkgconfig/KF6CalendarCore.pc
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

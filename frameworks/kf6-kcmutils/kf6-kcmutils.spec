@@ -44,8 +44,6 @@ Requires:       cmake(Qt6Qml)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
-
 %install -a
 # create/own dirs
 mkdir -p %{buildroot}%{_kf6_qtplugindir}/kcms
@@ -73,7 +71,6 @@ mkdir -p %{buildroot}%{_kf6_qtplugindir}/kcms
 %{_kf6_libdir}/libKF6KCMUtilsCore.so
 %{_kf6_libdir}/libKF6KCMUtilsQuick.so
 %{_kf6_libexecdir}/kcmdesktopfilegenerator
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

@@ -39,8 +39,6 @@ Requires:       cmake(KF6XmlGui)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
-
 %install -a
 # create/own parts plugin dir
 mkdir -p %{buildroot}%{_kf6_plugindir}/parts/
@@ -58,7 +56,6 @@ mkdir -p %{buildroot}%{_kf6_plugindir}/parts/
 %{_kf6_includedir}/KParts/
 %{_kf6_libdir}/cmake/KF6Parts/
 %{_kf6_libdir}/libKF6Parts.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

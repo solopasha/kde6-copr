@@ -42,8 +42,6 @@ Requires:       qt6-qtbase-devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
-
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
@@ -65,7 +63,6 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6NewStuffCore.so
 %{_kf6_libdir}/libKF6NewStuffWidgets.so
 %{_kf6_libdir}/qt6/plugins/designer/knewstuff6widgets.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

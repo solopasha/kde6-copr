@@ -47,7 +47,6 @@ Requires:       cmake(Qt6Xml)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
 %kf6_python_bindings_package
 
 %install -a
@@ -67,7 +66,6 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kxmlgui5/
 %{_kf6_libdir}/cmake/KF6XmlGui/
 %{_kf6_libdir}/libKF6XmlGui.so
 %{_kf6_qtplugindir}/designer/*6widgets.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

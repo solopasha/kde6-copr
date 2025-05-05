@@ -39,8 +39,6 @@ Requires:       cmake(Qt6Widgets)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
-
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
@@ -54,7 +52,6 @@ developing applications that use %{name}.
 %{_kf6_qtplugindir}/kiconthemes6/iconengines/KIconEnginePlugin.so
 
 %files devel
-%{_qt6_docdir}/*.tags
 %{_kf6_includedir}/KIconThemes/
 %{_kf6_includedir}/KIconWidgets/
 %{_kf6_libdir}/cmake/KF6IconThemes/

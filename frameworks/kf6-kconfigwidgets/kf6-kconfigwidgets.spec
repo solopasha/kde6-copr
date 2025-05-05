@@ -41,8 +41,6 @@ Requires:       cmake(KF6WidgetsAddons)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
-
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
@@ -56,7 +54,6 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6ConfigWidgets/
 %{_kf6_libdir}/libKF6ConfigWidgets.so
 %{_kf6_libdir}/qt6/plugins/designer/kconfigwidgets6widgets.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

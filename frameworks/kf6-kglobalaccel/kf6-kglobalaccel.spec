@@ -30,8 +30,6 @@ Requires:       cmake(Qt6Widgets)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
-
 %files -f kglobalaccel6_qt.lang
 %doc README.md
 %license LICENSES/*.txt
@@ -44,7 +42,6 @@ developing applications that use %{name}.
 %{_kf6_includedir}/KGlobalAccel/
 %{_kf6_libdir}/cmake/KF6GlobalAccel/
 %{_kf6_libdir}/libKF6GlobalAccel.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

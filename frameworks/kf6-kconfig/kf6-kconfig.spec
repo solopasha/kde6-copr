@@ -30,8 +30,6 @@ Requires:       cmake(Qt6Qml)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
-
 %files -f kconfig6_qt.lang
 %doc DESIGN README.md TODO
 %license LICENSES/*.txt
@@ -57,7 +55,6 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6ConfigCore.so
 %{_kf6_libdir}/libKF6ConfigGui.so
 %{_kf6_libdir}/libKF6ConfigQml.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

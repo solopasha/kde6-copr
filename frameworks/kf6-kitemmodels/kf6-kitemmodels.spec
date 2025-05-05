@@ -27,8 +27,6 @@ Requires:       cmake(Qt6Core)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
-
 %files
 %license LICENSES/*.txt
 %doc README.md
@@ -41,7 +39,6 @@ developing applications that use %{name}.
 %{_kf6_includedir}/KItemModels/
 %{_kf6_libdir}/cmake/KF6ItemModels/
 %{_kf6_libdir}/libKF6ItemModels.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

@@ -32,8 +32,6 @@ Requires:       cmake(KF6CoreAddons)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
-
 %files -f kauth6_qt.lang
 %doc README.md
 %license LICENSES/*.txt
@@ -50,7 +48,6 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6Auth/
 %{_kf6_libdir}/libKF6AuthCore.so
 %{_kf6_libexecdir}/kauth/
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

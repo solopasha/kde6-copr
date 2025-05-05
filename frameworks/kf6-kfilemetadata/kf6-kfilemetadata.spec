@@ -43,8 +43,6 @@ Requires:       cmake(Qt6Core)
 %description    devel
 %{summary}.
 
-%qch_package
-
 %files -f %{name}.lang
 %license LICENSES/*.txt
 %{_kf6_bindir}/kfilemetadata_dump6
@@ -60,7 +58,6 @@ Requires:       cmake(Qt6Core)
 %{_kf6_includedir}/KFileMetaData/
 %{_kf6_libdir}/cmake/KF6FileMetaData/
 %{_kf6_libdir}/libKF6FileMetaData.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

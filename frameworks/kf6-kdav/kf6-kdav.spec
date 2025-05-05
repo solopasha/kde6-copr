@@ -32,8 +32,6 @@ Requires:       cmake(KF6CoreAddons)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
-
 %files -f %{name}.lang
 %doc README*
 %license LICENSES/*.txt
@@ -45,7 +43,6 @@ developing applications that use %{name}.
 %{_kf6_includedir}/KDAV/
 %{_kf6_libdir}/cmake/KF6DAV/
 %{_kf6_libdir}/libKF6DAV.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

@@ -33,7 +33,6 @@ Requires:       cmake(Qt6Gui)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
 %kf6_python_bindings_package
 
 %install -a
@@ -53,7 +52,6 @@ mkdir -p %{buildroot}/%{_kf6_datadir}/knotifications6
 %{_kf6_includedir}/KNotifications/
 %{_kf6_libdir}/cmake/KF6Notifications/
 %{_kf6_libdir}/libKF6Notifications.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}

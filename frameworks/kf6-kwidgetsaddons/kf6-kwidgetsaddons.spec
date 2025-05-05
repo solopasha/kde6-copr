@@ -25,7 +25,6 @@ Requires:       cmake(Qt6Widgets)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%qch_package
 %kf6_python_bindings_package
 
 %files -f kwidgetsaddons6_qt.lang
@@ -40,7 +39,6 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6WidgetsAddons/
 %{_kf6_libdir}/libKF6WidgetsAddons.so
 %{_kf6_qtplugindir}/designer/*6widgets.so
-%{_qt6_docdir}/*.tags
 
 %changelog
 %{?kde_snapshot_changelog_entry}
