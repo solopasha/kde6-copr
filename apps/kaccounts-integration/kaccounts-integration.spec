@@ -1,6 +1,6 @@
 %global commit0 2457e164b69fcfc18eec4695a895c1b98d49d426
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kaccounts-integration
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -124,6 +124,7 @@ Requires:       cmake(SignOnQt5)
 %{_kf6_plugindir}/kded/kded_accounts.so
 %{_kf6_qmldir}/org/kde/kaccounts/
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_kaccounts.so
+%dir %{_qt6_plugindir}/kaccounts/daemonplugins
 %{_qt6_plugindir}/kaccounts/daemonplugins/kaccounts_kio_webdav_plugin.so
 
 %files qt6-devel
