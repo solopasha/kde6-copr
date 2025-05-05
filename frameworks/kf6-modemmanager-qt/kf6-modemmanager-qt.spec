@@ -1,6 +1,6 @@
-%global commit0 eea2f1cdfedb0c54d9a03b15f01e881a899e2f0d
+%global commit0 a1f94014a98415a54de3bedf94ef6731663a1787
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework modemmanager-qt
 

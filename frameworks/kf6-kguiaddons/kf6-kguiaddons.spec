@@ -1,6 +1,6 @@
-%global commit0 9a86182e8d5ce63ffa391fab38c39b7393d25090
+%global commit0 1a87d7881b74b7d9b95db30f47dcf6749743d2c3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework kguiaddons
 

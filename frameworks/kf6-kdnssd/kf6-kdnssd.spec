@@ -1,6 +1,6 @@
-%global commit0 9c62ded75940c58b1451f227638113e627928c09
+%global commit0 9ec5d2d184d08966fa542db7e9287d491755ebec
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework kdnssd
 

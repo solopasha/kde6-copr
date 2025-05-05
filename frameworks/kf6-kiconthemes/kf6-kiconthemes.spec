@@ -1,6 +1,6 @@
-%global commit0 1b250b56f8b6849cd4a91b6f509cbd0a90af55b2
+%global commit0 d243c7616c3278471c33ec229e7e779d263bfe33
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework kiconthemes
 

@@ -1,6 +1,6 @@
-%global commit0 1eac72a2e6b7c15418b19d45342ee1786e6a141f
+%global commit0 c98d10262cdddf10bcb9986b21e087430c35ee97
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework kservice
 

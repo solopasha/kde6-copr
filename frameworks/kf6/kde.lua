@@ -93,7 +93,6 @@ end
 
 function actions:frameworks()
     self.namespace = "frameworks"
-    macros._kf6_build_qch = "1"
     print("BuildSystem:    cmake_kf6\n")
     print("Requires:       kf6-filesystem\n")
 end

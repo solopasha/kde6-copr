@@ -1,6 +1,6 @@
-%global commit0 57c302f6ba9b9bee608d585fb71d1face10f1db5
+%global commit0 6a79cf06e6c8abe40b6884746cc4e4b7423a1587
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework kitemviews
 
