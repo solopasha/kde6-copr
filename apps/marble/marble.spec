@@ -1,6 +1,6 @@
 %global commit0 b72e7226b62bd3444e956688ef7ff6d9406143b2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 Name:           marble
 Summary:        Virtual globe and world atlas
@@ -158,7 +158,9 @@ rm -rf src/3rdparty/zlib
 
 rm %{buildroot}%{_kf6_datadir}/applications/marble_thumbnail*.desktop
 
-%find_lang %{name} --all-name --with-html --with-qt
+%find_lang %{name} --all-name --with-html
+%find_lang_kf6 marble_qt
+cat marble_qt.lang >> %{name}.lang
 
 
 %check

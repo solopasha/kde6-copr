@@ -55,7 +55,7 @@ BuildRequires:  cmake(KF6WidgetsAddons)
 %install
 %cmake_install
 
-%find_lang %{name} --all-name --with-html --with-man --with-qt
+%find_lang %{name} --all-name --with-html --with-man
 
 
 %check

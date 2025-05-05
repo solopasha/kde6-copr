@@ -1,6 +1,6 @@
 %global commit0 2f05fcd90e8857c22d222a0d343d1a5867dd764a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:           step
 Summary:        Interactive Physics Simulator
@@ -47,8 +47,10 @@ BuildRequires:  pkgconfig(libqalculate)
 %install
 %cmake_install
 
-%find_lang %{name} --all-name --with-html --with-qt
+%find_lang %{name} --all-name --with-html
 echo '%lang(nn) %{_kf6_datadir}/locale/nn/LC_SCRIPTS/step/step.js' >> %{name}.lang
+%find_lang_kf6 step_qt
+cat step_qt.lang >> %{name}.lang
 
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml

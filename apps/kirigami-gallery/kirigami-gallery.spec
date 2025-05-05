@@ -1,6 +1,6 @@
 %global commit0 764ad598605e67e995a8bc21b174c8d7a5434ee2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 8
+%global bumpver 9
 
 Name:    kirigami-gallery
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -52,7 +52,7 @@ code examples on invent.
 %install
 %cmake_install
 
-%find_lang kirigamigallery --with-qt
+%find_lang_kf6 kirigamigallery_qt
 
 
 %check
@@ -61,7 +61,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.ki
 desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.kirigami2.gallery.desktop
 
 
-%files -f kirigamigallery.lang
+%files -f kirigamigallery_qt.lang
 %doc README.md
 %license LICENSE.LGPL-2
 %{_kf6_bindir}/kirigami2gallery

@@ -51,7 +51,7 @@ Requires: sj-stevehand-fonts
 %install
 %cmake_install
 
-%find_lang %{name} --all-name --with-html --with-qt
+%find_lang %{name} --all-name --with-html
 
 ## unpackaged files
 # omit bundled steve font

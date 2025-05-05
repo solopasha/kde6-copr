@@ -52,7 +52,7 @@ very first sounds of a new language, for children or for adults.
 %install
 %cmake_install
 
-%find_lang %{name} --all-name --with-html --with-man --with-qt
+%find_lang %{name} --all-name --with-html --with-man
 
 
 %check

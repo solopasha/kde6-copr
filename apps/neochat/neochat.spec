@@ -125,7 +125,7 @@ popd
 
 %install
 %cmake_install
-%find_lang %{name} --with-qt --with-man
+%find_lang %{name} --with-man
 
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.appdata.xml

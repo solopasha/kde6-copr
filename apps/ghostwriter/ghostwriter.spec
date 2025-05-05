@@ -1,6 +1,6 @@
 %global commit0 02511821a840659197aee2504fe74b25fec9bc9f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           ghostwriter
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -71,7 +71,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 
 %install
 %cmake_install
-%find_lang %{name} --all-name --with-qt --with-man
+%find_lang %{name} --all-name --with-man
+%find_lang_kf6 ghostwriter_qt
+cat ghostwriter_qt.lang >> %{name}.lang
 
 %files -f %{name}.lang
 %doc CHANGELOG.md CONTRIBUTING.md README.md

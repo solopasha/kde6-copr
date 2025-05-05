@@ -56,7 +56,7 @@ Requires: qt6-qtmultimedia%{?_isa}
 %install
 %cmake_install
 
-%find_lang %{name} --all-name --with-html --with-man --with-qt
+%find_lang %{name} --all-name --with-html --with-man
 
 ## unpackaged files
 rm -fv %{buildroot}%{_kf6_datadir}/icons/hicolor/*/*/kanagram-harmattan.*
