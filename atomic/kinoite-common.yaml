@@ -63,3 +63,6 @@ exclude-packages:
 
 add-files:
   - ["coprs.repo", "/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable.repo"]
+
+remove-from-packages:
+  - ["kde-settings", "/usr/share/kde-settings/kde-profile/default/xdg/kwinrc"]
