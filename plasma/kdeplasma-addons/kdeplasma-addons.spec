@@ -1,6 +1,6 @@
-%global commit0 bb0c87f490ecd69eccbf84917154e72c72f7d855
+%global commit0 7b6b4c58968157f5d3dfd411d2a3903fe8aa10fd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 56
+%global bumpver 57
 
 Name:           kdeplasma-addons
 Summary:        Additional Plasmoids for Plasma 6
@@ -92,7 +92,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 %{_kf6_datadir}/knsrcfiles/comic.knsrc
 %{_kf6_datadir}/kwin/effects/cube/
 %{_kf6_datadir}/kwin/tabbox/
-%{_kf6_datadir}/plasma/desktoptheme/default/weather/*
+%{_kf6_datadir}/plasma/desktoptheme/default/weather/
 %{_kf6_datadir}/plasma/desktoptheme/default/widgets/*
 %{_kf6_datadir}/plasma/plasmoids/*
 %{_kf6_datadir}/plasma/wallpapers/*

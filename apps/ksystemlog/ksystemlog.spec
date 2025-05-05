@@ -1,6 +1,6 @@
-%global commit0 42961753c71c8f8ab2c5b322f83eadba6df94cee
+%global commit0 9f8f6eca34f12b9dcb3503a4c7ae11b9350b0967
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 
 Name:    ksystemlog
