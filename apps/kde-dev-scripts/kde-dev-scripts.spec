@@ -1,6 +1,6 @@
-%global commit0 3130a7a523a18f1913a02494b55f8fd6cc2b7b8c
+%global commit0 f9083dddae3715a02f354bff9f47dcd4d306f3eb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:    kde-dev-scripts
 Summary: KDE SDK scripts
