@@ -1,6 +1,6 @@
-%global commit0 a44c3c98c9c072ab14dc44f8a93ddaf0ca5f5a73
+%global commit0 418b246d0bf7856e31ea21c1666749aa0e327105
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 111
+%global bumpver 112
 
 %bcond x11 1
 
@@ -78,17 +78,18 @@ BuildRequires:  cmake(KF6Wallet)
 BuildRequires:  cmake(Qt6Concurrent)
 BuildRequires:  cmake(Qt6Core5Compat)
 BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Location)
 BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6Positioning)
 BuildRequires:  cmake(Qt6PrintSupport)
 BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6QuickWidgets)
 BuildRequires:  cmake(Qt6ShaderTools)
 BuildRequires:  cmake(Qt6Sql)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  cmake(Qt6Widgets)
-BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(Breeze)
