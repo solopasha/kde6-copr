@@ -1,6 +1,6 @@
 %global commit0 6309d6c65e8630f7d6b1e5e9afc79b84a224c04f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    kajongg
 Summary: Classical Mah Jongg game for four players
@@ -41,7 +41,7 @@ BuildRequires: python3-devel
 BuildRequires: python3-twisted >= 16.6.0
 Requires:      python3-twisted >= 16.6.0
 
-Requires: python3-pyqt6-base
+Requires: python3-pyqt6
 # for ogg123
 Requires: vorbis-tools
 Requires: python3-QtPy
