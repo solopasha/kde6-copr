@@ -43,6 +43,7 @@ jobs:
             skopeo \
             tar \
             zstd
+          dnf -y upgrade --enablerepo=updates-testing --refresh --advisory=FEDORA-2025-ba4625cbe9
           cat << EOF > /etc/containers/registries.d/sigstore.yaml
           docker:
             $IMAGENAME:
@@ -85,10 +86,10 @@ jobs:
           echo "version=${version}" >> $GITHUB_OUTPUT
           echo "Composing kinoite ${version}.${{ steps.get-buildid.outputs.buildid }} ..."
 
-          rpm-ostree compose rootfs --cachedir=cache kinoite.yaml rootfs
-          rpm-ostree compose build-chunked-oci --bootc --format-version=1 \
-            --max-layers 99 --rootfs=rootfs \
-            --output containers-storage:localhost/kinoite:build
+          rpm-ostree compose image --cachedir=cache --initialize \
+               --max-layers 96 \
+              "kinoite.yaml" \
+              "kinoite.ociarchive"
 
       - name: Key
         env:
@@ -107,7 +108,7 @@ jobs:
 
           pushd atomic > /dev/null || exit 1
           skopeo copy ${SKOPEO_ARGS} \
-            "containers-storage:localhost/kinoite:build" \
+            "oci-archive:kinoite.ociarchive" \
             "docker://${IMAGENAME}:${{ steps.build.outputs.version }}.${{ steps.get-buildid.outputs.buildid }}"
 
           skopeo copy ${SKOPEO_ARGS} \
