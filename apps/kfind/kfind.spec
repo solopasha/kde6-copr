@@ -1,6 +1,6 @@
-%global commit0 dd3bc36252b6c6beb5519630cb6a0d85e0e579e4
+%global commit0 0d16865826102bb57d2cc69c63a9034924c4930f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    kfind
 Summary: KDE Find File Utility
