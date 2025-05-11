@@ -54,6 +54,8 @@ jobs:
           dnf clean all
 
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Fix path
         run: |
@@ -87,9 +89,9 @@ jobs:
           echo "Composing kinoite ${version}.${{ steps.get-buildid.outputs.buildid }} ..."
 
           rpm-ostree compose image --cachedir=cache --initialize \
-               --max-layers 96 \
+              --max-layers 96 --format oci \
               "kinoite.yaml" \
-              "kinoite.ociarchive"
+              "kinoite-build"
 
       - name: Key
         env:
@@ -107,13 +109,17 @@ jobs:
           skopeo login --username "${{ github.repository_owner }}" --password "${{ secrets.GITHUB_TOKEN }}" ghcr.io
 
           pushd atomic > /dev/null || exit 1
-          skopeo copy ${SKOPEO_ARGS} \
-            "oci-archive:kinoite.ociarchive" \
-            "docker://${IMAGENAME}:${{ steps.build.outputs.version }}.${{ steps.get-buildid.outputs.buildid }}"
+          for i in {1..5}; do
+            skopeo copy ${SKOPEO_ARGS} \
+              "oci:kinoite-build" \
+              "docker://${IMAGENAME}:${{ steps.build.outputs.version }}.${{ steps.get-buildid.outputs.buildid }}" && break || sleep $((5 * i))
+          done
 
-          skopeo copy ${SKOPEO_ARGS} \
-            "docker://${IMAGENAME}:${{ steps.build.outputs.version }}.${{ steps.get-buildid.outputs.buildid }}" \
-            "docker://${IMAGENAME}:${{ steps.build.outputs.version }}"
+          for i in {1..5}; do
+            skopeo copy ${SKOPEO_ARGS} \
+              "docker://${IMAGENAME}:${{ steps.build.outputs.version }}.${{ steps.get-buildid.outputs.buildid }}" \
+              "docker://${IMAGENAME}:${{ steps.build.outputs.version }}" && break || sleep $((5 * i))
+          done
 
       # - name: Compress the cache directory manually to preserve xattrs
       #   run: |
