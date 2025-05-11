@@ -1,6 +1,6 @@
-%global commit0 7dd3242ab1b2698b0a32fcef01596840c033981a
+%global commit0 c303db6db7cc705134d604f8db3044790e82228b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 16
+%global bumpver 17
 
 %global base_name kdeconnect-kde
 
@@ -34,6 +34,7 @@ BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
+BuildRequires:  cmake(KF6ItemModels)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Kirigami)
