@@ -1,6 +1,6 @@
-%global commit0 40ad16ff5620435d32f3819552ffca0e18eaa48a
+%global commit0 d3e4caf82812b6be261310c9c7b81bdd8d54cc43
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 
 Name:           colord-kde
