@@ -1,6 +1,6 @@
 %global commit0 9f6f7eb6f2bf61b66f0712e5975c5ed6ba2465f3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 19
+%global bumpver 20
 
 %global base_name breeze
 
@@ -108,6 +108,7 @@ Development files for %{name}.
 %{_kf6_bindir}/kcursorgen
 %{_kf6_datadir}/applications/breezestyleconfig.desktop
 %{_kf6_datadir}/applications/kcm_breezedecoration.desktop
+%dir %{_kf6_qtplugindir}/kstyle_config/
 %{_kf6_qtplugindir}/kstyle_config/breezestyleconfig.so
 %{_kf6_qtplugindir}/org.kde.kdecoration3.kcm/kcm_breezedecoration.so
 %{_kf6_qtplugindir}/org.kde.kdecoration3/org.kde.breeze.so
