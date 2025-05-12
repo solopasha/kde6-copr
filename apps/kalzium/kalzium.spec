@@ -1,6 +1,6 @@
-%global commit0 547c785a986c3e005605cc955be4f4e05d4b7d27
+%global commit0 eb4357b3ae3e22572216b381aa21db6b2d9b1b76
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 %if ! 0%{?bootstrap}
 # The Kalzium solver needs OCaml with native compilation support (ocamlopt) and
