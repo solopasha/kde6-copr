@@ -11,6 +11,7 @@ License:        GPL-2.0-or-later AND GPL-3.0-or-later AND MIT
 URL:            https://invent.kde.org/plasma/plasma-browser-integration
 %plasma_source
 BuildOption:    -DMOZILLA_DIR:PATH=%{_libdir}/mozilla
+BuildOption:    -DLIBREWOLF_DIR:PATH=%{_libdir}/librewolf
 
 BuildRequires:  desktop-file-utils
 
@@ -56,6 +57,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/applications/org.kde.plasma.browser_integration.host.desktop
 %{_kf6_datadir}/krunner/dbusplugins/plasma-runner-browserhistory.desktop
 %{_kf6_datadir}/krunner/dbusplugins/plasma-runner-browsertabs.desktop
+%{_kf6_libdir}/librewolf/native-messaging-hosts/org.kde.plasma.browser_integration.json
 %{_kf6_libdir}/mozilla/native-messaging-hosts/org.kde.plasma.browser_integration.json
 %{_kf6_plugindir}/kded/browserintegrationflatpakintegrator.so
 %{_kf6_plugindir}/kded/browserintegrationreminder.so
