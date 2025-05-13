@@ -1,10 +1,8 @@
-%global commit0 d803ca3583838eb9e4a6854763be45be91925523
+%global commit0 e371f2ece21570342de9eb8a58e3b26f84380705
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 8
+%global bumpver 9
 
 %global framework kirigami
-
-%global optflags %{optflags} -Wp,-U_GLIBCXX_ASSERTIONS
 
 Name:           kf6-%{framework}
 Version:        6.15.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
