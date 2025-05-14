@@ -1,6 +1,6 @@
-%global commit0 1473fd978171f28035d9dbd6dec21169c320ce51
+%global commit0 78e6479ffa47a0850c7afac02f8825b33f543f3d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:           audex
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
