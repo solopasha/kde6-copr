@@ -1,6 +1,6 @@
-%global commit0 19d6c0a85580fef1a0ffd0d80705f965e0598597
+%global commit0 8fadc9ac4c215f5467aec7b114a0f3d9b8bc97e6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 22
+%global bumpver 23
 
 %global base_name print-manager
 
