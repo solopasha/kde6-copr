@@ -45,6 +45,7 @@ Requires:       kde-filesystem
 %{_kf6_datadir}/wallpapers/MilkyWay/
 %{_kf6_datadir}/wallpapers/Mountain/
 %{_kf6_datadir}/wallpapers/Nexus/
+%{_kf6_datadir}/wallpapers/Nuvole/
 %{_kf6_datadir}/wallpapers/OneStandsOut/
 %{_kf6_datadir}/wallpapers/Opal/
 %{_kf6_datadir}/wallpapers/PastelHills/

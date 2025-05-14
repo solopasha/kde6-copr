@@ -25,8 +25,11 @@ BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6GuiPrivate)
+BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6Sensors)
 BuildRequires:  cmake(Qt6Test)
+BuildRequires:  cmake(Qt6WaylandClient)
 
 BuildRequires:  cmake(KF6Screen)
 BuildRequires:  cmake(LayerShellQt)
@@ -36,6 +39,7 @@ BuildRequires:  cmake(PlasmaQuick)
 BuildRequires:  pkgconfig(xcb-atom)
 BuildRequires:  pkgconfig(xcb)
 BuildRequires:  pkgconfig(xi)
+BuildRequires:  wayland-protocols-devel
 
 %description
 KCM and KDED modules for managing displays in KDE.
@@ -45,6 +49,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files -f %{name}.lang
 %license LICENSES
+%{_kf6_bindir}/hdrcalibrator
 %{_kf6_bindir}/kscreen-console
 %{_kf6_datadir}/applications/kcm_kscreen.desktop
 %{_kf6_datadir}/dbus-1/services/org.kde.kscreen.osdService.service
