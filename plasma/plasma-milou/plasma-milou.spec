@@ -1,4 +1,4 @@
-%global commit0 c113b3265c9074781ddffa564ebc29dc3c6e4814
+%global commit0 c52808ee1a71921e5df2a131ed555046de76167c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -14,6 +14,7 @@ URL:            https://invent.kde.org/plasma/%{base_name}.git
 %plasma_source
 
 BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Runner)
 BuildRequires:  cmake(KF6Svg)
