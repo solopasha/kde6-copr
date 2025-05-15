@@ -1,11 +1,11 @@
-%global commit0 5aeb74a1aa07a53f68407640f007a063da79bebe
+%global commit0 4a75a45499a319297a1f38cf8ba3e669c9338ec6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 1
 
 %global debug_package %{nil}
 
 Name:           plasma-wayland-protocols
-Version:        1.17.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        1.18.0
 Release:        1%{?dist}
 Summary:        Plasma Specific Protocols for Wayland
 
@@ -49,6 +49,9 @@ developing applications that use %{name}.
 
 
 %changelog
+* Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 1.18.0-1
+- new version
+
 * Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 1.16.0-1
 - new version
 
