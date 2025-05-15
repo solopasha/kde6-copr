@@ -1,9 +1,9 @@
 %global commit0 e2b88aaa6f9cb8c69890e7cf61d1e231eb105b41
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 21
+%global bumpver 1
 
 Name:           krdp
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90
 Release:        1%{?dist}
 Summary:        Desktop sharing using RDP
 
@@ -87,7 +87,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %systemd_user_post app-org.kde.krdpserver.service
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
+- Update to 6.3.90
+
 * Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 6.2.90-1
 - Update to 6.2.90
 

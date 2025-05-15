@@ -1,12 +1,12 @@
-%global commit0 1430542d4d386fbc31653158d92e212b268e40b5
+%global commit0 9d7de7611159baba5aac4cc47df2bc526e87bf8c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 12
+%global bumpver 1
 
 %global base_name systemsettings
 
 Name:           plasma-%{base_name}
 Summary:        KDE System Settings application
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90
 Release:        1%{?dist}
 
 License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-or-later AND (GPL-2.0-only OR GPL-3.0-only)
@@ -64,7 +64,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_plugindir}/krunner/krunner_systemsettings.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
+- Update to 6.3.90
+
 * Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 6.2.90-1
 - Update to 6.2.90
 

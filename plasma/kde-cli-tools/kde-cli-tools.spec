@@ -1,9 +1,9 @@
-%global commit0 cbcd64423fe97d83b5d2f5cd4fec2bd13ce2ce19
+%global commit0 c750850886d720cc9f195a34c0bc03a26ee61064
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 1
 
 Name:           kde-cli-tools
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90
 Release:        1%{?dist}
 Summary:        Tools based on KDE Frameworks 5 to better interact with the system
 
@@ -92,7 +92,9 @@ sed '/kdesu/d;/man/d' -i %{name}.lang
 %{_mandir}/man1/kdesu.1.*
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
+- Update to 6.3.90
+
 * Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 6.2.90-1
 - Update to 6.2.90
 

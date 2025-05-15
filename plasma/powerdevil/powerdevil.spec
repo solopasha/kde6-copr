@@ -1,9 +1,9 @@
 %global commit0 c4a30cf2e27f37c6d359a31b600af39a007d3035
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 40
+%global bumpver 1
 
 Name:           powerdevil
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90
 Release:        1%{?dist}
 Summary:        Manages the power consumption settings of a Plasma Shell
 
@@ -112,7 +112,9 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevilcore.so
 %{_userunitdir}/plasma-powerdevil.service
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
+- Update to 6.3.90
+
 * Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 6.2.90-1
 - Update to 6.2.90
 

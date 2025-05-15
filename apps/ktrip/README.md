@@ -1,3 +1,0 @@
-# ktrip
-
-The ktrip package

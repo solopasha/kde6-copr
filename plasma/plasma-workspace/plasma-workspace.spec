@@ -1,12 +1,12 @@
-%global commit0 39f5f64acf2e0faa6f7d8335d3334784135d6403
+%global commit0 f9c70497b4d7c32670a6fd48ea0f344dfede7253
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 118
+%global bumpver 1
 
 %bcond x11 1
 
 Name:           plasma-workspace
 Summary:        Plasma workspace, applications and applets
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90
 Release:        1%{?dist}
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -319,6 +319,7 @@ Provides:       %{name}-xorg%{?_isa} = %{version}-%{release}
 Requires:       %{name} = %{version}-%{release}
 Requires:       kwin-x11
 Requires:       xorg-x11-server-Xorg
+Requires:       kf6-kidletime-x11
 %description    x11
 %{summary}.
 %endif
@@ -576,7 +577,9 @@ fi
 %{_kf6_datadir}/plasma/look-and-feel/org.fedoraproject.fedora.desktop/
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
+- Update to 6.3.90
+
 * Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 6.2.90-1
 - Update to 6.2.90
 

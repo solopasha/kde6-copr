@@ -1,10 +1,10 @@
-%global commit0 80b5f6f8c32d3a46772ad59fde8cea89cf52b010
+%global commit0 dce253238807211340909abef98872df340330c4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 30
+%global bumpver 1
 
 Name:           kscreen
 Epoch:          1
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90
 Release:        1%{?dist}
 Summary:        KDE Display Management software
 
@@ -62,7 +62,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_userunitdir}/plasma-kscreen-osd.service
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 1:6.3.90-1
+- Update to 6.3.90
+
 * Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 1:6.2.90-1
 - Update to 6.2.90
 

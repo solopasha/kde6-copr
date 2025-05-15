@@ -1,3 +1,0 @@
-# khealthcertificate
-
-The khealthcertificate package

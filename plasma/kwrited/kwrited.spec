@@ -1,10 +1,10 @@
 %global commit0 46e8803651053cc2247734509d000778422a73b7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 1
 
 Name:           kwrited
 Summary:        KDE Write Daemon
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND GPL-2.0-or-later
@@ -31,7 +31,9 @@ Requires:       kf6-knotifications
 %{_qt6_plugindir}/kf6/kded/kwrited.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
+- Update to 6.3.90
+
 * Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 6.2.90-1
 - Update to 6.2.90
 

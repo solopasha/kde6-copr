@@ -1,9 +1,9 @@
-%global commit0 556e36c6ec5ae49b6756450ad73b730765ea404e
+%global commit0 57c5cdae9dea7256499fe990fe16c639d16a05d5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 26
+%global bumpver 1
 
 Name:           kinfocenter
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90
 Release:        1%{?dist}
 Summary:        KDE Info Center
 
@@ -75,7 +75,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 %{_libexecdir}/kinfocenter-opengl-helper
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
+- Update to 6.3.90
+
 * Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 6.2.90-1
 - Update to 6.2.90
 

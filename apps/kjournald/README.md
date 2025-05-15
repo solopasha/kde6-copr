@@ -1,3 +1,0 @@
-# kjournald
-
-The kjournald package

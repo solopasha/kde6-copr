@@ -1,10 +1,10 @@
-%global commit0 b559cb8f487b5ba66d9fe9f471b01b6e2ca4d8bf
+%global commit0 146df4d45b93f99a9fdad4b9041d20229fc932e7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 10
+%global bumpver 1
 
 Name:          kmenuedit
 Summary:       KDE menu editor
-Version:       6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:       6.3.90
 Release:       1%{?dist}
 
 License:       GPL-2.0-or-later OR GPL-2.0-only
@@ -45,7 +45,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/qlogging-categories6/kmenuedit.categories
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
+- Update to 6.3.90
+
 * Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 6.2.90-1
 - Update to 6.2.90
 

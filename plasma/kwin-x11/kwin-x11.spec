@@ -1,9 +1,9 @@
 %global commit0 77e54d3bbae95e1efa34362342436e0cada5a484
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 82
+%global bumpver 1
 
 Name:           kwin-x11
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90
 Release:        1%{?dist}
 Summary:        An X11 window manager and a compositing manager
 
@@ -162,6 +162,8 @@ developing applications that use %{name}.
 %{_kf6_libdir}/lib%{name}.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
+- Update to 6.3.90
+
 * Mon Mar 10 2025 Pavel Solovev <daron439@gmail.com> - 6.3.80~1-1
 - Initial package

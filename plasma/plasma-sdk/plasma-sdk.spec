@@ -1,9 +1,9 @@
-%global commit0 7a10ffbd0619bd00e7a41488eb71e285b80c2536
+%global commit0 0e7a7fbfb132a10404a83c8fedc37018dc41ecee
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 14
+%global bumpver 1
 
 Name:           plasma-sdk
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90
 Release:        1%{?dist}
 Summary:        Development tools for Plasma 6
 
@@ -95,7 +95,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.appdata.
 %{_mandir}/man1/plasmoidviewer.1.*
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
+- Update to 6.3.90
+
 * Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 6.2.90-1
 - Update to 6.2.90
 
