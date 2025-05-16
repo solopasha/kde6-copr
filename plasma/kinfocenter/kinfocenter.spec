@@ -1,10 +1,10 @@
-%global commit0 c9acd7ba9561cbf852b93219a8cb3dbe4df7aa47
+%global commit0 b2fd0e4cb249980c20910038bde21bc676529c7c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           kinfocenter
 Version:        6.3.90
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        KDE Info Center
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -75,6 +75,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 %{_libexecdir}/kinfocenter-opengl-helper
 
 %changelog
+* Fri May 16 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-2
+- bump revision
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 

@@ -1,13 +1,13 @@
-%global commit0 9da7fce466882d8a7a6ed01bae87790e9f74ebf5
+%global commit0 6d12cde35dda92904536ee3045d5f9ed9e83248d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %bcond x11 1
 
 Name:           plasma-workspace
 Summary:        Plasma workspace, applications and applets
 Version:        6.3.90
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:            https://invent.kde.org/plasma/%{name}
@@ -577,6 +577,9 @@ fi
 %{_kf6_datadir}/plasma/look-and-feel/org.fedoraproject.fedora.desktop/
 
 %changelog
+* Fri May 16 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-2
+- bump revision
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 
