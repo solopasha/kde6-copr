@@ -1,6 +1,6 @@
-%global commit0 834947b996a5c5b34b3102dc1cd8b6d20e221e2f
+%global commit0 db36912d5fa47f966b1fb530663b3a884dcce588
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 Name:    mailimporter
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
