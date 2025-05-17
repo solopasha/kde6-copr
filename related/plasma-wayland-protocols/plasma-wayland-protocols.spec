@@ -1,17 +1,17 @@
-%global commit0 5aeb74a1aa07a53f68407640f007a063da79bebe
+%global commit0 4a75a45499a319297a1f38cf8ba3e669c9338ec6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
-
-%global debug_package %{nil}
+%global bumpver 1
 
 Name:           plasma-wayland-protocols
-Version:        1.17.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        1.18.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Plasma Specific Protocols for Wayland
 
-License:        LGPLv2+ and MIT and BSD
+License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-or-later AND MIT-CMU
 URL:            https://invent.kde.org/libraries/%{name}
 %kde_meta -n
+
+BuildArch:      noarch
 
 BuildRequires:  qt6-qtbase-devel
 
@@ -20,12 +20,9 @@ BuildRequires:  qt6-qtbase-devel
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
-
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
@@ -35,18 +32,13 @@ developing applications that use %{name}.
 %cmake_kf6 -DQT_MAJOR_VERSION=6
 %cmake_build
 
-
 %install
 %cmake_install
 
-
-%files
-%license COPYING.LIB
-%{_kf6_datadir}/plasma-wayland-protocols/
-
 %files devel
+%license LICENSES/* COPYING.LIB
+%{_kf6_datadir}/plasma-wayland-protocols/
 %{_kf6_libdir}/cmake/PlasmaWaylandProtocols/
-
 
 %changelog
 * Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 1.16.0-1
