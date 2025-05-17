@@ -1,9 +1,9 @@
-%global commit0 77e54d3bbae95e1efa34362342436e0cada5a484
+%global commit0 e77370d3c2fd7dc8518d9740f4723ba793870d8a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 82
+%global bumpver 1
 
 Name:           kwin-x11
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        An X11 window manager and a compositing manager
 

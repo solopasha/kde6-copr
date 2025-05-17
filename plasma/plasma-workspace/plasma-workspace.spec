@@ -1,12 +1,12 @@
-%global commit0 39f5f64acf2e0faa6f7d8335d3334784135d6403
+%global commit0 184e883786520d6a7494b4db69dad29d69ff63a6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 118
+%global bumpver 1
 
 %bcond x11 1
 
 Name:           plasma-workspace
 Summary:        Plasma workspace, applications and applets
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT

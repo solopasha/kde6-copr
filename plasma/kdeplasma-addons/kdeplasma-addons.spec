@@ -1,10 +1,10 @@
-%global commit0 aab485b1ef88139c78e798d1cf9674eae3b43ea6
+%global commit0 f701c177484dc99d39e1961526140839640b2da7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 62
+%global bumpver 1
 
 Name:           kdeplasma-addons
 Summary:        Additional Plasmoids for Plasma 6
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT

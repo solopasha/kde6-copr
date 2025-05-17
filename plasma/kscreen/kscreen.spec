@@ -1,10 +1,10 @@
-%global commit0 80b5f6f8c32d3a46772ad59fde8cea89cf52b010
+%global commit0 2d002cbdd49b9b596fab3e3b328c6566f775f9d0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 30
+%global bumpver 1
 
 Name:           kscreen
 Epoch:          1
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Display Management software
 

@@ -1,9 +1,9 @@
-%global commit0 cbcd64423fe97d83b5d2f5cd4fec2bd13ce2ce19
+%global commit0 18eb0802f2577805585b2a3e703f44c2d8aea0fc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 1
 
 Name:           kde-cli-tools
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Tools based on KDE Frameworks 5 to better interact with the system
 

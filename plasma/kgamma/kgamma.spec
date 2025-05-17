@@ -1,11 +1,11 @@
-%global commit0 32c555977f26ae0cca422825e7070af36c7eb214
+%global commit0 842ced018e3262171c26f172aa2a5513ce6e65c2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 1
 
 Name:           kgamma
 Summary:        A monitor calibration tool
 Epoch:          1
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND GPL-2.0-or-later

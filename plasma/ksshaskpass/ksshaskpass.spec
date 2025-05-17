@@ -1,9 +1,9 @@
-%global commit0 a4c12d1437c360b97a47d6c83ba2870db9679e8a
+%global commit0 ea73ac83d5d867e5c324868f0e5ad82d4a93e974
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 Name:           ksshaskpass
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        A ssh-add helper that uses kwallet and kpassworddialog
 

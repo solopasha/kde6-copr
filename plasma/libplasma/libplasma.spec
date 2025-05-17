@@ -1,9 +1,9 @@
-%global commit0 c1ce6107727be3db50c228a43fa04b8f6f342854
+%global commit0 b44b8690e560fe004afd4dfb5fb9a5fee6e3fa8e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 41
+%global bumpver 1
 
 Name:           libplasma
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Plasma is the foundation of the KDE user interface (v6)
 

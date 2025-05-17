@@ -1,12 +1,12 @@
-%global commit0 fb71b6a41477a9ec4e611f7476739266da69919d
+%global commit0 af8ecd1cf2850019caf0b39f962eeb851343a567
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 1
 
 %global base_name plymouth-kcm
 
 Name:           plymouth-kcm
 Summary:        Plymouth configuration module for systemsettings
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later

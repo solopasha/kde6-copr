@@ -1,9 +1,9 @@
-%global commit0 751dd9f6245f9273c4a294519344d3021b3c00a1
+%global commit0 dc0d338bed1c1319a872493c12e2cf51bc1c02dc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 12
+%global bumpver 1
 
 Name:           qqc2-breeze-style
-Version:        6.3.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        QtQuickControls2 breeze style
 
@@ -13,7 +13,6 @@ URL:            https://invent.kde.org/plasma/%{name}
 
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KirigamiPlatform)
