@@ -1,6 +1,6 @@
-%global commit0 08c1a47d95428b9f4f75ef83260b83ca675361bc
+%global commit0 c9c02f661d76b6b6a1cb8e647d9dd8cd22b085c3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 25
+%global bumpver 26
 
 
 Name:    kdepim-addons

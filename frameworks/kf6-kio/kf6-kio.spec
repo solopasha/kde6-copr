@@ -1,6 +1,6 @@
-%global commit0 85ac29eda60693a002f005a44ba8bd1e11c65902
+%global commit0 4c9b30955c3f684da3581b4a4a2322023254a102
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 10
+%global bumpver 11
 
 %global framework kio
 
@@ -13,6 +13,7 @@ License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND G
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
 Patch:          0001-Give-the-kuriikwsfiltereng_private-a-VERSION-and-SOV.patch
+Patch:          revert-43ae770f.patch
 
 BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(KF6Auth)
