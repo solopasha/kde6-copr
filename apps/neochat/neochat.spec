@@ -28,6 +28,7 @@ BuildRequires: cmake(Qt6WebView)
 %endif
 BuildRequires: cmake(Qt6Widgets)
 BuildRequires: cmake(Qt6LinguistTools)
+BuildRequires: cmake(Qt6TextToSpeech)
 
 BuildRequires: cmake(KF6ColorScheme)
 BuildRequires: cmake(KF6Config)
