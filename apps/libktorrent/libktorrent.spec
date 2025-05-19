@@ -1,6 +1,6 @@
 %global commit0 3d1f3b2fcf1cc0b23b93f7b8c0d3caab3f6c8108
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 Name:           libktorrent
 Summary:        Torrent downloading library for KDE 6 applications
@@ -39,7 +39,7 @@ Summary:        Developer files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       boost-devel%{?_isa}
 Requires:       gmp-devel%{?_isa}
-Requires:       libgcrypt-devel%{?_isa}
+Requires:       pkgconfig(openssl)
 Requires:       cmake(KF6Archive)
 Requires:       cmake(KF6Config)
 Requires:       cmake(KF6KIO)
