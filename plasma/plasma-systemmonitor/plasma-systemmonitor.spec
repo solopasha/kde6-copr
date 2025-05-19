@@ -1,9 +1,9 @@
-%global commit0 2f869b15b146d46c664bd164d2562df7730c5ccc
+%global commit0 4479f05626fe3470fe82e0e29334aeed4d12b422
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           plasma-systemmonitor
-Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        An application for monitoring system resources
 

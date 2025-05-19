@@ -1,11 +1,11 @@
-%global commit0 93a841adc0d41a591e0cfee0d57d676bdae75284
+%global commit0 4acf4688d26a159ad00ba8ef4f271e34fb81aa2d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global orgname org.kde.plasma-welcome
 
 Name:           plasma-welcome
-Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPL-2.0-or-later and BSD-3-Clause
 Summary:        Plasma Welcome

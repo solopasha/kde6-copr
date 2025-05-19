@@ -1,10 +1,10 @@
-%global commit0 fad354c22e9229ace2239d71a98a25cbff0af914
+%global commit0 d718fbc0502dd5cd040ee42cbc784d4b131f7d25
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           plasma-vault
 Summary:        Plasma Vault offers strong encryption features in a user-friendly way
-Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL

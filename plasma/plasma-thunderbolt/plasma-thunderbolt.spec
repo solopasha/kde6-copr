@@ -4,7 +4,7 @@
 
 Name:           plasma-thunderbolt
 Summary:        Plasma integration for controlling Thunderbolt devices
-Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LicenseRef-KDE-Accepted-GPL

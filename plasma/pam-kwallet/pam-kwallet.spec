@@ -1,4 +1,4 @@
-%global commit0 16e211d419a49868319799e7bf3cd4f98303b4c4
+%global commit0 1c7bf31efb832b3879519680871f4beefff363ef
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:           pam-kwallet
 Summary:        PAM module for KWallet
-Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        LGPL-2.0-or-later
 URL:            https://invent.kde.org/plasma/%{base_name}.git

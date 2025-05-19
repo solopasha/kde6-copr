@@ -1,10 +1,10 @@
-%global commit0 709ae6a7d35ed64766ffe1274a671c9e2cb88b17
+%global commit0 785219ac131160a7f55e1b451d53bfb2eb3c3a9a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kactivitymanagerd
 Summary:        Plasma service to manage user's activities
-Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL

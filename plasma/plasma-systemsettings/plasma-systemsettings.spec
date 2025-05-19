@@ -1,4 +1,4 @@
-%global commit0 2fe048d96a68e864ca65a9cd59e70066cbc05998
+%global commit0 3ef24d647fce16b6210459e1d83495663cd25fd7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:           plasma-%{base_name}
 Summary:        KDE System Settings application
-Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-or-later AND (GPL-2.0-only OR GPL-3.0-only)

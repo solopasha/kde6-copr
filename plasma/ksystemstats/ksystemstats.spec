@@ -1,9 +1,9 @@
-%global commit0 aeaf60f59bb832f1fbb33e36acf6f831eec39a08
+%global commit0 2440cc444e67c42d3bb853332702b60fc2f0e2cf
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           ksystemstats
-Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KSystemStats is a daemon that collects statistics about the running system.
 

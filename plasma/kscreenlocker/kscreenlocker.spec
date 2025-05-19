@@ -1,9 +1,9 @@
-%global commit0 0671b6798f1289d4df99a4f9aae34f73198a903c
+%global commit0 2868cec73b188a524fdaff796f75bb208961d332
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kscreenlocker
-Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Library and components for secure lock screen architecture
 

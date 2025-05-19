@@ -1,10 +1,10 @@
-%global commit0 b14042f033c4208d85d37a3c3ba5d21189d78d3a
+%global commit0 b4ad992cbc043d0b0b7f5e9b65388b79a39fee72
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           plasma-integration
 Summary:        Qt Platform Theme integration plugin for Plasma
-Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL

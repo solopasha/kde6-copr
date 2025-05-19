@@ -1,10 +1,10 @@
-%global commit0 59f25e06958ff8a57a5013fae8cd84b573bf0bfc
+%global commit0 bcde2ed61106340006eac21670d6ce4ba4323113
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kde-gtk-config
 Summary:        Configure the appearance of GTK apps in KDE
-Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only)

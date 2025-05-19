@@ -1,9 +1,9 @@
-%global commit0 60232dc1f220ebc174b8f17d4dd3b5c14f471614
+%global commit0 727e02825daa4a240ff0853725eefffb4d1d0613
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           sddm-kcm
-Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        SDDM KDE configuration module
 

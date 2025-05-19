@@ -1,4 +1,4 @@
-%global commit0 f499f10eb2aa243c503fb2243ea8c1614cf6c7be
+%global commit0 b5c96ca6f11ad7e684c53da61ce3594dcb6ff46c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:           plasma-drkonqi
 Summary:        DrKonqi crash handler for KF6/Plasma6
-Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:            https://invent.kde.org/plasma/%{base_name}

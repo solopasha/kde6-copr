@@ -1,10 +1,10 @@
-%global commit0 132b305c49ec3972ba8b450b40b0cb6842cb5fc9
+%global commit0 322481d820f09b2173ba54325fa6c9ba21330036
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           plasma-browser-integration
 Summary:        %{name} provides components necessary to integrate browsers into the Plasma Desktop
-Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later AND GPL-3.0-or-later AND MIT

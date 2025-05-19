@@ -1,9 +1,9 @@
-%global commit0 e77370d3c2fd7dc8518d9740f4723ba793870d8a
+%global commit0 72d6ff38679717b9012051c8a86967fd81afb0dd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kwin-x11
-Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        An X11 window manager and a compositing manager
 
@@ -53,7 +53,6 @@ BuildRequires:  cmake(Breeze)
 BuildRequires:  cmake(KDecoration3)
 BuildRequires:  cmake(KGlobalAccelD)
 BuildRequires:  cmake(KScreenLocker)
-BuildRequires:  cmake(KWayland)
 BuildRequires:  cmake(Plasma)
 BuildRequires:  cmake(PlasmaActivities)
 
@@ -75,7 +74,6 @@ BuildRequires:  pkgconfig(libcanberra)
 BuildRequires:  pkgconfig(libdisplay-info)
 BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(libudev)
-BuildRequires:  pkgconfig(libxcvt)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon-x11)
 BuildRequires:  pkgconfig(xkbcommon)

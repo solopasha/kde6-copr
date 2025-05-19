@@ -1,10 +1,10 @@
-%global commit0 ebab9eb711d503203a6acc56108b4d310a6b5467
+%global commit0 439d6dbcd4cd856d94d6ecb1aff6d19f2a2256a4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           aurorae
 Summary:        Aurorae decoration engine
-Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later

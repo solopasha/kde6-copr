@@ -1,9 +1,9 @@
-%global commit0 d95a1c54b170e474967615d95312bb3835e91dd7
+%global commit0 1dddf249293684fd736e9da37dacb07e2465fa8b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           krdp
-Version:        6.3.90%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Desktop sharing using RDP
 
