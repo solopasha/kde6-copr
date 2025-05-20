@@ -1,6 +1,6 @@
-%global commit0 606071af6c764e60c46973e7ed5de42b8f35faa0
+%global commit0 0f949dcd30d60a1841b59418241308a5aae20f90
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global base_name discover
 # enable snap support (or not)
@@ -12,7 +12,7 @@
 Name:           plasma-discover
 Summary:        KDE and Plasma resources management GUI
 Version:        6.3.90
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
 URL:            https://invent.kde.org/plasma/discover
@@ -271,6 +271,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %endif
 
 %changelog
+* Tue May 20 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-2
+- bump revision
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 

@@ -1,11 +1,11 @@
-%global commit0 ba6c7288a9adaeb97b1957d90c12bcab3cefaf82
+%global commit0 82d0cd19f6532f4ea571a487ab08d3a0b0c462dc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           libksysguard
 Summary:        Library for managing processes running on the system
 Version:        6.3.90
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:            https://invent.kde.org/plasma/%{name}
@@ -97,6 +97,9 @@ Summary:        Runtime data files shared by libksysguard and ksysguard-libs
 %{_kf6_libdir}/libprocesscore.so
 
 %changelog
+* Tue May 20 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-2
+- bump revision
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 
