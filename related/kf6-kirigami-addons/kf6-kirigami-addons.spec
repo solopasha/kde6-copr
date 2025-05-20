@@ -1,16 +1,16 @@
-%global commit0 d351bcf42cfa6862167e31b747736f0b6f152c46
+%global commit0 d7d25266d982f4eb62bf29884a0624d2fe895d46
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 31
+%global bumpver 1
 
 %global base_name kirigami-addons
 
 Name:           kf6-kirigami-addons
-Version:        1.7.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        1.8.1%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        BSD-2-Clause AND CC-BY-SA-4.0 AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND LicenseRef-KFQF-Accepted-GPL
 Summary:        Convergent visual components ("widgets") for Kirigami-based applications
-Url:            https://invent.kde.org/libraries/kirigami-addons
-%apps_source
+URL:            https://invent.kde.org/libraries/kirigami-addons
+%kde_meta
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
