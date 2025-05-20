@@ -1,6 +1,6 @@
-%global commit0 42e879cd070b2f83b3429752718ef59f038def22
+%global commit0 ccc96259b8fb8445dd79680b79e64a8f2693ca29
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 8
 
 #global tests 1
 
