@@ -1,6 +1,6 @@
 %global commit0 3beffca4ae64410707b315dc264b2ae126849cf1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           kscreen
 Epoch:          1
@@ -40,6 +40,8 @@ BuildRequires:  pkgconfig(xcb-atom)
 BuildRequires:  pkgconfig(xcb)
 BuildRequires:  pkgconfig(xi)
 BuildRequires:  wayland-protocols-devel
+
+Requires:       kf6-kimageformats%{?_isa}
 
 %description
 KCM and KDED modules for managing displays in KDE.
