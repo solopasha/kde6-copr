@@ -29,6 +29,7 @@ BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Runner)
 BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6Sonnet)
+BuildRequires:  cmake(KF6Svg)
 BuildRequires:  cmake(KF6UnitConversion)
 BuildRequires:  cmake(KF6XmlGui)
 
