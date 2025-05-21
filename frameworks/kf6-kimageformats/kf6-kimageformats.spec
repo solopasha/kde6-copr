@@ -1,6 +1,6 @@
-%global commit0 e3aefd2aa1f9be6598b24d118d7b90e9931b5172
+%global commit0 888bca7387b51712370b5576b3087c3e500d4c30
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 %global framework kimageformats
 
@@ -29,6 +29,12 @@ BuildRequires:  pkgconfig(libraw_r)
 BuildRequires:  pkgconfig(libraw)
 BuildRequires:  pkgconfig(zlib)
 
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+%description    devel
+
+%{summary}.
 %description
 This framework provides additional image format plugins for QtGui.  As
 such it is not required for the compilation of any other software, but
@@ -61,6 +67,9 @@ image formats.
 %{_kf6_qtplugindir}/imageformats/kimg_sct.so
 %{_kf6_qtplugindir}/imageformats/kimg_tga.so
 %{_kf6_qtplugindir}/imageformats/kimg_xcf.so
+
+%files devel
+%{_kf6_libdir}/cmake/KF6ImageFormats/
 
 %changelog
 %{?kde_snapshot_changelog_entry}
