@@ -1,6 +1,6 @@
-%global commit0 611be1e7f4a19cd3694e3f0d55d9879fccd83caf
+%global commit0 13e86cb3b3f7b024d99cb765f35166d6fa17a9b8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 Name:           kwin
 Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -169,6 +169,7 @@ ln -sr %{buildroot}%{_kf6_bindir}/kwin_wayland %{buildroot}%{_bindir}/kwin
 %{_kf6_libdir}/kconf_update_bin/kwin-6.0-remove-breeze-tabbox-default
 %{_kf6_libdir}/kconf_update_bin/kwin-6.0-reset-active-mouse-screen
 %{_kf6_libdir}/kconf_update_bin/kwin-6.1-remove-gridview-expose-shortcuts
+%{_kf6_libdir}/kconf_update_bin/kwin-6.5-showpaint-changes
 %{_kf6_libdir}/kconf_update_bin/kwin5_update_default_rules
 %{_kf6_libdir}/libkcmkwincommon.so.6{,.*}
 %{_kf6_libdir}/libkwin.so.6{,.*}

@@ -1,6 +1,6 @@
-%global commit0 72d6ff38679717b9012051c8a86967fd81afb0dd
+%global commit0 afde0aab9e9d36dad25433b92867c8e063a51bbb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           kwin-x11
 Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -140,6 +140,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/kconf_update_bin/kwin-6.0-remove-breeze-tabbox-default-x11
 %{_kf6_libdir}/kconf_update_bin/kwin-6.0-reset-active-mouse-screen-x11
 %{_kf6_libdir}/kconf_update_bin/kwin-6.1-remove-gridview-expose-shortcuts-x11
+%{_kf6_libdir}/kconf_update_bin/kwin-6.5-showpaint-changes-x11
 %{_kf6_libdir}/kconf_update_bin/kwin5_update_default_rules_x11
 %{_kf6_libdir}/lib%{name}.so.6{,.*}
 %{_kf6_libdir}/libkcmkwincommon-x11.so.6{,.*}
