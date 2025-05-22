@@ -116,7 +116,6 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_datadir}/dbus-1/interfaces/org.kde.[Kk]organizer.*.xml
 %{_kf6_datadir}/dbus-1/services/org.kde.korganizer.service
 %{_kf6_datadir}/icons/hicolor/*
-%{_kf6_datadir}/knsrcfiles/korganizer.knsrc
 %{_kf6_datadir}/korganizer/
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
 %{_kf6_metainfodir}/org.kde.korganizer.appdata.xml
