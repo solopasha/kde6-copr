@@ -78,6 +78,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/icons/hicolor/*/*/*
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
+%{_kf6_sysconfdir}/xdg/colors/
 
 %files libs
 %{_kf6_libdir}/libkolourpaint_lgpl.so.5
