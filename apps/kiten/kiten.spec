@@ -1,6 +1,6 @@
 %global commit0 88f5d801e0e3d391e5dd84150869787759f98ffd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 # kanjistrokeorders-fonts was retired since F34
 %global bundle_font 1

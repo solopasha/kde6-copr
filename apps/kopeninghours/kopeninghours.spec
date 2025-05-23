@@ -1,6 +1,6 @@
 %global commit0 5dd2dd7b0b736e320af5d85c406f321844e141b7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:    kopeninghours
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

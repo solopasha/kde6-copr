@@ -1,0 +1,809 @@
+name: Build packages
+
+on:
+  workflow_call:
+    secrets:
+      gpgkey:
+        required: true
+
+permissions:
+  contents: read
+  packages: write
+
+
+jobs:
+  changed-files:
+    name: Assemble builds
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      modified_files: ${{ steps.changed-files.outputs.all_changed_files }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Get changed specs
+        id: changed-files
+        uses: tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c
+        with:
+          files: |
+            **/*.spec
+
+  akonadi-calendar:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/akonadi-calendar.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-contacts
+      - akonadi-mime
+      - akonadi-server
+      - changed-files
+      - kcalutils
+      - kidentitymanagement
+      - kmailtransport
+      - kmime
+      - libkleo
+      - messagelib
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/akonadi-calendar/akonadi-calendar.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  akonadi-contacts:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/akonadi-contacts.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-server
+      - changed-files
+      - grantleetheme
+      - kmime
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/akonadi-contacts/akonadi-contacts.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  akonadi-import-wizard:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/akonadi-import-wizard.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-server
+      - changed-files
+      - kidentitymanagement
+      - kmailtransport
+      - mailcommon
+      - mailimporter
+      - messagelib
+      - pimcommon
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/akonadi-import-wizard/akonadi-import-wizard.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  akonadi-mime:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/akonadi-mime.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-server
+      - changed-files
+      - kmime
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/akonadi-mime/akonadi-mime.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  akonadi-search:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/akonadi-search.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-mime
+      - akonadi-server
+      - changed-files
+      - kmime
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/akonadi-search/akonadi-search.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  akonadi-server:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/akonadi-server.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kaccounts-integration
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/akonadi-server/akonadi-server.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  baloo-widgets:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/baloo-widgets.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/baloo-widgets/baloo-widgets.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  calendarsupport:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/calendarsupport.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-calendar
+      - akonadi-server
+      - changed-files
+      - kcalutils
+      - kidentitymanagement
+      - kmime
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/calendarsupport/calendarsupport.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  eventviews:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/eventviews.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-calendar
+      - akonadi-server
+      - calendarsupport
+      - changed-files
+      - kcalutils
+      - kmime
+      - libkdepim
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/eventviews/eventviews.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  grantleetheme:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/grantleetheme.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/grantleetheme/grantleetheme.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  incidenceeditor:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/incidenceeditor.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-calendar
+      - akonadi-mime
+      - akonadi-server
+      - calendarsupport
+      - changed-files
+      - eventviews
+      - kcalutils
+      - kidentitymanagement
+      - kldap
+      - kmime
+      - kpimtextedit
+      - libkdepim
+      - pimcommon
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/incidenceeditor/incidenceeditor.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kaccounts-integration:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kaccounts-integration.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kaccounts-integration/kaccounts-integration.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kaddressbook:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kaddressbook.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-contacts
+      - akonadi-search
+      - akonadi-server
+      - changed-files
+      - grantleetheme
+      - kldap
+      - kontactinterface
+      - libkdepim
+      - pimcommon
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kaddressbook/kaddressbook.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kcalutils:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kcalutils.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kidentitymanagement
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kcalutils/kcalutils.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kdegraphics-mobipocket:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kdegraphics-mobipocket.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kdegraphics-mobipocket/kdegraphics-mobipocket.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kidentitymanagement:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kidentitymanagement.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kpimtextedit
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kidentitymanagement/kidentitymanagement.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kimap:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kimap.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kmime
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kimap/kimap.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kiten:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kiten.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kiten/kiten.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kitinerary:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kitinerary.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kmime
+      - kpkpass
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kitinerary/kitinerary.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kldap:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kldap.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kldap/kldap.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kmailtransport:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kmailtransport.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - ksmtp
+      - libkgapi
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kmailtransport/kmailtransport.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kmbox:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kmbox.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kmime
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kmbox/kmbox.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kmime:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kmime.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kmime/kmime.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kontactinterface:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kontactinterface.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kontactinterface/kontactinterface.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kopeninghours:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kopeninghours.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kopeninghours/kopeninghours.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kosmindoormap:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kosmindoormap.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kopeninghours
+      - kpublictransport
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kosmindoormap/kosmindoormap.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kpimtextedit:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kpimtextedit.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kpimtextedit/kpimtextedit.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kpkpass:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kpkpass.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kpkpass/kpkpass.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kpmcore:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kpmcore.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kpmcore/kpmcore.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kpublictransport:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kpublictransport.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kpublictransport/kpublictransport.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  ksanecore:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/ksanecore.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/ksanecore/ksanecore.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  ksmtp:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/ksmtp.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/ksmtp/ksmtp.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  ktnef:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/ktnef.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kcalutils
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/ktnef/ktnef.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kunifiedpush:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kunifiedpush.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kunifiedpush/kunifiedpush.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  kweathercore:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kweathercore.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/kweathercore/kweathercore.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  libgravatar:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libgravatar.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/libgravatar/libgravatar.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  libkcddb:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libkcddb.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/libkcddb/libkcddb.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  libkdcraw:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libkdcraw.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/libkdcraw/libkdcraw.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  libkdepim:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libkdepim.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/libkdepim/libkdepim.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  libkexiv2:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libkexiv2.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/libkexiv2/libkexiv2.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  libkgapi:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libkgapi.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/libkgapi/libkgapi.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  libkleo:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libkleo.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/libkleo/libkleo.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  libkomparediff2:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libkomparediff2.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/libkomparediff2/libkomparediff2.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  libksane:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libksane.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - ksanecore
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/libksane/libksane.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  libksieve:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libksieve.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kidentitymanagement
+      - kimap
+      - kmailtransport
+      - kmime
+      - libkdepim
+      - pimcommon
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/libksieve/libksieve.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  libktorrent:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libktorrent.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/libktorrent/libktorrent.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  mailcommon:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/mailcommon.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-contacts
+      - akonadi-mime
+      - akonadi-server
+      - changed-files
+      - kidentitymanagement
+      - kmailtransport
+      - kmime
+      - libkdepim
+      - mailimporter
+      - messagelib
+      - pimcommon
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/mailcommon/mailcommon.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  mailimporter:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/mailimporter.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-mime
+      - akonadi-server
+      - changed-files
+      - kmime
+      - pimcommon
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/mailimporter/mailimporter.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  messagelib:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/messagelib.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-contacts
+      - akonadi-mime
+      - akonadi-search
+      - akonadi-server
+      - changed-files
+      - grantleetheme
+      - kidentitymanagement
+      - kmailtransport
+      - kmbox
+      - kmime
+      - kpimtextedit
+      - libgravatar
+      - libkdepim
+      - libkleo
+      - pimcommon
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/messagelib/messagelib.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  mimetreeparser:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/mimetreeparser.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kmbox
+      - kmime
+      - libkleo
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/mimetreeparser/mimetreeparser.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+
+  pimcommon:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/pimcommon.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-contacts
+      - akonadi-search
+      - akonadi-server
+      - changed-files
+      - kimap
+      - kldap
+      - libkdepim
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/pimcommon/pimcommon.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      repo_skip_if_unavailable: true
+

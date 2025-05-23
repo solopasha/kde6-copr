@@ -66,4 +66,4 @@ process_spec() {
 }
 export -f process_spec
 
-parallel process_spec :::: <(fd -espec . './plasma' './frameworks' './apps' './related/kf6-kirigami-addons' './related/plasma-wayland-protocols' "${exclude_rendered[@]}")
+parallel process_spec :::: <(fd -espec . './plasma' './frameworks' './related/plasma-wayland-protocols' "${exclude_rendered[@]}")
