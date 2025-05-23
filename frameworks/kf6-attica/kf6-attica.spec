@@ -1,6 +1,6 @@
 %global commit0 4dfb40ba1b3e134f015470485170651e9dda4834
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global framework attica
 

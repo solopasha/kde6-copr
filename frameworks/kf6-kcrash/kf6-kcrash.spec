@@ -1,6 +1,6 @@
 %global commit0 38e64c1727a134db284e01be0431df68dad9f488
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global framework kcrash
 

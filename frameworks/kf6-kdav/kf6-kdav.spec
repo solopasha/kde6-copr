@@ -1,6 +1,6 @@
 %global commit0 591cced0896652586d4e591a9e99fda654756d04
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 %global framework kdav
 

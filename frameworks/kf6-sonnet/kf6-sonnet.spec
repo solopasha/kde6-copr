@@ -1,6 +1,6 @@
 %global commit0 ed08d564719109530af795f7255945b32b2ff864
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 %global framework sonnet
 

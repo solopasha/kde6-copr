@@ -1,6 +1,6 @@
 %global commit0 bb452fc14311634d6aae1e138f2b1e2bcd2e8e4f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global framework kbookmarks
 

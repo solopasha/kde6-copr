@@ -1,6 +1,6 @@
 %global commit0 b4ad992cbc043d0b0b7f5e9b65388b79a39fee72
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           plasma-integration
 Summary:        Qt Platform Theme integration plugin for Plasma

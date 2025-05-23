@@ -1,6 +1,6 @@
 %global commit0 f868ca9d77c44cf11976300b65dd105741c2f762
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global framework kquickcharts
 

@@ -1,6 +1,6 @@
 %global commit0 1c7bf31efb832b3879519680871f4beefff363ef
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global base_name kwallet-pam
 

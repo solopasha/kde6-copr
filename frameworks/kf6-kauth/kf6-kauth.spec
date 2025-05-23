@@ -1,6 +1,6 @@
 %global commit0 ec0fda3c6129bb326096284149e97559dd113e6e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global framework kauth
 

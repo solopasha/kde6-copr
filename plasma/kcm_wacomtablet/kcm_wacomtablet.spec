@@ -1,6 +1,6 @@
 %global commit0 0ba11a1d442f0d67de078ec773e9b161521fbd90
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global base_name wacomtablet
 

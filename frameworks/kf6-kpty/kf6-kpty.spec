@@ -1,6 +1,6 @@
 %global commit0 bc05c82cdb0c345f7b076007a4c459bd7a2dfa58
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global framework kpty
 

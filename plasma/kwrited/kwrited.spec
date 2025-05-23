@@ -1,6 +1,6 @@
 %global commit0 9fdea82c33f349bff80c51ed329043daa4446bc1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           kwrited
 Summary:        KDE Write Daemon
