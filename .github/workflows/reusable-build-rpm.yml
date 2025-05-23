@@ -192,7 +192,7 @@ jobs:
           cat << EOF > /etc/yum.repos.d/build.repo
           [build]
           name=build
-          baseurl=file:///${GITHUB_WORKSPACE}/repo/
+          baseurl=file://${GITHUB_WORKSPACE}/repo/
           gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
           skip_if_unavailable=${repo_skip_if_unavailable}
           gpgcheck=1
@@ -207,7 +207,7 @@ jobs:
           config_opts['dnf.conf'] += """
           [pr-build]
           name=pr-build
-          baseurl=file:///${GITHUB_WORKSPACE}/pr-repo/
+          baseurl=file://${GITHUB_WORKSPACE}/pr-repo/
           skip_if_unavailable=True
           gpgcheck=0
           repo_gpgcheck=0
@@ -222,7 +222,7 @@ jobs:
           cat << EOF > /etc/yum.repos.d/pr-build.repo
           [pr-build]
           name=pr-build
-          baseurl=file:///${GITHUB_WORKSPACE}/pr-repo/
+          baseurl=file://${GITHUB_WORKSPACE}/pr-repo/
           skip_if_unavailable=True
           gpgcheck=0
           repo_gpgcheck=0
