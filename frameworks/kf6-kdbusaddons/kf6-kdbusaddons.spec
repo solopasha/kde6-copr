@@ -1,6 +1,6 @@
-%global commit0 ba8c48a604f09c7410f3ed41baf09d0430986f49
+%global commit0 6b9e21d715caccae0f6b39a7860dd2f8f81d414c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 %global framework kdbusaddons
 

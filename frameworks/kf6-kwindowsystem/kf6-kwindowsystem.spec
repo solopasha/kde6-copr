@@ -1,6 +1,6 @@
-%global commit0 dd80d33264a9aaed56189bc0a8c74660ff2de04a
+%global commit0 8f514a8155453c4d81010838f744ec8856402a40
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 %global framework kwindowsystem
 
