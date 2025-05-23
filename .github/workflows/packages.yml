@@ -1,0 +1,2890 @@
+name: Build packages
+
+on:
+  workflow_call:
+    secrets:
+      gpgkey:
+        required: true
+
+permissions:
+  contents: read
+  packages: write
+
+
+jobs:
+  changed-files:
+    name: Assemble builds
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      modified_files: ${{ steps.changed-files.outputs.all_changed_files }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Get changed specs
+        id: changed-files
+        uses: tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c
+        with:
+          files: |
+            **/*.spec
+
+  extra-cmake-modules:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/extra-cmake-modules.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/extra-cmake-modules/extra-cmake-modules.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6/kf6.spec
+      deps: ${{ toJson(needs) }}
+      ccache: false
+      repo_skip_if_unavailable: true
+      debuginfo: false
+
+  kf6-attica:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-attica.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-attica/kf6-attica.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-baloo:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-baloo.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-kfilemetadata
+      - kf6-ki18n
+      - kf6-kidletime
+      - kf6-kio
+      - kf6-solid
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-baloo/kf6-baloo.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-bluez-qt:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-bluez-qt.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-bluez-qt/kf6-bluez-qt.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-breeze-icons:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-breeze-icons.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-breeze-icons/kf6-breeze-icons.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-frameworkintegration:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-frameworkintegration.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcolorscheme
+      - kf6-kconfig
+      - kf6-ki18n
+      - kf6-kiconthemes
+      - kf6-knewstuff
+      - kf6-knotifications
+      - kf6-kpackage
+      - kf6-kwidgetsaddons
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-frameworkintegration/kf6-frameworkintegration.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-karchive:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-karchive.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-karchive/kf6-karchive.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kauth:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kauth.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcoreaddons
+      - kf6-kwindowsystem
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kauth/kf6-kauth.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kbookmarks:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kbookmarks.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kwidgetsaddons
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kbookmarks/kf6-kbookmarks.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kcalendarcore:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kcalendarcore.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kcalendarcore/kf6-kcalendarcore.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kcmutils:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kcmutils.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfigwidgets
+      - kf6-kcoreaddons
+      - kf6-kguiaddons
+      - kf6-ki18n
+      - kf6-kio
+      - kf6-kitemviews
+      - kf6-kwidgetsaddons
+      - kf6-kxmlgui
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kcmutils/kf6-kcmutils.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kcodecs:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kcodecs.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kcodecs/kf6-kcodecs.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kcolorscheme:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kcolorscheme.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kguiaddons
+      - kf6-ki18n
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kcolorscheme/kf6-kcolorscheme.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kcompletion:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kcompletion.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcodecs
+      - kf6-kconfig
+      - kf6-kwidgetsaddons
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kcompletion/kf6-kcompletion.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kconfig:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kconfig.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kconfig/kf6-kconfig.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kconfigwidgets:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kconfigwidgets.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcodecs
+      - kf6-kcolorscheme
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kguiaddons
+      - kf6-ki18n
+      - kf6-kwidgetsaddons
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kconfigwidgets/kf6-kconfigwidgets.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kcontacts:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kcontacts.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcodecs
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-ki18n
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kcontacts/kf6-kcontacts.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kcoreaddons:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kcoreaddons.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kcoreaddons/kf6-kcoreaddons.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kcrash:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kcrash.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcoreaddons
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kcrash/kf6-kcrash.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kdav:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kdav.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcoreaddons
+      - kf6-ki18n
+      - kf6-kio
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kdav/kf6-kdav.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kdbusaddons:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kdbusaddons.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kdbusaddons/kf6-kdbusaddons.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kdeclarative:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kdeclarative.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kglobalaccel
+      - kf6-kguiaddons
+      - kf6-ki18n
+      - kf6-kwidgetsaddons
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kdeclarative/kf6-kdeclarative.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kded:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kded.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-kdoctools
+      - kf6-kservice
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kded/kf6-kded.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kdesu:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kdesu.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-ki18n
+      - kf6-kpty
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kdesu/kf6-kdesu.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kdnssd:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kdnssd.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kdnssd/kf6-kdnssd.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kdoctools:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kdoctools.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-karchive
+      - kf6-ki18n
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kdoctools/kf6-kdoctools.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kfilemetadata:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kfilemetadata.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-karchive
+      - kf6-kcodecs
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-ki18n
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kfilemetadata/kf6-kfilemetadata.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kglobalaccel:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kglobalaccel.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kglobalaccel/kf6-kglobalaccel.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kguiaddons:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kguiaddons.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - plasma-wayland-protocols
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kguiaddons/kf6-kguiaddons.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kholidays:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kholidays.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kholidays/kf6-kholidays.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-ki18n:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-ki18n.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-ki18n/kf6-ki18n.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kiconthemes:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kiconthemes.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-breeze-icons
+      - kf6-karchive
+      - kf6-kcolorscheme
+      - kf6-ki18n
+      - kf6-kwidgetsaddons
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kiconthemes/kf6-kiconthemes.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kidletime:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kidletime.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - plasma-wayland-protocols
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kidletime/kf6-kidletime.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kimageformats:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kimageformats.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-karchive
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kimageformats/kf6-kimageformats.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kio:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kio.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-karchive
+      - kf6-kauth
+      - kf6-kbookmarks
+      - kf6-kcolorscheme
+      - kf6-kcompletion
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-kded
+      - kf6-kdoctools
+      - kf6-kguiaddons
+      - kf6-ki18n
+      - kf6-kiconthemes
+      - kf6-kitemviews
+      - kf6-kjobwidgets
+      - kf6-kservice
+      - kf6-kwallet
+      - kf6-kwidgetsaddons
+      - kf6-kwindowsystem
+      - kf6-solid
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kio/kf6-kio.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kirigami:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kirigami.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kirigami/kf6-kirigami.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kitemmodels:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kitemmodels.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kitemmodels/kf6-kitemmodels.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kitemviews:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kitemviews.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kitemviews/kf6-kitemviews.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kjobwidgets:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kjobwidgets.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcoreaddons
+      - kf6-knotifications
+      - kf6-kwidgetsaddons
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kjobwidgets/kf6-kjobwidgets.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-knewstuff:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-knewstuff.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-attica
+      - kf6-karchive
+      - kf6-kcompletion
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-ki18n
+      - kf6-kiconthemes
+      - kf6-kirigami
+      - kf6-kitemviews
+      - kf6-kpackage
+      - kf6-kwidgetsaddons
+      - kf6-syndication
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-knewstuff/kf6-knewstuff.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-knotifications:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-knotifications.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-knotifications/kf6-knotifications.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-knotifyconfig:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-knotifyconfig.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcompletion
+      - kf6-kconfig
+      - kf6-ki18n
+      - kf6-kio
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-knotifyconfig/kf6-knotifyconfig.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kpackage:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kpackage.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-karchive
+      - kf6-kcoreaddons
+      - kf6-kdoctools
+      - kf6-ki18n
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kpackage/kf6-kpackage.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kparts:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kparts.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-ki18n
+      - kf6-kio
+      - kf6-kjobwidgets
+      - kf6-kservice
+      - kf6-kwidgetsaddons
+      - kf6-kxmlgui
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kparts/kf6-kparts.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kpeople:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kpeople.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcontacts
+      - kf6-kcoreaddons
+      - kf6-ki18n
+      - kf6-kitemviews
+      - kf6-kwidgetsaddons
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kpeople/kf6-kpeople.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kplotting:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kplotting.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kplotting/kf6-kplotting.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kpty:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kpty.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcoreaddons
+      - kf6-ki18n
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kpty/kf6-kpty.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kquickcharts:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kquickcharts.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kquickcharts/kf6-kquickcharts.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-krunner:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-krunner.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-ki18n
+      - kf6-kitemmodels
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-krunner/kf6-krunner.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kservice:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kservice.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kdoctools
+      - kf6-ki18n
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kservice/kf6-kservice.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kstatusnotifieritem:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kstatusnotifieritem.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kwindowsystem
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kstatusnotifieritem/kf6-kstatusnotifieritem.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-ksvg:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-ksvg.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-karchive
+      - kf6-kcolorscheme
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kguiaddons
+      - kf6-kirigami
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-ksvg/kf6-ksvg.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-ktexteditor:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-ktexteditor.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-karchive
+      - kf6-kauth
+      - kf6-kcolorscheme
+      - kf6-kconfig
+      - kf6-kguiaddons
+      - kf6-ki18n
+      - kf6-kio
+      - kf6-kparts
+      - kf6-sonnet
+      - kf6-syntax-highlighting
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-ktexteditor/kf6-ktexteditor.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-ktexttemplate:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-ktexttemplate.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-ktexttemplate/kf6-ktexttemplate.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-ktextwidgets:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-ktextwidgets.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcompletion
+      - kf6-kconfig
+      - kf6-ki18n
+      - kf6-kwidgetsaddons
+      - kf6-sonnet
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-ktextwidgets/kf6-ktextwidgets.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kunitconversion:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kunitconversion.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-ki18n
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kunitconversion/kf6-kunitconversion.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kuserfeedback:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kuserfeedback.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kuserfeedback/kf6-kuserfeedback.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kwallet:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kwallet.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcolorscheme
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-kdoctools
+      - kf6-ki18n
+      - kf6-knotifications
+      - kf6-kwidgetsaddons
+      - kf6-kwindowsystem
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kwallet/kf6-kwallet.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kwidgetsaddons:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kwidgetsaddons.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kwidgetsaddons/kf6-kwidgetsaddons.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kwindowsystem:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kwindowsystem.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - plasma-wayland-protocols
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kwindowsystem/kf6-kwindowsystem.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-kxmlgui:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kxmlgui.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcolorscheme
+      - kf6-kconfig
+      - kf6-kconfigwidgets
+      - kf6-kcoreaddons
+      - kf6-kglobalaccel
+      - kf6-kguiaddons
+      - kf6-ki18n
+      - kf6-kiconthemes
+      - kf6-kitemviews
+      - kf6-kwidgetsaddons
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-kxmlgui/kf6-kxmlgui.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-modemmanager-qt:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-modemmanager-qt.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-modemmanager-qt/kf6-modemmanager-qt.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-networkmanager-qt:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-networkmanager-qt.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-networkmanager-qt/kf6-networkmanager-qt.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-prison:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-prison.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-prison/kf6-prison.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-purpose:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-purpose.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kdeclarative
+      - kf6-ki18n
+      - kf6-kio
+      - kf6-kirigami
+      - kf6-knotifications
+      - kf6-prison
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-purpose/kf6-purpose.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-qqc2-desktop-style:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-qqc2-desktop-style.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcolorscheme
+      - kf6-kconfig
+      - kf6-kiconthemes
+      - kf6-kirigami
+      - kf6-sonnet
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-qqc2-desktop-style/kf6-qqc2-desktop-style.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-solid:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-solid.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-solid/kf6-solid.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-sonnet:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-sonnet.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-sonnet/kf6-sonnet.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-syndication:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-syndication.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcodecs
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-syndication/kf6-syndication.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-syntax-highlighting:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-syntax-highlighting.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-syntax-highlighting/kf6-syntax-highlighting.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kf6-threadweaver:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-threadweaver.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./frameworks/kf6-threadweaver/kf6-threadweaver.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  aurorae:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/aurorae.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kdecoration
+      - kf6
+      - kf6-kcmutils
+      - kf6-kcolorscheme
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-ki18n
+      - kf6-knewstuff
+      - kf6-kpackage
+      - kf6-ksvg
+      - kf6-kwindowsystem
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/aurorae/aurorae.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  bluedevil:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/bluedevil.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-bluez-qt
+      - kf6-kcmutils
+      - kf6-kcoreaddons
+      - kf6-kdbusaddons
+      - kf6-kdoctools
+      - kf6-ki18n
+      - kf6-kio
+      - kf6-kirigami
+      - kf6-kjobwidgets
+      - kf6-knotifications
+      - kf6-kservice
+      - kf6-ksvg
+      - kf6-kwidgetsaddons
+      - kf6-kwindowsystem
+      - libplasma
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/bluedevil/bluedevil.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  breeze-gtk:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/breeze-gtk.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - plasma-breeze
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/breeze-gtk/breeze-gtk.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  flatpak-kcm:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/flatpak-kcm.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcmutils
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-ki18n
+      - kf6-kitemmodels
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/flatpak-kcm/flatpak-kcm.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  grub2-breeze-theme:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/grub2-breeze-theme.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/grub2-breeze-theme/grub2-breeze-theme.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      debuginfo: false
+
+  kactivitymanagerd:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kactivitymanagerd.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-kglobalaccel
+      - kf6-ki18n
+      - kf6-kio
+      - kf6-kwindowsystem
+      - kf6-kxmlgui
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/kactivitymanagerd/kactivitymanagerd.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kcm_wacomtablet:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kcm_wacomtablet.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcmutils
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kdbusaddons
+      - kf6-kdoctools
+      - kf6-kglobalaccel
+      - kf6-ki18n
+      - kf6-kio
+      - kf6-knotifications
+      - kf6-kwidgetsaddons
+      - kf6-kwindowsystem
+      - kf6-kxmlgui
+      - libplasma
+      - plasma5support
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/kcm_wacomtablet/kcm_wacomtablet.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kde-cli-tools:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kde-cli-tools.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcmutils
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kdesu
+      - kf6-kdoctools
+      - kf6-ki18n
+      - kf6-kiconthemes
+      - kf6-kio
+      - kf6-kparts
+      - kf6-kservice
+      - kf6-kwidgetsaddons
+      - kf6-kwindowsystem
+      - plasma-workspace
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/kde-cli-tools/kde-cli-tools.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kde-gtk-config:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kde-gtk-config.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kdecoration
+      - kf6
+      - kf6-kcolorscheme
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kdbusaddons
+      - kf6-kguiaddons
+      - kf6-kwindowsystem
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/kde-gtk-config/kde-gtk-config.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kdecoration:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kdecoration.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-ki18n
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/kdecoration/kdecoration.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kdeplasma-addons:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kdeplasma-addons.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kauth
+      - kf6-kcmutils
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kdbusaddons
+      - kf6-kdeclarative
+      - kf6-kglobalaccel
+      - kf6-kholidays
+      - kf6-ki18n
+      - kf6-kio
+      - kf6-kjobwidgets
+      - kf6-knewstuff
+      - kf6-knotifications
+      - kf6-krunner
+      - kf6-kservice
+      - kf6-ksvg
+      - kf6-kunitconversion
+      - kf6-kxmlgui
+      - kf6-sonnet
+      - libplasma
+      - plasma5support
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/kdeplasma-addons/kdeplasma-addons.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kgamma:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kgamma.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcmutils
+      - kf6-kconfig
+      - kf6-kconfigwidgets
+      - kf6-kdoctools
+      - kf6-ki18n
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/kgamma/kgamma.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kglobalacceld:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kglobalacceld.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-kglobalaccel
+      - kf6-kio
+      - kf6-kjobwidgets
+      - kf6-kservice
+      - kf6-kwindowsystem
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/kglobalacceld/kglobalacceld.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kinfocenter:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kinfocenter.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kauth
+      - kf6-kcmutils
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kdoctools
+      - kf6-ki18n
+      - kf6-kio
+      - kf6-kirigami
+      - kf6-kservice
+      - kf6-solid
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/kinfocenter/kinfocenter.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kmenuedit:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kmenuedit.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-kdoctools
+      - kf6-kglobalaccel
+      - kf6-ki18n
+      - kf6-kiconthemes
+      - kf6-kio
+      - kf6-kitemviews
+      - kf6-kwindowsystem
+      - kf6-kxmlgui
+      - kf6-sonnet
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/kmenuedit/kmenuedit.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kpipewire:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kpipewire.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcoreaddons
+      - kf6-ki18n
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/kpipewire/kpipewire.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  krdp:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/krdp.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcmutils
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-ki18n
+      - kf6-kstatusnotifieritem
+      - kpipewire
+      - plasma-wayland-protocols
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/krdp/krdp.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kscreen:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kscreen.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcmutils
+      - kf6-kconfig
+      - kf6-kdbusaddons
+      - kf6-ki18n
+      - kf6-ksvg
+      - kf6-kwindowsystem
+      - kf6-kxmlgui
+      - layer-shell-qt
+      - libkscreen
+      - libplasma
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/kscreen/kscreen.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kscreenlocker:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kscreenlocker.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcmutils
+      - kf6-kcrash
+      - kf6-kglobalaccel
+      - kf6-ki18n
+      - kf6-kidletime
+      - kf6-kio
+      - kf6-knotifications
+      - kf6-ksvg
+      - kf6-kwindowsystem
+      - kf6-kxmlgui
+      - kf6-solid
+      - layer-shell-qt
+      - libkscreen
+      - libplasma
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/kscreenlocker/kscreenlocker.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  ksshaskpass:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/ksshaskpass.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcoreaddons
+      - kf6-kdoctools
+      - kf6-ki18n
+      - kf6-kwallet
+      - kf6-kwidgetsaddons
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/ksshaskpass/ksshaskpass.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  ksystemstats:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/ksystemstats.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-kio
+      - kf6-networkmanager-qt
+      - kf6-solid
+      - libksysguard
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/ksystemstats/ksystemstats.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kwayland:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kwayland.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - plasma-wayland-protocols
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/kwayland/kwayland.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kwayland-integration:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kwayland-integration.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - plasma-wayland-protocols
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/kwayland-integration/kwayland-integration.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  kwin:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kwin.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kdecoration
+      - kf6
+      - kf6-kauth
+      - kf6-kcmutils
+      - kf6-kcolorscheme
+      - kf6-kconfig
+      - kf6-kconfigwidgets
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-kdeclarative
+      - kf6-kdoctools
+      - kf6-kglobalaccel
+      - kf6-kguiaddons
+      - kf6-kholidays
+      - kf6-ki18n
+      - kf6-kidletime
+      - kf6-kirigami
+      - kf6-knewstuff
+      - kf6-knotifications
+      - kf6-kpackage
+      - kf6-kservice
+      - kf6-ksvg
+      - kf6-kwidgetsaddons
+      - kf6-kwindowsystem
+      - kf6-kxmlgui
+      - kglobalacceld
+      - kscreenlocker
+      - kwayland
+      - libplasma
+      - plasma-activities
+      - plasma-wayland-protocols
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/kwin/kwin.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      reclaim: true
+
+  kwin-x11:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kwin-x11.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kdecoration
+      - kf6
+      - kf6-kauth
+      - kf6-kcmutils
+      - kf6-kcolorscheme
+      - kf6-kconfig
+      - kf6-kconfigwidgets
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-kdeclarative
+      - kf6-kdoctools
+      - kf6-kglobalaccel
+      - kf6-kguiaddons
+      - kf6-ki18n
+      - kf6-kidletime
+      - kf6-kirigami
+      - kf6-knewstuff
+      - kf6-knotifications
+      - kf6-kpackage
+      - kf6-kservice
+      - kf6-ksvg
+      - kf6-kwidgetsaddons
+      - kf6-kwindowsystem
+      - kf6-kxmlgui
+      - kglobalacceld
+      - kscreenlocker
+      - libplasma
+      - plasma-activities
+      - plasma-breeze
+      - plasma-wayland-protocols
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/kwin-x11/kwin-x11.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      reclaim: true
+
+  kwrited:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kwrited.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcoreaddons
+      - kf6-kdbusaddons
+      - kf6-ki18n
+      - kf6-knotifications
+      - kf6-kpty
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/kwrited/kwrited.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  layer-shell-qt:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/layer-shell-qt.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/layer-shell-qt/layer-shell-qt.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  libkscreen:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libkscreen.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - plasma-wayland-protocols
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/libkscreen/libkscreen.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  libksysguard:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libksysguard.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kauth
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-ki18n
+      - kf6-knewstuff
+      - kf6-kpackage
+      - kf6-kservice
+      - kf6-solid
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/libksysguard/libksysguard.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  libplasma:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libplasma.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-karchive
+      - kf6-kcmutils
+      - kf6-kcolorscheme
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kglobalaccel
+      - kf6-kguiaddons
+      - kf6-ki18n
+      - kf6-kiconthemes
+      - kf6-kio
+      - kf6-kirigami
+      - kf6-knotifications
+      - kf6-kpackage
+      - kf6-ksvg
+      - kf6-kwindowsystem
+      - plasma-activities
+      - plasma-wayland-protocols
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/libplasma/libplasma.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  ocean-sound-theme:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/ocean-sound-theme.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/ocean-sound-theme/ocean-sound-theme.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  oxygen-sounds:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/oxygen-sounds.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/oxygen-sounds/oxygen-sounds.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  pam-kwallet:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/pam-kwallet.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kwallet
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/pam-kwallet/pam-kwallet.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-activities:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-activities.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kcoreaddons
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-activities/plasma-activities.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-activities-stats:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-activities-stats.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - plasma-activities
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-activities-stats/plasma-activities-stats.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-breeze:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-breeze.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kdecoration
+      - kf6
+      - kf6-frameworkintegration
+      - kf6-kcmutils
+      - kf6-kcolorscheme
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kguiaddons
+      - kf6-ki18n
+      - kf6-kirigami
+      - kf6-kwindowsystem
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-breeze/plasma-breeze.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-browser-integration:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-browser-integration.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-kfilemetadata
+      - kf6-ki18n
+      - kf6-kio
+      - kf6-kjobwidgets
+      - kf6-knotifications
+      - kf6-krunner
+      - kf6-kservice
+      - kf6-kstatusnotifieritem
+      - kf6-purpose
+      - plasma-activities
+      - plasma-workspace
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-browser-integration/plasma-browser-integration.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-desktop:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-desktop.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-attica
+      - kf6-baloo
+      - kf6-kauth
+      - kf6-kcmutils
+      - kf6-kcodecs
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-kded
+      - kf6-kdoctools
+      - kf6-kglobalaccel
+      - kf6-kguiaddons
+      - kf6-ki18n
+      - kf6-kiconthemes
+      - kf6-kio
+      - kf6-kirigami
+      - kf6-kitemmodels
+      - kf6-knewstuff
+      - kf6-knotifications
+      - kf6-knotifyconfig
+      - kf6-kpackage
+      - kf6-krunner
+      - kf6-ksvg
+      - kf6-kwidgetsaddons
+      - kf6-kxmlgui
+      - kf6-qqc2-desktop-style
+      - kf6-sonnet
+      - kpipewire
+      - kscreenlocker
+      - kwin
+      - libksysguard
+      - libplasma
+      - plasma5support
+      - plasma-activities
+      - plasma-activities-stats
+      - plasma-workspace
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-desktop/plasma-desktop.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      reclaim: true
+
+  plasma-discover:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-discover.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-attica
+      - kf6-karchive
+      - kf6-kauth
+      - kf6-kcmutils
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-ki18n
+      - kf6-kiconthemes
+      - kf6-kidletime
+      - kf6-kio
+      - kf6-kirigami
+      - kf6-kitemmodels
+      - kf6-knewstuff
+      - kf6-knotifications
+      - kf6-kstatusnotifieritem
+      - kf6-kuserfeedback
+      - kf6-kxmlgui
+      - kf6-purpose
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-discover/plasma-discover.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-disks:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-disks.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kauth
+      - kf6-kcmutils
+      - kf6-kcoreaddons
+      - kf6-kdbusaddons
+      - kf6-ki18n
+      - kf6-kio
+      - kf6-knotifications
+      - kf6-kservice
+      - kf6-solid
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-disks/plasma-disks.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-drkonqi:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-drkonqi.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-ki18n
+      - kf6-kidletime
+      - kf6-kio
+      - kf6-kjobwidgets
+      - kf6-knotifications
+      - kf6-kservice
+      - kf6-kstatusnotifieritem
+      - kf6-kwallet
+      - kf6-kwidgetsaddons
+      - kf6-kwindowsystem
+      - kf6-syntax-highlighting
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-drkonqi/plasma-drkonqi.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-firewall:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-firewall.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kauth
+      - kf6-kcmutils
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-ki18n
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-firewall/plasma-firewall.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-integration:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-integration.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kconfigwidgets
+      - kf6-kguiaddons
+      - kf6-ki18n
+      - kf6-kiconthemes
+      - kf6-kio
+      - kf6-knotifications
+      - kf6-kstatusnotifieritem
+      - kf6-kwidgetsaddons
+      - kf6-kwindowsystem
+      - kf6-kxmlgui
+      - kwayland
+      - plasma-breeze
+      - plasma-wayland-protocols
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-integration/plasma-integration.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-milou:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-milou.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-ki18n
+      - kf6-krunner
+      - kf6-ksvg
+      - libplasma
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-milou/plasma-milou.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-nano:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-nano.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcoreaddons
+      - kf6-ki18n
+      - kf6-kio
+      - kf6-kitemmodels
+      - kf6-knotifications
+      - kf6-kpackage
+      - kf6-kservice
+      - kf6-kwindowsystem
+      - kwayland
+      - kwin
+      - libplasma
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-nano/plasma-nano.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-nm:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-nm.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcmutils
+      - kf6-kcompletion
+      - kf6-kconfigwidgets
+      - kf6-kdbusaddons
+      - kf6-kdeclarative
+      - kf6-ki18n
+      - kf6-kio
+      - kf6-kirigami
+      - kf6-knotifications
+      - kf6-kservice
+      - kf6-ksvg
+      - kf6-kwallet
+      - kf6-kwidgetsaddons
+      - kf6-modemmanager-qt
+      - kf6-networkmanager-qt
+      - kf6-prison
+      - kf6-solid
+      - libplasma
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-nm/plasma-nm.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-oxygen:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-oxygen.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kdecoration
+      - kf6
+      - kf6-frameworkintegration
+      - kf6-kcmutils
+      - kf6-kcolorscheme
+      - kf6-kcompletion
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kguiaddons
+      - kf6-ki18n
+      - kf6-kservice
+      - kf6-kwindowsystem
+      - libplasma
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-oxygen/plasma-oxygen.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-pa:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-pa.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcmutils
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kdbusaddons
+      - kf6-kdeclarative
+      - kf6-kdoctools
+      - kf6-kglobalaccel
+      - kf6-ki18n
+      - kf6-kstatusnotifieritem
+      - kf6-ksvg
+      - libplasma
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-pa/plasma-pa.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-print-manager:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-print-manager.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcmutils
+      - kf6-kconfig
+      - kf6-kconfigwidgets
+      - kf6-kcoreaddons
+      - kf6-kdbusaddons
+      - kf6-ki18n
+      - kf6-kiconthemes
+      - kf6-kio
+      - kf6-kirigami
+      - kf6-knotifications
+      - kf6-kwidgetsaddons
+      - kf6-kwindowsystem
+      - libplasma
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-print-manager/plasma-print-manager.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-sdk:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-sdk.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-karchive
+      - kf6-kcompletion
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-kdoctools
+      - kf6-ki18n
+      - kf6-kiconthemes
+      - kf6-kio
+      - kf6-kirigami
+      - kf6-kitemmodels
+      - kf6-ksvg
+      - kf6-ktexteditor
+      - kf6-kwidgetsaddons
+      - libplasma
+      - plasma5support
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-sdk/plasma-sdk.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-systemmonitor:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-systemmonitor.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-kglobalaccel
+      - kf6-ki18n
+      - kf6-kio
+      - kf6-kitemmodels
+      - kf6-knewstuff
+      - kf6-kpackage
+      - kf6-kservice
+      - kf6-kwindowsystem
+      - libksysguard
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-systemmonitor/plasma-systemmonitor.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-systemsettings:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-systemsettings.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kauth
+      - kf6-kcmutils
+      - kf6-kcolorscheme
+      - kf6-kconfig
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-kdoctools
+      - kf6-kguiaddons
+      - kf6-ki18n
+      - kf6-kiconthemes
+      - kf6-kio
+      - kf6-kirigami
+      - kf6-kitemmodels
+      - kf6-kitemviews
+      - kf6-kjobwidgets
+      - kf6-krunner
+      - kf6-kservice
+      - kf6-kwidgetsaddons
+      - kf6-kwindowsystem
+      - kf6-kxmlgui
+      - plasma-activities
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-systemsettings/plasma-systemsettings.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-thunderbolt:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-thunderbolt.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcmutils
+      - kf6-kcoreaddons
+      - kf6-kdbusaddons
+      - kf6-ki18n
+      - kf6-knotifications
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-thunderbolt/plasma-thunderbolt.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-vault:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-vault.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kconfigwidgets
+      - kf6-kcoreaddons
+      - kf6-kdbusaddons
+      - kf6-ki18n
+      - kf6-kio
+      - kf6-kitemmodels
+      - kf6-kservice
+      - kf6-kwidgetsaddons
+      - kf6-networkmanager-qt
+      - libksysguard
+      - libplasma
+      - plasma-activities
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-vault/plasma-vault.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-welcome:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-welcome.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcmutils
+      - kf6-kconfig
+      - kf6-kconfigwidgets
+      - kf6-kcoreaddons
+      - kf6-kdbusaddons
+      - kf6-ki18n
+      - kf6-kio
+      - kf6-kirigami
+      - kf6-kjobwidgets
+      - kf6-knewstuff
+      - kf6-kservice
+      - kf6-ksvg
+      - kf6-kwindowsystem
+      - libplasma
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-welcome/plasma-welcome.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-workspace:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-workspace.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-baloo
+      - kf6-karchive
+      - kf6-kauth
+      - kf6-kcmutils
+      - kf6-kcolorscheme
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-kdeclarative
+      - kf6-kded
+      - kf6-kdoctools
+      - kf6-kglobalaccel
+      - kf6-kguiaddons
+      - kf6-kholidays
+      - kf6-ki18n
+      - kf6-kiconthemes
+      - kf6-kio
+      - kf6-kirigami
+      - kf6-kitemmodels
+      - kf6-knewstuff
+      - kf6-knotifications
+      - kf6-knotifyconfig
+      - kf6-kpackage
+      - kf6-kparts
+      - kf6-kquickcharts
+      - kf6-krunner
+      - kf6-kstatusnotifieritem
+      - kf6-ksvg
+      - kf6-ktexteditor
+      - kf6-ktextwidgets
+      - kf6-kunitconversion
+      - kf6-kuserfeedback
+      - kf6-kwallet
+      - kf6-networkmanager-qt
+      - kf6-prison
+      - kscreenlocker
+      - kwayland
+      - kwin
+      - layer-shell-qt
+      - libkscreen
+      - libksysguard
+      - libplasma
+      - plasma5support
+      - plasma-activities
+      - plasma-activities-stats
+      - plasma-breeze
+      - plasma-wayland-protocols
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-workspace/plasma-workspace.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      reclaim: true
+
+  plasma-workspace-wallpapers:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-workspace-wallpapers.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma-workspace-wallpapers/plasma-workspace-wallpapers.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma5support:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma5support.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kguiaddons
+      - kf6-ki18n
+      - kf6-kidletime
+      - kf6-kio
+      - kf6-knotifications
+      - kf6-kservice
+      - kf6-networkmanager-qt
+      - kf6-solid
+      - libksysguard
+      - libplasma
+      - plasma-activities
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plasma5support/plasma5support.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plymouth-kcm:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plymouth-kcm.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-karchive
+      - kf6-kauth
+      - kf6-kcmutils
+      - kf6-kconfig
+      - kf6-ki18n
+      - kf6-kio
+      - kf6-knewstuff
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plymouth-kcm/plymouth-kcm.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plymouth-theme-breeze:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plymouth-theme-breeze.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/plymouth-theme-breeze/plymouth-theme-breeze.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  polkit-kde:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/polkit-kde.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-ki18n
+      - kf6-knotifications
+      - kf6-kwindowsystem
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/polkit-kde/polkit-kde.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  powerdevil:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/powerdevil.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kauth
+      - kf6-kcmutils
+      - kf6-kconfig
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-kdoctools
+      - kf6-kglobalaccel
+      - kf6-ki18n
+      - kf6-kidletime
+      - kf6-kio
+      - kf6-kirigami
+      - kf6-kitemmodels
+      - kf6-knotifications
+      - kf6-krunner
+      - kf6-kwindowsystem
+      - kf6-kxmlgui
+      - kf6-solid
+      - libkscreen
+      - libplasma
+      - plasma-activities
+      - plasma-wayland-protocols
+      - plasma-workspace
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/powerdevil/powerdevil.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  qqc2-breeze-style:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/qqc2-breeze-style.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcolorscheme
+      - kf6-kconfig
+      - kf6-kguiaddons
+      - kf6-kiconthemes
+      - kf6-kirigami
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/qqc2-breeze-style/qqc2-breeze-style.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  sddm-kcm:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/sddm-kcm.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-karchive
+      - kf6-kauth
+      - kf6-kcmutils
+      - kf6-kcoreaddons
+      - kf6-ki18n
+      - kf6-kio
+      - kf6-knewstuff
+      - kf6-kservice
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/sddm-kcm/sddm-kcm.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  spectacle:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/spectacle.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-kdbusaddons
+      - kf6-kdoctools
+      - kf6-kglobalaccel
+      - kf6-kguiaddons
+      - kf6-ki18n
+      - kf6-kio
+      - kf6-kirigami
+      - kf6-knotifications
+      - kf6-kstatusnotifieritem
+      - kf6-kwidgetsaddons
+      - kf6-kwindowsystem
+      - kf6-kxmlgui
+      - kf6-prison
+      - kf6-purpose
+      - kpipewire
+      - layer-shell-qt
+      - plasma-wayland-protocols
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/spectacle/spectacle.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  xdg-desktop-portal-kde:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/xdg-desktop-portal-kde.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-kglobalaccel
+      - kf6-kguiaddons
+      - kf6-ki18n
+      - kf6-kiconthemes
+      - kf6-kio
+      - kf6-kirigami
+      - kf6-knotifications
+      - kf6-kservice
+      - kf6-kstatusnotifieritem
+      - kf6-kwidgetsaddons
+      - kf6-kwindowsystem
+      - kwayland
+      - plasma-wayland-protocols
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./plasma/xdg-desktop-portal-kde/xdg-desktop-portal-kde.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
+  plasma-wayland-protocols:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-wayland-protocols.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: ./related/plasma-wayland-protocols/plasma-wayland-protocols.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      ccache: false
+
