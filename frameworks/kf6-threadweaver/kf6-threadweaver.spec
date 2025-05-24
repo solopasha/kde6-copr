@@ -1,6 +1,6 @@
-%global commit0 c0e44b4fac215b2f0e54d55fe41f740015c0b4d8
+%global commit0 5723a0f270531ef320dd807db79b01f9cd5943ee
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 %global framework threadweaver
 

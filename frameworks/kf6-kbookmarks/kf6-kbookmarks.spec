@@ -1,6 +1,6 @@
-%global commit0 bb452fc14311634d6aae1e138f2b1e2bcd2e8e4f
+%global commit0 617f8c23a48aad47e9272e96311338e53b6ff4c8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 %global framework kbookmarks
 

@@ -1,6 +1,6 @@
-%global commit0 4f7ca6d584dccc435fa428f93d5c7b7cc23c708a
+%global commit0 8b381814b44382b00e0db92e658a048ea9ee4490
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 %global framework bluez-qt
 
