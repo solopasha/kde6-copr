@@ -186,13 +186,14 @@ jobs:
           fi
 
           if [[ "${gear}" == "true" ]]; then
-          cat << 'EOF' >> /etc/mock/fedora-build.cfg
+          cat << EOF >> /etc/mock/fedora-build.cfg
           config_opts['dnf.conf'] += """
           [build]
           name=build
           baseurl=file://${GITHUB_WORKSPACE}/repo/
           skip_if_unavailable=True
           gpgcheck=1
+          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
           repo_gpgcheck=0
           enabled=1
           enabled_metadata=1
@@ -200,7 +201,7 @@ jobs:
 
           [copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable]
           name=Copr repo for kde-gear-unstable owned by solopasha
-          baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/kde-gear-unstable/fedora-$releasever-$basearch/
+          baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/kde-gear-unstable/fedora-\$releasever-\$basearch/
           type=rpm-md
           skip_if_unavailable=True
           gpgcheck=1
@@ -386,7 +387,7 @@ jobs:
           go_vendor_archive create --config ./go-vendor-tools.toml "./${pkgname}.spec"
 
       - name: Wait builds
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && steps.gear.outputs.gear != 'true'
         env:
           DEPS: ${{ inputs.deps }}
         run: |
