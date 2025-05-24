@@ -188,6 +188,16 @@ jobs:
           if [[ "${gear}" == "true" ]]; then
           cat << 'EOF' >> /etc/mock/fedora-build.cfg
           config_opts['dnf.conf'] += """
+          [build]
+          name=build
+          baseurl=file://${GITHUB_WORKSPACE}/repo/
+          skip_if_unavailable=True
+          gpgcheck=1
+          repo_gpgcheck=0
+          enabled=1
+          enabled_metadata=1
+          priority=97
+
           [copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable]
           name=Copr repo for kde-gear-unstable owned by solopasha
           baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/kde-gear-unstable/fedora-$releasever-$basearch/
@@ -234,6 +244,21 @@ jobs:
 
       - name: Set up ORAS
         uses: oras-project/setup-oras@8d34698a59f5ffe24821f0b48ab62a3de8b64b20
+
+      - name: Fetch build deps
+        if: steps.gear.outputs.gear == 'true'
+        env:
+          DEPS: ${{ inputs.deps }}
+        run: |
+          mapfile -t repo_dependencies < <(jq -r 'del(."changed-files") | keys[]' <<< "$DEPS")
+          if [[ "${repo_dependencies[*]}" != "" ]]; then
+            mkdir -p repo
+            for dep in "${repo_dependencies[@]}"; do
+              oras pull "ghcr.io/${repository}/${dep}:latest-${target_branch}"
+              mv ./"$dep"-resultdir/*.rpm repo
+            done
+            createrepo_c repo
+          fi
 
       - name: Fetch build deps (PR)
         if: github.event_name == 'pull_request'
