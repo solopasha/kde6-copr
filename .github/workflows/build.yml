@@ -27,6 +27,7 @@ jobs:
     uses: ./.github/workflows/packages.yml
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
+      copr_webhook: ${{ secrets.COPR_WEBHOOK }}
 
   merge:
     name: Merge PR
