@@ -1,6 +1,6 @@
 %global commit0 91f379f37191967971b853c21fd35cbdf4487181
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 10
+%global bumpver 11
 
 Name:    akonadi-search
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -12,6 +12,7 @@ URL:     https://invent.kde.org/pim/akonadi-search
 %apps_source
 
 BuildRequires:  cargo
+BuildRequires:  cargo-rpm-macros
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  rust
@@ -37,16 +38,13 @@ BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Corrosion)
 BuildRequires:  pkgconfig(xapian-core)
 
-%if %{fedora} >= 40
 Obsoletes:      kf5-akonadi-search < 24.01.80-1
-%endif
 
 %description
 %{summary}.
 
 %package        devel
 Summary:        Development files for %{name}
-Conflicts:      kf5-%{name}-devel < 23.08.3-2
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6CalendarCore)
 Requires:       cmake(KF6Contacts)
@@ -63,9 +61,20 @@ developing applications that use %{name}.
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
+%cargo_prep
+find -name "Cargo.lock" -print -delete
+
+
+%generate_buildrequires
+cd agent/rs/htmlparser
+%cargo_generate_buildrequires
 
 
 %build
+cd agent/rs/htmlparser
+%cargo_license_summary
+%cargo_license
+cd ../../..
 %cmake_kf6
 %cmake_build
 
