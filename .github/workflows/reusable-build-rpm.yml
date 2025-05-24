@@ -33,7 +33,7 @@ on:
       gpgkey:
         required: true
       copr_webhook:
-        required: true
+        required: false
     outputs:
       pkgname:
         value: ${{ jobs.build.outputs.pkgname }}
@@ -104,8 +104,10 @@ jobs:
 
       - name: Detect Gear
         id: gear
+        env:
+          pkgname: ${{ steps.pkgname.outputs.pkgname }}
         run: |
-          if grep "\"$package\"" frameworks/kf6/kde_gear.lua; then
+          if grep "\"${pkgname}\"" frameworks/kf6/kde_gear.lua; then
             echo "gear=true" >> $GITHUB_OUTPUT
           fi
 
