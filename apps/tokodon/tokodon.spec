@@ -1,6 +1,6 @@
-%global commit0 06d9321407b7404c66105015daf9d5d8a5fa60d8
+%global commit0 8d14a8d8bca3f43922c654d259314106e5123b42
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 12
+%global bumpver 13
 
 Name:           tokodon
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -46,6 +46,7 @@ BuildRequires:  cmake(Qt6WebView)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  cmake(KUnifiedPush)
+BuildRequires:  cmake(QCoro6)
 BuildRequires:  pkgconfig(openssl)
 
 Requires:       hicolor-icon-theme
