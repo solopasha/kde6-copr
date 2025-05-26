@@ -1,6 +1,6 @@
-%global commit0 5903e3d2193a36574eb0bb2ca497e71e0815471c
+%global commit0 2f70612a2d64dd0aa095e5f9b6cae573838fc7cc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 Name:    kdegraphics-mobipocket
 Summary: A collection of plugins to handle mobipocket files
@@ -14,7 +14,6 @@ URL:     https://www.kde.org/applications/graphics/
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
 BuildRequires: cmake(Qt6Gui)
-BuildRequires: cmake(Qt6Core5Compat)
 BuildRequires: cmake(KF6KIO)
 
 Obsoletes:     %{name}-qt5 < 24.02.1
@@ -45,7 +44,7 @@ Requires:   %{name}%{?_isa} = %{version}-%{release}
 
 %files
 %license LICENSES/GPL-2.0-or-later.txt
-%{_kf6_libdir}/libQMobipocket6.so.2*
+%{_kf6_libdir}/libQMobipocket6.so.3*
 
 %files devel
 %{_includedir}/QMobipocket6/
