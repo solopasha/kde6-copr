@@ -1,6 +1,6 @@
-%global commit0 1bac2800afed6bde8b2c416874f3407da158f03b
+%global commit0 732c90b44a49123fd487cd6f0551cb12ace40cae
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 %global framework kcalendarcore
 
