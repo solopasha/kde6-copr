@@ -34,6 +34,8 @@ on:
         required: true
       copr_webhook:
         required: false
+      copr_webhook_beta:
+        required: false
     outputs:
       pkgname:
         value: ${{ jobs.build.outputs.pkgname }}
@@ -172,7 +174,7 @@ jobs:
           enabled=1
           enabled_metadata=1
           [copr:copr.fedorainfracloud.org:solopasha:plasma-unstable:devel]
-          name=Copr repo for plasma-unstable owned by solopasha
+          name=Copr repo for plasma-unstable owned by solopasha - devel
           baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/fedora-$releasever-$basearch/devel/
           type=rpm-md
           skip_if_unavailable=False
@@ -402,7 +404,11 @@ jobs:
         env:
           pkgname: ${{ steps.pkgname.outputs.pkgname }}
         run: |
-          buildid="$(curl -Ss -X POST "https://copr.fedorainfracloud.org/webhooks/custom/143312/${{ secrets.copr_webhook }}/${pkgname}")"
+          if [[ "${target_branch}" == "unstable" ]]; then
+            buildid="$(curl -Ss -X POST "https://copr.fedorainfracloud.org/webhooks/custom/143312/${{ secrets.copr_webhook }}/${pkgname}")"
+          elif [[ "${target_branch}" == "beta" ]]; then
+            buildid="$(curl -Ss -X POST "https://copr.fedorainfracloud.org/webhooks/custom/159978/${{ secrets.copr_webhook_beta }}/${pkgname}")"
+          fi
           echo "buildid=${buildid}" >> $GITHUB_OUTPUT
 
       - name: Build

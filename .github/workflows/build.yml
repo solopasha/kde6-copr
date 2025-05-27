@@ -28,6 +28,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
 
   merge:
     name: Merge PR

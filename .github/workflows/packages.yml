@@ -7,6 +7,8 @@ on:
         required: true
       copr_webhook:
         required: true
+      copr_webhook_beta:
+        required: true
 
 permissions:
   contents: read
@@ -44,6 +46,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/extra-cmake-modules/extra-cmake-modules.spec
       deps: ${{ toJson(needs) }}
@@ -57,6 +60,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6/kf6.spec
       deps: ${{ toJson(needs) }}
@@ -74,6 +78,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-attica/kf6-attica.spec
       deps: ${{ toJson(needs) }}
@@ -98,6 +103,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-baloo/kf6-baloo.spec
       deps: ${{ toJson(needs) }}
@@ -113,6 +119,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-bluez-qt/kf6-bluez-qt.spec
       deps: ${{ toJson(needs) }}
@@ -128,6 +135,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-breeze-icons/kf6-breeze-icons.spec
       deps: ${{ toJson(needs) }}
@@ -151,6 +159,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-frameworkintegration/kf6-frameworkintegration.spec
       deps: ${{ toJson(needs) }}
@@ -166,6 +175,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-karchive/kf6-karchive.spec
       deps: ${{ toJson(needs) }}
@@ -183,6 +193,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kauth/kf6-kauth.spec
       deps: ${{ toJson(needs) }}
@@ -201,6 +212,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kbookmarks/kf6-kbookmarks.spec
       deps: ${{ toJson(needs) }}
@@ -216,6 +228,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kcalendarcore/kf6-kcalendarcore.spec
       deps: ${{ toJson(needs) }}
@@ -239,6 +252,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kcmutils/kf6-kcmutils.spec
       deps: ${{ toJson(needs) }}
@@ -254,6 +268,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kcodecs/kf6-kcodecs.spec
       deps: ${{ toJson(needs) }}
@@ -272,6 +287,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kcolorscheme/kf6-kcolorscheme.spec
       deps: ${{ toJson(needs) }}
@@ -290,6 +306,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kcompletion/kf6-kcompletion.spec
       deps: ${{ toJson(needs) }}
@@ -305,6 +322,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kconfig/kf6-kconfig.spec
       deps: ${{ toJson(needs) }}
@@ -327,6 +345,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kconfigwidgets/kf6-kconfigwidgets.spec
       deps: ${{ toJson(needs) }}
@@ -346,6 +365,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kcontacts/kf6-kcontacts.spec
       deps: ${{ toJson(needs) }}
@@ -361,6 +381,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kcoreaddons/kf6-kcoreaddons.spec
       deps: ${{ toJson(needs) }}
@@ -377,6 +398,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kcrash/kf6-kcrash.spec
       deps: ${{ toJson(needs) }}
@@ -395,6 +417,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kdav/kf6-kdav.spec
       deps: ${{ toJson(needs) }}
@@ -410,6 +433,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kdbusaddons/kf6-kdbusaddons.spec
       deps: ${{ toJson(needs) }}
@@ -430,6 +454,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kdeclarative/kf6-kdeclarative.spec
       deps: ${{ toJson(needs) }}
@@ -451,6 +476,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kded/kf6-kded.spec
       deps: ${{ toJson(needs) }}
@@ -470,6 +496,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kdesu/kf6-kdesu.spec
       deps: ${{ toJson(needs) }}
@@ -485,6 +512,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kdnssd/kf6-kdnssd.spec
       deps: ${{ toJson(needs) }}
@@ -502,6 +530,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kdoctools/kf6-kdoctools.spec
       deps: ${{ toJson(needs) }}
@@ -522,6 +551,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kfilemetadata/kf6-kfilemetadata.spec
       deps: ${{ toJson(needs) }}
@@ -537,6 +567,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kglobalaccel/kf6-kglobalaccel.spec
       deps: ${{ toJson(needs) }}
@@ -553,6 +584,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kguiaddons/kf6-kguiaddons.spec
       deps: ${{ toJson(needs) }}
@@ -568,6 +600,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kholidays/kf6-kholidays.spec
       deps: ${{ toJson(needs) }}
@@ -583,6 +616,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-ki18n/kf6-ki18n.spec
       deps: ${{ toJson(needs) }}
@@ -603,6 +637,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kiconthemes/kf6-kiconthemes.spec
       deps: ${{ toJson(needs) }}
@@ -619,6 +654,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kidletime/kf6-kidletime.spec
       deps: ${{ toJson(needs) }}
@@ -635,6 +671,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kimageformats/kf6-kimageformats.spec
       deps: ${{ toJson(needs) }}
@@ -671,6 +708,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kio/kf6-kio.spec
       deps: ${{ toJson(needs) }}
@@ -686,6 +724,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kirigami/kf6-kirigami.spec
       deps: ${{ toJson(needs) }}
@@ -701,6 +740,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kitemmodels/kf6-kitemmodels.spec
       deps: ${{ toJson(needs) }}
@@ -716,6 +756,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kitemviews/kf6-kitemviews.spec
       deps: ${{ toJson(needs) }}
@@ -734,6 +775,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kjobwidgets/kf6-kjobwidgets.spec
       deps: ${{ toJson(needs) }}
@@ -761,6 +803,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-knewstuff/kf6-knewstuff.spec
       deps: ${{ toJson(needs) }}
@@ -777,6 +820,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-knotifications/kf6-knotifications.spec
       deps: ${{ toJson(needs) }}
@@ -796,6 +840,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-knotifyconfig/kf6-knotifyconfig.spec
       deps: ${{ toJson(needs) }}
@@ -815,6 +860,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kpackage/kf6-kpackage.spec
       deps: ${{ toJson(needs) }}
@@ -838,6 +884,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kparts/kf6-kparts.spec
       deps: ${{ toJson(needs) }}
@@ -858,6 +905,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kpeople/kf6-kpeople.spec
       deps: ${{ toJson(needs) }}
@@ -873,6 +921,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kplotting/kf6-kplotting.spec
       deps: ${{ toJson(needs) }}
@@ -890,6 +939,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kpty/kf6-kpty.spec
       deps: ${{ toJson(needs) }}
@@ -905,6 +955,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kquickcharts/kf6-kquickcharts.spec
       deps: ${{ toJson(needs) }}
@@ -924,6 +975,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-krunner/kf6-krunner.spec
       deps: ${{ toJson(needs) }}
@@ -943,6 +995,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kservice/kf6-kservice.spec
       deps: ${{ toJson(needs) }}
@@ -959,6 +1012,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kstatusnotifieritem/kf6-kstatusnotifieritem.spec
       deps: ${{ toJson(needs) }}
@@ -980,6 +1034,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-ksvg/kf6-ksvg.spec
       deps: ${{ toJson(needs) }}
@@ -1005,6 +1060,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-ktexteditor/kf6-ktexteditor.spec
       deps: ${{ toJson(needs) }}
@@ -1020,6 +1076,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-ktexttemplate/kf6-ktexttemplate.spec
       deps: ${{ toJson(needs) }}
@@ -1040,6 +1097,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-ktextwidgets/kf6-ktextwidgets.spec
       deps: ${{ toJson(needs) }}
@@ -1056,6 +1114,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kunitconversion/kf6-kunitconversion.spec
       deps: ${{ toJson(needs) }}
@@ -1071,6 +1130,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kuserfeedback/kf6-kuserfeedback.spec
       deps: ${{ toJson(needs) }}
@@ -1096,6 +1156,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kwallet/kf6-kwallet.spec
       deps: ${{ toJson(needs) }}
@@ -1111,6 +1172,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kwidgetsaddons/kf6-kwidgetsaddons.spec
       deps: ${{ toJson(needs) }}
@@ -1127,6 +1189,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kwindowsystem/kf6-kwindowsystem.spec
       deps: ${{ toJson(needs) }}
@@ -1152,6 +1215,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-kxmlgui/kf6-kxmlgui.spec
       deps: ${{ toJson(needs) }}
@@ -1167,6 +1231,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-modemmanager-qt/kf6-modemmanager-qt.spec
       deps: ${{ toJson(needs) }}
@@ -1182,6 +1247,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-networkmanager-qt/kf6-networkmanager-qt.spec
       deps: ${{ toJson(needs) }}
@@ -1197,6 +1263,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-prison/kf6-prison.spec
       deps: ${{ toJson(needs) }}
@@ -1220,6 +1287,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-purpose/kf6-purpose.spec
       deps: ${{ toJson(needs) }}
@@ -1240,6 +1308,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-qqc2-desktop-style/kf6-qqc2-desktop-style.spec
       deps: ${{ toJson(needs) }}
@@ -1255,6 +1324,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-solid/kf6-solid.spec
       deps: ${{ toJson(needs) }}
@@ -1270,6 +1340,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-sonnet/kf6-sonnet.spec
       deps: ${{ toJson(needs) }}
@@ -1286,6 +1357,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-syndication/kf6-syndication.spec
       deps: ${{ toJson(needs) }}
@@ -1301,6 +1373,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-syntax-highlighting/kf6-syntax-highlighting.spec
       deps: ${{ toJson(needs) }}
@@ -1316,6 +1389,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./frameworks/kf6-threadweaver/kf6-threadweaver.spec
       deps: ${{ toJson(needs) }}
@@ -1341,6 +1415,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/aurorae/aurorae.spec
       deps: ${{ toJson(needs) }}
@@ -1371,6 +1446,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/bluedevil/bluedevil.spec
       deps: ${{ toJson(needs) }}
@@ -1387,6 +1463,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/breeze-gtk/breeze-gtk.spec
       deps: ${{ toJson(needs) }}
@@ -1407,6 +1484,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/flatpak-kcm/flatpak-kcm.spec
       deps: ${{ toJson(needs) }}
@@ -1422,6 +1500,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/grub2-breeze-theme/grub2-breeze-theme.spec
       deps: ${{ toJson(needs) }}
@@ -1447,6 +1526,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/kactivitymanagerd/kactivitymanagerd.spec
       deps: ${{ toJson(needs) }}
@@ -1476,6 +1556,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/kcm_wacomtablet/kcm_wacomtablet.spec
       deps: ${{ toJson(needs) }}
@@ -1504,6 +1585,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/kde-cli-tools/kde-cli-tools.spec
       deps: ${{ toJson(needs) }}
@@ -1526,6 +1608,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/kde-gtk-config/kde-gtk-config.spec
       deps: ${{ toJson(needs) }}
@@ -1542,6 +1625,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/kdecoration/kdecoration.spec
       deps: ${{ toJson(needs) }}
@@ -1578,6 +1662,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/kdeplasma-addons/kdeplasma-addons.spec
       deps: ${{ toJson(needs) }}
@@ -1598,6 +1683,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/kgamma/kgamma.spec
       deps: ${{ toJson(needs) }}
@@ -1622,6 +1708,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/kglobalacceld/kglobalacceld.spec
       deps: ${{ toJson(needs) }}
@@ -1647,6 +1734,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/kinfocenter/kinfocenter.spec
       deps: ${{ toJson(needs) }}
@@ -1673,6 +1761,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/kmenuedit/kmenuedit.spec
       deps: ${{ toJson(needs) }}
@@ -1690,6 +1779,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/kpipewire/kpipewire.spec
       deps: ${{ toJson(needs) }}
@@ -1714,6 +1804,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/krdp/krdp.spec
       deps: ${{ toJson(needs) }}
@@ -1739,6 +1830,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/kscreen/kscreen.spec
       deps: ${{ toJson(needs) }}
@@ -1768,6 +1860,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/kscreenlocker/kscreenlocker.spec
       deps: ${{ toJson(needs) }}
@@ -1788,6 +1881,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/ksshaskpass/ksshaskpass.spec
       deps: ${{ toJson(needs) }}
@@ -1809,6 +1903,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/ksystemstats/ksystemstats.spec
       deps: ${{ toJson(needs) }}
@@ -1825,6 +1920,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/kwayland/kwayland.spec
       deps: ${{ toJson(needs) }}
@@ -1841,6 +1937,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/kwayland-integration/kwayland-integration.spec
       deps: ${{ toJson(needs) }}
@@ -1887,6 +1984,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/kwin/kwin.spec
       deps: ${{ toJson(needs) }}
@@ -1933,6 +2031,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/kwin-x11/kwin-x11.spec
       deps: ${{ toJson(needs) }}
@@ -1954,6 +2053,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/kwrited/kwrited.spec
       deps: ${{ toJson(needs) }}
@@ -1969,6 +2069,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/layer-shell-qt/layer-shell-qt.spec
       deps: ${{ toJson(needs) }}
@@ -1986,6 +2087,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/libkscreen/libkscreen.spec
       deps: ${{ toJson(needs) }}
@@ -2009,6 +2111,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/libksysguard/libksysguard.spec
       deps: ${{ toJson(needs) }}
@@ -2041,6 +2144,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/libplasma/libplasma.spec
       deps: ${{ toJson(needs) }}
@@ -2056,6 +2160,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/ocean-sound-theme/ocean-sound-theme.spec
       deps: ${{ toJson(needs) }}
@@ -2071,6 +2176,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/oxygen-sounds/oxygen-sounds.spec
       deps: ${{ toJson(needs) }}
@@ -2087,6 +2193,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/pam-kwallet/pam-kwallet.spec
       deps: ${{ toJson(needs) }}
@@ -2104,6 +2211,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-activities/plasma-activities.spec
       deps: ${{ toJson(needs) }}
@@ -2121,6 +2229,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-activities-stats/plasma-activities-stats.spec
       deps: ${{ toJson(needs) }}
@@ -2146,6 +2255,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-breeze/plasma-breeze.spec
       deps: ${{ toJson(needs) }}
@@ -2176,6 +2286,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-browser-integration/plasma-browser-integration.spec
       deps: ${{ toJson(needs) }}
@@ -2228,6 +2339,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-desktop/plasma-desktop.spec
       deps: ${{ toJson(needs) }}
@@ -2264,6 +2376,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-discover/plasma-discover.spec
       deps: ${{ toJson(needs) }}
@@ -2288,6 +2401,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-disks/plasma-disks.spec
       deps: ${{ toJson(needs) }}
@@ -2317,6 +2431,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-drkonqi/plasma-drkonqi.spec
       deps: ${{ toJson(needs) }}
@@ -2337,6 +2452,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-firewall/plasma-firewall.spec
       deps: ${{ toJson(needs) }}
@@ -2366,6 +2482,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-integration/plasma-integration.spec
       deps: ${{ toJson(needs) }}
@@ -2386,6 +2503,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-milou/plasma-milou.spec
       deps: ${{ toJson(needs) }}
@@ -2412,6 +2530,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-nano/plasma-nano.spec
       deps: ${{ toJson(needs) }}
@@ -2445,6 +2564,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-nm/plasma-nm.spec
       deps: ${{ toJson(needs) }}
@@ -2472,6 +2592,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-oxygen/plasma-oxygen.spec
       deps: ${{ toJson(needs) }}
@@ -2498,6 +2619,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-pa/plasma-pa.spec
       deps: ${{ toJson(needs) }}
@@ -2526,6 +2648,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-print-manager/plasma-print-manager.spec
       deps: ${{ toJson(needs) }}
@@ -2558,6 +2681,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-sdk/plasma-sdk.spec
       deps: ${{ toJson(needs) }}
@@ -2585,6 +2709,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-systemmonitor/plasma-systemmonitor.spec
       deps: ${{ toJson(needs) }}
@@ -2621,6 +2746,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-systemsettings/plasma-systemsettings.spec
       deps: ${{ toJson(needs) }}
@@ -2641,6 +2767,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-thunderbolt/plasma-thunderbolt.spec
       deps: ${{ toJson(needs) }}
@@ -2669,6 +2796,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-vault/plasma-vault.spec
       deps: ${{ toJson(needs) }}
@@ -2698,6 +2826,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-welcome/plasma-welcome.spec
       deps: ${{ toJson(needs) }}
@@ -2760,6 +2889,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-workspace/plasma-workspace.spec
       deps: ${{ toJson(needs) }}
@@ -2776,6 +2906,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma-workspace-wallpapers/plasma-workspace-wallpapers.spec
       deps: ${{ toJson(needs) }}
@@ -2804,6 +2935,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plasma5support/plasma5support.spec
       deps: ${{ toJson(needs) }}
@@ -2826,6 +2958,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plymouth-kcm/plymouth-kcm.spec
       deps: ${{ toJson(needs) }}
@@ -2841,6 +2974,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/plymouth-theme-breeze/plymouth-theme-breeze.spec
       deps: ${{ toJson(needs) }}
@@ -2862,6 +2996,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/polkit-kde/polkit-kde.spec
       deps: ${{ toJson(needs) }}
@@ -2899,6 +3034,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/powerdevil/powerdevil.spec
       deps: ${{ toJson(needs) }}
@@ -2919,6 +3055,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/qqc2-breeze-style/qqc2-breeze-style.spec
       deps: ${{ toJson(needs) }}
@@ -2942,6 +3079,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/sddm-kcm/sddm-kcm.spec
       deps: ${{ toJson(needs) }}
@@ -2977,6 +3115,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/spectacle/spectacle.spec
       deps: ${{ toJson(needs) }}
@@ -3008,6 +3147,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./plasma/xdg-desktop-portal-kde/xdg-desktop-portal-kde.spec
       deps: ${{ toJson(needs) }}
@@ -3023,6 +3163,7 @@ jobs:
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       spec: ./related/plasma-wayland-protocols/plasma-wayland-protocols.spec
       deps: ${{ toJson(needs) }}
