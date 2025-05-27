@@ -1,0 +1,62 @@
+name: Build packages
+
+on:
+  push:
+    paths:
+      - 'frameworks/**'
+      - 'plasma/**'
+      - 'related/**'
+    branches:
+      - unstable
+      - beta
+  pull_request:
+    paths:
+      - 'frameworks/**'
+      - 'plasma/**'
+      - 'related/**'
+    branches:
+      - unstable
+      - beta
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    uses: ./.github/workflows/packages.yml
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+      copr_webhook: ${{ secrets.COPR_WEBHOOK }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
+
+  # merge:
+  #   name: Merge PR
+  #   if: github.event_name == 'pull_request' && github.actor == 'solopasha'
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   permissions:
+  #     pull-requests: write
+  #     contents: write
+
+  #   steps:
+  #     - name: Merge Pull Request
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+  #         PR_URL: ${{ github.event.pull_request.html_url }}
+  #         max_retries: 7
+  #         sleep_seconds: 7
+  #       run: |
+  #         for (( retry_count=0; retry_count<max_retries; retry_count++ )); do
+  #             if gh pr merge --rebase "${PR_URL}"; then
+  #                 exit 0
+  #             fi
+
+  #             if [[ $retry_count -lt $((max_retries - 1)) ]]; then
+  #                 echo "Attempt $((retry_count + 1)) failed. Retrying in $sleep_seconds seconds..."
+  #                 sleep $sleep_seconds
+  #             fi
+  #         done
+
+  #         echo "Failed after $max_retries attempts"
+  #         exit 1
