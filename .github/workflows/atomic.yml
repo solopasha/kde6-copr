@@ -43,7 +43,6 @@ jobs:
             skopeo \
             tar \
             zstd
-          dnf -y upgrade --enablerepo=updates-testing --refresh --advisory=FEDORA-2025-ba4625cbe9
           cat << EOF > /etc/containers/registries.d/sigstore.yaml
           docker:
             $IMAGENAME:
