@@ -1,6 +1,6 @@
-%global commit0 3cef5764a2c16aceaaaa49c13ab55fcf27e0c29b
+%global commit0 09dc0c9248688ea7649eef2977a5b88adf5b484c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 %global framework knotifications
 
