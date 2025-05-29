@@ -20,7 +20,7 @@ now=$(date +%s)
 
 for pkg in "${packages[@]}"; do
     gh api --paginate -H "Accept: application/vnd.github+json" \
-        "/users/solopasha/packages/container/kde6-copr%2F$pkg/versions" | \
+        "/users/$REPOSITORY_OWNER/packages/container/$REPOSITORY%2F$pkg/versions" | \
     jq -c '.[]' | while read -r version; do
 
         id=$(echo "$version" | jq -r '.id')
@@ -39,7 +39,7 @@ for pkg in "${packages[@]}"; do
 
         if echo "$tags" | grep -Eq '\bpr-[0-9]+\b'; then
           pr_num=$(echo "$tags" | grep -o '[0-9]\+')
-          state=$(gh api "/repos/solopasha/kde6-copr/pulls/$pr_num" -q '.state')
+          state=$(gh api "/repos/$REPOSITORY_OWNER/$REPOSITORY/pulls/$pr_num" -q '.state')
           if [[ "$state" == "closed" ]]; then
             echo "🗑 Deleting PRs artifacts: $pkgname $tags (ID: $id)"
             should_delete=true
@@ -61,9 +61,9 @@ for pkg in "${packages[@]}"; do
 
         if [[ "$should_delete" == true ]]; then
             if [[ "$DRY_RUN" == "true" ]]; then
-                echo "💤 Dry-run: would delete /users/solopasha/packages/container/kde6-copr%2F$pkg/versions/$id"
+                echo "💤 Dry-run: would delete /users/$REPOSITORY_OWNER/packages/container/$REPOSITORY%2F$pkg/versions/$id"
             else
-                gh api -X DELETE "/users/solopasha/packages/container/kde6-copr%2F$pkg/versions/$id"
+                gh api -X DELETE "/users/$REPOSITORY_OWNER/packages/container/$REPOSITORY%2F$pkg/versions/$id"
             fi
         fi
     done
