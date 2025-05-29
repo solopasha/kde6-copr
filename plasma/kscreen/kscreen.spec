@@ -1,11 +1,11 @@
-%global commit0 1e93e4ca682f383a59a879abc82b6687f86cea10
+%global commit0 e4a93ea18f12834f27a3271cf70687f13c2496ac
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:           kscreen
 Epoch:          1
-Version:        6.3.90
-Release:        2%{?dist}
+Version:        6.3.91
+Release:        1%{?dist}
 Summary:        KDE Display Management software
 
 License:        CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later (GPL-2.0-only OR GPL-3.0-only)
@@ -54,6 +54,8 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/applications/kcm_kscreen.desktop
 %{_kf6_datadir}/dbus-1/services/org.kde.kscreen.osdService.service
 %{_kf6_datadir}/kglobalaccel/org.kde.kscreen.desktop
+%dir %{_kf6_datadir}/kscreen
+%{_kf6_datadir}/kscreen/graz.png
 %{_kf6_datadir}/qlogging-categories6/kscreen.categories
 %{_kf6_plugindir}/kded/kscreen.so
 %{_kf6_qtplugindir}/plasma/applets/org.kde.kscreen.so
@@ -62,6 +64,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_userunitdir}/plasma-kscreen-osd.service
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 1:6.3.91-1
+- Update to 6.3.91
+
 * Tue May 20 2025 Pavel Solovev <daron439@gmail.com> - 1:6.3.90-2
 - bump revision
 

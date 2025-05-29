@@ -1,10 +1,10 @@
-%global commit0 0bc1471ead462355ed4a08541c8c8598bbd5aae5
+%global commit0 d025c1ba87b669d896294680fe04db217ee27eb1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           plasma-disks
 Summary:        Hard disk health monitoring for KDE Plasma
-Version:        6.3.90
+Version:        6.3.91
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-3.0-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -49,6 +49,9 @@ desktop-file-validate %{buildroot}/%{_kf6_datadir}/applications/*.desktop
 %{_qt6_plugindir}/plasma/kcms/kinfocenter/kcm_disks.so
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 6.3.91-1
+- Update to 6.3.91
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 

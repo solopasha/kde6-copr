@@ -1,10 +1,10 @@
-%global commit0 2faebc3e41adefed928ad7b1ca22301ac74fd0f8
+%global commit0 04814f471ceae5b313c885412a14efbf241a00a2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           plasma-nm
 Summary:        Plasma for managing network connections
-Version:        6.3.90
+Version:        6.3.91
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -288,6 +288,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_mobile_wifi.so
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 6.3.91-1
+- Update to 6.3.91
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 

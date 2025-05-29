@@ -1,11 +1,11 @@
-%global commit0 fb0cae8b7673e93155dc607ac623dd2c87d69cb9
+%global commit0 f2508043eac61d1523ba17514be946d9a0dcdaf0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           spectacle
 Summary:        Screenshot capture utility
 Epoch:          1
-Version:        6.3.90
+Version:        6.3.91
 Release:        1%{?dist}
 
 License:        LGPL-2.0-or-later AND GPL-2.0-or-later AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -88,6 +88,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.spectacle
 %{_userunitdir}/app-org.kde.spectacle.service
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 1:6.3.91-1
+- Update to 6.3.91
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 1:6.3.90-1
 - Update to 6.3.90
 

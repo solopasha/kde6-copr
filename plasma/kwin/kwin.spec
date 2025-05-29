@@ -1,10 +1,10 @@
-%global commit0 4b5eb63079e9918ee04d2613200ddb61135e6c96
+%global commit0 a18c435c573bd40a2fe2f9126447189b1d867fb2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:           kwin
-Version:        6.3.90
-Release:        2%{?dist}
+Version:        6.3.91
+Release:        1%{?dist}
 Summary:        KDE Window manager
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -190,6 +190,9 @@ ln -sr %{buildroot}%{_kf6_bindir}/kwin_wayland %{buildroot}%{_bindir}/kwin
 %{_kf6_libdir}/libkwin.so
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 6.3.91-1
+- Update to 6.3.91
+
 * Tue May 20 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-2
 - bump revision
 

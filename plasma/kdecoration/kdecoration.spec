@@ -1,10 +1,10 @@
-%global commit0 364ca13803e236ffb7fa4a304da2f4e633c4b159
+%global commit0 5a6d0473a6b384c3fe1b8046473e2a4226f596f0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kdecoration
 Summary:        A plugin-based library to create window decorations
-Version:        6.3.90
+Version:        6.3.91
 Release:        1%{?dist}
 
 License:        LGPLv2
@@ -50,6 +50,9 @@ mkdir -p %{buildroot}%{_kf6_qtplugindir}/org.kde.kdecoration3/
 %{_kf6_libdir}/libkdecorations3private.so
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 6.3.91-1
+- Update to 6.3.91
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 

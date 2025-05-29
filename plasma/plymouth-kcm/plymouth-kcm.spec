@@ -1,4 +1,4 @@
-%global commit0 af8ecd1cf2850019caf0b39f962eeb851343a567
+%global commit0 148cb8f16eb95ed646446b9f1af086b3333f6d8b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:           plymouth-kcm
 Summary:        Plymouth configuration module for systemsettings
-Version:        6.3.90
+Version:        6.3.91
 Release:        1%{?dist}
 
 License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later
@@ -54,6 +54,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_plymouth.so
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 6.3.91-1
+- Update to 6.3.91
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 

@@ -1,9 +1,9 @@
-%global commit0 60232dc1f220ebc174b8f17d4dd3b5c14f471614
+%global commit0 ab0339b19f7a8b0eec28fa50a17b9e3ac5fb833a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           sddm-kcm
-Version:        6.3.90
+Version:        6.3.91
 Release:        1%{?dist}
 Summary:        SDDM KDE configuration module
 
@@ -50,6 +50,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_sddm.so
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 6.3.91-1
+- Update to 6.3.91
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 

@@ -1,10 +1,10 @@
-%global commit0 5939efea2b0eb183364496627a1b4e4ff9012033
+%global commit0 c279e6fd8cf5d7d46a0a105ef9d8f785f0334b62
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           xdg-desktop-portal-kde
 Summary:        Backend implementation for xdg-desktop-portal using Qt/KF5
-Version:        6.3.90
+Version:        6.3.91
 Release:        1%{?dist}
 
 License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -67,6 +67,9 @@ pieces of KDE infrastructure.
 %{_userunitdir}/plasma-xdg-desktop-portal-kde.service
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 6.3.91-1
+- Update to 6.3.91
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 

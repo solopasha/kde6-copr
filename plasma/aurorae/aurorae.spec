@@ -1,10 +1,10 @@
-%global commit0 b6daf7a4933c1b8da90dcd8f33dd13088f6e5ee0
+%global commit0 e982331b7b9a39d265d31b63f8b5fe4769cde376
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           aurorae
 Summary:        Aurorae decoration engine
-Version:        6.3.90
+Version:        6.3.91
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later
@@ -57,6 +57,9 @@ decorations.
 %{_kf6_libdir}/cmake/Aurorae/
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 6.3.91-1
+- Update to 6.3.91
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 

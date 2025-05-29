@@ -1,10 +1,10 @@
-%global commit0 21302cc897723992e964123d073641f7ecc642ae
+%global commit0 a403f0e1490a17c7450ca85f09a34db6923aadfd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:           libplasma
-Version:        6.3.90
-Release:        2%{?dist}
+Version:        6.3.91
+Release:        1%{?dist}
 Summary:        Plasma is the foundation of the KDE user interface (v6)
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only) AND Qt-LGPL-exception-1.1
@@ -105,6 +105,9 @@ mkdir -p %{buildroot}%{_kf6_qmldir}/org/kde/private
 %{_kf6_libdir}/libPlasmaQuick.so
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 6.3.91-1
+- Update to 6.3.91
+
 * Tue May 20 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-2
 - bump revision
 

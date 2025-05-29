@@ -1,10 +1,10 @@
-%global commit0 1af7cc4353cb237ce879c303f01d469899b9456a
+%global commit0 bda77e666361251727a176a803f8c8f292995b4b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           plasma-activities
 Summary:        Core components for the KDE's Activities System
-Version:        6.3.90
+Version:        6.3.91
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -63,6 +63,9 @@ Provides:       kactivities-devel = %{version}-%{release}
 %{_kf6_libdir}/pkgconfig/PlasmaActivities.pc
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 6.3.91-1
+- Update to 6.3.91
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 

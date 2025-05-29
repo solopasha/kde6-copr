@@ -1,11 +1,11 @@
-%global commit0 389174d29736511ca6106cdf23335055f7b2c83a
+%global commit0 ceb54e5518fd05df5683abd9f09db6ec0e7e87c0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global base_name breeze
 
 Name:           plasma-breeze
-Version:        6.3.90
+Version:        6.3.91
 Release:        1%{?dist}
 Summary:        Artwork, styles and assets for the Breeze visual style for the Plasma Desktop
 
@@ -141,6 +141,9 @@ Development files for %{name}.
 %{_kf6_libdir}/cmake/Breeze/
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 6.3.91-1
+- Update to 6.3.91
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 

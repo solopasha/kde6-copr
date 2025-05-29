@@ -1,9 +1,9 @@
-%global commit0 437e811f786f84745ecc96cf1fad7fb201e3e9a4
+%global commit0 40ad90e1e67c9b5c997c2ceb4fa87850a58cb647
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kwayland-integration
-Version:        6.3.90
+Version:        6.3.91
 Release:        1%{?dist}
 Summary:        Provides integration plugins for various KDE Frameworks for Wayland
 
@@ -42,6 +42,9 @@ Requires:       kf5-filesystem
 %{_kf5_plugindir}/kwindowsystem/KF5WindowSystemKWaylandPlugin.so
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 6.3.91-1
+- Update to 6.3.91
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 

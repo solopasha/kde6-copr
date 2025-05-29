@@ -1,11 +1,11 @@
-%global commit0 842ced018e3262171c26f172aa2a5513ce6e65c2
+%global commit0 a8e9c3ffc265351aab24f57409efbd3e58cbc298
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kgamma
 Summary:        A monitor calibration tool
 Epoch:          1
-Version:        6.3.90
+Version:        6.3.91
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND GPL-2.0-or-later
@@ -40,6 +40,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_qt6_plugindir}/plasma/kcms/systemsettings_qwidgets/kcm_kgamma.so
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 1:6.3.91-1
+- Update to 6.3.91
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 1:6.3.90-1
 - Update to 6.3.90
 

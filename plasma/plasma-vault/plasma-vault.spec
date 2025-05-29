@@ -1,10 +1,10 @@
-%global commit0 fad354c22e9229ace2239d71a98a25cbff0af914
+%global commit0 2a26965b00ef7d8a93722eb03a6cc3a85de0a6ab
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           plasma-vault
 Summary:        Plasma Vault offers strong encryption features in a user-friendly way
-Version:        6.3.90
+Version:        6.3.91
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -49,6 +49,9 @@ prying eyes even when the user is logged in.
 %{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.vault.so
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 6.3.91-1
+- Update to 6.3.91
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 

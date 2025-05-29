@@ -1,9 +1,9 @@
-%global commit0 7dd117101236d513c6b88c47c6f402f6a24d0ec7
+%global commit0 c8d38f2a6d15050e4096e69c5f4540007a20bddd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           plasma-sdk
-Version:        6.3.90
+Version:        6.3.91
 Release:        1%{?dist}
 Summary:        Development tools for Plasma 6
 
@@ -74,17 +74,16 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.appdata.
 %{_kf6_bindir}/plasmathemeexplorer
 %{_kf6_bindir}/plasmoidviewer
 %{_kf6_datadir}/applications/org.kde.iconexplorer.desktop
+%{_kf6_datadir}/applications/org.kde.plasma.lookandfeelexplorer.desktop
 %{_kf6_datadir}/applications/org.kde.plasma.themeexplorer.desktop
 %{_kf6_datadir}/applications/org.kde.plasmaengineexplorer.desktop
 %{_kf6_datadir}/applications/org.kde.plasmoidviewer.desktop
 %{_kf6_datadir}/icons/hicolor/scalable/apps/org.kde.iconexplorer.svg
-%{_kf6_datadir}/kpackage/genericqml/org.kde.plasma.lookandfeelexplorer/
 %{_kf6_datadir}/kpackage/genericqml/org.kde.plasma.themeexplorer/
 %{_kf6_datadir}/plasma/shells/org.kde.plasma.plasmoidviewershell
 %{_kf6_datadir}/zsh/site-functions/_kqml
 %{_kf6_datadir}/zsh/site-functions/_plasmoidviewer
 %{_kf6_metainfodir}/org.kde.plasma.iconexplorer.appdata.xml
-%{_kf6_metainfodir}/org.kde.plasma.lookandfeelexplorer.appdata.xml
 %{_kf6_metainfodir}/org.kde.plasma.plasmoidviewershell.appdata.xml
 %{_kf6_metainfodir}/org.kde.plasma.themeexplorer.appdata.xml
 %{_kf6_metainfodir}/org.kde.plasmaengineexplorer.appdata.xml
@@ -95,6 +94,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.appdata.
 %{_mandir}/man1/plasmoidviewer.1.*
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 6.3.91-1
+- Update to 6.3.91
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 

@@ -1,10 +1,10 @@
-%global commit0 4a739a3d261fd8831d505d79284e9d419e2f2251
+%global commit0 f2364a5da6d50f0e5a996b67f82bfe14c7e497ec
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kpipewire
 Summary:        Set of convenient classes to use PipeWire in Qt projects
-Version:        6.3.90
+Version:        6.3.91
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only
@@ -73,6 +73,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKPipeWireRecord.so
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 6.3.91-1
+- Update to 6.3.91
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 

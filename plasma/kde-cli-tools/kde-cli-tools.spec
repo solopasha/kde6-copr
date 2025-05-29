@@ -1,9 +1,9 @@
-%global commit0 18eb0802f2577805585b2a3e703f44c2d8aea0fc
+%global commit0 4c564e5dd88a0c8aa79d4f1c9ab748cbb7d8a66d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kde-cli-tools
-Version:        6.3.90
+Version:        6.3.91
 Release:        1%{?dist}
 Summary:        Tools based on KDE Frameworks 5 to better interact with the system
 
@@ -92,6 +92,9 @@ sed '/kdesu/d;/man/d' -i %{name}.lang
 %{_mandir}/man1/kdesu.1.*
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 6.3.91-1
+- Update to 6.3.91
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 

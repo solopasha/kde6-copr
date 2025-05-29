@@ -1,9 +1,9 @@
-%global commit0 6492e952161826db292485fb1ca06d3bbb8ecd1e
+%global commit0 5aefffee64315b480d1eb1bb6616db5110d90fa2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           flatpak-kcm
-Version:        6.3.90
+Version:        6.3.91
 Release:        1%{?dist}
 License:        BSD-2-Clause and BSD-3-Clause and CC0-1.0 and GPL-2.0-or-later
 Summary:        Flatpak Permissions Management KCM
@@ -35,6 +35,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_flatpak.so
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 6.3.91-1
+- Update to 6.3.91
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 

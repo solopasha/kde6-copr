@@ -1,11 +1,11 @@
-%global commit0 1a93275b62c7f2f3f62cbbb73be6786812170135
+%global commit0 b6c9ce8b48c04d2208c7a0a9332770a934e98ad9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %bcond backend_ufw %[%{undefined rhel}]
 
 Name:           plasma-firewall
-Version:        6.3.90
+Version:        6.3.91
 Release:        1%{?dist}
 Summary:        Control Panel for your system firewall
 
@@ -99,6 +99,9 @@ rm -rfv %{buildroot}%{_kf6_libexecdir}/kauth/kde_ufw_plugin_helper
 %endif
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 6.3.91-1
+- Update to 6.3.91
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 

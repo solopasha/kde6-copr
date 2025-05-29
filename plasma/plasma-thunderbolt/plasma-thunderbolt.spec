@@ -1,10 +1,10 @@
-%global commit0 3d5e392ffccff5938c06eabb9d59ca7ee3f1918f
+%global commit0 fe86cd86edf387a32828ac6c3e866ea1bd92f3c6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           plasma-thunderbolt
 Summary:        Plasma integration for controlling Thunderbolt devices
-Version:        6.3.90
+Version:        6.3.91
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LicenseRef-KDE-Accepted-GPL
@@ -46,6 +46,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/kcm_bolt.desktop
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_bolt.so
 
 %changelog
+* Thu May 29 2025 Pavel Solovev <daron439@gmail.com> - 6.3.91-1
+- Update to 6.3.91
+
 * Thu May 15 2025 Pavel Solovev <daron439@gmail.com> - 6.3.90-1
 - Update to 6.3.90
 
