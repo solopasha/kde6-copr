@@ -20,7 +20,6 @@ on:
         type: boolean
       ccache:
         required: false
-        default: true
         type: boolean
       debuginfo:
         required: false
