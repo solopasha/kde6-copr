@@ -355,12 +355,14 @@ jobs:
           fi
 
       - name: Download sources
-        if: inputs.spec != './frameworks/kf6/kf6.spec'
         env:
           max_retries: 10
           sleep_seconds: 10
         run: |
           sourcetar="$(spectool --lf -s0 "${spec}" | xargs -I ,, basename ,,)"
+          if [[ -z "${sourcetar}" ]]; then
+            exit 0
+          fi
 
           for (( retry_count=0; retry_count<max_retries; retry_count++ )); do
             spectool -g "${spec}" -C "$(dirname "${spec}")"
