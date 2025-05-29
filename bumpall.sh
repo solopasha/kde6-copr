@@ -25,7 +25,8 @@ IFS=" " read -r -a exclude_rendered <<< "$(printf -- "--exclude=%s " "${exclude_
 process_spec() {
     baseName="$(sed -n 's/%global[[:space:]]\+\b\(framework\|base_name\)\b[[:space:]]\+\(.*\)/\2/p' "$1")"
     if [[ -z "$baseName" ]]; then
-        baseName="$(rpmspec -q --srpm --qf "%{name}" "$1")"
+        specfile="$(basename "$1")"
+        baseName="${specfile%.*}"
     fi
 
     oldCommit="$(sed -n 's/%global[[:space:]]\+\bcommit0\b[[:space:]]\+\(.*\)/\1/p' "$1")"
@@ -35,7 +36,7 @@ process_spec() {
 
     if [[ "$GITLAB" == "1" ]]; then
         nameWithNamepsace="$(echo 'local kde_maps = require "frameworks/kf6/kde_maps"; print((kde_maps[arg[1]]:gsub("/", "%%2F")))' | luajit - "$baseName")"
-        mapfile -t commits < <(curl --retry 5 --retry-all-errors -Ss "https://invent.kde.org/api/v4/projects/${nameWithNamepsace}/repository/commits?ref_name=${REMOTE_BRANCH}&per_page=50" | jq -c '.[]')
+        mapfile -t commits < <(curl --retry 5 -Ss "https://invent.kde.org/api/v4/projects/${nameWithNamepsace}/repository/commits?ref_name=${REMOTE_BRANCH}&per_page=50" | jq -c '.[]')
     else
         mapfile -t commits < <(gh api --method GET "repos/KDE/$baseName/commits?sha=${REMOTE_BRANCH}&per_page=50" | jq -c '.[]')
     fi
