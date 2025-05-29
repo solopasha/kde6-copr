@@ -1,0 +1,28 @@
+name: Prune old results
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '35 6 * * *'
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    concurrency:
+      group: repo-prune
+      cancel-in-progress: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Prune
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bash prune.sh
