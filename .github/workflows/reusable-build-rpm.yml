@@ -405,9 +405,9 @@ jobs:
           pkgname: ${{ steps.pkgname.outputs.pkgname }}
         run: |
           if [[ "${target_branch}" == "unstable" ]]; then
-            buildid="$(curl -Ss -X POST "https://copr.fedorainfracloud.org/webhooks/custom/143312/${{ secrets.copr_webhook }}/${pkgname}")"
+            buildid="$(curl --retry 7 -Ss -X POST "https://copr.fedorainfracloud.org/webhooks/custom/143312/${{ secrets.copr_webhook }}/${pkgname}")"
           elif [[ "${target_branch}" == "beta" ]]; then
-            buildid="$(curl -Ss -X POST "https://copr.fedorainfracloud.org/webhooks/custom/159978/${{ secrets.copr_webhook_beta }}/${pkgname}")"
+            buildid="$(curl --retry 7 -Ss -X POST "https://copr.fedorainfracloud.org/webhooks/custom/159978/${{ secrets.copr_webhook_beta }}/${pkgname}")"
           fi
           echo "buildid=${buildid}" >> $GITHUB_OUTPUT
 
