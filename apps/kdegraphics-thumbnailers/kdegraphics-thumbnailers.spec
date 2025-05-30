@@ -1,6 +1,6 @@
-%global commit0 d60c393f3bf34debad866986c37b5a4bc78ded69
+%global commit0 809799a5d1e49dc9665cb2122291c5b1b6059523
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    kdegraphics-thumbnailers
 Summary: Thumbnailers for various graphic types
@@ -17,7 +17,7 @@ BuildRequires: kf6-rpm-macros
 BuildRequires: cmake(KF6Archive)
 BuildRequires: cmake(KExiv2Qt6)
 BuildRequires: cmake(KF6KIO)
-#BuildRequires: cmake(QMobipocket6)
+BuildRequires: cmake(QMobipocket6)
 BuildRequires: cmake(Qt6Gui)
 BuildRequires: cmake(KDcrawQt6)
 
@@ -33,7 +33,7 @@ Obsoletes:     %{name}-qt5 < 24.02.1
 
 
 %build
-%cmake_kf6 -DQT_MAJOR_VERSION=6 -DDISABLE_MOBIPOCKET=TRUE
+%cmake_kf6 -DQT_MAJOR_VERSION=6
 %cmake_build
 
 
@@ -46,7 +46,7 @@ Obsoletes:     %{name}-qt5 < 24.02.1
 %{_kf6_metainfodir}/org.kde.kdegraphics-thumbnailers.metainfo.xml
 %{_kf6_plugindir}/thumbcreator/blenderthumbnail.so
 %{_kf6_plugindir}/thumbcreator/gsthumbnail.so
-#%%{_kf6_plugindir}/thumbcreator/mobithumbnail.so
+%{_kf6_plugindir}/thumbcreator/mobithumbnail.so
 %{_kf6_plugindir}/thumbcreator/rawthumbnail.so
 
 
