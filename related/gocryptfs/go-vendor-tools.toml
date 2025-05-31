@@ -1,5 +1,0 @@
-[licensing]
-detector = "trivy"
-exclude_directories = [
-    "tests"
-]
