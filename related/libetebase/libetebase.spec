@@ -7,7 +7,7 @@
 %global crate libetebase
 
 Name:           libetebase
-Version:        0.5.7
+Version:        0.5.8
 Release:        %autorelease
 Summary:        C library for etebase
 
