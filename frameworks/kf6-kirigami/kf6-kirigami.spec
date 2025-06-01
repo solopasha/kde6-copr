@@ -58,6 +58,8 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKirigamiLayoutsPrivate.so.6
 %{_kf6_libdir}/libKirigamiPlatform.so.%{version_no_git}
 %{_kf6_libdir}/libKirigamiPlatform.so.6
+%{_kf6_libdir}/libKirigamiPolyfill.so.%{version_no_git}
+%{_kf6_libdir}/libKirigamiPolyfill.so.6
 %{_kf6_libdir}/libKirigamiPrimitives.so.%{version_no_git}
 %{_kf6_libdir}/libKirigamiPrimitives.so.6
 %{_kf6_libdir}/libKirigamiPrivate.so.%{version_no_git}
@@ -76,6 +78,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKirigamiLayouts.so
 %{_kf6_libdir}/libKirigamiLayoutsPrivate.so
 %{_kf6_libdir}/libKirigamiPlatform.so
+%{_kf6_libdir}/libKirigamiPolyfill.so
 %{_kf6_libdir}/libKirigamiPrimitives.so
 %{_kf6_libdir}/libKirigamiPrivate.so
 
