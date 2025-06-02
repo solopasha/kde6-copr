@@ -404,11 +404,12 @@ jobs:
         id: copr
         env:
           pkgname: ${{ steps.pkgname.outputs.pkgname }}
+          curl_opts: --connect-timeout 10 --retry 7 --retry-connrefused -Ss -X POST
         run: |
           if [[ "${target_branch}" == "unstable" ]]; then
-            buildid="$(curl --retry 7 -Ss -X POST "https://copr.fedorainfracloud.org/webhooks/custom/143312/${{ secrets.copr_webhook }}/${pkgname}")"
+            buildid="$(curl "${curl_opts}" "https://copr.fedorainfracloud.org/webhooks/custom/143312/${{ secrets.copr_webhook }}/${pkgname}")"
           elif [[ "${target_branch}" == "beta" ]]; then
-            buildid="$(curl --retry 7 -Ss -X POST "https://copr.fedorainfracloud.org/webhooks/custom/159978/${{ secrets.copr_webhook_beta }}/${pkgname}")"
+            buildid="$(curl "${curl_opts}" "https://copr.fedorainfracloud.org/webhooks/custom/159978/${{ secrets.copr_webhook_beta }}/${pkgname}")"
           fi
           echo "buildid=${buildid}" >> $GITHUB_OUTPUT
 
