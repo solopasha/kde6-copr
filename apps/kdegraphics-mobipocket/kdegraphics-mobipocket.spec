@@ -1,6 +1,6 @@
-%global commit0 cba279315af4e160d4709313a36ceed182961c5d
+%global commit0 8555f5aa3b8d036ffcfc1e88bc5f75b95fcba1a4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 10
+%global bumpver 11
 
 Name:    kdegraphics-mobipocket
 Summary: A collection of plugins to handle mobipocket files
