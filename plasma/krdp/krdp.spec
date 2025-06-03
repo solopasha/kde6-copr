@@ -69,7 +69,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %doc README.md
 %{_kf6_bindir}/krdpserver
 %{_kf6_datadir}/applications/kcm_krdpserver.desktop
-%{_kf6_datadir}/applications/org.kde.krdp.desktop
+%{_kf6_datadir}/applications/org.kde.krdpserver.desktop
 %{_kf6_datadir}/qlogging-categories6/kcm_krdpserver.categories
 %{_kf6_datadir}/qlogging-categories6/krdp.categories
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_krdpserver.so
