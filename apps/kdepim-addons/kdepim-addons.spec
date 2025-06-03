@@ -117,6 +117,7 @@ Supplements:    korganizer
 %{_kf6_libdir}/libexpireaccounttrashfolderconfig.so.6{,.*}
 %{_kf6_libdir}/libfolderconfiguresettings.so.6{,.*}
 %{_kf6_libdir}/libkmailconfirmbeforedeleting.so.6{,.*}
+%{_kf6_libdir}/libKPim6AutoGenerateText.so.6{,.*}
 %{_kf6_libdir}/libopenurlwithconfigure.so.6{,.*}
 %{_kf6_qtplugindir}/pim6/
 
