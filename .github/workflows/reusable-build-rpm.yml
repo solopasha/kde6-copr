@@ -15,9 +15,6 @@ on:
       additional_packages:
         required: false
         type: string
-      repo_skip_if_unavailable:
-        required: false
-        type: boolean
       ccache:
         required: false
         type: boolean
@@ -118,7 +115,6 @@ jobs:
 
       - name: Configs
         env:
-          repo_skip_if_unavailable: ${{ inputs.repo_skip_if_unavailable }}
           gear: ${{ steps.gear.outputs.gear }}
         run: |
           cat << 'EOF' > /etc/mock/fedora-build.cfg

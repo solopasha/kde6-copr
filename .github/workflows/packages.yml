@@ -64,8 +64,6 @@ jobs:
     with:
       spec: ./frameworks/kf6/kf6.spec
       deps: ${{ toJson(needs) }}
-      ccache: false
-      repo_skip_if_unavailable: true
       debuginfo: false
 
   kf6-attica:
@@ -3168,5 +3166,3 @@ jobs:
       spec: ./related/plasma-wayland-protocols/plasma-wayland-protocols.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      ccache: false
-
