@@ -1,17 +1,17 @@
-%global commit0 0c03f07031d4effc5878c7d9bb4a2ae52642a9d7
+%global commit0 cf03b1a172a58d5b9d69552f061b266aecdc7465
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
-%global _python3_include %(%{__python3} -Ic "from distutils.sysconfig import get_python_inc; print(get_python_inc())")
-%global _python3_lib /usr/%{_lib}/lib%(basename %{_python3_include}).so
+%define _python3_include %(%{__python3} -Ic 'from sysconfig import get_path; print(get_path("include"))')
+%define _python3_lib /usr/%{_lib}/lib%(basename %{_python3_include}).so
 
-Name:    kig
-Summary: Interactive Geometry
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           kig
+Summary:        Interactive Geometry
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: BSD-3-Clause AND GFDL-1.2-or-later AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-or-later
-URL:     https://invent.kde.org/education/%{name}
+License:        BSD-3-Clause AND GFDL-1.2-or-later AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-or-later
+URL:            https://invent.kde.org/education/%{name}
 %apps_source
 
 ## upstreamable patches
@@ -20,36 +20,27 @@ URL:     https://invent.kde.org/education/%{name}
 # https://git.reviewboard.kde.org/r/126549/
 Patch1: 0001-explicitly-use-QLibrary-to-load-libpython-like-pykde.patch
 
-## upstream patches
+BuildRequires:  boost-devel
+BuildRequires:  python3
+BuildRequires:  python3-devel
+BuildRequires:  python3-rpm-macros
 
-BuildRequires: boost-devel
-BuildRequires: python3
-BuildRequires: python3-rpm-macros
-BuildRequires: python3-devel
-# Added below for https://bugzilla.redhat.com/show_bug.cgi?id=2154864
-BuildRequires: (python3-setuptools if python3-devel >= 3.12)
+BuildRequires:  desktop-file-utils
+BuildRequires:  libappstream-glib
 
-BuildRequires: desktop-file-utils
-BuildRequires: gettext
-BuildRequires: libappstream-glib
+BuildRequires:  cmake(KF6Archive)
+BuildRequires:  cmake(KF6ConfigWidgets)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
+BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6IconThemes)
+BuildRequires:  cmake(KF6Parts)
+BuildRequires:  cmake(KF6TextEditor)
+BuildRequires:  cmake(KF6XmlGui)
 
-BuildRequires: extra-cmake-modules
-BuildRequires: kf5-rpm-macros
-
-BuildRequires: cmake(KF5DocTools)
-BuildRequires: cmake(KF5Parts)
-BuildRequires: cmake(KF5I18n)
-BuildRequires: cmake(KF5TextEditor)
-BuildRequires: cmake(KF5ConfigWidgets)
-BuildRequires: cmake(KF5IconThemes)
-BuildRequires: cmake(KF5Archive)
-BuildRequires: cmake(KF5XmlGui)
-BuildRequires: cmake(KF5Crash)
-BuildRequires: cmake(KF5CoreAddons)
-
-BuildRequires: pkgconfig(Qt5PrintSupport)
-BuildRequires: pkgconfig(Qt5Svg)
-BuildRequires: pkgconfig(Qt5XmlPatterns)
+BuildRequires:  cmake(Qt6PrintSupport)
+BuildRequires:  cmake(Qt6Svg)
 
 %description
 %{summary}.
@@ -63,7 +54,7 @@ BuildRequires: pkgconfig(Qt5XmlPatterns)
 
 
 %build
-%cmake_kf5 \
+%cmake_kf6 -DQT_MAJOR_VERSION=6 \
   -DPYTHON_EXECUTABLE:PATH=%{__python3} \
   -DPYTHON_INCLUDE_DIR=%{_python3_include} \
   -DPYTHON_LIBRARY=%{_python3_lib} \
@@ -84,22 +75,23 @@ BuildRequires: pkgconfig(Qt5XmlPatterns)
 
 
 %check
-desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.desktop
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.desktop
 
 
 %files -f %{name}.lang
 %license LICENSES/*
-%{_kf5_bindir}/%{name}*
-%{_kf5_bindir}/pykig.*
-%{_kf5_datadir}/%{name}/
-%{_kf5_datadir}/applications/org.kde.%{name}.desktop
-%{_kf5_datadir}/icons/hicolor/*/apps/%{name}.*
-%{_kf5_datadir}/icons/hicolor/*/mimetypes/application-x-%{name}.*
-%{_kf5_datadir}/katepart5/syntax/python-kig.xml
-%{_kf5_datadir}/metainfo/org.kde.%{name}.metainfo.xml
-%{_kf5_mandir}/man1/kig.1*
-%{_kf5_plugindir}/parts/kigpart.so
-
+%{_kf6_bindir}/%{name}*
+%{_kf6_bindir}/pykig.*
+%{_kf6_datadir}/%{name}/
+%{_kf6_datadir}/applications/org.kde.%{name}.desktop
+%{_kf6_datadir}/icons/hicolor/*/apps/%{name}.*
+%{_kf6_datadir}/icons/hicolor/*/mimetypes/application-x-%{name}.*
+%{_kf6_datadir}/metainfo/org.kde.%{name}.metainfo.xml
+%{_kf6_mandir}/man1/kig.1*
+%{_kf6_plugindir}/parts/kigpart.so
+%dir %{_kf6_datadir}/katepart5
+%dir %{_kf6_datadir}/katepart5/syntax
+%{_kf6_datadir}/katepart5/syntax/python-kig.xml
 
 %changelog
 %{?kde_snapshot_changelog_entry}
