@@ -5,15 +5,23 @@ on:
     secrets:
       gpgkey:
         required: true
+    inputs:
+      specfiles:
+        required: false
+        type: string
+      abidiff:
+        required: false
+        default: true
+        type: boolean
 
 permissions:
   contents: read
   packages: write
 
-
 jobs:
   changed-files:
     name: Assemble builds
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -34,7 +42,15 @@ jobs:
             **/*.spec
 
   akonadi-calendar:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/akonadi-calendar.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/akonadi-calendar.spec') ||
+          contains(inputs.specfiles, '/akonadi-calendar.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - akonadi-contacts
@@ -53,10 +69,18 @@ jobs:
       spec: apps/akonadi-calendar/akonadi-calendar.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   akonadi-contacts:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/akonadi-contacts.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/akonadi-contacts.spec') ||
+          contains(inputs.specfiles, '/akonadi-contacts.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - akonadi-server
@@ -69,10 +93,18 @@ jobs:
       spec: apps/akonadi-contacts/akonadi-contacts.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   akonadi-import-wizard:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/akonadi-import-wizard.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/akonadi-import-wizard.spec') ||
+          contains(inputs.specfiles, '/akonadi-import-wizard.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - akonadi-server
@@ -89,10 +121,18 @@ jobs:
       spec: apps/akonadi-import-wizard/akonadi-import-wizard.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   akonadi-mime:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/akonadi-mime.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/akonadi-mime.spec') ||
+          contains(inputs.specfiles, '/akonadi-mime.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - akonadi-server
@@ -104,10 +144,18 @@ jobs:
       spec: apps/akonadi-mime/akonadi-mime.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   akonadi-search:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/akonadi-search.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/akonadi-search.spec') ||
+          contains(inputs.specfiles, '/akonadi-search.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - akonadi-mime
@@ -120,10 +168,18 @@ jobs:
       spec: apps/akonadi-search/akonadi-search.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   akonadi-server:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/akonadi-server.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/akonadi-server.spec') ||
+          contains(inputs.specfiles, '/akonadi-server.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -134,10 +190,18 @@ jobs:
       spec: apps/akonadi-server/akonadi-server.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   baloo-widgets:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/baloo-widgets.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/baloo-widgets.spec') ||
+          contains(inputs.specfiles, '/baloo-widgets.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -147,10 +211,18 @@ jobs:
       spec: apps/baloo-widgets/baloo-widgets.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   calendarsupport:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/calendarsupport.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/calendarsupport.spec') ||
+          contains(inputs.specfiles, '/calendarsupport.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - akonadi-calendar
@@ -165,10 +237,18 @@ jobs:
       spec: apps/calendarsupport/calendarsupport.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   eventviews:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/eventviews.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/eventviews.spec') ||
+          contains(inputs.specfiles, '/eventviews.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - akonadi-calendar
@@ -184,10 +264,18 @@ jobs:
       spec: apps/eventviews/eventviews.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   grantleetheme:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/grantleetheme.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/grantleetheme.spec') ||
+          contains(inputs.specfiles, '/grantleetheme.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -197,10 +285,18 @@ jobs:
       spec: apps/grantleetheme/grantleetheme.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   incidenceeditor:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/incidenceeditor.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/incidenceeditor.spec') ||
+          contains(inputs.specfiles, '/incidenceeditor.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - akonadi-calendar
@@ -222,10 +318,18 @@ jobs:
       spec: apps/incidenceeditor/incidenceeditor.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   kaccounts-integration:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kaccounts-integration.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kaccounts-integration.spec') ||
+          contains(inputs.specfiles, '/kaccounts-integration.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -235,10 +339,18 @@ jobs:
       spec: apps/kaccounts-integration/kaccounts-integration.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   kaddressbook:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kaddressbook.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kaddressbook.spec') ||
+          contains(inputs.specfiles, '/kaddressbook.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - akonadi-contacts
@@ -256,10 +368,18 @@ jobs:
       spec: apps/kaddressbook/kaddressbook.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   kcalutils:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kcalutils.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kcalutils.spec') ||
+          contains(inputs.specfiles, '/kcalutils.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -270,10 +390,18 @@ jobs:
       spec: apps/kcalutils/kcalutils.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   kdegraphics-mobipocket:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kdegraphics-mobipocket.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kdegraphics-mobipocket.spec') ||
+          contains(inputs.specfiles, '/kdegraphics-mobipocket.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -283,10 +411,39 @@ jobs:
       spec: apps/kdegraphics-mobipocket/kdegraphics-mobipocket.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
+
+  khealthcertificate:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/khealthcertificate.spec') ||
+          contains(inputs.specfiles, '/khealthcertificate.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/khealthcertificate/khealthcertificate.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kidentitymanagement:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kidentitymanagement.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kidentitymanagement.spec') ||
+          contains(inputs.specfiles, '/kidentitymanagement.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -297,10 +454,18 @@ jobs:
       spec: apps/kidentitymanagement/kidentitymanagement.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   kimap:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kimap.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kimap.spec') ||
+          contains(inputs.specfiles, '/kimap.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -311,23 +476,18 @@ jobs:
       spec: apps/kimap/kimap.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
-
-  kiten:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kiten.spec') }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-    secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
-    with:
-      spec: apps/kiten/kiten.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   kitinerary:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kitinerary.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kitinerary.spec') ||
+          contains(inputs.specfiles, '/kitinerary.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -339,10 +499,18 @@ jobs:
       spec: apps/kitinerary/kitinerary.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   kldap:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kldap.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kldap.spec') ||
+          contains(inputs.specfiles, '/kldap.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -352,10 +520,18 @@ jobs:
       spec: apps/kldap/kldap.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   kmailtransport:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kmailtransport.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kmailtransport.spec') ||
+          contains(inputs.specfiles, '/kmailtransport.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -367,10 +543,18 @@ jobs:
       spec: apps/kmailtransport/kmailtransport.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   kmbox:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kmbox.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kmbox.spec') ||
+          contains(inputs.specfiles, '/kmbox.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -381,10 +565,18 @@ jobs:
       spec: apps/kmbox/kmbox.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   kmime:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kmime.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kmime.spec') ||
+          contains(inputs.specfiles, '/kmime.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -394,10 +586,18 @@ jobs:
       spec: apps/kmime/kmime.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   kontactinterface:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kontactinterface.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kontactinterface.spec') ||
+          contains(inputs.specfiles, '/kontactinterface.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -407,10 +607,18 @@ jobs:
       spec: apps/kontactinterface/kontactinterface.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   kopeninghours:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kopeninghours.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kopeninghours.spec') ||
+          contains(inputs.specfiles, '/kopeninghours.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -420,10 +628,18 @@ jobs:
       spec: apps/kopeninghours/kopeninghours.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   kosmindoormap:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kosmindoormap.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kosmindoormap.spec') ||
+          contains(inputs.specfiles, '/kosmindoormap.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -435,10 +651,18 @@ jobs:
       spec: apps/kosmindoormap/kosmindoormap.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   kpimtextedit:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kpimtextedit.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kpimtextedit.spec') ||
+          contains(inputs.specfiles, '/kpimtextedit.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -448,10 +672,18 @@ jobs:
       spec: apps/kpimtextedit/kpimtextedit.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   kpkpass:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kpkpass.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kpkpass.spec') ||
+          contains(inputs.specfiles, '/kpkpass.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -461,10 +693,18 @@ jobs:
       spec: apps/kpkpass/kpkpass.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   kpmcore:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kpmcore.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kpmcore.spec') ||
+          contains(inputs.specfiles, '/kpmcore.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -474,10 +714,18 @@ jobs:
       spec: apps/kpmcore/kpmcore.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   kpublictransport:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kpublictransport.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kpublictransport.spec') ||
+          contains(inputs.specfiles, '/kpublictransport.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -487,10 +735,18 @@ jobs:
       spec: apps/kpublictransport/kpublictransport.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   ksanecore:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/ksanecore.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/ksanecore.spec') ||
+          contains(inputs.specfiles, '/ksanecore.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -500,10 +756,18 @@ jobs:
       spec: apps/ksanecore/ksanecore.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   ksmtp:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/ksmtp.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/ksmtp.spec') ||
+          contains(inputs.specfiles, '/ksmtp.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -513,10 +777,18 @@ jobs:
       spec: apps/ksmtp/ksmtp.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   ktnef:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/ktnef.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/ktnef.spec') ||
+          contains(inputs.specfiles, '/ktnef.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -527,10 +799,18 @@ jobs:
       spec: apps/ktnef/ktnef.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   kunifiedpush:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kunifiedpush.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kunifiedpush.spec') ||
+          contains(inputs.specfiles, '/kunifiedpush.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -540,10 +820,18 @@ jobs:
       spec: apps/kunifiedpush/kunifiedpush.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   kweathercore:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kweathercore.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kweathercore.spec') ||
+          contains(inputs.specfiles, '/kweathercore.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -553,10 +841,18 @@ jobs:
       spec: apps/kweathercore/kweathercore.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   libgravatar:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libgravatar.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/libgravatar.spec') ||
+          contains(inputs.specfiles, '/libgravatar.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -566,10 +862,18 @@ jobs:
       spec: apps/libgravatar/libgravatar.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   libkcddb:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libkcddb.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/libkcddb.spec') ||
+          contains(inputs.specfiles, '/libkcddb.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -579,10 +883,39 @@ jobs:
       spec: apps/libkcddb/libkcddb.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
+
+  libkcompactdisc:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/libkcompactdisc.spec') ||
+          contains(inputs.specfiles, '/libkcompactdisc.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/libkcompactdisc/libkcompactdisc.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   libkdcraw:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libkdcraw.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/libkdcraw.spec') ||
+          contains(inputs.specfiles, '/libkdcraw.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -592,10 +925,39 @@ jobs:
       spec: apps/libkdcraw/libkdcraw.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
+
+  libkdegames:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/libkdegames.spec') ||
+          contains(inputs.specfiles, '/libkdegames.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/libkdegames/libkdegames.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   libkdepim:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libkdepim.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/libkdepim.spec') ||
+          contains(inputs.specfiles, '/libkdepim.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -605,10 +967,39 @@ jobs:
       spec: apps/libkdepim/libkdepim.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
+
+  libkeduvocdocument:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/libkeduvocdocument.spec') ||
+          contains(inputs.specfiles, '/libkeduvocdocument.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/libkeduvocdocument/libkeduvocdocument.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   libkexiv2:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libkexiv2.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/libkexiv2.spec') ||
+          contains(inputs.specfiles, '/libkexiv2.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -618,10 +1009,18 @@ jobs:
       spec: apps/libkexiv2/libkexiv2.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   libkgapi:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libkgapi.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/libkgapi.spec') ||
+          contains(inputs.specfiles, '/libkgapi.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -631,10 +1030,18 @@ jobs:
       spec: apps/libkgapi/libkgapi.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   libkleo:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libkleo.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/libkleo.spec') ||
+          contains(inputs.specfiles, '/libkleo.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -644,10 +1051,39 @@ jobs:
       spec: apps/libkleo/libkleo.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
+
+  libkmahjongg:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/libkmahjongg.spec') ||
+          contains(inputs.specfiles, '/libkmahjongg.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.GPGKEY }}
+    with:
+      spec: apps/libkmahjongg/libkmahjongg.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   libkomparediff2:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libkomparediff2.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/libkomparediff2.spec') ||
+          contains(inputs.specfiles, '/libkomparediff2.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -657,10 +1093,18 @@ jobs:
       spec: apps/libkomparediff2/libkomparediff2.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   libksane:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libksane.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/libksane.spec') ||
+          contains(inputs.specfiles, '/libksane.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -671,10 +1115,18 @@ jobs:
       spec: apps/libksane/libksane.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   libksieve:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libksieve.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/libksieve.spec') ||
+          contains(inputs.specfiles, '/libksieve.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -690,10 +1142,18 @@ jobs:
       spec: apps/libksieve/libksieve.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   libktorrent:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libktorrent.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/libktorrent.spec') ||
+          contains(inputs.specfiles, '/libktorrent.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -703,10 +1163,18 @@ jobs:
       spec: apps/libktorrent/libktorrent.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   mailcommon:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/mailcommon.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/mailcommon.spec') ||
+          contains(inputs.specfiles, '/mailcommon.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - akonadi-contacts
@@ -726,10 +1194,18 @@ jobs:
       spec: apps/mailcommon/mailcommon.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   mailimporter:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/mailimporter.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/mailimporter.spec') ||
+          contains(inputs.specfiles, '/mailimporter.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - akonadi-mime
@@ -743,10 +1219,18 @@ jobs:
       spec: apps/mailimporter/mailimporter.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   messagelib:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/messagelib.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/messagelib.spec') ||
+          contains(inputs.specfiles, '/messagelib.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - akonadi-contacts
@@ -770,10 +1254,18 @@ jobs:
       spec: apps/messagelib/messagelib.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   mimetreeparser:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/mimetreeparser.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/mimetreeparser.spec') ||
+          contains(inputs.specfiles, '/mimetreeparser.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -786,10 +1278,18 @@ jobs:
       spec: apps/mimetreeparser/mimetreeparser.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 
   pimcommon:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/pimcommon.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/pimcommon.spec') ||
+          contains(inputs.specfiles, '/pimcommon.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - akonadi-contacts
@@ -805,5 +1305,5 @@ jobs:
       spec: apps/pimcommon/pimcommon.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      repo_skip_if_unavailable: true
+      abidiff: ${{ inputs.abidiff }}
 

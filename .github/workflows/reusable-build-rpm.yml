@@ -28,6 +28,10 @@ on:
       golang_vendor:
         required: false
         type: boolean
+      abidiff:
+        required: false
+        default: true
+        type: boolean
     secrets:
       gpgkey:
         required: true
@@ -456,7 +460,7 @@ jobs:
           fi
 
       - name: Check ABI
-        if: ${{ !contains(github.event.head_commit.message, '[skip abi]') && steps.arch.outputs.arch != 'noarch' }}
+        if: ${{ !contains(github.event.head_commit.message, '[skip abi]') && steps.arch.outputs.arch != 'noarch' && inputs.abidiff != false }}
         env:
           pkgname: ${{ steps.pkgname.outputs.pkgname }}
         run: |
