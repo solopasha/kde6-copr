@@ -65,6 +65,10 @@ Obsoletes:      kde-plasma-networkmanagement-libs < 1:0.9.1.0
 Obsoletes:      kde-plasma-nm < 5.0.0-1
 Provides:       kde-plasma-nm = %{version}-%{release}
 
+Obsoletes:      %{name}-mobile < 6.4.80~2.git6241b73-2
+Provides:       %{name}-mobile = %{version}-%{release}
+Provides:       %{name}-mobile%{?_isa} = %{version}-%{release}
+
 %description
 Plasma applet and editor for managing your network connections in KDE 4 using
 the default NetworkManager service.
@@ -169,12 +173,6 @@ Requires:       NetworkManager-iodine
 %{summary}.
 %endif
 
-%package        mobile
-Summary:        Mobile support for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
-%description    mobile
-%{summary}.
-
 %install
 %cmake_install
 
@@ -216,7 +214,15 @@ rm -f %{buildroot}/usr/share/locale/*/LC_MESSAGES/plasmanetworkmanagement_openco
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
-%files -f plasma_applet_org.kde.plasma.networkmanagement.lang -f plasmanetworkmanagement-kded.lang -f plasmanetworkmanagement-libs.lang -f plasmanetworkmanagement-kcm.lang
+%files %{shrink:
+        -f plasma_applet_org.kde.plasma.networkmanagement.lang
+        -f plasmanetworkmanagement-kded.lang
+        -f plasmanetworkmanagement-libs.lang
+        -f plasmanetworkmanagement-kcm.lang
+        -f kcm_mobile_wifi.lang
+        -f kcm_cellular_network.lang
+        -f kcm_mobile_hotspot.lang
+        }
 %{_kf6_libdir}/libplasmanm_internal.so
 %{_kf6_libdir}/libplasmanm_editor.so
 # plasma-nm applet
@@ -235,6 +241,13 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/kcm_networkmanagement/qml/
 %{_kf6_datadir}/applications/kcm_networkmanagement.desktop
 %{_kf6_datadir}/applications/org.kde.vpnimport.desktop
+
+%{_kf6_datadir}/applications/kcm_cellular_network.desktop
+%{_kf6_datadir}/applications/kcm_mobile_hotspot.desktop
+%{_kf6_datadir}/applications/kcm_mobile_wifi.desktop
+%{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_cellular_network.so
+%{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_mobile_hotspot.so
+%{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_mobile_wifi.so
 
 %files openvpn -f plasmanetworkmanagement_openvpnui.lang
 %{_kf6_qtplugindir}/plasma/network/vpn/plasmanetworkmanagement_openvpnui.so
@@ -278,14 +291,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %files iodine -f plasmanetworkmanagement_iodineui.lang
 %{_kf6_qtplugindir}/plasma/network/vpn/plasmanetworkmanagement_iodineui.so
 %endif
-
-%files mobile -f kcm_mobile_wifi.lang -f kcm_cellular_network.lang -f kcm_mobile_hotspot.lang
-%{_kf6_datadir}/applications/kcm_cellular_network.desktop
-%{_kf6_datadir}/applications/kcm_mobile_hotspot.desktop
-%{_kf6_datadir}/applications/kcm_mobile_wifi.desktop
-%{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_cellular_network.so
-%{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_mobile_hotspot.so
-%{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_mobile_wifi.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}
