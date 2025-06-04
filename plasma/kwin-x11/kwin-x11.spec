@@ -104,6 +104,10 @@ Requires:       qt6-qtmultimedia%{?_isa}
 Requires:       xorg-x11-server-Xorg%{?_isa}
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
+Obsoletes:      %{name}-libs < 6.4.80
+Provides:       %{name}-libs = %{version}-%{release}
+Provides:       %{name}-libs%{?_isa} = %{version}-%{release}
+
 # http://bugzilla.redhat.com/605675
 Provides:       firstboot(windowmanager) = kwin_x11
 
@@ -122,8 +126,6 @@ Requires:       pkgconfig(wayland-server)
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
-%install -a
 
 %files -f %{name}.lang
 %license LICENSES/*.txt

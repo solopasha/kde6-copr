@@ -112,10 +112,10 @@ Requires:       qt6-qtmultimedia%{?_isa}
 Requires:       xorg-x11-server-Xwayland%{?_isa}
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
-Obsoletes:      %{name}-common < 6.3.80~63.gitdc34da0-3
-Obsoletes:      %{name}-doc < 6.3.80~63.gitdc34da0-3
-Obsoletes:      %{name}-libs < 6.3.80~63.gitdc34da0-3
-Obsoletes:      %{name}-wayland < 6.3.80~63.gitdc34da0-3
+Obsoletes:      %{name}-common < 6.4.80
+Obsoletes:      %{name}-doc < 6.4.80
+Obsoletes:      %{name}-libs < 6.4.80
+Obsoletes:      %{name}-wayland < 6.4.80
 Provides:       %{name}-common = %{version}-%{release}
 Provides:       %{name}-common%{?_isa} = %{version}-%{release}
 Provides:       %{name}-doc = %{version}-%{release}
