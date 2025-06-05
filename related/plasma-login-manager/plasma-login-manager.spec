@@ -1,6 +1,6 @@
-%global commit0 ff2a7562b0963be3b355665fe61b4ee12b8e0749
+%global commit0 09132f0622822e87c6628895a8de2eed850eccea
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 9
+%global bumpver 10
 
 %global selinuxtype targeted
 
@@ -19,6 +19,8 @@ Source12:       sddm-greeter.pam
 
 Source20:       plasmalogin.fc
 Source21:       plasmalogin.te
+
+Patch:          revert-bc6341a.patch
 
 BuildSystem:    cmake_kf6
 
