@@ -1,12 +1,12 @@
-%global commit0 6c5332f612746c7a2a2125630a9a738873a8cfe9
+%global commit0 ef97fd7e25f586715245a73e537cd07f77a10467
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 %global framework kuserfeedback
 
 Name:           kf6-%{framework}
 Summary:        Framework for collecting user feedback for apps via telemetry and surveys
-Version:        6.15.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.16.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        MIT AND CC0-1.0 AND BSD-3-Clause

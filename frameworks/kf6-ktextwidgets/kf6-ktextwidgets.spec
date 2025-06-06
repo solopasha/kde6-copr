@@ -1,11 +1,11 @@
-%global commit0 94111d6e123ea1075bbc8ceb7c7f2d9901b53590
+%global commit0 44d45258c1343df4b5089829bc26baeeefc520c6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 %global framework ktextwidgets
 
 Name:           kf6-%{framework}
-Version:        6.15.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.16.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 addon with advanced text editing widgets
 

@@ -1,11 +1,11 @@
-%global commit0 09476443014e44e666b09e1d4490b5bea39bb080
+%global commit0 828a6febc41ef2f26d764480743061bcdc193562
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 %global framework kidletime
 
 Name:           kf6-%{framework}
-Version:        6.15.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.16.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 integration module for idle time detection
 License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.1-or-later AND MIT
