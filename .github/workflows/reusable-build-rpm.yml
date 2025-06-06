@@ -295,7 +295,7 @@ jobs:
         run: |
           mapfile -t dependencies < <(jq -r 'del(."changed-files") | keys[]' <<< "$DEPS")
           if [[ "${dependencies[*]}" =~ kf6 ]]; then
-            dnf -y --disablerepo=updates --disablerepo=fedora install kf6-srpm-macros
+            dnf -y --disablerepo=updates --disablerepo=fedora distro-sync kf6-srpm-macros
           fi
 
       - name: Get arch
@@ -371,7 +371,7 @@ jobs:
           sleep_seconds: 10
         run: |
           sourcetar="$(spectool --lf -s0 "${spec}" | xargs -I ,, basename ,,)"
-          if [[ -z "${sourcetar}" ]]; then
+          if [[ ! "${sourcetar}" =~ \.tar(\..+)?$ ]]; then
             exit 0
           fi
 
