@@ -1,11 +1,11 @@
-%global commit0 7ef21db48ecf58edb54479971701be48208dc34f
+%global commit0 c13b2da753eaf85f36ebfaf6259e21c5a33c3427
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 8
+%global bumpver 1
 
 %global framework karchive
 
 Name:           kf6-%{framework}
-Version:        6.15.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.16.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with archive functions
 License:        LGPL-2.0-or-later AND BSD-2-Clause

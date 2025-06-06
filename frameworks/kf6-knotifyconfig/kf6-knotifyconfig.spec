@@ -1,11 +1,11 @@
-%global commit0 6f868ed2d02e79ee274f5ff954507765c1be0cbe
+%global commit0 cb0f8989e608c4cf98479accc8286ff0ca5dd561
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 %global framework knotifyconfig
 
 Name:           kf6-%{framework}
-Version:        6.15.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.16.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 module for KNotify configuration
 

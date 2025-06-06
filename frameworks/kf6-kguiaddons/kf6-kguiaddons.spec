@@ -1,11 +1,11 @@
-%global commit0 1ad99a6d40372f75c88475ee399ce0d8cfc99e1e
+%global commit0 d29facb15c038cfd0ca38007df6431615bb4faeb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 8
+%global bumpver 1
 
 %global framework kguiaddons
 
 Name:           kf6-%{framework}
-Version:        6.15.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.16.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with various classes on top of QtGui
 

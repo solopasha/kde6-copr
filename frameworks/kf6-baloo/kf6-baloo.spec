@@ -1,12 +1,12 @@
-%global commit0 90afbc9b1f1f08b7bf911f7cad74a33049cd46e5
+%global commit0 aee3f42fb36835ae60ffe75f67c7e9208b896cc5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 %global framework baloo
 
 Name:           kf6-%{framework}
 Summary:        A Tier 3 KDE Frameworks 6 module that provides indexing and search functionality
-Version:        6.15.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.16.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND bzip2-1.0.6
 URL:            https://invent.kde.org/frameworks/%{framework}

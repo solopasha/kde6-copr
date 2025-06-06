@@ -1,11 +1,11 @@
-%global commit0 2a8d8a3d2001dc699a7e2612ca8a3e0d2854c9a3
+%global commit0 fca928d47b2eeae2f1e9a15756bbcfacf3914d7a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 %global framework kcrash
 
 Name:           kf6-%{framework}
-Version:        6.15.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.16.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 addon for handling application crashes
 

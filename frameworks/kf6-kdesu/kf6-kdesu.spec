@@ -1,11 +1,11 @@
-%global commit0 7ae6c5762432dfd804e437802f53fac3c51fc2e9
+%global commit0 938fe01180ae7d4fd5bcc38545c6f22e39272d7a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 %global framework kdesu
 
 Name:           kf6-%{framework}
-Version:        6.15.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.16.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        User interface for running shell commands with root privileges
 

@@ -65,6 +65,7 @@ jobs:
       spec: ./frameworks/kf6/kf6.spec
       deps: ${{ toJson(needs) }}
       debuginfo: false
+      abidiff: false
 
   kf6-attica:
     if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-attica.spec') }}
