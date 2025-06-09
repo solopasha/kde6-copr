@@ -1,6 +1,6 @@
-%global commit0 3226360568bd4f6e380cff85ce39a6f9867c9903
+%global commit0 5cb0c4397b27d05c799e12888adfe6f0665462d1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 Name:    libgravatar
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

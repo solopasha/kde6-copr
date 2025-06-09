@@ -1,6 +1,6 @@
-%global commit0 50fe00e8d2e603b5ad66983831880d1d2efe681d
+%global commit0 eda8a0ddbd5f097142774cd917bbc40bc4058307
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kdesdk-thumbnailers
 Summary: Thumbnailers for KDE

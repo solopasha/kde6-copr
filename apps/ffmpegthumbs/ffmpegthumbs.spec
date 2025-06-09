@@ -1,6 +1,6 @@
-%global commit0 613351deb1bcd5db528ac0b4861e050633c480ba
+%global commit0 231f2a6191bf4bcfbb484047eb057efcf5d71ca1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    ffmpegthumbs
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

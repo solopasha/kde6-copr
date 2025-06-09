@@ -1,6 +1,6 @@
-%global commit0 cf03b1a172a58d5b9d69552f061b266aecdc7465
+%global commit0 478eb41b78ac542020a6bd4e9a5fd60767d255a5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 %define _python3_include %(%{__python3} -Ic 'from sysconfig import get_path; print(get_path("include"))')
 %define _python3_lib /usr/%{_lib}/lib%(basename %{_python3_include}).so

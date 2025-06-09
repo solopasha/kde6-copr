@@ -1,6 +1,6 @@
-%global commit0 5f3799b0a52b1da97954977edee117038f3da9c0
+%global commit0 97337ffdc6771474f6fdbf269c4311ef08706d92
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 13
+%global bumpver 14
 
 Name:    akonadi-search
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

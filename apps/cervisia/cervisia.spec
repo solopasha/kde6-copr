@@ -1,6 +1,6 @@
-%global commit0 548b43faf7cec158a92eee064a0cd1656856ec1f
+%global commit0 aeecd24b0f661df08913a657d97b01d05e91779f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           cervisia
 Summary:        CVS frontend
@@ -16,6 +16,8 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  kf5-rpm-macros
 BuildRequires:  libappstream-glib
 
+BuildRequires:  cmake(KF5Completion)
+BuildRequires:  cmake(KF5CoreAddons)
 BuildRequires:  cmake(KF5DBusAddons)
 BuildRequires:  cmake(KF5DocTools)
 BuildRequires:  cmake(KF5IconThemes)
