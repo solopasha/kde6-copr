@@ -39,7 +39,10 @@ BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KPublicTransport)
 BuildRequires:  cmake(KOpeningHours)
 
+BuildRequires:  cmake(KF6KirigamiAddons)
+
 Requires:       kf6-filesystem
+Requires:       kf6-kirigami-addons%{?_isa}
 
 %description
 A library and QML component for rendering multi-level OSM indoor
