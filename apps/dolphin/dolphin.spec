@@ -150,6 +150,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %{_kf6_libdir}/libdolphinprivate.so.*
 %{_kf6_libdir}/libdolphinvcs.so.*
 %{_kf6_plugindir}/kfileitemaction/movetonewfolderitemaction.so
+%{_kf6_plugindir}/kfileitemaction/setfoldericonitemaction.so
 %{_kf6_plugindir}/parts/dolphinpart.so
 %{_kf6_qtplugindir}/dolphin/
 
