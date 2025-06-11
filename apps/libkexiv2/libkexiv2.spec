@@ -1,6 +1,6 @@
 %global commit0 dfdbf3a762988419355f0e8483b385536cb96c31
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    libkexiv2
 Summary: A wrapper around Exiv2 library

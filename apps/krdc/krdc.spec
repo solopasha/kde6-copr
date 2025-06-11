@@ -1,6 +1,6 @@
 %global commit0 c673eb6131233e3f13a8783f33684c2c66d5b1d4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 17
+%global bumpver 18
 
 Name:           krdc
 Summary:        Remote desktop client

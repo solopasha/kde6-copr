@@ -1,6 +1,6 @@
 %global commit0 483508e53e9b22e18463cf092aa2b97bc56c3f1b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 
 Name:    libkmahjongg

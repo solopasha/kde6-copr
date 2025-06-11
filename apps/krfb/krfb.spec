@@ -1,6 +1,6 @@
 %global commit0 7e34a75b8e4fc9659ee7a2c9b80c6dc512e3a2d5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 8
+%global bumpver 9
 
 Name:    krfb
 Summary: Desktop sharing
