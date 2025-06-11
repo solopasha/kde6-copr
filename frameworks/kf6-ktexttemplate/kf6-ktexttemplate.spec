@@ -1,6 +1,6 @@
 %global commit0 29dfcde45b913ec9e79da1fee1ea0c37d3c3351f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework ktexttemplate
 

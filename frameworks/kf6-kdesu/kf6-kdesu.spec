@@ -1,6 +1,6 @@
 %global commit0 938fe01180ae7d4fd5bcc38545c6f22e39272d7a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework kdesu
 

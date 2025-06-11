@@ -1,6 +1,6 @@
 %global commit0 12f2d2b20a8c68385be41cc2d401c60a7c3f802b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework prison
 
