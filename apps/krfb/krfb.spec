@@ -57,6 +57,9 @@ BuildRequires: pkgconfig(zlib)
 BuildRequires: libepoxy-devel
 BuildRequires: libjpeg-devel
 BuildRequires: lzo-devel
+BuildRequires: libpng-devel
+BuildRequires: libgcrypt-devel
+BuildRequires: openssl-devel
 
 Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 
