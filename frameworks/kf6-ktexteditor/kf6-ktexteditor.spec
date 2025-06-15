@@ -1,6 +1,6 @@
-%global commit0 a4afbed331bf227fcf4cbcf4bd78ee60cc9e4589
+%global commit0 1cd930242dd8d58302facaa0c1426602643da025
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global framework ktexteditor
 
