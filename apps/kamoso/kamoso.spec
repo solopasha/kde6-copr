@@ -2,111 +2,64 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 5
 
-# uncomment to enable bootstrap mode
-#global bootstrap 1
+Name:           kamoso
+Summary:        Application for taking pictures and videos from a webcam
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-%if !0%{?bootstrap}
-%global tests 1
-%endif
-
-Name:    kamoso
-Summary: Application for taking pictures and videos from a webcam
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
-
-License: GFDL-1.2-or-later AND GPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later
-URL:     https://userbase.kde.org/Kamoso
+License:        GPL-2.0-or-later
+URL:            https://userbase.kde.org/Kamoso
 %apps_source
 
-## upstream patches
-
-## upstreamable patches
-
-BuildRequires:  boost-devel
 BuildRequires:  desktop-file-utils
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gettext
-BuildRequires:  kf5-rpm-macros
-BuildRequires:  kf5-kconfig-devel
-BuildRequires:  kf5-kcoreaddons-devel
-BuildRequires:  kf5-kdeclarative-devel
-BuildRequires:  kf5-kdoctools-devel
-BuildRequires:  kf5-ki18n-devel
-BuildRequires:  kf5-kio-devel
-BuildRequires:  kf5-kwidgetsaddons-devel
-BuildRequires:  kf5-solid-devel
-
-BuildRequires:  cmake(KF5Config)
-BuildRequires:  cmake(KF5DocTools)
-BuildRequires:  cmake(KF5KIO)
-BuildRequires:  cmake(KF5I18n)
-BuildRequires:  cmake(KF5Purpose)
-BuildRequires:  cmake(KF5Notifications)
-BuildRequires:  cmake(KF5Kirigami2)
-
 BuildRequires:  libappstream-glib
-BuildRequires:  pkgconfig(libaccounts-glib)
-BuildRequires:  pkgconfig(libudev)
-BuildRequires:  pkgconfig(Qt5Network)
-BuildRequires:  pkgconfig(Qt5Qml)
+
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Notifications)
+BuildRequires:  cmake(KF6Purpose)
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6Widgets)
+
 BuildRequires:  pkgconfig(gstreamer-1.0)
-BuildRequires:  pkgconfig(gstreamer-base-1.0)
 BuildRequires:  pkgconfig(gstreamer-video-1.0)
-BuildRequires:  pkgconfig(Qt5Quick)
 
-%if 0%{?tests}
-BuildRequires: time
-BuildRequires: xorg-x11-server-Xvfb
-%endif
-BuildRequires: make
-
-# currently not linked, needs qml resources
-Requires: kf5-purpose%{?_isa} >= 1.1
-Requires: qt5-qtdeclarative%{?_isa}
-Requires: qt5-qtquickcontrols%{?_isa}
-Requires: qt5-qtgraphicaleffects%{?_isa}
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-purpose%{?_isa}
 
 %description
 Kamoso is an application to take pictures and videos out of your webcam.
-
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
 
-
 %build
-%cmake_kf5 \
-  -DBUILD_TESTING:BOOL=%{?tests:ON}%{!?tests:OFF} -Wno-dev
-
+%cmake_kf6
 %cmake_build
-
 
 %install
 %cmake_install
 
 %find_lang kamoso --with-html
 
-
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf5_metainfodir}/org.kde.kamoso.appdata.xml
-desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.kamoso.desktop
-%if 0%{?tests}
-xvfb-run -a bash -c "%ctest"
-%endif
-
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files -f kamoso.lang
-%doc AUTHORS
-%license LICENSES/*
-%{_kf5_metainfodir}/org.kde.kamoso.appdata.xml
-%{_kf5_datadir}/applications/org.kde.kamoso.desktop
-%{_kf5_bindir}/kamoso
-%{_kf5_datadir}/icons/hicolor/*/apps/kamoso.*
-%{_kf5_datadir}/icons/hicolor/*/actions/*
-%{_libdir}/gstreamer-1.0/gstkamosoqt5videosink.so
-%{_kf5_datadir}/knotifications5/%{name}*
-
+%license LICENSES/GPL-2.0-or-later.txt
+%{_kf6_bindir}/kamoso
+%{_kf6_datadir}/applications/org.kde.kamoso.desktop
+%{_kf6_datadir}/icons/hicolor/*/actions/*
+%{_kf6_datadir}/icons/hicolor/*/apps/kamoso.*
+%{_kf6_datadir}/knotifications6/kamoso.notifyrc
+%{_kf6_metainfodir}/org.kde.kamoso.appdata.xml
 
 %changelog
 %{?kde_snapshot_changelog_entry}
