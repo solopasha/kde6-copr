@@ -1,6 +1,6 @@
-%global commit0 19dda48bbaecd500c0bb0278456a304c8901d95e
+%global commit0 1b21c7c72faa7485478a31ccb314d5d127bd7760
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 11
+%global bumpver 12
 
 Name:    kmime
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

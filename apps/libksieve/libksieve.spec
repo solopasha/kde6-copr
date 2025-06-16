@@ -1,6 +1,6 @@
-%global commit0 93f0d4e774e71679e50b1a4e0ed448342986f6e8
+%global commit0 137f1e920f6e5d9e8078f5b0b7678723685d452f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 16
+%global bumpver 17
 
 Name:    libksieve
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
