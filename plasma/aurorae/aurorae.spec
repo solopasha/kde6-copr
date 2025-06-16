@@ -18,8 +18,6 @@ BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6NewStuff)
 BuildRequires:  cmake(KF6Package)
-BuildRequires:  cmake(KF6Svg)
-BuildRequires:  cmake(KF6WindowSystem)
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
@@ -28,6 +26,8 @@ BuildRequires:  cmake(Qt6UiTools)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  cmake(KDecoration3)
+
+Requires:       kf6-ksvg%{?_isa}
 
 Conflicts:      kwin-common < 6.3.80~48.gitd2276e5
 
