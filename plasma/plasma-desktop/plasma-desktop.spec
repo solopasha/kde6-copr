@@ -89,8 +89,6 @@ BuildRequires:  libxcb-devel
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gobject-2.0)
 BuildRequires:  pkgconfig(ibus-1.0)
-BuildRequires:  pkgconfig(icu-i18n)
-BuildRequires:  pkgconfig(icu-uc)
 BuildRequires:  pkgconfig(libcanberra)
 BuildRequires:  pkgconfig(libudev)
 BuildRequires:  pkgconfig(libwacom)
