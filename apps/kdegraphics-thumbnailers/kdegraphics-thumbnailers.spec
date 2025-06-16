@@ -1,6 +1,6 @@
 %global commit0 205076e79536669a539107ff60d021adbb2da368
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:    kdegraphics-thumbnailers
 Summary: Thumbnailers for various graphic types

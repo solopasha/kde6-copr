@@ -1,6 +1,6 @@
 %global commit0 206df1566318184feaf35290f98efb4c6a08395d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    keditbookmarks
 Summary: Bookmark organizer and editor

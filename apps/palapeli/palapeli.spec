@@ -1,6 +1,6 @@
 %global commit0 a639eccc1df373921056d7a917761e3f7eb5a96b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           palapeli
 Summary:        A jigsaw puzzle game

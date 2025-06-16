@@ -1,6 +1,6 @@
 %global commit0 ed6e6b23f1c5ea7bd7100e630fa7b839576cbc26
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:           artikulate
 Summary:        Improve your pronunciation by listening to native speakers
