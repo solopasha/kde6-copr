@@ -1409,8 +1409,6 @@ jobs:
       - kf6-ki18n
       - kf6-knewstuff
       - kf6-kpackage
-      - kf6-ksvg
-      - kf6-kwindowsystem
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
@@ -1954,7 +1952,6 @@ jobs:
       - kf6-kcmutils
       - kf6-kcolorscheme
       - kf6-kconfig
-      - kf6-kconfigwidgets
       - kf6-kcoreaddons
       - kf6-kcrash
       - kf6-kdbusaddons
@@ -2124,7 +2121,6 @@ jobs:
       - extra-cmake-modules
       - kf6
       - kf6-karchive
-      - kf6-kcmutils
       - kf6-kcolorscheme
       - kf6-kconfig
       - kf6-kcoreaddons
@@ -2637,7 +2633,6 @@ jobs:
       - kf6-kcoreaddons
       - kf6-kdbusaddons
       - kf6-ki18n
-      - kf6-kiconthemes
       - kf6-kio
       - kf6-kirigami
       - kf6-knotifications
