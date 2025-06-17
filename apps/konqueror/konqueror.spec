@@ -1,6 +1,6 @@
-%global commit0 35a3de560fe16e35e7217c1b9ba8c6020f98d294
+%global commit0 f11c97c797e927e52aa455aaba47b349a106f0a6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 14
+%global bumpver 15
 
 ## FIXME: many tests require GLX, which doesn't appear to work as-is under koji
 #global tests 1
