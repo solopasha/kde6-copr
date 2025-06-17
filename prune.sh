@@ -54,6 +54,11 @@ for pkg in "${packages[@]}"; do
           continue
         fi
 
+        if [[ "$tags" =~ debuginfo-unstable ]]; then
+          # echo "⏩ Skipping: $pkgname $tags (contains 'debuginfo-unstable')"
+          continue
+        fi
+
         if [[ "$age_days" -ge "$DAYS_OLD" ]]; then
           echo "🗑 Deleting: $pkgname $tags (ID: $id, $age_days days old)"
           should_delete=true
