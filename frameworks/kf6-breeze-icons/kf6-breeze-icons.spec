@@ -1,6 +1,6 @@
-%global commit0 75fd5c16d1cf0bb6756d4dedd073fed2ef6ee325
+%global commit0 ddac172cba33db77143b9df4e5ad32be4e19cff6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 # If KF7 still provides these icons, then their installation should then
 # be disabled in KF6 builds.
