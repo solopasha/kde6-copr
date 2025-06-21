@@ -1,6 +1,6 @@
 %global commit0 ebf5a2be760295be89999b19555f158cd6ff8acd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 37
+%global bumpver 38
 
 %global base_name akonadi
 %global mysql mysql
@@ -213,6 +213,7 @@ fi
 # akonadi_knut_resource
 %{_kf6_bindir}/akonadi_knut_resource
 %{_kf6_datadir}/kf6/akonadi_knut_resource/
+%{_kf6_qtplugindir}/pim6/akonadi/config/knutconfig.so
 
 %files devel
 %{_includedir}/KPim6/Akonadi/
@@ -236,7 +237,6 @@ fi
 %{_kf6_libdir}/libKPim6AkonadiXml.so
 %{_kf6_qtplugindir}/designer/akonadi6widgets.so
 %{_kf6_qtplugindir}/pim6/akonadi/akonadi_test_searchplugin.so
-%{_kf6_qtplugindir}/pim6/akonadi/config/knutconfig.so
 
 %post mysql
 /usr/sbin/update-alternatives \
