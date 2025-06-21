@@ -1,6 +1,6 @@
 %global commit0 2ecd8640ce6e3cf4492fa59c5903ab1b14d94768
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global framework kwallet
 
@@ -41,6 +41,7 @@ KWallet is a secure and unified container for user passwords.
 %package        libs
 Summary:        KWallet framework libraries
 Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       qca-qt6-ossl%{?_isa}
 %description    libs
 Provides API to access KWallet data from applications.
 
