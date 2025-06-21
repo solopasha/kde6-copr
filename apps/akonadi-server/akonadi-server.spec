@@ -236,6 +236,7 @@ fi
 %{_kf6_libdir}/libKPim6AkonadiXml.so
 %{_kf6_qtplugindir}/designer/akonadi6widgets.so
 %{_kf6_qtplugindir}/pim6/akonadi/akonadi_test_searchplugin.so
+%{_kf6_qtplugindir}/pim6/akonadi/config/knutconfig.so
 
 %post mysql
 /usr/sbin/update-alternatives \
