@@ -16,6 +16,7 @@ BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6CalendarCore)
 BuildRequires:  cmake(KF6Codecs)
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6WidgetsAddons)
 
