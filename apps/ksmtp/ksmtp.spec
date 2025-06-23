@@ -1,6 +1,6 @@
-%global commit0 ee736d65a306713b94649ec868e71576e73ad463
+%global commit0 fc40954c957950d6b77051bc3b89b7e32a642deb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 11
+%global bumpver 12
 
 Name:    ksmtp
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
