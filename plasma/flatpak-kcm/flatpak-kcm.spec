@@ -1,6 +1,6 @@
-%global commit0 4203704668dfc41e89ecdb9205f7279ff4728eca
+%global commit0 05ef4c9aa0ad738dfd6865ff1ec4f60b40f83d1f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:           flatpak-kcm
 Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
