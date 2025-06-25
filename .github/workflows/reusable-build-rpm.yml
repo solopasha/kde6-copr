@@ -336,7 +336,7 @@ jobs:
           fi
 
       - name: Set up ccache
-        if: inputs.ccache && steps.arch.outputs.arch != 'noarch'
+        if: steps.arch.outputs.arch != 'noarch'
         env:
           pkgver: ${{ steps.pkgver.outputs.version }}
           pkgname: ${{ steps.pkgname.outputs.pkgname }}
@@ -355,7 +355,7 @@ jobs:
           EOF
 
       - name: Fetch ccache
-        if: inputs.ccache && steps.arch.outputs.arch != 'noarch'
+        if: steps.arch.outputs.arch != 'noarch'
         env:
           pkgname: ${{ steps.pkgname.outputs.pkgname }}
         run: |
