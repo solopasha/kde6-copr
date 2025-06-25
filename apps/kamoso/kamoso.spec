@@ -1,6 +1,6 @@
-%global commit0 fa95ab7b9a2eeec8a0f058ace2cca6d7afd77559
+%global commit0 7588f6f816a1cbf20c87c4bf8df2a7cf122beba2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 Name:           kamoso
 Summary:        Application for taking pictures and videos from a webcam
@@ -40,7 +40,7 @@ Kamoso is an application to take pictures and videos out of your webcam.
 %autosetup -n %{sourcerootdir} -p1
 
 %build
-%cmake_kf6
+%cmake_kf6 -DPATCHED_GSTREAMER=ON
 %cmake_build
 
 %install

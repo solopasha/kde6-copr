@@ -1,6 +1,6 @@
-%global commit0 9561f12084ce4b56e8df30f540196200216410ae
+%global commit0 59c2309054eb23f1581e29544fd1cea8d81bf8fc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 8
 
 Name:    filelight
 Summary: Graphical disk usage statistics

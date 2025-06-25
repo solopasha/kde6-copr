@@ -1,6 +1,6 @@
-%global commit0 1c7e13620c7301e17ed05b43125599892b6cc044
+%global commit0 c8ab0738927d0b544813e91a7f5a2eabd42fce3c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 26
+%global bumpver 27
 
 %global base_name kdeconnect-kde
 
@@ -27,15 +27,14 @@ BuildRequires:  cmake(KF6PulseAudioQt)
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
-BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6ItemModels)
-BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6KirigamiAddons)
@@ -124,7 +123,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop ||:
 %dir %{_kf6_datadir}/kdeconnect/
 %license LICENSES/*
 %{_kf6_bindir}/kdeconnect-*
-%{_kf6_datadir}/applications/kcm_kdeconnect.desktop
 %{_kf6_datadir}/applications/org.kde.kdeconnect*.desktop
 %{_kf6_datadir}/contractor/
 %{_kf6_datadir}/deepin/
@@ -140,7 +138,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop ||:
 %{_kf6_plugindir}/kfileitemaction/kdeconnectfileitemaction.so
 %{_kf6_plugindir}/kio/kdeconnect.so
 %{_qt6_archdatadir}/qml/org/kde/kdeconnect/
-%{_qt6_plugindir}/plasma/kcms/systemsettings_qwidgets/kcm_kdeconnect.so
 %{zsh_completions_dir}/_kdeconnect
 
 %files -n kdeconnectd
@@ -150,7 +147,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop ||:
 
 %files libs
 %{_kf6_libdir}/libkdeconnectcore.so.*
-%{_kf6_libdir}/libkdeconnectpluginkcm.so.*
 %{_qt6_plugindir}/kdeconnect/
 
 %files nautilus
