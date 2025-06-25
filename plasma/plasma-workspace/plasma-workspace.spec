@@ -144,13 +144,11 @@ BuildRequires:  pkgconfig(zlib)
 
 Requires:       %{name}-common = %{version}-%{release}
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
-Requires:       %{name}-wayland = %{version}-%{release}
 Requires:       libkworkspace6%{?_isa} = %{version}-%{release}
 # for selinux settings
 Requires:       (policycoreutils if selinux-policy)
 
 Requires:       kactivitymanagerd%{?_isa} >= %{majmin_ver_kf6}
-Requires:       ksystemstats%{?_isa} >= %{majmin_ver_kf6}
 Requires:       kf6-baloo%{?_isa}
 Requires:       kf6-kded%{?_isa}
 Requires:       kf6-kdoctools%{?_isa}
@@ -158,11 +156,15 @@ Requires:       kf6-kglobalaccel%{?_isa}
 Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-kitemmodels%{?_isa}
 Requires:       kf6-kquickcharts%{?_isa}
+Requires:       ksystemstats%{?_isa} >= %{majmin_ver_kf6}
+Requires:       kwin >= %{majmin_ver_kf6}
 Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtlocation%{?_isa}
+Requires:       xdg-desktop-portal-kde >= %{majmin_ver_kf6}
 
 Recommends:     plasma-pa
 Recommends:     plasma-welcome
+Recommends:     xwaylandvideobridge
 
 # Without the platformtheme plugins we get broken fonts
 Requires:       kf6-frameworkintegration
@@ -227,13 +229,16 @@ Requires:       iso-codes
 # plasmashell provides dbus service org.freedesktop.Notifications
 Provides:       desktop-notification-daemon
 
+Obsoletes:      %{name}-wayland < 6.4.80~33.gitb00294e-2
+Conflicts:      %{name}-wayland < 6.4.80~33.gitb00294e-2
+Provides:       %{name}-wayland = %{version}-%{release}
+Provides:       %{name}-wayland%{?_isa} = %{version}-%{release}
+
+%if ! %{with x11}
+Obsoletes:      %{name}-x11 < %{version}-%{release}
+%endif
 # khotkeys was dropped
 Obsoletes:      khotkeys < 6
-# Obsolete packages that are borked in Plasma 6
-Obsoletes:      bismuth < 3.1.4-4
-Obsoletes:      latte-dock < 0.10.9-4
-Obsoletes:      latte-dock-lang < 0.10.9-4
-Obsoletes:      lightly < 0.4.1-7
 
 %description
 Plasma 6 libraries and runtime components
@@ -293,23 +298,6 @@ BuildArch:      noarch
 %description -n sddm-wayland-plasma
 This package contains configuration and dependencies for SDDM
 to use KWin for the Wayland compositor for the greeter.
-
-%package        wayland
-Summary:        Wayland support for Plasma
-Requires:       %{name} = %{version}-%{release}
-Requires:       kwin-wayland
-Requires:       (kwayland-integration%{?_isa} >= %{majmin_ver_kf6} if qt5-qtbase%{?_isa})
-Requires:       xorg-x11-server-Xwayland
-Requires:       qt6-qtwayland%{?_isa}
-# startplasmacompositor deps
-Requires:       qt6-qttools
-Requires:       xdg-desktop-portal-kde
-Recommends:     xwaylandvideobridge
-%if ! %{with x11}
-Obsoletes:      %{name}-x11 < %{version}-%{release}
-%endif
-%description    wayland
-%{summary}.
 
 %if %{with x11}
 %package        x11
@@ -420,6 +408,8 @@ fi
 %{_kf6_bindir}/plasma-shutdown
 %{_kf6_bindir}/plasmashell
 %{_kf6_bindir}/plasmawindowed
+%{_kf6_bindir}/startplasma
+%{_kf6_bindir}/startplasma-wayland
 %{_kf6_bindir}/xembedsniproxy
 %{_kf6_datadir}/applications/kcm_*
 %{_kf6_datadir}/applications/org.kde.kcolorschemeeditor.desktop
@@ -469,6 +459,7 @@ fi
 %{_kf6_datadir}/solid/
 %dir %{_kf6_datadir}/timezonefiles
 %{_kf6_datadir}/timezonefiles/timezones.json
+%{_kf6_datadir}/wayland-sessions/plasma.desktop
 %{_kf6_datadir}/xdg-desktop-portal/kde-portals.conf
 %{_kf6_datadir}/zsh/site-functions/_plasmashell
 %{_kf6_metainfodir}/*.xml
@@ -560,11 +551,6 @@ fi
 
 %files -n sddm-wayland-plasma
 %{_prefix}/lib/sddm/sddm.conf.d/plasma-wayland.conf
-
-%files wayland
-%{_kf6_bindir}/startplasma
-%{_kf6_bindir}/startplasma-wayland
-%{_kf6_datadir}/wayland-sessions/plasma.desktop
 
 %if %{with x11}
 %files x11
