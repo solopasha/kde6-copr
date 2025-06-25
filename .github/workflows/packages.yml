@@ -712,6 +712,7 @@ jobs:
       spec: ./frameworks/kf6-kio/kf6-kio.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      ccache: true
 
   kf6-kirigami:
     if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kirigami.spec') }}
