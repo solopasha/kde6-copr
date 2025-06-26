@@ -8,7 +8,6 @@ RUN rm /etc/yum.repos.d/fedora-cisco-openh264.repo && \
     dnf -y up && dnf -y in --setopt=install_weak_deps=False \
             binutils \
             bsdtar \
-            ccache \
             copr-cli \
             createrepo_c \
             distribution-gpg-keys \

@@ -15,9 +15,6 @@ on:
       additional_packages:
         required: false
         type: string
-      ccache:
-        required: false
-        type: boolean
       debuginfo:
         required: false
         default: true
@@ -335,36 +332,6 @@ jobs:
             esac
           fi
 
-      - name: Set up ccache
-        if: inputs.ccache && steps.arch.outputs.arch != 'noarch'
-        env:
-          pkgver: ${{ steps.pkgver.outputs.version }}
-          pkgname: ${{ steps.pkgname.outputs.pkgname }}
-        run: |
-          cat << 'EOF' >> /etc/mock/fedora-build.cfg
-          config_opts['plugin_conf']['ccache_enable'] = True
-          config_opts['plugin_conf']['ccache_opts']['max_cache_size'] = '2G'
-          config_opts['plugin_conf']['ccache_opts']['compress'] = True
-          config_opts['plugin_conf']['ccache_opts']['dir'] = "%(cache_topdir)s/%(root)s/ccache/"
-          config_opts['plugin_conf']['ccache_opts']['hashdir'] = False
-          config_opts['plugin_conf']['ccache_opts']['show_stats'] = False
-          config_opts['plugin_conf']['ccache_opts']['debug'] = False
-          EOF
-          cat << EOF >> /etc/mock/fedora-build.cfg
-          config_opts['environment']['CCACHE_BASEDIR'] = '/builddir/build/BUILD/${pkgname}-${pkgver/[~^]/_}-build/${pkgname}-${pkgver}/redhat-linux-build'
-          EOF
-
-      - name: Fetch ccache
-        if: inputs.ccache && steps.arch.outputs.arch != 'noarch'
-        env:
-          pkgname: ${{ steps.pkgname.outputs.pkgname }}
-        run: |
-          if oras pull "ghcr.io/${repository}/${pkgname}:ccache-${target_branch}"; then
-            rsync -a --remove-source-files --mkpath "./${pkgname}-ccache/" "/var/cache/mock/fedora-build/ccache"
-            rm -rf ./${pkgname}-ccache
-            ccache --zero-stats -d /var/cache/mock/fedora-build/ccache
-          fi
-
       - name: Download sources
         env:
           max_retries: 10
@@ -544,30 +511,6 @@ jobs:
                   --annotation "rpm.version=${version_release}" \
                   "ghcr.io/${repository}/${pkgname}:debuginfo-${target_branch},${container_tag}-debuginfo" \
                   "./${pkgname}-debuginfo"; then
-                  exit 0
-              fi
-
-              if [[ $retry_count -lt $((max_retries - 1)) ]]; then
-                  echo "Attempt $((retry_count + 1)) failed. Retrying in $sleep_seconds seconds..."
-                  sleep $sleep_seconds
-              fi
-          done
-
-          echo "Failed after $max_retries attempts"
-          exit 1
-
-      - name: Upload ccache
-        if: inputs.ccache && steps.arch.outputs.arch != 'noarch' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-        env:
-          pkgname: ${{ steps.pkgname.outputs.pkgname }}
-          max_retries: 7
-          sleep_seconds: 7
-        run: |
-          ccache --show-stats -d /var/cache/mock/fedora-build/ccache
-          mv "/var/cache/mock/fedora-build/ccache/" "${pkgname}-ccache"
-
-          for (( retry_count=0; retry_count<max_retries; retry_count++ )); do
-              if oras push "ghcr.io/${repository}/${pkgname}:ccache-${target_branch}" "./${pkgname}-ccache"; then
                   exit 0
               fi
 
