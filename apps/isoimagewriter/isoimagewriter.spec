@@ -1,6 +1,6 @@
 %global commit0 0a1f0315130cae7a10e82e04a2d53a74289c51ea
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 Name:           isoimagewriter
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
