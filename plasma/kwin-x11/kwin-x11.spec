@@ -1,6 +1,6 @@
-%global commit0 7c095a3c181bba3db5c41ebba3919c8dc9b55265
+%global commit0 8d8ddd4109548330796112bfd54b1de0a4ca46f4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 10
+%global bumpver 11
 
 Name:           kwin-x11
 Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -59,7 +59,6 @@ BuildRequires:  cmake(PlasmaActivities)
 BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  cmake(QAccessibilityClient6)
 BuildRequires:  hwdata-devel
-BuildRequires:  libcap-devel
 BuildRequires:  libX11-devel
 BuildRequires:  libxcb-devel
 BuildRequires:  libXi-devel
