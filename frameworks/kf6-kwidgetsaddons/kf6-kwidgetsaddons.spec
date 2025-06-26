@@ -1,6 +1,6 @@
-%global commit0 f4b061dc5b3a7d9db9a7c4e5025745d4705ec540
+%global commit0 65590720a5f9c208b1ae973d37018cf9af54da2f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 %global framework kwidgetsaddons
 
