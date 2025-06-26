@@ -2,27 +2,24 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 3
 
-Name:    kqtquickcharts
-Summary: A QtQuick plugin to render beautiful and interactive charts
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           kqtquickcharts
+Summary:        A QtQuick plugin to render beautiful and interactive charts
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-# KDE e.V. may determine that future LGPL versions are accepted
-License: LGPL-2.1-only
-URL:     https://invent.kde.org/libraries/kqtquickcharts
+License:        LGPL-2.1-only
+URL:            https://invent.kde.org/libraries/kqtquickcharts
 %apps_source
 
-BuildRequires: gcc-c++
-BuildRequires: cmake
-BuildRequires: extra-cmake-modules
-BuildRequires: kf5-rpm-macros
-BuildRequires: cmake(Qt5Gui)
-BuildRequires: cmake(Qt5Qml)
-BuildRequires: cmake(Qt5Quick)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
 
-# header/cmake stuff included here -- rex
-Provides: %{name}-devel = %{version}-%{release}
-Provides: %{name}-devel%{?_isa} = %{version}-%{release}
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+%description    devel
+%{summary}.
 
 %description
 %{summary}.
@@ -34,9 +31,7 @@ Provides: %{name}-devel%{?_isa} = %{version}-%{release}
 
 
 %build
-
-%cmake_kf5
-
+%cmake_kf6
 %cmake_build
 
 
@@ -47,13 +42,11 @@ Provides: %{name}-devel%{?_isa} = %{version}-%{release}
 %files
 %doc AUTHORS
 %license COPYING
-%{_kf5_qmldir}/org/kde/charts/
-# -devel type stuff, doesn't warrant a separate subpkg (yet)
-%{_kf5_includedir}/kqtquickcharts_version.h
-%dir %{_kf5_libdir}/cmake/
-%dir %{_kf5_libdir}/cmake/KQtQuickCharts/
-%{_kf5_libdir}/cmake/KQtQuickCharts/KQtQuickChartsVersion.cmake
-%{_kf5_libdir}/cmake/KQtQuickCharts/KQtQuickChartsConfig.cmake
+%{_kf6_qmldir}/org/kde/charts/
+
+%files devel
+%{_kf6_includedir}/kqtquickcharts_version.h
+%{_kf6_libdir}/cmake/KQtQuickCharts/
 
 %changelog
 %{?kde_snapshot_changelog_entry}

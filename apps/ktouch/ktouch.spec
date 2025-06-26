@@ -2,50 +2,47 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 3
 
-Name:    ktouch
-Summary: Touch Typing Tutor
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           ktouch
+Summary:        Touch Typing Tutor
+Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
-URL:     https://www.kde.org/applications/education/ktouch/
+License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
+URL:            https://www.kde.org/applications/education/ktouch/
 %apps_source
 
-BuildRequires: desktop-file-utils
-BuildRequires: extra-cmake-modules
-BuildRequires: kf5-rpm-macros
-BuildRequires: cmake(KF5Completion)
-BuildRequires: cmake(KF5Config)
-BuildRequires: cmake(KF5ConfigWidgets)
-BuildRequires: cmake(KF5CoreAddons)
-BuildRequires: cmake(KF5Declarative)
-BuildRequires: cmake(KF5DocTools)
-BuildRequires: cmake(KF5I18n)
-BuildRequires: cmake(KF5IconThemes)
-BuildRequires: cmake(KF5ItemViews)
-BuildRequires: cmake(KF5KCMUtils)
-BuildRequires: cmake(KF5TextWidgets)
-BuildRequires: cmake(KF5WidgetsAddons)
-BuildRequires: cmake(KF5WindowSystem)
-BuildRequires: cmake(KF5XmlGui)
-BuildRequires: cmake(Qt5Gui)
-BuildRequires: cmake(Qt5Qml)
-BuildRequires: cmake(Qt5Quick)
-BuildRequires: cmake(Qt5QuickWidgets)
-BuildRequires: cmake(Qt5QuickControls2)
-BuildRequires: cmake(Qt5Script)
-BuildRequires: cmake(Qt5Sql)
-BuildRequires: cmake(Qt5Test)
-BuildRequires: cmake(Qt5Widgets)
-BuildRequires: cmake(Qt5X11Extras)
-BuildRequires: cmake(Qt5Xml)
-BuildRequires: cmake(Qt5XmlPatterns)
-BuildRequires: libappstream-glib
-BuildRequires: pkgconfig(xcb-xkb)
-BuildRequires: pkgconfig(xkbfile)
+BuildRequires:  desktop-file-utils
+BuildRequires:  libappstream-glib
 
-Requires:      kqtquickcharts%{?_isa}
-Requires:      qt5-qtquickcontrols qt5-qtgraphicaleffects
+BuildRequires:  cmake(KF6Completion)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6ConfigWidgets)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6ItemViews)
+BuildRequires:  cmake(KF6KCMUtils)
+BuildRequires:  cmake(KF6TextWidgets)
+BuildRequires:  cmake(KF6WidgetsAddons)
+BuildRequires:  cmake(KF6WindowSystem)
+BuildRequires:  cmake(KF6XmlGui)
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  cmake(Qt6QuickControls2)
+BuildRequires:  cmake(Qt6QuickWidgets)
+BuildRequires:  cmake(Qt6Sql)
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6Xml)
+
+BuildRequires:  pkgconfig(xcb-xkb)
+BuildRequires:  pkgconfig(xkbfile)
+
+Requires:       kf6-kirigami%{?_isa}
+Requires:       kqtquickcharts%{?_isa}
+Requires:       qt6-qt5compat%{?_isa}
 
 %description
 %{summary}.
@@ -57,8 +54,7 @@ Requires:      qt5-qtquickcontrols qt5-qtgraphicaleffects
 
 
 %build
-%{cmake_kf5} \
-  -DCOMPILE_QML:BOOL=OFF
+%cmake_kf6
 %cmake_build
 
 
@@ -69,20 +65,20 @@ Requires:      qt5-qtquickcontrols qt5-qtgraphicaleffects
 
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf5_metainfodir}/org.kde.%{name}.appdata.xml ||:
-desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.desktop
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml ||:
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.desktop
 
 
 %files -f %{name}.lang
 %doc AUTHORS
 %license LICENSES/*
-%{_kf5_bindir}/ktouch
-%{_kf5_datadir}/ktouch/
-%{_kf5_metainfodir}/org.kde.%{name}.appdata.xml
-%{_kf5_datadir}/applications/org.kde.%{name}.desktop
-%{_kf5_datadir}/config.kcfg/ktouch.kcfg
-%{_kf5_datadir}/icons/hicolor/*/*/ktouch.*
-%{_mandir}/man1/ktouch.*
+%{_kf6_bindir}/ktouch
+%{_kf6_datadir}/applications/org.kde.%{name}.desktop
+%{_kf6_datadir}/config.kcfg/ktouch.kcfg
+%{_kf6_datadir}/icons/hicolor/*/*/ktouch.*
+%{_kf6_datadir}/ktouch/
+%{_kf6_mandir}/man1/ktouch.*
+%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 
 %changelog
