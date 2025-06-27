@@ -153,6 +153,7 @@ exclude-packages:
   - qemu-device-display-virtio-vga
   # See: https://github.com/fedora-silverblue/issue-tracker/issues/646
   - hplip-gui
+  - vlc-plugins-freeworld
 
 add-files:
   - ["solopasha.pub", "/etc/pki/containers/kde-unstable.pub"]
