@@ -1,6 +1,6 @@
-%global commit0 b4fef0fa2bef8082bebcf01cd3c896b5cce8176a
+%global commit0 cd4ee7ce8b1850e321deb7108b537eecdc6f2f6d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:           ktouch
 Summary:        Touch Typing Tutor
@@ -36,6 +36,7 @@ BuildRequires:  cmake(Qt6QuickWidgets)
 BuildRequires:  cmake(Qt6Sql)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(Qt6Xml)
+BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  pkgconfig(xcb-xkb)
 BuildRequires:  pkgconfig(xkbfile)

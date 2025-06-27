@@ -1,6 +1,6 @@
-%global commit0 fc1f9ab47dfcee894c579e1b92d01fdb62e084cd
+%global commit0 8cfada77bfd5a47d3a2a3a704ff8b9124afe21f3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 40
+%global bumpver 41
 
 Name:           kpublictransport
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
