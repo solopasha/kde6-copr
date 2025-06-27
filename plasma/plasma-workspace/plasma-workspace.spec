@@ -288,7 +288,7 @@ Provides:       sddm-greeter-displayserver
 Conflicts:      sddm-greeter-displayserver
 Requires:       kwin-wayland
 Requires:       layer-shell-qt
-Supplements:    (sddm and plasma-workspace-wayland)
+Supplements:    (sddm and plasma-workspace)
 %if ! (0%{?fedora} && 0%{?fedora} < 38)
 # Replace sddm-x11 with sddm-wayland-plasma
 ## N.B.: If sddm gets updated in F36/F37, this will need to be bumped
