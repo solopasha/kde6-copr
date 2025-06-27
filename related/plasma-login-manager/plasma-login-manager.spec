@@ -95,7 +95,7 @@ SELinux support for %{name}.
 
 %postun selinux
 if [ $1 -eq 0 ]; then
-    %selinux_modules_uninstall -s %{selinuxtype} %{name}
+    %selinux_modules_uninstall -s %{selinuxtype} plasmalogin
     %selinux_relabel_post -s %{selinuxtype}
 fi
 
