@@ -86,8 +86,6 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevilcore.so
 %{_kf6_datadir}/dbus-1/system.d/org.kde.powerdevil.chargethresholdhelper.conf
 %{_kf6_datadir}/dbus-1/system.d/org.kde.powerdevil.discretegpuhelper.conf
 %{_kf6_datadir}/knotifications6/powerdevil.notifyrc
-%{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.battery/
-%{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.brightness/
 %{_kf6_datadir}/polkit-1/actions/org.kde.powerdevil.backlighthelper.policy
 %{_kf6_datadir}/polkit-1/actions/org.kde.powerdevil.chargethresholdhelper.policy
 %{_kf6_datadir}/polkit-1/actions/org.kde.powerdevil.discretegpuhelper.policy
@@ -99,11 +97,11 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevilcore.so
 %{_kf6_libexecdir}/kauth/backlighthelper
 %{_kf6_libexecdir}/kauth/chargethresholdhelper
 %{_kf6_libexecdir}/kauth/discretegpuhelper
-%{_kf6_metainfodir}/org.kde.plasma.battery.appdata.xml
-%{_kf6_metainfodir}/org.kde.plasma.brightness.appdata.xml
 %{_kf6_plugindir}/krunner/krunner_powerdevil.so
 %{_kf6_qmldir}/org/kde/plasma/private/batterymonitor/
 %{_kf6_qmldir}/org/kde/plasma/private/brightnesscontrolplugin/
+%{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.battery.so
+%{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.brightness.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_mobile_power.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_powerdevilprofilesconfig.so
 %{_kf6_qtplugindir}/powerdevil/
