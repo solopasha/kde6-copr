@@ -1,6 +1,6 @@
-%global commit0 85f218e24f2af3f65274c64e876cee807c54b5a2
+%global commit0 d57990e681397d3dc2d2ebf737eced730dd3ecf7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 39
+%global bumpver 40
 
 Name:           dolphin
 Summary:        KDE File Manager
@@ -46,12 +46,13 @@ BuildRequires:  cmake(Qt6Concurrent)
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Multimedia)
+BuildRequires:  cmake(Qt6MultimediaWidgets)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(KF6UserFeedback)
 BuildRequires:  cmake(packagekitqt6)
-BuildRequires:  cmake(Phonon4Qt6)
 BuildRequires:  cmake(PlasmaActivities)
 
 # BuildRequires:  cmake(Qt6Qml)

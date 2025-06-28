@@ -1,6 +1,6 @@
-%global commit0 2746c0867b60192878f757cff128a6c16cb0a1c0
+%global commit0 b472cb9cd4e7ce29ffa26411ce64506af0b0b660
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           kgraphviewer
 Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
