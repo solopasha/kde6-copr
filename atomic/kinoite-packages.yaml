@@ -16,6 +16,7 @@ packages:
   - udisks2
   - vlc-plugin-gstreamer
   - xwaylandvideobridge
+  - 'qt6-qtwayland-6.9.1-1.fc42'
 
 repo-packages:
   - repo: coprdep:copr.fedorainfracloud.org:solopasha:plasma-unstable
