@@ -1,6 +1,6 @@
 %global commit0 f0ff487d62df0ccbca900809638cb983e281c1e9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 40
+%global bumpver 41
 
 Name:           kwin
 Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
