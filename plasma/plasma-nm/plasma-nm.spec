@@ -227,15 +227,13 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_libdir}/libplasmanm_editor.so
 # plasma-nm applet
 %{_qt6_qmldir}/org/kde/plasma/networkmanagement/
-%{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.networkmanagement/
 %{_kf6_datadir}/qlogging-categories6/plasma-nm.categories
 # plasma-nm notifications
 %{_kf6_datadir}/knotifications6/networkmanagement.notifyrc
 # plasma-nm kded
 %{_kf6_plugindir}/kded/networkmanagement.so
-# appdata
-%{_kf6_metainfodir}/org.kde.plasma.networkmanagement.appdata.xml
 
+%{_qt6_plugindir}/plasma/applets/org.kde.plasma.networkmanagement.so
 # kcm
 %{_qt6_plugindir}/plasma/kcms/systemsettings_qwidgets/kcm_networkmanagement.so
 %{_kf6_datadir}/kcm_networkmanagement/qml/
