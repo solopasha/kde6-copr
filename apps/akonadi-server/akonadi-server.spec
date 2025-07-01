@@ -210,6 +210,7 @@ fi
 %{_kf6_libdir}/libKPim6AkonadiPrivate.so.6{,.*}
 %{_kf6_libdir}/libKPim6AkonadiWidgets.so.6{,.*}
 %{_kf6_libdir}/libKPim6AkonadiXml.so.6{,.*}
+%{_kf6_qmldir}/org/kde/akonadi/
 # akonadi_knut_resource
 %{_kf6_bindir}/akonadi_knut_resource
 %{_kf6_datadir}/kf6/akonadi_knut_resource/
