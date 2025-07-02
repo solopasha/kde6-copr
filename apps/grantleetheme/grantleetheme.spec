@@ -1,6 +1,6 @@
-%global commit0 c8e4ce9137b4c5aa93acd2c6f96f14cda495dec7
+%global commit0 aac265bea60a85dd351bdd4fa9333bc53389c778
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 10
+%global bumpver 11
 
 Name:    grantleetheme
 Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

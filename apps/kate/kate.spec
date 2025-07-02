@@ -1,6 +1,6 @@
-%global commit0 b66ba2ed072d3646d50b72d2a7ced010795a0994
+%global commit0 fa0be34359d6885d7b57c2c3510f0babd27300e7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 41
+%global bumpver 42
 
 #global tests 1
 
@@ -145,6 +145,7 @@ xvfb-run -a bash -c "%ctest" || :
 %files plugins -f plugins.lang
 %{_kf6_datadir}/kateproject/
 %{_kf6_datadir}/katexmltools/
+%{_kf6_plugindir}/ktexteditor/bookmarksplugin.so
 %{_kf6_plugindir}/ktexteditor/compilerexplorer.so
 %{_kf6_plugindir}/ktexteditor/externaltoolsplugin.so
 %{_kf6_plugindir}/ktexteditor/katebacktracebrowserplugin.so
