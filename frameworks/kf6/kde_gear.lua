@@ -26,7 +26,6 @@ return {
     ["calindori"] = true,
     ["calligra"] = true,
     ["cantor"] = true,
-    ["cervisia"] = true,
     ["colord-kde"] = true,
     ["dolphin"] = true,
     ["dolphin-plugins"] = true,
