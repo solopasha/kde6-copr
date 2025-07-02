@@ -51,6 +51,7 @@ image formats.
 %{_kf6_qtplugindir}/imageformats/kimg_exr.so
 %{_kf6_qtplugindir}/imageformats/kimg_hdr.so
 %{_kf6_qtplugindir}/imageformats/kimg_heif.so
+%{_kf6_qtplugindir}/imageformats/kimg_iff.so
 %{_kf6_qtplugindir}/imageformats/kimg_jp2.so
 %{_kf6_qtplugindir}/imageformats/kimg_jxl.so
 %{_kf6_qtplugindir}/imageformats/kimg_kra.so
