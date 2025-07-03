@@ -1,11 +1,11 @@
-%global commit0 79fe7dfe43bc16bf05ee6db8d6d3ec9c95660826
+%global commit0 fac17194161605a411f950dbdf8e2393685228f7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 1
 
 %global base_name kirigami-addons
 
 Name:           kf6-kirigami-addons
-Version:        1.8.1%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        1.9.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        BSD-2-Clause AND CC-BY-SA-4.0 AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND LicenseRef-KFQF-Accepted-GPL
 Summary:        Convergent visual components ("widgets") for Kirigami-based applications
