@@ -18,7 +18,7 @@ Source20:       https://src.fedoraproject.org/lookaside/pkgs/plasma-workspace/br
 
 ## downstream patches
 # default kickoff/kicker favorites: +kwrite +konsole
-Patch100:       plasma-desktop-5.90.0-default_favorites.patch
+Patch100:       plasma-desktop-6.4.80-default_favorites.patch
 Patch101:       hide-virtual-keyboard-indicator-on-sddm.patch
 
 BuildRequires:  desktop-file-utils
@@ -258,6 +258,8 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_kf6_qmldir}/org/kde/plasma/private/
 %{_kf6_qmldir}/org/kde/private/desktopcontainment/*
 %{_kf6_qtplugindir}/attica_kde.so
+%{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.kicker.so
+%{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.kickoff.so
 %{_kf6_qtplugindir}/plasma/kcminit/kcm_mouse_init.so
 %{_kf6_qtplugindir}/plasma/kcminit/kcm_touchpad_init.so
 %{_kf6_qtplugindir}/plasma/kcms/desktop/kcm_krunnersettings.so
