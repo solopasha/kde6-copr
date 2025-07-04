@@ -1989,7 +1989,6 @@ jobs:
       spec: ./plasma/kwin/kwin.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      reclaim: true
 
   kwin-x11:
     if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kwin-x11.spec') }}
@@ -2036,7 +2035,6 @@ jobs:
       spec: ./plasma/kwin-x11/kwin-x11.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      reclaim: true
 
   kwrited:
     if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kwrited.spec') }}
@@ -2343,7 +2341,6 @@ jobs:
       spec: ./plasma/plasma-desktop/plasma-desktop.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      reclaim: true
 
   plasma-discover:
     if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-discover.spec') }}
@@ -2892,7 +2889,6 @@ jobs:
       spec: ./plasma/plasma-workspace/plasma-workspace.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
-      reclaim: true
 
   plasma-workspace-wallpapers:
     if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-workspace-wallpapers.spec') }}
