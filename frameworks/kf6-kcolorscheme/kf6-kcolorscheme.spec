@@ -1,11 +1,11 @@
-%global commit0 f689c390f7dbacd5089ca4f06caab7492169e15e
+%global commit0 20c346fbcd55db7e65c35c85dde5122967e76542
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 %global framework kcolorscheme
 
 Name:           kf6-%{framework}
-Version:        6.16.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.17.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Classes to read and interact with KColorScheme
 License:        BSD-2-Clause and CC0-1.0 and LGPL-2.0-or-later and LGPL-2.1-only and LGPL-3.0-only and LicenseRef-KDE-Accepted-LGPL

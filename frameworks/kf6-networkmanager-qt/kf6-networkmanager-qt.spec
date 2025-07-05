@@ -1,11 +1,11 @@
-%global commit0 5ee1dbedcd292d71e7affacf463e8d5478b19198
+%global commit0 c576141eca733858c67b101e786d30bb54184395
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 %global framework networkmanager-qt
 
 Name:           kf6-%{framework}
-Version:        6.16.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.17.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        A Tier 1 KDE Frameworks 6 module that wraps NetworkManager DBus API
 License:        LGPL-2.0-or-later AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND CC0-1.0

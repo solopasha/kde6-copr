@@ -1,12 +1,12 @@
-%global commit0 17c9275bb936b099b846408dbb10e8c2d8e52d52
+%global commit0 eec916e7a1a647f8b650c717c795891202e6630d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 %global framework bluez-qt
 
 Name:           kf6-%{framework}
 Summary:        A Qt wrapper for Bluez
-Version:        6.16.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.17.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only

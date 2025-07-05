@@ -1,11 +1,11 @@
-%global commit0 f6c718a78972d350973f9c51c8d81b82c971afa9
+%global commit0 ea1983a7d1af82623f757132affc93b61ad7dae3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 1
 
 %global framework kimageformats
 
 Name:           kf6-%{framework}
-Version:        6.16.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.17.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with additional image plugins for QtGui
 License:        LGPLv2+

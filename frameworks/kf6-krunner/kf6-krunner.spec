@@ -1,11 +1,11 @@
-%global commit0 cde320088957bfd441d2cf6e4b87af8c3834a16a
+%global commit0 1beaf33c5ff473f71f89d4a530fed97c98904252
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 %global framework krunner
 
 Name:           kf6-%{framework}
-Version:        6.16.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.17.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 solution with parallelized query system
 

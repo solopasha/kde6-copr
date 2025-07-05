@@ -1,12 +1,12 @@
-%global commit0 12f2d2b20a8c68385be41cc2d401c60a7c3f802b
+%global commit0 20590357ea75e12ea6ef24b1e17107f2ff54fec8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 %global framework prison
 
 Name:           kf6-%{framework}
 Summary:        KDE Frameworks 6 Tier 1 barcode library
-Version:        6.16.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.17.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        BSD-3-Clause AND CC0-1.0 AND MIT
 URL:            https://invent.kde.org/frameworks/%{framework}
