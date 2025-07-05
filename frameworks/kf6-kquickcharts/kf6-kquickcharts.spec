@@ -1,12 +1,12 @@
-%global commit0 cc8a6f9a22c8c27c98de4d747b4e49a157347a40
+%global commit0 4b4e6a714897e94cfe3c4447bad55e66a4e4fd67
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 %global framework kquickcharts
 
 Name:           kf6-%{framework}
 Summary:        A QtQuick module providing high-performance charts
-Version:        6.16.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.17.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-2-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only AND MIT
