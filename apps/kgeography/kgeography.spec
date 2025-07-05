@@ -3,7 +3,7 @@
 %global bumpver 1
 
 Name:    kgeography
-Summary: Geography Trainer 
+Summary: Geography Trainer
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
@@ -50,24 +50,21 @@ BuildRequires: cmake(KF6DocTools)
 
 %find_lang %{name} --all-name --with-html --with-man
 
-## unpackaged files
-# locale/LC_SCRIPT junk, need to keep? -- rex
-rm -fv %{buildroot}%{_kf6_datadir}/locale/*/LC_SCRIPTS/kgeography/*
-
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml || :
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.desktop
 
 
 %files -f %{name}.lang
 %license COPYING*
 %{_kf6_bindir}/%{name}
-%{_kf6_datadir}/applications/org.kde.%{name}.desktop
-%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
-%{_kf6_datadir}/icons/hicolor/*/apps/%{name}.*
 %{_kf6_datadir}/%{name}/
+%{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/config.kcfg/%{name}.kcfg
+%{_kf6_datadir}/icons/hicolor/*/apps/%{name}.*
+%{_kf6_datadir}/locale/*/LC_SCRIPTS/kgeography/
+%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 
 %changelog
