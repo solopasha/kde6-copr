@@ -1,11 +1,11 @@
-%global commit0 7b383e652a4dd3fad44d7ad2a992bf1620f14008
+%global commit0 8f0d6adea4f6158db00991e35b8438a6b99799c5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 1
 
 Name:    k3b
 Summary: CD/DVD/Blu-ray burning application
 Epoch:   1
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later

@@ -1,10 +1,10 @@
-%global commit0 32930cd8deab6ee3d4ba3638cbf4090f8524afe9
+%global commit0 0ed2dae02b71c76511909bf97700bba716730be4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    dolphin-plugins
 Summary: Dolphin plugins
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later

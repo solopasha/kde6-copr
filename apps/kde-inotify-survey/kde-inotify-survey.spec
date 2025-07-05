@@ -1,9 +1,9 @@
-%global commit0 88c2d276c01fb3925c8f93c40f195fa5f3cbf090
+%global commit0 bd47b80689ed5183b0b75ce62af4c71e33527fdf
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:          kde-inotify-survey
-Version:       25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:       25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:       1%{?dist}
 Summary:       Monitors inotify limits and lets the user know when exceeded
 

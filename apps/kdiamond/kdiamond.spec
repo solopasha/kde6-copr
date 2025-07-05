@@ -1,10 +1,10 @@
-%global commit0 ca43b52f8410e1b0fbdd2d83e52bab56a8abdcf3
+%global commit0 f113a3c71b6be750637585423d5f2836feae47b8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    kdiamond
 Summary: A three-in-a-row game
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

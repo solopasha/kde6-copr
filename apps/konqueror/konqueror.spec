@@ -1,12 +1,12 @@
-%global commit0 9ed2487d08ba532049bdeb89c647788cd3159442
+%global commit0 d654e48e02aff5c09b47d2cbd0d9420ef957b410
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 17
+%global bumpver 1
 
 ## FIXME: many tests require GLX, which doesn't appear to work as-is under koji
 #global tests 1
 
 Name:    konqueror
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: KDE File Manager and Browser
 

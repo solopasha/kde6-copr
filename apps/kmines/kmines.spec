@@ -1,10 +1,10 @@
-%global commit0 e24f55f93e9d7a9534a3d2995bf9ff91c29c8adb
+%global commit0 e06c23a96c4cf6c8702ff9130748a103daa0423e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kmines
 Summary: A classic Minesweeper game
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+

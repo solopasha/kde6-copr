@@ -1,9 +1,9 @@
-%global commit0 594975b21f6890c5abe9d0d92065ec916415d3cf
+%global commit0 21b102066456f146a95101c89aacaedaa4eaa9fc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 8
+%global bumpver 1
 
 Name:           qrca
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        CC0-1.0 AND BSD-3-Clause AND BSD-2-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-2.1-or-later
 Summary:        QR code scanner for KDE Plasma

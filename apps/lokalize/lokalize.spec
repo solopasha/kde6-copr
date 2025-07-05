@@ -1,10 +1,10 @@
-%global commit0 f282f85009788c8e42eaae2f1cbbfd55dd6f475e
+%global commit0 2faf2ca07f1876da77469602776938e260f67f4d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 21
+%global bumpver 1
 
 Name:           lokalize
 Summary:        Computer-aided translation system
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND GFDL-1.2-or-later AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-or-later

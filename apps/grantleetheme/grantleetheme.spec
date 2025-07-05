@@ -1,9 +1,9 @@
-%global commit0 aac265bea60a85dd351bdd4fa9333bc53389c778
+%global commit0 507ce9767a3331bc0b77ee1b7c3123d55b91204b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 11
+%global bumpver 1
 
 Name:    grantleetheme
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: KDE PIM library for Grantlee template system
 

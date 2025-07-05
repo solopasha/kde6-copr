@@ -1,9 +1,9 @@
-%global commit0 0c4623a160a7c1c73677076b0a7d8280525f61ce
+%global commit0 e552b8608cc2f9d449bd5df23f6df3d37b5ef4a8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 14
+%global bumpver 1
 
 Name:    kldap
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The KLDAP Library
 

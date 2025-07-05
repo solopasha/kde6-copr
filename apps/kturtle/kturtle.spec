@@ -1,10 +1,10 @@
-%global commit0 4c0cf3a9e7b46c2a7b0fefdcca809f64a3cba62a
+%global commit0 3953fd8765592f3912ad32c7277426fad46f3ccb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    kturtle
 Summary: Educational Programming Environment 
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+

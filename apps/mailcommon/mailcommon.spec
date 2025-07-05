@@ -1,9 +1,9 @@
-%global commit0 ad3ed6b4991765512f8440878ff3c8510792e4c7
+%global commit0 4af699633780106737347dcc1e4f6f3fa61e5144
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 31
+%global bumpver 1
 
 Name:    mailcommon
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Mail applications support library
 

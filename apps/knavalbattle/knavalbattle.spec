@@ -1,10 +1,10 @@
-%global commit0 85a0a5865113313184d92729c3dd701779ecee49
+%global commit0 fc5d0a1fdc06761e4bafef958266a51a4af0bbe2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    knavalbattle
 Summary: A ship sinking game
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

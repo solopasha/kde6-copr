@@ -1,9 +1,9 @@
-%global commit0 3d31951651a2ae084e9ed5d12360f71f438e5e34
+%global commit0 4fabb4bbc38564c18f86032cc53a314348af36c4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 51
+%global bumpver 1
 
 Name:    kitinerary
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: A library containing itinerary data model and itinerary extraction code
 

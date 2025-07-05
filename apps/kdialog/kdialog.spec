@@ -1,10 +1,10 @@
-%global commit0 bb9596b2db66c64c607131145cf406743dc9e823
+%global commit0 d4c56dce12cd08ffb5606d88adb3838bd2d2177c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    kdialog
 Summary: Nice dialog boxes from shell scripts
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later

@@ -1,9 +1,9 @@
-%global commit0 52968b0d1c2f7d102d1ffe5ace3759194bcddcd2
+%global commit0 4c9e963a63884409d44804586fe99f063b50771a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 16
+%global bumpver 1
 
 Name:           angelfish
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Plasma Mobile minimal web browser
 

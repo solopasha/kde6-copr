@@ -1,10 +1,10 @@
-%global commit0 c23b763eccfa9b55a2586cea1695e354f465c2c6
+%global commit0 64cbc1e2acdbcccce868a35046c285d2d5314281
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 1
 
 Name:    kwordquiz
 Summary: Flash Card Trainer
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+

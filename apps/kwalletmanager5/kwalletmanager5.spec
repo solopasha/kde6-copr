@@ -1,6 +1,6 @@
-%global commit0 d139d3dab4c0618999a51650c836b504b3f057a9
+%global commit0 a5e00e20cfdd3b17b46a52f92dbf831060259218
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 1
 
 %global base_name kwalletmanager
 
@@ -9,7 +9,7 @@
 
 Name:    kwalletmanager5
 Summary: Manage KDE passwords
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later

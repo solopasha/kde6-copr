@@ -1,12 +1,12 @@
-%global commit0 9a6bd1919653fec6a92b5b4e3920aafec5446626
+%global commit0 297abe960cf89e7bb20ee2a317354ff239898053
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 15
+%global bumpver 1
 
 #global tests 1
 
 Name:    grantlee-editor
 Summary: KMail Theme Editor
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL

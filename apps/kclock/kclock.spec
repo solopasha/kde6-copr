@@ -1,12 +1,12 @@
-%global commit0 e4648d7b538027e13a6d61aee5ad6a3811d11587
+%global commit0 3e422102d81c08477de266c18cc07b45658882b5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 31
+%global bumpver 1
 
 %global klockd_name org.kde.kclockd
 %global orig_name org.kde.kclock
 
 Name:           kclock
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPLv2+ and LGPLv2.1+ and CC-BY and GPLv3+
 Summary:        Clock app for Plasma Mobile

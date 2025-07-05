@@ -1,9 +1,9 @@
-%global commit0 4c89bff69e8252bea524a18a8af16f4ab7a815f7
+%global commit0 0aef05747948078a1ac649cef41cc7b62d7ceb05
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    libkcompactdisc
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: A KDE compact disc library
 

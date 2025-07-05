@@ -1,11 +1,11 @@
-%global commit0 fac9c4cf73b09300697f6836bcd2f45795efaafe
+%global commit0 4eb4aaecae5a138debd8d448f4dc7a69bb2cb2d1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 8
+%global bumpver 1
 
 #global tests 1
 
 Name:           zanshin
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Todo/action management software
 

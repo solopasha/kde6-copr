@@ -1,12 +1,12 @@
-%global commit0 c15fc812325dd195bf0b0907c062002ccbfc4371
+%global commit0 75845ed8414b3db9650311754ae5891098543cf3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 14
+%global bumpver 1
 
 #global tests 1
 
 Name:    konsole
 Summary: KDE Terminal emulator
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # sources: MIT and LGPLv2 and LGPLv2+ and GPLv2+

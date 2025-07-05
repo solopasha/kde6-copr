@@ -1,9 +1,9 @@
-%global commit0 907786815306937e293b0b198ef1813f6ec7bee7
+%global commit0 ebd51a77b04aab921326a71ab01f444844963316
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 35
+%global bumpver 1
 
 Name:           merkuro
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        A calendar application using Akonadi to sync with external services (Nextcloud, GMail, ...)
 

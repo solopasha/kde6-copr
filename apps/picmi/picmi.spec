@@ -1,10 +1,10 @@
-%global commit0 41fc5cf2fc75b6d9d099b4075499d1be6e6d580b
+%global commit0 83c1908b26cfcd2e65cbcecb24abf83fb6f75a3b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    picmi
 Summary: A nonogram logic game
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

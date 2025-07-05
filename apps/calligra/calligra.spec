@@ -1,6 +1,6 @@
-%global commit0 8e8ab6e5da6ccb2c798896c8ac8c65384139f342
+%global commit0 921dc42bb38a7de77facf6214359d02388b92770
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 8
+%global bumpver 1
 
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
 
@@ -14,7 +14,7 @@
 #global external_lilypond_fonts 1
 
 Name:    calligra
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: An integrated office suite
 

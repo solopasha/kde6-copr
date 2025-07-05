@@ -1,11 +1,11 @@
-%global commit0 9f8f6eca34f12b9dcb3503a4c7ae11b9350b0967
+%global commit0 4ae27bfbc845578b80130ed7412279f26ff895e2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 1
 
 
 Name:    ksystemlog
 Summary: System Log Viewer for KDE
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later

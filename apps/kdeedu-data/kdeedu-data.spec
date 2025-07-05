@@ -4,7 +4,7 @@
 
 Name:    kdeedu-data
 Summary: Shared icons, artwork and data files for educational applications
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2

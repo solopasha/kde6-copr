@@ -1,10 +1,10 @@
-%global commit0 61168ec71055f119a917b8f895aa8a6d9b94b893
+%global commit0 99142a62e2d0e322adc6cac723bfb3e8e5517f42
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 20
+%global bumpver 1
 
 Name:           krdc
 Summary:        Remote desktop client
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later

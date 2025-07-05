@@ -1,10 +1,10 @@
-%global commit0 6a0a33210d71ef64f25150e2b9093ab511c2d720
+%global commit0 793736fcd7beb742d10371865fae238d16e111d1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    kigo
 Summary: Go Board game
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # KDE e.V. may determine that future GPL versions are accepted

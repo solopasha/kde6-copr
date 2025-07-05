@@ -1,10 +1,10 @@
-%global commit0 0c2ddaa5963679e4a425ec677abe094a2a913527
+%global commit0 cc1ffc12bcdbe3ce95e4fb2a19ae123c3276ec1a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    killbots
 Summary: A simple game of evading killer robots
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

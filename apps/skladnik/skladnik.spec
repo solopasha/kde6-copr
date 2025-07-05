@@ -1,9 +1,9 @@
-%global commit0 d0b51124f4a6c0e2bdaeb7df3b829cc31ae05a46
+%global commit0 5b9316488ad231bf961c05a11dd4cb67ab347997
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:           skladnik
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPL-3.0-or-later AND CC0-1.0 AND LGPL-2.1-or-later
 Summary:        Japanese warehouse keeper sokoban game

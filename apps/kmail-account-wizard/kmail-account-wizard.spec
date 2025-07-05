@@ -1,12 +1,12 @@
-%global commit0 8533d213a045e4c11e41eb4203c95f279525f997
+%global commit0 633a8e4a8d652015d1c30acee3f7ff4429b68d5c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 12
+%global bumpver 1
 
 #global tests 1
 
 Name:    kmail-account-wizard
 Summary: KMail Account Wizard
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+

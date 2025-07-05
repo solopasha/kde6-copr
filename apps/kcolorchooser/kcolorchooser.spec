@@ -1,10 +1,10 @@
-%global commit0 f2f05d3612e6872ece6bdf47222be0d47637320b
+%global commit0 eda05f652c88b1faf909faf9d4ab4c6e10684408
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kcolorchooser
 Summary: A color chooser 
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: MIT

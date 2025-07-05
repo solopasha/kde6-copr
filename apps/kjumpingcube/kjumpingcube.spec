@@ -1,10 +1,10 @@
-%global commit0 ffc6eab8570b83833bf2a432a414b06a5dc127d7
+%global commit0 fbbb53bd2ada0760e876188f736dd3ffb3702b63
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kjumpingcube
 Summary: Territory capture game
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

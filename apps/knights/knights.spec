@@ -1,9 +1,9 @@
-%global commit0 5699434f254b8beac02078d56b8842e2c71ede7d
+%global commit0 42fe552fed9f7dc0e25d3d4f1af03ba209eabfc0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 Name:           knights
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        A chess board for KDE
 # KDE e.V. may determine that future GPL versions are accepted

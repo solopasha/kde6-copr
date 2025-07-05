@@ -1,9 +1,9 @@
-%global commit0 fc40954c957950d6b77051bc3b89b7e32a642deb
+%global commit0 4b8ca4bc006b81ee63202fd23669657ae01bda61
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 12
+%global bumpver 1
 
 Name:    ksmtp
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: KDE SMTP libraries
 

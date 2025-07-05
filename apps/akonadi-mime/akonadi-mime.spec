@@ -1,9 +1,9 @@
-%global commit0 7c603784baf82690ce29f35c95c142a73f73b7c9
+%global commit0 c3536accfa11b53b8d6bac435008a6393af0aff4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 14
+%global bumpver 1
 
 Name:    akonadi-mime
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The Akonadi Mime Library
 

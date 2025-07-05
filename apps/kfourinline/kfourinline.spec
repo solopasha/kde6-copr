@@ -1,10 +1,10 @@
-%global commit0 de67e10c94db165ea2f0edf0efcad3872491973d
+%global commit0 bdee0135850313dd77440ec2fc85bf8648446b1b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kfourinline
 Summary: A four-in-a-row game
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

@@ -1,10 +1,10 @@
-%global commit0 b62de0e642211a7e4375db7bef595067b1057fee
+%global commit0 6b56e365023eeac08f34958fa9a1152cc93cf0d9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    sweeper
 Summary: Clean unwanted traces the user leaves on the system
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: LGPLv2+

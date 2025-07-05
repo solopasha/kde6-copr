@@ -1,9 +1,9 @@
-%global commit0 d6aabe4dfad9275c299bdb7792d9e75f90f71abc
+%global commit0 27420abce1821a9b0648d617ba3457718554766e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 17
+%global bumpver 1
 
 Name:    kpimtextedit
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The KPimTextEdit Library
 

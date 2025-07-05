@@ -1,10 +1,10 @@
-%global commit0 154ee31fcb6ce8f0764829d561630a0e887b78e4
+%global commit0 eb3688750200416912d484f05c9442f22d47100f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kgeography
 Summary: Geography Trainer 
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later

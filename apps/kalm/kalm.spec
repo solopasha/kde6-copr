@@ -1,9 +1,9 @@
-%global commit0 a959200d18ada36d85276f88f3c813c83227f23f
+%global commit0 e37fde862f7df31a1686c6bcc6fc720c00411a07
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 Name:           kalm
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        LGPL-2.1-or-later AND CC0-1.0
 Summary:        Kalm can teach you different breathing techniques

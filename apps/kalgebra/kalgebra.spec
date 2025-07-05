@@ -1,11 +1,11 @@
-%global commit0 4773d492a36b6c76eb3f795895ff6e619a079247
+%global commit0 fa4be5ddbbaeb2b1ece4a412e112f8bd2754d158
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 
 Name:    kalgebra
 Summary: 2D and 3D Graph Calculator
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-or-later

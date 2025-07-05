@@ -1,10 +1,10 @@
-%global commit0 2f009f25356913f9245c9073b9be4c755d01edc0
+%global commit0 02ecf611387c11b1649b558d63aa70d185252190
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    lskat
 Summary: A fun and engaging card game
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: LGPLv2 and GFDL

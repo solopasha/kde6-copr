@@ -1,12 +1,12 @@
-%global commit0 fa0be34359d6885d7b57c2c3510f0babd27300e7
+%global commit0 b74533c0d1ef14b5b463eab32fc7c84c867a07c9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 42
+%global bumpver 1
 
 #global tests 1
 
 Name:    kate
 Summary: Advanced Text Editor
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # kwrite LGPLv2+

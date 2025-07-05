@@ -1,9 +1,9 @@
-%global commit0 83919f9d0066fe561c99648d4e2edfc2ffe5f142
+%global commit0 feef6204a104500d636353c750695b0414edafa8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 17
+%global bumpver 1
 
 Name:    kidentitymanagement
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The KIdentityManagement Library
 

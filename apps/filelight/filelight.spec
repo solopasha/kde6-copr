@@ -1,11 +1,11 @@
-%global commit0 59c2309054eb23f1581e29544fd1cea8d81bf8fc
+%global commit0 b3d9222152082deb9df68b5a197d1a5e880402e2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 8
+%global bumpver 1
 
 Name:    filelight
 Summary: Graphical disk usage statistics
 Epoch:   1
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # KDE e.V. may determine that future GPL versions are accepted

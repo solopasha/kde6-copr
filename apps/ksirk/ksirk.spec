@@ -1,10 +1,10 @@
-%global commit0 26d3972ac77212373fbb1f3ae79ede50401d82db
+%global commit0 450c6a75be2b12c4068413353c7204c89afc3a96
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    ksirk
 Summary: Conquer-the-world strategy game
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

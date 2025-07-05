@@ -1,9 +1,9 @@
-%global commit0 7bde285ccd3d208b01217bcd9bc0c35438ac4eaa
+%global commit0 81629a5440df824d7e7b5aa519b59baecbedf70a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 16
+%global bumpver 1
 
 Name:    mimetreeparser
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Parser for MIME trees
 

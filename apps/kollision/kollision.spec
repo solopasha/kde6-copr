@@ -1,10 +1,10 @@
-%global commit0 1f58055f1b8bd88044e2c74b2f8a10047471626c
+%global commit0 779cda67d2d96cda571a711c155d6e3f0bcbaa61
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    kollision
 Summary: A simple ball dodging game
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

@@ -1,12 +1,12 @@
-%global commit0 577a2808f5367bfcb38d8be7b3371c5576e4a6c5
+%global commit0 c4e6e9cdd447a071e0253dcdfd1185c347534e66
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 22
+%global bumpver 1
 
 # build Python plugins (disabled by default due to #2048781)
 %bcond_with python
 
 Name:           falkon
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Modern web browser
 

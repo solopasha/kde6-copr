@@ -1,10 +1,10 @@
-%global commit0 74fe1d4864b7326118f4ab86f4458a2c516e6965
+%global commit0 77eabd9bfd3a303be2f8fa63c863e39bf6020e89
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    kolf
 Summary: A miniature golf game
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

@@ -1,10 +1,10 @@
-%global commit0 8783ebc708fa35b8aa0faa72450ae0a817124c3c
+%global commit0 891af8792f6f36f4005443b77f97d67d316fa105
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 Name:           kompare
 Summary:        Diff tool
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        (GPL-2.0-only OR GPL-3.0-only) AND GPL-2.0-or-later and GFDL

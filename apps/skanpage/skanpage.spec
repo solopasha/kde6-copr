@@ -1,9 +1,9 @@
-%global commit0 13bb18f7d00de823e4af9b7a1f92372dfa52c628
+%global commit0 f46b4e968b024ef3c5d210155db2c40634b8c616
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 11
+%global bumpver 1
 
 Name:     skanpage
-Version:  25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:  25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:  1%{?dist}
 Summary:  Utility to scan images and multi-page documents
 # For a breakdown of the licensing, see PACKAGE-LICENSING

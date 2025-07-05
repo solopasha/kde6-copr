@@ -1,9 +1,9 @@
-%global commit0 c1d249d33bd621dfd212ede0e1b54d73b8a645bd
+%global commit0 f89feedd877995f6446b8cd605fd14e0179ef30e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 16
+%global bumpver 1
 
 Name:           koko
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPLv2+ and GPLv3 and LGPLv2 and LGPLv2+ and CC0 and BSD
 Summary:        An Image gallery application

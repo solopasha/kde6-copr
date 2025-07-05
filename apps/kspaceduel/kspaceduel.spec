@@ -1,10 +1,10 @@
-%global commit0 1aba04288f8cacd79427dbf2381d21f53ae9ab71
+%global commit0 16a30cff58e9a6b7de4ccaa7cae39c41f093d988
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kspaceduel
 Summary: Space arcade game
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

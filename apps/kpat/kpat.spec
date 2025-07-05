@@ -1,11 +1,11 @@
-%global commit0 ecaa157b85467fa855e8bed0850a1e07a1a23385
+%global commit0 8756841166562b66b23bcbb143d0b6dce180f1d3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 1
 
 
 Name:    kpat
 Summary: A selection of solitaire card games
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

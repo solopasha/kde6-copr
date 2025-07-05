@@ -1,10 +1,10 @@
-%global commit0 727ea7b1cf5d0053be3be0cdb20e8f8454b9d821
+%global commit0 c9fd1593441154a539abd855202b4ff2415633cd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 Name:    libkdegames
 Summary: Common code and data for many KDE games
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # libKF5KDEGames is LGPLv2, libKF5KDEGamesPrivate is GPLv2+

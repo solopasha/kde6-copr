@@ -1,9 +1,9 @@
-%global commit0 4cccf81d8f601e4730314c0429e31262822ae855
+%global commit0 2b1db21a88e5f2da3dd015a86185cf979e30a968
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 Name:           kwave
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Sound Editor for KDE
 

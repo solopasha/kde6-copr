@@ -1,12 +1,12 @@
-%global commit0 4a8b596a8522d405ba021389529fbf99d9007d44
+%global commit0 69ba2148cc25c36dce7510f35208b868d63de2df
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 1
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1895674
 %global _lto_cflags %{nil}
 
 Name:    libkgapi
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Library to access to Google services
 

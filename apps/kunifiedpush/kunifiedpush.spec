@@ -1,9 +1,9 @@
-%global commit0 2f6e9de9e2c0c89a75b1e930ed3b8cf1a87cc4e7
+%global commit0 66e6a0629cca0f3b88c5a24d6a1e2a86e3216896
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 27
+%global bumpver 1
 
 Name:           kunifiedpush
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        UnifiedPush client components
 

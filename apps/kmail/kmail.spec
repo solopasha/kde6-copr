@@ -1,12 +1,12 @@
-%global commit0 ad5d0dab8fd9a29b825db6b7cd26f5edb2c1a496
+%global commit0 627d4690b4ac6de323b8bd1feca9d5b41b581371
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 38
+%global bumpver 1
 
 #global tests 1
 
 Name:    kmail
 Summary: Mail client
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL

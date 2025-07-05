@@ -1,10 +1,10 @@
-%global commit0 0de44a61ce2c0b117412e62a04d29c957ba8e37d
+%global commit0 3172f7fd3786129ba899c425c8784a0b73a813d4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    klines
 Summary: Color lines game
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

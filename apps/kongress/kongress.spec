@@ -1,9 +1,9 @@
-%global commit0 0bc1e1f418e04114c294cc1a498b4e60e7391e89
+%global commit0 f48339a2a785d6054f1f40a5ff8bffe4c580f5d6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 Name:           kongress
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPL-3.0-or-later AND BSD-2-Clause AND CC0-1.0
 Summary:        A companion application for conferences made by KDE

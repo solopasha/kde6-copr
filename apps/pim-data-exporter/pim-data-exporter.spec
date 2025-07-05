@@ -1,12 +1,12 @@
-%global commit0 ac2f1df8d2f142c3e77b17b038b396f69a889c47
+%global commit0 e002a592fe6ba21468fff34d6e85e6b0b450cbb8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 14
+%global bumpver 1
 
 #global tests 1
 
 Name:    pim-data-exporter
 Summary: Pim Data Exporter
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL

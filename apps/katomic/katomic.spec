@@ -1,10 +1,10 @@
-%global commit0 4a2f5cd5bbe975b9c2993b2a5e13b61e2eb56784
+%global commit0 f05ad12dcebca66e1cdc1fca1e840aa8e38265a8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    katomic
 Summary: An educational game built around molecular geometry
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code GPLv2+, docs GFDL

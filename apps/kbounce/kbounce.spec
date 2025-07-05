@@ -1,10 +1,10 @@
-%global commit0 728e9a52985608ebaea5371b2d4b792911eb6276
+%global commit0 ae23366c000f77466f5f1c9ff8be23d5f9d9a2a8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    kbounce
 Summary: Ball bouncing game
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: LGPLv2+ and GFDL

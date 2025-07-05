@@ -1,9 +1,9 @@
-%global commit0 05adbbbd569942d73dd5a55a50c1d3873ff91adf
+%global commit0 b24b6465cec727a1ea7df47106c70c2d7ce02dd0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 1
 
 Name:          arianna
-Version:       25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:       25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:       1%{?dist}
 Summary:       EPub Reader for mobile devices
 # Complete license breakdown can be found in the "LICENSE-BREAKDOWN" file.

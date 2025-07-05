@@ -1,10 +1,10 @@
 %global commit0 55cbf6360b881662d304dc2b2532e775af0adcd8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 Name:           kqtquickcharts
 Summary:        A QtQuick plugin to render beautiful and interactive charts
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        LGPL-2.1-only

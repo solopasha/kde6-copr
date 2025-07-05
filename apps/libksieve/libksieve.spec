@@ -1,9 +1,9 @@
-%global commit0 4e839664f05310f1f0e3569306974ef02fe24f89
+%global commit0 20a285afb805a5c6f6531367f0b5405c612f6b68
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 20
+%global bumpver 1
 
 Name:    libksieve
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Sieve support library
 

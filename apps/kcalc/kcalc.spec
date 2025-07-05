@@ -1,10 +1,10 @@
-%global commit0 11748ab4a51debdc5738625da783a4710b61f293
+%global commit0 2b3d7cb43e791b5304775a37c89883a1d3698435
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 1
 
 Name:           kcalc
 Summary:        Scientific Calculator
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later

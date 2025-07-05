@@ -1,10 +1,10 @@
-%global commit0 cd4ee7ce8b1850e321deb7108b537eecdc6f2f6d
+%global commit0 beb436e0b63df767371449c198c73acce0e6da0e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 Name:           ktouch
 Summary:        Touch Typing Tutor
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later

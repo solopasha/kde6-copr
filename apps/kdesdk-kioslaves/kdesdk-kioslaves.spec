@@ -1,4 +1,4 @@
-%global commit0 598b601a50625b2701a2d2ce5687c7896b9060a3
+%global commit0 a034f42d1bd923347765ee68a0e3567d87e9e2a1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:           kdesdk-kioslaves
 Summary:        KIO workers useful for software development
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPLv2 and GPLv2+

@@ -1,10 +1,10 @@
-%global commit0 5bc29e74312cc46e675dcc229f6089ea4b56d472
+%global commit0 8ef31b6a184a55a01fb2c58bdd886f046d38d23f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    kgoldrunner
 Summary: A game of action and puzzle solving
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

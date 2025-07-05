@@ -1,10 +1,10 @@
-%global commit0 05d549f2f6a4169973c200743aae65ee8e62b0a7
+%global commit0 38462498f01e674538ec5272fd63e9ce96b96a8b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 Name:    ksudoku
 Summary: A logic-based symbol placement puzzle
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

@@ -1,9 +1,9 @@
-%global commit0 996e88b3fec28c8149ec84e092ccfc2bf3b75137
+%global commit0 39bc1fec9b489e9c87239dc9ef096c25bcb53295
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 13
+%global bumpver 1
 
 Name:    mailimporter
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Mail importer library
 

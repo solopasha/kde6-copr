@@ -1,10 +1,10 @@
-%global commit0 6239ce3fd7b7100d4d2675bb5d38108b53b61ca5
+%global commit0 9ecfd633a85b04f43a996cfd5042aae7e44fe9b5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    bomber
 Summary: Arcade bombing game
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code LGPLv2+, docs GFDL

@@ -1,11 +1,11 @@
-%global commit0 67cd0dd2c37a430da8b60e828c2ecc00a320951d
+%global commit0 ea2d56385a5f2b3573c1ccc74340fc0813f7e40c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 15
+%global bumpver 1
 
 Name:    gwenview
 Summary: An image viewer
 Epoch:   1
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # app: GPLv2+

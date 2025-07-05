@@ -1,9 +1,9 @@
-%global commit0 7a396635e38c82cc1b2c9f7c97a1454bce12d4ce
+%global commit0 62832fac30e2bb19ef1174001777ad65f40f50c0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 10
+%global bumpver 1
 
 Name:           kweather
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPLv2+
 Summary:        Convergent KDE weather application

@@ -1,10 +1,10 @@
-%global commit0 424875e65556322bf86e7624a0404ecf36f9d386
+%global commit0 d33e808adc602bad885e6b6172a6fae9648889ed
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kamera
 Summary: Digital camera support for KDE 
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2

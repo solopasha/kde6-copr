@@ -1,10 +1,10 @@
-%global commit0 da5821ab9db79572846c879c6ee752349b349e08
+%global commit0 f0a10ab114d057ae864694cbd4f69505b9abe451
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 1
 
 Name:           dragon
 Summary:        Media player
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        (GPL-2.0-only OR GPL-3.0-only) AND LGPL-3.0-or-later
 URL:            https://apps.kde.org/dragonplayer/

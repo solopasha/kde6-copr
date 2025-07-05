@@ -1,10 +1,10 @@
-%global commit0 206df1566318184feaf35290f98efb4c6a08395d
+%global commit0 e851c4606828f89d5606a54e98bf8238d7f93870
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 Name:    keditbookmarks
 Summary: Bookmark organizer and editor
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # Documentation is GFDL, rest GPLv2 and GPLv3 (note: NOT any later version)

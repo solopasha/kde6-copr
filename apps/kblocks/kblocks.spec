@@ -1,10 +1,10 @@
-%global commit0 e9b6080ae0fae32005eedd1f15f9186f475e146e
+%global commit0 6cc7bb309e12121597d86cd748b5c7af172e4f2c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    kblocks
 Summary: A classic falling blocks game
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

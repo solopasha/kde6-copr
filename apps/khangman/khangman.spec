@@ -1,10 +1,10 @@
-%global commit0 f297ea4108788fc5d31c212b2084fc11ccb221d5
+%global commit0 65cb09b8fc73651dc76f2fa2e0349ae5b77a61bf
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 Name:    khangman
 Summary: Hangman game
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+

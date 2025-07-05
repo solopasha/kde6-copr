@@ -1,10 +1,10 @@
-%global commit0 2ef703c0ff188a488bfbaa08d1a4f0e714efb0b4
+%global commit0 8b46ee83553ee30484a183d575337d10e71b21c3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    parley
 Summary: Vocabulary Trainer
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+

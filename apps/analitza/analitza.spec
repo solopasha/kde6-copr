@@ -1,10 +1,10 @@
-%global commit0 d15c0f8e632b9126922e92a6d5cb561c6c5d74c7
+%global commit0 4fd77d167102d379b3741cea894fc5ca048e2f4d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    analitza
 Summary: Library of mathematical features
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+

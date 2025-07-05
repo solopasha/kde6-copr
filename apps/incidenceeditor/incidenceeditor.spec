@@ -1,9 +1,9 @@
-%global commit0 34ea81a0bef536438a1c0f4deab6f3ce8d368fc1
+%global commit0 ad9c2e4dc4d4883e7c3313bb4148a01e1041a0ff
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 31
+%global bumpver 1
 
 Name:    incidenceeditor
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: KDE PIM library for creating and editing calendar incidences
 

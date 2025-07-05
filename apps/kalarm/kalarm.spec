@@ -1,12 +1,12 @@
-%global commit0 afac43cb6260c42203bf166db1499e4683eeda2b
+%global commit0 f488b5e0b035ac780f0f89cf7eaedeee81e01db2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 12
+%global bumpver 1
 
 #global tests 1
 
 Name:    kalarm
 Summary: Personal Alarm Scheduler
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later

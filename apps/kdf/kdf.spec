@@ -1,10 +1,10 @@
-%global commit0 dafca1907a4e90483d244089df2cae3bbf4e5f81
+%global commit0 bcf589586c35bdd520aadd8a2ad81435d4bfe98d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 1
 
 Name:    kdf
 Summary: View disk usage
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later

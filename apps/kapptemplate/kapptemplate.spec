@@ -1,10 +1,10 @@
-%global commit0 48f568d3936ae8132716be9d7ec356c367c65234
+%global commit0 dac09ca3a1185c7809a5c92019bc6f07fe440227
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 1
 
 Name:    kapptemplate
 Summary: KDE Template generator
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+

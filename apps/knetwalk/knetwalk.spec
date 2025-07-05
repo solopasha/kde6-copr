@@ -1,11 +1,11 @@
-%global commit0 e15fb0ef503c04ded327d3b4449e093bccd419de
+%global commit0 0f641608fe9d03140a8f8f6aceb2789ef2fe370e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 
 Name:    knetwalk
 Summary: Network construction game
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

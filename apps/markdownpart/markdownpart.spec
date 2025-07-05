@@ -1,12 +1,12 @@
-%global commit0 bd69315ff8efe8986e1b466098c6d56966cd65e1
+%global commit0 4d0c4284c05b896cb98f059120cc371efaa6f83a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 %global app_id  org.kde.markdownpart
 
 Name:           markdownpart
 Summary:        Markdown KPart
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        LGPL-2.1-or-later
 URL:            https://apps.kde.org/categories/utilities/

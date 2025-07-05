@@ -1,9 +1,9 @@
-%global commit0 e3cfaaad8aab14a75c0705da7f6fa44326b9e784
+%global commit0 bcf7affced4c0f7dd561dfe7d4f54ce992b2adff
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 23
+%global bumpver 1
 
 Name:           ktrip
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPLv2+
 Summary:        Public transport navigation, allows you to find journeys between specified locations, departures for a specific station and shows real-time delay and disruption information

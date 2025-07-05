@@ -1,6 +1,6 @@
-%global commit0 b5c32299e081f6c01adfecdf8dc175a4cd3c8fd5
+%global commit0 a22d29340be48f5125acde9963ee1d6fac7af58a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 11
+%global bumpver 1
 
 %if 0%{?fedora}
 %global p7zip 1
@@ -8,7 +8,7 @@
 
 Name:           ark
 Summary:        Archive manager
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later AND BSD-2-Clause

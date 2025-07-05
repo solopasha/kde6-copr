@@ -1,10 +1,10 @@
-%global commit0 a0a5477ee7226836796d9192595154c799df0788
+%global commit0 5e69ac9f215f05a06161dfd77b1a8059844c740a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 1
 
 Name:    kmahjongg
 Summary: A tile matching game
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

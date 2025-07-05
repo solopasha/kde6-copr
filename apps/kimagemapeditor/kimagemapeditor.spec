@@ -1,10 +1,10 @@
-%global commit0 10537608239620fc237c344f72705335eb54a338
+%global commit0 b164d2d044c3850da607812f917ada7336cfae31
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:           kimagemapeditor
 Summary:        HTML Image Map Editor
-Version:        25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later

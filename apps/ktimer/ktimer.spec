@@ -1,10 +1,10 @@
-%global commit0 224e3e34d70b832e301203f502ea82e308451203
+%global commit0 b92791e611e7c2ad2b9233d32be7e0a314c551f9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 Name:    ktimer
 Summary: Task Scheduler
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later

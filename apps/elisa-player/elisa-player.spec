@@ -1,11 +1,11 @@
-%global commit0 013f4147361bbc83bc4a16186adc563ca90683d7
+%global commit0 6fa600d974e5b19919ab29d4f86336eb73f725ac
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 14
+%global bumpver 1
 
 %global base_name elisa
 
 Name:       elisa-player
-Version:    25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:    25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:    1%{?dist}
 Summary:    Elisa music player
 

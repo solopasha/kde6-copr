@@ -1,12 +1,12 @@
-%global commit0 f39ca54fdb4da05c1bfadfc3980190ed9c04db51
+%global commit0 af76758dceea12bb5f1c1b40bd27f19c249e26d9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 15
+%global bumpver 1
 
 #global tests 1
 
 Name:    kontact
 Summary: Personal Information Manager
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL

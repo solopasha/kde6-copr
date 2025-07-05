@@ -1,10 +1,10 @@
-%global commit0 3407496808d5a2965f817dbac10b2b418203cc60
+%global commit0 629a9b4aecbd8e56a8870b29b21c6e7ddc10de48
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 Name:    kcron
 Summary: Cron KDE configuration module
-Version: 25.07.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+
