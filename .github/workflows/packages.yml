@@ -1767,6 +1767,27 @@ jobs:
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
 
+  knighttime:
+    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/knighttime.spec') }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kdbusaddons
+      - kf6-kholidays
+      - kf6-ki18n
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook: ${{ secrets.copr_webhook }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./plasma/knighttime/knighttime.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+
   kpipewire:
     if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kpipewire.spec') }}
     uses: ./.github/workflows/reusable-build-rpm.yml
