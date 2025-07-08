@@ -16,6 +16,7 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  systemd-rpm-macros
 
 BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
