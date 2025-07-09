@@ -102,6 +102,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 %{_kf6_datadir}/qlogging-categories6/kdeplasma-addons.categories
 %{_kf6_datadir}/qlogging-categories6/kdeplasma-addons.renamecategories
 %{_kf6_libdir}/libplasmapotdprovidercore.so.2{,.*}
+%{_kf6_libdir}/libweatherdata.so
 %{_kf6_libdir}/qt6/qml/org/kde/plasmacalendar/astronomicaleventsconfig/*
 %{_kf6_libexecdir}/kauth/kameleonhelper
 %{_kf6_metainfodir}/*.appdata.xml
