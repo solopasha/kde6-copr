@@ -195,7 +195,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.ok
 %{_kf6_libdir}/libOkular6Core.so
 
 %files libs
-%{_kf6_libdir}/libOkular6Core.so.3{,.*}
+%{_kf6_libdir}/libOkular6Core.so.4{,.*}
 
 %files part -f okular-part.lang
 %if 0%{?fedora}
