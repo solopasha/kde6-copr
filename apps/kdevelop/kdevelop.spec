@@ -1,6 +1,6 @@
-%global commit0 fdf91f7fa8f45c49fd327e2010f34a12e915653c
+%global commit0 6535d9e00d7b7cace5eb53e9e996ab9364df05ed
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 %global __requires_exclude ^/usr/bin/zsh$
 
