@@ -452,7 +452,6 @@ fi
 %{_kf6_datadir}/plasma/look-and-feel/org.kde.breezetwilight.desktop/
 %{_kf6_datadir}/plasma/plasmoids/
 %{_kf6_datadir}/plasma/wallpapers/
-%{_kf6_datadir}/plasma/weather/noaa_station_list.xml
 %{_kf6_datadir}/plasma5support/services/*.operations
 %{_kf6_datadir}/polkit-1/actions/org.kde.fontinst.policy
 %{_kf6_datadir}/qlogging-categories6/*.categories
@@ -512,7 +511,6 @@ fi
 %{_kf6_libdir}/libkrdb.so
 %{_kf6_libdir}/libnotificationmanager.*
 %{_kf6_libdir}/libtaskmanager.so.*
-%{_kf6_libdir}/libweather_ion.so.*
 %{_kf6_plugindir}/kded/*.so
 %{_kf6_plugindir}/kio/*.so
 %{_kf6_plugindir}/krunner/*
@@ -533,7 +531,6 @@ fi
 %{_includedir}/krdb/
 %{_includedir}/kworkspace6/
 %{_includedir}/notificationmanager/
-%{_includedir}/plasma5support/
 %{_includedir}/taskmanager/
 %{_kf6_datadir}/dbus-1/interfaces/*.xml
 %{_kf6_libdir}/cmake/KRunnerAppDBusInterface/
@@ -547,7 +544,6 @@ fi
 %{_kf6_libdir}/libklipper.so
 %{_kf6_libdir}/libkworkspace6.so
 %{_kf6_libdir}/libtaskmanager.so
-%{_kf6_libdir}/libweather_ion.so
 
 %files -n sddm-wayland-plasma
 %{_prefix}/lib/sddm/sddm.conf.d/plasma-wayland.conf
