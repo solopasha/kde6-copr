@@ -1,6 +1,6 @@
 %global commit0 c146abdd3e0274282801e23fb210bd69f54570c3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 20
+%global bumpver 21
 
 %global base_name discover
 # enable snap support (or not)
@@ -178,6 +178,13 @@ Supplements:    ((%{name} and rpm-ostree) unless dnf)
 Plasma Discover backend for rpm-ostree support in %{name}.
 %endif
 
+%package        kns
+Summary:        Plasma Discover KNewStuff support
+Requires:       %{name} = %{version}-%{release}
+Supplements:    (%{name} and plasma-workspace%{?_isa})
+%description    kns
+%{summary}.
+
 %install
 %cmake_install
 
@@ -228,7 +235,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %if 0%{?fwupd}
 %{_kf6_qtplugindir}/discover/fwupd-backend.so
 %endif
-%{_kf6_qtplugindir}/discover/kns-backend.so
 %dir %{_kf6_datadir}/libdiscover
 %dir %{_kf6_datadir}/libdiscover/categories
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_updates.so
@@ -269,6 +275,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_qtplugindir}/discover-notifier/rpm-ostree-notifier.so
 %{_kf6_qtplugindir}/discover/rpm-ostree-backend.so
 %endif
+
+%files kns
+%{_kf6_qtplugindir}/discover/kns-backend.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}
