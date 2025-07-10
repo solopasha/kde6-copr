@@ -22,6 +22,7 @@ BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6GuiAddons)
+BuildRequires:  cmake(KF6Holidays)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IdleTime)
 BuildRequires:  cmake(KF6KIO)
@@ -29,6 +30,7 @@ BuildRequires:  cmake(KF6NetworkManagerQt)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6Solid)
+BuildRequires:  cmake(KF6UnitConversion)
 
 BuildRequires:  cmake(KSysGuard)
 BuildRequires:  cmake(Plasma)
@@ -66,6 +68,8 @@ Provides:       kf6-plasma5support-devel = 1:%{version}-%{release}
 %files -f %{name}.lang
 %doc README.md
 %license LICENSES/*.txt
+%dir %{_kf6_datadir}/plasma/weather_legacy
+%{_kf6_datadir}/plasma/weather_legacy/noaa_station_list.xml
 %{_kf6_datadir}/plasma5support/
 %{_kf6_datadir}/qlogging-categories6/plasma5support.categories
 %{_kf6_datadir}/qlogging-categories6/plasma5support.renamecategories
@@ -73,15 +77,17 @@ Provides:       kf6-plasma5support-devel = 1:%{version}-%{release}
 %{_kf6_libdir}/libplasma-geolocation-interface.so.6
 %{_kf6_libdir}/libPlasma5Support.so.%{version_no_git}
 %{_kf6_libdir}/libPlasma5Support.so.6
+%{_kf6_libdir}/libweather_ion.so.7{,.*}
 %{_kf6_qtplugindir}/plasma5support/
 %{_qt6_qmldir}/org/kde/plasma/plasma5support/
 
 %files devel
 %{_includedir}/plasma/
-%{_includedir}/Plasma5Support/
+%{_includedir}/[Pp]lasma5[Ss]upport/
 %{_kf6_libdir}/cmake/Plasma5Support/
 %{_kf6_libdir}/libplasma-geolocation-interface.so
 %{_kf6_libdir}/libPlasma5Support.so
+%{_kf6_libdir}/libweather_ion.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}
