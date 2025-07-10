@@ -1,6 +1,6 @@
-%global commit0 e474bb5c40dd896800952dc27bb57e605ac43290
+%global commit0 ef8c4e77e0cf712dd2e1cd0a8d60dbc7adc36e34
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:    kirigami-gallery
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
