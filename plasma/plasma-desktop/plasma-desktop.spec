@@ -1,6 +1,6 @@
-%global commit0 15ce3505b0de5dcd600c2f56837a502cb1ba31b8
+%global commit0 c0d12c52198a660629dcd194f85ad750196fdd68
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 43
+%global bumpver 44
 
 Name:           plasma-desktop
 Summary:        Plasma Desktop shell
@@ -15,6 +15,8 @@ BuildOption(prep): -a20
 # breeze fedora sddm theme components
 # includes f40-based preview (better than breeze or nothing at least)
 Source20:       https://src.fedoraproject.org/lookaside/pkgs/plasma-workspace/breeze-fedora-0.3.tar.gz/sha512/8a3cafb61c5dc8944b71c8c8036e034d178a9384e0ca3b86847ad0caa91962b0f50e6615348cd32e116fe28a6befa5492dc5cc1c4ef0120617a1fbbf69ee0200/breeze-fedora-0.3.tar.gz
+
+Patch:          fix.diff
 
 ## downstream patches
 # default kickoff/kicker favorites: +kwrite +konsole
@@ -68,7 +70,6 @@ BuildRequires:  cmake(KRunnerAppDBusInterface)
 BuildRequires:  cmake(KSMServerDBusInterface)
 BuildRequires:  cmake(KSysGuard)
 BuildRequires:  cmake(KWinDBusInterface)
-BuildRequires:  cmake(LibColorCorrect)
 BuildRequires:  cmake(LibKWorkspace)
 BuildRequires:  cmake(LibNotificationManager)
 BuildRequires:  cmake(LibTaskManager)
