@@ -1,6 +1,6 @@
-%global commit0 5b7abb00a3cbbf4084683c9a2070970d0897a39a
+%global commit0 946e0b075ebbdff3ea27617073988390ea608444
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 51
+%global bumpver 52
 
 Name:           kwin
 Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -51,6 +51,7 @@ BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(KDecoration3)
 BuildRequires:  cmake(KGlobalAccelD)
+BuildRequires:  cmake(KNightTime)
 BuildRequires:  cmake(KScreenLocker)
 BuildRequires:  cmake(KWayland)
 BuildRequires:  cmake(Plasma)

@@ -1,6 +1,6 @@
-%global commit0 e5579ad0f0f1610afdb4a6248a8ab3a8479da752
+%global commit0 cf3e432c650bf530d58e7ac974812c659db0132d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 47
+%global bumpver 48
 
 %bcond x11 1
 
@@ -94,6 +94,7 @@ BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(Breeze)
 BuildRequires:  cmake(KF6Screen)
+BuildRequires:  cmake(KNightTime)
 BuildRequires:  cmake(KScreenLocker)
 BuildRequires:  cmake(KSysGuard)
 BuildRequires:  cmake(KWayland)
@@ -504,7 +505,6 @@ fi
 %{_kf6_libdir}/kconf_update_bin/plasmashell-6.0-keep-custom-position-of-panels
 %{_kf6_libdir}/kconf_update_bin/plasmashell-6.0-keep-default-floating-setting-for-plasma-5-panels
 %{_kf6_libdir}/libbatterycontrol.so.*
-%{_kf6_libdir}/libcolorcorrect.so.*
 %{_kf6_libdir}/libkfontinst*
 %{_kf6_libdir}/libklipper.so.*
 %{_kf6_libdir}/libkmpris.so.*
@@ -527,7 +527,6 @@ fi
 %{_kf6_qtplugindir}/plasmacalendarplugins/
 
 %files devel
-%{_includedir}/colorcorrect/
 %{_includedir}/krdb/
 %{_includedir}/kworkspace6/
 %{_includedir}/notificationmanager/
@@ -535,12 +534,10 @@ fi
 %{_kf6_datadir}/dbus-1/interfaces/*.xml
 %{_kf6_libdir}/cmake/KRunnerAppDBusInterface/
 %{_kf6_libdir}/cmake/KSMServerDBusInterface/
-%{_kf6_libdir}/cmake/LibColorCorrect/
 %{_kf6_libdir}/cmake/LibKWorkspace/
 %{_kf6_libdir}/cmake/LibNotificationManager/
 %{_kf6_libdir}/cmake/LibTaskManager/
 %{_kf6_libdir}/libbatterycontrol.so
-%{_kf6_libdir}/libcolorcorrect.so
 %{_kf6_libdir}/libklipper.so
 %{_kf6_libdir}/libkworkspace6.so
 %{_kf6_libdir}/libtaskmanager.so
