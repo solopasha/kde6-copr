@@ -44,6 +44,7 @@ Requires:   %{name}%{?_isa} = %{version}-%{release}
 
 %files
 %license LICENSES/GPL-2.0-or-later.txt
+%{_kf6_datadir}/qlogging-categories6/qmobipocket.categories
 %{_kf6_libdir}/libQMobipocket6.so.3*
 
 %files devel
