@@ -1,6 +1,6 @@
-%global commit0 e9a515375f30b0201b1c74f0d198546c8b4dc145
+%global commit0 fdf5065a0b91dd595f675aa423181adb7afaf1d7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           telly-skout
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

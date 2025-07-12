@@ -1,6 +1,6 @@
-%global commit0 153b1e27c0ec813f07807fa5d6cf866dfcad0c42
+%global commit0 ec7ec7c889dd6c73ae9dfd35213bb2fc08a92a31
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 %global base_name kdeconnect-kde
 
@@ -28,7 +28,6 @@ BuildRequires:  cmake(KF6PulseAudioQt)
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6ColorScheme)
-BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6GuiAddons)

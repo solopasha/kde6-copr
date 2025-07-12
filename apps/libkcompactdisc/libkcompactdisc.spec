@@ -1,6 +1,6 @@
-%global commit0 0aef05747948078a1ac649cef41cc7b62d7ceb05
+%global commit0 0d6df2b1a8d38f858d4a9044a728e2f9cac40cb9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    libkcompactdisc
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
