@@ -1,6 +1,6 @@
-%global commit0 a4c8b17520e1e1afaf478585ef3ae8ccd444c9b2
+%global commit0 9d8f036b71fa1419fa4843e201ef76b5c86b7135
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    kio-extras
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -32,7 +32,6 @@ BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Solid)
 BuildRequires:  cmake(KF6SyntaxHighlighting)
-BuildRequires:  cmake(KF6TextWidgets)
 
 BuildRequires:  cmake(Qt6)
 BuildRequires:  cmake(Qt6Core5Compat)
