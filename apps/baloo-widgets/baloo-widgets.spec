@@ -1,6 +1,6 @@
-%global commit0 ce8972dc2a178c85083bbe689770d7744f6bc78b
+%global commit0 2e4609d78a8dc5c2fc905420c16dc84e6ec2a65f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    baloo-widgets
 Summary: Widgets for Baloo

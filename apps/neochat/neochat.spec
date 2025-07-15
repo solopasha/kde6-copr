@@ -1,6 +1,6 @@
-%global commit0 3a25a6235037ca7fd00e96deb84845d78f7ccd5a
+%global commit0 10123abc5bc2ddaa6d4d65613721873fff5ff749
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 %global libquotient_commit 5479426c962705fe4f8913ee9e214598cee1d17f
 %global libquotient_shortcommit %(c=%{libquotient_commit}; echo ${c:0:7})
