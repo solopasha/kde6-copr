@@ -1,6 +1,6 @@
-%global commit0 b601b89e9c950f99fa0db2def272ec134e5c21ca
+%global commit0 54955cc339db1b5de1a0a3c5ea8e3741bdfb4f98
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 5
+%global bumpver 6
 
 Name:    kitinerary
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
