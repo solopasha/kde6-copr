@@ -1,6 +1,6 @@
-%global commit0 7f2e605ed3b29086cafdb9d01f1220e4fff8afde
+%global commit0 6e509a4c63e339f271ec5014015b68883822c15c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 10
+%global bumpver 11
 
 %global _lto_cflags %{nil}
 

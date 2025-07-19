@@ -1,6 +1,6 @@
-%global commit0 b92791e611e7c2ad2b9233d32be7e0a314c551f9
+%global commit0 86960e30aa42e0b9361321e34ba99dea89ef37e2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    ktimer
 Summary: Task Scheduler
