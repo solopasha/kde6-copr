@@ -172,11 +172,9 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_qtplugindir}/dolphinpart/kpartplugins/dirfilterplugin.so
 %{_kf6_qtplugindir}/dolphinpart/kpartplugins/kimgallery.so
 %{_kf6_qtplugindir}/dolphinpart/kpartplugins/konq_shellcmdplugin.so
-%{_kf6_qtplugindir}/khtml/kpartplugins/
 %{_kf6_qtplugindir}/konqueror_kcms/
 %{_kf6_qtplugindir}/konqueror/kpartplugins/
 %{_kf6_qtplugindir}/konqueror/sidebar/
-%{_kf6_qtplugindir}/kwebkitpart/kpartplugins/
 %{_kf6_qtplugindir}/webenginepart/kpartplugins/*
 
 %files devel
