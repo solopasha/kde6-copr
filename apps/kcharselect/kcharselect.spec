@@ -1,6 +1,6 @@
-%global commit0 01d20d1749a5e0c7898f11273bf6ff43b17fea5d
+%global commit0 51d483c6945f1f6c50b39c4e062cd47efce9dfe1
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kcharselect
 Summary: Character selector
@@ -17,6 +17,7 @@ BuildRequires: kf6-rpm-macros
 BuildRequires: libappstream-glib
 
 BuildRequires: cmake(KF6Bookmarks)
+BuildRequires: cmake(KF6ConfigWidgets)
 BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DocTools)

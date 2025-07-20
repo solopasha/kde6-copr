@@ -1,6 +1,6 @@
-%global commit0 99142a62e2d0e322adc6cac723bfb3e8e5517f42
+%global commit0 1b11b2e3f51bbaea5fa10f3103006669a7b29145
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           krdc
 Summary:        Remote desktop client
@@ -22,6 +22,7 @@ BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DNSSD)
 BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KCMUtils)
