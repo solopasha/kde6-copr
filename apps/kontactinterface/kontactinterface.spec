@@ -1,6 +1,6 @@
-%global commit0 bbbf2fd8a9bf96a4a08d639a87f7bf3976ffd05a
+%global commit0 f0094b1c770008e719018c4c5eb3d084ff11abcf
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 3
 
 Name:    kontactinterface
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

@@ -1,6 +1,6 @@
 %global commit0 88ef75752d5fba21e2ea3ebc8363d893f2b03ee9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           khealthcertificate
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
