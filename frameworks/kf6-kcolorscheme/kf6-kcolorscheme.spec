@@ -1,6 +1,6 @@
-%global commit0 20c346fbcd55db7e65c35c85dde5122967e76542
+%global commit0 db2e266c98815eb91483ec598b3e05d69953181d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global framework kcolorscheme
 

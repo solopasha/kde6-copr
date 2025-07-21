@@ -1,6 +1,6 @@
-%global commit0 676feb46881eadc978f3785e31e8808fecf46573
+%global commit0 aeb4fdf932168a22c65016c3d397841bd596726b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 15
+%global bumpver 16
 
 %global framework kirigami
 
@@ -64,6 +64,8 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKirigamiPrimitives.so.6
 %{_kf6_libdir}/libKirigamiPrivate.so.%{version_no_git}
 %{_kf6_libdir}/libKirigamiPrivate.so.6
+%{_kf6_libdir}/libKirigamiTemplates.so.%{version_no_git}
+%{_kf6_libdir}/libKirigamiTemplates.so.6
 %{_kf6_qmldir}/org/kde/kirigami/
 
 %files devel
@@ -81,6 +83,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKirigamiPolyfill.so
 %{_kf6_libdir}/libKirigamiPrimitives.so
 %{_kf6_libdir}/libKirigamiPrivate.so
+%{_kf6_libdir}/libKirigamiTemplates.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}
