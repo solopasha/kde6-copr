@@ -1,6 +1,6 @@
-%global commit0 f0a10ab114d057ae864694cbd4f69505b9abe451
+%global commit0 38ee26a0057ae75d02a6fd5af00eb09b936ffd8a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           dragon
 Summary:        Media player
