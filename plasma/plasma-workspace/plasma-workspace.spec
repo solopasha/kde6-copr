@@ -418,6 +418,7 @@ fi
 %{_kf6_datadir}/applications/org.kde.kfontview.desktop
 %{_kf6_datadir}/applications/org.kde.klipper.desktop
 %{_kf6_datadir}/applications/org.kde.plasma-fallback-session-save.desktop
+%{_kf6_datadir}/applications/org.kde.plasma-interactiveconsole.desktop
 %{_kf6_datadir}/applications/org.kde.plasmashell.desktop
 %{_kf6_datadir}/applications/org.kde.plasmawindowed.desktop
 %{_kf6_datadir}/config.kcfg/*
