@@ -12,15 +12,9 @@ jobs:
       pull-requests: write
       contents: write
     container:
-      image: 'registry.fedoraproject.org/fedora-minimal:latest'
+      image: ghcr.io/solopasha/kde6-copr/buildroot:latest
 
     steps:
-      - name: Prepare
-        run: |
-          curl -Ss -L https://copr.fedorainfracloud.org/coprs/solopasha/playground/repo/fedora-42/solopasha-playground-fedora-42.repo > /etc/yum.repos.d/playground.repo
-          dnf -y install --nodocs --setopt=install_weak_deps=0 \
-            git-core curl perl-interpreter jq parallel luajit gh fd-find
-
       - name: Checkout
         uses: actions/checkout@v4
         with:
