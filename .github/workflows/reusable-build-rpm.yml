@@ -127,6 +127,8 @@ jobs:
           config_opts['cleanup_on_failure'] = False
           config_opts['plugin_conf']['root_cache_enable'] = False
 
+          config_opts['macros']['%vendor'] = 'solopasha'
+
           config_opts['chroot_additional_packages'] = '${{ inputs.additional_packages }}'
           EOF
 
