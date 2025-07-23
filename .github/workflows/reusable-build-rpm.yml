@@ -19,9 +19,6 @@ on:
         required: false
         default: true
         type: boolean
-      golang_vendor:
-        required: false
-        type: boolean
       abidiff:
         required: false
         default: true
@@ -46,9 +43,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-    container:
-      image: ghcr.io/solopasha/kde6-copr/buildroot:latest
-      options: --cap-add SYS_ADMIN --device /dev/fuse --security-opt apparmor:unconfined --volume /:/run/host:rw
     outputs:
       pkgname: ${{ steps.pkgname.outputs.pkgname }}
       copr_build_id: ${{ steps.copr.outputs.buildid }}
@@ -57,21 +51,30 @@ jobs:
       repository: ${{ github.repository }}
 
     steps:
-      - name: Reclaim disk space
+      - name: Free up disk space
         if: inputs.reclaim
         run: |
-          rm -rf \
-            /run/host/opt/ghc \
-            /run/host/opt/hostedtoolcache \
-            /run/host/usr/lib/google-cloud-sdk \
-            /run/host/usr/lib/jvm \
-            /run/host/usr/local/.ghcup \
-            /run/host/usr/local/lib/android \
-            /run/host/usr/local/share/boost \
-            /run/host/usr/local/share/powershell \
-            /run/host/usr/share/dotnet \
-            /run/host/usr/share/swift \
-            /run/host/var/lib/apt/lists/* || :
+          sudo rm -rf /opt/ghc /usr/local/.ghcup || true
+          sudo rm -rf /opt/hostedtoolcache
+          sudo rm -rf /usr/share/gradle-*
+          sudo rm -rf /usr/local/julia* /usr/share/java /usr/share/kotlinc
+          sudo rm -rf /opt/az /opt/microsoft /opt/pipx
+          sudo rm -rf /usr/share/miniconda /home/runner/.rustup /home/packer/.rustup /home/runneradmin/.rustup
+          sudo rm -rf /etc/skel/.rustup /opt/google-cloud-sdk
+          sudo rm -rf /usr/share/az_* /opt/google /usr/lib/firefox /usr/local/aws-*
+          sudo rm -rf /usr/libexec/gcc /opt/actionarchivecache
+          sudo rm -rf /var/lib/mysql /usr/local/n
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /usr/share/dotnet /usr/share/swift
+          sudo rm -rf /usr/local/share/boost /usr/local/share/powershell
+          sudo rm -rf /usr/lib/google-cloud-sdk /usr/lib/jvm
+          sudo rm -rf /usr/local/graalvm /usr/local/share/chromium
+          sudo rm -rf /usr/local/lib/node_modules
+          sudo rm -rf /usr/lib/dotnet /usr/lib/php /usr/share/mysql
+          sudo rm -rf /usr/lib/llvm-*
+          sudo rm -rf /usr/lib/mono
+          sudo apt-get clean || true
+          sudo rm -rf /var/lib/apt/lists/*
 
       - name: Determine target branch
         env:
@@ -94,7 +97,7 @@ jobs:
         id: pkgname
         run: |
           specfile="$(basename "${spec}")"
-          echo "pkgname=${specfile%.*}" >> $GITHUB_OUTPUT
+          echo "pkgname=${specfile%.*}" >> $GITHUB_ENV
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -103,8 +106,6 @@ jobs:
 
       - name: Detect Gear
         id: gear
-        env:
-          pkgname: ${{ steps.pkgname.outputs.pkgname }}
         run: |
           if grep "\"${pkgname}\"" frameworks/kf6/kde_gear.lua; then
             echo "gear=true" >> $GITHUB_OUTPUT
@@ -114,27 +115,8 @@ jobs:
         env:
           gear: ${{ steps.gear.outputs.gear }}
         run: |
-          cat << 'EOF' > /etc/mock/fedora-build.cfg
-          include('/etc/mock/fedora-${{ vars.RELEASEVER }}-x86_64.cfg')
-
-          config_opts['root'] = 'fedora-build'
-          config_opts['resultdir'] = "/var/lib/mock/${{ steps.pkgname.outputs.pkgname }}-resultdir"
-
-          config_opts['nosync'] = True
-          config_opts['nosync_force'] = True
-          config_opts['print_main_output'] = True
-          config_opts['cleanup_on_success'] = False
-          config_opts['cleanup_on_failure'] = False
-          config_opts['plugin_conf']['root_cache_enable'] = False
-
-          config_opts['macros']['%vendor'] = 'solopasha'
-
-          config_opts['chroot_additional_packages'] = '${{ inputs.additional_packages }}'
-          EOF
-
           if [[ "${target_branch}" == "beta" ]]; then
-          cat << 'EOF' >> /etc/mock/fedora-build.cfg
-          config_opts['dnf.conf'] += """
+          cat << 'EOF' >> fedora-build.repo
           [copr:copr.fedorainfracloud.org:solopasha:kde6-beta]
           name=Copr repo for kde6-beta owned by solopasha
           baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/kde6-beta/fedora-$releasever-$basearch/
@@ -156,11 +138,11 @@ jobs:
           repo_gpgcheck=0
           enabled=1
           enabled_metadata=1
-          """
           EOF
+
           else
-          cat << 'EOF' >> /etc/mock/fedora-build.cfg
-          config_opts['dnf.conf'] += """
+
+          cat << 'EOF' >> fedora-build.repo
           [copr:copr.fedorainfracloud.org:solopasha:plasma-unstable]
           name=Copr repo for plasma-unstable owned by solopasha
           baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/fedora-$releasever-$basearch/
@@ -171,6 +153,7 @@ jobs:
           repo_gpgcheck=0
           enabled=1
           enabled_metadata=1
+
           [copr:copr.fedorainfracloud.org:solopasha:plasma-unstable:devel]
           name=Copr repo for plasma-unstable owned by solopasha - devel
           baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/fedora-$releasever-$basearch/devel/
@@ -181,16 +164,14 @@ jobs:
           repo_gpgcheck=0
           enabled=1
           enabled_metadata=1
-          """
           EOF
           fi
 
           if [[ "${gear}" == "true" ]]; then
-          cat << EOF >> /etc/mock/fedora-build.cfg
-          config_opts['dnf.conf'] += """
+          cat << 'EOF' >> fedora-build.repo
           [build]
           name=build
-          baseurl=file://${GITHUB_WORKSPACE}/repo/
+          baseurl=file:///repo/
           skip_if_unavailable=True
           gpgcheck=1
           gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
@@ -201,7 +182,7 @@ jobs:
 
           [copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable]
           name=Copr repo for kde-gear-unstable owned by solopasha
-          baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/kde-gear-unstable/fedora-\$releasever-\$basearch/
+          baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/kde-gear-unstable/fedora-$releasever-$basearch/
           type=rpm-md
           skip_if_unavailable=True
           gpgcheck=1
@@ -212,7 +193,7 @@ jobs:
 
           [copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable:devel]
           name=Copr repo for kde-gear-unstable owned by solopasha - devel
-          baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/kde-gear-unstable/fedora-\$releasever-\$basearch/devel/
+          baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/kde-gear-unstable/fedora-$releasever-$basearch/devel/
           type=rpm-md
           skip_if_unavailable=True
           gpgcheck=1
@@ -220,31 +201,28 @@ jobs:
           repo_gpgcheck=0
           enabled=1
           enabled_metadata=1
-          """
           EOF
           fi
 
-          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-          cat << EOF >> /etc/mock/fedora-build.cfg
-          config_opts['dnf.conf'] += """
-          [pr-build]
-          name=pr-build
-          baseurl=file://${GITHUB_WORKSPACE}/pr-repo/
-          skip_if_unavailable=True
-          gpgcheck=0
-          repo_gpgcheck=0
-          enabled=1
-          enabled_metadata=1
-          priority=96
-          """
+          cat << 'EOF' > dnf.conf
+          [main]
+          max_parallel_downloads=20
+          logfile=/var/log/yum.log
+          retries=20
+          obsoletes=1
+          gpgcheck=1
+          assumeyes=1
+          install_weak_deps=0
+          metadata_expire=0
+          best=1
+          protected_packages=
           EOF
-          fi
 
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-          cat << EOF > /etc/yum.repos.d/pr-build.repo
+          cat << EOF >> fedora-build.repo
           [pr-build]
           name=pr-build
-          baseurl=file://${GITHUB_WORKSPACE}/pr-repo/
+          baseurl=file:///pr-repo/
           skip_if_unavailable=True
           gpgcheck=0
           repo_gpgcheck=0
@@ -264,12 +242,17 @@ jobs:
         run: |
           mapfile -t repo_dependencies < <(jq -r 'del(."changed-files") | keys[]' <<< "$DEPS")
           if [[ "${repo_dependencies[*]}" != "" ]]; then
-            mkdir -p repo
             for dep in "${repo_dependencies[@]}"; do
-              oras pull "ghcr.io/${repository}/${dep}:latest-${target_branch}"
-              mv ./"$dep"-resultdir/*.rpm repo
+              oras pull "ghcr.io/${repository}/${dep}:latest-${target_branch}" -o repo
             done
-            createrepo_c repo
+            docker run --rm \
+              --cap-drop all \
+              --network none \
+              --entrypoint="" \
+              -v "${GITHUB_WORKSPACE}/repo:/work" \
+              -w /work \
+              ghcr.io/solopasha/kde6-copr/buildroot:latest \
+              createrepo_c .
           fi
 
       - name: Fetch build deps (PR)
@@ -280,44 +263,56 @@ jobs:
         run: |
           mapfile -t pr_dependencies < <(jq -r 'del(."changed-files") | to_entries | map(select(.value.result == "success")) | .[].key' <<< "$DEPS")
           if [[ "${pr_dependencies[*]}" != "" ]]; then
-            mkdir -p pr-repo
             for dep in "${pr_dependencies[@]}"; do
-              oras pull "ghcr.io/${repository}/${dep}:pr-${pr_number}" -o pr-${pr_number}
-              mv ./pr-${pr_number}/"$dep"-resultdir/*.rpm pr-repo
+              oras pull "ghcr.io/${repository}/${dep}:pr-${pr_number}" -o pr-repo
             done
-            createrepo_c pr-repo
-          fi
-
-      - name: Install macros
-        env:
-          DEPS: ${{ inputs.deps }}
-        run: |
-          mapfile -t dependencies < <(jq -r 'del(."changed-files") | keys[]' <<< "$DEPS")
-          if [[ "${dependencies[*]}" =~ kf6 ]]; then
-            dnf -y --disablerepo=updates --disablerepo=fedora distro-sync kf6-srpm-macros
+            docker run --rm \
+              --cap-drop all \
+              --network none \
+              --entrypoint="" \
+              -v "${GITHUB_WORKSPACE}/pr-repo:/work" \
+              -w /work \
+              ghcr.io/solopasha/kde6-copr/buildroot:latest \
+              createrepo_c .
           fi
 
       - name: Get arch
         id: arch
         run: |
-          arch="$(rpmspec -q --srpm --qf '%{ARCH}' "${spec}")"
-          echo "arch=${arch}" >> $GITHUB_OUTPUT
+          docker run --rm \
+            --cap-drop all \
+            --network none \
+            --entrypoint="" \
+            -v "${GITHUB_WORKSPACE}/$(dirname "${spec}"):/work:ro" \
+            -w /work \
+            -e pkgname \
+            ghcr.io/solopasha/kde6-copr/buildroot:latest \
+            /bin/bash -c '
+              rpmspec -q --srpm --qf '%{ARCH}' "${pkgname}.spec"
+            ' > arch
+          echo "arch=$(cat arch)" >> $GITHUB_OUTPUT
 
       - name: Get package version
         id: pkgver
         run: |
-          version="$(rpmspec -q --srpm --qf '%{VERSION}' "${spec}")"
-          echo "version=${version}" >> $GITHUB_OUTPUT
-          vr="$(rpmspec -q --srpm --qf '%{VERSION}-%{RELEASE}' "${spec}")"
-          echo "vr=${vr}" >> $GITHUB_OUTPUT
-          container_tag="$(echo "$vr" | sed 's/\^/_post_/;s/\~/_pre_/')"
-          echo "container_tag=${container_tag}" >> $GITHUB_OUTPUT
+          docker run --rm \
+            --cap-drop all \
+            --network none \
+            --entrypoint="" \
+            -v "${GITHUB_WORKSPACE}/$(dirname "${spec}"):/work:ro" \
+            -w /work \
+            -e pkgname \
+            ghcr.io/solopasha/kde6-copr/buildroot:latest \
+            /bin/bash -c '
+              rpmspec -q --srpm --qf '%{VERSION}-%{RELEASE}' "${pkgname}.spec"
+            ' > version_release
+          echo "version_release=$(cat version_release)" >> $GITHUB_ENV
+
+      - name: Get container tag
+        run: |
+          echo "container_tag=$(echo "${version_release}" | sed 's/\^/_post_/;s/\~/_pre_/')" >> $GITHUB_ENV
 
       - name: Check NVR
-        env:
-          pkgname: ${{ steps.pkgname.outputs.pkgname }}
-          version_release: ${{ steps.pkgver.outputs.vr }}
-          container_tag: ${{ steps.pkgver.outputs.container_tag }}
         run: |
           if oras manifest fetch ghcr.io/${repository}/${pkgname}:${container_tag} &> /dev/null; then
             echo "NVR already exists"
@@ -325,13 +320,22 @@ jobs:
           fi
           latest_version="$(oras manifest fetch ghcr.io/${repository}/${pkgname}:latest-${target_branch} | jq -r '.annotations."rpm.version"')"
           if [[ -n "${latest_version}" ]]; then
-            rpmdev-vercmp "${latest_version}" "${version_release}" || ec=$?
-            case $ec in
-                0) ;;
-                11) echo "NVR went backwards"; exit 1 ;;
-                12) ;;
-                *) exit 1
-            esac
+            export latest_version
+            docker run --rm \
+              --cap-drop all \
+              --network none \
+              --entrypoint="" \
+              -e latest_version \
+              -e version_release \
+              ghcr.io/solopasha/kde6-copr/buildroot:latest \
+              /bin/bash -c '
+                rpmdev-vercmp "${latest_version}" "${version_release}" || ec=$?
+                case $ec in
+                    11) echo "NVR went backwards"; exit 1 ;;
+                    12) ;;
+                    *) exit 1
+                esac
+              '
           fi
 
       - name: Download sources
@@ -339,35 +343,86 @@ jobs:
           max_retries: 10
           sleep_seconds: 10
         run: |
-          sourcetar="$(spectool --lf -s0 "${spec}" | xargs -I ,, basename ,,)"
-          if [[ ! "${sourcetar}" =~ \.tar(\..+)?$ ]]; then
-            exit 0
-          fi
+          mkdir "${GITHUB_WORKSPACE}/sources"
+          docker run --rm \
+            --cap-drop all \
+            --entrypoint="" \
+            -v "${GITHUB_WORKSPACE}/$(dirname "${spec}"):/work:ro" \
+            -v "${GITHUB_WORKSPACE}/sources:/sources" \
+            -w /work \
+            -e pkgname \
+            -e max_retries \
+            -e sleep_seconds \
+            ghcr.io/solopasha/kde6-copr/buildroot:latest \
+            /bin/bash -c '
+              sourcetar="$(spectool --lf -s0 "${pkgname}.spec" | xargs -I ,, basename ,,)"
+              if [[ ! "${sourcetar}" =~ \.tar(\..+)?$ ]]; then
+                exit 0
+              fi
 
-          for (( retry_count=0; retry_count<max_retries; retry_count++ )); do
-            spectool -g "${spec}" -C "$(dirname "${spec}")"
+              for (( retry_count=0; retry_count<max_retries; retry_count++ )); do
+                spectool -g "${pkgname}.spec" -C /sources
 
-            if [[ -f "$(dirname "${spec}")/${sourcetar}" ]]; then
-              exit 0
-            fi
+                if [[ -f "/sources/${sourcetar}" ]]; then
+                  exit 0
+                fi
 
-            if [[ $retry_count -lt $((max_retries - 1)) ]]; then
-                echo "Attempt $((retry_count + 1)) failed. Retrying in $sleep_seconds seconds..."
-                sleep $sleep_seconds
-            fi
-          done
+                if [[ $retry_count -lt $((max_retries - 1)) ]]; then
+                    echo "Attempt $((retry_count + 1)) failed. Retrying in $sleep_seconds seconds..."
+                    sleep $sleep_seconds
+                fi
+              done
 
-          echo "Failed after $max_retries attempts"
-          exit 1
+              echo "Failed after $max_retries attempts"
+              exit 1
+            '
+          find sources -type f -exec mv -t "$(dirname "${spec}")" {} +
 
-      - name: Go vendor
-        if: inputs.golang_vendor
-        env:
-          pkgname: ${{ steps.pkgname.outputs.pkgname }}
+      - name: Create buildroot
         run: |
-          dnf install --nodocs -y golang go-vendor-tools
-          pushd "$(dirname "${spec}")"
-          go_vendor_archive create --config ./go-vendor-tools.toml "./${pkgname}.spec"
+            buildah from -q --retry 15 --retry-delay 5s --name build \
+              -v "${GITHUB_WORKSPACE}/fedora-build.repo:/etc/yum.repos.d/fedora-build.repo:ro" \
+              -v "${GITHUB_WORKSPACE}/$(dirname "${spec}"):/work:ro" \
+              -v "${GITHUB_WORKSPACE}/dnf.conf:/etc/dnf/dnf.conf:ro" \
+              -v "${GITHUB_WORKSPACE}/repo:/repo:ro" \
+              -v "${GITHUB_WORKSPACE}/pr-repo:/pr-repo:ro" \
+              registry.fedoraproject.org/fedora:${{ vars.RELEASEVER }}
+            buildah run -e "pkgname=${pkgname}" build /usr/bin/bash <<'EOF'
+            set -e
+            useradd -M -u 1001 builduser
+            mkdir /out && chown builduser:builduser /out
+            mkdir /build && chown builduser:builduser /build
+            dnf -y --disablerepo=updates --disablerepo=fedora install kf6-srpm-macros
+            dnf -y install nosync
+            LD_PRELOAD=/usr/lib64/nosync/nosync.so dnf -y install @buildsys-build 'dnf5-command(builddep)' ${{ inputs.additional_packages }}
+            LD_PRELOAD=/usr/lib64/nosync/nosync.so dnf -y builddep --allowerasing --no-allow-downgrade /work/${pkgname}.spec
+            while [[ "$ec" != "0" ]]; do
+              ec=0
+              setpriv --clear-groups --reuid builduser --regid builduser \
+                --no-new-privs --inh-caps=-all --reset-env -- \
+                rpmbuild -bd ${extra_args} /work/${pkgname}.spec \
+                  --define "_topdir /build" \
+                  --define "_srcrpmdir /out" \
+                  --define "_sourcedir /work" || ec=$?
+              counter=$((counter+1))
+              if [[ "${counter}" -ge "1" ]]; then
+                extra_args="--noprep"
+              fi
+              if [[ "$ec" == "0" ]]; then
+                break
+              elif [[ "$ec" == "11" ]]; then
+                LD_PRELOAD=/usr/lib64/nosync/nosync.so dnf -y builddep --allowerasing --no-allow-downgrade /out/${pkgname}*.buildreqs.nosrc.rpm
+              else
+                exit 1
+              fi
+            done
+            dnf clean all
+            rm -rf /out/* /build/*
+            EOF
+            buildah config --user builduser build
+            buildah commit build docker-daemon:buildcontainer:latest
+            buildah rm build
+            buildah prune --all --force
 
       - name: Wait builds
         if: github.event_name == 'push' && steps.gear.outputs.gear != 'true'
@@ -376,6 +431,9 @@ jobs:
         run: |
           mapfile -t buildids < <(jq -r '.[].outputs.copr_build_id | values' <<< "$DEPS")
           if [[ "${buildids[*]}" != "" ]]; then
+          docker run --rm \
+            --cap-drop all \
+            ghcr.io/solopasha/kde6-copr/buildroot:latest \
             copr watch-build "${buildids[@]}"
           fi
 
@@ -383,7 +441,6 @@ jobs:
         if: github.event_name == 'push' && steps.gear.outputs.gear != 'true'
         id: copr
         env:
-          pkgname: ${{ steps.pkgname.outputs.pkgname }}
           curl_opts: --connect-timeout 10 --retry 7 --retry-connrefused -Ss -X POST
         run: |
           if [[ "${target_branch}" == "unstable" ]]; then
@@ -395,27 +452,57 @@ jobs:
 
       - name: Build
         env:
-          pkgname: ${{ steps.pkgname.outputs.pkgname }}
+          repository_owner: ${{ github.repository_owner }}
         run: |
-          su -c "mock -r fedora-build --spec ${spec} --sources $(dirname "${spec}")" builduser
-          rm /var/lib/mock/"${pkgname}"-resultdir/*.src.rpm
-          mv "/var/lib/mock/${pkgname}-resultdir/" .
+          mkdir "${GITHUB_WORKSPACE}/${pkgname}-resultdir"
+          docker run --rm \
+            --cap-drop all \
+            --network none \
+            --entrypoint="" \
+            -v "${GITHUB_WORKSPACE}/$(dirname "${spec}"):/work:ro" \
+            -v "${GITHUB_WORKSPACE}/${pkgname}-resultdir:/out" \
+            -w /work \
+            -e pkgname \
+            -e repository_owner \
+            buildcontainer:latest \
+            /bin/bash -c '
+              rpmbuild -bs ./${pkgname}.spec \
+                --define "_sourcedir ${PWD}" \
+                --define "_srcrpmdir /out" \
+                --define "_topdir /build"
+              rpmbuild -rb /out/${pkgname}*.src.rpm \
+                --define "_rpmdir /out" \
+                --define "_rpmfilename %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm" \
+                --define "_topdir /build" \
+                --define "dist .fc${{ vars.RELEASEVER }}" \
+                --define "vendor ${repository_owner}"
+            '
+          rm "${GITHUB_WORKSPACE}/${pkgname}-resultdir"/*.src.rpm
 
       - name: Sign
         if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         env:
           GPGKEY: ${{ secrets.gpgkey }}
-          pkgname: ${{ steps.pkgname.outputs.pkgname }}
           repository_owner: ${{ github.repository_owner }}
         run: |
-          echo "${GPGKEY}" | gpg --import
-          rpm -D "%_gpg_name ${repository_owner}" --addsign ./"${pkgname}"-resultdir/*.rpm
+          docker run --rm \
+            --cap-drop all \
+            --network none \
+            --entrypoint="" \
+            -v "${GITHUB_WORKSPACE}/${pkgname}-resultdir:/work" \
+            -w /work \
+            -e GPGKEY \
+            -e repository_owner \
+            ghcr.io/solopasha/kde6-copr/buildroot:latest \
+            /bin/bash -c '
+              echo "${GPGKEY}" | gpg --import
+              rpm -D "%_gpg_name ${repository_owner}" --addsign ./*.rpm
+            '
 
       - name: Handle debuginfo
         if: steps.arch.outputs.arch != 'noarch'
         env:
           debuginfo: ${{ inputs.debuginfo }}
-          pkgname: ${{ steps.pkgname.outputs.pkgname }}
         run: |
           if [[ "${debuginfo}" != "true" ]]; then
             rm "${pkgname}"-resultdir/*{debuginfo,debugsource}*.rpm || :
@@ -427,8 +514,6 @@ jobs:
       - name: Check ABI
         if: ${{ !contains(github.event.head_commit.message, '[skip abi]') && steps.arch.outputs.arch != 'noarch' && inputs.abidiff != false }}
         continue-on-error: true
-        env:
-          pkgname: ${{ steps.pkgname.outputs.pkgname }}
         run: |
           mkdir -p abi_check
           pushd abi_check
@@ -436,19 +521,30 @@ jobs:
 
           oras pull "ghcr.io/${repository}/${pkgname}:latest-${target_branch}" -o old_pkgs
           oras pull "ghcr.io/${repository}/${pkgname}:debuginfo-${target_branch}" -o old_pkgs
-          find old_pkgs -name '*.rpm' -exec bsdtar xf {} -C old \;
+          docker run --rm \
+            --cap-drop all \
+            --network none \
+            --entrypoint="" \
+            -v "${GITHUB_WORKSPACE}/${pkgname}-resultdir:/${pkgname}-resultdir:ro" \
+            -v "${GITHUB_WORKSPACE}/${pkgname}-debuginfo:/${pkgname}-debuginfo:ro" \
+            -v "${GITHUB_WORKSPACE}/check-abi.py:/check-abi.py:ro" \
+            -v "${GITHUB_WORKSPACE}/check-abi-suppressions.json:/check-abi-suppressions.json:ro" \
+            -v "${GITHUB_WORKSPACE}/abi_check:/work" \
+            -w /work \
+            -e pkgname \
+            ghcr.io/solopasha/kde6-copr/buildroot:latest \
+            /bin/bash -c '
+              find old_pkgs -name '*.rpm' -exec bsdtar xf {} -C old \;
 
-          find "${GITHUB_WORKSPACE}/${pkgname}-resultdir" -name '*.rpm' -exec bsdtar xf {} -C new \;
-          find "${GITHUB_WORKSPACE}/${pkgname}-debuginfo" -name '*.rpm' -exec bsdtar xf {} -C new \;
+              find /${pkgname}-resultdir -name '*.rpm' -exec bsdtar xf {} -C new \;
+              find /${pkgname}-debuginfo -name '*.rpm' -exec bsdtar xf {} -C new \;
 
-          su -c "python3 ${GITHUB_WORKSPACE}/check-abi.py --old old --new new --suppressions ${GITHUB_WORKSPACE}/check-abi-suppressions.json" builduser
+              python3 /check-abi.py --old old --new new --suppressions /check-abi-suppressions.json
+            '
 
       - name: Upload build results
         if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         env:
-          pkgname: ${{ steps.pkgname.outputs.pkgname }}
-          container_tag: ${{ steps.pkgver.outputs.container_tag }}
-          version_release: ${{ steps.pkgver.outputs.vr }}
           max_retries: 7
           sleep_seconds: 7
         run: |
@@ -474,8 +570,6 @@ jobs:
       - name: Upload build results (PR)
         if: github.event_name == 'pull_request'
         env:
-          pkgname: ${{ steps.pkgname.outputs.pkgname }}
-          version_release: ${{ steps.pkgver.outputs.vr }}
           pr_number: ${{ github.event.number }}
           max_retries: 7
           sleep_seconds: 7
@@ -502,9 +596,6 @@ jobs:
       - name: Upload debuginfo
         if: inputs.debuginfo && steps.arch.outputs.arch != 'noarch' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
         env:
-          pkgname: ${{ steps.pkgname.outputs.pkgname }}
-          container_tag: ${{ steps.pkgver.outputs.container_tag }}
-          version_release: ${{ steps.pkgver.outputs.vr }}
           max_retries: 7
           sleep_seconds: 7
         run: |

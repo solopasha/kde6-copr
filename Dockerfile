@@ -39,7 +39,6 @@ RUN rm /etc/yum.repos.d/fedora-cisco-openh264.repo && \
             distribution-gpg-keys \
             fd-find \
             file \
-            fuse-overlayfs \
             gh \
             git-core \
             gnupg2 \
@@ -47,18 +46,14 @@ RUN rm /etc/yum.repos.d/fedora-cisco-openh264.repo && \
             kf6-srpm-macros \
             libabigail \
             luajit \
-            mock \
-            nosync \
             parallel \
             perl-interpreter \
-            podman \
             python3-pyelftools \
             rpm-sign \
             rpmdevtools \
-            rsync \
             tar \
             zstd && \
             dnf clean all && \
-    useradd -M -G mock builduser && \
-    setcap cap_setuid=ep /usr/bin/newuidmap && \
-    setcap cap_setgid=ep /usr/bin/newgidmap
+    useradd -M -u 1001 builduser
+
+USER builduser
