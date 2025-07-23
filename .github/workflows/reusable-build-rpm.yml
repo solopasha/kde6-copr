@@ -318,7 +318,7 @@ jobs:
           container_tag: ${{ steps.pkgver.outputs.container_tag }}
         run: |
           if oras manifest fetch ghcr.io/${repository}/${pkgname}:${container_tag} &> /dev/null; then
-            echo "NVR already exits"
+            echo "NVR already exists"
             exit 1
           fi
           latest_version="$(oras manifest fetch ghcr.io/${repository}/${pkgname}:latest-${target_branch} | jq -r '.annotations."rpm.version"')"
