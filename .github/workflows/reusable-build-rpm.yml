@@ -378,6 +378,19 @@ jobs:
             '
           find sources -type f -exec mv -t "$(dirname "${spec}")" {} +
 
+      - name: Wait builds
+        if: github.event_name == 'push' && steps.gear.outputs.gear != 'true'
+        env:
+          DEPS: ${{ inputs.deps }}
+        run: |
+          mapfile -t buildids < <(jq -r '.[].outputs.copr_build_id | values' <<< "$DEPS")
+          if [[ "${buildids[*]}" != "" ]]; then
+          docker run --rm \
+            --cap-drop all \
+            ghcr.io/solopasha/kde6-copr/buildroot:latest \
+            copr watch-build "${buildids[@]}"
+          fi
+
       - name: Create buildroot
         run: |
             buildah from -q --retry 15 --retry-delay 5s --name build \
@@ -423,19 +436,6 @@ jobs:
             buildah commit build docker-daemon:buildcontainer:latest
             buildah rm build
             buildah prune --all --force
-
-      - name: Wait builds
-        if: github.event_name == 'push' && steps.gear.outputs.gear != 'true'
-        env:
-          DEPS: ${{ inputs.deps }}
-        run: |
-          mapfile -t buildids < <(jq -r '.[].outputs.copr_build_id | values' <<< "$DEPS")
-          if [[ "${buildids[*]}" != "" ]]; then
-          docker run --rm \
-            --cap-drop all \
-            ghcr.io/solopasha/kde6-copr/buildroot:latest \
-            copr watch-build "${buildids[@]}"
-          fi
 
       - name: Submit to Copr
         if: github.event_name == 'push' && steps.gear.outputs.gear != 'true'
