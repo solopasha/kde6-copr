@@ -490,6 +490,7 @@ jobs:
             --network none \
             --entrypoint="" \
             -v "${GITHUB_WORKSPACE}/${pkgname}-resultdir:/work" \
+            --tmpfs /home/builduser/.gnupg:uid=1001,gid=1001,mode=0700 \
             -w /work \
             -e GPGKEY \
             -e repository_owner \
