@@ -1,6 +1,6 @@
-%global commit0 35b9e4c66209f2ca4e7f37cce5b6c501a0d02f39
+%global commit0 d6aef8be5abea620b453c5a6b5939e11605a7651
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 8
+%global bumpver 9
 
 #global tests 1
 
@@ -43,7 +43,6 @@ BuildRequires: cmake(KPim6AkonadiContactWidgets)
 BuildRequires: cmake(KPim6CalendarSupport)
 BuildRequires: cmake(KPim6CalendarUtils)
 BuildRequires: cmake(KPim6EventViews)
-BuildRequires: cmake(KPim6IdentityManagementCore)
 BuildRequires: cmake(KPim6IncidenceEditor)
 BuildRequires: cmake(KPim6KontactInterface)
 BuildRequires: cmake(KPim6LdapWidgets)
