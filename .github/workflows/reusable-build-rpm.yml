@@ -391,6 +391,19 @@ jobs:
             copr watch-build "${buildids[@]}"
           fi
 
+      - name: Submit to Copr
+        if: github.event_name == 'push' && steps.gear.outputs.gear != 'true'
+        id: copr
+        env:
+          curl_opts: --connect-timeout 10 --retry 7 --retry-connrefused -Ss -X POST
+        run: |
+          if [[ "${target_branch}" == "unstable" ]]; then
+            buildid="$(curl ${curl_opts} "https://copr.fedorainfracloud.org/webhooks/custom/143312/${{ secrets.copr_webhook }}/${pkgname}")"
+          elif [[ "${target_branch}" == "beta" ]]; then
+            buildid="$(curl ${curl_opts} "https://copr.fedorainfracloud.org/webhooks/custom/159978/${{ secrets.copr_webhook_beta }}/${pkgname}")"
+          fi
+          echo "buildid=${buildid}" >> $GITHUB_OUTPUT
+
       - name: Create buildroot
         run: |
             buildah from -q --retry 15 --retry-delay 5s --name build \
@@ -436,19 +449,6 @@ jobs:
             buildah commit build docker-daemon:buildcontainer:latest
             buildah rm build
             buildah prune --all --force
-
-      - name: Submit to Copr
-        if: github.event_name == 'push' && steps.gear.outputs.gear != 'true'
-        id: copr
-        env:
-          curl_opts: --connect-timeout 10 --retry 7 --retry-connrefused -Ss -X POST
-        run: |
-          if [[ "${target_branch}" == "unstable" ]]; then
-            buildid="$(curl ${curl_opts} "https://copr.fedorainfracloud.org/webhooks/custom/143312/${{ secrets.copr_webhook }}/${pkgname}")"
-          elif [[ "${target_branch}" == "beta" ]]; then
-            buildid="$(curl ${curl_opts} "https://copr.fedorainfracloud.org/webhooks/custom/159978/${{ secrets.copr_webhook_beta }}/${pkgname}")"
-          fi
-          echo "buildid=${buildid}" >> $GITHUB_OUTPUT
 
       - name: Build
         env:
