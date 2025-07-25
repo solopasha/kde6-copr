@@ -1,6 +1,6 @@
-%global commit0 f0bc8a4e4d414bffe546cf155ce09fc2b8b3cf6e
+%global commit0 10bf70babe07a50c0220394f59e3e4b2f98d0dfe
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:    kpkpass
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -16,6 +16,7 @@ BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Qml)
 
 BuildRequires:  pkgconfig(shared-mime-info)
 
@@ -53,6 +54,7 @@ developing applications that use %{name}.
 %license LICENSES/*
 %{_kf6_datadir}/qlogging-categories6/org_kde_%{name}.*
 %{_kf6_libdir}/libKPim6PkPass.so.*
+%{_kf6_qmldir}/org/kde/pkpass/
 
 %files devel
 %{_includedir}/KPim6/KPkPass/
