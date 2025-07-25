@@ -48,8 +48,6 @@ jobs:
             $IMAGENAME:
               use-sigstore-attachments: true
           EOF
-          cp /usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-free-fedora-$(rpm -E %fedora) /etc/pki/rpm-gpg/
-          cp /usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-nonfree-fedora-$(rpm -E %fedora) /etc/pki/rpm-gpg/
           dnf clean all
 
       - uses: actions/checkout@v4
