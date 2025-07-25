@@ -1,6 +1,6 @@
-%global commit0 3aa0ab6941ad768605bca8207c917b217133a6cf
+%global commit0 b264f05edd7e58f74e12c2d13846d24de778fcaf
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:           knighttime
 Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
