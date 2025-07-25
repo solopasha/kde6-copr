@@ -1,6 +1,6 @@
-%global commit0 413ad73fdab421e619a73f2f89c07825eb3e87c4
+%global commit0 63ed340b0f15f3890ecea067ec7af7662af8380c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 %global framework krunner
 
@@ -17,6 +17,7 @@ BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6ItemModels)
+BuildRequires:  cmake(KF6WindowSystem)
 
 BuildRequires:  cmake(Qt6Gui)
 
