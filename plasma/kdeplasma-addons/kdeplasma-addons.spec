@@ -1,6 +1,6 @@
-%global commit0 038f0d6a303e5674f594003be2c8c298ed2f47ca
+%global commit0 2083e971150acd7a832e48d24ba7daaa167dd5f9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 24
+%global bumpver 25
 
 Name:           kdeplasma-addons
 Summary:        Additional Plasmoids for Plasma 6
@@ -103,14 +103,15 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 %{_kf6_datadir}/qlogging-categories6/kdeplasma-addons.renamecategories
 %{_kf6_libdir}/libplasmapotdprovidercore.so.2{,.*}
 %{_kf6_libdir}/libweatherdata.so
+%{_kf6_libdir}/libweatherion.so
 %{_kf6_libdir}/qt6/qml/org/kde/plasmacalendar/astronomicaleventsconfig/*
 %{_kf6_libexecdir}/kauth/kameleonhelper
 %{_kf6_metainfodir}/*.appdata.xml
 %{_kf6_qmldir}/org/kde/plasma/*
-%{_kf6_qtplugindir}/ions/
 %{_kf6_qtplugindir}/kf6/
 %{_kf6_qtplugindir}/kwin/effects/configs/kwin_cube_config.so
 %{_kf6_qtplugindir}/plasma/applets/*.so
+%{_kf6_qtplugindir}/plasma/weather_ions/
 %{_kf6_qtplugindir}/plasmacalendarplugins/
 %{_kf6_qtplugindir}/potd/
 %exclude %{_kf6_plugindir}/krunner/krunner_katesessions.so
