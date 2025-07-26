@@ -1,6 +1,6 @@
-%global commit0 10bf70babe07a50c0220394f59e3e4b2f98d0dfe
+%global commit0 932029565997d1efe4b6e12582ded865b5b1fb04
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:    kpkpass
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
