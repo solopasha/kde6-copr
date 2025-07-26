@@ -50,6 +50,7 @@ Requires:       cmake(Qt6Widgets)
 
 %files
 %license LICENSES/*.txt
+%{_kf6_datadir}/qlogging-categories6/kglobalacceld.categories
 %{_kf6_libdir}/libKGlobalAccelD.so.%{version_no_git}
 %{_kf6_libdir}/libKGlobalAccelD.so.0
 %{_libexecdir}/kglobalacceld
