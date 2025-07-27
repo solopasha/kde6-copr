@@ -1,6 +1,6 @@
 %global commit0 95f7c9fa805776123a763c08344665f3b272e87e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 %global base_name milou
 
