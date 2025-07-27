@@ -1,6 +1,6 @@
-%global commit0 d53b4715eb684a929950f39005f1c9d729d400b2
+%global commit0 776bcfc89dd5d44d7fca90d0500f112ba78ea318
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:          kjournald
 Version:       25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -38,7 +38,9 @@ Requires:      kf6-kirigami-addons%{?_isa}
 Requires:      kf6-kirigami%{?_isa}
 Requires:      kf6-qqc2-desktop-style%{?_isa}
 
-Obsoletes:     %{name}-libs < 25.07.70~6.git7b602d6-2
+Obsoletes:     %{name}-libs < 25.11.70
+Provides:      %{name} = %{version}-%{release}
+Provides:      %{name}%{?_isa} = %{version}-%{release}
 
 %description
 %{summary}.
@@ -65,7 +67,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/org.kde.kj
 %{_kf6_bindir}/kjournaldbrowser
 %{_kf6_datadir}/applications/org.kde.kjournaldbrowser.desktop
 %{_kf6_datadir}/qlogging-categories6/kjournald.categories
-%{_kf6_libdir}/libkjournald.so
+%{_kf6_libdir}/libkjournald.so*
 %{_kf6_metainfodir}/org.kde.kjournaldbrowser.appdata.xml
 %{_kf6_qmldir}/org/kde/kjournald/
 
