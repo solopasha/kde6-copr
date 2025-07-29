@@ -1,6 +1,6 @@
-%global commit0 a7e75c80c41b7fa7da5d28706268f5a7e42dd66a
+%global commit0 a460d120da067943fac5b8791df096d0f78bb8ac
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 6
+%global bumpver 7
 
 Name:           plasma-vault
 Summary:        Plasma Vault offers strong encryption features in a user-friendly way
@@ -12,7 +12,6 @@ URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
 
 BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
@@ -20,7 +19,6 @@ BuildRequires:  cmake(KF6ItemModels)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6NetworkManagerQt)
 BuildRequires:  cmake(KF6Service)
-BuildRequires:  cmake(KF6WidgetsAddons)
 
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Core)
