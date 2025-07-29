@@ -1,6 +1,6 @@
-%global commit0 5785a52afedc6a4e72108a6627cd8a713fc8e07a
+%global commit0 1201e0733458f17da77a4813b1205fe016602b27
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 56
+%global bumpver 57
 
 Name:           plasma-desktop
 Summary:        Plasma Desktop shell
@@ -257,6 +257,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_kf6_qmldir}/org/kde/plasma/private/
 %{_kf6_qmldir}/org/kde/private/desktopcontainment/*
 %{_kf6_qtplugindir}/attica_kde.so
+%{_kf6_qtplugindir}/plasma/applets/org.kde.panel.so
 %{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.kicker.so
 %{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.kickoff.so
 %{_kf6_qtplugindir}/plasma/kcminit/kcm_mouse_init.so
