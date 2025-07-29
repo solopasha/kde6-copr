@@ -1,6 +1,6 @@
-%global commit0 afe80f5d8cfff59c35275f402876746e84f4bf6f
+%global commit0 6d9152eb7abf2709f805ee32bf1ce922ab536787
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 8
 
 Name:    kio-extras
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
