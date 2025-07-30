@@ -1,12 +1,12 @@
 Name:           ktextaddons
-Version:        1.6.0
-Release:        2%{?dist}
+Version:        1.7.0
+Release:        1%{?dist}
 Summary:        Various text handling addons
 
 License:        CC0-1.0 AND LGPL-2.0-or-later AND GPL-2.0-or-later AND BSD-3-Clause
 URL:            https://invent.kde.org/libraries/ktextaddons
-Source0:        https://download.kde.org/stable/%{name}/%{version}/%{name}-%{version}.tar.xz
-Source1:        https://download.kde.org/stable/%{name}/%{version}/%{name}-%{version}.tar.xz.sig
+Source0:        https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz
+Source1:        https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz.sig
 Source2:        https://invent.kde.org/sysadmin/release-keyring/-/raw/master/keys/mlaurent@key1.asc?ref_type=heads#/signing-key.pgp
 BuildSystem:    cmake_kf6
 
@@ -42,11 +42,13 @@ BuildRequires:  cmake(Qt6Keychain)
 %package        qt6
 Summary:        Qt6 libraries for %{name}
 Requires:       %{name}-common = %{version}-%{release}
+Obsoletes:      ktextaddons-qt5 < 1.5.4-5
 %description    qt6
 %{summary}.
 
 %package        qt6-devel
 Summary:        Development files for %{name}
+Obsoletes:      ktextaddons-qt5-devel < 1.5.4-5
 %description    qt6-devel
 %{summary}.
 
@@ -90,6 +92,9 @@ BuildArch:      noarch
 %{_kf6_libdir}/libKF6TextTranslator.so.1
 %{_kf6_libdir}/libKF6TextUtils.so.%{version}
 %{_kf6_libdir}/libKF6TextUtils.so.1
+%{_kf6_libdir}/libtextautogenerate-cmark-rc-copy.so.0{,.*}
+%{_kf6_libdir}/libtextautogenerategenericnetwork.so.%{version}
+%{_kf6_libdir}/libtextautogenerategenericnetwork.so.1
 %{_kf6_libdir}/libtextautogenerateollama.so.%{version}
 %{_kf6_libdir}/libtextautogenerateollama.so.1
 %{_kf6_plugindir}/speechtotext/
@@ -121,6 +126,7 @@ BuildArch:      noarch
 %{_kf6_libdir}/cmake/KF6TextSpeechToText/
 %{_kf6_libdir}/cmake/KF6TextTranslator/
 %{_kf6_libdir}/cmake/KF6TextUtils/
+%{_kf6_libdir}/cmake/textautogenerate-cmark-rc-copy/
 %{_kf6_libdir}/libKF6TextAddonsWidgets.so
 %{_kf6_libdir}/libKF6TextAutoCorrectionCore.so
 %{_kf6_libdir}/libKF6TextAutoCorrectionWidgets.so
@@ -133,6 +139,7 @@ BuildArch:      noarch
 %{_kf6_libdir}/libKF6TextSpeechToText.so
 %{_kf6_libdir}/libKF6TextTranslator.so
 %{_kf6_libdir}/libKF6TextUtils.so
+%{_kf6_libdir}/libtextautogenerate-cmark-rc-copy.so
 %{_kf6_qtplugindir}/designer/textcustomeditor.so
 %{_kf6_qtplugindir}/designer/texttranslatorwidgets6.so
 
@@ -140,6 +147,9 @@ BuildArch:      noarch
 %doc README.md
 
 %changelog
+* Wed Jul 30 2025 Pavel Solovev <daron439@gmail.com> - 1.7.0-1
+- new version
+
 * Mon Jun 16 2025 Pavel Solovev <daron439@gmail.com> - 1.6.0-2
 - rebuilt
 
