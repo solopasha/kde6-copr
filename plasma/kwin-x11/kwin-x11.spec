@@ -1,6 +1,6 @@
-%global commit0 ad4329c94c5173d8645026d8c592cde1a4313906
+%global commit0 3a9ec19b9e65acca4a886218ea69c16388646ff3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 21
+%global bumpver 22
 
 Name:           kwin-x11
 Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -10,7 +10,6 @@ Summary:        An X11 window manager and a compositing manager
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:            https://invent.kde.org/plasma/kwin-x11
 %plasma_source
-Patch:          fix.diff
 
 BuildRequires:  systemd-rpm-macros
 
