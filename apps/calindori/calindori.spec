@@ -1,6 +1,6 @@
-%global commit0 2eefb71a94200df29f55866a47ddb591e8fc9be3
+%global commit0 f0d6a91ed099de2ccb6886a5ff22cf13d17a76ea
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           calindori
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

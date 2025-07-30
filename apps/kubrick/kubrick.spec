@@ -1,6 +1,6 @@
-%global commit0 fe415364ad44ddcdd34b3d449cfb3c63eb111a6d
+%global commit0 15421e0dfdb078cce88211b25a606ed109baa0e2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kubrick
 Summary: Puzzle cube solving game
