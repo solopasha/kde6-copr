@@ -1,6 +1,6 @@
 %global commit0 20581c0be9357afe052fda94c62c065d298455d9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 8
 
 Name:           plasma-integration
 Summary:        Qt Platform Theme integration plugin for Plasma
@@ -73,7 +73,8 @@ Requires:       (%{name}-qt5 if qt5-qtbase-gui)
 
 %package        qt5
 Summary:        Qt5 support for %{name}
-Requires:       kf5-qqc2-breeze-style
+Requires:       kf5-qqc2-breeze-style%{?_isa}
+Requires:       kf5-qqc2-desktop-style%{?_isa}
 %description    qt5
 %{summary}.
 
