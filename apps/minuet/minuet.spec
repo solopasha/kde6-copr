@@ -1,6 +1,6 @@
-%global commit0 6ac0ccd71ff82875f97e7286dcc97e2863fe3d4e
+%global commit0 f39b989a3368dc31c1efbfa66b023a1de5b57938
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           minuet
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

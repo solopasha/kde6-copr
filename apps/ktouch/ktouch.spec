@@ -1,6 +1,6 @@
-%global commit0 bd65577911de39e911aaf4213f86658bf11097c8
+%global commit0 496dec788dde4ddba31aff5c110b4dcad02ae7b4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:           ktouch
 Summary:        Touch Typing Tutor
