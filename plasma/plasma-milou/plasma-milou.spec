@@ -1,6 +1,6 @@
-%global commit0 95f7c9fa805776123a763c08344665f3b272e87e
+%global commit0 c9225a4df1eaf055910b1d262eccbf9fd32b48d4
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 7
+%global bumpver 8
 
 %global base_name milou
 

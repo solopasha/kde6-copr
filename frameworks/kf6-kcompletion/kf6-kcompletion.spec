@@ -1,11 +1,11 @@
-%global commit0 9c5405e1fca089f636e4c82b24a0b60d1125b36c
+%global commit0 02c986de18ed47a6b171c2605eff92d083c07530
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 1
 
 %global framework kcompletion
 
 Name:           kf6-%{framework}
-Version:        6.17.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 addon with auto completion widgets and classes
 # BSD-3-Clause is in the LICENSES folder but goes unused.

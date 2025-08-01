@@ -1,4 +1,4 @@
-%global commit0 378fbf32e428a2a68e447b61eec617a64fb2e0fd
+%global commit0 1409ac45625d1f63f1a0f352c009360923d94577
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
@@ -14,7 +14,7 @@
 
 Name:           kf6-%{framework}
 Summary:        Breeze icon theme library
-Version:        6.17.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 # skladnik.svg is CC-BY-SA-4.0
 # folder-edit-sign-encrypt.svg is LGPL-2.1-or-later

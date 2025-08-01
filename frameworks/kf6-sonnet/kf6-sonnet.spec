@@ -1,11 +1,11 @@
-%global commit0 0f3f08a944363a94c62c2e03f9bc1a4958720e82
+%global commit0 e09f168dc7287687d862448734b9603f9ce4e999
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework sonnet
 
 Name:           kf6-%{framework}
-Version:        6.17.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 solution for spell checking
 License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-or-later

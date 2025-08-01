@@ -1,6 +1,6 @@
-%global commit0 60e7d2cb651c30d5c36b3e296e3ad369f4001468
+%global commit0 bd21033ebc1dc6650554d2d92deb51ac37f0d546
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 15
+%global bumpver 16
 
 %global base_name drkonqi
 
