@@ -95,7 +95,11 @@ jobs:
           fi
           mkdir -p cache
 
-          version="$(rpm-ostree compose tree --print-only kinoite.yaml | jq -r '."mutate-os-release"')"
+          if [[ "${{ matrix.version }}" == "rawhide" ]]; then
+            version="rawhide"
+          else
+            version="$(rpm-ostree compose tree --print-only kinoite.yaml | jq -r '."mutate-os-release"')"
+          fi
           echo "version=${version}" >> $GITHUB_OUTPUT
           echo "Composing kinoite ${version}.${{ steps.get-buildid.outputs.buildid }} ..."
 
