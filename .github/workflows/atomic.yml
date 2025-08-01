@@ -15,8 +15,14 @@ jobs:
     permissions:
       packages: write
       contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        version:
+          - rawhide
+          - 42
     container:
-      image: registry.fedoraproject.org/fedora:${{ vars.RELEASEVER }}
+      image: registry.fedoraproject.org/fedora:${{ matrix.version }}
       options: --privileged --volume /:/run/host:rw
     env:
       IMAGENAME: ghcr.io/${{ github.repository }}/kde-unstable
@@ -24,7 +30,7 @@ jobs:
     steps:
       - name: Reclaim disk space
         run: |
-          rm -rf /run/host/usr/local/lib/android /run/host/usr/share/dotnet /run/host/opt/ghc /run/host/opt/hostedtoolcac
+          rm -rf /run/host/usr/local/lib/android /run/host/usr/share/dotnet /run/host/opt/ghc /run/host/opt/hostedtoolcache
 
       - name: Prepare
         run: |
@@ -54,9 +60,17 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Fix path
+      - name: Prepare
         run: |
           sed -i "s|@@REPO@@|$IMAGENAME|" atomic/sigstore.yaml
+          if [[ "${{ matrix.version }}" == "rawhide" ]]; then
+            version="43"
+            sed -i "s/\$releasever/rawhide/" atomic/coprs.repo
+          else
+            version="${{ matrix.version }}"
+          fi
+          sed -i "s/^releasever:.*/releasever: ${version}/" atomic/common.yaml
+          sed -i "/^ref/s/[[:digit:]]\+/${version}/" atomic/kinoite-common.yaml
 
       - name: Get buildid
         id: get-buildid
@@ -117,6 +131,14 @@ jobs:
               "docker://${IMAGENAME}:${{ steps.build.outputs.version }}.${{ steps.get-buildid.outputs.buildid }}" \
               "docker://${IMAGENAME}:${{ steps.build.outputs.version }}" && break || sleep $((5 * i))
           done
+
+          if [[ "${{ steps.build.outputs.version }}" == "${{ vars.RELEASEVER }}" ]]; then
+            for i in {1..5}; do
+              skopeo copy ${SKOPEO_ARGS} \
+                "docker://${IMAGENAME}:${{ steps.build.outputs.version }}.${{ steps.get-buildid.outputs.buildid }}" \
+                "docker://${IMAGENAME}:latest" && break || sleep $((5 * i))
+            done
+          fi
 
       # - name: Compress the cache directory manually to preserve xattrs
       #   run: |
