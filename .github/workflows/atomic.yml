@@ -66,6 +66,8 @@ jobs:
           if [[ "${{ matrix.version }}" == "rawhide" ]]; then
             version="43"
             sed -i "s/\$releasever/rawhide/" atomic/coprs.repo
+            sed -i '/basesystem/d' atomic/common-packages.yaml
+            sed -i '/pipewire-alsa/a\  - pipewire-config-raop' atomic/common-packages.yaml
           else
             version="${{ matrix.version }}"
           fi
