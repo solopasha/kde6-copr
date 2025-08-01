@@ -1,11 +1,11 @@
-%global commit0 62328e101449fd105f5ad775da9ce0d332175421
+%global commit0 512e88fb5a0cf7298dac9dec078593de4e75c3f9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global bumpver 1
 
 %global framework kwallet
 
 Name:           kf6-%{framework}
-Version:        6.17.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 solution for password management
 

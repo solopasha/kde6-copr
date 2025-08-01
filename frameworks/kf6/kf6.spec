@@ -1,6 +1,6 @@
 Name:           kf6
 # This version MUST remain in sync with KF6 versions!
-Version:        6.17.0~
+Version:        6.18.0~
 Release:        1%{?dist}
 Summary:        Filesystem and RPM macros for KDE Frameworks 6
 License:        BSD-3-Clause
@@ -122,6 +122,9 @@ install -Dpm0644 %{_sourcedir}/kde.lua %{buildroot}%{_rpmluadir}/fedora/srpm/kde
 %files qch
 
 %changelog
+* Fri Aug 01 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0~-1
+- new version
+
 * Sat Jul 05 2025 Pavel Solovev <daron439@gmail.com> - 6.17.0~-1
 - new version
 
