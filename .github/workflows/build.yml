@@ -17,6 +17,16 @@ on:
     branches:
       - unstable
       - beta
+  workflow_dispatch:
+    inputs:
+      specfiles:
+        description: 'Specfile(s) to build'
+        required: true
+      abidiff:
+        description: 'Check ABI'
+        required: false
+        default: true
+        type: boolean
 
 permissions:
   contents: read
@@ -29,6 +39,9 @@ jobs:
       gpgkey: ${{ secrets.GPGKEY }}
       copr_webhook: ${{ secrets.COPR_WEBHOOK }}
       copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
+    with:
+      specfiles: ${{ inputs.specfiles }}
+      abidiff: ${{ inputs.abidiff || true }}
 
   merge:
     name: Merge PR
