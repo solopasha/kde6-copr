@@ -53,6 +53,7 @@ BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6Holidays)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
+BuildRequires:  cmake(KF6IdleTime)
 BuildRequires:  cmake(KF6ItemModels)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KDED)
@@ -508,6 +509,7 @@ fi
 %{_kf6_libdir}/libbatterycontrol.so.*
 %{_kf6_libdir}/libkfontinst*
 %{_kf6_libdir}/libklipper.so.*
+%{_kf6_libdir}/libklookandfeel.so.*
 %{_kf6_libdir}/libkmpris.so.*
 %{_kf6_libdir}/libkrdb.so
 %{_kf6_libdir}/libnotificationmanager.*
@@ -528,6 +530,7 @@ fi
 %{_kf6_qtplugindir}/plasmacalendarplugins/
 
 %files devel
+%{_includedir}/klookandfeel/
 %{_includedir}/krdb/
 %{_includedir}/kworkspace6/
 %{_includedir}/notificationmanager/
@@ -535,11 +538,13 @@ fi
 %{_kf6_datadir}/dbus-1/interfaces/*.xml
 %{_kf6_libdir}/cmake/KRunnerAppDBusInterface/
 %{_kf6_libdir}/cmake/KSMServerDBusInterface/
+%{_kf6_libdir}/cmake/LibKLookAndFeel/
 %{_kf6_libdir}/cmake/LibKWorkspace/
 %{_kf6_libdir}/cmake/LibNotificationManager/
 %{_kf6_libdir}/cmake/LibTaskManager/
 %{_kf6_libdir}/libbatterycontrol.so
 %{_kf6_libdir}/libklipper.so
+%{_kf6_libdir}/libklookandfeel.so
 %{_kf6_libdir}/libkworkspace6.so
 %{_kf6_libdir}/libtaskmanager.so
 
