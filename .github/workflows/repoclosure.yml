@@ -1,0 +1,51 @@
+name: Repoclosure
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '25 9 * * *'
+
+jobs:
+  repoclosure:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        version:
+          - rawhide
+          - 42
+    container:
+      image: registry.fedoraproject.org/fedora:${{ matrix.version }}
+    steps:
+      - name: Prepare
+        run: |
+          dnf -y install --nodocs 'dnf5-command(repoclosure)'
+
+          cat << 'EOF' >> /etc/yum.repos.d/coprs.repo
+          [copr:copr.fedorainfracloud.org:solopasha:plasma-unstable]
+          name=Copr repo for plasma-unstable owned by solopasha
+          baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/fedora-${{ matrix.version }}-$basearch/
+          type=rpm-md
+          skip_if_unavailable=False
+          gpgcheck=1
+          gpgkey=https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/pubkey.gpg
+          repo_gpgcheck=0
+          enabled=1
+          enabled_metadata=1
+
+          [copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable]
+          name=Copr repo for kde-gear-unstable owned by solopasha
+          baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/kde-gear-unstable/fedora-${{ matrix.version }}-$basearch/
+          type=rpm-md
+          skip_if_unavailable=True
+          gpgcheck=1
+          gpgkey=https://download.copr.fedorainfracloud.org/results/solopasha/kde-gear-unstable/pubkey.gpg
+          repo_gpgcheck=0
+          enabled=1
+          enabled_metadata=1
+          EOF
+
+      - name: Repoclosure
+        run: |
+          dnf repoclosure \
+            --check copr:copr.fedorainfracloud.org:solopasha:plasma-unstable,copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable --newest
