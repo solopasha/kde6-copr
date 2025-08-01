@@ -9,6 +9,14 @@ on:
         required: true
       copr_webhook_beta:
         required: true
+    inputs:
+      specfiles:
+        required: false
+        type: string
+      abidiff:
+        required: false
+        default: true
+        type: boolean
 
 permissions:
   contents: read
@@ -41,7 +49,15 @@ jobs:
             **/*.spec
 
   extra-cmake-modules:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/extra-cmake-modules.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/extra-cmake-modules.spec') ||
+          contains(inputs.specfiles, '/extra-cmake-modules.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -54,9 +70,18 @@ jobs:
       spec: ./frameworks/extra-cmake-modules/extra-cmake-modules.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6.spec') ||
+          contains(inputs.specfiles, '/kf6.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -71,7 +96,15 @@ jobs:
       abidiff: false
 
   kf6-attica:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-attica.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-attica.spec') ||
+          contains(inputs.specfiles, '/kf6-attica.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -85,9 +118,18 @@ jobs:
       spec: ./frameworks/kf6-attica/kf6-attica.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-baloo:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-baloo.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-baloo.spec') ||
+          contains(inputs.specfiles, '/kf6-baloo.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -110,9 +152,18 @@ jobs:
       spec: ./frameworks/kf6-baloo/kf6-baloo.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-bluez-qt:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-bluez-qt.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-bluez-qt.spec') ||
+          contains(inputs.specfiles, '/kf6-bluez-qt.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -126,9 +177,18 @@ jobs:
       spec: ./frameworks/kf6-bluez-qt/kf6-bluez-qt.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-breeze-icons:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-breeze-icons.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-breeze-icons.spec') ||
+          contains(inputs.specfiles, '/kf6-breeze-icons.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -142,9 +202,18 @@ jobs:
       spec: ./frameworks/kf6-breeze-icons/kf6-breeze-icons.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-frameworkintegration:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-frameworkintegration.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-frameworkintegration.spec') ||
+          contains(inputs.specfiles, '/kf6-frameworkintegration.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -166,9 +235,18 @@ jobs:
       spec: ./frameworks/kf6-frameworkintegration/kf6-frameworkintegration.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-karchive:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-karchive.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-karchive.spec') ||
+          contains(inputs.specfiles, '/kf6-karchive.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -182,9 +260,18 @@ jobs:
       spec: ./frameworks/kf6-karchive/kf6-karchive.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kauth:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kauth.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kauth.spec') ||
+          contains(inputs.specfiles, '/kf6-kauth.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -200,9 +287,18 @@ jobs:
       spec: ./frameworks/kf6-kauth/kf6-kauth.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kbookmarks:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kbookmarks.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kbookmarks.spec') ||
+          contains(inputs.specfiles, '/kf6-kbookmarks.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -219,9 +315,18 @@ jobs:
       spec: ./frameworks/kf6-kbookmarks/kf6-kbookmarks.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kcalendarcore:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kcalendarcore.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kcalendarcore.spec') ||
+          contains(inputs.specfiles, '/kf6-kcalendarcore.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -235,9 +340,18 @@ jobs:
       spec: ./frameworks/kf6-kcalendarcore/kf6-kcalendarcore.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kcmutils:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kcmutils.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kcmutils.spec') ||
+          contains(inputs.specfiles, '/kf6-kcmutils.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -259,9 +373,18 @@ jobs:
       spec: ./frameworks/kf6-kcmutils/kf6-kcmutils.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kcodecs:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kcodecs.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kcodecs.spec') ||
+          contains(inputs.specfiles, '/kf6-kcodecs.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -275,9 +398,18 @@ jobs:
       spec: ./frameworks/kf6-kcodecs/kf6-kcodecs.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kcolorscheme:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kcolorscheme.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kcolorscheme.spec') ||
+          contains(inputs.specfiles, '/kf6-kcolorscheme.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -294,9 +426,18 @@ jobs:
       spec: ./frameworks/kf6-kcolorscheme/kf6-kcolorscheme.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kcompletion:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kcompletion.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kcompletion.spec') ||
+          contains(inputs.specfiles, '/kf6-kcompletion.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -313,9 +454,18 @@ jobs:
       spec: ./frameworks/kf6-kcompletion/kf6-kcompletion.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kconfig:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kconfig.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kconfig.spec') ||
+          contains(inputs.specfiles, '/kf6-kconfig.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -329,9 +479,18 @@ jobs:
       spec: ./frameworks/kf6-kconfig/kf6-kconfig.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kconfigwidgets:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kconfigwidgets.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kconfigwidgets.spec') ||
+          contains(inputs.specfiles, '/kf6-kconfigwidgets.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -352,9 +511,18 @@ jobs:
       spec: ./frameworks/kf6-kconfigwidgets/kf6-kconfigwidgets.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kcontacts:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kcontacts.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kcontacts.spec') ||
+          contains(inputs.specfiles, '/kf6-kcontacts.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -372,9 +540,18 @@ jobs:
       spec: ./frameworks/kf6-kcontacts/kf6-kcontacts.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kcoreaddons:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kcoreaddons.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kcoreaddons.spec') ||
+          contains(inputs.specfiles, '/kf6-kcoreaddons.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -388,9 +565,18 @@ jobs:
       spec: ./frameworks/kf6-kcoreaddons/kf6-kcoreaddons.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kcrash:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kcrash.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kcrash.spec') ||
+          contains(inputs.specfiles, '/kf6-kcrash.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -405,9 +591,18 @@ jobs:
       spec: ./frameworks/kf6-kcrash/kf6-kcrash.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kdav:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kdav.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kdav.spec') ||
+          contains(inputs.specfiles, '/kf6-kdav.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -424,9 +619,18 @@ jobs:
       spec: ./frameworks/kf6-kdav/kf6-kdav.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kdbusaddons:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kdbusaddons.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kdbusaddons.spec') ||
+          contains(inputs.specfiles, '/kf6-kdbusaddons.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -440,9 +644,18 @@ jobs:
       spec: ./frameworks/kf6-kdbusaddons/kf6-kdbusaddons.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kdeclarative:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kdeclarative.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kdeclarative.spec') ||
+          contains(inputs.specfiles, '/kf6-kdeclarative.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -461,9 +674,18 @@ jobs:
       spec: ./frameworks/kf6-kdeclarative/kf6-kdeclarative.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kded:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kded.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kded.spec') ||
+          contains(inputs.specfiles, '/kf6-kded.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -483,9 +705,18 @@ jobs:
       spec: ./frameworks/kf6-kded/kf6-kded.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kdesu:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kdesu.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kdesu.spec') ||
+          contains(inputs.specfiles, '/kf6-kdesu.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -503,9 +734,18 @@ jobs:
       spec: ./frameworks/kf6-kdesu/kf6-kdesu.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kdnssd:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kdnssd.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kdnssd.spec') ||
+          contains(inputs.specfiles, '/kf6-kdnssd.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -519,9 +759,18 @@ jobs:
       spec: ./frameworks/kf6-kdnssd/kf6-kdnssd.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kdoctools:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kdoctools.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kdoctools.spec') ||
+          contains(inputs.specfiles, '/kf6-kdoctools.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -537,9 +786,18 @@ jobs:
       spec: ./frameworks/kf6-kdoctools/kf6-kdoctools.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kfilemetadata:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kfilemetadata.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kfilemetadata.spec') ||
+          contains(inputs.specfiles, '/kf6-kfilemetadata.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -558,9 +816,18 @@ jobs:
       spec: ./frameworks/kf6-kfilemetadata/kf6-kfilemetadata.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kglobalaccel:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kglobalaccel.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kglobalaccel.spec') ||
+          contains(inputs.specfiles, '/kf6-kglobalaccel.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -574,9 +841,18 @@ jobs:
       spec: ./frameworks/kf6-kglobalaccel/kf6-kglobalaccel.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kguiaddons:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kguiaddons.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kguiaddons.spec') ||
+          contains(inputs.specfiles, '/kf6-kguiaddons.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -591,9 +867,18 @@ jobs:
       spec: ./frameworks/kf6-kguiaddons/kf6-kguiaddons.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kholidays:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kholidays.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kholidays.spec') ||
+          contains(inputs.specfiles, '/kf6-kholidays.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -607,9 +892,18 @@ jobs:
       spec: ./frameworks/kf6-kholidays/kf6-kholidays.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-ki18n:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-ki18n.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-ki18n.spec') ||
+          contains(inputs.specfiles, '/kf6-ki18n.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -623,9 +917,18 @@ jobs:
       spec: ./frameworks/kf6-ki18n/kf6-ki18n.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kiconthemes:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kiconthemes.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kiconthemes.spec') ||
+          contains(inputs.specfiles, '/kf6-kiconthemes.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -644,9 +947,18 @@ jobs:
       spec: ./frameworks/kf6-kiconthemes/kf6-kiconthemes.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kidletime:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kidletime.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kidletime.spec') ||
+          contains(inputs.specfiles, '/kf6-kidletime.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -661,9 +973,18 @@ jobs:
       spec: ./frameworks/kf6-kidletime/kf6-kidletime.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kimageformats:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kimageformats.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kimageformats.spec') ||
+          contains(inputs.specfiles, '/kf6-kimageformats.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -678,9 +999,18 @@ jobs:
       spec: ./frameworks/kf6-kimageformats/kf6-kimageformats.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kio:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kio.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kio.spec') ||
+          contains(inputs.specfiles, '/kf6-kio.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -715,9 +1045,18 @@ jobs:
       spec: ./frameworks/kf6-kio/kf6-kio.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kirigami:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kirigami.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kirigami.spec') ||
+          contains(inputs.specfiles, '/kf6-kirigami.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -731,9 +1070,18 @@ jobs:
       spec: ./frameworks/kf6-kirigami/kf6-kirigami.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kitemmodels:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kitemmodels.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kitemmodels.spec') ||
+          contains(inputs.specfiles, '/kf6-kitemmodels.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -747,9 +1095,18 @@ jobs:
       spec: ./frameworks/kf6-kitemmodels/kf6-kitemmodels.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kitemviews:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kitemviews.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kitemviews.spec') ||
+          contains(inputs.specfiles, '/kf6-kitemviews.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -763,9 +1120,18 @@ jobs:
       spec: ./frameworks/kf6-kitemviews/kf6-kitemviews.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kjobwidgets:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kjobwidgets.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kjobwidgets.spec') ||
+          contains(inputs.specfiles, '/kf6-kjobwidgets.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -782,9 +1148,18 @@ jobs:
       spec: ./frameworks/kf6-kjobwidgets/kf6-kjobwidgets.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-knewstuff:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-knewstuff.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-knewstuff.spec') ||
+          contains(inputs.specfiles, '/kf6-knewstuff.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -810,9 +1185,18 @@ jobs:
       spec: ./frameworks/kf6-knewstuff/kf6-knewstuff.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-knotifications:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-knotifications.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-knotifications.spec') ||
+          contains(inputs.specfiles, '/kf6-knotifications.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -827,9 +1211,18 @@ jobs:
       spec: ./frameworks/kf6-knotifications/kf6-knotifications.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-knotifyconfig:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-knotifyconfig.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-knotifyconfig.spec') ||
+          contains(inputs.specfiles, '/kf6-knotifyconfig.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -847,9 +1240,18 @@ jobs:
       spec: ./frameworks/kf6-knotifyconfig/kf6-knotifyconfig.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kpackage:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kpackage.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kpackage.spec') ||
+          contains(inputs.specfiles, '/kf6-kpackage.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -867,9 +1269,18 @@ jobs:
       spec: ./frameworks/kf6-kpackage/kf6-kpackage.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kparts:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kparts.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kparts.spec') ||
+          contains(inputs.specfiles, '/kf6-kparts.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -891,9 +1302,18 @@ jobs:
       spec: ./frameworks/kf6-kparts/kf6-kparts.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kpeople:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kpeople.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kpeople.spec') ||
+          contains(inputs.specfiles, '/kf6-kpeople.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -912,9 +1332,18 @@ jobs:
       spec: ./frameworks/kf6-kpeople/kf6-kpeople.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kplotting:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kplotting.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kplotting.spec') ||
+          contains(inputs.specfiles, '/kf6-kplotting.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -928,9 +1357,18 @@ jobs:
       spec: ./frameworks/kf6-kplotting/kf6-kplotting.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kpty:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kpty.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kpty.spec') ||
+          contains(inputs.specfiles, '/kf6-kpty.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -946,9 +1384,18 @@ jobs:
       spec: ./frameworks/kf6-kpty/kf6-kpty.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kquickcharts:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kquickcharts.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kquickcharts.spec') ||
+          contains(inputs.specfiles, '/kf6-kquickcharts.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -962,9 +1409,18 @@ jobs:
       spec: ./frameworks/kf6-kquickcharts/kf6-kquickcharts.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-krunner:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-krunner.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-krunner.spec') ||
+          contains(inputs.specfiles, '/kf6-krunner.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -983,9 +1439,18 @@ jobs:
       spec: ./frameworks/kf6-krunner/kf6-krunner.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kservice:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kservice.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kservice.spec') ||
+          contains(inputs.specfiles, '/kf6-kservice.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1003,9 +1468,18 @@ jobs:
       spec: ./frameworks/kf6-kservice/kf6-kservice.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kstatusnotifieritem:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kstatusnotifieritem.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kstatusnotifieritem.spec') ||
+          contains(inputs.specfiles, '/kf6-kstatusnotifieritem.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1020,9 +1494,18 @@ jobs:
       spec: ./frameworks/kf6-kstatusnotifieritem/kf6-kstatusnotifieritem.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-ksvg:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-ksvg.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-ksvg.spec') ||
+          contains(inputs.specfiles, '/kf6-ksvg.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1042,9 +1525,18 @@ jobs:
       spec: ./frameworks/kf6-ksvg/kf6-ksvg.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-ktexteditor:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-ktexteditor.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-ktexteditor.spec') ||
+          contains(inputs.specfiles, '/kf6-ktexteditor.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1068,9 +1560,18 @@ jobs:
       spec: ./frameworks/kf6-ktexteditor/kf6-ktexteditor.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-ktexttemplate:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-ktexttemplate.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-ktexttemplate.spec') ||
+          contains(inputs.specfiles, '/kf6-ktexttemplate.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1084,9 +1585,18 @@ jobs:
       spec: ./frameworks/kf6-ktexttemplate/kf6-ktexttemplate.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-ktextwidgets:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-ktextwidgets.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-ktextwidgets.spec') ||
+          contains(inputs.specfiles, '/kf6-ktextwidgets.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1105,9 +1615,18 @@ jobs:
       spec: ./frameworks/kf6-ktextwidgets/kf6-ktextwidgets.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kunitconversion:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kunitconversion.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kunitconversion.spec') ||
+          contains(inputs.specfiles, '/kf6-kunitconversion.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1122,9 +1641,18 @@ jobs:
       spec: ./frameworks/kf6-kunitconversion/kf6-kunitconversion.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kuserfeedback:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kuserfeedback.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kuserfeedback.spec') ||
+          contains(inputs.specfiles, '/kf6-kuserfeedback.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1138,9 +1666,18 @@ jobs:
       spec: ./frameworks/kf6-kuserfeedback/kf6-kuserfeedback.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kwallet:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kwallet.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kwallet.spec') ||
+          contains(inputs.specfiles, '/kf6-kwallet.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1164,9 +1701,18 @@ jobs:
       spec: ./frameworks/kf6-kwallet/kf6-kwallet.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kwidgetsaddons:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kwidgetsaddons.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kwidgetsaddons.spec') ||
+          contains(inputs.specfiles, '/kf6-kwidgetsaddons.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1180,9 +1726,18 @@ jobs:
       spec: ./frameworks/kf6-kwidgetsaddons/kf6-kwidgetsaddons.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kwindowsystem:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kwindowsystem.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kwindowsystem.spec') ||
+          contains(inputs.specfiles, '/kf6-kwindowsystem.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1197,9 +1752,18 @@ jobs:
       spec: ./frameworks/kf6-kwindowsystem/kf6-kwindowsystem.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-kxmlgui:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-kxmlgui.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kxmlgui.spec') ||
+          contains(inputs.specfiles, '/kf6-kxmlgui.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1223,9 +1787,18 @@ jobs:
       spec: ./frameworks/kf6-kxmlgui/kf6-kxmlgui.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-modemmanager-qt:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-modemmanager-qt.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-modemmanager-qt.spec') ||
+          contains(inputs.specfiles, '/kf6-modemmanager-qt.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1239,9 +1812,18 @@ jobs:
       spec: ./frameworks/kf6-modemmanager-qt/kf6-modemmanager-qt.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-networkmanager-qt:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-networkmanager-qt.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-networkmanager-qt.spec') ||
+          contains(inputs.specfiles, '/kf6-networkmanager-qt.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1255,9 +1837,18 @@ jobs:
       spec: ./frameworks/kf6-networkmanager-qt/kf6-networkmanager-qt.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-prison:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-prison.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-prison.spec') ||
+          contains(inputs.specfiles, '/kf6-prison.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1271,9 +1862,18 @@ jobs:
       spec: ./frameworks/kf6-prison/kf6-prison.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-purpose:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-purpose.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-purpose.spec') ||
+          contains(inputs.specfiles, '/kf6-purpose.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1295,9 +1895,18 @@ jobs:
       spec: ./frameworks/kf6-purpose/kf6-purpose.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-qqc2-desktop-style:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-qqc2-desktop-style.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-qqc2-desktop-style.spec') ||
+          contains(inputs.specfiles, '/kf6-qqc2-desktop-style.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1316,9 +1925,18 @@ jobs:
       spec: ./frameworks/kf6-qqc2-desktop-style/kf6-qqc2-desktop-style.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-solid:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-solid.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-solid.spec') ||
+          contains(inputs.specfiles, '/kf6-solid.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1332,9 +1950,18 @@ jobs:
       spec: ./frameworks/kf6-solid/kf6-solid.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-sonnet:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-sonnet.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-sonnet.spec') ||
+          contains(inputs.specfiles, '/kf6-sonnet.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1348,9 +1975,18 @@ jobs:
       spec: ./frameworks/kf6-sonnet/kf6-sonnet.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-syndication:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-syndication.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-syndication.spec') ||
+          contains(inputs.specfiles, '/kf6-syndication.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1365,9 +2001,18 @@ jobs:
       spec: ./frameworks/kf6-syndication/kf6-syndication.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-syntax-highlighting:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-syntax-highlighting.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-syntax-highlighting.spec') ||
+          contains(inputs.specfiles, '/kf6-syntax-highlighting.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1381,9 +2026,18 @@ jobs:
       spec: ./frameworks/kf6-syntax-highlighting/kf6-syntax-highlighting.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kf6-threadweaver:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kf6-threadweaver.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-threadweaver.spec') ||
+          contains(inputs.specfiles, '/kf6-threadweaver.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1397,9 +2051,18 @@ jobs:
       spec: ./frameworks/kf6-threadweaver/kf6-threadweaver.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   aurorae:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/aurorae.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/aurorae.spec') ||
+          contains(inputs.specfiles, '/aurorae.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1421,9 +2084,18 @@ jobs:
       spec: ./plasma/aurorae/aurorae.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   bluedevil:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/bluedevil.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/bluedevil.spec') ||
+          contains(inputs.specfiles, '/bluedevil.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1452,9 +2124,18 @@ jobs:
       spec: ./plasma/bluedevil/bluedevil.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   breeze-gtk:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/breeze-gtk.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/breeze-gtk.spec') ||
+          contains(inputs.specfiles, '/breeze-gtk.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1469,9 +2150,18 @@ jobs:
       spec: ./plasma/breeze-gtk/breeze-gtk.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   flatpak-kcm:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/flatpak-kcm.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/flatpak-kcm.spec') ||
+          contains(inputs.specfiles, '/flatpak-kcm.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1490,9 +2180,18 @@ jobs:
       spec: ./plasma/flatpak-kcm/flatpak-kcm.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   grub2-breeze-theme:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/grub2-breeze-theme.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/grub2-breeze-theme.spec') ||
+          contains(inputs.specfiles, '/grub2-breeze-theme.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1507,9 +2206,18 @@ jobs:
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
       debuginfo: false
+      abidiff: ${{ inputs.abidiff }}
 
   kactivitymanagerd:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kactivitymanagerd.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kactivitymanagerd.spec') ||
+          contains(inputs.specfiles, '/kactivitymanagerd.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1532,9 +2240,18 @@ jobs:
       spec: ./plasma/kactivitymanagerd/kactivitymanagerd.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kcm_wacomtablet:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kcm_wacomtablet.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kcm_wacomtablet.spec') ||
+          contains(inputs.specfiles, '/kcm_wacomtablet.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1562,9 +2279,18 @@ jobs:
       spec: ./plasma/kcm_wacomtablet/kcm_wacomtablet.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kde-cli-tools:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kde-cli-tools.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kde-cli-tools.spec') ||
+          contains(inputs.specfiles, '/kde-cli-tools.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1591,9 +2317,18 @@ jobs:
       spec: ./plasma/kde-cli-tools/kde-cli-tools.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kde-gtk-config:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kde-gtk-config.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kde-gtk-config.spec') ||
+          contains(inputs.specfiles, '/kde-gtk-config.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1614,9 +2349,18 @@ jobs:
       spec: ./plasma/kde-gtk-config/kde-gtk-config.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kdecoration:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kdecoration.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kdecoration.spec') ||
+          contains(inputs.specfiles, '/kdecoration.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1631,9 +2375,18 @@ jobs:
       spec: ./plasma/kdecoration/kdecoration.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kdeplasma-addons:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kdeplasma-addons.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kdeplasma-addons.spec') ||
+          contains(inputs.specfiles, '/kdeplasma-addons.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1668,9 +2421,18 @@ jobs:
       spec: ./plasma/kdeplasma-addons/kdeplasma-addons.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kgamma:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kgamma.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kgamma.spec') ||
+          contains(inputs.specfiles, '/kgamma.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1689,9 +2451,18 @@ jobs:
       spec: ./plasma/kgamma/kgamma.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kglobalacceld:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kglobalacceld.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kglobalacceld.spec') ||
+          contains(inputs.specfiles, '/kglobalacceld.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1714,9 +2485,18 @@ jobs:
       spec: ./plasma/kglobalacceld/kglobalacceld.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kinfocenter:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kinfocenter.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kinfocenter.spec') ||
+          contains(inputs.specfiles, '/kinfocenter.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1740,9 +2520,18 @@ jobs:
       spec: ./plasma/kinfocenter/kinfocenter.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kmenuedit:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kmenuedit.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kmenuedit.spec') ||
+          contains(inputs.specfiles, '/kmenuedit.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1767,9 +2556,18 @@ jobs:
       spec: ./plasma/kmenuedit/kmenuedit.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   knighttime:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/knighttime.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/knighttime.spec') ||
+          contains(inputs.specfiles, '/knighttime.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1788,9 +2586,18 @@ jobs:
       spec: ./plasma/knighttime/knighttime.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kpipewire:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kpipewire.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kpipewire.spec') ||
+          contains(inputs.specfiles, '/kpipewire.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1806,9 +2613,18 @@ jobs:
       spec: ./plasma/kpipewire/kpipewire.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   krdp:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/krdp.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/krdp.spec') ||
+          contains(inputs.specfiles, '/krdp.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1832,9 +2648,18 @@ jobs:
       spec: ./plasma/krdp/krdp.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kscreen:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kscreen.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kscreen.spec') ||
+          contains(inputs.specfiles, '/kscreen.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1859,9 +2684,18 @@ jobs:
       spec: ./plasma/kscreen/kscreen.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kscreenlocker:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kscreenlocker.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kscreenlocker.spec') ||
+          contains(inputs.specfiles, '/kscreenlocker.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1889,9 +2723,18 @@ jobs:
       spec: ./plasma/kscreenlocker/kscreenlocker.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   ksshaskpass:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/ksshaskpass.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/ksshaskpass.spec') ||
+          contains(inputs.specfiles, '/ksshaskpass.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1910,9 +2753,18 @@ jobs:
       spec: ./plasma/ksshaskpass/ksshaskpass.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   ksystemstats:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/ksystemstats.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/ksystemstats.spec') ||
+          contains(inputs.specfiles, '/ksystemstats.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1932,9 +2784,18 @@ jobs:
       spec: ./plasma/ksystemstats/ksystemstats.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kwayland:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kwayland.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kwayland.spec') ||
+          contains(inputs.specfiles, '/kwayland.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1949,9 +2810,18 @@ jobs:
       spec: ./plasma/kwayland/kwayland.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kwayland-integration:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kwayland-integration.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kwayland-integration.spec') ||
+          contains(inputs.specfiles, '/kwayland-integration.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -1966,9 +2836,18 @@ jobs:
       spec: ./plasma/kwayland-integration/kwayland-integration.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kwin:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kwin.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kwin.spec') ||
+          contains(inputs.specfiles, '/kwin.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2013,9 +2892,18 @@ jobs:
       spec: ./plasma/kwin/kwin.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kwin-x11:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kwin-x11.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kwin-x11.spec') ||
+          contains(inputs.specfiles, '/kwin-x11.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2060,9 +2948,18 @@ jobs:
       spec: ./plasma/kwin-x11/kwin-x11.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   kwrited:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/kwrited.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kwrited.spec') ||
+          contains(inputs.specfiles, '/kwrited.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2081,9 +2978,18 @@ jobs:
       spec: ./plasma/kwrited/kwrited.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   layer-shell-qt:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/layer-shell-qt.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/layer-shell-qt.spec') ||
+          contains(inputs.specfiles, '/layer-shell-qt.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2097,9 +3003,18 @@ jobs:
       spec: ./plasma/layer-shell-qt/layer-shell-qt.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   libkscreen:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libkscreen.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/libkscreen.spec') ||
+          contains(inputs.specfiles, '/libkscreen.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2115,9 +3030,18 @@ jobs:
       spec: ./plasma/libkscreen/libkscreen.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   libksysguard:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libksysguard.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/libksysguard.spec') ||
+          contains(inputs.specfiles, '/libksysguard.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2139,9 +3063,18 @@ jobs:
       spec: ./plasma/libksysguard/libksysguard.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   libplasma:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/libplasma.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/libplasma.spec') ||
+          contains(inputs.specfiles, '/libplasma.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2171,9 +3104,18 @@ jobs:
       spec: ./plasma/libplasma/libplasma.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   ocean-sound-theme:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/ocean-sound-theme.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/ocean-sound-theme.spec') ||
+          contains(inputs.specfiles, '/ocean-sound-theme.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2187,9 +3129,18 @@ jobs:
       spec: ./plasma/ocean-sound-theme/ocean-sound-theme.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   oxygen-sounds:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/oxygen-sounds.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/oxygen-sounds.spec') ||
+          contains(inputs.specfiles, '/oxygen-sounds.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2203,9 +3154,18 @@ jobs:
       spec: ./plasma/oxygen-sounds/oxygen-sounds.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   pam-kwallet:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/pam-kwallet.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/pam-kwallet.spec') ||
+          contains(inputs.specfiles, '/pam-kwallet.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2220,9 +3180,18 @@ jobs:
       spec: ./plasma/pam-kwallet/pam-kwallet.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-activities:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-activities.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-activities.spec') ||
+          contains(inputs.specfiles, '/plasma-activities.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2238,9 +3207,18 @@ jobs:
       spec: ./plasma/plasma-activities/plasma-activities.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-activities-stats:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-activities-stats.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-activities-stats.spec') ||
+          contains(inputs.specfiles, '/plasma-activities-stats.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2256,9 +3234,18 @@ jobs:
       spec: ./plasma/plasma-activities-stats/plasma-activities-stats.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-breeze:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-breeze.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-breeze.spec') ||
+          contains(inputs.specfiles, '/plasma-breeze.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2282,9 +3269,18 @@ jobs:
       spec: ./plasma/plasma-breeze/plasma-breeze.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-browser-integration:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-browser-integration.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-browser-integration.spec') ||
+          contains(inputs.specfiles, '/plasma-browser-integration.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2313,9 +3309,18 @@ jobs:
       spec: ./plasma/plasma-browser-integration/plasma-browser-integration.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-desktop:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-desktop.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-desktop.spec') ||
+          contains(inputs.specfiles, '/plasma-desktop.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2366,9 +3371,18 @@ jobs:
       spec: ./plasma/plasma-desktop/plasma-desktop.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-discover:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-discover.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-discover.spec') ||
+          contains(inputs.specfiles, '/plasma-discover.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2402,9 +3416,18 @@ jobs:
       spec: ./plasma/plasma-discover/plasma-discover.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-disks:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-disks.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-disks.spec') ||
+          contains(inputs.specfiles, '/plasma-disks.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2427,9 +3450,18 @@ jobs:
       spec: ./plasma/plasma-disks/plasma-disks.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-drkonqi:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-drkonqi.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-drkonqi.spec') ||
+          contains(inputs.specfiles, '/plasma-drkonqi.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2457,9 +3489,18 @@ jobs:
       spec: ./plasma/plasma-drkonqi/plasma-drkonqi.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-firewall:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-firewall.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-firewall.spec') ||
+          contains(inputs.specfiles, '/plasma-firewall.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2478,9 +3519,18 @@ jobs:
       spec: ./plasma/plasma-firewall/plasma-firewall.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-integration:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-integration.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-integration.spec') ||
+          contains(inputs.specfiles, '/plasma-integration.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2508,9 +3558,18 @@ jobs:
       spec: ./plasma/plasma-integration/plasma-integration.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-milou:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-milou.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-milou.spec') ||
+          contains(inputs.specfiles, '/plasma-milou.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2529,9 +3588,18 @@ jobs:
       spec: ./plasma/plasma-milou/plasma-milou.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-nano:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-nano.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-nano.spec') ||
+          contains(inputs.specfiles, '/plasma-nano.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2556,9 +3624,18 @@ jobs:
       spec: ./plasma/plasma-nano/plasma-nano.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-nm:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-nm.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-nm.spec') ||
+          contains(inputs.specfiles, '/plasma-nm.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2590,9 +3667,18 @@ jobs:
       spec: ./plasma/plasma-nm/plasma-nm.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-oxygen:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-oxygen.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-oxygen.spec') ||
+          contains(inputs.specfiles, '/plasma-oxygen.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2618,9 +3704,18 @@ jobs:
       spec: ./plasma/plasma-oxygen/plasma-oxygen.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-pa:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-pa.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-pa.spec') ||
+          contains(inputs.specfiles, '/plasma-pa.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2645,9 +3740,18 @@ jobs:
       spec: ./plasma/plasma-pa/plasma-pa.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-print-manager:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-print-manager.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-print-manager.spec') ||
+          contains(inputs.specfiles, '/plasma-print-manager.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2673,9 +3777,18 @@ jobs:
       spec: ./plasma/plasma-print-manager/plasma-print-manager.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-sdk:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-sdk.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-sdk.spec') ||
+          contains(inputs.specfiles, '/plasma-sdk.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2706,9 +3819,18 @@ jobs:
       spec: ./plasma/plasma-sdk/plasma-sdk.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-systemmonitor:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-systemmonitor.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-systemmonitor.spec') ||
+          contains(inputs.specfiles, '/plasma-systemmonitor.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2734,9 +3856,18 @@ jobs:
       spec: ./plasma/plasma-systemmonitor/plasma-systemmonitor.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-systemsettings:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-systemsettings.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-systemsettings.spec') ||
+          contains(inputs.specfiles, '/plasma-systemsettings.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2771,9 +3902,18 @@ jobs:
       spec: ./plasma/plasma-systemsettings/plasma-systemsettings.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-thunderbolt:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-thunderbolt.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-thunderbolt.spec') ||
+          contains(inputs.specfiles, '/plasma-thunderbolt.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2792,9 +3932,18 @@ jobs:
       spec: ./plasma/plasma-thunderbolt/plasma-thunderbolt.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-vault:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-vault.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-vault.spec') ||
+          contains(inputs.specfiles, '/plasma-vault.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2819,9 +3968,18 @@ jobs:
       spec: ./plasma/plasma-vault/plasma-vault.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-welcome:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-welcome.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-welcome.spec') ||
+          contains(inputs.specfiles, '/plasma-welcome.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2849,9 +4007,18 @@ jobs:
       spec: ./plasma/plasma-welcome/plasma-welcome.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-workspace:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-workspace.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-workspace.spec') ||
+          contains(inputs.specfiles, '/plasma-workspace.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2913,9 +4080,18 @@ jobs:
       spec: ./plasma/plasma-workspace/plasma-workspace.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-workspace-wallpapers:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-workspace-wallpapers.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-workspace-wallpapers.spec') ||
+          contains(inputs.specfiles, '/plasma-workspace-wallpapers.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2929,9 +4105,18 @@ jobs:
       spec: ./plasma/plasma-workspace-wallpapers/plasma-workspace-wallpapers.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma5support:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma5support.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma5support.spec') ||
+          contains(inputs.specfiles, '/plasma5support.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2960,9 +4145,18 @@ jobs:
       spec: ./plasma/plasma5support/plasma5support.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plymouth-kcm:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plymouth-kcm.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plymouth-kcm.spec') ||
+          contains(inputs.specfiles, '/plymouth-kcm.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2983,9 +4177,18 @@ jobs:
       spec: ./plasma/plymouth-kcm/plymouth-kcm.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plymouth-theme-breeze:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plymouth-theme-breeze.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plymouth-theme-breeze.spec') ||
+          contains(inputs.specfiles, '/plymouth-theme-breeze.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -2999,9 +4202,18 @@ jobs:
       spec: ./plasma/plymouth-theme-breeze/plymouth-theme-breeze.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   polkit-kde:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/polkit-kde.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/polkit-kde.spec') ||
+          contains(inputs.specfiles, '/polkit-kde.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -3021,9 +4233,18 @@ jobs:
       spec: ./plasma/polkit-kde/polkit-kde.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   powerdevil:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/powerdevil.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/powerdevil.spec') ||
+          contains(inputs.specfiles, '/powerdevil.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -3059,9 +4280,18 @@ jobs:
       spec: ./plasma/powerdevil/powerdevil.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   qqc2-breeze-style:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/qqc2-breeze-style.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/qqc2-breeze-style.spec') ||
+          contains(inputs.specfiles, '/qqc2-breeze-style.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -3080,9 +4310,18 @@ jobs:
       spec: ./plasma/qqc2-breeze-style/qqc2-breeze-style.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   sddm-kcm:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/sddm-kcm.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/sddm-kcm.spec') ||
+          contains(inputs.specfiles, '/sddm-kcm.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -3104,9 +4343,18 @@ jobs:
       spec: ./plasma/sddm-kcm/sddm-kcm.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   spectacle:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/spectacle.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/spectacle.spec') ||
+          contains(inputs.specfiles, '/spectacle.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -3140,9 +4388,18 @@ jobs:
       spec: ./plasma/spectacle/spectacle.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   xdg-desktop-portal-kde:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/xdg-desktop-portal-kde.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/xdg-desktop-portal-kde.spec') ||
+          contains(inputs.specfiles, '/xdg-desktop-portal-kde.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -3172,9 +4429,18 @@ jobs:
       spec: ./plasma/xdg-desktop-portal-kde/xdg-desktop-portal-kde.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
   plasma-wayland-protocols:
-    if: ${{ ! failure() && ! cancelled() && contains(needs.changed-files.outputs.modified_files, '/plasma-wayland-protocols.spec') }}
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-wayland-protocols.spec') ||
+          contains(inputs.specfiles, '/plasma-wayland-protocols.spec')
+        )
+      }}
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
@@ -3188,4 +4454,5 @@ jobs:
       spec: ./related/plasma-wayland-protocols/plasma-wayland-protocols.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
 
