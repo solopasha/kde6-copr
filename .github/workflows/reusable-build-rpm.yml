@@ -379,7 +379,7 @@ jobs:
           find sources -type f -exec mv -t "$(dirname "${spec}")" {} +
 
       - name: Wait builds
-        if: github.event_name == 'push' && steps.gear.outputs.gear != 'true'
+        if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && steps.gear.outputs.gear != 'true'
         env:
           DEPS: ${{ inputs.deps }}
         run: |
@@ -392,7 +392,7 @@ jobs:
           fi
 
       - name: Submit to Copr
-        if: github.event_name == 'push' && steps.gear.outputs.gear != 'true'
+        if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && steps.gear.outputs.gear != 'true'
         id: copr
         env:
           curl_opts: --connect-timeout 10 --retry 7 --retry-connrefused -Ss -X POST

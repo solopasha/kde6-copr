@@ -29,6 +29,7 @@ concurrency:
 jobs:
   changed-files:
     name: Assemble builds
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:
       contents: read
