@@ -13,12 +13,13 @@ URL:     https://invent.kde.org/sdk/%{name}
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
-BuildRequires:  gettext-devel
-BuildRequires:  kf6-kconfig-devel
-BuildRequires:  kf6-ki18n-devel
-BuildRequires:  kf6-kio-devel
 BuildRequires:  kf6-rpm-macros
-BuildRequires:  pkgconfig(Qt6Widgets)
+
+BuildRequires:  cmake(KF6KIO)
+
+BuildRequires:  cmake(Qt6Widgets)
+
+BuildRequires:  gettext-devel
 
 Provides:       kdesdk-thumbnailers = %{version}-%{release}
 Provides:       kde-thumbnailer-po = %{version}-%{release}
@@ -35,23 +36,18 @@ gettext translation templates
 
 
 %build
-%cmake_kf6 \
-  -DQT_MAJOR_VERSION=6
-
+%cmake_kf6
 %cmake_build
 
 
 %install
 %cmake_install
 
-%find_lang %{name} --all-name
 
-
-%files -f %{name}.lang
+%files
 %license LICENSES/*
 %dir %{_qt6_plugindir}/kf6/thumbcreator
 %{_qt6_plugindir}/kf6/thumbcreator/pothumbnail.so
-%{_kf6_datadir}/config.kcfg/pocreatorsettings.kcfg
 
 
 %changelog
