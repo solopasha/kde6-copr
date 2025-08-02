@@ -1,6 +1,6 @@
-%global commit0 a1b52b9b3cd450feab6062d9500f6dc6f510d31a
+%global commit0 d88e9bbdce0dc5ed0b52a27737ee22391e24c213
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 61
+%global bumpver 62
 
 Name:           plasma-desktop
 Summary:        Plasma Desktop shell
@@ -58,6 +58,7 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6QuickWidgets)
+BuildRequires:  cmake(Qt6ShaderTools)
 BuildRequires:  cmake(Qt6Sql)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6WaylandClient)
@@ -68,6 +69,7 @@ BuildRequires:  cmake(KRunnerAppDBusInterface)
 BuildRequires:  cmake(KSMServerDBusInterface)
 BuildRequires:  cmake(KSysGuard)
 BuildRequires:  cmake(KWinDBusInterface)
+BuildRequires:  cmake(LibKLookAndFeel)
 BuildRequires:  cmake(LibKWorkspace)
 BuildRequires:  cmake(LibNotificationManager)
 BuildRequires:  cmake(LibTaskManager)
