@@ -17,36 +17,6 @@ packages:
   - vlc-plugin-gstreamer
   - xwaylandvideobridge
   - "'qt6-qtwayland >= 6.9.1-3'"
-  - akonadi-server
-  - akonadi-server-mysql
-  - ark
-  - audiocd-kio
-  - colord-kde
-  - dolphin
-  - ffmpegthumbs
-  - filelight
-  - kaccounts-integration-qt6
-  - kaccounts-providers
-  - kate
-  - kcharselect
-  - kde-connect
-  - kde-inotify-survey
-  - kde-partitionmanager
-  - kdebugsettings
-  - kdegraphics-thumbnailers
-  - kdenetwork-filesharing
-  - kdialog
-  - kdnssd
-  - kfind
-  - khelpcenter
-  - kio-admin
-  - kio-gdrive
-  - kjournald
-  - konsole
-  - krfb
-  - kwalletmanager5
-  - kwrite
-  - signon-kwallet-extension
 
 repo-packages:
   - repo: coprdep:copr.fedorainfracloud.org:solopasha:plasma-unstable
@@ -87,3 +57,35 @@ repo-packages:
       - sddm-kcm
       - sddm-wayland-plasma
       - spectacle
+  - repo: copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable
+    packages:
+      - akonadi-server
+      - akonadi-server-mysql
+      - ark
+      - audiocd-kio
+      - colord-kde
+      - dolphin
+      - ffmpegthumbs
+      - filelight
+      - kaccounts-integration-qt6
+      - kaccounts-providers
+      - kate
+      - kcharselect
+      - kde-connect
+      - kde-inotify-survey
+      - kde-partitionmanager
+      - kdebugsettings
+      - kdegraphics-thumbnailers
+      - kdenetwork-filesharing
+      - kdialog
+      - kdnssd
+      - kfind
+      - khelpcenter
+      - kio-admin
+      - kio-gdrive
+      - kjournald
+      - konsole
+      - krfb
+      - kwalletmanager5
+      - kwrite
+      - signon-kwallet-extension
