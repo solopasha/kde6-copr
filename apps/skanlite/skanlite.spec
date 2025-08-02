@@ -1,5 +1,5 @@
 %global commit0 b10ed37c347d0835aad86603186ea7f0a31c9f02
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           skanlite

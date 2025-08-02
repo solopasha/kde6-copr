@@ -1,5 +1,5 @@
 %global commit0 b6e96457b04cfbf6320d5bf64e6ee734b8206100
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kbruch

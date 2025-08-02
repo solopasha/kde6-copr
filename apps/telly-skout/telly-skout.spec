@@ -1,5 +1,5 @@
 %global commit0 dcd5b0adafc4eba0cbd641b7c9fa9f201dad54b4
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:           telly-skout

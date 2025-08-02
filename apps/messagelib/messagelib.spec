@@ -1,5 +1,5 @@
 %global commit0 b144b295b94617e15e720ba6fb29410921f9bb5a
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 9
 
 Name:           messagelib

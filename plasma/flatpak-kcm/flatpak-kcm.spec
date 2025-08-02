@@ -1,5 +1,5 @@
 %global commit0 f2c4ed53b8f573dc950f3e8a523fef3434e25b8d
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 6
 
 Name:           flatpak-kcm

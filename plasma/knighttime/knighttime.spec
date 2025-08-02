@@ -1,5 +1,5 @@
 %global commit0 d59d77277a1dd64f304240f5b595d9a685e0506e
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 6
 
 Name:           knighttime

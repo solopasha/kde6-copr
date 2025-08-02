@@ -1,5 +1,5 @@
 %global commit0 673d617fd269093c0472478c046a2ab8721f225a
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 22
 
 Name:           libplasma

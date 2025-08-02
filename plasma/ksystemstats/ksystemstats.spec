@@ -1,5 +1,5 @@
 %global commit0 a79c750a82370c626f7243196446780dd82fcd3b
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 6
 
 Name:           ksystemstats

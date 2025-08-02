@@ -1,5 +1,5 @@
 %global commit0 16bb293e73ae862e7ee1971fcc4e0d16d1eea1f7
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           svgpart

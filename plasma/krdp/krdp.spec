@@ -1,5 +1,5 @@
 %global commit0 a5ccac294c2b6cc6cfe04b28419a0b277f4737e4
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 13
 
 Name:           krdp

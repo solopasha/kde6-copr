@@ -1,5 +1,5 @@
 %global commit0 634e4ca4000d06922a72e88cf6b8b1ada0fd3cee
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    libkdegames

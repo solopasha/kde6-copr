@@ -1,5 +1,5 @@
 %global commit0 c6ec1706801e748083d9cd11153d384feb6d1342
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kollision

@@ -1,5 +1,5 @@
 %global commit0 2cdbd7bd1abeceb8cb7a88562fa5cdf640c951e8
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:           dragon

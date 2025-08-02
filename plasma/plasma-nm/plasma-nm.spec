@@ -1,5 +1,5 @@
 %global commit0 1abeeca9d49c64dd3b1f8d74b957a870091892dc
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 24
 
 Name:           plasma-nm

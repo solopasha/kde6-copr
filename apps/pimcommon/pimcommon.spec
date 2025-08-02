@@ -1,5 +1,5 @@
 %global commit0 760e9959f6d9bf27d9593d28cea1152c7745a83d
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 6
 
 Name:    pimcommon

@@ -1,5 +1,5 @@
 %global commit0 7bf6f9d7d09bd8e218e440cb8da9f72bce71c1ca
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:    kaccounts-integration

@@ -1,5 +1,5 @@
 %global commit0 7e2f4c92bf890b00d823621c40b82ea9572fcd3c
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    knavalbattle

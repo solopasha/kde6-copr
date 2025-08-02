@@ -1,5 +1,5 @@
 %global commit0 3f890bcaed3f6393cb0849076735c6f49f870c71
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework kpty

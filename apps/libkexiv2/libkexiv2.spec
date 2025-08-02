@@ -1,5 +1,5 @@
 %global commit0 b9004120f6085c01d7f356d62db76d436fb98f0d
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    libkexiv2

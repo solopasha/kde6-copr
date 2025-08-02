@@ -1,5 +1,5 @@
 %global commit0 a4d9ee8486dbd7c9e7ecf94d5b22bd9a9e277ce0
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    blinken

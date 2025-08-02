@@ -1,5 +1,5 @@
 %global commit0 1409ac45625d1f63f1a0f352c009360923d94577
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 # If KF7 still provides these icons, then their installation should then

@@ -1,5 +1,5 @@
 %global commit0 fb0c66469222848da981eb4669081d9ea018ad49
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kde-dev-utils

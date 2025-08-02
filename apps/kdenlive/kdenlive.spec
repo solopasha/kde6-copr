@@ -1,5 +1,5 @@
 %global commit0 4739edd16560e107da488429373bad62e6e7abb4
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 19
 
 %global _lto_cflags %{nil}

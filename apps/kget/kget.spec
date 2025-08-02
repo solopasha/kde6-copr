@@ -1,5 +1,5 @@
 %global commit0 acdf465c166c86bad1ce7e0fda4f2bbec058c359
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kget

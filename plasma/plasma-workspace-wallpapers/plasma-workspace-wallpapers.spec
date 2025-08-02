@@ -1,5 +1,5 @@
 %global commit0 10fb60cb23f4692a2f46d56d46f6580d9dbeadb1
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 5
 
 Name:           plasma-workspace-wallpapers

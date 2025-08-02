@@ -1,5 +1,5 @@
 %global commit0 f105020fbb5492e36fb47f4cf943788f4fb0479d
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kdf

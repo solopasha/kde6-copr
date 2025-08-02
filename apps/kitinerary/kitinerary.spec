@@ -1,5 +1,5 @@
 %global commit0 ec04b3cdfcb41b81b19a54bee15bef26155b9065
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 15
 
 Name:    kitinerary

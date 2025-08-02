@@ -1,5 +1,5 @@
 %global commit0 e7f78d7a34eaeff5341a09fddc2a6ca3d20d363e
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 5
 
 Name:           kwayland-integration

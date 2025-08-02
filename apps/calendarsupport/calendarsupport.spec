@@ -1,5 +1,5 @@
 %global commit0 45b390d39cb7e0b15c9121cad523def0a1d9d1b2
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 5
 
 Name:    calendarsupport

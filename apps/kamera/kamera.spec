@@ -1,5 +1,5 @@
 %global commit0 834f3aa498a8011c34c5327e2a9d6ef855f189dc
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kamera

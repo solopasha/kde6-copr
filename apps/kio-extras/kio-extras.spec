@@ -1,5 +1,5 @@
 %global commit0 6d9152eb7abf2709f805ee32bf1ce922ab536787
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 9
 
 Name:    kio-extras

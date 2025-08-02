@@ -1,5 +1,5 @@
 %global commit0 8396a9ac2207a4ecc70cf562939d687df5f29166
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:           minuet

@@ -1,5 +1,5 @@
 %global commit0 519d39b51625e1c17738c2c8d40c1fd7cba4486d
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:           ksshaskpass

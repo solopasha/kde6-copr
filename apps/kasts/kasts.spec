@@ -1,5 +1,5 @@
 %global commit0 a9a3ec68c2b444188b5954a9acc1038a51702c9b
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:           kasts

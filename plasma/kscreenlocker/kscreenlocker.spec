@@ -1,5 +1,5 @@
 %global commit0 18b4500cd52df494982c8255a5ad84380a8dbb3b
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 7
 
 Name:           kscreenlocker

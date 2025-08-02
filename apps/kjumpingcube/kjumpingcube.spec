@@ -1,5 +1,5 @@
 %global commit0 bdfb94a50d6ef39a35ffffabfe5dd680ff5188d2
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kjumpingcube

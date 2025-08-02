@@ -1,5 +1,5 @@
 %global commit0 eb7392432a6a6d875c4201d018374265b0747fc9
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 6
 
 Name:    kidentitymanagement

@@ -1,5 +1,5 @@
 %global commit0 81f71b15d51306c766d3a7f109e9d8b33ed545de
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 7
 
 Name:           kactivitymanagerd

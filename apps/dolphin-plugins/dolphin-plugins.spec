@@ -1,5 +1,5 @@
 %global commit0 ca9a8664bda8baeabaf6856bff1fbb0b6926189d
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:    dolphin-plugins

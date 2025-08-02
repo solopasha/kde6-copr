@@ -1,5 +1,5 @@
 %global commit0 69c36cc16b3d422fe545f8072d5879a42b52c2ee
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:           ktrip

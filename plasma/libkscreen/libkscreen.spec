@@ -1,5 +1,5 @@
 %global commit0 53d2447b27ebd9c8a4459d9dc8b4bd6565b9b3d8
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 10
 
 Name:           libkscreen

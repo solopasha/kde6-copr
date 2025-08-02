@@ -1,5 +1,5 @@
 %global commit0 e888016840e01f4395233bb6944e93b0437df1cc
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           massif-visualizer

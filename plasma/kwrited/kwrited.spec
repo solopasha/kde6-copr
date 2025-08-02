@@ -1,5 +1,5 @@
 %global commit0 9fdea82c33f349bff80c51ed329043daa4446bc1
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:           kwrited

@@ -1,5 +1,5 @@
 %global commit0 45727d2d7a2771ca0e0e989df6fbad15c6951066
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 28
 
 Name:           kdeplasma-addons

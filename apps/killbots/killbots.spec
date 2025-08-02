@@ -1,5 +1,5 @@
 %global commit0 4a44df776a6b10d4f9136dd694bb747b25119f88
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    killbots

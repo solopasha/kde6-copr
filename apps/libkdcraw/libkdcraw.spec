@@ -1,5 +1,5 @@
 %global commit0 34ba4cf12dc033a69f09e064a73e710986032e5e
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:    libkdcraw

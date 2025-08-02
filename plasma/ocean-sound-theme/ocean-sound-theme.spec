@@ -1,5 +1,5 @@
 %global commit0 3afb1de0bedf076985ad8b5b3d75537a46a70b78
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:           ocean-sound-theme

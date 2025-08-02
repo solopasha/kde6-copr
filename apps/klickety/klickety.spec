@@ -1,5 +1,5 @@
 %global commit0 17a9d285223aa53679d481b2ce0a9a37e4109031
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    klickety

@@ -1,5 +1,5 @@
 %global commit0 b5301a5b5545b58031ce94ed4e82cb93268d7875
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:    kubrick

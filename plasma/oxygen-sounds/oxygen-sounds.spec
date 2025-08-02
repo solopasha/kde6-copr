@@ -1,5 +1,5 @@
 %global commit0 52ebc76fdf5dde54a0cf2596983ebfb36874677e
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:           oxygen-sounds

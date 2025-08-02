@@ -1,5 +1,5 @@
 %global commit0 c0ea34e7d917409aaf8ca5617b0667ecaeac50e4
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 %define _python3_include %(%{__python3} -Ic 'from sysconfig import get_path; print(get_path("include"))')

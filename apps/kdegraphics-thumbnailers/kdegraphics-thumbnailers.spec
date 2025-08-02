@@ -1,5 +1,5 @@
 %global commit0 b243a0139ad263858cd2a27125e92b87dfc859b5
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kdegraphics-thumbnailers

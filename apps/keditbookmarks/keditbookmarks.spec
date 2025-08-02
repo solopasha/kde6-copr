@@ -1,5 +1,5 @@
 %global commit0 26e9aa5756d3b614c27e5480d6e1f1b0bfb35723
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    keditbookmarks

@@ -1,5 +1,5 @@
 %global commit0 290158b13febbd437f5066024bb649bf40500e16
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:    akonadi-mime

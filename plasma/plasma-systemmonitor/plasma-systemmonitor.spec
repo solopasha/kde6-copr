@@ -1,5 +1,5 @@
 %global commit0 e74854dc329ac9550fbeab771c8816cb2ba1c197
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 11
 
 Name:           plasma-systemmonitor

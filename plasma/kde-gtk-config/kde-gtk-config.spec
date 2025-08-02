@@ -1,5 +1,5 @@
 %global commit0 bcde2ed61106340006eac21670d6ce4ba4323113
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:           kde-gtk-config

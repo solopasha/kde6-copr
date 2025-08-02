@@ -1,5 +1,5 @@
 %global commit0 7a22e727f759acb14cdda08b3b846e79342f2ccb
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:    kcharselect

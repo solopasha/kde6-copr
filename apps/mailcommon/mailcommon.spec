@@ -1,5 +1,5 @@
 %global commit0 6059987a990fd320d696a8b297c805d74dde8c1d
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 5
 
 Name:    mailcommon

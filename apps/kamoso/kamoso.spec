@@ -1,5 +1,5 @@
 %global commit0 71790c56358f1b9ca3ed88c553cef621dde90d97
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:           kamoso

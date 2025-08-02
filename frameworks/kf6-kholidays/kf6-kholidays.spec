@@ -1,5 +1,5 @@
 %global commit0 8ac417d69283f649dc90aca59f147914342863d9
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework kholidays

@@ -1,5 +1,5 @@
 %global commit0 6494403b1b040ce53ccdb4910f84c5f3868d3888
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 11
 
 Name:    kleopatra

@@ -1,5 +1,5 @@
 %global commit0 49656ca2efd1b9466033c315ac2cd3b69ef509eb
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:           cantor

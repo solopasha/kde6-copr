@@ -1,5 +1,5 @@
 %global commit0 ffdc8c8e02591eac7f4a19c6e90e4609f32ec956
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:    kontactinterface

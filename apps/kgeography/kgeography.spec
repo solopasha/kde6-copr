@@ -1,5 +1,5 @@
 %global commit0 16a992e5907b45100f71bd705999d2dd1c1ca100
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kgeography

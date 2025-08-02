@@ -1,5 +1,5 @@
 %global commit0 a460d120da067943fac5b8791df096d0f78bb8ac
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 8
 
 Name:           plasma-vault

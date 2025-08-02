@@ -1,5 +1,5 @@
 %global commit0 68b25654389e9d90e49fef85640dfbfa4f674e07
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:           kgamma

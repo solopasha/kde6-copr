@@ -1,5 +1,5 @@
 %global commit0 e4b8554cded7b9dd40714ad8d8af3d80bea3fb6a
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 6
 
 Name:           kpipewire

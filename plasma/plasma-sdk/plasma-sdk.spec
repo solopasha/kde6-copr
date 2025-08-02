@@ -1,5 +1,5 @@
 %global commit0 f681f5dc16f1c7716f1ea0de1eeadcb50289207e
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 7
 
 Name:           plasma-sdk

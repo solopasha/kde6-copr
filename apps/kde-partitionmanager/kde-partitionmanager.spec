@@ -1,5 +1,5 @@
 %global commit0 dada1750658f7396a01f68e788d4e328ddfa5948
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 %global base_name partitionmanager

@@ -1,5 +1,5 @@
 %global commit0 684aaf7ccd68f203ab830c1d80d43a7340c4bb73
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kopeninghours

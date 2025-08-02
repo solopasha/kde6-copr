@@ -1,5 +1,5 @@
 %global commit0 24140c3b0d84c660b168708f5d0934f29e3ce7ca
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:           calindori

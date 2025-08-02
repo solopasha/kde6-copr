@@ -1,5 +1,5 @@
 %global commit0 fe9aff6593338ca7f88eec910d109cf2b3df6de4
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    audiocd-kio

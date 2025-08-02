@@ -1,5 +1,5 @@
 %global commit0 bfb0abe8bd099341bf05a744c54693a73a42bb81
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 11
 
 Name:           kpublictransport

@@ -1,5 +1,5 @@
 %global commit0 6002eb800fb15aae0a7a30bf8b2d028fa818a66e
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:    ktimer

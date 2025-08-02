@@ -1,5 +1,5 @@
 %global commit0 80149bdab37688337698525e54df1dff68a69a28
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:    kteatime

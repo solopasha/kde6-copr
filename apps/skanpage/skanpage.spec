@@ -1,5 +1,5 @@
 %global commit0 649d59e8035eeec5e2d528aac9f97e2ade0587fc
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:     skanpage

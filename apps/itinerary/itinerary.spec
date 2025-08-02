@@ -1,5 +1,5 @@
 %global commit0 7efee4f936d063cae326999042f1da32db546c74
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 20
 
 Name:           itinerary

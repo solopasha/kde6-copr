@@ -1,5 +1,5 @@
 %global commit0 0402246885911e230ae47d1475f7f415d16004b9
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 7
 
 Name:           plasma-browser-integration

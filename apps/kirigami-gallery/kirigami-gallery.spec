@@ -1,5 +1,5 @@
 %global commit0 aac9bc79e6a3e37b287cadcc9dfc263550ecc500
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 6
 
 Name:    kirigami-gallery

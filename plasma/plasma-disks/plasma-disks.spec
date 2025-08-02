@@ -1,5 +1,5 @@
 %global commit0 af3c72f30759d93689b99b41f938e1de905332a5
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 6
 
 Name:           plasma-disks

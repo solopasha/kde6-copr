@@ -1,5 +1,5 @@
 %global commit0 13ae96aeea518ace8e611e998749ecaf0946b882
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 5
 
 Name:    kmailtransport

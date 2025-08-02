@@ -1,5 +1,5 @@
 %global commit0 ba1be6e8b8a6a73a8cfabd2145b36948bf469839
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 5
 
 Name:           kwayland

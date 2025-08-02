@@ -1,5 +1,5 @@
 %global commit0 2605f3351c62ee3ced6969902cc4b777a2c81199
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:           libktorrent

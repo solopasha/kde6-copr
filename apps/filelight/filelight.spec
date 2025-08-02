@@ -1,5 +1,5 @@
 %global commit0 b380247be3a90a06e869de20ef1f3819f8f06711
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:    filelight

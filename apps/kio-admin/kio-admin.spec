@@ -1,5 +1,5 @@
 %global commit0 4e37fc6c23f1bdd39a47ce8cc93b16a22a0d04ef
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           kio-admin

@@ -1,5 +1,5 @@
 %global commit0 67160000b8f4ed13b13b24a5f829dc671415fa4e
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework modemmanager-qt

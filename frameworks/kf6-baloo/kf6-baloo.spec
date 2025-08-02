@@ -1,5 +1,5 @@
 %global commit0 8cfc82df15d8635546f319e0f25ef42145e0ad46
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework baloo

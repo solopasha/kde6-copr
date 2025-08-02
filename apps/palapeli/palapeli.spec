@@ -1,5 +1,5 @@
 %global commit0 cc0cabd55036fc81fa1367cd8f49de26098fd4a3
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           palapeli

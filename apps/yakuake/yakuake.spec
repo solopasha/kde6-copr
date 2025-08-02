@@ -1,5 +1,5 @@
 %global commit0 ba6aef35dd18b8adbd8b1704fea66b598b188fca
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           yakuake

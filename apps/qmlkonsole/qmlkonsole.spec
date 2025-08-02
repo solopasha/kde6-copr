@@ -1,5 +1,5 @@
 %global commit0 55786ebc2a94a5fba336da151677e8b8159dc172
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:           qmlkonsole

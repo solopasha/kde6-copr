@@ -1,5 +1,5 @@
 %global commit0 88ef75752d5fba21e2ea3ebc8363d893f2b03ee9
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:           khealthcertificate

@@ -1,5 +1,5 @@
 %global commit0 439ee0553be520f2060f697061905ca0524f656f
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kcachegrind

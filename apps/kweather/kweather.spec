@@ -1,5 +1,5 @@
 %global commit0 356c5c5202fbdb3c8847723a310a7ab010da4e97
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:           kweather

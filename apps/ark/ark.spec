@@ -1,5 +1,5 @@
 %global commit0 6b3ca05454d222ca0ab75949c140e44282279d46
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 %if 0%{?fedora}

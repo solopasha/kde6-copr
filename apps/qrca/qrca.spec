@@ -1,5 +1,5 @@
 %global commit0 146584f5e993fa0f076da612d74b8451083ecba1
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:           qrca

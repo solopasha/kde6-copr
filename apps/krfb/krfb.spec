@@ -1,5 +1,5 @@
 %global commit0 7e7c0ee3414ee6a8194a0ed1325323bd0a017181
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    krfb

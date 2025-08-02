@@ -1,5 +1,5 @@
 %global commit0 b6c5c6409df6f9c23a98621ed6d794a7acb34e58
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:    libgravatar

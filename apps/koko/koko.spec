@@ -1,5 +1,5 @@
 %global commit0 c99deaef0451a130618e0170f3b6691c9f354940
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 11
 
 Name:           koko

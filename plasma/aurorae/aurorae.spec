@@ -1,5 +1,5 @@
 %global commit0 dd2000ef03674e728b1b4de3783930d07225fa09
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 5
 
 Name:           aurorae

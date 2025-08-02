@@ -1,5 +1,5 @@
 %global commit0 8d441091803e8dc185c28ff53a2174def3a29446
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 8
 
 %global base_name breeze

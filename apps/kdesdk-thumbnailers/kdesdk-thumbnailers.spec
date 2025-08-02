@@ -1,5 +1,5 @@
 %global commit0 155d632853f2e0dea610f22687f69aa1f405367d
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kdesdk-thumbnailers

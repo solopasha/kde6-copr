@@ -1,5 +1,5 @@
 %global commit0 3b5d489cb30a8aca85fcb24d092e2577ae169cbe
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 7
 
 

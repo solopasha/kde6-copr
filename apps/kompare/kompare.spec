@@ -1,5 +1,5 @@
 %global commit0 9a7abd5a5f298f0cfa69b9c61c701e5f4d04bc0d
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           kompare

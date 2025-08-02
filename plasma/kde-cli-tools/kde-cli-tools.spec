@@ -1,5 +1,5 @@
 %global commit0 aa5548eab3442afc446a73b4197216781ce52009
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 6
 
 Name:           kde-cli-tools

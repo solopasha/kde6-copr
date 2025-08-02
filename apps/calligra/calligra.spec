@@ -1,5 +1,5 @@
 %global commit0 ad3bfdfade988946c2c186fe7318b99ae0596bdd
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /')

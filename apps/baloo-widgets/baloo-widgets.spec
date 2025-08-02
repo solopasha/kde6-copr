@@ -1,5 +1,5 @@
 %global commit0 949a027b56e5fb0e9d35f61d5d7a2d3d30e23790
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:    baloo-widgets

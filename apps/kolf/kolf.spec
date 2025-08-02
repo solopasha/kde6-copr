@@ -1,5 +1,5 @@
 %global commit0 24c0f22da0b50a1560ebd409efb027dd14edc948
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kolf

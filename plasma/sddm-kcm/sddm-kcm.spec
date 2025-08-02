@@ -1,5 +1,5 @@
 %global commit0 33eaedad0d4099352f614d8ad6feb6d5b05ed24c
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 7
 
 Name:           sddm-kcm

@@ -1,5 +1,5 @@
 %global commit0 611e92dac4abce8a39b365f3f8ddf679ba34ca1c
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:    ksmtp

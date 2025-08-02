@@ -1,5 +1,5 @@
 %global commit0 38e8c43a3f68b37af8c6c7682f786086d70b86fa
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 5
 
 Name:    kimap

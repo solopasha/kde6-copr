@@ -1,5 +1,5 @@
 %global commit0 7813886c16a3b397ef8010d7304b4fcd41dda561
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:    juk

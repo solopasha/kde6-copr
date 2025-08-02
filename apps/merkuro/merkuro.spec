@@ -1,5 +1,5 @@
 %global commit0 df856d5f49ed2f0c65b695974024f3a867e7139e
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 6
 
 Name:           merkuro

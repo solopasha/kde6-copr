@@ -1,5 +1,5 @@
 %global commit0 32278b2ed759f8c0720d4e3a1f88363593bf351e
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 8
 
 Name:    incidenceeditor

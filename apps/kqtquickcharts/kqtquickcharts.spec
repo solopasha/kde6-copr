@@ -1,5 +1,5 @@
 %global commit0 c4a99ef6f261d317e71184bf826223cfed937119
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           kqtquickcharts

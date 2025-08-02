@@ -1,5 +1,5 @@
 %global commit0 c2a1d4b4018608d7ebd6eecef99e2a2a0628f07e
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework kimageformats

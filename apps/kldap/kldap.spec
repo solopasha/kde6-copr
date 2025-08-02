@@ -1,5 +1,5 @@
 %global commit0 6fa2fb8fa1e056de574095e535930c165fb006cf
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:    kldap

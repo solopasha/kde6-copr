@@ -1,5 +1,5 @@
 %global commit0 9131b79175091f4498d55d4128a8886364238690
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 17
 
 Name:           xdg-desktop-portal-kde

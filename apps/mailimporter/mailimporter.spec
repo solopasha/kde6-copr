@@ -1,5 +1,5 @@
 %global commit0 f5f55524df5665a7de29fc75dc0552ca6e54033d
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:    mailimporter

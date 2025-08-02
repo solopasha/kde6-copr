@@ -1,5 +1,5 @@
 %global commit0 5bbf7b4761695719cb2b242784a3da6bedce70e2
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1895674

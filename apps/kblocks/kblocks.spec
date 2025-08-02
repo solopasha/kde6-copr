@@ -1,5 +1,5 @@
 %global commit0 27caeb46ee55efb121a401c9a438c428040874ba
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kblocks

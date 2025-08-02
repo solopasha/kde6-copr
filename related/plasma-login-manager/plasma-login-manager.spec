@@ -1,5 +1,5 @@
 %global commit0 09132f0622822e87c6628895a8de2eed850eccea
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 11
 
 %global selinuxtype targeted

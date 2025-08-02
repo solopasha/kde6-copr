@@ -1,5 +1,5 @@
 %global commit0 1ae16037895c9f14ca51a5d2252d81b1a3fdf7d8
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework kpeople

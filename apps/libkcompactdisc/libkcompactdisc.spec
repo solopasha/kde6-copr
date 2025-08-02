@@ -1,5 +1,5 @@
 %global commit0 13bc2f2d4d9f2a99b1aea4f871b759374048346c
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:    libkcompactdisc

@@ -1,5 +1,5 @@
 %global commit0 f90a3b10d8c68d96c5ffb8faee982c5e4e74d00a
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kbounce

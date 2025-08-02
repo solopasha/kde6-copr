@@ -1,5 +1,5 @@
 %global commit0 789e2f97b2a458bff262f54e696b4972c6a12ec5
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 10
 
 Name:           dolphin

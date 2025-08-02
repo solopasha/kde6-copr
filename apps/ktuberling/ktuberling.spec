@@ -1,5 +1,5 @@
 %global commit0 adef953c7a4117d5b42760786ec2c3583b38eb83
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:    ktuberling

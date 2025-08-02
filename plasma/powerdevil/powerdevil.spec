@@ -1,5 +1,5 @@
 %global commit0 f26ea57e9e8333e490ab98838a7d006d5e1e6b3a
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 21
 
 Name:           powerdevil

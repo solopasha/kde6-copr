@@ -1,5 +1,5 @@
 %global commit0 b879c39801df1f80ea1ec1e5a49500c8ba8de2d3
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           kalk

@@ -1,5 +1,5 @@
 %global commit0 0d340c37f9b90fe48713e86cb39ef0451f236268
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 10
 
 Name:           kglobalacceld

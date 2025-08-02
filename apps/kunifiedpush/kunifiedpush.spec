@@ -1,5 +1,5 @@
 %global commit0 d069cb0d835809cc937bd1a38dc79976cd664d11
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           kunifiedpush

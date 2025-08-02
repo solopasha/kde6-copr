@@ -1,5 +1,5 @@
 %global commit0 a566e1c35e96916791aba097397fc46105fcd8e5
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 5
 
 Name:           plasma-wayland-protocols

@@ -1,5 +1,5 @@
 %global commit0 1b473a8d94ad0f761b7b3be433b4d606f68d8ef4
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kdeedu-data

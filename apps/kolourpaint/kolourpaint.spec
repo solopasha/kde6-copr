@@ -1,5 +1,5 @@
 %global commit0 c19c1cefe71b067006ccccb14d0943f41be9e26d
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kolourpaint

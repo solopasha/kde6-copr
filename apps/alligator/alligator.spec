@@ -1,5 +1,5 @@
 %global commit0 690fe210736c810fe28ce391538176d450f5d634
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:           alligator

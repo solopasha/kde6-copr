@@ -1,5 +1,5 @@
 %global commit0 c1dd716ea8658e06acb862a0a54ba64a9709b316
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    granatier

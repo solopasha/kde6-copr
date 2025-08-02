@@ -1,5 +1,5 @@
 %global commit0 c012d1b84e9fbef649229125038b403485bcd6a6
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kcron

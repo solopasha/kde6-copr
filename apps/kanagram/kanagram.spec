@@ -1,5 +1,5 @@
 %global commit0 f7ac6101c58e174cdca18dbab6a523c39d3247eb
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kanagram

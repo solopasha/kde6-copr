@@ -1,5 +1,5 @@
 %global commit0 e86e0ea3cf44c6a8f13f83f01ac08b3e20825830
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    klettres

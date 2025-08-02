@@ -1,5 +1,5 @@
 %global commit0 ce03424693bcf272627a2da2bad027a78ccac758
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           knights

@@ -1,5 +1,5 @@
 %global commit0 fd2021a77e6f91fa39f34b707f0facd127352625
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 5
 
 Name:           marble

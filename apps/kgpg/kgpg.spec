@@ -1,5 +1,5 @@
 %global commit0 ef57dd171c736b1bc21eb6924a77a3844eb9234e
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:    kgpg

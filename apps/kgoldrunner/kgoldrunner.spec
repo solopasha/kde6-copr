@@ -1,5 +1,5 @@
 %global commit0 e6da6e7ef1186bf74f8593e8c93b20d68a054ccf
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kgoldrunner

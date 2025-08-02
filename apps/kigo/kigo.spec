@@ -1,5 +1,5 @@
 %global commit0 9c069a531f619863884d4a48c32a146275c20c6d
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kigo

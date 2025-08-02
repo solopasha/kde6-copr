@@ -1,5 +1,5 @@
 %global commit0 e8a1d338e9c9ee7a0924886c66f41a898d21bd57
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:          kde-inotify-survey

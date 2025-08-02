@@ -1,5 +1,5 @@
 %global commit0 6839d5a8c80dcb4321b271719b81edcd2b1635ee
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           skladnik

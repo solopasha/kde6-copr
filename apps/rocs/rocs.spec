@@ -1,5 +1,5 @@
 %global commit0 43c013e9d573950fd0bd25945127e09ab5cee04d
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    rocs

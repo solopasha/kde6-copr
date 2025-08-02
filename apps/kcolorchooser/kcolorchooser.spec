@@ -1,5 +1,5 @@
 %global commit0 a196043f76b2fdd9f97b161338f5af2c9a3fd085
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kcolorchooser

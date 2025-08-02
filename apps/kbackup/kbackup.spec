@@ -1,5 +1,5 @@
 %global commit0 cfb620e2e693501628fd97e241a17c4d01fee288
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           kbackup

@@ -1,5 +1,5 @@
 %global commit0 ded5fe09b55d8cc35d0d773302b11924e4c0bbc3
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 5
 
 Name:    libkleo

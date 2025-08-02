@@ -1,5 +1,5 @@
 %global commit0 30a0f0b205680c85909b947848f274f375a0c4ea
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 5
 
 Name:    mimetreeparser

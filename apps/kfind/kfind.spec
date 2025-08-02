@@ -1,5 +1,5 @@
 %global commit0 7dedade191d1ddb650077b860604d2b9ffbfdbc3
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kfind

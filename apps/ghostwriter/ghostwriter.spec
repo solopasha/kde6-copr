@@ -1,5 +1,5 @@
 %global commit0 47fbff75cdce122f02e444ed34d8d2bde4e6f29e
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           ghostwriter

@@ -1,5 +1,5 @@
 %global commit0 b0c075e85d06b1930b774791ddc0899d2a759663
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:           plasmatube

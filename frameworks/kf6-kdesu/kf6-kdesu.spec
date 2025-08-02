@@ -1,5 +1,5 @@
 %global commit0 c5c451d639e91df923e468d84b38cc6f51859ec2
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework kdesu

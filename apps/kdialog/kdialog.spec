@@ -1,5 +1,5 @@
 %global commit0 f56bca0cd741f94598e0af04b61f1a19613367d8
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kdialog

@@ -1,5 +1,5 @@
 %global commit0 5c57f01a7a96767c8dd275bcbcd9827e17ad66c6
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 13
 
 Name:           bluedevil

@@ -1,5 +1,5 @@
 %global commit0 5ad9cd9d6f8c05064269f226eb8797e0ecbb4efb
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 5
 
 Name:           tokodon

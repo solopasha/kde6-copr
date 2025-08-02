@@ -1,5 +1,5 @@
 %global commit0 0bd179a27a8f263576342b5357adb209058f74a4
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:    kiriki

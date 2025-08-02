@@ -1,5 +1,5 @@
 %global commit0 01474ef69c28463c216b907c7e125669fc57ce08
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           kimagemapeditor

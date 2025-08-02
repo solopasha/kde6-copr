@@ -1,5 +1,5 @@
 %global commit0 b0c9830b7f28ac5b823ee416f7770ccbd1243bff
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kwordquiz

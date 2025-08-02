@@ -1,5 +1,5 @@
 %global commit0 e1d01fef873d0ab03ccb2fd20f27caa83c38b21b
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 71
 
 Name:           kwin

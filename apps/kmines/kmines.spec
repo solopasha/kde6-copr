@@ -1,5 +1,5 @@
 %global commit0 0c18b8642be011a97376c05b75014d914483936c
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kmines

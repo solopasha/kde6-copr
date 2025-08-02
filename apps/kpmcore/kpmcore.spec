@@ -1,5 +1,5 @@
 %global commit0 37e15fa93c911c7a288a043a6e8dcb24c49c95b7
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 %global kf6min 5.240.0

@@ -1,5 +1,5 @@
 %global commit0 319d61730c31d002565f14dfde0eb96d58d85b6f
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:           plasma-activities-stats

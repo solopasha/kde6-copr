@@ -1,5 +1,5 @@
 %global commit0 f599e829ad80010c8c307916650994b7b3105dad
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 5
 
 Name:           layer-shell-qt

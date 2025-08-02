@@ -1,5 +1,5 @@
 %global commit0 e0e5dfbd1e713cca893c268f9bd8e05c19868c38
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kapman

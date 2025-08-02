@@ -1,5 +1,5 @@
 %global commit0 2ca3b342771cd34ebaaac4fba7cdbbb7c2aeab30
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 7
 
 Name:    eventviews

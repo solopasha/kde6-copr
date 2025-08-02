@@ -1,5 +1,5 @@
 %global commit0 b27b5c16a2fc28793871bf76cb36ab6c50d85c92
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 # build Python plugins (disabled by default due to #2048781)

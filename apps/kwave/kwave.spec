@@ -1,5 +1,5 @@
 %global commit0 32b582cb61473bd96e3aab61617d56d222cf1ecb
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:           kwave

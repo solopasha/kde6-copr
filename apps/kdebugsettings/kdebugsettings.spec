@@ -1,5 +1,5 @@
 %global commit0 4ca53537226f05f6cf425c71fb9781c8d400e63a
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:    kdebugsettings

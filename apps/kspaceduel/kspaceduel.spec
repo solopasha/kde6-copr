@@ -1,5 +1,5 @@
 %global commit0 70ac1884f1f14b1b797a4d7afd87fdf2f815b711
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kspaceduel

@@ -1,5 +1,5 @@
 %global commit0 00862dd853a72814ebc11573db840731ee26dda8
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 25
 
 %global base_name discover

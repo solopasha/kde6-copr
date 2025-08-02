@@ -1,5 +1,5 @@
 %global commit0 47d14329885005150a6827108d210734983cdc03
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 8
 
 Name:          kmenuedit

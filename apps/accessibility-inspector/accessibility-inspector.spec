@@ -1,5 +1,5 @@
 %global commit0 4b5bf99be7b0725ad447e477e95c8129862ec34f
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           accessibility-inspector

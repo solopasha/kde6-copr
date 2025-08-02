@@ -1,5 +1,5 @@
 %global commit0 75d0ddd7a42713315398f5b7b5864c7952509897
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:    ktorrent

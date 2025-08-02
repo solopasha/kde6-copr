@@ -1,5 +1,5 @@
 %global commit0 58a85e171f472068450a2949c6423545a423797f
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:           konversation

@@ -1,5 +1,5 @@
 %global commit0 0ac4cc317a59870cc0140cfacc4f129596c9e560
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 %global framework qqc2-desktop-style

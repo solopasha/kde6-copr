@@ -1,5 +1,5 @@
 %global commit0 20ef9df391ebccbbb6fb20a2e0a2523680aeb736
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:           ktouch

@@ -1,5 +1,5 @@
 %global commit0 aeefb0a95adb84e926f4b8fada93cc40985e26db
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 %global framework ktexteditor

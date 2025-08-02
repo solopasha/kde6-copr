@@ -1,5 +1,5 @@
 %global commit0 5cc4ee91e285e179154ded97cc3be798d9e4e030
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    parley

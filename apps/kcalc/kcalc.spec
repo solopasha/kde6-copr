@@ -1,5 +1,5 @@
 %global commit0 50f225b8d97d3c32558aa30ad4d51b7ec02dbf32
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           kcalc

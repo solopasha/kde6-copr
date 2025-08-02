@@ -1,5 +1,5 @@
 %global commit0 16a8b253d117ccc3ea831fa23b342eb5d3d58214
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:    kosmindoormap

@@ -1,5 +1,5 @@
 %global commit0 bc3fb1c971870baee180494afa0bd00e5b2496b8
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 7
 
 Name:           plasma5support

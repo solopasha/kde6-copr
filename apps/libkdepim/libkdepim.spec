@@ -1,5 +1,5 @@
 %global commit0 bc4ef5847e7fceee90966bca897b61b680225dc8
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:    libkdepim

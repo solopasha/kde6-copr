@@ -1,5 +1,5 @@
 %global commit0 f0c0ca28d8c92be4cf734e0fa84484874dbd3718
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 Name:           krdc

@@ -1,5 +1,5 @@
 %global commit0 03d2b508c39bd8c4855c8d398b51835141d82ecb
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kdiamond

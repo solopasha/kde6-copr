@@ -1,5 +1,5 @@
 %global commit0 b78588da023c2e7d01a594f82a5d503744cc57e8
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           francis

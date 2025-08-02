@@ -1,5 +1,5 @@
 %global commit0 d29f5d713e7aaff50df69353878e06a6e9bbcbfd
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:           plasma-thunderbolt

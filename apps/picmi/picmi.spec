@@ -1,5 +1,5 @@
 %global commit0 94b662de30efcf57594ffb2945afce6ff6d0676c
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    picmi

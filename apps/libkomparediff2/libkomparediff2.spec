@@ -1,5 +1,5 @@
 %global commit0 7c1df99e96da7dcce421ec17d0f0c78156170558
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           libkomparediff2

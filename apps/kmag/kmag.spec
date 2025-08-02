@@ -1,5 +1,5 @@
 %global commit0 eefbd1526b850bdfb34ba33e60c762c2697c38b2
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kmag

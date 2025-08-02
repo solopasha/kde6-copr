@@ -1,5 +1,5 @@
 %global commit0 7a0414599871ed281533b103ffcfe8012070de87
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:    kaccounts-providers
