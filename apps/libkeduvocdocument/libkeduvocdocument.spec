@@ -1,6 +1,6 @@
-%global commit0 968f4b04a6259276a4e19ef77f952abc1716daaa
+%global commit0 0e6e4bad181648bde2ee91ea05eb96f15fa67e38
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    libkeduvocdocument
 Summary: Library to parse, convert, and manipulate KVTML files

@@ -1,6 +1,6 @@
-%global commit0 f6b77bf07c34071a4b0c0be59d523cc426c75b43
+%global commit0 eefbd1526b850bdfb34ba33e60c762c2697c38b2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kmag
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

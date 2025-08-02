@@ -1,6 +1,6 @@
-%global commit0 c9fd1593441154a539abd855202b4ff2415633cd
+%global commit0 634e4ca4000d06922a72e88cf6b8b1ada0fd3cee
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    libkdegames
 Summary: Common code and data for many KDE games

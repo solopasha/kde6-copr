@@ -1,6 +1,6 @@
-%global commit0 0f641608fe9d03140a8f8f6aceb2789ef2fe370e
+%global commit0 b143618a73d6c7d3d5210f049a21eaab34b909c6
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 
 Name:    knetwalk

@@ -1,6 +1,6 @@
-%global commit0 433cd5a7a857a14939cf692412018526db9aa75c
+%global commit0 a4d9ee8486dbd7c9e7ecf94d5b22bd9a9e277ce0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    blinken
 Summary: Memory Enhancement Game

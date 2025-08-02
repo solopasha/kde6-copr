@@ -1,6 +1,6 @@
-%global commit0 c4dbb1cc6261c12ff9f009605c23eca08e483741
+%global commit0 ad12be7606a14a81e6b0de36a3f8635a7f0b13bd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 
 Name:    libkmahjongg

@@ -1,6 +1,6 @@
-%global commit0 c8900fc31861e803e99ad512b0f3aa0c448aecfe
+%global commit0 4ca53537226f05f6cf425c71fb9781c8d400e63a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:    kdebugsettings
 Summary: Configure debug output from Qt5 applications

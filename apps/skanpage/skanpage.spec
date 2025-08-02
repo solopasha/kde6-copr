@@ -1,6 +1,6 @@
-%global commit0 de3ad2941054a26920e022dc7c4a3dc16c065b5a
+%global commit0 649d59e8035eeec5e2d528aac9f97e2ade0587fc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 Name:     skanpage
 Version:  25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

@@ -1,6 +1,6 @@
-%global commit0 c274b1837264d7014217417d4b44985a26e03e09
+%global commit0 cad7d99dd301f75b0cedf89acfd3ca191d262ccc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 2
+%global bumpver 3
 
 
 Name:    ksnakeduel

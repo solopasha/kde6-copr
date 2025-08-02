@@ -1,6 +1,6 @@
-%global commit0 a5c7162cf92a1d80fd49003b6a83eedd86983d36
+%global commit0 cfb620e2e693501628fd97e241a17c4d01fee288
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           kbackup
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

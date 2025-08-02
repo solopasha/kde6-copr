@@ -1,6 +1,6 @@
-%global commit0 bdee0135850313dd77440ec2fc85bf8648446b1b
+%global commit0 9f049b3a293a416a7e222918fdaaee1f37cf4caf
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kfourinline
 Summary: A four-in-a-row game

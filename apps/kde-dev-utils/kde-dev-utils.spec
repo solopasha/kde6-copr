@@ -1,6 +1,6 @@
-%global commit0 63e91a642dd763d7072375fb014f421ba5883d6b
+%global commit0 fb0c66469222848da981eb4669081d9ea018ad49
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kde-dev-utils
 Summary: Utilities for developers using KDE

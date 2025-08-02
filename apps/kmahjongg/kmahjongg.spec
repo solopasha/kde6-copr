@@ -1,6 +1,6 @@
-%global commit0 5e69ac9f215f05a06161dfd77b1a8059844c740a
+%global commit0 ef53f2b043a7b7d5fb941e16639d7bd5672911cb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kmahjongg
 Summary: A tile matching game

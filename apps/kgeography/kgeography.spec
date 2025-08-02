@@ -1,6 +1,6 @@
-%global commit0 eb3688750200416912d484f05c9442f22d47100f
+%global commit0 16a992e5907b45100f71bd705999d2dd1c1ca100
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kgeography
 Summary: Geography Trainer

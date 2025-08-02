@@ -1,6 +1,6 @@
-%global commit0 9cf74ec34ba43ac61662da2dfa93f9709df07973
+%global commit0 b131f7b001288b6ae857681bd5c203b5dcf01254
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    khelpcenter
 Summary: Show documentation for KDE applications

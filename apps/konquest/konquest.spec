@@ -1,6 +1,6 @@
-%global commit0 e1d6daf571aabf143a19c43f672867e10feb1d43
+%global commit0 58d29ebb97ed1cbf65c32aae41cc296dda124769
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    konquest
 Summary: Galactic conquest game

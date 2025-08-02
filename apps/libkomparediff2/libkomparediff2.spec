@@ -1,6 +1,6 @@
-%global commit0 c570086bfcf2d0d64e924f9ffc3c12f9b9e3d1fa
+%global commit0 7c1df99e96da7dcce421ec17d0f0c78156170558
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           libkomparediff2
 Summary:        Library to compare files and strings

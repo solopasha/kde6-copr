@@ -1,6 +1,6 @@
-%global commit0 d0f9b1f9232222ce0bb92a9bd17173a61ba34a8b
+%global commit0 b09f075951f551a8b8331d91fa0ed59d68382ccd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kblackbox
 Summary: A game of hide and seek played on a grid of boxes

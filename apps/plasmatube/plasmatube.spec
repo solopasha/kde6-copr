@@ -1,6 +1,6 @@
-%global commit0 3d20fc5a285e4b1fdbb7622a792035eda445703d
+%global commit0 b0c075e85d06b1930b774791ddc0899d2a759663
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:           plasmatube
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

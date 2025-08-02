@@ -1,6 +1,6 @@
-%global commit0 8f5e63829fc66ff0a39bef31550d0b402f06fc2d
+%global commit0 4b5bf99be7b0725ad447e477e95c8129862ec34f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           accessibility-inspector
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

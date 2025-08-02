@@ -1,6 +1,6 @@
-%global commit0 23d1436ac8592ed6724287b13900eaf7867813a0
+%global commit0 f6161458de69ad034a572940917a41e4106587bb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global base_name kio-zeroconf
 

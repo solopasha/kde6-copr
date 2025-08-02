@@ -1,6 +1,6 @@
-%global commit0 fc5d0a1fdc06761e4bafef958266a51a4af0bbe2
+%global commit0 7e2f4c92bf890b00d823621c40b82ea9572fcd3c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    knavalbattle
 Summary: A ship sinking game

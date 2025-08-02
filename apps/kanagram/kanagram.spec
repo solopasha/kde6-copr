@@ -1,6 +1,6 @@
-%global commit0 243c174e499dd80ac613ece912cb37e206a71789
+%global commit0 f7ac6101c58e174cdca18dbab6a523c39d3247eb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kanagram
 Summary: Letter Order Game

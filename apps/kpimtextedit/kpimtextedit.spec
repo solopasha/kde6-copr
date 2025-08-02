@@ -1,6 +1,6 @@
-%global commit0 f9bfe7b3c3729cb08df2158162ca287105e6bacf
+%global commit0 e501f8cae385ed4bc6935b89ed8fd40ee142317e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 4
+%global bumpver 5
 
 Name:    kpimtextedit
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

@@ -1,6 +1,6 @@
-%global commit0 441c3f77d9bd2b6b27ff2f1be7b533222c592886
+%global commit0 81cb3798abb62a331a3f52a177df3578f6ca6a06
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:    ktnef
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

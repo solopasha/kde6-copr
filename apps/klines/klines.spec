@@ -1,6 +1,6 @@
-%global commit0 3172f7fd3786129ba899c425c8784a0b73a813d4
+%global commit0 2b807a1194e94c29603230af4cadff3688e74a51
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    klines
 Summary: Color lines game

@@ -1,6 +1,6 @@
-%global commit0 256613cc8e49336bbbb3060c8940ed71fb267c78
+%global commit0 cd4f358884f12892378372f5ed6be10e4b336f85
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kmouth
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

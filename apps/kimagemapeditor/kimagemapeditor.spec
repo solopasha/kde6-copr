@@ -1,6 +1,6 @@
-%global commit0 b164d2d044c3850da607812f917ada7336cfae31
+%global commit0 01474ef69c28463c216b907c7e125669fc57ce08
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           kimagemapeditor
 Summary:        HTML Image Map Editor

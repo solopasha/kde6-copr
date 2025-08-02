@@ -1,6 +1,6 @@
-%global commit0 f05ad12dcebca66e1cdc1fca1e840aa8e38265a8
+%global commit0 8e0eb420d123ad1feb357c85216eb087c60abd9e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    katomic
 Summary: An educational game built around molecular geometry

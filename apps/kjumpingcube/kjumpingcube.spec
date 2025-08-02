@@ -1,6 +1,6 @@
-%global commit0 fbbb53bd2ada0760e876188f736dd3ffb3702b63
+%global commit0 bdfb94a50d6ef39a35ffffabfe5dd680ff5188d2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kjumpingcube
 Summary: Territory capture game

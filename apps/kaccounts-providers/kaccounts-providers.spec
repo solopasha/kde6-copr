@@ -1,6 +1,6 @@
-%global commit0 1e742890684326a2dab66adc317942baf1e85783
+%global commit0 7a0414599871ed281533b103ffcfe8012070de87
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kaccounts-providers
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

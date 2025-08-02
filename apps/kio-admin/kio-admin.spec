@@ -1,6 +1,6 @@
-%global commit0 783a42349082e5f8a6789163bb3614eb86a383d3
+%global commit0 4e37fc6c23f1bdd39a47ce8cc93b16a22a0d04ef
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           kio-admin
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

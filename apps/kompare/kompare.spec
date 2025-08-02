@@ -1,6 +1,6 @@
-%global commit0 891af8792f6f36f4005443b77f97d67d316fa105
+%global commit0 9a7abd5a5f298f0cfa69b9c61c701e5f4d04bc0d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           kompare
 Summary:        Diff tool

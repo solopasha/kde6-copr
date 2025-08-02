@@ -1,6 +1,6 @@
-%global commit0 c60ed7b3c285fb055f37724b544d649d4fc8880d
+%global commit0 ba6aef35dd18b8adbd8b1704fea66b598b188fca
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           yakuake
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

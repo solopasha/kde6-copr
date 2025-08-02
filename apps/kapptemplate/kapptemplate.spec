@@ -1,6 +1,6 @@
-%global commit0 dac09ca3a1185c7809a5c92019bc6f07fe440227
+%global commit0 398a46a448102534b6a1d10f7462068008662b2e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kapptemplate
 Summary: KDE Template generator

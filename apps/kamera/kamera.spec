@@ -1,6 +1,6 @@
-%global commit0 d33e808adc602bad885e6b6172a6fae9648889ed
+%global commit0 834f3aa498a8011c34c5327e2a9d6ef855f189dc
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kamera
 Summary: Digital camera support for KDE 

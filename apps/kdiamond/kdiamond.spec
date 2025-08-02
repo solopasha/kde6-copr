@@ -1,6 +1,6 @@
-%global commit0 f113a3c71b6be750637585423d5f2836feae47b8
+%global commit0 03d2b508c39bd8c4855c8d398b51835141d82ecb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kdiamond
 Summary: A three-in-a-row game

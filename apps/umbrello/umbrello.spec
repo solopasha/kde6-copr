@@ -1,6 +1,6 @@
 %global commit0 3f519b64d7dea3e78be60ec5aaaae7a0a061a905
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 3
+%global bumpver 4
 
 Name:    umbrello
 Summary: UML modeler and UML diagram tool

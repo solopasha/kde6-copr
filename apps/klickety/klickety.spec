@@ -1,6 +1,6 @@
-%global commit0 e3eb13358726b837b347c0cdd8a5ef7317589bb3
+%global commit0 17a9d285223aa53679d481b2ce0a9a37e4109031
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    klickety
 Summary: Destroy groups of blocks

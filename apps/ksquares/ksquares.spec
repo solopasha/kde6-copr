@@ -1,6 +1,6 @@
-%global commit0 16f9d2332de653f65b7c876b45f1bc39ca4ec89e
+%global commit0 63cebe62629b829c4ae1cb8980a5618cf978a6bd
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    ksquares
 Summary: Connect the dots to create squares

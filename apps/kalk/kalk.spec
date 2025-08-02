@@ -1,6 +1,6 @@
-%global commit0 4b1b5da3eb9a02e4c4882c93a9edff5befeb1dcb
+%global commit0 b879c39801df1f80ea1ec1e5a49500c8ba8de2d3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:           kalk
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

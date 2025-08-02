@@ -1,6 +1,6 @@
-%global commit0 a034f42d1bd923347765ee68a0e3567d87e9e2a1
+%global commit0 7a570bd2b920a5493dad572ed938117a45f9ba79
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 %global base_name kdesdk-kio
 

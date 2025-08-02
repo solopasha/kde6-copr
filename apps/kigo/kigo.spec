@@ -1,6 +1,6 @@
-%global commit0 793736fcd7beb742d10371865fae238d16e111d1
+%global commit0 9c069a531f619863884d4a48c32a146275c20c6d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 1
+%global bumpver 2
 
 Name:    kigo
 Summary: Go Board game
