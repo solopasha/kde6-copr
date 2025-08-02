@@ -1,6 +1,6 @@
-%global commit0 4b6f1224efd968df2a2daf8bc2c0eadc40cac1ed
+%global commit0 00862dd853a72814ebc11573db840731ee26dda8
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global bumpver 24
+%global bumpver 25
 
 %global base_name discover
 # enable snap support (or not)
@@ -246,7 +246,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_qtplugindir}/discover/packagekit-backend.so
 
 %files flatpak
-%{_kf6_datadir}/applications/org.kde.discover-flatpak.desktop
+%{_kf6_datadir}/applications/org.kde.discover.flatpak.desktop
 %{_kf6_datadir}/libdiscover/categories/flatpak-backend-categories.xml
 %{_kf6_metainfodir}/org.kde.discover.flatpak.appdata.xml
 %{_kf6_qtplugindir}/discover-notifier/FlatpakNotifier.so
