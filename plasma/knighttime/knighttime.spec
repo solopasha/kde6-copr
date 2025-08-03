@@ -47,8 +47,8 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/dbus-1/interfaces/org.kde.NightTime.xml
 %{_kf6_datadir}/dbus-1/services/org.kde.NightTime.service
 %{_kf6_datadir}/qlogging-categories6/knighttime.categories
+%{_kf6_libdir}/libKNightTime.so.%{version_no_git}
 %{_kf6_libdir}/libKNightTime.so.0
-%{_kf6_libdir}/libKNightTime.so.6.4.80
 %{_libexecdir}/knighttimed
 %{_userunitdir}/plasma-knighttimed.service
 
