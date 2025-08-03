@@ -4041,6 +4041,7 @@ jobs:
       - kf6-kholidays
       - kf6-ki18n
       - kf6-kiconthemes
+      - kf6-kidletime
       - kf6-kio
       - kf6-kirigami
       - kf6-kitemmodels
