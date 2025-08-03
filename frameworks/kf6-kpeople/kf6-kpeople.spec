@@ -1,6 +1,6 @@
 %global commit0 1ae16037895c9f14ca51a5d2252d81b1a3fdf7d8
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework kpeople
 
@@ -25,8 +25,6 @@ BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Sql)
 BuildRequires:  cmake(Qt6Widgets)
-
-Obsoletes:      kpeoplevcard < 0.1^1.git2d8ed99-2
 
 %description
 KDE Frameworks 6 Tier 3 library for interaction with XML RPC services.
