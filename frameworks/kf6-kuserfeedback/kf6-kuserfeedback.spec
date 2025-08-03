@@ -1,6 +1,6 @@
 %global commit0 b2875baa87b5348988a200f731cf91b7700fa02b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework kuserfeedback
 
@@ -30,11 +30,9 @@ BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  bison
 BuildRequires:  flex
 
-Obsoletes:      %{name}-console < 6.14.0~4.gitaf9ca2f-2
+Obsoletes:      %{name}-console < %{version}-%{release}
 # Obsolete the qt5 version
 Obsoletes:      kuserfeedback-console < %{version}-%{release}
-Provides:       kuserfeedback-console = %{version}-%{release}
-Provides:       kuserfeedback-console%{?_isa} = %{version}-%{release}
 
 %description
 %{summary}.
