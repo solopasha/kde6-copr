@@ -1,6 +1,6 @@
-%global commit0 72878986d8fb5b191b331594351aeaab796d4a01
+%global commit0 7870ae48e62e1c71d4d9bce2d31f370a74436942
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 71
+%global bumpver 72
 
 %bcond x11 1
 
@@ -464,7 +464,6 @@ fi
 %{_kf6_datadir}/wayland-sessions/plasma.desktop
 %{_kf6_datadir}/xdg-desktop-portal/kde-portals.conf
 %{_kf6_datadir}/zsh/site-functions/_plasmashell
-%{_kf6_metainfodir}/*.xml
 %{_kf6_qmldir}/org/kde/*
 %{_libexecdir}/baloorunner
 %{_libexecdir}/kf6/kauth/fontinst*
