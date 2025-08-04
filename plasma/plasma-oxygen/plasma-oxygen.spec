@@ -124,7 +124,6 @@ popd
 %{_kf6_datadir}/kstyle/themes/oxygen.themerc
 %{_kf6_datadir}/plasma/desktoptheme/oxygen/
 %{_kf6_datadir}/plasma/look-and-feel/org.kde.oxygen/
-%{_kf6_metainfodir}/org.kde.oxygen.appdata.xml
 %{_kf6_qtplugindir}/kstyle_config/kstyle_oxygen_config.so
 %{_kf6_qtplugindir}/org.kde.kdecoration3.kcm/kcm_oxygendecoration.so
 %{_kf6_qtplugindir}/org.kde.kdecoration3/org.kde.oxygen.so
