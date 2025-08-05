@@ -1,6 +1,6 @@
-%global commit0 4b59ec37e3ad5b1d3cfcbe248f6d3622645dd860
+%global commit0 24b9e5a125242fdb1a65d5875d4f239db856ce9e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework purpose
 
@@ -38,9 +38,10 @@ Requires:       accounts-qml-module-qt6%{?_isa}
 Requires:       kf6-bluez-qt%{?_isa}
 Requires:       kf6-kcmutils%{?_isa}
 Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-kitemmodels%{?_isa}
 Requires:       kf6-prison%{?_isa}
 
-Requires: hicolor-icon-theme
+Requires:       hicolor-icon-theme
 
 %description
 Purpose offers the possibility to create integrate services and actions on

@@ -1,6 +1,6 @@
-%global commit0 45727d2d7a2771ca0e0e989df6fbad15c6951066
+%global commit0 5e8e1927e1c9fbc56fab938f1981f4aabc391449
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 28
+%global bumpver 29
 
 Name:           kdeplasma-addons
 Summary:        Additional Plasmoids for Plasma 6
@@ -10,8 +10,6 @@ Release:        1%{?dist}
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
-
-BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6Config)
@@ -80,9 +78,6 @@ Requires:       cmake(KF6CoreAddons)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%check
-appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml ||:
-
 %files -f %{name}.lang
 %license LICENSES/*.txt
 %{_kf6_datadir}/dbus-1/system-services/org.kde.kameleonhelper.service
@@ -106,7 +101,6 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 %{_kf6_libdir}/libweatherion.so
 %{_kf6_libdir}/qt6/qml/org/kde/plasmacalendar/astronomicaleventsconfig/*
 %{_kf6_libexecdir}/kauth/kameleonhelper
-%{_kf6_metainfodir}/*.appdata.xml
 %{_kf6_qmldir}/org/kde/plasma/*
 %{_kf6_qtplugindir}/kf6/
 %{_kf6_qtplugindir}/kwin/effects/configs/kwin_cube_config.so
