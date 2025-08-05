@@ -1,6 +1,6 @@
 %global commit0 5c57f01a7a96767c8dd275bcbcd9827e17ad66c6
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 13
+%global bumpver 14
 
 Name:           bluedevil
 Summary:        Bluetooth stack for KDE
@@ -63,7 +63,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.bluetooth/
 %{_kf6_datadir}/qlogging-categories6/bluedevil.categories
 %{_kf6_datadir}/remoteview/bluetooth-network.desktop
-%{_kf6_metainfodir}/org.kde.plasma.bluetooth.appdata.xml
 %{_kf6_plugindir}/kded/bluedevil.so
 %{_kf6_plugindir}/kio/kio_bluetooth.so
 %{_kf6_plugindir}/kio/kio_obexftp.so

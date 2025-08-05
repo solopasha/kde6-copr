@@ -1,6 +1,6 @@
 %global commit0 d97752f67f6d75c2a073fc779d422c12a94f00d1
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 %global base_name wacomtablet
 
@@ -72,7 +72,6 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 %{_kf6_datadir}/plasma5support/services/wacomtablet.operations
 %{_kf6_datadir}/qlogging-categories6/wacomtablet.categories
 %{_kf6_datadir}/wacomtablet/
-%{_kf6_metainfodir}/org.kde.plasma.wacomtablet.appdata.xml
 %{_kf6_metainfodir}/org.kde.wacomtablet.metainfo.xml
 %{_kf6_plugindir}/kded/wacomtablet.so
 %{_qt6_plugindir}/plasma/kcms/systemsettings_qwidgets/kcm_wacomtablet.so

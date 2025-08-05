@@ -1,6 +1,6 @@
 %global commit0 a460d120da067943fac5b8791df096d0f78bb8ac
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 8
+%global bumpver 9
 
 Name:           plasma-vault
 Summary:        Plasma Vault offers strong encryption features in a user-friendly way
@@ -41,7 +41,6 @@ prying eyes even when the user is logged in.
 %files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.vault/
-%{_kf6_metainfodir}/org.kde.plasma.vault.appdata.xml
 %{_kf6_plugindir}/kded/plasmavault.so
 %{_kf6_qtplugindir}/kf6/kfileitemaction/plasmavaultfileitemaction.so
 %{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.vault.so

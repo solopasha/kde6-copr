@@ -1,6 +1,6 @@
 %global commit0 c9225a4df1eaf055910b1d262eccbf9fd32b48d4
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 8
+%global bumpver 9
 
 %global base_name milou
 
@@ -32,7 +32,6 @@ Requires:       kf6-filesystem
 %files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_datadir}/plasma/plasmoids/org.kde.milou/
-%{_kf6_metainfodir}/org.kde.milou.appdata.xml
 %{_kf6_qmldir}/org/kde/milou/
 
 %changelog
