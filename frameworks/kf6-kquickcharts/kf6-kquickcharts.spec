@@ -1,6 +1,6 @@
-%global commit0 b248a4e88911556d1e68e3fe70946f449f6cee05
+%global commit0 035bc6c676b5650e177338c4ffc6ae909987bae2
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework kquickcharts
 
