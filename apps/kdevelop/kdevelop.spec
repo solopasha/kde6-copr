@@ -183,7 +183,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/knotifications6/kdevelop.notifyrc
 %{_kf6_datadir}/knsrcfiles/kdev*.knsrc
 %{_kf6_datadir}/metainfo/org.kde.kdevelop.appdata.xml
-%{_kf6_datadir}/metainfo/org.kde.kdevelopsessions.appdata.xml
 %{_kf6_datadir}/mime/packages/kdevclang.xml
 %{_kf6_datadir}/mime/packages/kdevelop.xml
 %{_kf6_datadir}/mime/packages/kdevgit.xml

@@ -52,6 +52,7 @@ developing applications that use %{name}.
 %files
 %doc README.md
 %license LICENSES/*
+%{_kf6_datadir}/mime/packages/application-vnd-apple-pkpasses.xml
 %{_kf6_datadir}/qlogging-categories6/org_kde_%{name}.*
 %{_kf6_libdir}/libKPim6PkPass.so.*
 %{_kf6_qmldir}/org/kde/pkpass/
