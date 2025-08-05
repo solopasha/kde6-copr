@@ -1,6 +1,6 @@
-%global commit0 c0ea34e7d917409aaf8ca5617b0667ecaeac50e4
+%global commit0 d23d4691ff06ad5b62984a791e80cffcf59edf54
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 %define _python3_include %(%{__python3} -Ic 'from sysconfig import get_path; print(get_path("include"))')
 %define _python3_lib /usr/%{_lib}/lib%(basename %{_python3_include}).so
@@ -13,12 +13,6 @@ Release:        1%{?dist}
 License:        BSD-3-Clause AND GFDL-1.2-or-later AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-or-later
 URL:            https://invent.kde.org/education/%{name}
 %apps_source
-
-## upstreamable patches
-# https://bugzilla.redhat.com/show_bug.cgi?id=1238113
-# https://bugs.kde.org/show_bug.cgi?id=335965#c23
-# https://git.reviewboard.kde.org/r/126549/
-Patch1: 0001-explicitly-use-QLibrary-to-load-libpython-like-pykde.patch
 
 BuildRequires:  boost-devel
 BuildRequires:  python3
