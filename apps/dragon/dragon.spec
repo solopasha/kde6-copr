@@ -1,6 +1,6 @@
-%global commit0 2cdbd7bd1abeceb8cb7a88562fa5cdf640c951e8
+%global commit0 e5c0426a24ab651295e09ff8e8d305f79c90fa7f
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 Name:           dragon
 Summary:        Media player
