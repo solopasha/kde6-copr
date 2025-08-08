@@ -3237,6 +3237,47 @@ jobs:
       additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
+  plasma-bigscreen:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasma-bigscreen.spec') ||
+          contains(inputs.specfiles, '/plasma-bigscreen.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-bluez-qt
+      - kf6-kcmutils
+      - kf6-kdbusaddons
+      - kf6-kglobalaccel
+      - kf6-ki18n
+      - kf6-kiconthemes
+      - kf6-kio
+      - kf6-kirigami
+      - kf6-knotifications
+      - kf6-ksvg
+      - kf6-kwindowsystem
+      - libkscreen
+      - libplasma
+      - plasma-activities
+      - plasma-activities-stats
+      - plasma-workspace
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook: ${{ secrets.copr_webhook }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./plasma/plasma-bigscreen/plasma-bigscreen.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
   plasma-breeze:
     if: >-
       ${{
