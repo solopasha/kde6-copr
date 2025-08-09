@@ -1,6 +1,6 @@
 %global commit0 9f93f56bb7a0dcd67449c761ae4a442cbbc756c5
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework ktextwidgets
 
@@ -40,12 +40,12 @@ developing applications that use %{name}.
 %license LICENSES/*.txt
 %{_kf6_libdir}/libKF6TextWidgets.so.%{version_no_git}
 %{_kf6_libdir}/libKF6TextWidgets.so.6
-%{_kf6_qtplugindir}/designer/*6widgets.so
 
 %files devel
 %{_kf6_includedir}/KTextWidgets/
 %{_kf6_libdir}/cmake/KF6TextWidgets/
 %{_kf6_libdir}/libKF6TextWidgets.so
+%{_kf6_qtplugindir}/designer/ktextwidgets6widgets.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}

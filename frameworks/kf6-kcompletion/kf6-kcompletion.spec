@@ -1,6 +1,6 @@
 %global commit0 02c986de18ed47a6b171c2605eff92d083c07530
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework kcompletion
 
@@ -37,12 +37,12 @@ developing applications that use %{name}.
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*
 %{_kf6_libdir}/libKF6Completion.so.%{version_no_git}
 %{_kf6_libdir}/libKF6Completion.so.6
-%{_kf6_qtplugindir}/designer/*6widgets.so
 
 %files devel
 %{_kf6_includedir}/KCompletion/
 %{_kf6_libdir}/cmake/KF6Completion/
 %{_kf6_libdir}/libKF6Completion.so
+%{_kf6_qtplugindir}/designer/kcompletion6widgets.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}

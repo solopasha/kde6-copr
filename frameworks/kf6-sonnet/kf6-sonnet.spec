@@ -1,6 +1,6 @@
 %global commit0 e09f168dc7287687d862448734b9603f9ce4e999
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework sonnet
 
@@ -76,7 +76,6 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6SonnetUi.so.%{version_no_git}
 %{_kf6_libdir}/libKF6SonnetUi.so.6
 %{_kf6_qmldir}/org/kde/sonnet/
-%{_kf6_qtplugindir}/designer/*6widgets.so
 %dir %{_kf6_plugindir}/sonnet
 
 %files aspell
@@ -98,6 +97,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6Sonnet/
 %{_kf6_libdir}/libKF6SonnetCore.so
 %{_kf6_libdir}/libKF6SonnetUi.so
+%{_kf6_qtplugindir}/designer/sonnet6widgets.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}
