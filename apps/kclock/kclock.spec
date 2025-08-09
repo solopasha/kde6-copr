@@ -109,7 +109,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.deskt
 %files plasma-applet
 %{_kf6_datadir}/icons/hicolor/scalable/apps/%{name}_plasmoid.svg
 %{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.%{name}_1x2/
-%{_kf6_metainfodir}/org.kde.plasma.%{name}_1x2.appdata.xml
 %{_qt6_plugindir}/plasma/applets/org.kde.plasma.%{name}_1x2.so
 
 
