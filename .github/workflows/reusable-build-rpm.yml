@@ -507,9 +507,6 @@ jobs:
         run: |
           if [[ "${debuginfo}" != "true" ]]; then
             rm "${pkgname}"-resultdir/*{debuginfo,debugsource}*.rpm || :
-          else
-            mkdir -p "${pkgname}-debuginfo"
-            mv "${pkgname}"-resultdir/*{debuginfo,debugsource}*.rpm "${pkgname}-debuginfo"
           fi
 
       - name: Check ABI
@@ -521,13 +518,14 @@ jobs:
           mkdir -p old new
 
           oras pull "ghcr.io/${repository}/${pkgname}:latest-${target_branch}" -o old_pkgs
-          oras pull "ghcr.io/${repository}/${pkgname}:debuginfo-${target_branch}" -o old_pkgs
+          if [[ ! -f "./old_pkgs/${pkgname}-debuginfo-${version_release}.x86_64.rpm" ]]; then
+            oras pull "ghcr.io/${repository}/${pkgname}:debuginfo-${target_branch}" -o old_pkgs
+          fi
           docker run --rm \
             --cap-drop all \
             --network none \
             --entrypoint="" \
             -v "${GITHUB_WORKSPACE}/${pkgname}-resultdir:/${pkgname}-resultdir:ro" \
-            -v "${GITHUB_WORKSPACE}/${pkgname}-debuginfo:/${pkgname}-debuginfo:ro" \
             -v "${GITHUB_WORKSPACE}/check-abi.py:/check-abi.py:ro" \
             -v "${GITHUB_WORKSPACE}/check-abi-suppressions.json:/check-abi-suppressions.json:ro" \
             -v "${GITHUB_WORKSPACE}/abi_check:/work" \
@@ -538,7 +536,6 @@ jobs:
               find old_pkgs -name '*.rpm' -exec bsdtar xf {} -C old \;
 
               find /${pkgname}-resultdir -name '*.rpm' -exec bsdtar xf {} -C new \;
-              find /${pkgname}-debuginfo -name '*.rpm' -exec bsdtar xf {} -C new \;
 
               python3 /check-abi.py --old old --new new --suppressions /check-abi-suppressions.json
             '
@@ -555,7 +552,7 @@ jobs:
               if oras push \
                   --annotation "rpm.version=${version_release}" \
                   "ghcr.io/${repository}/${pkgname}:latest-${target_branch},${container_tag}" \
-                  "./${pkgname}-resultdir"; then
+                  ./"${pkgname}"-resultdir/*.rpm; then
                   exit 0
               fi
 
@@ -581,30 +578,7 @@ jobs:
               if oras push \
                   --annotation "rpm.version=${version_release}" \
                   "ghcr.io/${repository}/${pkgname}:pr-${pr_number}" \
-                  "./${pkgname}-resultdir"; then
-                  exit 0
-              fi
-
-              if [[ $retry_count -lt $((max_retries - 1)) ]]; then
-                  echo "Attempt $((retry_count + 1)) failed. Retrying in $sleep_seconds seconds..."
-                  sleep $sleep_seconds
-              fi
-          done
-
-          echo "Failed after $max_retries attempts"
-          exit 1
-
-      - name: Upload debuginfo
-        if: inputs.debuginfo && steps.arch.outputs.arch != 'noarch' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-        env:
-          max_retries: 7
-          sleep_seconds: 7
-        run: |
-          for (( retry_count=0; retry_count<max_retries; retry_count++ )); do
-              if oras push \
-                  --annotation "rpm.version=${version_release}" \
-                  "ghcr.io/${repository}/${pkgname}:debuginfo-${target_branch},${container_tag}-debuginfo" \
-                  "./${pkgname}-debuginfo"; then
+                  ./"${pkgname}"-resultdir/*.rpm; then
                   exit 0
               fi
 
