@@ -25,6 +25,8 @@ include:
   - kernel-install.yaml
   # Enable composefs
   - composefs.yaml
+  # Compress initramfs with zstd
+  - initramfs-zstd.yaml
 
 arch-include:
   x86_64:
