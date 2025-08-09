@@ -1,6 +1,6 @@
-%global commit0 87571bdb4542df2e8034350a9860cd3e1113a3ca
+%global commit0 a2745725cd615d47a494f44f4c3e598c7eedc1a2
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 %global base_name kdev-python
 
