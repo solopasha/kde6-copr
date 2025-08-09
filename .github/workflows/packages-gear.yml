@@ -1,9 +1,13 @@
-name: Build packages
+name: Gear package list
 
 on:
   workflow_call:
     secrets:
       gpgkey:
+        required: true
+      copr_webhook_gear:
+        required: true
+      copr_webhook_beta:
         required: true
     inputs:
       specfiles:
@@ -17,6 +21,10 @@ on:
 permissions:
   contents: read
   packages: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
 
 jobs:
   changed-files:
@@ -41,6 +49,28 @@ jobs:
           files: |
             **/*.spec
 
+  accessibility-inspector:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/accessibility-inspector.spec') ||
+          contains(inputs.specfiles, '/accessibility-inspector.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/accessibility-inspector/accessibility-inspector.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
   akonadi-calendar:
     if: >-
       ${{
@@ -64,11 +94,37 @@ jobs:
       - libkleo
       - messagelib
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/akonadi-calendar/akonadi-calendar.spec
+      spec: ./apps/akonadi-calendar/akonadi-calendar.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  akonadi-calendar-tools:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/akonadi-calendar-tools.spec') ||
+          contains(inputs.specfiles, '/akonadi-calendar-tools.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-calendar
+      - akonadi-server
+      - calendarsupport
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/akonadi-calendar-tools/akonadi-calendar-tools.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   akonadi-contacts:
@@ -88,11 +144,12 @@ jobs:
       - grantleetheme
       - kmime
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/akonadi-contacts/akonadi-contacts.spec
+      spec: ./apps/akonadi-contacts/akonadi-contacts.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   akonadi-import-wizard:
@@ -116,11 +173,12 @@ jobs:
       - messagelib
       - pimcommon
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/akonadi-import-wizard/akonadi-import-wizard.spec
+      spec: ./apps/akonadi-import-wizard/akonadi-import-wizard.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   akonadi-mime:
@@ -139,11 +197,12 @@ jobs:
       - changed-files
       - kmime
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/akonadi-mime/akonadi-mime.spec
+      spec: ./apps/akonadi-mime/akonadi-mime.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   akonadi-search:
@@ -163,11 +222,12 @@ jobs:
       - changed-files
       - kmime
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/akonadi-search/akonadi-search.spec
+      spec: ./apps/akonadi-search/akonadi-search.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   akonadi-server:
@@ -185,11 +245,270 @@ jobs:
       - changed-files
       - kaccounts-integration
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/akonadi-server/akonadi-server.spec
+      spec: ./apps/akonadi-server/akonadi-server.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  akonadiconsole:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/akonadiconsole.spec') ||
+          contains(inputs.specfiles, '/akonadiconsole.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-contacts
+      - akonadi-mime
+      - akonadi-search
+      - akonadi-server
+      - calendarsupport
+      - changed-files
+      - kmime
+      - libkdepim
+      - messagelib
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/akonadiconsole/akonadiconsole.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  akregator:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/akregator.spec') ||
+          contains(inputs.specfiles, '/akregator.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - grantleetheme
+      - kontactinterface
+      - libkdepim
+      - messagelib
+      - pimcommon
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/akregator/akregator.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  alligator:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/alligator.spec') ||
+          contains(inputs.specfiles, '/alligator.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/alligator/alligator.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  analitza:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/analitza.spec') ||
+          contains(inputs.specfiles, '/analitza.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/analitza/analitza.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  angelfish:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/angelfish.spec') ||
+          contains(inputs.specfiles, '/angelfish.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/angelfish/angelfish.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  arianna:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/arianna.spec') ||
+          contains(inputs.specfiles, '/arianna.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/arianna/arianna.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  ark:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/ark.spec') ||
+          contains(inputs.specfiles, '/ark.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/ark/ark.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  artikulate:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/artikulate.spec') ||
+          contains(inputs.specfiles, '/artikulate.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/artikulate/artikulate.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  audex:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/audex.spec') ||
+          contains(inputs.specfiles, '/audex.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - libkcddb
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/audex/audex.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  audiocd-kio:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/audiocd-kio.spec') ||
+          contains(inputs.specfiles, '/audiocd-kio.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - libkcddb
+      - libkcompactdisc
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/audiocd-kio/audiocd-kio.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  audiotube:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/audiotube.spec') ||
+          contains(inputs.specfiles, '/audiotube.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/audiotube/audiotube.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   baloo-widgets:
@@ -206,11 +525,34 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/baloo-widgets/baloo-widgets.spec
+      spec: ./apps/baloo-widgets/baloo-widgets.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  blinken:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/blinken.spec') ||
+          contains(inputs.specfiles, '/blinken.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/blinken/blinken.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   calendarsupport:
@@ -232,11 +574,192 @@ jobs:
       - kidentitymanagement
       - kmime
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/calendarsupport/calendarsupport.spec
+      spec: ./apps/calendarsupport/calendarsupport.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  calindori:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/calindori.spec') ||
+          contains(inputs.specfiles, '/calindori.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/calindori/calindori.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  calligra:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/calligra.spec') ||
+          contains(inputs.specfiles, '/calligra.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - okular
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/calligra/calligra.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  cantor:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/cantor.spec') ||
+          contains(inputs.specfiles, '/cantor.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - analitza
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/cantor/cantor.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  colord-kde:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/colord-kde.spec') ||
+          contains(inputs.specfiles, '/colord-kde.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/colord-kde/colord-kde.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  dolphin:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/dolphin.spec') ||
+          contains(inputs.specfiles, '/dolphin.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - baloo-widgets
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/dolphin/dolphin.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  dolphin-plugins:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/dolphin-plugins.spec') ||
+          contains(inputs.specfiles, '/dolphin-plugins.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - dolphin
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/dolphin-plugins/dolphin-plugins.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  dragon:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/dragon.spec') ||
+          contains(inputs.specfiles, '/dragon.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/dragon/dragon.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  elisa-player:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/elisa-player.spec') ||
+          contains(inputs.specfiles, '/elisa-player.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/elisa-player/elisa-player.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   eventviews:
@@ -259,11 +782,150 @@ jobs:
       - kmime
       - libkdepim
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/eventviews/eventviews.spec
+      spec: ./apps/eventviews/eventviews.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  falkon:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/falkon.spec') ||
+          contains(inputs.specfiles, '/falkon.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/falkon/falkon.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  ffmpegthumbs:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/ffmpegthumbs.spec') ||
+          contains(inputs.specfiles, '/ffmpegthumbs.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/ffmpegthumbs/ffmpegthumbs.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  filelight:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/filelight.spec') ||
+          contains(inputs.specfiles, '/filelight.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/filelight/filelight.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  francis:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/francis.spec') ||
+          contains(inputs.specfiles, '/francis.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/francis/francis.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  ghostwriter:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/ghostwriter.spec') ||
+          contains(inputs.specfiles, '/ghostwriter.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/ghostwriter/ghostwriter.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  grantlee-editor:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/grantlee-editor.spec') ||
+          contains(inputs.specfiles, '/grantlee-editor.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-contacts
+      - changed-files
+      - grantleetheme
+      - kimap
+      - kmime
+      - messagelib
+      - pimcommon
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/grantlee-editor/grantlee-editor.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   grantleetheme:
@@ -280,11 +942,35 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/grantleetheme/grantleetheme.spec
+      spec: ./apps/grantleetheme/grantleetheme.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  gwenview:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/gwenview.spec') ||
+          contains(inputs.specfiles, '/gwenview.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - libkdcraw
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/gwenview/gwenview.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   incidenceeditor:
@@ -313,11 +999,106 @@ jobs:
       - libkdepim
       - pimcommon
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/incidenceeditor/incidenceeditor.spec
+      spec: ./apps/incidenceeditor/incidenceeditor.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  isoimagewriter:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/isoimagewriter.spec') ||
+          contains(inputs.specfiles, '/isoimagewriter.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/isoimagewriter/isoimagewriter.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  itinerary:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/itinerary.spec') ||
+          contains(inputs.specfiles, '/itinerary.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - khealthcertificate
+      - kitinerary
+      - kosmindoormap
+      - kpkpass
+      - kpublictransport
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/itinerary/itinerary.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  juk:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/juk.spec') ||
+          contains(inputs.specfiles, '/juk.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/juk/juk.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  k3b:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/k3b.spec') ||
+          contains(inputs.specfiles, '/k3b.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - libkcddb
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/k3b/k3b.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   kaccounts-integration:
@@ -334,11 +1115,35 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kaccounts-integration/kaccounts-integration.spec
+      spec: ./apps/kaccounts-integration/kaccounts-integration.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  kaccounts-providers:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kaccounts-providers.spec') ||
+          contains(inputs.specfiles, '/kaccounts-providers.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kaccounts-integration
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kaccounts-providers/kaccounts-providers.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   kaddressbook:
@@ -363,11 +1168,351 @@ jobs:
       - libkdepim
       - pimcommon
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kaddressbook/kaddressbook.spec
+      spec: ./apps/kaddressbook/kaddressbook.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  kalarm:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kalarm.spec') ||
+          contains(inputs.specfiles, '/kalarm.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-contacts
+      - akonadi-mime
+      - akonadi-server
+      - changed-files
+      - kcalutils
+      - kidentitymanagement
+      - kmailtransport
+      - kmime
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kalarm/kalarm.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kalgebra:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kalgebra.spec') ||
+          contains(inputs.specfiles, '/kalgebra.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - analitza
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kalgebra/kalgebra.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kalk:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kalk.spec') ||
+          contains(inputs.specfiles, '/kalk.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kalk/kalk.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kalm:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kalm.spec') ||
+          contains(inputs.specfiles, '/kalm.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kalm/kalm.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kalzium:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kalzium.spec') ||
+          contains(inputs.specfiles, '/kalzium.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kalzium/kalzium.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kamera:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kamera.spec') ||
+          contains(inputs.specfiles, '/kamera.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kamera/kamera.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kamoso:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kamoso.spec') ||
+          contains(inputs.specfiles, '/kamoso.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kamoso/kamoso.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kanagram:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kanagram.spec') ||
+          contains(inputs.specfiles, '/kanagram.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - libkeduvocdocument
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kanagram/kanagram.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kapptemplate:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kapptemplate.spec') ||
+          contains(inputs.specfiles, '/kapptemplate.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kapptemplate/kapptemplate.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kasts:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kasts.spec') ||
+          contains(inputs.specfiles, '/kasts.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kasts/kasts.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kate:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kate.spec') ||
+          contains(inputs.specfiles, '/kate.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kate/kate.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kbackup:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kbackup.spec') ||
+          contains(inputs.specfiles, '/kbackup.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kbackup/kbackup.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kbruch:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kbruch.spec') ||
+          contains(inputs.specfiles, '/kbruch.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kbruch/kbruch.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kcachegrind:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kcachegrind.spec') ||
+          contains(inputs.specfiles, '/kcachegrind.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kcachegrind/kcachegrind.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kcalc:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kcalc.spec') ||
+          contains(inputs.specfiles, '/kcalc.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kcalc/kcalc.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   kcalutils:
@@ -385,11 +1530,255 @@ jobs:
       - changed-files
       - kidentitymanagement
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kcalutils/kcalutils.spec
+      spec: ./apps/kcalutils/kcalutils.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  kcharselect:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kcharselect.spec') ||
+          contains(inputs.specfiles, '/kcharselect.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kcharselect/kcharselect.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kclock:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kclock.spec') ||
+          contains(inputs.specfiles, '/kclock.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kclock/kclock.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kcolorchooser:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kcolorchooser.spec') ||
+          contains(inputs.specfiles, '/kcolorchooser.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kcolorchooser/kcolorchooser.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kcron:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kcron.spec') ||
+          contains(inputs.specfiles, '/kcron.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kcron/kcron.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kde-connect:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kde-connect.spec') ||
+          contains(inputs.specfiles, '/kde-connect.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kde-connect/kde-connect.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kde-dev-scripts:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kde-dev-scripts.spec') ||
+          contains(inputs.specfiles, '/kde-dev-scripts.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kde-dev-scripts/kde-dev-scripts.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kde-dev-utils:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kde-dev-utils.spec') ||
+          contains(inputs.specfiles, '/kde-dev-utils.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kde-dev-utils/kde-dev-utils.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kde-inotify-survey:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kde-inotify-survey.spec') ||
+          contains(inputs.specfiles, '/kde-inotify-survey.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kde-inotify-survey/kde-inotify-survey.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kde-partitionmanager:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kde-partitionmanager.spec') ||
+          contains(inputs.specfiles, '/kde-partitionmanager.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kpmcore
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kde-partitionmanager/kde-partitionmanager.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kdebugsettings:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kdebugsettings.spec') ||
+          contains(inputs.specfiles, '/kdebugsettings.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kdebugsettings/kdebugsettings.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kdeedu-data:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kdeedu-data.spec') ||
+          contains(inputs.specfiles, '/kdeedu-data.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kdeedu-data/kdeedu-data.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   kdegraphics-mobipocket:
@@ -406,11 +1795,523 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kdegraphics-mobipocket/kdegraphics-mobipocket.spec
+      spec: ./apps/kdegraphics-mobipocket/kdegraphics-mobipocket.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  kdegraphics-thumbnailers:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kdegraphics-thumbnailers.spec') ||
+          contains(inputs.specfiles, '/kdegraphics-thumbnailers.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kdegraphics-mobipocket
+      - libkdcraw
+      - libkexiv2
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kdegraphics-thumbnailers/kdegraphics-thumbnailers.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kdenetwork-filesharing:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kdenetwork-filesharing.spec') ||
+          contains(inputs.specfiles, '/kdenetwork-filesharing.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kdenetwork-filesharing/kdenetwork-filesharing.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kdenlive:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kdenlive.spec') ||
+          contains(inputs.specfiles, '/kdenlive.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kdenlive/kdenlive.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kdepim-addons:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kdepim-addons.spec') ||
+          contains(inputs.specfiles, '/kdepim-addons.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-calendar
+      - akonadi-contacts
+      - akonadi-import-wizard
+      - akonadi-server
+      - calendarsupport
+      - changed-files
+      - eventviews
+      - grantleetheme
+      - incidenceeditor
+      - kaddressbook
+      - kcalutils
+      - kidentitymanagement
+      - kimap
+      - kitinerary
+      - kldap
+      - kmailtransport
+      - kmime
+      - kpimtextedit
+      - kpkpass
+      - ktnef
+      - libgravatar
+      - libkdepim
+      - libkleo
+      - libksieve
+      - mailcommon
+      - mailimporter
+      - messagelib
+      - pimcommon
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kdepim-addons/kdepim-addons.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kdepim-runtime:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kdepim-runtime.spec') ||
+          contains(inputs.specfiles, '/kdepim-runtime.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-calendar
+      - akonadi-contacts
+      - akonadi-mime
+      - akonadi-server
+      - changed-files
+      - kcalutils
+      - kidentitymanagement
+      - kimap
+      - kldap
+      - kmailtransport
+      - kmbox
+      - kmime
+      - libkgapi
+      - pimcommon
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kdepim-runtime/kdepim-runtime.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kdesdk-kioslaves:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kdesdk-kioslaves.spec') ||
+          contains(inputs.specfiles, '/kdesdk-kioslaves.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kdesdk-kioslaves/kdesdk-kioslaves.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kdesdk-thumbnailers:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kdesdk-thumbnailers.spec') ||
+          contains(inputs.specfiles, '/kdesdk-thumbnailers.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kdesdk-thumbnailers/kdesdk-thumbnailers.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kdevelop:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kdevelop.spec') ||
+          contains(inputs.specfiles, '/kdevelop.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - libkomparediff2
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kdevelop/kdevelop.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kdevelop-php:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kdevelop-php.spec') ||
+          contains(inputs.specfiles, '/kdevelop-php.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kdevelop
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kdevelop-php/kdevelop-php.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kdevelop-python:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kdevelop-python.spec') ||
+          contains(inputs.specfiles, '/kdevelop-python.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kdevelop
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kdevelop-python/kdevelop-python.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kdf:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kdf.spec') ||
+          contains(inputs.specfiles, '/kdf.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kdf/kdf.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kdialog:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kdialog.spec') ||
+          contains(inputs.specfiles, '/kdialog.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kdialog/kdialog.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kdnssd:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kdnssd.spec') ||
+          contains(inputs.specfiles, '/kdnssd.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kdnssd/kdnssd.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  keditbookmarks:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/keditbookmarks.spec') ||
+          contains(inputs.specfiles, '/keditbookmarks.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/keditbookmarks/keditbookmarks.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  keysmith:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/keysmith.spec') ||
+          contains(inputs.specfiles, '/keysmith.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/keysmith/keysmith.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kfind:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kfind.spec') ||
+          contains(inputs.specfiles, '/kfind.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kfind/kfind.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kgeography:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kgeography.spec') ||
+          contains(inputs.specfiles, '/kgeography.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kgeography/kgeography.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kget:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kget.spec') ||
+          contains(inputs.specfiles, '/kget.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - libktorrent
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kget/kget.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kgpg:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kgpg.spec') ||
+          contains(inputs.specfiles, '/kgpg.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-contacts
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kgpg/kgpg.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kgraphviewer:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kgraphviewer.spec') ||
+          contains(inputs.specfiles, '/kgraphviewer.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kgraphviewer/kgraphviewer.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  khangman:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/khangman.spec') ||
+          contains(inputs.specfiles, '/khangman.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - libkeduvocdocument
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/khangman/khangman.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   khealthcertificate:
@@ -427,11 +2328,34 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/khealthcertificate/khealthcertificate.spec
+      spec: ./apps/khealthcertificate/khealthcertificate.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  khelpcenter:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/khelpcenter.spec') ||
+          contains(inputs.specfiles, '/khelpcenter.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/khelpcenter/khelpcenter.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   kidentitymanagement:
@@ -449,11 +2373,56 @@ jobs:
       - changed-files
       - kpimtextedit
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kidentitymanagement/kidentitymanagement.spec
+      spec: ./apps/kidentitymanagement/kidentitymanagement.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  kig:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kig.spec') ||
+          contains(inputs.specfiles, '/kig.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kig/kig.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kimagemapeditor:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kimagemapeditor.spec') ||
+          contains(inputs.specfiles, '/kimagemapeditor.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kimagemapeditor/kimagemapeditor.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   kimap:
@@ -471,11 +2440,125 @@ jobs:
       - changed-files
       - kmime
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kimap/kimap.spec
+      spec: ./apps/kimap/kimap.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  kio-admin:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kio-admin.spec') ||
+          contains(inputs.specfiles, '/kio-admin.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kio-admin/kio-admin.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kio-extras:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kio-extras.spec') ||
+          contains(inputs.specfiles, '/kio-extras.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - libkexiv2
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kio-extras/kio-extras.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kio-gdrive:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kio-gdrive.spec') ||
+          contains(inputs.specfiles, '/kio-gdrive.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kaccounts-integration
+      - libkgapi
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kio-gdrive/kio-gdrive.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kirigami-gallery:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kirigami-gallery.spec') ||
+          contains(inputs.specfiles, '/kirigami-gallery.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kirigami-gallery/kirigami-gallery.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kiten:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kiten.spec') ||
+          contains(inputs.specfiles, '/kiten.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kiten/kiten.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   kitinerary:
@@ -494,11 +2577,34 @@ jobs:
       - kmime
       - kpkpass
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kitinerary/kitinerary.spec
+      spec: ./apps/kitinerary/kitinerary.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  kjournald:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kjournald.spec') ||
+          contains(inputs.specfiles, '/kjournald.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kjournald/kjournald.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   kldap:
@@ -515,11 +2621,156 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kldap/kldap.spec
+      spec: ./apps/kldap/kldap.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  kleopatra:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kleopatra.spec') ||
+          contains(inputs.specfiles, '/kleopatra.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-mime
+      - changed-files
+      - kidentitymanagement
+      - kmailtransport
+      - kmime
+      - libkleo
+      - mimetreeparser
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kleopatra/kleopatra.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  klettres:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/klettres.spec') ||
+          contains(inputs.specfiles, '/klettres.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/klettres/klettres.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+
+  kmag:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kmag.spec') ||
+          contains(inputs.specfiles, '/kmag.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kmag/kmag.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kmail:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kmail.spec') ||
+          contains(inputs.specfiles, '/kmail.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-contacts
+      - akonadi-mime
+      - akonadi-search
+      - akonadi-server
+      - changed-files
+      - kcalutils
+      - kidentitymanagement
+      - kldap
+      - kmailtransport
+      - kmime
+      - kontactinterface
+      - kpimtextedit
+      - ktnef
+      - libgravatar
+      - libkdepim
+      - libkleo
+      - libksieve
+      - mailcommon
+      - messagelib
+      - pimcommon
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kmail/kmail.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kmail-account-wizard:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kmail-account-wizard.spec') ||
+          contains(inputs.specfiles, '/kmail-account-wizard.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-mime
+      - akonadi-server
+      - changed-files
+      - kidentitymanagement
+      - kimap
+      - kldap
+      - kmailtransport
+      - kmime
+      - libkleo
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kmail-account-wizard/kmail-account-wizard.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   kmailtransport:
@@ -538,11 +2789,12 @@ jobs:
       - ksmtp
       - libkgapi
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kmailtransport/kmailtransport.spec
+      spec: ./apps/kmailtransport/kmailtransport.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   kmbox:
@@ -560,11 +2812,12 @@ jobs:
       - changed-files
       - kmime
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kmbox/kmbox.spec
+      spec: ./apps/kmbox/kmbox.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   kmime:
@@ -581,11 +2834,261 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kmime/kmime.spec
+      spec: ./apps/kmime/kmime.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  kmix:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kmix.spec') ||
+          contains(inputs.specfiles, '/kmix.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kmix/kmix.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kmousetool:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kmousetool.spec') ||
+          contains(inputs.specfiles, '/kmousetool.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kmousetool/kmousetool.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kmouth:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kmouth.spec') ||
+          contains(inputs.specfiles, '/kmouth.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kmouth/kmouth.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kmplot:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kmplot.spec') ||
+          contains(inputs.specfiles, '/kmplot.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kmplot/kmplot.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  koko:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/koko.spec') ||
+          contains(inputs.specfiles, '/koko.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/koko/koko.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kolourpaint:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kolourpaint.spec') ||
+          contains(inputs.specfiles, '/kolourpaint.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - libksane
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kolourpaint/kolourpaint.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kompare:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kompare.spec') ||
+          contains(inputs.specfiles, '/kompare.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - libkomparediff2
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kompare/kompare.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kongress:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kongress.spec') ||
+          contains(inputs.specfiles, '/kongress.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kosmindoormap
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kongress/kongress.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  konqueror:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/konqueror.spec') ||
+          contains(inputs.specfiles, '/konqueror.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/konqueror/konqueror.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  konsole:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/konsole.spec') ||
+          contains(inputs.specfiles, '/konsole.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/konsole/konsole.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kontact:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kontact.spec') ||
+          contains(inputs.specfiles, '/kontact.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - grantleetheme
+      - kontactinterface
+      - libkdepim
+      - pimcommon
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kontact/kontact.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   kontactinterface:
@@ -602,11 +3105,56 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kontactinterface/kontactinterface.spec
+      spec: ./apps/kontactinterface/kontactinterface.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  kontrast:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kontrast.spec') ||
+          contains(inputs.specfiles, '/kontrast.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kontrast/kontrast.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  konversation:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/konversation.spec') ||
+          contains(inputs.specfiles, '/konversation.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/konversation/konversation.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   kopeninghours:
@@ -623,11 +3171,47 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kopeninghours/kopeninghours.spec
+      spec: ./apps/kopeninghours/kopeninghours.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  korganizer:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/korganizer.spec') ||
+          contains(inputs.specfiles, '/korganizer.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-calendar
+      - akonadi-contacts
+      - akonadi-server
+      - calendarsupport
+      - changed-files
+      - eventviews
+      - incidenceeditor
+      - kcalutils
+      - kldap
+      - kmailtransport
+      - kmime
+      - kontactinterface
+      - libkdepim
+      - pimcommon
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/korganizer/korganizer.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   kosmindoormap:
@@ -646,11 +3230,12 @@ jobs:
       - kopeninghours
       - kpublictransport
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kosmindoormap/kosmindoormap.spec
+      spec: ./apps/kosmindoormap/kosmindoormap.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   kpimtextedit:
@@ -667,11 +3252,12 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kpimtextedit/kpimtextedit.spec
+      spec: ./apps/kpimtextedit/kpimtextedit.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   kpkpass:
@@ -688,11 +3274,12 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kpkpass/kpkpass.spec
+      spec: ./apps/kpkpass/kpkpass.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   kpmcore:
@@ -709,11 +3296,12 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kpmcore/kpmcore.spec
+      spec: ./apps/kpmcore/kpmcore.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   kpublictransport:
@@ -730,11 +3318,122 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kpublictransport/kpublictransport.spec
+      spec: ./apps/kpublictransport/kpublictransport.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  kqtquickcharts:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kqtquickcharts.spec') ||
+          contains(inputs.specfiles, '/kqtquickcharts.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kqtquickcharts/kqtquickcharts.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  krdc:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/krdc.spec') ||
+          contains(inputs.specfiles, '/krdc.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/krdc/krdc.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  krecorder:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/krecorder.spec') ||
+          contains(inputs.specfiles, '/krecorder.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/krecorder/krecorder.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  krfb:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/krfb.spec') ||
+          contains(inputs.specfiles, '/krfb.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/krfb/krfb.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kruler:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kruler.spec') ||
+          contains(inputs.specfiles, '/kruler.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kruler/kruler.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   ksanecore:
@@ -751,11 +3450,12 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/ksanecore/ksanecore.spec
+      spec: ./apps/ksanecore/ksanecore.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   ksmtp:
@@ -772,11 +3472,78 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/ksmtp/ksmtp.spec
+      spec: ./apps/ksmtp/ksmtp.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  ksystemlog:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/ksystemlog.spec') ||
+          contains(inputs.specfiles, '/ksystemlog.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/ksystemlog/ksystemlog.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kteatime:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kteatime.spec') ||
+          contains(inputs.specfiles, '/kteatime.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kteatime/kteatime.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  ktimer:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/ktimer.spec') ||
+          contains(inputs.specfiles, '/ktimer.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/ktimer/ktimer.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   ktnef:
@@ -794,11 +3561,102 @@ jobs:
       - changed-files
       - kcalutils
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/ktnef/ktnef.spec
+      spec: ./apps/ktnef/ktnef.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  ktorrent:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/ktorrent.spec') ||
+          contains(inputs.specfiles, '/ktorrent.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - libktorrent
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/ktorrent/ktorrent.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  ktouch:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/ktouch.spec') ||
+          contains(inputs.specfiles, '/ktouch.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/ktouch/ktouch.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  ktrip:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/ktrip.spec') ||
+          contains(inputs.specfiles, '/ktrip.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kpublictransport
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/ktrip/ktrip.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kturtle:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kturtle.spec') ||
+          contains(inputs.specfiles, '/kturtle.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kturtle/kturtle.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   kunifiedpush:
@@ -815,11 +3673,79 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kunifiedpush/kunifiedpush.spec
+      spec: ./apps/kunifiedpush/kunifiedpush.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  kwalletmanager5:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kwalletmanager5.spec') ||
+          contains(inputs.specfiles, '/kwalletmanager5.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kwalletmanager5/kwalletmanager5.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kwave:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kwave.spec') ||
+          contains(inputs.specfiles, '/kwave.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kwave/kwave.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  kweather:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kweather.spec') ||
+          contains(inputs.specfiles, '/kweather.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kweathercore
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kweather/kweather.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   kweathercore:
@@ -836,11 +3762,35 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/kweathercore/kweathercore.spec
+      spec: ./apps/kweathercore/kweathercore.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  kwordquiz:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kwordquiz.spec') ||
+          contains(inputs.specfiles, '/kwordquiz.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - libkeduvocdocument
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/kwordquiz/kwordquiz.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   libgravatar:
@@ -857,11 +3807,12 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/libgravatar/libgravatar.spec
+      spec: ./apps/libgravatar/libgravatar.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   libkcddb:
@@ -878,11 +3829,12 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/libkcddb/libkcddb.spec
+      spec: ./apps/libkcddb/libkcddb.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   libkcompactdisc:
@@ -899,11 +3851,12 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/libkcompactdisc/libkcompactdisc.spec
+      spec: ./apps/libkcompactdisc/libkcompactdisc.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   libkdcraw:
@@ -920,11 +3873,12 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/libkdcraw/libkdcraw.spec
+      spec: ./apps/libkdcraw/libkdcraw.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   libkdegames:
@@ -941,11 +3895,12 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/libkdegames/libkdegames.spec
+      spec: ./apps/libkdegames/libkdegames.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   libkdepim:
@@ -962,11 +3917,12 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/libkdepim/libkdepim.spec
+      spec: ./apps/libkdepim/libkdepim.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   libkeduvocdocument:
@@ -983,11 +3939,12 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/libkeduvocdocument/libkeduvocdocument.spec
+      spec: ./apps/libkeduvocdocument/libkeduvocdocument.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   libkexiv2:
@@ -1004,11 +3961,12 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/libkexiv2/libkexiv2.spec
+      spec: ./apps/libkexiv2/libkexiv2.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   libkgapi:
@@ -1025,11 +3983,12 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/libkgapi/libkgapi.spec
+      spec: ./apps/libkgapi/libkgapi.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   libkleo:
@@ -1046,11 +4005,12 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/libkleo/libkleo.spec
+      spec: ./apps/libkleo/libkleo.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   libkmahjongg:
@@ -1067,11 +4027,12 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/libkmahjongg/libkmahjongg.spec
+      spec: ./apps/libkmahjongg/libkmahjongg.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   libkomparediff2:
@@ -1088,11 +4049,12 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/libkomparediff2/libkomparediff2.spec
+      spec: ./apps/libkomparediff2/libkomparediff2.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   libksane:
@@ -1110,11 +4072,12 @@ jobs:
       - changed-files
       - ksanecore
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/libksane/libksane.spec
+      spec: ./apps/libksane/libksane.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   libksieve:
@@ -1137,11 +4100,12 @@ jobs:
       - libkdepim
       - pimcommon
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/libksieve/libksieve.spec
+      spec: ./apps/libksieve/libksieve.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   libktorrent:
@@ -1158,11 +4122,34 @@ jobs:
     needs:
       - changed-files
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/libktorrent/libktorrent.spec
+      spec: ./apps/libktorrent/libktorrent.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  lokalize:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/lokalize.spec') ||
+          contains(inputs.specfiles, '/lokalize.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/lokalize/lokalize.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   mailcommon:
@@ -1189,11 +4176,12 @@ jobs:
       - messagelib
       - pimcommon
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/mailcommon/mailcommon.spec
+      spec: ./apps/mailcommon/mailcommon.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   mailimporter:
@@ -1214,11 +4202,139 @@ jobs:
       - kmime
       - pimcommon
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/mailimporter/mailimporter.spec
+      spec: ./apps/mailimporter/mailimporter.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  marble:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/marble.spec') ||
+          contains(inputs.specfiles, '/marble.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/marble/marble.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  markdownpart:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/markdownpart.spec') ||
+          contains(inputs.specfiles, '/markdownpart.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/markdownpart/markdownpart.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  massif-visualizer:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/massif-visualizer.spec') ||
+          contains(inputs.specfiles, '/massif-visualizer.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kgraphviewer
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/massif-visualizer/massif-visualizer.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  mbox-importer:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/mbox-importer.spec') ||
+          contains(inputs.specfiles, '/mbox-importer.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-server
+      - changed-files
+      - kidentitymanagement
+      - mailcommon
+      - mailimporter
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/mbox-importer/mbox-importer.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  merkuro:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/merkuro.spec') ||
+          contains(inputs.specfiles, '/merkuro.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-calendar
+      - akonadi-contacts
+      - akonadi-mime
+      - akonadi-search
+      - akonadi-server
+      - changed-files
+      - kcalutils
+      - kidentitymanagement
+      - kmailtransport
+      - kmbox
+      - kmime
+      - mailcommon
+      - mimetreeparser
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/merkuro/merkuro.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   messagelib:
@@ -1249,11 +4365,12 @@ jobs:
       - libkleo
       - pimcommon
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/messagelib/messagelib.spec
+      spec: ./apps/messagelib/messagelib.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
 
   mimetreeparser:
@@ -1273,11 +4390,158 @@ jobs:
       - kmime
       - libkleo
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/mimetreeparser/mimetreeparser.spec
+      spec: ./apps/mimetreeparser/mimetreeparser.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  minuet:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/minuet.spec') ||
+          contains(inputs.specfiles, '/minuet.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/minuet/minuet.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  neochat:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/neochat.spec') ||
+          contains(inputs.specfiles, '/neochat.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kunifiedpush
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/neochat/neochat.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  okular:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/okular.spec') ||
+          contains(inputs.specfiles, '/okular.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kdegraphics-mobipocket
+      - libkexiv2
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/okular/okular.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  parley:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/parley.spec') ||
+          contains(inputs.specfiles, '/parley.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - libkeduvocdocument
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/parley/parley.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  pim-data-exporter:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/pim-data-exporter.spec') ||
+          contains(inputs.specfiles, '/pim-data-exporter.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-server
+      - changed-files
+      - kidentitymanagement
+      - kmailtransport
+      - kmime
+      - mailcommon
+      - pimcommon
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/pim-data-exporter/pim-data-exporter.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  pim-sieve-editor:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/pim-sieve-editor.spec') ||
+          contains(inputs.specfiles, '/pim-sieve-editor.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kimap
+      - kmailtransport
+      - libksieve
+      - pimcommon
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/pim-sieve-editor/pim-sieve-editor.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 
   pimcommon:
@@ -1300,10 +4564,369 @@ jobs:
       - kldap
       - libkdepim
     secrets:
-      gpgkey: ${{ secrets.GPGKEY }}
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
-      spec: apps/pimcommon/pimcommon.spec
+      spec: ./apps/pimcommon/pimcommon.spec
       deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  plasmatube:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/plasmatube.spec') ||
+          contains(inputs.specfiles, '/plasmatube.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/plasmatube/plasmatube.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  poxml:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/poxml.spec') ||
+          contains(inputs.specfiles, '/poxml.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/poxml/poxml.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  qmlkonsole:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/qmlkonsole.spec') ||
+          contains(inputs.specfiles, '/qmlkonsole.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/qmlkonsole/qmlkonsole.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  qrca:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/qrca.spec') ||
+          contains(inputs.specfiles, '/qrca.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/qrca/qrca.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  rocs:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/rocs.spec') ||
+          contains(inputs.specfiles, '/rocs.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/rocs/rocs.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  signon-kwallet-extension:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/signon-kwallet-extension.spec') ||
+          contains(inputs.specfiles, '/signon-kwallet-extension.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/signon-kwallet-extension/signon-kwallet-extension.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  skanlite:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/skanlite.spec') ||
+          contains(inputs.specfiles, '/skanlite.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - libksane
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/skanlite/skanlite.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  skanpage:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/skanpage.spec') ||
+          contains(inputs.specfiles, '/skanpage.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - ksanecore
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/skanpage/skanpage.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  step:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/step.spec') ||
+          contains(inputs.specfiles, '/step.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/step/step.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  svgpart:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/svgpart.spec') ||
+          contains(inputs.specfiles, '/svgpart.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/svgpart/svgpart.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  sweeper:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/sweeper.spec') ||
+          contains(inputs.specfiles, '/sweeper.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/sweeper/sweeper.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  telly-skout:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/telly-skout.spec') ||
+          contains(inputs.specfiles, '/telly-skout.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/telly-skout/telly-skout.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  tokodon:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/tokodon.spec') ||
+          contains(inputs.specfiles, '/tokodon.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - kunifiedpush
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/tokodon/tokodon.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  umbrello:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/umbrello.spec') ||
+          contains(inputs.specfiles, '/umbrello.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/umbrello/umbrello.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  yakuake:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/yakuake.spec') ||
+          contains(inputs.specfiles, '/yakuake.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/yakuake/yakuake.spec
+      deps: ${{ toJson(needs) }}
+      abidiff: ${{ inputs.abidiff }}
+
+  zanshin:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/zanshin.spec') ||
+          contains(inputs.specfiles, '/zanshin.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - akonadi-calendar
+      - akonadi-server
+      - changed-files
+      - kontactinterface
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook_gear: ${{ secrets.copr_webhook_gear }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./apps/zanshin/zanshin.spec
+      deps: ${{ toJson(needs) }}
       abidiff: ${{ inputs.abidiff }}
 

@@ -33,6 +33,8 @@ jobs:
     uses: ./.github/workflows/packages-gear.yml
     secrets:
       gpgkey: ${{ secrets.GPGKEY }}
+      copr_webhook_gear: ${{ secrets.COPR_WEBHOOK_GEAR }}
+      copr_webhook_beta: ${{ secrets.COPR_WEBHOOK_BETA }}
     with:
       specfiles: ${{ inputs.specfiles }}
       abidiff: ${{ inputs.abidiff || true }}

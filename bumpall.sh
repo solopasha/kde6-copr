@@ -1,11 +1,12 @@
 #!/usr/bin/bash
 
-while getopts 'gfb' opt; do
+while getopts 'gfba' opt; do
     case "$opt" in
         g) export GITLAB=1 ;;
         f) export NO_FILTER=1 ;;
         b) export BETA=1 ;;
-        *) echo "Usage $0 [-g] [-f] [-b]" >&2; exit 1
+        a) export APPS=1 ;;
+        *) echo "Usage $0 [-g] [-f] [-b] [-a]" >&2; exit 1
     esac
 done
 shift "$((OPTIND-1))"
@@ -18,6 +19,48 @@ fi
 
 exclude_packages=(
     kf6.spec
+    bomber.spec
+    bovo.spec
+    granatier.spec
+    kajongg.spec
+    kalzium.spec
+    kapman.spec
+    katomic.spec
+    kblackbox.spec
+    kblocks.spec
+    kbounce.spec
+    kdiamond.spec
+    kfourinline.spec
+    kgoldrunner.spec
+    kigo.spec
+    killbots.spec
+    kiriki.spec
+    kjumpingcube.spec
+    klickety.spec
+    klines.spec
+    kmahjongg.spec
+    kmines.spec
+    knavalbattle.spec
+    knetwalk.spec
+    knights.spec
+    knights.spec
+    kolf.spec
+    kollision.spec
+    konquest.spec
+    kpat.spec
+    kreversi.spec
+    kshisen.spec
+    ksirk.spec
+    ksnakeduel.spec
+    kspaceduel.spec
+    ksquares.spec
+    ksudoku.spec
+    ktuberling.spec
+    kubrick.spec
+    lskat.spec
+    palapeli.spec
+    picmi.spec
+    skladnik.spec
 )
 
 IFS=" " read -r -a exclude_rendered <<< "$(printf -- "--exclude=%s " "${exclude_packages[@]}")"
@@ -49,7 +92,7 @@ process_spec() {
         fi
         if [[ $NO_FILTER != "1" ]]; then
             message="$(jq -r '.commit.message, .message | values' <<< "$commit")"
-            if [[ "$message" =~ (SVN|GIT)_SILENT|Update[[:space:]]version[[:space:]]to|Update[[:space:]]dependency[[:space:]]version[[:space:]]to|update[[:space:]]version[[:space:]]for[[:space:]]new[[:space:]]release|snapcraft:|as[[:space:]]hardened[[:space:]]was[[:space:]]reverted[[:space:]]from[[:space:]]ECM|Haiku|Update[[:space:]]version[[:space:]]number[[:space:]]for[[:space:]]5\.27\.12|appiumtests:|Lower[[:space:]]Python[[:space:]]requirement[[:space:]]to[[:space:]]3\.9|^CI:|Enable[[:space:]]Python[[:space:]]bindings[[:space:]]on[[:space:]]FreeBSD|autotests:|^doc:|metainfo.yaml$|Add[[:space:]]xml/yaml[[:space:]]linting|^Appdata:|Fix[[:space:]]build[[:space:]]with[[:space:]]Qt[[:space:]]6\.10|It[[:space:]]compiles[[:space:]]fine[[:space:]]without[[:space:]]qt6\.9[[:space:]]deprecated[[:space:]]methods|It[[:space:]]compiles[[:space:]]fine[[:space:]]without[[:space:]]kf6\.1[[:digit:]][[:space:]]deprecated[[:space:]]methods|include[[:space:]]quiet[[:space:]]packages[[:space:]]in[[:space:]]the[[:space:]]feature[[:space:]]summary|It[[:space:]]compiles[[:space:]]fine[[:space:]]without[[:space:]]kf_6_1[[:digit:]][[:space:]]deprecated[[:space:]]methods|Remove[[:space:]]unused[[:space:]]PROJECT_VERSION_MAJOR[[:space:]]variable|Remove[[:space:]](code|conditions)[[:space:]]for[[:space:]]no[[:space:]]longer[[:space:]]supported[[:space:]]Qt[[:space:]]versions|^flatpak:|Port[[:space:]]API[[:space:]]documentation[[:space:]]to[[:space:]]QDoc[[:space:]]syntax|It[[:space:]]compiles[[:space:]]fine[[:space:]]without[[:space:]]deprecated[[:space:]]methods|Add[[:space:]]landing[[:space:]]page[[:space:]]for[[:space:]]QDoc|Documentation[[:space:]]fixes|Add[[:space:]]missing[[:space:]]QDoc[[:space:]]dependencies|Add[[:space:]]missing[[:space:]]qhp[[:space:]]projects|Remove[[:space:]]leftover[[:space:]]doxygen[[:space:]]file|Add[[:space:]]missing[[:space:]]qhp[[:space:]]project|Add[[:space:]]tags[[:space:]]file[[:space:]]to[[:space:]]documentation|It[[:space:]]compiles[[:space:]]fine[[:space:]]without[[:space:]]qt[[:space:]]6.[[:digit:]][[:digit:]][[:space:]]deprecated[[:space:]]methods|It[[:space:]]compiles[[:space:]]fine[[:space:]]without[[:space:]]kf[[:space:]]6.[[:digit:]][[:digit:]][[:space:]]deprecated[[:space:]]methods|Bump[[:space:]]kf[[:space:]]ecm_set_disabled_deprecation_versions ]]; then
+            if [[ "$message" =~ (SVN|GIT)_SILENT|Update[[:space:]]version[[:space:]]to|Update[[:space:]]dependency[[:space:]]version[[:space:]]to|update[[:space:]]version[[:space:]]for[[:space:]]new[[:space:]]release|snapcraft:|as[[:space:]]hardened[[:space:]]was[[:space:]]reverted[[:space:]]from[[:space:]]ECM|Haiku|Update[[:space:]]version[[:space:]]number[[:space:]]for[[:space:]]5\.27\.12|appiumtests:|Lower[[:space:]]Python[[:space:]]requirement[[:space:]]to[[:space:]]3\.9|^CI:|Enable[[:space:]]Python[[:space:]]bindings[[:space:]]on[[:space:]]FreeBSD|autotests:|^doc:|metainfo.yaml$|Add[[:space:]]xml/yaml[[:space:]]linting|^Appdata:|Fix[[:space:]]build[[:space:]]with[[:space:]]Qt[[:space:]]6\.10|It[[:space:]]compiles[[:space:]]fine[[:space:]]without[[:space:]]qt6\.9[[:space:]]deprecated[[:space:]]methods|It[[:space:]]compiles[[:space:]]fine[[:space:]]without[[:space:]]kf6\.1[[:digit:]][[:space:]]deprecated[[:space:]]methods|include[[:space:]]quiet[[:space:]]packages[[:space:]]in[[:space:]]the[[:space:]]feature[[:space:]]summary|It[[:space:]]compiles[[:space:]]fine[[:space:]]without[[:space:]]kf_6_1[[:digit:]][[:space:]]deprecated[[:space:]]methods|Remove[[:space:]]unused[[:space:]]PROJECT_VERSION_MAJOR[[:space:]]variable|Remove[[:space:]](code|conditions)[[:space:]]for[[:space:]]no[[:space:]]longer[[:space:]]supported[[:space:]]Qt[[:space:]]versions|^flatpak:|Port[[:space:]]API[[:space:]]documentation[[:space:]]to[[:space:]]QDoc[[:space:]]syntax|It[[:space:]]compiles[[:space:]]fine[[:space:]]without[[:space:]]deprecated[[:space:]]methods|Add[[:space:]]landing[[:space:]]page[[:space:]]for[[:space:]]QDoc|Documentation[[:space:]]fixes|Add[[:space:]]missing[[:space:]]QDoc[[:space:]]dependencies|Add[[:space:]]missing[[:space:]]qhp[[:space:]]projects|Remove[[:space:]]leftover[[:space:]]doxygen[[:space:]]file|Add[[:space:]]missing[[:space:]]qhp[[:space:]]project|Add[[:space:]]tags[[:space:]]file[[:space:]]to[[:space:]]documentation|It[[:space:]]compiles[[:space:]]fine[[:space:]]without[[:space:]]qt[[:space:]]6.[[:digit:]][[:digit:]][[:space:]]deprecated[[:space:]]methods|It[[:space:]]compiles[[:space:]]fine[[:space:]]without[[:space:]]kf[[:space:]]6.[[:digit:]][[:digit:]][[:space:]]deprecated[[:space:]]methods|Bump[[:space:]]kf[[:space:]]ecm_set_disabled_deprecation_versions|^Flatpak: ]]; then
                 continue
             fi
         fi
@@ -66,5 +109,8 @@ process_spec() {
     { perl -pe 's/(?<=bumpver\s)(\d+)/$1 + 1/ge;' -pe 's/(^Release:\s+)(\d+)(%.*)/${1}1${3}/' -i "$1"; }
 }
 export -f process_spec
-
-parallel process_spec :::: <(fd -espec . './plasma' './frameworks' './related/plasma-wayland-protocols' "${exclude_rendered[@]}")
+if [[ "${APPS}" == "1" ]]; then
+    parallel process_spec :::: <(fd -espec . './apps' "${exclude_rendered[@]}")
+else
+    parallel process_spec :::: <(fd -espec . './plasma' './frameworks' './related/plasma-wayland-protocols' "${exclude_rendered[@]}")
+fi
