@@ -518,7 +518,7 @@ jobs:
           mkdir -p old new
 
           oras pull "ghcr.io/${repository}/${pkgname}:latest-${target_branch}" -o old_pkgs
-          if ! compgen -G "./old_pkgs/*debuginfo*.rpm" > /dev/null; then
+          if ! compgen -G "./old_pkgs/${pkgname}-resultdir/*debuginfo*.rpm" > /dev/null; then
             oras pull "ghcr.io/${repository}/${pkgname}:debuginfo-${target_branch}" -o old_pkgs
           fi
           docker run --rm \
