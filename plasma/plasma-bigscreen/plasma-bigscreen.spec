@@ -1,6 +1,6 @@
 %global commit0 1e7880255a84951bbe40e96540e563ecd004cefe
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:           plasma-bigscreen
 Summary:        Plasma shell for TVs
