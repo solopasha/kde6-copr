@@ -1,6 +1,6 @@
-%global commit0 8b70b1b0af3c74b111b03f53755b32779634e271
+%global commit0 fa7b041e85249a1d7ffdd1d6f198da18061f2318
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 24
+%global bumpver 25
 
 Name:           itinerary
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
