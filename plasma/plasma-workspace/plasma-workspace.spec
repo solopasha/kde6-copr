@@ -1,6 +1,6 @@
 %global commit0 d748b220ccab5739b310d4e80114b5f1856c1bf6
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 78
+%global bumpver 79
 
 %bcond x11 1
 
@@ -29,6 +29,8 @@ Source102:      kde-smartcard
 ## in the repective pkgs themselves? -- rdieter)
 Source40:       ssh-agent.conf
 Source41:       spice-vdagent.conf
+
+Patch:          revert-7c442d0.patch
 
 ## downstream Patches
 # default to enable open terminal action
