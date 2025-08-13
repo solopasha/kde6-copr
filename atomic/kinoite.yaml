@@ -5,5 +5,4 @@ repos:
   - copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable
   - coprdep:copr.fedorainfracloud.org:solopasha:plasma-unstable
   - fedora
-  - fedora-cisco-openh264
   - updates
