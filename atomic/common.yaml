@@ -139,6 +139,9 @@ packages-x86_64:
 
 # Make sure the following are not pulled in when Recommended by other packages
 exclude-packages:
+  - gstreamer1-plugin-openh264
+  - mozilla-openh264
+  - openh264
   - PackageKit
   # Do not include dnf4. Classic ostree also exclude dnf5 in another manifest
   - dnf
@@ -155,6 +158,8 @@ exclude-packages:
   - qemu-device-display-virtio-vga
   # See: https://github.com/fedora-silverblue/issue-tracker/issues/646
   - hplip-gui
+  - python3-boto3
+  - python3-botocore
 
 add-files:
   - ["solopasha.pub", "/etc/pki/containers/kde-unstable.pub"]
