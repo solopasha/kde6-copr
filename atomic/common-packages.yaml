@@ -185,6 +185,9 @@ packages:
   - wpa_supplicant
   - zip
   - zram-generator-defaults
+  - libavcodec-freeworld
+  - rpmfusion-free-release
+  - rpmfusion-nonfree-release
 packages-x86_64:
   - alsa-sof-firmware
   - amd-ucode-firmware
