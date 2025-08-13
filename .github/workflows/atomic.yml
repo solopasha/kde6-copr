@@ -65,7 +65,7 @@ jobs:
         run: |
           sed -i "s|@@REPO@@|$IMAGENAME|" atomic/sigstore.yaml
           if [[ "${{ matrix.version }}" == "rawhide" ]]; then
-            version="43"
+            version="44"
             sed -i "s/\$releasever/rawhide/" atomic/coprs.repo
           else
             version="${{ matrix.version }}"
