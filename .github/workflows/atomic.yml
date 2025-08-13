@@ -20,6 +20,7 @@ jobs:
       matrix:
         version:
           - rawhide
+          - 43
           - 42
     container:
       image: registry.fedoraproject.org/fedora:${{ matrix.version }}
@@ -66,10 +67,12 @@ jobs:
           if [[ "${{ matrix.version }}" == "rawhide" ]]; then
             version="43"
             sed -i "s/\$releasever/rawhide/" atomic/coprs.repo
-            sed -i '/basesystem/d' atomic/common-packages.yaml
-            sed -i '/pipewire-alsa/a\  - pipewire-config-raop' atomic/common-packages.yaml
           else
             version="${{ matrix.version }}"
+          fi
+          if [[ "${{ matrix.version }}" == "rawhide" || "${{ matrix.version }}" == "43" ]]; then
+            sed -i '/basesystem/d' atomic/common-packages.yaml
+            sed -i '/pipewire-alsa/a\  - pipewire-config-raop' atomic/common-packages.yaml
           fi
           sed -i "s/^releasever:.*/releasever: ${version}/" atomic/common.yaml
           sed -i "/^ref/s/[[:digit:]]\+/${version}/" atomic/kinoite-common.yaml
