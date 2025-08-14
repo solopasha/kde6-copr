@@ -116,6 +116,7 @@ Summary:        Runtime libraries for %{name}
 Summary:        Plasma Discover PackageKit support
 Requires:       %{name} = %{version}-%{release}
 Requires:       PackageKit
+Requires:       PackageKit-Qt6%{?_isa} >= 1.1.3
 %if 0%{?fedora}
 # Pull in the workstation repositories package
 Recommends:     fedora-workstation-repositories
