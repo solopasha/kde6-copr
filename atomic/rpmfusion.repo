@@ -7,7 +7,7 @@ metadata_expire=14d
 type=rpm-md
 gpgcheck=1
 repo_gpgcheck=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
+gpgkey=file:///usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-free-fedora-2020
 
 [rpmfusion-free-updates]
 name=RPM Fusion for Fedora $releasever - Free - Updates
@@ -18,7 +18,7 @@ enabled_metadata=1
 type=rpm-md
 gpgcheck=1
 repo_gpgcheck=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
+gpgkey=file:///usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-free-fedora-2020
 
 [rpmfusion-nonfree]
 name=RPM Fusion for Fedora $releasever - Nonfree
@@ -30,7 +30,7 @@ metadata_expire=14d
 type=rpm-md
 gpgcheck=1
 repo_gpgcheck=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-$releasever
+gpgkey=file:///usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
 
 [rpmfusion-nonfree-updates]
 name=RPM Fusion for Fedora $releasever - Nonfree - Updates
@@ -41,4 +41,4 @@ enabled_metadata=1
 type=rpm-md
 gpgcheck=1
 repo_gpgcheck=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-$releasever
+gpgkey=file:///usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
