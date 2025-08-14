@@ -1,6 +1,6 @@
-%global commit0 886efacdb9f2d04e1e5dad5a982d6b2a756a5459
+%global commit0 45e4a968041f15df06075635fa329db1b7772181
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 14
+%global bumpver 15
 
 #global tests 1
 
@@ -38,6 +38,9 @@ BuildRequires:  cmake(KPim6MessageCore)
 BuildRequires:  cmake(KPim6Mime)
 
 BuildRequires:  cmake(Qt6Test)
+
+BuildRequires:  cmake(Gpgmepp)
+BuildRequires:  cmake(QGpgmeQt6)
 
 %if 0%{?tests}
 BuildRequires:  akonadi
