@@ -1,0 +1,14 @@
+packages:
+  - intel-media-driver
+  - libavcodec-freeworld
+  - libheif-freeworld
+  - mesa-va-drivers-freeworld
+  - pipewire-codec-aptx
+  - rpmfusion-free-release
+  - rpmfusion-nonfree-release
+
+repos:
+  - rpmfusion-free
+  - rpmfusion-free-updates
+  - rpmfusion-nonfree
+  - rpmfusion-nonfree-updates
