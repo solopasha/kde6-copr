@@ -1,6 +1,6 @@
-%global commit0 23aa6dd5d734b9fff89f9c08d9944b059b97889e
+%global commit0 b76562e0ad33aee936cfe83ebdcac0b25d90a1ab
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework kconfigwidgets
 
