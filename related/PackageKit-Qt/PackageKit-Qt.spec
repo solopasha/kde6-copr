@@ -4,15 +4,12 @@ Version:   1.1.3
 Release:   1%{?dist}
 
 License:   LGPL-2.1-only
-URL:       http://www.packagekit.org/
-
-Source0:   https://github.com/hughsie/PackageKit-Qt/archive/v%{version}/%{name}-%{version}.tar.gz
+URL:       https://github.com/PackageKit/PackageKit-Qt
+Source:    %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires: cmake
 BuildRequires: cmake(Qt6DBus)
 BuildRequires: cmake(Qt6Sql)
-BuildRequires: cmake(Qt5DBus)
-BuildRequires: cmake(Qt5Sql)
 BuildRequires: gcc-c++
 # required for /usr/share/dbus-1/interfaces/*.xml
 BuildRequires: PackageKit >= 0.9.1
