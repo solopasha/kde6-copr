@@ -1,73 +1,53 @@
-%global commit0 43c013e9d573950fd0bd25945127e09ab5cee04d
+%global commit0 153244a6df86bc8efb1f9ea78dedf76f9c7d9b05
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
-Name:    rocs
-Summary: Graph Theory IDE
-Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release: 1%{?dist}
+Name:           rocs
+Summary:        Graph Theory IDE
+Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Release:        1%{?dist}
 
-License: BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
-URL:     https://invent.kde.org/education/rocs
+License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
+URL:            https://invent.kde.org/education/rocs
 %apps_source
 
-BuildRequires: boost-devel >= 1.43
-BuildRequires: desktop-file-utils
-BuildRequires: extra-cmake-modules
-BuildRequires: gettext
-BuildRequires: grantlee-qt5-devel
-BuildRequires: kf5-attica-devel
-BuildRequires: kf5-kcmutils-devel
-BuildRequires: kf5-kcompletion-devel
-BuildRequires: kf5-kconfig-devel
-BuildRequires: kf5-kconfigwidgets-devel
-BuildRequires: kf5-kcoreaddons-devel
-BuildRequires: kf5-kcrash-devel
-BuildRequires: kf5-kdbusaddons-devel
-BuildRequires: kf5-kdeclarative-devel
-BuildRequires: kf5-kdelibs4support-devel
-BuildRequires: kf5-kdoctools-devel
-BuildRequires: kf5-kguiaddons-devel
-BuildRequires: kf5-khtml-devel
-BuildRequires: kf5-ki18n-devel
-BuildRequires: kf5-kiconthemes-devel
-BuildRequires: kf5-kio-devel
-BuildRequires: kf5-kitemviews-devel
-BuildRequires: kf5-kjobwidgets-devel
-BuildRequires: kf5-knewstuff-devel
-BuildRequires: kf5-knotifyconfig-devel
-BuildRequires: kf5-kross-devel
-BuildRequires: kf5-kservice-devel
-BuildRequires: kf5-ktexteditor-devel
-BuildRequires: kf5-kwidgetsaddons-devel
-BuildRequires: kf5-kwindowsystem-devel
-BuildRequires: kf5-kxmlgui-devel
-BuildRequires: kf5-rpm-macros
-BuildRequires: kf5-sonnet-devel
-BuildRequires: libappstream-glib
-BuildRequires: pkgconfig(Qt5Concurrent) pkgconfig(Qt5Gui) pkgconfig(Qt5ScriptTools)
-BuildRequires: pkgconfig(Qt5Qml) pkgconfig(Qt5Quick) pkgconfig(Qt5Xml) pkgconfig(Qt5Svg) pkgconfig(Qt5Test)
-BuildRequires: pkgconfig(Qt5WebKit) pkgconfig(Qt5WebKitWidgets) pkgconfig(Qt5XmlPatterns)
+BuildRequires:  desktop-file-utils
+BuildRequires:  libappstream-glib
 
-Requires: %{name}-libs%{?_isa} = %{version}-%{release}
+BuildRequires:  cmake(KF6Archive)
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
+BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6ItemViews)
+BuildRequires:  cmake(KF6TextEditor)
+BuildRequires:  cmake(KF6TextTemplate)
+BuildRequires:  cmake(KF6TextWidgets)
+BuildRequires:  cmake(KF6XmlGui)
+
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6QuickWidgets)
+BuildRequires:  cmake(Qt6Svg)
+BuildRequires:  cmake(Qt6Widgets)
+
+BuildRequires:  boost-devel
+
+Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
 %description
 %{summary}.
 
-%package  libs
-Summary:  Runtime files for %{name}
-# when split occurred
-Conflicts: kdeedu-math-libs < 4.7.0-10
-Requires: %{name} = %{version}-%{release}
-%description libs
+%package        libs
+Summary:        Runtime files for %{name}
+%description    libs
 %{summary}.
 
-%package devel
-Summary:  Development files for %{name}
-# when split occurred
-Conflicts: kdeedu-devel < 4.7.0-10
-Requires: %{name}-libs%{?_isa} = %{version}-%{release}
-%description devel
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+%description    devel
 %{summary}.
 
 
@@ -77,7 +57,7 @@ Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 
 
 %build
-%cmake_kf5
+%cmake_kf6
 %cmake_build
 
 
@@ -87,27 +67,27 @@ Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf5_metainfodir}/org.kde.%{name}.appdata.xml
-desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.desktop
+appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files -f %{name}.lang
 %license LICENSES/*
 %doc README.md
-%{_kf5_bindir}/%{name}
-%{_kf5_datadir}/applications/org.kde.%{name}.desktop
-%{_kf5_metainfodir}/org.kde.%{name}.appdata.xml
-%{_kf5_datadir}/icons/hicolor/*/actions/*
-%{_kf5_datadir}/icons/hicolor/*/apps/%{name}*
-%{_kf5_datadir}/%{name}/
-%{_kf5_datadir}/config.kcfg/%{name}.kcfg
-%{_qt5_plugindir}/rocs/
+%{_kf6_bindir}/%{name}
+%{_kf6_datadir}/%{name}/
+%{_kf6_datadir}/applications/org.kde.%{name}.desktop
+%{_kf6_datadir}/config.kcfg/%{name}.kcfg
+%{_kf6_datadir}/icons/hicolor/*/actions/*
+%{_kf6_datadir}/icons/hicolor/*/apps/%{name}*
+%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
+%{_kf6_qtplugindir}/rocs/
 
 %files libs
-%{_kf5_libdir}/librocsgraphtheory.so.*
+%{_kf6_libdir}/librocsgraphtheory.so.*
 
 %files devel
-%{_kf5_libdir}/librocsgraphtheory.so
 %{_includedir}/rocs/
+%{_kf6_libdir}/librocsgraphtheory.so
 
 
 %changelog

@@ -1,6 +1,6 @@
-%global commit0 fd2021a77e6f91fa39f34b707f0facd127352625
+%global commit0 81fc7510001ba2b27b433f1b97996b6a54fc11e3
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 6
 
 Name:           marble
 Summary:        Virtual globe and world atlas
@@ -156,8 +156,6 @@ rm -rf src/3rdparty/zlib
 %install
 %cmake_install
 
-rm %{buildroot}%{_kf6_datadir}/applications/marble_thumbnail*.desktop
-
 %find_lang %{name} --all-name --with-html
 %find_lang_kf6 marble_qt
 cat marble_qt.lang >> %{name}.lang
@@ -197,8 +195,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %files plasma
 %{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.worldclock/
 %{_kf6_datadir}/plasma/wallpapers/org.kde.plasma.worldmap/
-%{_kf6_metainfodir}/org.kde.plasma.worldclock.appdata.xml
-%{_kf6_metainfodir}/org.kde.plasma.worldmap.appdata.xml
 %{_kf6_plugindir}/krunner/plasma_runner_marble.so
 
 %files qt
@@ -222,7 +218,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_kf6_libdir}/marble/plugins/
 %{_kf6_qmldir}/org/kde/marble/
 %{_kf6_qtplugindir}/libmarble_part.so
-%{_kf6_qtplugindir}/marblethumbnail.so
+%{_kf6_plugindir}/thumbcreator/marble_*.so
 
 %files widget-qt6-devel
 %{_includedir}/marble/
