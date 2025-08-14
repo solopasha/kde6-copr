@@ -31,8 +31,6 @@ on:
       copr_webhook_beta:
         required: false
     outputs:
-      pkgname:
-        value: ${{ jobs.build.outputs.pkgname }}
       copr_build_id:
         value: ${{ jobs.build.outputs.copr_build_id }}
 
@@ -44,7 +42,6 @@ jobs:
       contents: read
       packages: write
     outputs:
-      pkgname: ${{ steps.pkgname.outputs.pkgname }}
       copr_build_id: ${{ steps.copr.outputs.buildid }}
     env:
       spec: ${{ inputs.spec }}
