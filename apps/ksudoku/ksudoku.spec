@@ -1,6 +1,6 @@
-%global commit0 08258796057ec87b521c636bbb9ce593c109ad4b
+%global commit0 47e301afe85327863de19941e1859cec8c9deb97
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:    ksudoku
 Summary: A logic-based symbol placement puzzle

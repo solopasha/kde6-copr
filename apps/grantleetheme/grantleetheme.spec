@@ -1,6 +1,6 @@
-%global commit0 379fe0e371b86f10ce61629315a3aeaee84eac7e
+%global commit0 5a9d13c063e6f25bccd830aa7f2025660d2e00bc
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 Name:    grantleetheme
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
