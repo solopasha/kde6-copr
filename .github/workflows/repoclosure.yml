@@ -50,3 +50,9 @@ jobs:
         run: |
           dnf repoclosure \
             --check copr:copr.fedorainfracloud.org:solopasha:plasma-unstable,copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable --newest
+
+      - name: Repoclosure (with --best)
+        run: |
+          dnf repoclosure \
+            --check copr:copr.fedorainfracloud.org:solopasha:plasma-unstable,copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable \
+            --newest --best
