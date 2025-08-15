@@ -203,3 +203,8 @@ postprocess:
     # Fix triggerin for samba-client in cups package (not supported by rpm-ostree yet)
     # https://github.com/fedora-silverblue/issue-tracker/issues/532
     ln -snf /usr/libexec/samba/cups_backend_smb /usr/lib/cups/backend/smb
+
+  - |
+    #!/usr/bin/bash
+    set -xeuo pipefail
+    sed 's/@@VER_TO_REPLACE@@/@@IMAGE_VERSION@@/g' -i /usr/lib/os-release

@@ -100,6 +100,9 @@ jobs:
             buildid="${date_now}.0"
           fi
 
+          sed "s/@@VER_TO_REPLACE@@/${date_now}.0/" -i common.yaml
+          sed "s/@@IMAGE_VERSION@@/${buildid}/" -i common.yaml
+
           echo "fedora_version=${fedora_version}" >> $GITHUB_OUTPUT
           echo "buildid=${buildid}" >> $GITHUB_OUTPUT
 
