@@ -1,11 +1,12 @@
 Summary:   Qt support library for PackageKit
 Name:      PackageKit-Qt
 Version:   1.1.3
-Release:   1%{?dist}
+Release:   2%{?dist}
 
 License:   LGPL-2.1-only
 URL:       https://github.com/PackageKit/PackageKit-Qt
 Source:    %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
+Patch:     https://github.com/PackageKit/PackageKit-Qt/commit/8a351053f16423033b292573cd83500a4fcd900b.patch
 
 BuildRequires: cmake
 BuildRequires: cmake(Qt6DBus)
@@ -59,6 +60,9 @@ Requires: PackageKit-Qt6%{?_isa} = %{version}-%{release}
 
 
 %changelog
+* Fri Aug 15 2025 Pavel Solovev <daron439@gmail.com> - 1.1.3-2
+- Backport patch to fix discover
+
 * Thu Aug 14 2025 Pavel Solovev <daron439@gmail.com> - 1.1.3-1
 - new version
 
