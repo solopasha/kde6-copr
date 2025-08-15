@@ -77,10 +77,31 @@ jobs:
           sed -i "s/^releasever:.*/releasever: ${version}/" atomic/common.yaml
           sed -i "/^ref/s/[[:digit:]]\+/${version}/" atomic/kinoite-common.yaml
 
-      - name: Get buildid
-        id: get-buildid
+      - name: Figure out version
+        id: buildid
         run: |
-          echo "buildid=$(date -u "+%Y%m%d.%H%M")" >> $GITHUB_OUTPUT
+          pushd atomic > /dev/null || exit 1
+          date_now="$(date -u "+%Y%m%d")"
+          if [[ "${{ matrix.version }}" == "rawhide" ]]; then
+            fedora_version="rawhide"
+          else
+            fedora_version="$(rpm-ostree compose tree --print-only kinoite.yaml | jq -r '."mutate-os-release"')"
+          fi
+          version_remote="$(skopeo inspect "docker://${IMAGENAME}:${fedora_version}" | jq -r '.Labels."org.opencontainers.image.version"' || :)"
+          if [[ -n "${version_remote}" ]]; then
+            date_remote="${version_remote%\.*}"
+            date_remote="${date_remote#*\.}"
+          fi
+          if [[ "${date_now}" == "${date_remote}" ]]; then
+            patch="${version_remote##*\.}"
+            ((patch++)) || true
+            buildid="${date_now}.${patch}"
+          else
+            buildid="${date_now}.0"
+          fi
+
+          echo "fedora_version=${fedora_version}" >> $GITHUB_OUTPUT
+          echo "buildid=${buildid}" >> $GITHUB_OUTPUT
 
       # - name: Restore cache
       #   id: cache
@@ -91,7 +112,6 @@ jobs:
       #     restore-keys: build-
 
       - name: Build
-        id: build
         run: |
           pushd atomic > /dev/null || exit 1
           if [[ -f "buildcache.tar.zst" ]]; then
@@ -100,18 +120,16 @@ jobs:
           fi
           mkdir -p cache
 
-          if [[ "${{ matrix.version }}" == "rawhide" ]]; then
-            version="rawhide"
-          else
-            version="$(rpm-ostree compose tree --print-only kinoite.yaml | jq -r '."mutate-os-release"')"
-          fi
-          echo "version=${version}" >> $GITHUB_OUTPUT
-          echo "Composing kinoite ${version}.${{ steps.get-buildid.outputs.buildid }} ..."
+          echo "Composing kinoite ${{ steps.buildid.outputs.fedora_version }}.${{ steps.buildid.outputs.buildid }} ..."
 
-          rpm-ostree compose image --cachedir=cache --initialize \
-              --max-layers 96 --format oci \
-              "kinoite.yaml" \
-              "kinoite-build"
+          rpm-ostree compose image \
+            --cachedir=cache \
+            --initialize \
+            --max-layers 96 \
+            --format oci \
+            --label="org.opencontainers.image.version=${{ steps.buildid.outputs.fedora_version }}.${{ steps.buildid.outputs.buildid }}" \
+            "kinoite.yaml" \
+            "kinoite-build"
 
       - name: Key
         env:
@@ -132,19 +150,19 @@ jobs:
           for i in {1..5}; do
             skopeo copy ${SKOPEO_ARGS} \
               "oci:kinoite-build" \
-              "docker://${IMAGENAME}:${{ steps.build.outputs.version }}.${{ steps.get-buildid.outputs.buildid }}" && break || sleep $((5 * i))
+              "docker://${IMAGENAME}:${{ steps.buildid.outputs.fedora_version }}.${{ steps.buildid.outputs.buildid }}" && break || sleep $((5 * i))
           done
 
           for i in {1..5}; do
             skopeo copy ${SKOPEO_ARGS} \
-              "docker://${IMAGENAME}:${{ steps.build.outputs.version }}.${{ steps.get-buildid.outputs.buildid }}" \
-              "docker://${IMAGENAME}:${{ steps.build.outputs.version }}" && break || sleep $((5 * i))
+              "docker://${IMAGENAME}:${{ steps.buildid.outputs.fedora_version }}.${{ steps.buildid.outputs.buildid }}" \
+              "docker://${IMAGENAME}:${{ steps.buildid.outputs.fedora_version }}" && break || sleep $((5 * i))
           done
 
-          if [[ "${{ steps.build.outputs.version }}" == "${{ vars.RELEASEVER }}" ]]; then
+          if [[ "${{ steps.buildid.outputs.fedora_version }}" == "${{ vars.RELEASEVER }}" ]]; then
             for i in {1..5}; do
               skopeo copy ${SKOPEO_ARGS} \
-                "docker://${IMAGENAME}:${{ steps.build.outputs.version }}.${{ steps.get-buildid.outputs.buildid }}" \
+                "docker://${IMAGENAME}:${{ steps.buildid.outputs.fedora_version }}.${{ steps.buildid.outputs.buildid }}" \
                 "docker://${IMAGENAME}:latest" && break || sleep $((5 * i))
             done
           fi
