@@ -1,6 +1,6 @@
-%global commit0 1ae16037895c9f14ca51a5d2252d81b1a3fdf7d8
+%global commit0 1ad89d01a125c2881c8f24a89f139ef4ce9432a7
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 %global framework kpeople
 
