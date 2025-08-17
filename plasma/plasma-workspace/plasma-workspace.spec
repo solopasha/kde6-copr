@@ -1,6 +1,6 @@
-%global commit0 73d92c324168aeda591d44b71c7d8f6d20602bfd
+%global commit0 77d2c2841157f1d66065058d3381f10cbc59790b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 88
+%global bumpver 89
 
 %bcond x11 1
 
@@ -535,6 +535,7 @@ fi
 %{_includedir}/notificationmanager/
 %{_includedir}/taskmanager/
 %{_kf6_datadir}/dbus-1/interfaces/*.xml
+%{_kf6_libdir}/cmake/Krdb/
 %{_kf6_libdir}/cmake/KRunnerAppDBusInterface/
 %{_kf6_libdir}/cmake/KSMServerDBusInterface/
 %{_kf6_libdir}/cmake/LibKLookAndFeel/
