@@ -143,8 +143,10 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_libdir}/libkateprivate.so.%{version_no_git}
 
 %files plugins -f plugins.lang
+%{_kf6_bindir}/exec_inspect.sh
 %{_kf6_datadir}/kateproject/
 %{_kf6_datadir}/katexmltools/
+%{_kf6_plugindir}/kio/kio_kateexec.so
 %{_kf6_plugindir}/ktexteditor/bookmarksplugin.so
 %{_kf6_plugindir}/ktexteditor/compilerexplorer.so
 %{_kf6_plugindir}/ktexteditor/externaltoolsplugin.so
