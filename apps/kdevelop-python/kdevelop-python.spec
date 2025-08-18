@@ -1,6 +1,6 @@
-%global commit0 a2745725cd615d47a494f44f4c3e598c7eedc1a2
+%global commit0 28b45317acb8427d5689a303e3136351f999b391
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 %global base_name kdev-python
 
@@ -44,6 +44,7 @@ BuildRequires:  python3-devel
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
 %autosetup -n %{sourcerootdir} -p1
+sed 's|<3\.14|<3.15|' -i CMakeLists.txt
 
 
 %build

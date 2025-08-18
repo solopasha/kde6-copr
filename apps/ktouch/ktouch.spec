@@ -1,6 +1,6 @@
-%global commit0 20ef9df391ebccbbb6fb20a2e0a2523680aeb736
+%global commit0 5e15072752bff5fb004e9c1681a8024fa6c4f7c4
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 Name:           ktouch
 Summary:        Touch Typing Tutor
