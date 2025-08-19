@@ -1,6 +1,6 @@
-%global commit0 4683ccb3b066835b22cc3cebee64aefc5615ab8a
+%global commit0 6503b1f8508868989291cb55f83d4c9da91cdb4e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 15
+%global bumpver 16
 
 Name:           spectacle
 Summary:        Screenshot capture utility
