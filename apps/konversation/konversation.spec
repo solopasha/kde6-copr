@@ -1,6 +1,6 @@
-%global commit0 58a85e171f472068450a2949c6423545a423797f
+%global commit0 fdd2842c6257a239c288b70da0e581cfd8970c0d
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:           konversation
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

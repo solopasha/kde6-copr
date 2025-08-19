@@ -1,6 +1,6 @@
-%global commit0 8c468112fe4c00f70c9bcc16698928eedf74b639
+%global commit0 3989f0b6881287d1d0bc9d40bf29bef009e3f3b6
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 Name:           kamoso
 Summary:        Application for taking pictures and videos from a webcam

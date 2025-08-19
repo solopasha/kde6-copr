@@ -1,6 +1,6 @@
-%global commit0 fa893268dc9fe8f95419bff7862ea48c37f6d01c
+%global commit0 f76c50bcbcf669eb0af9a32293afcfe0880eec0f
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:           kweathercore
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

@@ -1,6 +1,6 @@
-%global commit0 ce03424693bcf272627a2da2bad027a78ccac758
+%global commit0 8b71bad5cc9464d4abf233db5910c723b3fc49ae
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 Name:           knights
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
