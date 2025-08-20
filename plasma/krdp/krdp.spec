@@ -1,6 +1,6 @@
-%global commit0 60391b4acd52df5524347b779503ef2a8c73f528
+%global commit0 9c6ea0f03ad79e7cdafdac278e79adc84bffb9e0
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 16
+%global bumpver 17
 
 Name:           krdp
 Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -62,6 +62,9 @@ Summary:        Development files for %{name}
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 %description    devel
 %{summary}.
+
+%install -a
+rm %{buildroot}%{_prefix}/lib/systemd/user-preset/00-krdp.preset
 
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
