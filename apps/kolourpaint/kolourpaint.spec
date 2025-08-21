@@ -1,6 +1,6 @@
-%global commit0 c19c1cefe71b067006ccccb14d0943f41be9e26d
+%global commit0 d35991d3d9b94c829c0d27835f8a49b85a810b91
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:    kolourpaint
 Summary: An easy-to-use paint program
@@ -78,7 +78,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %{_kf6_datadir}/applications/org.kde.%{name}.desktop
 %{_kf6_datadir}/icons/hicolor/*/*/*
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
-%{_kf6_sysconfdir}/xdg/colors/
 
 %files libs
 %{_kf6_libdir}/libkolourpaint_lgpl.so.5

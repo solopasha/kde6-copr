@@ -1,6 +1,6 @@
-%global commit0 90bab48007b9c1c4c954276f0a4e5489db027b7e
+%global commit0 6d3bd20c11deed8e4a63d1001162e7ca9211612c
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:    bomber
 Summary: Arcade bombing game
