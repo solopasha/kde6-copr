@@ -27,6 +27,8 @@ include:
   - composefs.yaml
   # Compress initramfs with zstd
   - initramfs-zstd.yaml
+  # RPM Fusion
+  - rpmfusion.yaml
 
 arch-include:
   x86_64:
@@ -47,10 +49,6 @@ conditional-include:
   - if: exclude_perl == true
     include:
       - exclude-perl.yaml
-    # RPM Fusion
-  - if: releasever == 42
-    include:
-      - rpmfusion.yaml
 
 packages:
   # Ensure that we have a kernel. Kernel packages are not in any comps group

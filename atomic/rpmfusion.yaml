@@ -2,7 +2,7 @@ packages:
   - intel-media-driver
   - libavcodec-freeworld
   - "'libheif-freeworld >= 1.19.8'"
-  - "'mesa-va-drivers-freeworld >= 25.1.7'"
+  - "'mesa-va-drivers-freeworld >= 25.1.4'"
   - pipewire-codec-aptx
   - rpmfusion-free-release
   - rpmfusion-nonfree-release
