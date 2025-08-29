@@ -70,6 +70,9 @@ jobs:
           else
             version="${{ matrix.version }}"
           fi
+          if [[ "${{ matrix.version }}" == "rawhide" ]]; then
+            sed -i '/shim-ia32/d' atomic/common.yaml
+          fi
           if [[ "${{ matrix.version }}" == "rawhide" || "${{ matrix.version }}" == "43" ]]; then
             sed -i '/basesystem/d' atomic/common-packages.yaml
             sed -i '/pipewire-alsa/a\  - pipewire-config-raop' atomic/common-packages.yaml
