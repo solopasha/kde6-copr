@@ -1,6 +1,6 @@
-%global commit0 77538d0476569eb637c57b2027a85378c2ec6b98
+%global commit0 e5c46ac3c99ff1f078b0c461498652a55b2ebf85
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 6
 
 Name:           plasma-activities
 Summary:        Core components for the KDE's Activities System
@@ -21,8 +21,6 @@ BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Sql)
 BuildRequires:  cmake(Qt6Widgets)
-
-BuildRequires:  boost-devel
 
 Requires:       kf6-filesystem
 

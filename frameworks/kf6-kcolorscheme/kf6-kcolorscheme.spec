@@ -1,6 +1,6 @@
-%global commit0 ba3c6444737dacb65522797327e8c8267d0b8aea
+%global commit0 31d82baa7b2ddf7b3c6aa65ce8fb6e264af16b77
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework kcolorscheme
 

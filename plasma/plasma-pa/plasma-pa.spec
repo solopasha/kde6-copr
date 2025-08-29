@@ -1,6 +1,6 @@
-%global commit0 2eb34dc04dc4ef1a2cfa5bfe507a8172f0fe29ee
+%global commit0 a66ce3f64df762b5d92a4a23b2394abf0fa9a436
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 25
+%global bumpver 26
 
 Name:           plasma-pa
 Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
