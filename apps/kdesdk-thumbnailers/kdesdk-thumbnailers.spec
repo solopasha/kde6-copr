@@ -1,6 +1,6 @@
-%global commit0 155d632853f2e0dea610f22687f69aa1f405367d
+%global commit0 1e76336bae05fb4ee48b333568b0b9277264e282
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:    kdesdk-thumbnailers
 Summary: Thumbnailers for KDE

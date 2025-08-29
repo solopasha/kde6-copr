@@ -1,6 +1,6 @@
-%global commit0 11ca13eb14b6c1b57094dcb4512ca28a7e163ab8
+%global commit0 524a68a57e0f5f397142a6feff5d291a9edff980
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:    kdegraphics-thumbnailers
 Summary: Thumbnailers for various graphic types

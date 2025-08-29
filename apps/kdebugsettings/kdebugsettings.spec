@@ -1,6 +1,6 @@
-%global commit0 4ca53537226f05f6cf425c71fb9781c8d400e63a
+%global commit0 8ca4fb40202bed72d70cfd1c862f890dd29cb1df
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:    kdebugsettings
 Summary: Configure debug output from Qt5 applications
@@ -23,6 +23,7 @@ BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6WidgetsAddons)
+BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  cmake(Qt6Widgets)
