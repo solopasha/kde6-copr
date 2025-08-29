@@ -1,6 +1,6 @@
-%global commit0 6138231b5956601b9430e3d9238cc0159abde0cf
+%global commit0 112727340752161cb4abe1c8b9159f968e6617ba
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 6
 
 %global framework ktexteditor
 
