@@ -250,6 +250,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_kf6_datadir}/polkit-1/actions/org.kde.kcontrol.kcmclock.policy
 %{_kf6_datadir}/qlogging-categories6/*.categories
 %{_kf6_datadir}/solid/devices/*.desktop
+%{_kf6_libdir}/libkglobalaccelmodel.so.6{,.*}
 %{_kf6_libexecdir}/kauth/kcmdatetimehelper
 %{_kf6_metainfodir}/*.xml
 %{_kf6_plugindir}/kded/*.so
