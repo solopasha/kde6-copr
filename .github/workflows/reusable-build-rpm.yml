@@ -104,7 +104,11 @@ jobs:
       - name: Detect Gear
         id: gear
         run: |
-          if grep "\"${pkgname}\"" frameworks/kf6/kde_gear.lua; then
+          baseName="$(sed -n 's/%\(global\|define\)[[:space:]]\+\b\(framework\|base_name\)\b[[:space:]]\+\(.*\)/\3/p' "${spec}")"
+          if [[ -z "$baseName" ]]; then
+              baseName="${pkgname}"
+          fi
+          if grep "\"${baseName}\"" frameworks/kf6/kde_gear.lua; then
             echo "gear=true" >> $GITHUB_OUTPUT
           fi
 
