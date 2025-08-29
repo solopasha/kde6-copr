@@ -86,6 +86,7 @@ repo-packages:
       - kjournald
       - konsole
       - krfb
+      - kunifiedpush
       - kwalletmanager5
       - kwrite
       - signon-kwallet-extension
