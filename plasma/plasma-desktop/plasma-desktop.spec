@@ -5,7 +5,7 @@
 Name:           plasma-desktop
 Summary:        Plasma Desktop shell
 Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
-Release:        1%{?dist}
+Release:        1%{?dist}.1
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:            https://invent.kde.org/plasma/%{name}
@@ -15,6 +15,8 @@ BuildOption(prep): -a20
 # breeze fedora sddm theme components
 # includes f40-based preview (better than breeze or nothing at least)
 Source20:       https://src.fedoraproject.org/lookaside/pkgs/plasma-workspace/breeze-fedora-0.3.tar.gz/sha512/8a3cafb61c5dc8944b71c8c8036e034d178a9384e0ca3b86847ad0caa91962b0f50e6615348cd32e116fe28a6befa5492dc5cc1c4ef0120617a1fbbf69ee0200/breeze-fedora-0.3.tar.gz
+
+Patch:          revert-32084ff-d0701c1.patch
 
 ## downstream patches
 # default kickoff/kicker favorites: +kwrite +konsole

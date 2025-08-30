@@ -1,0 +1,318 @@
+diff --git a/applets/taskmanager/package/contents/ui/code/layoutmetrics.js b/applets/taskmanager/package/contents/ui/code/layoutmetrics.js
+index ca861815e1..895cc725d2 100644
+--- a/applets/taskmanager/package/contents/ui/code/layoutmetrics.js
++++ b/applets/taskmanager/package/contents/ui/code/layoutmetrics.js
+@@ -9,12 +9,6 @@
+ const iconMargin = Math.round(Kirigami.Units.smallSpacing / 4);
+ const labelMargin = Kirigami.Units.smallSpacing;
+ 
+-// This is the ratio between the preferred width/height, which will
+-// give enough space to all tasks to take their preferred amount of
+-// space, and the minimum width/height, where the tasks will be
+-// squeezed together to save some space.
+-const squeezeFactor = 0.75;
+-
+ function horizontalMargins() {
+     const spacingAdjustment = (tasks.plasmoid.pluginName === "org.kde.plasma.icontasks") ? (Kirigami.Settings.tabletMode ? 3 : tasks.plasmoid.configuration.iconSpacing) : 1
+     return (taskFrame.margins.left + taskFrame.margins.right) * (tasks.vertical ? 1 : spacingAdjustment);
+@@ -55,7 +49,7 @@ function optimumCapacity(width, height) {
+ }
+ 
+ function preferredMinWidth() {
+-    let width = preferredMinLauncherWidth() * taskRepeater.count * squeezeFactor;
++    let width = preferredMinLauncherWidth();
+ 
+     if (!tasks.vertical && !tasks.iconsOnly) {
+       width +=
+@@ -118,12 +112,8 @@ function preferredMaxWidth() {
+ }
+ 
+ function preferredMinHeight() {
+-    if (tasks.vertical) {
+-        return Math.max(tasks.width * taskRepeater.count * squeezeFactor, Kirigami.Units.iconSizes.sizeForLabels + 4)
+-    } else {
+-        // TODO FIXME UPSTREAM: Port to proper font metrics for descenders once we have access to them.
+-        return Kirigami.Units.iconSizes.sizeForLabels + 4;
+-    }
++    // TODO FIXME UPSTREAM: Port to proper font metrics for descenders once we have access to them.
++    return Kirigami.Units.iconSizes.sizeForLabels + 4;
+ }
+ 
+ function preferredMaxHeight() {
+@@ -162,7 +152,7 @@ function spaceRequiredToShowText() {
+ }
+ 
+ function preferredMinLauncherWidth() {
+-    const baseWidth = tasks.vertical ? preferredMinHeight() : tasks.height;
++    const baseWidth = tasks.vertical ? preferredMinHeight() : Math.min(tasks.height, Kirigami.Units.iconSizes.small * 3);
+ 
+     return (baseWidth + horizontalMargins())
+         - (adjustMargin(baseWidth, taskFrame.margins.top) + adjustMargin(baseWidth, taskFrame.margins.bottom));
+diff --git a/containments/panel/ConfigOverlay.qml b/containments/panel/ConfigOverlay.qml
+index 5b635c6c17..9b646fbfbf 100644
+--- a/containments/panel/ConfigOverlay.qml
++++ b/containments/panel/ConfigOverlay.qml
+@@ -45,20 +45,6 @@ MouseArea {
+     onPositionChanged: mouse => {
+         if (pressed) {
+ 
+-            if (root.isHorizontal) {
+-                if (mouse.x < scrollLeadingButton.width && scrollLeadingButton.visible) {
+-                    layoutContainer.contentX = Math.max(0, layoutContainer.contentX - 2)
+-                } else if (mouse.x > configurationArea.width && scrollTrailingButton.visible) {
+-                    layoutContainer.contentX = Math.min(layoutContainer.contentWidth - layoutContainer.width, layoutContainer.contentX + 2)
+-                }
+-            } else {
+-                if (mouse.y < scrollLeadingButton.height && scrollLeadingButton.visible) {
+-                    layoutContainer.contentY = Math.max(0, layoutContainer.contentY - 2)
+-                } else if (mouse.y > configurationArea.height && scrollTrailingButton.visible) {
+-                    layoutContainer.contentY = Math.min(layoutContainer.contentHeight - layoutContainer.height, layoutContainer.contentY + 2)
+-                }
+-            }
+-
+             // If the object has been dragged outside of the panel and there's
+             // a different containment there, we remove it from the panel
+             // containment and add it to the new one.
+@@ -78,11 +64,10 @@ MouseArea {
+                 currentApplet.x = mouse.x - startDragOffset;
+             }
+ 
+-            let newPos = layoutContainer.mapToItem(currentLayout, mouse.x, mouse.y);
+-            const item = root.layoutManager.childAtCoordinates(newPos.x, newPos.y);
++            const item = root.layoutManager.childAtCoordinates(mouse.x, mouse.y);
+ 
+             if (item && item.applet !== placeHolder) {
+-                var posInItem = mapToItem(item, newPos.x, newPos.y)
++                var posInItem = mapToItem(item, mouse.x, mouse.y)
+                 var pos = root.isHorizontal ? posInItem.x : posInItem.y
+                 var size = root.isHorizontal ? item.width : item.height
+                 if (root.reverse) {
+@@ -96,8 +81,7 @@ MouseArea {
+             }
+ 
+         } else {
+-            let pos = layoutContainer.mapToItem(currentLayout, mouse.x, mouse.y);
+-            const item = currentLayout.childAt(pos.x, pos.y);
++            const item = currentLayout.childAt(mouse.x, mouse.y);
+             if (item && item !== lastSpacer) {
+                 currentApplet = item;
+             }
+@@ -124,8 +108,7 @@ MouseArea {
+         // Need to set currentApplet here too, to make touch selection + drag
+         // with with a touchscreen, because there are no entered events in that
+         // case
+-        let pos = layoutContainer.mapToItem(currentLayout, mouse.x, mouse.y);
+-        let item = currentLayout.childAt(pos.x, pos.y);
++        let item = currentLayout.childAt(mouse.x, mouse.y);
+         // BUG 454095: Don't allow dragging lastSpacer as it's not a real applet
+         if (!item || item == lastSpacer || item == addWidgetsButton) {
+             configurationArea.currentApplet = null
+@@ -138,8 +121,8 @@ MouseArea {
+         // to be able to read its properties from the LayoutManager
+         appletsModel.insert(item.index, {applet: placeHolder});
+         placeHolder.parent.inThickArea = item.inThickArea
+-        currentApplet = appletContainerComponent.createObject(dropArea, {applet: item.applet, x: item.x - layoutContainer.contentX,
+-                                                                     y: item.y - layoutContainer.contentY, z: 900,
++        currentApplet = appletContainerComponent.createObject(dropArea, {applet: item.applet, x: item.x,
++                                                                     y: item.y, z: 900,
+                                                                      width: item.width, height: item.height, index: -1})
+         placeHolder.parent.dragging = currentApplet
+         configurationArea.draggedItemIndex = item.index
+@@ -147,9 +130,9 @@ MouseArea {
+         root.dragAndDropping = true
+ 
+         if (Plasmoid.formFactor === PlasmaCore.Types.Vertical) {
+-            startDragOffset = mouse.y - item.y + layoutContainer.contentY;
++            startDragOffset = mouse.y - currentApplet.y;
+         } else {
+-            startDragOffset = mouse.x - item.x + layoutContainer.contentX;
++            startDragOffset = mouse.x - currentApplet.x;
+         }
+     }
+ 
+@@ -164,7 +147,7 @@ MouseArea {
+         }
+         appletsModel.set(placeHolder.parent.index, {applet: currentApplet.applet})
+         let newCurrentApplet = currentApplet.applet.parent
+-        newCurrentApplet.animateFrom(currentApplet.x + layoutContainer.contentX, currentApplet.y + layoutContainer.contentY)
++        newCurrentApplet.animateFrom(currentApplet.x, currentApplet.y)
+         newCurrentApplet.dragging = null
+         placeHolder.parent = this
+         currentApplet.destroy()
+@@ -196,8 +179,8 @@ MouseArea {
+     Rectangle {
+         id: handle
+ 
+-        x: configurationArea.currentApplet?.x - layoutContainer.contentX * !root.dragAndDropping ?? 0
+-        y: configurationArea.currentApplet?.y - layoutContainer.contentY * !root.dragAndDropping ?? 0
++        x: configurationArea.currentApplet?.x ?? 0
++        y: configurationArea.currentApplet?.y ?? 0
+         width: configurationArea.currentApplet?.width ?? 0
+         height: configurationArea.currentApplet?.height ?? 0
+ 
+diff --git a/containments/panel/main.qml b/containments/panel/main.qml
+index 5be0431453..68e0a60bdb 100644
+--- a/containments/panel/main.qml
++++ b/containments/panel/main.qml
+@@ -24,8 +24,8 @@ ContainmentItem {
+     height: 48
+ 
+ //BEGIN properties
+-    Layout.preferredWidth: fixedWidth || (isHorizontal ? currentLayout.preferredSize + layoutContainer.horizontalDisplacement : root.width)
+-    Layout.preferredHeight: fixedHeight || (isHorizontal ? root.height : currentLayout.preferredSize + layoutContainer.verticalDisplacement)
++    Layout.preferredWidth: fixedWidth || currentLayout.implicitWidth + currentLayout.horizontalDisplacement
++    Layout.preferredHeight: fixedHeight || currentLayout.implicitHeight + currentLayout.verticalDisplacement
+     Layout.fillWidth: {
+         return currentLayout.children
+             .filter(child => child?.applet?.plasmoid?.pluginName === "org.kde.plasma.panelspacer")
+@@ -385,68 +385,46 @@ ContainmentItem {
+             id: appletsModel
+         }
+ 
+-        Flickable {
+-            id: layoutContainer
+-            x: Qt.application.layoutDirection === Qt.RightToLeft && isHorizontal ? toolBoxSize : 0;
+-            width: visibleWidth
+-            height: visibleHeight
+-            contentWidth: currentLayout.width
+-            contentHeight: currentLayout.height
+-            clip: true
+-
+-            NumberAnimation {
+-                id: contentCoordAnim
+-                target: layoutContainer
+-                property: root.isHorizontal ? "contentX" : "contentY"
+-                duration: Kirigami.Units.longDuration
+-                easing.type: Easing.InOutQuad
+-            }
+-
+-            readonly property int toolBoxSize: !toolBox || !Plasmoid.containment.corona.editMode ? 0 : (isHorizontal ? toolBox.width : toolBox.height)
+-            property int horizontalDisplacement: dropArea.anchors.leftMargin + dropArea.anchors.rightMargin + (isHorizontal ? layoutContainer.toolBoxSize : 0)
+-            property int verticalDisplacement: dropArea.anchors.topMargin + dropArea.anchors.bottomMargin + (isHorizontal ? 0 : layoutContainer.toolBoxSize)
+-            property real visibleWidth: root.width - horizontalDisplacement
+-            property real visibleHeight: root.height - verticalDisplacement
++        GridLayout {
++            id: currentLayout
+ 
++            Repeater {
++                model: appletsModel
++                delegate: appletContainerComponent
++            }
+ 
+-            GridLayout {
+-                id: currentLayout
+-
+-                property real minimumSize: root.isHorizontal ? Layout.minimumWidth : Layout.minimumHeight
+-                property real preferredSize: root.isHorizontal ? implicitWidth : implicitHeight
++            rowSpacing: Kirigami.Units.smallSpacing
++            columnSpacing: Kirigami.Units.smallSpacing
+ 
+-                Repeater {
+-                    model: appletsModel
+-                    delegate: appletContainerComponent
+-                }
++            x: 0
++            readonly property int toolBoxSize: !toolBox || !Plasmoid.containment.corona.editMode ? 0 : (isHorizontal ? toolBox.width : toolBox.height)
+ 
+-                width: root.isHorizontal ? Math.max(layoutContainer.visibleWidth, minimumSize) : layoutContainer.visibleWidth
+-                height: root.isHorizontal ? layoutContainer.visibleHeight : Math.max(layoutContainer.visibleHeight, minimumSize)
++            property int horizontalDisplacement: dropArea.anchors.leftMargin + dropArea.anchors.rightMargin + (isHorizontal ? currentLayout.toolBoxSize : 0)
++            property int verticalDisplacement: dropArea.anchors.topMargin + dropArea.anchors.bottomMargin + (isHorizontal ? 0 : currentLayout.toolBoxSize)
+ 
+-                rowSpacing: Kirigami.Units.smallSpacing
+-                columnSpacing: Kirigami.Units.smallSpacing
++    // BEGIN BUG 454095: use lastSpacer to left align applets, as implicitWidth is updated too late
++            width: root.width - horizontalDisplacement
++            height: root.height - verticalDisplacement
+ 
+-                // BEGIN BUG 454095: use lastSpacer to left align applets, as implicitWidth is updated too late
+-                Item {
+-                    id: lastSpacer
+-                    visible: !root.hasSpacer
+-                    Layout.fillWidth: true
+-                    Layout.fillHeight: true
+-
+-                    /**
+-                    * This index will be used when adding a new panel.
+-                    *
+-                    * @see LayoutManager.indexAtCoordinates
+-                    */
+-                    readonly property alias index: appletsModel.count
+-                }
+-                // END BUG 454095
++            Item {
++                id: lastSpacer
++                visible: !root.hasSpacer
++                Layout.fillWidth: true
++                Layout.fillHeight: true
+ 
+-                rows: isHorizontal ? 1 : currentLayout.children.length
+-                columns: isHorizontal ? currentLayout.children.length : 1
+-                flow: isHorizontal ? GridLayout.LeftToRight : GridLayout.TopToBottom
+-                layoutDirection: Qt.application.layoutDirection
++                /**
++                * This index will be used when adding a new panel.
++                *
++                * @see LayoutManager.indexAtCoordinates
++                */
++                readonly property alias index: appletsModel.count
+             }
++    // END BUG 454095
++
++            rows: isHorizontal ? 1 : currentLayout.children.length
++            columns: isHorizontal ? currentLayout.children.length : 1
++            flow: isHorizontal ? GridLayout.LeftToRight : GridLayout.TopToBottom
++            layoutDirection: Qt.application.layoutDirection
+         }
+     }
+     MouseArea {
+@@ -483,49 +461,5 @@ ContainmentItem {
+         icon.name: "list-add-symbolic"
+         onClicked: Plasmoid.internalAction("add widgets").trigger()
+     }
+-    PC3.Button {
+-        id: scrollTrailingButton
+-        anchors.right: parent.right
+-        anchors.top: root.isHorizontal ? parent.top : undefined
+-        anchors.bottom: parent.bottom
+-        anchors.left: root.isHorizontal ? undefined : parent.left
+-        z: Math.max(root.toolBox?.z, root.configOverlay?.z) + 1 || null
+-
+-        property bool horizontalVisible: layoutContainer.contentWidth > layoutContainer.width && layoutContainer.contentX < layoutContainer.contentWidth - layoutContainer.width
+-        property bool verticalVisible: layoutContainer.contentHeight > layoutContainer.height && layoutContainer.contentY < layoutContainer.contentHeight - layoutContainer.height
+-
+-        visible: root.isHorizontal ? horizontalVisible : verticalVisible
+-        icon.name: root.isHorizontal ? "arrow-right" : "arrow-down"
+-        onClicked: {
+-            if (root.isHorizontal) {
+-                contentCoordAnim.to = Math.min(layoutContainer.contentX + Kirigami.Units.gridUnit * 7, layoutContainer.contentWidth - layoutContainer.width)
+-            } else {
+-                contentCoordAnim.to = Math.min(layoutContainer.contentY + Kirigami.Units.gridUnit * 7, layoutContainer.contentHeight - layoutContainer.height)
+-            }
+-            contentCoordAnim.running = true
+-        }
+-    }
+-    PC3.Button {
+-        id: scrollLeadingButton
+-        anchors.left: parent.left
+-        anchors.top: parent.top
+-        anchors.bottom: root.isHorizontal ? parent.bottom : undefined
+-        anchors.right: root.isHorizontal ? undefined : parent.right
+-        z: root.configOverlay?.z + 1 || null
+-
+-        property bool horizontalVisible: layoutContainer.contentWidth > layoutContainer.width && layoutContainer.contentX > 0
+-        property bool verticalVisible: layoutContainer.contentHeight > layoutContainer.height && layoutContainer.contentY > 0
+-
+-        visible: root.isHorizontal ? horizontalVisible : verticalVisible
+-        icon.name: root.isHorizontal ? "arrow-left" : "arrow-up"
+-        onClicked: {
+-            if (root.isHorizontal) {
+-                contentCoordAnim.to = Math.max(layoutContainer.contentX - Kirigami.Units.gridUnit * 7, 0)
+-            } else {
+-                contentCoordAnim.to = Math.max(layoutContainer.contentY - Kirigami.Units.gridUnit * 7, 0)
+-            }
+-            contentCoordAnim.running = true
+-        }
+-    }
+ //END UI elements
+ }
