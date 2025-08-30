@@ -1,6 +1,6 @@
-%global commit0 c293552359495f66668afd710148192c9e02d964
+%global commit0 fed7410745aeb00e89c425ed2b0b38065de338d9
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:           kalk
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

@@ -1,6 +1,6 @@
-%global commit0 37e15fa93c911c7a288a043a6e8dcb24c49c95b7
+%global commit0 831fb1f2627bf8f643d45a49867b7b2acc2d4428
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 %global kf6min 5.240.0
 %global qt6min 6.5.0
