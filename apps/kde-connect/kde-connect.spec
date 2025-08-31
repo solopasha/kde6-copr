@@ -115,7 +115,7 @@ rm %{buildroot}%{_kf6_libdir}/libkdeconnectinterfaces.a
 
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
-desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop ||:
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 
 %files -f %{name}.lang
@@ -132,7 +132,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop ||:
 %{_kf6_datadir}/plasma/plasmoids/org.kde.kdeconnect/
 %{_kf6_datadir}/qlogging-categories6/kdeconnect*
 %{_kf6_datadir}/Thunar/
-%{_kf6_metainfodir}/org.kde.kdeconnect.appdata.xml
 %{_kf6_metainfodir}/org.kde.kdeconnect.metainfo.xml
 %{_kf6_plugindir}/kfileitemaction/kdeconnectfileitemaction.so
 %{_kf6_plugindir}/kio/kdeconnect.so
