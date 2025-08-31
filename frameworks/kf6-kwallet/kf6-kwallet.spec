@@ -1,6 +1,6 @@
-%global commit0 ec8d8cd088e257963473ee591c420fd0a1c2a314
+%global commit0 ecf9e2ec7fceca538a9266f5bb9488b4dced1d09
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 %global framework kwallet
 
@@ -60,6 +60,7 @@ developing applications that use %{name}.
 %{_kf6_bindir}/kwallet-query
 %{_kf6_bindir}/kwalletd6
 %{_kf6_datadir}/applications/org.kde.ksecretd.desktop
+%{_kf6_datadir}/dbus-1/services/org.freedesktop.impl.portal.desktop.kwallet.service
 %{_kf6_datadir}/dbus-1/services/org.kde.kwalletd5.service
 %{_kf6_datadir}/dbus-1/services/org.kde.kwalletd6.service
 %{_kf6_datadir}/dbus-1/services/org.kde.secretservicecompat.service
