@@ -1,6 +1,6 @@
 %global commit0 cae609ac6e2e770c2d91963195db3078c13797a1
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 20
+%global bumpver 21
 
 Name:    kleopatra
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -51,6 +51,12 @@ BuildRequires:  cmake(QGpgmeQt6)
 BuildRequires:  pkgconfig(gpg-error)
 BuildRequires:  pkgconfig(libassuan)
 BuildRequires:  pkgconfig(shared-mime-info)
+
+Requires:       gnupg2
+Requires:       gnupg2-smime
+%if 0%{?rhel} >= 11 || 0%{?fedora} >= 43
+Requires:       gnupg2-scdaemon
+%endif
 
 Obsoletes:      %{name}-libs < 25.04
 
