@@ -1,6 +1,6 @@
-%global commit0 c8036ef5d2ef74bca68f2c93bb5c095c2de8371b
+%global commit0 5dd22d13018029ecccc091d5209f8b3ecae7de94
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 10
+%global bumpver 11
 
 Name:           flatpak-kcm
 Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -17,6 +17,7 @@ BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6ItemModels)
 BuildRequires:  cmake(KF6KCMUtils)
+BuildRequires:  cmake(KF6Service)
 
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Svg)
@@ -31,8 +32,8 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files -f %{name}.lang
 %license LICENSES/*
-%{_kf6_datadir}/applications/kcm_flatpak.desktop
-%{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_flatpak.so
+%{_kf6_datadir}/applications/kcm_app-permissions.desktop
+%{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_app-permissions.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}
