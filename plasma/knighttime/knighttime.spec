@@ -1,6 +1,6 @@
-%global commit0 d59d77277a1dd64f304240f5b595d9a685e0506e
+%global commit0 4d5b34bc78039015809422ce0d3a9809dfd3ba16
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 7
 
 Name:           knighttime
 Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
