@@ -1,6 +1,6 @@
-%global commit0 f3da053d589160e31b58559ec1be080a78c495b8
+%global commit0 318cc2842eff8445b6a6718d5262a7366eba9f05
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 18
+%global bumpver 19
 
 Name:           krdp
 Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -39,6 +39,7 @@ BuildRequires:  cmake(KPipeWire)
 BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  cmake(Qt6Keychain)
 BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pam-devel
 BuildRequires:  wayland-devel
 BuildRequires:  /usr/bin/winpr-makecert
 Requires:       /usr/bin/winpr-makecert
