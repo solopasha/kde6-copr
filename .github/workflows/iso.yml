@@ -19,7 +19,7 @@ jobs:
         run: |
           dnf -y up && dnf -y install --nodocs --setopt=install_weak_deps=0 kiwi-cli kiwi-systemdeps git-core distribution-gpg-keys patch zstd
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: 'true'
 
