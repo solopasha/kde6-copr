@@ -1,6 +1,6 @@
-%global commit0 5cc4ee91e285e179154ded97cc3be798d9e4e030
+%global commit0 1d337d21a4bf52e843dbb52fc42bd1f5c29995f6
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:    parley
 Summary: Vocabulary Trainer

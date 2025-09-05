@@ -1,6 +1,6 @@
-%global commit0 26e9aa5756d3b614c27e5480d6e1f1b0bfb35723
+%global commit0 421069c120f476e43b999825027c2fd4b08be08d
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:    keditbookmarks
 Summary: Bookmark organizer and editor

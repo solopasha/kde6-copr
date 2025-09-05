@@ -1,6 +1,6 @@
-%global commit0 f3333bda6ff793c1f663e06267ed04cbb3b866b9
+%global commit0 f25b726030f0bade16486c0c92c3af144418c5a4
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:    khangman
 Summary: Hangman game
