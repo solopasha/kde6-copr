@@ -1,6 +1,6 @@
-%global commit0 fe147730e0072a013e75e20e13e6840c93faf4aa
+%global commit0 b5f3cb2b77ba4e8611a332910be808bd8f75b1c7
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 97
+%global bumpver 96
 
 Name:           kwin
 Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
