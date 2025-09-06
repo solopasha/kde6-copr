@@ -1,8 +1,8 @@
-%global commit0 e8ad4a5dee9a0aa91d586f001331d22bb2008c55
+%global commit0 b3781e0db479a361cf972d8bb7efad727388e865
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 33
+%global bumpver 34
 
-%global libquotient_commit 0463b388b9392a385956931c2d6e286394bc49c5
+%global libquotient_commit b61404bcb45b62d02b9cd296042ff8b2554af07e
 %global libquotient_shortcommit %{sub %{libquotient_commit} 1 7}
 
 Name:    neochat
