@@ -1,6 +1,6 @@
 %global commit0 d0ebcc6f78d1c90ec50f127d1277182240eac817
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 30
+%global bumpver 31
 
 %global base_name discover
 # enable snap support (or not)
@@ -116,7 +116,7 @@ Summary:        Runtime libraries for %{name}
 Summary:        Plasma Discover PackageKit support
 Requires:       %{name} = %{version}-%{release}
 Requires:       PackageKit
-Requires:       PackageKit-Qt6%{?_isa} >= 1.1.3
+Requires:       PackageKit-Qt6%{?_isa} >= 1.1.3-3
 %if 0%{?fedora}
 # Pull in the workstation repositories package
 Recommends:     fedora-workstation-repositories
