@@ -1,6 +1,6 @@
-%global commit0 de94eaa8b31691463cfde3890bd1b0a392a23635
+%global commit0 6c6641c8665eb3359d3c74f41c0254a458a53bdd
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 17
+%global bumpver 18
 
 Name:           koko
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -33,6 +33,7 @@ BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Notifications)
 
 BuildRequires:  cmake(Qt6Positioning)
+BuildRequires:  cmake(Qt6PrintSupport)
 BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Sql)
