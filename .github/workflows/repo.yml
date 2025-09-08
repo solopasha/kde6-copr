@@ -1,0 +1,123 @@
+name: Create repo
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch'
+        required: true
+        default: 'unstable'
+        type: choice
+        options:
+          - beta
+          - unstable
+
+concurrency:
+    group: repo-publish
+    cancel-in-progress: true
+
+jobs:
+  repo:
+    runs-on: ubuntu-latest
+    container: ghcr.io/solopasha/kde6-copr/buildroot:latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Set up ORAS
+        uses: oras-project/setup-oras@8d34698a59f5ffe24821f0b48ab62a3de8b64b20
+
+      - name: Download packages
+        run: |
+          mapfile -t packages < <(yq -r '.jobs | keys[]' < .github/workflows/packages.yml | sort -u | grep -v 'changed-files')
+          parallel --halt now,fail=1 oras pull "ghcr.io/${{ github.repository }}/{}:latest-${{ inputs.branch }}" -o packages ::: "${packages[@]}"
+
+      - name: Createrepo
+        run: |
+          mkdir -p repo/unstable repo/beta
+          mv ./packages/*/*.rpm repo/${{ inputs.branch }}
+          rename -v '~' '_' repo/${{ inputs.branch }}/*.rpm || :
+          rename -v '^' '_' repo/${{ inputs.branch }}/*.rpm || :
+          pushd repo/${{ inputs.branch }} > /dev/null
+          createrepo_c -u https://github.com/${{ github.repository }}/releases/download/${{ inputs.branch }} .
+
+      - name: Createrepo for another branch
+        run: |
+          if [[ "${{ inputs.branch }}" == "unstable" ]]; then
+            another_branch="beta"
+          else
+            another_branch="unstable"
+          fi
+          if ! oras pull "ghcr.io/${{ github.repository }}/repodata:latest-${another_branch}"; then
+            pushd "repo/${another_branch}" > /dev/null
+            createrepo_c .
+          fi
+
+      - name: Repofiles
+        run: |
+          cat << 'EOF' > repo/unstable/${{ github.event.repository.name }}-unstable.repo
+          [${{ github.event.repository.name }}:unstable]
+          name=${{ github.repository }} - unstable branch
+          baseurl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/unstable/
+          type=rpm-md
+          skip_if_unavailable=True
+          gpgcheck=1
+          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
+          repo_gpgcheck=0
+          enabled=1
+          enabled_metadata=1
+          EOF
+
+          cat << 'EOF' > repo/beta/${{ github.event.repository.name }}-beta.repo
+          [${{ github.event.repository.name }}:beta]
+          name=${{ github.repository }} - beta branch
+          baseurl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/beta/
+          type=rpm-md
+          skip_if_unavailable=True
+          gpgcheck=1
+          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
+          repo_gpgcheck=0
+          enabled=1
+          enabled_metadata=1
+          EOF
+
+      - name: Upload RPMs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.event.repository.name }}
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
+        run: |
+          git config --global --add safe.directory '*'
+          mapfile -t files < <(find ./repo/${{ inputs.branch }} -type f)
+          gh release create ${{ inputs.branch }} || :
+          TAG="${{ inputs.branch }}" bash upload_to_release.sh "${files[@]}"
+          rm -f repo/${{ inputs.branch }}/*.rpm
+
+      - name: Upload repodata to ghcr
+        run: |
+          oras push ghcr.io/${{ github.repository }}/repodata:latest-${{ inputs.branch }} repo/${{ inputs.branch }}/repodata
+
+      - name: Upload repodata to artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: repo/
+
+  pages:
+    needs: repo
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
