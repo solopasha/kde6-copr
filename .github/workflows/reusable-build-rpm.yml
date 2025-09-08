@@ -247,7 +247,7 @@ jobs:
           fi
           mapfile -t repo_dependencies < <(bash needs.sh "${pkgname}" "${workflow_file}" | sed '/changed-files/d')
           if [[ "${repo_dependencies[*]}" != "" ]]; then
-            parallel oras pull "ghcr.io/${repository}/{}:latest-${target_branch}" -o repo ::: "${repo_dependencies[@]}"
+            parallel --halt now,fail=1 oras pull "ghcr.io/${repository}/{}:latest-${target_branch}" -o repo ::: "${repo_dependencies[@]}"
             docker run --rm \
               --cap-drop all \
               --network none \
@@ -266,7 +266,7 @@ jobs:
         run: |
           mapfile -t pr_dependencies < <(jq -r 'del(."changed-files") | to_entries | map(select(.value.result == "success")) | .[].key' <<< "$DEPS")
           if [[ "${pr_dependencies[*]}" != "" ]]; then
-            parallel oras pull "ghcr.io/${repository}/{}:pr-${pr_number}" -o pr-repo ::: "${pr_dependencies[@]}"
+            parallel --halt now,fail=1 oras pull "ghcr.io/${repository}/{}:pr-${pr_number}" -o pr-repo ::: "${pr_dependencies[@]}"
             docker run --rm \
               --cap-drop all \
               --network none \
