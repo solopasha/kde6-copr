@@ -128,6 +128,7 @@ jobs:
           repo_gpgcheck=0
           enabled=1
           enabled_metadata=1
+          metadata_expire=6h
 
           [${{ github.event.repository.name }}:unstable-debuginfo]
           name=${{ github.repository }} - unstable branch - debuginfo
@@ -139,6 +140,7 @@ jobs:
           repo_gpgcheck=0
           enabled=0
           enabled_metadata=0
+          metadata_expire=6h
           EOF
 
           cat << 'EOF' > repo/beta/${{ github.event.repository.name }}-beta.repo
@@ -152,6 +154,7 @@ jobs:
           repo_gpgcheck=0
           enabled=1
           enabled_metadata=1
+          metadata_expire=6h
 
           [${{ github.event.repository.name }}:beta-debuginfo]
           name=${{ github.repository }} - beta branch - debuginfo
@@ -163,6 +166,7 @@ jobs:
           repo_gpgcheck=0
           enabled=0
           enabled_metadata=0
+          metadata_expire=6h
           EOF
 
       - name: Upload RPMs
