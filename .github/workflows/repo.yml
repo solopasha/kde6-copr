@@ -70,24 +70,6 @@ jobs:
             rm -rf repo/${{ inputs.branch }}/repodata repo/${{ inputs.branch }}-debuginfo/repodata
             mv merged_repo/repodata repo/${{ inputs.branch }}/repodata
             mv merged_repo-debuginfo/repodata repo/${{ inputs.branch }}-debuginfo/repodata
-            repodiff -q --refresh \
-              --repofrompath=o,https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ inputs.branch }}/ \
-              --repofrompath=n,repo/${{ inputs.branch }}/ \
-              --repo-old=o --repo-new=n --simple > repodiff
-            cat repodiff
-            {
-              echo "## Added packages"
-              grep "^Added package" repodiff | sed -E 's/^Added package  *: */- /'
-
-              echo -e "\n## Removed packages"
-              grep "^Removed package" repodiff | sed -E 's/^Removed package  *: */- /'
-
-              echo -e "\n## Modified packages"
-              grep -- "->" repodiff | sed -E 's/^(.*) -> (.*)$/- **\1** → **\2**/'
-
-              echo -e "\n## Summary"
-              grep "^Summary" -A3 repodiff | sed '1d'
-            } >> $GITHUB_STEP_SUMMARY
           fi
           dnf -q \
             --repofrompath='solopasha,repo/${{ inputs.branch }}' \
