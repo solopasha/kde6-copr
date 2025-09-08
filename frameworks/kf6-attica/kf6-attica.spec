@@ -1,11 +1,11 @@
-%global commit0 cb0b97023a4800e9c983afec024ab3bdb70150a3
+%global commit0 41a841fe0bbab667cb9f1196256954dbd173096a
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework attica
 
 Name:           kf6-%{framework}
-Version:        6.18.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Open Collaboration Service client library
 License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL.txt

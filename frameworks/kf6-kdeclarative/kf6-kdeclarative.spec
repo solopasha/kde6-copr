@@ -1,11 +1,11 @@
-%global commit0 edd31abe60799cb47ab2acf16be777bbc17a9594
+%global commit0 2a34cddf7b3315d1cf3b98804b9eeec181edbff9
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 1
 
 %global framework kdeclarative
 
 Name:           kf6-%{framework}
-Version:        6.18.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Integration of QML and KDE work spaces
 
