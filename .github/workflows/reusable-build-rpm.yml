@@ -237,11 +237,15 @@ jobs:
         uses: oras-project/setup-oras@8d34698a59f5ffe24821f0b48ab62a3de8b64b20
 
       - name: Fetch build deps
-        if: steps.gear.outputs.gear == 'true'
         env:
-          DEPS: ${{ inputs.deps }}
+          gear: ${{ steps.gear.outputs.gear }}
         run: |
-          mapfile -t repo_dependencies < <(jq -r 'del(."changed-files") | keys[]' <<< "$DEPS")
+          if [[ "${gear}" == "true" ]]; then
+            workflow_file=".github/workflows/packages-gear.yml"
+          else
+            workflow_file=".github/workflows/packages.yml"
+          fi
+          mapfile -t repo_dependencies < <(bash needs.sh "${pkgname}" "${workflow_file}" | sed '/changed-files/d')
           if [[ "${repo_dependencies[*]}" != "" ]]; then
             for dep in "${repo_dependencies[@]}"; do
               oras pull "ghcr.io/${repository}/${dep}:latest-${target_branch}" -o repo
