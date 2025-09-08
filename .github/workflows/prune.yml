@@ -48,7 +48,10 @@ jobs:
             dnf -q \
               --repofrompath="solopasha,https://solopasha.github.io/kde6-copr/${tag}" \
               --repo=solopasha rq --location | parallel basename | sort -u > "repo_packages_${tag}.list"
-            gh release view "${tag}" -R ${{ github.repository }} --json assets -q '.assets[].name' | sort -u > "released_packages_${tag}.list"
+            gh release view "${tag}" \
+              -R ${{ github.repository }} \
+              --json assets \
+              -q '.assets[].name' | grep -v 'kde6-copr-.*.repo\|packages.txt' | sort -u > "released_packages_${tag}.list"
             comm -13 "repo_packages_${tag}.list" "released_packages_${tag}.list" > "prune_${tag}.list"
           done
 
