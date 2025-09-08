@@ -52,6 +52,7 @@ RUN rm /etc/yum.repos.d/fedora-cisco-openh264.repo && \
             rpm-sign \
             rpmdevtools \
             tar \
+            yq \
             zstd && \
             dnf clean all && \
     useradd -M -u 1001 builduser
