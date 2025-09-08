@@ -1,11 +1,11 @@
-%global commit0 1ad89d01a125c2881c8f24a89f139ef4ce9432a7
+%global commit0 b4d17976e88df92f289e72dfddee8cbf28f29080
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 1
 
 %global framework kpeople
 
 Name:           kf6-%{framework}
-Version:        6.18.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 library for contact and people aggregation
 
