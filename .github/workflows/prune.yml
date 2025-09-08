@@ -6,7 +6,7 @@ on:
     - cron: '35 6 * * *'
 
 jobs:
-  prune:
+  prune-registry:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -28,3 +28,31 @@ jobs:
           REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
           bash prune.sh
+
+  prune-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: release-prune
+      cancel-in-progress: true
+    container:
+      image: ghcr.io/solopasha/kde6-copr/buildroot:latest
+
+    steps:
+      - name: Get packages to prune
+        run: |
+          dnf -q \
+            --repofrompath='solopasha,https://solopasha.github.io/kde6-copr/unstable' \
+            --repo=solopasha rq --location | parallel basename | sort -u > repo_packages.list
+          gh release view unstable --json assets -q '.assets[].name' | sort -u > released_packages.list
+          comm -13 repo_packages.list released_packages.list > prune.list
+
+      - name: Prune
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mapfile -t rpms < prune.list
+          for rpm in "${rpms[@]}"; do
+            gh release delete-asset unstable "${rpm}" -R ${{ github.repository }} -y
+          done

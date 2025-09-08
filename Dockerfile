@@ -49,9 +49,11 @@ RUN rm /etc/yum.repos.d/fedora-cisco-openh264.repo && \
             parallel \
             perl-interpreter \
             python3-pyelftools \
+            repodiff \
             rpm-sign \
             rpmdevtools \
             tar \
+            yq \
             zstd && \
             dnf clean all && \
     useradd -M -u 1001 builduser
