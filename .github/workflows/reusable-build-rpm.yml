@@ -384,7 +384,15 @@ jobs:
           find sources -type f -exec mv -t "$(dirname "${spec}")" {} +
 
       - name: Wait builds
-        if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && steps.gear.outputs.gear != 'true'
+        if: >-
+          ${{
+            !contains(github.event.head_commit.message, '[skip copr]') &&
+            (
+              github.event_name == 'push' ||
+              github.event_name == 'workflow_dispatch'
+            ) &&
+            steps.gear.outputs.gear != 'true'
+          }}
         env:
           DEPS: ${{ inputs.deps }}
         run: |
@@ -397,7 +405,15 @@ jobs:
           fi
 
       - name: Submit to Copr
-        if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && steps.gear.outputs.gear != 'true'
+        if: >-
+          ${{
+            !contains(github.event.head_commit.message, '[skip copr]') &&
+            (
+              github.event_name == 'push' ||
+              github.event_name == 'workflow_dispatch'
+            ) &&
+            steps.gear.outputs.gear != 'true'
+          }}
         id: copr
         env:
           curl_opts: --connect-timeout 10 --retry 7 --retry-connrefused -Ss -X POST
@@ -546,7 +562,15 @@ jobs:
             '
 
       - name: Wait for the build in Copr to finish
-        if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && steps.gear.outputs.gear != 'true'
+        if: >-
+          ${{
+            !contains(github.event.head_commit.message, '[skip copr]') &&
+            (
+              github.event_name == 'push' ||
+              github.event_name == 'workflow_dispatch'
+            ) &&
+            steps.gear.outputs.gear != 'true'
+          }}
         env:
           copr_build_id: ${{ steps.copr.outputs.buildid }}
         run: |
