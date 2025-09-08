@@ -22,8 +22,8 @@ resolve_needs() {
   deps=$(get_needs "$job")
 
   for dep in $deps; do
-    resolve_needs "$dep"
     echo "$dep"
+    resolve_needs "$dep"
   done
 }
 
