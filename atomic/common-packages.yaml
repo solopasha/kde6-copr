@@ -142,6 +142,7 @@ packages:
   - prefixdevname
   - procps-ng
   - psmisc
+  - qcom-wwan-firmware
   - qemu-guest-agent
   - quota
   - realmd

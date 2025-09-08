@@ -1,5 +1,4 @@
 packages:
-  - adwaita-gtk2-theme
   - firewall-config
   - fprintd-pam
   - kde-settings-pulseaudio
@@ -90,3 +89,5 @@ repo-packages:
       - kwalletmanager5
       - kwrite
       - signon-kwallet-extension
+packages-x86_64:
+  - thermald
