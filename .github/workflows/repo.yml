@@ -70,10 +70,11 @@ jobs:
             rm -rf repo/${{ inputs.branch }}/repodata repo/${{ inputs.branch }}-debuginfo/repodata
             mv merged_repo/repodata repo/${{ inputs.branch }}/repodata
             mv merged_repo-debuginfo/repodata repo/${{ inputs.branch }}-debuginfo/repodata
-            repodiff \
+            repodiff -q --refresh \
               --repofrompath=o,https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ inputs.branch }}/ \
               --repofrompath=n,repo/${{ inputs.branch }}/ \
               --repo-old=o --repo-new=n --simple > repodiff
+            cat repodiff
             {
               echo "## Added packages"
               grep "^Added package" repodiff | sed -E 's/^Added package  *: */- /'
@@ -92,6 +93,15 @@ jobs:
             --repofrompath='solopasha,repo/${{ inputs.branch }}' \
             --repo=solopasha rq --qf '%{source_name}-%{version}-%{release}\n' | sort -u > repo/${{ inputs.branch }}/packages.txt
 
+      - name: Repoclosure
+        run: |
+          dnf repoclosure \
+            --repofrompath=n,repo/${{ inputs.branch }}/ \
+            --check n --newest
+
+          dnf repoclosure \
+            --repofrompath=n,repo/${{ inputs.branch }}/ \
+            --check n --newest --best
 
       - name: Createrepo for another branch
         run: |
@@ -174,7 +184,7 @@ jobs:
       - name: Upload repodata to ghcr
         run: |
           oras login ghcr.io --password "${{ secrets.GITHUB_TOKEN }}" -u "${{ github.actor }}"
-          oras push ghcr.io/${{ github.repository }}/repodata:latest-${{ inputs.branch }} repo/${{ inputs.branch }}/repodata
+          oras push ghcr.io/${{ github.repository }}/repodata:latest-${{ inputs.branch }} repo/${{ inputs.branch }}/repodata repo/${{ inputs.branch }}-debuginfo/repodata
 
       - name: Upload repodata to artifacts
         uses: actions/upload-pages-artifact@v3

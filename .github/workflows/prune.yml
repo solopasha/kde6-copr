@@ -41,18 +41,28 @@ jobs:
 
     steps:
       - name: Get packages to prune
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          dnf -q \
-            --repofrompath='solopasha,https://solopasha.github.io/kde6-copr/unstable' \
-            --repo=solopasha rq --location | parallel basename | sort -u > repo_packages.list
-          gh release view unstable --json assets -q '.assets[].name' | sort -u > released_packages.list
-          comm -13 repo_packages.list released_packages.list > prune.list
+          for tag in unstable{,-debuginfo}; do
+            dnf -q \
+              --repofrompath="solopasha,https://solopasha.github.io/kde6-copr/${tag}" \
+              --repo=solopasha rq --location | parallel basename | sort -u > "repo_packages_${tag}.list"
+            gh release view "${tag}" -R ${{ github.repository }} --json assets -q '.assets[].name' | sort -u > "released_packages_${tag}.list"
+            comm -13 "repo_packages_${tag}.list" "released_packages_${tag}.list" > "prune_${tag}.list"
+          done
 
       - name: Prune
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          mapfile -t rpms < prune.list
+          mapfile -t rpms < prune_unstable.list
           for rpm in "${rpms[@]}"; do
+            echo "Deleting ${rpm}"
             gh release delete-asset unstable "${rpm}" -R ${{ github.repository }} -y
+          done
+          mapfile -t rpms_debug < prune_unstable-debuginfo.list
+          for rpm in "${rpms_debug[@]}"; do
+            echo "Deleting ${rpm}"
+            gh release delete-asset unstable-debuginfo "${rpm}" -R ${{ github.repository }} -y
           done

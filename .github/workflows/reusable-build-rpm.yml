@@ -144,6 +144,17 @@ jobs:
           else
 
           cat << 'EOF' >> fedora-build.repo
+          [build]
+          name=build
+          baseurl=file:///repo/
+          skip_if_unavailable=True
+          gpgcheck=1
+          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
+          repo_gpgcheck=0
+          enabled=1
+          enabled_metadata=1
+          priority=97
+
           [copr:copr.fedorainfracloud.org:solopasha:plasma-unstable]
           name=Copr repo for plasma-unstable owned by solopasha
           baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/fedora-$releasever-$basearch/
@@ -170,17 +181,6 @@ jobs:
 
           if [[ "${gear}" == "true" ]]; then
           cat << 'EOF' >> fedora-build.repo
-          [build]
-          name=build
-          baseurl=file:///repo/
-          skip_if_unavailable=True
-          gpgcheck=1
-          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
-          repo_gpgcheck=0
-          enabled=1
-          enabled_metadata=1
-          priority=97
-
           [copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable]
           name=Copr repo for kde-gear-unstable owned by solopasha
           baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/kde-gear-unstable/fedora-$releasever-$basearch/
