@@ -22,7 +22,7 @@ sudo dnf offline-upgrade download && \
 sudo dnf offline-upgrade reboot
 ```
 
-Although Copr is rarely slow or unstable when building packages, Plasma and Frameworks packages are also published to a GitHub repository (built with GitHub Actions):
+Although Copr is rarely slow or unstable when building packages, Plasma and Frameworks packages are also published to a GitHub repository (built with GitHub Actions). This is a mirror/backup repository:
 
 ```bash
 sudo dnf config-manager addrepo --from-repofile=https://solopasha.github.io/kde6-copr/unstable/kde6-copr-unstable.repo
