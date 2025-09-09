@@ -1,6 +1,6 @@
-%global commit0 290158b13febbd437f5066024bb649bf40500e16
+%global commit0 7964b1e748ee5a313c2f47a5315de40250dcdeb0
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 Name:    akonadi-mime
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -23,6 +23,7 @@ BuildRequires:  cmake(KPim6Akonadi)
 BuildRequires:  cmake(KPim6Mime)
 
 BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6QmlIntegration)
 
 BuildRequires:  pkgconfig(libxslt)
 BuildRequires:  pkgconfig(shared-mime-info)
@@ -64,6 +65,7 @@ developing applications that use %{name}.
 %{_kf6_datadir}/mime/packages/x-vnd.kde.contactgroup.xml
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
 %{_kf6_libdir}/libKPim6AkonadiMime.so.*
+%{_kf6_qmldir}/org/kde/akonadi/mime/
 %{_kf6_qtplugindir}/akonadi_serializer_mail.so
 
 %files devel

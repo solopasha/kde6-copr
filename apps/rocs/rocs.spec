@@ -1,6 +1,6 @@
-%global commit0 e69cd97d186c737bb050c824c8b265d992c834a6
+%global commit0 5aa8969cd7540fc75546c278958798cfb28c2718
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 6
 
 Name:           rocs
 Summary:        Graph Theory IDE
