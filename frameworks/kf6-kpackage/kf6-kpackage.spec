@@ -1,6 +1,6 @@
-%global commit0 c33f8c6ed22e4d434c48a368006465292aeb7500
+%global commit0 d603dd65209ad965a8713494057158fe651775d2
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework kpackage
 
