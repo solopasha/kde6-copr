@@ -11,6 +11,12 @@ on:
         options:
           - beta
           - unstable
+  workflow_run:
+    workflows: ["Build Plasma and Frameworks packages"]
+    types: [completed]
+    branches:
+      - beta
+      - unstable
 
 concurrency:
     group: repo-publish
@@ -19,6 +25,7 @@ concurrency:
 jobs:
   repo:
     runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch'
     container: ghcr.io/solopasha/kde6-copr/buildroot:latest
     permissions:
       contents: write
@@ -30,71 +37,116 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Get target repo
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_run" ]]; then
+            repository="${{ github.event.workflow_run.head_branch }}-testing"
+            branch="${{ github.event.workflow_run.head_branch }}"
+          elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            repository="${{ inputs.branch }}"
+            branch="${{ inputs.branch }}"
+          fi
+          echo "repository=${repository}" >> $GITHUB_ENV
+          echo "branch=${branch}" >> $GITHUB_ENV
+
       - name: Set up ORAS
         uses: oras-project/setup-oras@8d34698a59f5ffe24821f0b48ab62a3de8b64b20
 
       - name: Download packages
         run: |
           mapfile -t packages < <(yq -r '.jobs | keys[]' < .github/workflows/packages.yml | sort -u | grep -v 'changed-files')
-          curl -LO -Ss https://github.com/${{ github.repository }}/releases/download/${{ inputs.branch }}/packages.txt || :
+          curl -LO -Ss https://github.com/${{ github.repository }}/releases/download/${branch}/packages.txt || :
           download_package() {
-            version="$(oras manifest fetch ghcr.io/${{ github.repository }}/$1:latest-${{ inputs.branch }} | jq -r '.annotations."rpm.version"')"
+            version="$(oras manifest fetch ghcr.io/${{ github.repository }}/$1:latest-${branch} | jq -r '.annotations."rpm.version"')"
             if [[ -f "packages.txt" ]]; then
               if grep -q "$1-$version" packages.txt; then
                 exit 0
               fi
             fi
-            oras pull "ghcr.io/${{ github.repository }}/$1:latest-${{ inputs.branch }}" -o packages
+            oras pull "ghcr.io/${{ github.repository }}/$1:latest-${branch}" -o packages
           }
           export -f download_package
           parallel --halt now,fail=1 download_package ::: "${packages[@]}"
 
       - name: Createrepo
         run: |
-          mkdir -p repo/unstable{,-debuginfo} repo/beta{,-debuginfo}
-          mv ./packages/*/*debuginfo-*.rpm repo/${{ inputs.branch }}-debuginfo
-          mv ./packages/*/*debugsource-*.rpm repo/${{ inputs.branch }}-debuginfo
-          mv ./packages/*/*.rpm repo/${{ inputs.branch }}
+          mkdir -p repo/unstable{,-debuginfo,-testing,-testing-debuginfo} repo/beta{,-debuginfo,-testing,-testing-debuginfo}
+          mv ./packages/*/*debuginfo-*.rpm repo/${repository}-debuginfo
+          mv ./packages/*/*debugsource-*.rpm repo/${repository}-debuginfo
+          mv ./packages/*/*.rpm repo/${repository}
           rename -v '~' '_' repo/*/*.rpm > /dev/null || :
           rename -v '^' '_' repo/*/*.rpm > /dev/null || :
-          createrepo_c -u https://github.com/${{ github.repository }}/releases/download/${{ inputs.branch }} repo/${{ inputs.branch }}
-          createrepo_c -u https://github.com/${{ github.repository }}/releases/download/${{ inputs.branch }}-debuginfo repo/${{ inputs.branch }}-debuginfo
-          if curl -f -Ss https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ inputs.branch }}/repodata/repomd.xml > /dev/null; then
+          createrepo_c -u https://github.com/${{ github.repository }}/releases/download/${repository} repo/${repository}
+          createrepo_c -u https://github.com/${{ github.repository }}/releases/download/${repository}-debuginfo repo/${repository}-debuginfo
+          if curl -f -Ss https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${repository}/repodata/repomd.xml > /dev/null; then
             mergerepo_c \
-              --repo repo/${{ inputs.branch }} \
-              --repo https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ inputs.branch }}/
+              --repo repo/${repository} \
+              --repo https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${repository}/
             mergerepo_c \
               -o merged_repo-debuginfo \
-              --repo repo/${{ inputs.branch }}-debuginfo \
-              --repo https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ inputs.branch }}-debuginfo/
-            rm -rf repo/${{ inputs.branch }}/repodata repo/${{ inputs.branch }}-debuginfo/repodata
-            mv merged_repo/repodata repo/${{ inputs.branch }}/repodata
-            mv merged_repo-debuginfo/repodata repo/${{ inputs.branch }}-debuginfo/repodata
+              --repo repo/${repository}-debuginfo \
+              --repo https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${repository}-debuginfo/
+            rm -rf repo/${repository}/repodata repo/${repository}-debuginfo/repodata
+            mv merged_repo/repodata repo/${repository}/repodata
+            mv merged_repo-debuginfo/repodata repo/${repository}-debuginfo/repodata
           fi
           dnf -q \
-            --repofrompath='solopasha,repo/${{ inputs.branch }}' \
-            --repo=solopasha rq --qf '%{source_name}-%{version}-%{release}\n' | sort -u > repo/${{ inputs.branch }}/packages.txt
+            --repofrompath="solopasha,repo/${repository}" \
+            --repo=solopasha rq --qf '%{source_name}-%{version}-%{release}\n' | sort -u > repo/${repository}/packages.txt
 
       - name: Repoclosure
+        if: github.event_name == 'workflow_dispatch'
         run: |
           dnf repoclosure \
-            --repofrompath=n,repo/${{ inputs.branch }}/ \
+            --repofrompath=n,repo/${repository}/ \
             --check n --newest
 
           dnf repoclosure \
-            --repofrompath=n,repo/${{ inputs.branch }}/ \
+            --repofrompath=n,repo/${repository}/ \
             --check n --newest --best
 
-      - name: Createrepo for another branch
+      - name: Repoclosure (testing)
+        if: github.event_name == 'workflow_run'
         run: |
-          if [[ "${{ inputs.branch }}" == "unstable" ]]; then
-            another_branch="beta"
-          else
-            another_branch="unstable"
+          dnf repoclosure \
+            --repofrompath=o,https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${branch}/ \
+            --repofrompath=n,repo/${repository}/ \
+            --check n --newest
+
+          dnf repoclosure \
+            --repofrompath=o,https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${branch}/ \
+            --repofrompath=n,repo/${repository}/ \
+            --check n --newest --best
+
+      - name: Createrepo for other branches
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            createrepo_c "repo/${repository}-testing"
+            createrepo_c "repo/${repository}-testing-debuginfo"
+            if [[ "${{ inputs.branch }}" == "unstable" ]]; then
+              another_repositories=(beta beta-testing)
+            else
+              another_repositories=(unstable unstable-testing)
+            fi
+            for repo in "${another_repositories[@]}"; do
+              if ! oras pull "ghcr.io/${{ github.repository }}/repodata:latest-${another_branch}"; then
+                createrepo_c "repo/${repo}"
+                createrepo_c "repo/${repo}-debuginfo"
+              fi
+            done
           fi
-          if ! oras pull "ghcr.io/${{ github.repository }}/repodata:latest-${another_branch}"; then
-            createrepo_c repo/${another_branch}
-            createrepo_c repo/${another_branch}-debuginfo
+          if [[ "${{ github.event_name }}" == "workflow_run" ]]; then
+            if [[ "${branch}" == "unstable" ]]; then
+              another_repositories=(beta beta-testing unstable)
+            else
+              another_repositories=(unstable unstable-testing beta)
+            fi
+            for repo in "${another_repositories[@]}"; do
+              if ! oras pull "ghcr.io/${{ github.repository }}/repodata:latest-${another_branch}"; then
+                createrepo_c "repo/${repo}"
+                createrepo_c "repo/${repo}-debuginfo"
+              fi
+            done
           fi
 
       - name: Repofiles
@@ -110,6 +162,30 @@ jobs:
           repo_gpgcheck=0
           enabled=1
           enabled_metadata=1
+          metadata_expire=6h
+
+          [${{ github.event.repository.name }}-github:unstable-testing]
+          name=${{ github.repository }}(GitHub) - unstable branch - testing
+          baseurl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/unstable-testing/
+          type=rpm-md
+          skip_if_unavailable=True
+          gpgcheck=1
+          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
+          repo_gpgcheck=0
+          enabled=0
+          enabled_metadata=0
+          metadata_expire=6h
+
+          [${{ github.event.repository.name }}-github:unstable-testing-debuginfo]
+          name=${{ github.repository }}(GitHub) - unstable branch - testing - debuginfo
+          baseurl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/unstable-testing-debuginfo/
+          type=rpm-md
+          skip_if_unavailable=True
+          gpgcheck=1
+          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
+          repo_gpgcheck=0
+          enabled=0
+          enabled_metadata=0
           metadata_expire=6h
 
           [${{ github.event.repository.name }}-github:unstable-debuginfo]
@@ -138,6 +214,30 @@ jobs:
           enabled_metadata=1
           metadata_expire=6h
 
+          [${{ github.event.repository.name }}-github:beta-testing]
+          name=${{ github.repository }}(GitHub) - beta branch - testing
+          baseurl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/beta-testing/
+          type=rpm-md
+          skip_if_unavailable=True
+          gpgcheck=1
+          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
+          repo_gpgcheck=0
+          enabled=0
+          enabled_metadata=0
+          metadata_expire=6h
+
+          [${{ github.event.repository.name }}-github:beta-testing-debuginfo]
+          name=${{ github.repository }}(GitHub) - beta branch - testing - debuginfo
+          baseurl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/beta-testing-debuginfo/
+          type=rpm-md
+          skip_if_unavailable=True
+          gpgcheck=1
+          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
+          repo_gpgcheck=0
+          enabled=0
+          enabled_metadata=0
+          metadata_expire=6h
+
           [${{ github.event.repository.name }}-github:beta-debuginfo]
           name=${{ github.repository }}(GitHub) - beta branch - debuginfo
           baseurl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/beta-debuginfo/
@@ -158,19 +258,31 @@ jobs:
           REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
           git config --global --add safe.directory '*'
-          mapfile -t files < <(find ./repo/${{ inputs.branch }} -type f ! -name '*.xml.zst' ! -name '*.xml')
-          mapfile -t files_debug < <(find ./repo/${{ inputs.branch }}-debuginfo -type f ! -name '*.xml.zst' ! -name '*.xml')
-          gh release view ${{ inputs.branch }} &>/dev/null || gh release create ${{ inputs.branch }} || :
-          gh release view ${{ inputs.branch }}-debuginfo &>/dev/null || gh release create ${{ inputs.branch }}-debuginfo || :
-          TAG="${{ inputs.branch }}" bash upload_to_release.sh "${files[@]}"
-          TAG="${{ inputs.branch }}-debuginfo" bash upload_to_release.sh "${files_debug[@]}"
-          rm -f repo/${{ inputs.branch }}/*.rpm
-          rm -f repo/${{ inputs.branch }}-debuginfo/*.rpm
+          mapfile -t files < <(find ./repo/${repository} -type f ! -name '*.xml.zst' ! -name '*.xml')
+          mapfile -t files_debug < <(find ./repo/${repository}-debuginfo -type f ! -name '*.xml.zst' ! -name '*.xml')
+          gh release view ${repository} &>/dev/null || gh release create ${repository} || :
+          gh release view ${repository}-debuginfo &>/dev/null || gh release create ${repository}-debuginfo || :
+          TAG="${repository}" bash upload_to_release.sh "${files[@]}"
+          TAG="${repository}-debuginfo" bash upload_to_release.sh "${files_debug[@]}"
+          rm -f repo/${repository}/*.rpm
+          rm -f repo/${repository}-debuginfo/*.rpm
+
+      - name: Prune testing
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          gh release view "${repository}-testing" \
+            -R ${{ github.repository }} \
+            --json assets \
+            -q '.assets[].name' | xargs -I {} gh release delete-asset "${repository}-testing" "{}" -R ${{ github.repository }} -y
+          gh release view "${repository}-testing-debuginfo" \
+            -R ${{ github.repository }} \
+            --json assets \
+            -q '.assets[].name' | xargs -I {} gh release delete-asset "${repository}-testing-debuginfo" "{}" -R ${{ github.repository }} -y
 
       - name: Upload repodata to ghcr
         run: |
           oras login ghcr.io --password "${{ secrets.GITHUB_TOKEN }}" -u "${{ github.actor }}"
-          oras push ghcr.io/${{ github.repository }}/repodata:latest-${{ inputs.branch }} repo/${{ inputs.branch }}/repodata repo/${{ inputs.branch }}-debuginfo/repodata
+          oras push ghcr.io/${{ github.repository }}/repodata:latest-${repository} repo/${repository}/repodata repo/${repository}-debuginfo/repodata
 
       - name: Upload repodata to artifacts
         uses: actions/upload-pages-artifact@v3
