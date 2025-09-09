@@ -100,8 +100,8 @@ jobs:
       - name: Repofiles
         run: |
           cat << 'EOF' > repo/unstable/${{ github.event.repository.name }}-unstable.repo
-          [${{ github.event.repository.name }}:unstable]
-          name=${{ github.repository }} - unstable branch
+          [${{ github.event.repository.name }}-github:unstable]
+          name=${{ github.repository }}(GitHub) - unstable branch
           baseurl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/unstable/
           type=rpm-md
           skip_if_unavailable=True
@@ -112,8 +112,8 @@ jobs:
           enabled_metadata=1
           metadata_expire=6h
 
-          [${{ github.event.repository.name }}:unstable-debuginfo]
-          name=${{ github.repository }} - unstable branch - debuginfo
+          [${{ github.event.repository.name }}-github:unstable-debuginfo]
+          name=${{ github.repository }}(GitHub) - unstable branch - debuginfo
           baseurl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/unstable-debuginfo/
           type=rpm-md
           skip_if_unavailable=True
@@ -126,8 +126,8 @@ jobs:
           EOF
 
           cat << 'EOF' > repo/beta/${{ github.event.repository.name }}-beta.repo
-          [${{ github.event.repository.name }}:beta]
-          name=${{ github.repository }} - beta branch
+          [${{ github.event.repository.name }}-github:beta]
+          name=${{ github.repository }}(GitHub) - beta branch
           baseurl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/beta/
           type=rpm-md
           skip_if_unavailable=True
@@ -138,8 +138,8 @@ jobs:
           enabled_metadata=1
           metadata_expire=6h
 
-          [${{ github.event.repository.name }}:beta-debuginfo]
-          name=${{ github.repository }} - beta branch - debuginfo
+          [${{ github.event.repository.name }}-github:beta-debuginfo]
+          name=${{ github.repository }}(GitHub) - beta branch - debuginfo
           baseurl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/beta-debuginfo/
           type=rpm-md
           skip_if_unavailable=True
