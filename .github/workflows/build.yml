@@ -1,4 +1,4 @@
-name: Build packages
+name: Build Plasma and Frameworks packages
 
 on:
   push:
