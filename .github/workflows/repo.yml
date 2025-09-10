@@ -78,17 +78,19 @@ jobs:
           rename -v '^' '_' repo/*/*.rpm > /dev/null || :
           createrepo_c -u https://github.com/${{ github.repository }}/releases/download/${repository} repo/${repository}
           createrepo_c -u https://github.com/${{ github.repository }}/releases/download/${repository}-debuginfo repo/${repository}-debuginfo
-          if curl -f -Ss https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${repository}/repodata/repomd.xml > /dev/null; then
-            mergerepo_c \
-              --repo repo/${repository} \
-              --repo https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${repository}/
-            mergerepo_c \
-              -o merged_repo-debuginfo \
-              --repo repo/${repository}-debuginfo \
-              --repo https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${repository}-debuginfo/
-            rm -rf repo/${repository}/repodata repo/${repository}-debuginfo/repodata
-            mv merged_repo/repodata repo/${repository}/repodata
-            mv merged_repo-debuginfo/repodata repo/${repository}-debuginfo/repodata
+          if [[ -f "packages.txt" ]]; then
+            if curl -f -Ss https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${repository}/repodata/repomd.xml > /dev/null; then
+              mergerepo_c \
+                --repo repo/${repository} \
+                --repo https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${repository}/
+              mergerepo_c \
+                -o merged_repo-debuginfo \
+                --repo repo/${repository}-debuginfo \
+                --repo https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${repository}-debuginfo/
+              rm -rf repo/${repository}/repodata repo/${repository}-debuginfo/repodata
+              mv merged_repo/repodata repo/${repository}/repodata
+              mv merged_repo-debuginfo/repodata repo/${repository}-debuginfo/repodata
+            fi
           fi
           dnf -q \
             --repofrompath="solopasha,repo/${repository}" \
