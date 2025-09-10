@@ -1,6 +1,6 @@
-%global commit0 e8be772af12287a0fb1529e6af255b8d8d5103c5
+%global commit0 079d83146c13076b000bc62a4679c2fc5e85633e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:           kcalc
 Summary:        Scientific Calculator
