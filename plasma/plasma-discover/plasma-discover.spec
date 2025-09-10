@@ -1,6 +1,6 @@
 %global commit0 5792befa674bcb5d35c69455195371832c01b695
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 31
+%global bumpver 32
 
 %global base_name discover
 # enable snap support (or not)
@@ -22,6 +22,7 @@ BuildOption(conf): -DPACKAGEKIT_AUTOREMOVE:BOOL=ON
 %if 0%{?fedora}
 BuildOption(conf): -DBUILD_RpmOstreeBackend:BOOL=ON
 %endif
+BuildOption(conf): -DBUILD_PackageKitBackend:BOOL=OFF
 
 ## override some defaults, namely to enable offline updates
 Source10:       discoverrc
@@ -89,10 +90,8 @@ Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
 # Enable -packagekit and -flatpak by default
 # Fedora Kinoite will explicitely exclude -packagekit and -offline-updates
-Recommends:     %{name}-packagekit = %{version}-%{release}
 Recommends:     %{name}-flatpak = %{version}-%{release}
 Recommends:     fedora-appstream-metadata
-Recommends:     %{name}-offline-updates = %{version}-%{release}
 
 # Require fedora-third-party on Fedora
 %if 0%{?fedora}
@@ -104,6 +103,9 @@ Requires:       fedora-third-party
 Obsoletes:      plasma-discover-snap < %{version}-%{release}
 %endif
 
+Obsoletes:      %{name}-packagekit < %{version}-%{release}
+Obsoletes:      %{name}-offline-updates < %{version}-%{release}
+
 %description
 KDE and Plasma resources management GUI.
 
@@ -112,17 +114,7 @@ Summary:        Runtime libraries for %{name}
 %description    libs
 %{summary}.
 
-%package        packagekit
-Summary:        Plasma Discover PackageKit support
-Requires:       %{name} = %{version}-%{release}
-Requires:       PackageKit
-Requires:       PackageKit-Qt6%{?_isa} >= 1.1.3
-%if 0%{?fedora}
-# Pull in the workstation repositories package
 Recommends:     fedora-workstation-repositories
-%endif
-%description    packagekit
-%{summary}.
 
 %package        notifier
 Summary:        Plasma Discover Update Notifier
@@ -162,13 +154,6 @@ Supplements:    (%{name} and snapd)
 %{summary}.
 %endif
 
-%package        offline-updates
-Summary:        Plasma Discover Offline updates enablement
-Requires:       %{name} = %{version}-%{release}
-%description    offline-updates
-Enable Offline Updates feature by default
-in %{name}.
-
 %if 0%{?fedora}
 # Only used for Fedora Kinoite
 %package        rpm-ostree
@@ -189,7 +174,6 @@ Supplements:    (%{name} and plasma-workspace%{?_isa})
 %install
 %cmake_install
 
-install -m644 -p -D %{SOURCE10} %{buildroot}%{_kf6_sysconfdir}/xdg/discoverrc
 
 ## unpackaged files
 %if !0%{?snap}
@@ -240,12 +224,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %dir %{_kf6_datadir}/libdiscover/categories
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_updates.so
 
-%files packagekit
-%{_kf6_datadir}/libdiscover/categories/packagekit-backend-categories.xml
-%{_kf6_metainfodir}/org.kde.discover.packagekit.appdata.xml
-%{_kf6_qtplugindir}/discover-notifier/DiscoverPackageKitNotifier.so
-%{_kf6_qtplugindir}/discover/packagekit-backend.so
-
 %files flatpak
 %{_kf6_datadir}/applications/org.kde.discover.flatpak.desktop
 %{_kf6_datadir}/libdiscover/categories/flatpak-backend-categories.xml
@@ -266,9 +244,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_qtplugindir}/discover/snap-backend.so
 %{_libexecdir}/discover/SnapMacaroonDialog
 %endif
-
-%files offline-updates
-%{_kf6_sysconfdir}/xdg/discoverrc
 
 %if 0%{?fedora}
 %files rpm-ostree
