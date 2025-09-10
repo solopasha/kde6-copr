@@ -78,7 +78,7 @@ jobs:
           rename -v '^' '_' repo/*/*.rpm > /dev/null || :
           createrepo_c -u https://github.com/${{ github.repository }}/releases/download/${repository} repo/${repository}
           createrepo_c -u https://github.com/${{ github.repository }}/releases/download/${repository}-debuginfo repo/${repository}-debuginfo
-          if [[ -f "packages.txt" ]]; then
+          if ! grep 'Not Found' packages.txt; then
             if curl -f -Ss https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${repository}/repodata/repomd.xml > /dev/null; then
               mergerepo_c \
                 --repo repo/${repository} \
