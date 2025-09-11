@@ -1,6 +1,6 @@
-%global commit0 56de86757a992a05cfca4743c7b75d9a15a4963b
+%global commit0 0af5f24b742d35e65264fc483584c6980069a5d2
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 18
+%global bumpver 19
 
 ## uncomment to enable bootstrap mode
 #global bootstrap 1
@@ -60,8 +60,6 @@ BuildRequires: cmake(Qt6Qml)
 BuildRequires: cmake(Qt6DBus)
 BuildRequires: cmake(Qt6TextToSpeech)
 BuildRequires: qt6-qtbase-private-devel
-
-BuildRequires: cmake(PlasmaActivities)
 
 Requires: kf6-purpose%{?_isa}
 
