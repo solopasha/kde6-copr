@@ -49,6 +49,9 @@ conditional-include:
   - if: exclude_perl == true
     include:
       - exclude-perl.yaml
+  - if: releasever == 43
+    include:
+      - updates-testing.yaml
 
 packages:
   # Ensure that we have a kernel. Kernel packages are not in any comps group
