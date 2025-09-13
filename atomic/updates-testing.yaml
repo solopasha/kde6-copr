@@ -1,2 +1,4 @@
 repos:
   - updates-testing
+  - rpmfusion-free-updates-testing
+  - rpmfusion-nonfree-updates-testing
