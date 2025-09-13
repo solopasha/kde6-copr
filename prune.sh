@@ -14,7 +14,7 @@ mapfile -t packages < <(cat <(yq -r '.jobs | keys[]' < .github/workflows/package
                             <(yq -r '.jobs | keys[]' < .github/workflows/packages-gear.yml) \
                             | sort -u | grep -v 'changed-files')
 
-packages+=(buildroot kde-unstable)
+packages+=(buildroot kde-unstable repodata)
 
 now=$(date +%s)
 
