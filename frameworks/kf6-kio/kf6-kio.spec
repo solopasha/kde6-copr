@@ -1,6 +1,6 @@
-%global commit0 25e9bb13a4925dafc5b5fcd355e98bdbc327598b
+%global commit0 15fff1b8592648f11f20a303c8f82d61d3f19584
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 %global framework kio
 
@@ -15,7 +15,6 @@ URL:            https://invent.kde.org/frameworks/%{framework}
 Patch:          0001-Give-the-kuriikwsfiltereng_private-a-VERSION-and-SOV.patch
 
 BuildRequires:  cmake(KF6Archive)
-BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6Bookmarks)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Completion)
