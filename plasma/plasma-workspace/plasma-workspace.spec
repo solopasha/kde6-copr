@@ -1,6 +1,6 @@
 %global commit0 8211d591f0b02f4df209bdc43750c8a69cbb3aaf
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 101
+%global bumpver 102
 
 %bcond x11 1
 
@@ -307,6 +307,7 @@ Summary:        Xorg support for Plasma
 Provides:       %{name}-xorg = %{version}-%{release}
 Provides:       %{name}-xorg%{?_isa} = %{version}-%{release}
 Requires:       %{name} = %{version}-%{release}
+Requires:       kf6-kidletime-x11
 Requires:       kwin-x11
 Requires:       xorg-x11-server-Xorg
 %description    x11

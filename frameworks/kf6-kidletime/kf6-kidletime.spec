@@ -1,6 +1,6 @@
 %global commit0 bc0310e6c91d25437ddeecc9ab18d8d55a997e87
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework kidletime
 
@@ -27,7 +27,7 @@ BuildRequires:  pkgconfig(xscrnsaver)
 BuildRequires:  wayland-devel
 BuildRequires:  wayland-protocols-devel
 
-Requires:       %{name}-x11%{?_isa} = %{version}-%{release}
+Recommends:     %{name}-x11%{?_isa} = %{version}-%{release}
 
 %description
 KDE Frameworks 6 Tier 1 integration module for idle time detection.
