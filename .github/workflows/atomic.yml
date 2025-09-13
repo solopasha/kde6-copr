@@ -31,7 +31,7 @@ jobs:
     steps:
       - name: Reclaim disk space
         run: |
-          rm -rf /run/host/usr/local/lib/android /run/host/usr/share/dotnet /run/host/opt/ghc /run/host/opt/hostedtoolcache
+          rm -rf /run/host/usr/local/lib/android
 
       - name: Prepare
         run: |
