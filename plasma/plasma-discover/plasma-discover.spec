@@ -94,9 +94,8 @@ Recommends:     %{name}-flatpak = %{version}-%{release}
 Recommends:     fedora-appstream-metadata
 Recommends:     %{name}-offline-updates = %{version}-%{release}
 
-# Require fedora-third-party on Fedora
 %if 0%{?fedora}
-Requires:       fedora-third-party
+Recommends:     fedora-third-party
 %endif
 
 # handle upgrade path
