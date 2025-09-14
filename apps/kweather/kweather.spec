@@ -1,6 +1,6 @@
-%global commit0 57c240812f84e2b3b707d14d93ed69ca940960d6
+%global commit0 7f5d70703569b96789847852682e590d2e64c70e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 7
+%global bumpver 8
 
 Name:           kweather
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
