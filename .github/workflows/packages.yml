@@ -228,6 +228,7 @@ jobs:
       - kf6-knotifications
       - kf6-kpackage
       - kf6-kwidgetsaddons
+      - PackageKit-Qt
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -1018,7 +1019,6 @@ jobs:
       - extra-cmake-modules
       - kf6
       - kf6-karchive
-      - kf6-kauth
       - kf6-kbookmarks
       - kf6-kcolorscheme
       - kf6-kcompletion
@@ -3402,6 +3402,7 @@ jobs:
       - kwin
       - libksysguard
       - libplasma
+      - PackageKit-Qt
       - plasma5support
       - plasma-activities
       - plasma-activities-stats
@@ -3451,6 +3452,7 @@ jobs:
       - kf6-kuserfeedback
       - kf6-kxmlgui
       - kf6-purpose
+      - PackageKit-Qt
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -4111,6 +4113,7 @@ jobs:
       - libkscreen
       - libksysguard
       - libplasma
+      - PackageKit-Qt
       - plasma5support
       - plasma-activities
       - plasma-activities-stats
@@ -4471,6 +4474,29 @@ jobs:
       copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
       spec: ./plasma/xdg-desktop-portal-kde/xdg-desktop-portal-kde.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  PackageKit-Qt:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/PackageKit-Qt.spec') ||
+          contains(inputs.specfiles, '/PackageKit-Qt.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook: ${{ secrets.copr_webhook }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./related/PackageKit-Qt/PackageKit-Qt.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
