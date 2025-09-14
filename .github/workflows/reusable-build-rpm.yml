@@ -245,7 +245,7 @@ jobs:
           else
             workflow_file=".github/workflows/packages.yml"
           fi
-          mapfile -t repo_dependencies < <(bash needs.sh "${pkgname}" "${workflow_file}" | sed '/changed-files/d')
+          mapfile -t repo_dependencies < <(bash needs.sh "${pkgname}" "${workflow_file}" | sed '/changed-files/d' | tr '[:upper:]' '[:lower:]')
           if [[ "${repo_dependencies[*]}" != "" ]]; then
             parallel --halt now,fail=1 oras pull "ghcr.io/${repository}/{}:latest-${target_branch}" -o repo ::: "${repo_dependencies[@]}"
             docker run --rm \
@@ -264,7 +264,7 @@ jobs:
           DEPS: ${{ inputs.deps }}
           pr_number: ${{ github.event.number }}
         run: |
-          mapfile -t pr_dependencies < <(jq -r 'del(."changed-files") | to_entries | map(select(.value.result == "success")) | .[].key' <<< "$DEPS")
+          mapfile -t pr_dependencies < <(jq -r 'del(."changed-files") | to_entries | map(select(.value.result == "success")) | .[].key' <<< "$DEPS" | tr '[:upper:]' '[:lower:]')
           if [[ "${pr_dependencies[*]}" != "" ]]; then
             parallel --halt now,fail=1 oras pull "ghcr.io/${repository}/{}:pr-${pr_number}" -o pr-repo ::: "${pr_dependencies[@]}"
             docker run --rm \
@@ -315,11 +315,11 @@ jobs:
 
       - name: Check NVR
         run: |
-          if oras manifest fetch ghcr.io/${repository}/${pkgname}:${container_tag} &> /dev/null; then
+          if oras manifest fetch ghcr.io/${repository}/${pkgname,,}:${container_tag} &> /dev/null; then
             echo "NVR already exists"
             exit 1
           fi
-          latest_version="$(oras manifest fetch ghcr.io/${repository}/${pkgname}:latest-${target_branch} | jq -r '.annotations."rpm.version"')"
+          latest_version="$(oras manifest fetch ghcr.io/${repository}/${pkgname,,}:latest-${target_branch} | jq -r '.annotations."rpm.version"')"
           if [[ -n "${latest_version}" ]]; then
             export latest_version
             docker run --rm \
@@ -586,7 +586,7 @@ jobs:
           for (( retry_count=0; retry_count<max_retries; retry_count++ )); do
               if oras push \
                   --annotation "rpm.version=${version_release}" \
-                  "ghcr.io/${repository}/${pkgname}:latest-${target_branch},${container_tag}" \
+                  "ghcr.io/${repository}/${pkgname,,}:latest-${target_branch},${container_tag}" \
                   ./"${pkgname}"-resultdir/*.rpm; then
                   exit 0
               fi
@@ -612,7 +612,7 @@ jobs:
           for (( retry_count=0; retry_count<max_retries; retry_count++ )); do
               if oras push \
                   --annotation "rpm.version=${version_release}" \
-                  "ghcr.io/${repository}/${pkgname}:pr-${pr_number}" \
+                  "ghcr.io/${repository}/${pkgname,,}:pr-${pr_number}" \
                   ./"${pkgname}"-resultdir/*.rpm; then
                   exit 0
               fi
