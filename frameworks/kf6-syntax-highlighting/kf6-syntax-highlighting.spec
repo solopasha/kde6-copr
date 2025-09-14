@@ -1,6 +1,6 @@
-%global commit0 e1d54cddb14cb2da709a76a4b9218790ec3d187b
+%global commit0 04f06f6da48077de17db0da201238300fa80bbbd
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 %global framework syntax-highlighting
 
