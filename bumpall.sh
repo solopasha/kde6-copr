@@ -18,6 +18,7 @@ fi
 
 exclude_packages=(
     kf6.spec
+    kf6-ksvg.spec
 )
 
 IFS=" " read -r -a exclude_rendered <<< "$(printf -- "--exclude=%s " "${exclude_packages[@]}")"
