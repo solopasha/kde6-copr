@@ -1,6 +1,6 @@
-%global commit0 2594568850afeed49b1b929c08e6cb118128e6af
+%global commit0 ce4a19f1acfa05ab8553b60c199bc693b478c1db
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 19
+%global bumpver 20
 
 %global base_name print-manager
 
@@ -83,7 +83,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_printer_manager.so
 
 %files libs
-%{_kf6_libdir}/libkcupslib.so.%{version_no_git}
+%{_kf6_libdir}/libkcups.so
 %{_kf6_plugindir}/kded/printmanager.so
 
 %changelog

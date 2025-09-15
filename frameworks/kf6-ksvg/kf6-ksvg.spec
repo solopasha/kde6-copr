@@ -1,6 +1,6 @@
-%global commit0 d3d163a5a6914c0182401a85693424da32e1b625
+%global commit0 39c851b63ddb5febe8c8f8c7250b417cc8eb6657
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework ksvg
 
