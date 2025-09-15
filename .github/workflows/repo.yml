@@ -277,6 +277,7 @@ jobs:
           rm -f repo/${repository}-debuginfo/*.rpm
 
       - name: Prune testing
+        continue-on-error: true
         if: github.event_name == 'workflow_dispatch'
         env:
           GH_TOKEN: ${{ github.token }}
