@@ -46,13 +46,28 @@ jobs:
           enabled_metadata=1
           EOF
 
-      - name: Repoclosure
+      - name: Repoclosure plasma-unstable
         run: |
           dnf repoclosure \
-            --check copr:copr.fedorainfracloud.org:solopasha:plasma-unstable,copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable --newest
+            --disablerepo=copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable \
+            --check copr:copr.fedorainfracloud.org:solopasha:plasma-unstable \
+            --newest
 
-      - name: Repoclosure (with --best)
+      - name: Repoclosure plasma-unstable (with --best)
         run: |
           dnf repoclosure \
-            --check copr:copr.fedorainfracloud.org:solopasha:plasma-unstable,copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable \
+            --disablerepo=copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable \
+            --check copr:copr.fedorainfracloud.org:solopasha:plasma-unstable \
+            --newest --best
+
+      - name: Repoclosure kde-gear-unstable
+        run: |
+          dnf repoclosure \
+            --check copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable \
+            --newest
+
+      - name: Repoclosure kde-gear-unstable (with --best)
+        run: |
+          dnf repoclosure \
+            --check copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable \
             --newest --best
