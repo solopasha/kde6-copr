@@ -15,6 +15,7 @@ URL:            https://invent.kde.org/frameworks/%{framework}
 Patch:          0001-Give-the-kuriikwsfiltereng_private-a-VERSION-and-SOV.patch
 
 BuildRequires:  cmake(KF6Archive)
+BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6Bookmarks)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Completion)
