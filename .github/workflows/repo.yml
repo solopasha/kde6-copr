@@ -15,7 +15,6 @@ on:
     workflows: ["Build Plasma and Frameworks packages"]
     types: [completed]
     branches:
-      - beta
       - unstable
 
 concurrency:
