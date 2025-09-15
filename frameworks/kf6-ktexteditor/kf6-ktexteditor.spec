@@ -1,11 +1,11 @@
-%global commit0 5ce7708af2121eda9568e0382ec9b9a902382d10
+%global commit0 1e516f2ca15c507a9854fb7515adaf8689af363e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 1
 
 %global framework ktexteditor
 
 Name:           kf6-%{framework}
-Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 with advanced embeddable text editor
 
@@ -77,7 +77,9 @@ mkdir -p %{buildroot}%{_kf6_qtplugindir}/ktexteditor
 %{_kf6_libdir}/libKF6TextEditor.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Mon Sep 15 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-1
+- Update to 6.18.0
+
 * Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
 - Update to 6.10.0
 

@@ -1,11 +1,11 @@
-%global commit0 27e3122c165c54479f634a7ca8743a9623aa9d52
+%global commit0 3d3fb626e17d5100f8d14a3e0a47469929e074a1
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 1
 
 %global framework kcalendarcore
 
 Name:           kf6-%{framework}
-Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 KCalendarCore Library
 License:        BSD-3-Clause AND LGPL-2.0-or-later AND LGPL-3.0-or-later
@@ -44,7 +44,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/pkgconfig/KF6CalendarCore.pc
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Mon Sep 15 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-1
+- Update to 6.18.0
+
 * Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
 - Update to 6.10.0
 

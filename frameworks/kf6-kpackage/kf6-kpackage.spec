@@ -1,11 +1,11 @@
-%global commit0 d603dd65209ad965a8713494057158fe651775d2
+%global commit0 a30f9014184b38cb4763447dfc6aff80c5845dbd
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 1
 
 %global framework kpackage
 
 Name:           kf6-%{framework}
-Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 library to load and install packages as plugins
 License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -54,7 +54,9 @@ mkdir -p %{buildroot}%{_kf6_datadir}/kpackage/
 %{_kf6_libdir}/libKF6Package.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Mon Sep 15 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-1
+- Update to 6.18.0
+
 * Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
 - Update to 6.10.0
 

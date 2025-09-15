@@ -1,11 +1,11 @@
-%global commit0 9b0340b5801fcbaca7cd3f357e72487ae42896da
+%global commit0 8dac43e9999c9a578660aae378ae68861bb6f2f6
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework kded
 
 Name:           kf6-%{framework}
-Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 addon with extensible daemon for system-level services
 
@@ -66,7 +66,9 @@ mkdir -p %{buildroot}%{_kf6_plugindir}/kded
 %{_kf6_libdir}/cmake/KF6KDED/
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Mon Sep 15 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-1
+- Update to 6.18.0
+
 * Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
 - Update to 6.10.0
 

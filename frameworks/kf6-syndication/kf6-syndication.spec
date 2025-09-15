@@ -1,11 +1,11 @@
-%global commit0 623f7d367c982f146b36d15947f3bed16240f566
+%global commit0 8bc05c864607dd09c6abf560520a009b54fffa11
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework syndication
 
 Name:           kf6-%{framework}
-Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0
 Release:        1%{?dist}
 Summary:        The Syndication Library
 # Qt-Commercial-exception-1.0 is also found in the LICENSES folder, but is unused except for tests which we don't use anyway
@@ -39,7 +39,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Syndication.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Mon Sep 15 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-1
+- Update to 6.18.0
+
 * Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
 - Update to 6.10.0
 

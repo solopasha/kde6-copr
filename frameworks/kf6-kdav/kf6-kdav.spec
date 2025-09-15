@@ -1,11 +1,11 @@
-%global commit0 a2043bb5d140fded76d9fc9758e8f556e14d60e4
+%global commit0 9905759085db4d9f364cc381160a14c1b7b9447a
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework kdav
 
 Name:           kf6-%{framework}
-Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0
 Release:        1%{?dist}
 Summary:        A DAV protocol implementation with KJobs
 
@@ -45,7 +45,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6DAV.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Mon Sep 15 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-1
+- Update to 6.18.0
+
 * Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
 - Update to 6.10.0
 

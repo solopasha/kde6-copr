@@ -1,11 +1,11 @@
-%global commit0 fe703d4bca7b5fd04c262d467147747b02a84e0c
+%global commit0 361c74a2be9cbceeb382dfef801b6a78f7459e68
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework kplotting
 
 Name:           kf6-%{framework}
-Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon for plotting
 License:        GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -39,7 +39,9 @@ developing applications that use %{name}.
 %{_kf6_qtplugindir}/designer/kplotting6widgets.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Mon Sep 15 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-1
+- Update to 6.18.0
+
 * Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
 - Update to 6.10.0
 

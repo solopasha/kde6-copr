@@ -1,4 +1,4 @@
-%global commit0 d3d163a5a6914c0182401a85693424da32e1b625
+%global commit0 ce18719b2dc94bf23526a8e06581b4dc25e0a2d5
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:           kf6-ksvg
 Summary:        Components for handling SVGs
-Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
@@ -50,7 +50,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Svg.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Mon Sep 15 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-1
+- Update to 6.18.0
+
 * Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
 - Update to 6.10.0
 

@@ -1,11 +1,11 @@
-%global commit0 a1cd533dc0e8190af05f03975483b7122adaf2fd
+%global commit0 a2e11795257291e7ee84859779e3cf3f5429f8b5
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework kdesu
 
 Name:           kf6-%{framework}
-Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0
 Release:        1%{?dist}
 Summary:        User interface for running shell commands with root privileges
 
@@ -49,7 +49,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Su.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Mon Sep 15 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-1
+- Update to 6.18.0
+
 * Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
 - Update to 6.10.0
 

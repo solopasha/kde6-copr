@@ -1,11 +1,11 @@
-%global commit0 a0e5445b6e49d6d499a80cceffbcfd7dc6fe8414
+%global commit0 fbe767ad2bcb18ed712e0e8f41e15843d5dcdd2b
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework modemmanager-qt
 
 Name:           kf6-%{framework}
-Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0
 Release:        1%{?dist}
 Summary:        A Tier 1 KDE Frameworks module wrapping ModemManager DBus API
 License:        GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -45,7 +45,9 @@ that use ModemManager.
 %{_kf6_libdir}/libKF6ModemManagerQt.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Mon Sep 15 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-1
+- Update to 6.18.0
+
 * Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
 - Update to 6.10.0
 

@@ -1,11 +1,11 @@
-%global commit0 3d8a8b3cebc8e76a7e84e28387a5d05e2c65dbb9
+%global commit0 27614c17041cd88a8561f8535d4fc10d07f60844
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework threadweaver
 
 Name:           kf6-%{framework}
-Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon for advanced thread management
 License:        CC0-1.0 AND LGPL-2.0-or-later
@@ -37,7 +37,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6ThreadWeaver.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Mon Sep 15 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-1
+- Update to 6.18.0
+
 * Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
 - Update to 6.10.0
 

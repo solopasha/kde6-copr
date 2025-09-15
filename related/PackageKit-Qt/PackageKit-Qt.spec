@@ -1,6 +1,6 @@
 %global commit0 42902ed51e02e78f13a002c5e81c240601b7445a
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Summary:   Qt support library for PackageKit
 Name:      PackageKit-Qt

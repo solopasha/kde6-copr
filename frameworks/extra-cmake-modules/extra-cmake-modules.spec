@@ -1,11 +1,11 @@
-%global commit0 4e9b73da40792ece7885924007441880ecc06d8d
+%global commit0 c2de62eaa58cd4b646bd3abc2330319e5dca16d0
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 1
 
 %global framework extra-cmake-modules
 
 Name:           extra-cmake-modules
-Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0
 Release:        1%{?dist}
 Summary:        Extra modules and scripts for CMake
 
@@ -43,7 +43,9 @@ Requires:       (spirv-tools if qt6-qtshadertools-devel)
 %{_kf6_mandir}/man7/ecm*.7*
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Mon Sep 15 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-1
+- Update to 6.18.0
+
 * Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
 - Update to 6.10.0
 

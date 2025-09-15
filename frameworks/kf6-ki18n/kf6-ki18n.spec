@@ -1,11 +1,11 @@
-%global commit0 2f0399b29a85d3741ada7b0ec012fff3fe85b2a0
+%global commit0 32c3811dd8360dca9ae17cc0d72a6d437d6e583f
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework ki18n
 
 Name:           kf6-%{framework}
-Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon for localization
 License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND ODbL-1.0
@@ -71,7 +71,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6I18nQml.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Mon Sep 15 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-1
+- Update to 6.18.0
+
 * Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
 - Update to 6.10.0
 

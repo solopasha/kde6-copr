@@ -1,11 +1,11 @@
-%global commit0 59141ae88c0a0bdab41d4ff6c9091b725df48ce9
+%global commit0 13e2c7224fdc115302709675de7c08d3bb8853b4
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework kunitconversion
 
 Name:           kf6-%{framework}
-Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0
 Release:        1%{?dist}
 Summary:        Converting physical units
 
@@ -46,7 +46,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6UnitConversion.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Mon Sep 15 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-1
+- Update to 6.18.0
+
 * Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
 - Update to 6.10.0
 

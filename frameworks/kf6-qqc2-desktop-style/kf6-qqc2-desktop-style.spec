@@ -1,11 +1,11 @@
-%global commit0 f1ec33957e212d34cfff41b36acb487a53a5451f
+%global commit0 d7f477a3fd1d98477c900daf3153f938059a16be
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework qqc2-desktop-style
 
 Name:           kf6-%{framework}
-Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0
 Release:        1%{?dist}
 Summary:        QtQuickControls2 style for consistency between QWidget and QML apps
 License:        CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KFQF-Accepted-GPL
@@ -54,7 +54,9 @@ between QWidget-based and QML-based apps.
 %{_kf6_libdir}/cmake/KF6QQC2DesktopStyle/
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Mon Sep 15 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-1
+- Update to 6.18.0
+
 * Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
 - Update to 6.10.0
 

@@ -1,11 +1,11 @@
-%global commit0 5226a22b3caab93e2ee95afd0a0c3f03a103f1eb
+%global commit0 478a6bf6690c5af6139bcb1c6c303cf1d09a14b5
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework solid
 
 Name:           kf6-%{framework}
-Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 integration module that provides hardware information
 License:        LGPL-2.1-or-later AND LGPL-2.1-only AND CCO-1.0 AND BSD-3-Clause AND LGPL-3.0-only
@@ -56,7 +56,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Solid.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Mon Sep 15 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-1
+- Update to 6.18.0
+
 * Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
 - Update to 6.10.0
 

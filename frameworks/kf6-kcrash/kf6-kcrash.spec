@@ -1,11 +1,11 @@
-%global commit0 78ab4894d3cc1cd2c38f97b4619050911b037755
+%global commit0 a29ed2967c78103140daaaecd3950ff3fb8ddf59
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework kcrash
 
 Name:           kf6-%{framework}
-Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.18.0
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 addon for handling application crashes
 
@@ -46,7 +46,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6Crash.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Mon Sep 15 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-1
+- Update to 6.18.0
+
 * Fri Jan 03 2025 Pavel Solovev <daron439@gmail.com> - 6.10.0-1
 - Update to 6.10.0
 
