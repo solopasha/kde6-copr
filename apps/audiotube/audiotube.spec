@@ -1,6 +1,6 @@
-%global commit0 12bb0c6be89e22731a34157686d742fb3666c2a9
+%global commit0 11734f536f87db7a7764e5a29c9dad750ef72175
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 Name:           audiotube
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -30,6 +30,7 @@ BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6KirigamiAddons)
 BuildRequires:  cmake(KF6WindowSystem)
