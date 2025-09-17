@@ -1,6 +1,6 @@
-%global commit0 e371ea3b1cb4b992b8a68d6d7214c159949251c4
+%global commit0 e746d8505f80df0d15ba88d69e16d1d33fd5ae06
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 12
+%global bumpver 13
 
 Name:    kmime
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
