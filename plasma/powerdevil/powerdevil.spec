@@ -1,6 +1,6 @@
-%global commit0 00dabc2c277748a75ec5ae2315ca02a0f05a4339
+%global commit0 09b8b6b6df99e74b0a207658c50698f428620a7f
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 29
+%global bumpver 31
 
 Name:           powerdevil
 Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -82,13 +82,16 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevilcore.so
 %{_kf6_datadir}/dbus-1/system-services/org.kde.powerdevil.backlighthelper.service
 %{_kf6_datadir}/dbus-1/system-services/org.kde.powerdevil.chargethresholdhelper.service
 %{_kf6_datadir}/dbus-1/system-services/org.kde.powerdevil.discretegpuhelper.service
+%{_kf6_datadir}/dbus-1/system-services/org.kde.powerdevil.wakeupsourcehelper.service
 %{_kf6_datadir}/dbus-1/system.d/org.kde.powerdevil.backlighthelper.conf
 %{_kf6_datadir}/dbus-1/system.d/org.kde.powerdevil.chargethresholdhelper.conf
 %{_kf6_datadir}/dbus-1/system.d/org.kde.powerdevil.discretegpuhelper.conf
+%{_kf6_datadir}/dbus-1/system.d/org.kde.powerdevil.wakeupsourcehelper.conf
 %{_kf6_datadir}/knotifications6/powerdevil.notifyrc
 %{_kf6_datadir}/polkit-1/actions/org.kde.powerdevil.backlighthelper.policy
 %{_kf6_datadir}/polkit-1/actions/org.kde.powerdevil.chargethresholdhelper.policy
 %{_kf6_datadir}/polkit-1/actions/org.kde.powerdevil.discretegpuhelper.policy
+%{_kf6_datadir}/polkit-1/actions/org.kde.powerdevil.wakeupsourcehelper.policy
 %{_kf6_datadir}/qlogging-categories6/batterymonitor.categories
 %{_kf6_datadir}/qlogging-categories6/brightness.categories
 %{_kf6_datadir}/qlogging-categories6/powerdevil.categories
@@ -97,6 +100,7 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevilcore.so
 %{_kf6_libexecdir}/kauth/backlighthelper
 %{_kf6_libexecdir}/kauth/chargethresholdhelper
 %{_kf6_libexecdir}/kauth/discretegpuhelper
+%{_kf6_libexecdir}/kauth/wakeupsourcehelper
 %{_kf6_plugindir}/krunner/krunner_powerdevil.so
 %{_kf6_qmldir}/org/kde/plasma/private/batterymonitor/
 %{_kf6_qmldir}/org/kde/plasma/private/brightnesscontrolplugin/
