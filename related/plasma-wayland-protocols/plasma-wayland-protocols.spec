@@ -1,9 +1,9 @@
-%global commit0 d50aab9be549633bf0c3a4747e09e0147b0ff758
+%global commit0 3b201c79e8172a3060d4b31a6d69ce37bb9cde71
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 1
 
 Name:           plasma-wayland-protocols
-Version:        1.18.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        1.19.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Plasma Specific Protocols for Wayland
 
@@ -41,6 +41,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/PlasmaWaylandProtocols/
 
 %changelog
+%{?kde_snapshot_changelog_entry}
 * Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 1.16.0-1
 - new version
 
