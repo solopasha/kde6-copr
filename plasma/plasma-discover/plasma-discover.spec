@@ -1,6 +1,6 @@
-%global commit0 bc8a82296f99d7fb071530dfc76ff934531f4fde
+%global commit0 bf2ecc1b13df0fddba383b7b59c02546d46075ca
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 35
+%global bumpver 1
 
 %global base_name discover
 # enable snap support (or not)
@@ -11,7 +11,7 @@
 
 Name:           plasma-discover
 Summary:        KDE and Plasma resources management GUI
-Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)

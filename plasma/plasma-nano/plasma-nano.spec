@@ -1,11 +1,11 @@
-%global commit0 e015e006bae18d66464b49b8a606a3956840f0b7
+%global commit0 d78ddd45219607b713fc73a48cfd0a2e460d411c
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 9
+%global bumpver 1
 
 %global orig_name org.kde.plasma.nano
 
 Name:           plasma-nano
-Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND MIT
 URL:            https://invent.kde.org/plasma/plasma-nano

@@ -1,10 +1,10 @@
-%global commit0 0d340c37f9b90fe48713e86cb39ef0451f236268
+%global commit0 6872506cc43bd735eb41c8112e5a30aaa404a752
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 10
+%global bumpver 1
 
 Name:           kglobalacceld
 Summary:        Daemon providing Global Keyboard Shortcut functionality
-Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL

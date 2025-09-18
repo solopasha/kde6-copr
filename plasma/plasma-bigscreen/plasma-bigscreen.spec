@@ -1,10 +1,10 @@
-%global commit0 e6e774ff86986a234694dfcc7c7a31b61de906f3
+%global commit0 dc3b5d8af31f85b4b83cc6ff2f8f416c843a1dec
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 8
+%global bumpver 1
 
 Name:           plasma-bigscreen
 Summary:        Plasma shell for TVs
-Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND GPL-2.0-or-later AND (GPL-2.0-only OR GPL-3.0-only) AND LGPL-2.0-or-later AND (LGPL-2.1-only OR LGPL-3.0-only)

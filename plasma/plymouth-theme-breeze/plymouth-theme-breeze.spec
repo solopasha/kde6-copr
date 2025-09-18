@@ -1,11 +1,11 @@
-%global commit0 7900ffd35aed1ae8ab0497841e088a31ed5473ba
+%global commit0 bd21984fd279a92867fd04de7c3930fb311c14f4
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 1
 
 %global base_name breeze-plymouth
 
 Name:           plymouth-theme-breeze
-Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Breeze theme for Plymouth
 

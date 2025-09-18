@@ -1,12 +1,12 @@
-%global commit0 d97752f67f6d75c2a073fc779d422c12a94f00d1
+%global commit0 98cfc6a863bc210a6d3a1e989a4122a51483ce87
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 8
+%global bumpver 1
 
 %global base_name wacomtablet
 
 Name:           kcm_wacomtablet
 Summary:        KDE Control module for Wacom Graphictablets
-Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later

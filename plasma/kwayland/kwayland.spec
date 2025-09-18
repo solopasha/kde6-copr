@@ -1,9 +1,9 @@
-%global commit0 e1af77234e732e4d4ccf1b83c9034737117ef8ea
+%global commit0 9c0d72d96bb8471a8212d405a19fe1750a2b2f2a
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 1
 
 Name:           kwayland
-Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 library that wraps Client and Server Wayland libraries
 

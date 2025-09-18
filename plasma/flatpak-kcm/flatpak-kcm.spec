@@ -1,9 +1,9 @@
-%global commit0 aef712f5877d2b3f18d2245e59df99da6eaa61c7
+%global commit0 804fab2688c2c8e53cb00995f7d3b3ec6e9c6635
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 14
+%global bumpver 1
 
 Name:           flatpak-kcm
-Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        BSD-2-Clause and BSD-3-Clause and CC0-1.0 and GPL-2.0-or-later
 Summary:        Flatpak Permissions Management KCM
@@ -15,6 +15,7 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6ItemModels)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6Service)

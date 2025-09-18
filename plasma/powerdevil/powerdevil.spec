@@ -1,9 +1,9 @@
-%global commit0 09b8b6b6df99e74b0a207658c50698f428620a7f
+%global commit0 b2f084cf7168ba319b3d40358e282921d40a8cb9
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 31
+%global bumpver 1
 
 Name:           powerdevil
-Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Manages the power consumption settings of a Plasma Shell
 

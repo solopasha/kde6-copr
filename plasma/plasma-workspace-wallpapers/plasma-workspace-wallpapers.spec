@@ -1,9 +1,9 @@
-%global commit0 10fb60cb23f4692a2f46d56d46f6580d9dbeadb1
+%global commit0 8d97b7d6672ed1746ece4d2689242fd3c13447e1
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 1
 
 Name:           plasma-workspace-wallpapers
-Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Additional wallpapers for Plasma workspace
 License:        LGPLv3
