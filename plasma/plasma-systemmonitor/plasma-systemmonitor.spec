@@ -1,9 +1,9 @@
-%global commit0 1c7872b300e516d38e123fc988a69690af7ac8eb
+%global commit0 d2332c8160a8c96a34cc2060b4c31f435cbed60e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 12
+%global bumpver 1
 
 Name:           plasma-systemmonitor
-Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.4.90
 Release:        1%{?dist}
 Summary:        An application for monitoring system resources
 
@@ -64,7 +64,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_qmldir}/org/kde/ksysguard/
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
+- Update to 6.4.90
+
 * Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 6.2.90-1
 - Update to 6.2.90
 

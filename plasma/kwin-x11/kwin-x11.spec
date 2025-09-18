@@ -1,9 +1,9 @@
-%global commit0 bb128f3ff48c6e40d9215ee4fd7a37ab8b16646c
+%global commit0 8ef2a1bfca70f2a37576867fc06796a4104b5d59
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 35
+%global bumpver 1
 
 Name:           kwin-x11
-Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.4.90
 Release:        1%{?dist}
 Summary:        An X11 window manager and a compositing manager
 
@@ -104,7 +104,7 @@ Requires:       qt6-qtmultimedia%{?_isa}
 Requires:       xorg-x11-server-Xorg%{?_isa}
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
-Obsoletes:      %{name}-libs < 6.4.80
+Obsoletes:      %{name}-libs < 6.5.80
 Provides:       %{name}-libs = %{version}-%{release}
 Provides:       %{name}-libs%{?_isa} = %{version}-%{release}
 
@@ -163,6 +163,8 @@ developing applications that use %{name}.
 %{_kf6_libdir}/lib%{name}.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
+- Update to 6.4.90
+
 * Mon Mar 10 2025 Pavel Solovev <daron439@gmail.com> - 6.3.80~1-1
 - Initial package

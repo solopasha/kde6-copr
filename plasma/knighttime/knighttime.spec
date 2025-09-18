@@ -1,9 +1,9 @@
-%global commit0 4d5b34bc78039015809422ce0d3a9809dfd3ba16
+%global commit0 587994c4951133ce678893dd5e78c813f41cd677
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 7
+%global bumpver 1
 
 Name:           knighttime
-Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.4.90
 Release:        1%{?dist}
 Summary:        Helpers for scheduling the dark-light cycle
 
@@ -58,6 +58,8 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_libdir}/libKNightTime.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
+- Update to 6.4.90
+
 * Mon Jul 07 2025 Pavel Solovev <daron439@gmail.com> - 6.4.80~1.git137d8cc-1
 - Initial package

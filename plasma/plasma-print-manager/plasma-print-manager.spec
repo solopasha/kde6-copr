@@ -1,12 +1,12 @@
-%global commit0 2594568850afeed49b1b929c08e6cb118128e6af
+%global commit0 f2076019f839b6f5cc9ecb85e6c407b8564a8b3d
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 19
+%global bumpver 1
 
 %global base_name print-manager
 
 Name:           plasma-print-manager
 Summary:        Printer management for KDE
-Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.4.90
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -83,11 +83,13 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_printer_manager.so
 
 %files libs
-%{_kf6_libdir}/libkcupslib.so.%{version_no_git}
+%{_kf6_libdir}/libkcups.so
 %{_kf6_plugindir}/kded/printmanager.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
+- Update to 6.4.90
+
 * Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 6.2.90-1
 - Update to 6.2.90
 

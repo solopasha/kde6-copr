@@ -1,9 +1,9 @@
-%global commit0 f4c277861d9002add8dfe56ff9a7cea45860c3c9
+%global commit0 67917b995e27148c71202e268450be1e2a6d3d60
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 101
+%global bumpver 1
 
 Name:           kwin
-Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.4.90
 Release:        1%{?dist}
 Summary:        KDE Window manager
 
@@ -113,10 +113,10 @@ Requires:       qt6-qtwayland%{?_isa}
 Requires:       xorg-x11-server-Xwayland%{?_isa}
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
-Obsoletes:      %{name}-common < 6.4.80
-Obsoletes:      %{name}-doc < 6.4.80
-Obsoletes:      %{name}-libs < 6.4.80
-Obsoletes:      %{name}-wayland < 6.4.80
+Obsoletes:      %{name}-common < 6.5.80
+Obsoletes:      %{name}-doc < 6.5.80
+Obsoletes:      %{name}-libs < 6.5.80
+Obsoletes:      %{name}-wayland < 6.5.80
 Provides:       %{name}-common = %{version}-%{release}
 Provides:       %{name}-common%{?_isa} = %{version}-%{release}
 Provides:       %{name}-doc = %{version}-%{release}
@@ -193,7 +193,9 @@ ln -sr %{buildroot}%{_kf6_bindir}/kwin_wayland %{buildroot}%{_bindir}/kwin
 %{_kf6_libdir}/libkwin.so
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
+- Update to 6.4.90
+
 * Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 6.2.90-1
 - Update to 6.2.90
 

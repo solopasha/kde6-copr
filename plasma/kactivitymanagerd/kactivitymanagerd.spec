@@ -1,10 +1,10 @@
-%global commit0 d9cad20fa430dd66692530753eab55344a4da9de
+%global commit0 3119741d249f58935c325514ca60076cdd1e1e95
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 8
+%global bumpver 1
 
 Name:           kactivitymanagerd
 Summary:        Plasma service to manage user's activities
-Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.4.90
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -56,7 +56,9 @@ Provides:       kactivities = %{version}-%{release}
 %{_userunitdir}/plasma-kactivitymanagerd.service
 
 %changelog
-%{?kde_snapshot_changelog_entry}
+* Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
+- Update to 6.4.90
+
 * Thu Jan 09 2025 Pavel Solovev <daron439@gmail.com> - 6.2.90-1
 - Update to 6.2.90
 
