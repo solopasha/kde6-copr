@@ -1,6 +1,6 @@
 %global commit0 f07b9cb5afe3342b9b76de4c5a7ea3502d84994f
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 105
+%global bumpver 106
 
 Name:           kwin
 Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -113,10 +113,10 @@ Requires:       qt6-qtwayland%{?_isa}
 Requires:       xorg-x11-server-Xwayland%{?_isa}
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
-Obsoletes:      %{name}-common < 6.4.80
-Obsoletes:      %{name}-doc < 6.4.80
-Obsoletes:      %{name}-libs < 6.4.80
-Obsoletes:      %{name}-wayland < 6.4.80
+Obsoletes:      %{name}-common < 6.5.80
+Obsoletes:      %{name}-doc < 6.5.80
+Obsoletes:      %{name}-libs < 6.5.80
+Obsoletes:      %{name}-wayland < 6.5.80
 Provides:       %{name}-common = %{version}-%{release}
 Provides:       %{name}-common%{?_isa} = %{version}-%{release}
 Provides:       %{name}-doc = %{version}-%{release}

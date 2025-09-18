@@ -1,6 +1,6 @@
 %global commit0 bb128f3ff48c6e40d9215ee4fd7a37ab8b16646c
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 37
+%global bumpver 38
 
 Name:           kwin-x11
 Version:        6.4.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -104,7 +104,7 @@ Requires:       qt6-qtmultimedia%{?_isa}
 Requires:       xorg-x11-server-Xorg%{?_isa}
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
-Obsoletes:      %{name}-libs < 6.4.80
+Obsoletes:      %{name}-libs < 6.5.80
 Provides:       %{name}-libs = %{version}-%{release}
 Provides:       %{name}-libs%{?_isa} = %{version}-%{release}
 
