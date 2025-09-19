@@ -435,6 +435,7 @@ jobs:
             useradd -M -u 1001 builduser
             mkdir /out && chown builduser:builduser /out
             mkdir /build && chown builduser:builduser /build
+            rm -f /etc/yum.repos.d/fedora-cisco-openh264.repo
             dnf -y --disablerepo=updates --disablerepo=fedora install kf6-srpm-macros
             dnf -y install nosync
             LD_PRELOAD=/usr/lib64/nosync/nosync.so dnf -y install @buildsys-build 'dnf5-command(builddep)' ${{ inputs.additional_packages }}
