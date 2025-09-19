@@ -1,6 +1,6 @@
-%global commit0 47be45bf822d89442c31c30fe9d21bac10ae74c8
+%global commit0 e26a04e48d5869d4f3327685fbda6f156d3032a4
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:           kwin
 Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -154,6 +154,7 @@ ln -sr %{buildroot}%{_kf6_bindir}/kwin_wayland %{buildroot}%{_bindir}/kwin
 %{_bindir}/kwin
 %caps(cap_sys_nice=ep) %{_kf6_bindir}/kwin_wayland
 %{_kf6_bindir}/kwin_wayland_wrapper
+%{_kf6_bindir}/kwindowprop
 %{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/config.kcfg/kwin.kcfg
 %{_kf6_datadir}/config.kcfg/kwindecorationsettings.kcfg

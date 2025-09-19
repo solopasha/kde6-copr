@@ -1,6 +1,6 @@
-%global commit0 56c4e9ee6d7c8a9a056e97cc639723d1f4a7448b
+%global commit0 80b75c0de0dcf849aa24e31fbb037d65ecc806cc
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:           plasma-desktop
 Summary:        Plasma Desktop shell
@@ -263,6 +263,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_kf6_qtplugindir}/plasma/applets/org.kde.panel.so
 %{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.kicker.so
 %{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.kickoff.so
+%{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.showdesktop.so
 %{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.trash.so
 %{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.windowlist.so
 %{_kf6_qtplugindir}/plasma/kcminit/kcm_mouse_init.so
