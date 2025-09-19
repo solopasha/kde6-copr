@@ -52,6 +52,9 @@ conditional-include:
   - if: releasever == 43
     include:
       - updates-testing.yaml
+  - if: releasever == 42
+    include:
+      - updates-archive.yaml
 
 packages:
   # Ensure that we have a kernel. Kernel packages are not in any comps group
