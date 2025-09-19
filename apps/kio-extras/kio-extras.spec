@@ -1,6 +1,6 @@
-%global commit0 4c365fe4199dacf17b2be754a4fd92d7730b7ffe
+%global commit0 fd324ec18f9676652d325a7a508cc292d45075e1
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 13
+%global bumpver 14
 
 Name:    kio-extras
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -51,7 +51,6 @@ BuildRequires:  libmtp-devel
 BuildRequires:  libsmbclient-devel
 BuildRequires:  libssh-devel
 BuildRequires:  perl-generators
-BuildRequires:  phonon-qt6-devel
 BuildRequires:  pkgconfig(libimobiledevice-1.0)
 BuildRequires:  pkgconfig(libplist-2.0)
 BuildRequires:  pkgconfig(libproxy-1.0)
