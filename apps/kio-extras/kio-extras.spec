@@ -116,7 +116,6 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %{_kf6_plugindir}/kiod/
 %{_kf6_plugindir}/thumbcreator/
 %{_kf6_qtplugindir}/kcm_trash.so
-%{_kf6_qtplugindir}/kfileaudiopreview.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/kcm_*.so
 %{_libexecdir}/wpad-detector-helper
 
