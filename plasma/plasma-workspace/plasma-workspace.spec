@@ -1,6 +1,6 @@
-%global commit0 081609716b254dff25f9d7a7b5600f0264716326
+%global commit0 80fa34aecfdf2c6c4d6b8d75206905513f0e5ce2
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %bcond x11 1
 
@@ -72,7 +72,6 @@ BuildRequires:  cmake(KF6StatusNotifierItem)
 BuildRequires:  cmake(KF6Svg)
 BuildRequires:  cmake(KF6TextEditor)
 BuildRequires:  cmake(KF6TextWidgets)
-BuildRequires:  cmake(KF6UnitConversion)
 BuildRequires:  cmake(KF6UserFeedback)
 BuildRequires:  cmake(KF6Wallet)
 

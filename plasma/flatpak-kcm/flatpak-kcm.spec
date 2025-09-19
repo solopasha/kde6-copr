@@ -1,6 +1,6 @@
-%global commit0 804fab2688c2c8e53cb00995f7d3b3ec6e9c6635
+%global commit0 14ceac49ea77da03f65a30c5974968d800a1e325
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:           flatpak-kcm
 Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -15,7 +15,6 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6ItemModels)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6Service)

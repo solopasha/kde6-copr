@@ -1,6 +1,6 @@
-%global commit0 24ec17a81b88bbfca93ce7d24129053cc7d9eeaf
+%global commit0 f91e346f9d8db65b9d4f71c82c2f7e1d9d6db40c
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:           libkscreen
 Summary:        KDE display configuration library

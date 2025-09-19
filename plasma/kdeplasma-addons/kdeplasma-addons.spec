@@ -1,6 +1,6 @@
-%global commit0 d3900e1e55d96bb1222dcc7105a47a705210ed88
+%global commit0 0178f4a25d4bd976cd0aef0e7a7cbaa60b317c47
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:           kdeplasma-addons
 Summary:        Additional Plasmoids for Plasma 6
@@ -43,7 +43,6 @@ BuildRequires:  cmake(Qt6WebEngineQuick)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  cmake(Plasma)
-BuildRequires:  cmake(Plasma5Support)
 BuildRequires:  cmake(PlasmaQuick)
 
 BuildRequires:  libicu-devel
@@ -53,7 +52,8 @@ Recommends:     kf6-purpose%{?_isa}
 
 Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-kitemmodels%{?_isa}
-Requires:       libplasma%{?_isa}
+Requires:       libplasma%{?_isa} >= %{majmin_ver_kf6}
+Requires:       plasma5support%{?_isa} >= %{majmin_ver_kf6}
 Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtquick3d%{?_isa}
 
