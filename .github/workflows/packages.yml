@@ -2172,6 +2172,7 @@ jobs:
       - kf6-kconfig
       - kf6-kcoreaddons
       - kf6-ki18n
+      - kf6-kiconthemes
       - kf6-kitemmodels
       - kf6-kservice
     secrets:
