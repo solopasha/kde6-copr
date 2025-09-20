@@ -2,7 +2,6 @@
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 22
 
-
 Name:    kdepim-addons
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
@@ -11,6 +10,7 @@ Summary: Additional plugins for KDE PIM applications
 License: GPLv2 and LGPLv2+
 URL:     https://invent.kde.org/pim/%{name}
 %apps_source
+Patch:   fix-build.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros

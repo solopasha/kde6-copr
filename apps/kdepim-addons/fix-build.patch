@@ -1,0 +1,13 @@
+diff --git a/plugins/webengineurlinterceptor/adblock/adblockfilterlistsmodel.h b/plugins/webengineurlinterceptor/adblock/adblockfilterlistsmodel.h
+index cb7b822fe..66c7f77a4 100644
+--- a/plugins/webengineurlinterceptor/adblock/adblockfilterlistsmodel.h
++++ b/plugins/webengineurlinterceptor/adblock/adblockfilterlistsmodel.h
+@@ -6,6 +6,8 @@
+ #pragma once
+ 
+ #include "adblockfilter.h"
++#include <KConfigGroup>
++#include <QAbstractTableModel>
+ 
+ class AdblockFilterListsModel : public QAbstractListModel
+ {
