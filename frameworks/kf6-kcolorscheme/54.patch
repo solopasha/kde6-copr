@@ -1,0 +1,42 @@
+From 31270b1ef714e61e18082ba43012845ec5196d26 Mon Sep 17 00:00:00 2001
+From: Nicolas Fella <nicolas.fella@gmx.de>
+Date: Sat, 20 Sep 2025 18:04:59 +0200
+Subject: [PATCH] Don't overload activateScheme slot
+
+Overloading makes connect calls ambiguous
+
+Amends b4e22b77e045e5c82dd6e9bd8976f41e34798ff9
+---
+ src/kcolorschememanager.cpp | 2 +-
+ src/kcolorschememanager.h   | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/kcolorschememanager.cpp b/src/kcolorschememanager.cpp
+index c58a977..98ff150 100644
+--- a/src/kcolorschememanager.cpp
++++ b/src/kcolorschememanager.cpp
+@@ -274,7 +274,7 @@ void KColorSchemeManager::activateScheme(const QModelIndex &index)
+     }
+ }
+ 
+-void KColorSchemeManager::activateScheme(const QString &schemeId)
++void KColorSchemeManager::activateSchemeId(const QString &schemeId)
+ {
+     auto index = d->indexForSchemeId(schemeId);
+     const bool isDefaultEntry = index.data(KColorSchemeModel::IdRole).toString().isEmpty();
+diff --git a/src/kcolorschememanager.h b/src/kcolorschememanager.h
+index fa21d5c..bbbfde4 100644
+--- a/src/kcolorschememanager.h
++++ b/src/kcolorschememanager.h
+@@ -181,7 +181,7 @@ public Q_SLOTS:
+      *
+      * \since 6.19
+      */
+-    void activateScheme(const QString &schemeId);
++    void activateSchemeId(const QString &schemeId);
+ 
+ private:
+     class KCOLORSCHEME_NO_EXPORT GuardApplicationConstructor
+-- 
+GitLab
+
