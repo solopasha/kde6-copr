@@ -1,6 +1,6 @@
-%global commit0 7813886c16a3b397ef8010d7304b4fcd41dda561
+%global commit0 9426dcda52be0b5a3b6cf56e06c7c6842818bad2
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:    juk
 Summary: Music player
@@ -81,7 +81,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/juk/
 %{_kf6_datadir}/kio/servicemenus/jukservicemenu.desktop
 %{_kf6_datadir}/knotifications6/juk.*
-%{_kf6_metainfodir}/org.kde.juk.appdata.xml
+%{_kf6_metainfodir}/org.kde.juk.metainfo.xml
 
 %changelog
 %{?kde_snapshot_changelog_entry}
