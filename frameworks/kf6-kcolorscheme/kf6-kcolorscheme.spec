@@ -1,6 +1,6 @@
-%global commit0 b4e22b77e045e5c82dd6e9bd8976f41e34798ff9
+%global commit0 77e6f930db3a581e2311d279a3cb72293a28cb3e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 %global framework kcolorscheme
 
@@ -11,7 +11,6 @@ Summary:        Classes to read and interact with KColorScheme
 License:        BSD-2-Clause and CC0-1.0 and LGPL-2.0-or-later and LGPL-2.1-only and LGPL-3.0-only and LicenseRef-KDE-Accepted-LGPL
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
-Patch:          https://invent.kde.org/frameworks/kcolorscheme/-/merge_requests/54.patch
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6GuiAddons)
