@@ -1,6 +1,6 @@
-%global commit0 b10ed37c347d0835aad86603186ea7f0a31c9f02
+%global commit0 1aeb099b416d0d68a6c94e38f34e7130878a005f
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:           skanlite
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

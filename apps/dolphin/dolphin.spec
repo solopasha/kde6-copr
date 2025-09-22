@@ -1,6 +1,6 @@
-%global commit0 76a79ba3e8660e9fdfd8e897c69065e79721545e
+%global commit0 f5818306d014fafaf35ef10ee83e286eebea9cd7
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 28
+%global bumpver 29
 
 Name:           dolphin
 Summary:        KDE File Manager
@@ -150,6 +150,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %files libs
 %{_kf6_libdir}/libdolphinprivate.so.*
 %{_kf6_libdir}/libdolphinvcs.so.*
+%{_kf6_plugindir}/kfileitemaction/hidefileitemaction.so
 %{_kf6_plugindir}/kfileitemaction/movetonewfolderitemaction.so
 %{_kf6_plugindir}/kfileitemaction/setfoldericonitemaction.so
 %{_kf6_plugindir}/parts/dolphinpart.so
