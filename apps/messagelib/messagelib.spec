@@ -1,6 +1,6 @@
-%global commit0 c30a99234bf28785d7df3a4d06c1bc57dd85e3ea
+%global commit0 9f37afe79a9eb330160ed3f11f87fffcb1e64728
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 20
+%global bumpver 21
 
 Name:           messagelib
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -10,6 +10,7 @@ Summary:        KDE Message libraries
 License:        BSD-3-Clause AND BSL-1.0 AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
 URL:            https://invent.kde.org/pim/messagelib
 %apps_source
+Patch:          fix-build.patch
 
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  extra-cmake-modules

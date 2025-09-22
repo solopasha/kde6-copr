@@ -1,0 +1,31 @@
+diff --git a/messagecomposer/src/composer-ng/richtextcomposerng.cpp b/messagecomposer/src/composer-ng/richtextcomposerng.cpp
+index 64f29cfc3..b8c1bb79b 100644
+--- a/messagecomposer/src/composer-ng/richtextcomposerng.cpp
++++ b/messagecomposer/src/composer-ng/richtextcomposerng.cpp
+@@ -20,7 +20,7 @@
+ #include <KMessageBox>
+ 
+ #include <QRegularExpression>
+-#if HAVE_TEXTADDONSWIDGET_RICHTEXTQUICKTEXTFORMAT
++#ifdef HAVE_TEXTADDONSWIDGET_RICHTEXTQUICKTEXTFORMAT
+ #include <TextAddonsWidgets/RichTextQuickTextFormat>
+ #endif
+ using namespace MessageComposer;
+@@ -40,7 +40,7 @@ public:
+     TextAutoCorrectionCore::AutoCorrection *autoCorrection = nullptr;
+     RichTextComposerNg *const richtextComposer;
+     MessageComposer::RichTextComposerSignatures *const richTextComposerSignatures;
+-#if HAVE_TEXTADDONSWIDGET_RICHTEXTQUICKTEXTFORMAT
++#ifdef HAVE_TEXTADDONSWIDGET_RICHTEXTQUICKTEXTFORMAT
+     TextAddonsWidgets::RichTextQuickTextFormat *richTextQuickTextFormat = nullptr;
+ #endif
+ };
+@@ -49,7 +49,7 @@ RichTextComposerNg::RichTextComposerNg(QWidget *parent)
+     : KPIMTextEdit::RichTextComposer(parent)
+     , d(new MessageComposer::RichTextComposerNgPrivate(this))
+ {
+-#if HAVE_TEXTADDONSWIDGET_RICHTEXTQUICKTEXTFORMAT
++#ifdef HAVE_TEXTADDONSWIDGET_RICHTEXTQUICKTEXTFORMAT
+     auto quicktextformatmessage = new TextAddonsWidgets::RichTextQuickTextFormat(this, this);
+     TextAddonsWidgets::RichTextQuickTextFormat::QuickTextFormatTypes formatTypes = TextAddonsWidgets::RichTextQuickTextFormat::QuickTextFormatType::Unknown;
+     formatTypes |= TextAddonsWidgets::RichTextQuickTextFormat::QuickTextFormatType::Bold;
