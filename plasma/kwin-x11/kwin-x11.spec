@@ -1,6 +1,6 @@
-%global commit0 8bab170080392743de44b9d4a6ee9519bbf12a4a
+%global commit0 133114d555e0c155cc942c03b07d801f359e6087
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:           kwin-x11
 Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}

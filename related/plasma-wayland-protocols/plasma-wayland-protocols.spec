@@ -1,6 +1,6 @@
-%global commit0 3b201c79e8172a3060d4b31a6d69ce37bb9cde71
+%global commit0 d5e0289c156c8c07156d5d228e817c368525e2e7
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:           plasma-wayland-protocols
 Version:        1.19.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
