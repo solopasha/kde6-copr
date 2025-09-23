@@ -10,7 +10,6 @@ Summary: Additional plugins for KDE PIM applications
 License: GPLv2 and LGPLv2+
 URL:     https://invent.kde.org/pim/%{name}
 %apps_source
-Patch:   fix-build.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
