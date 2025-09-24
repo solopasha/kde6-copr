@@ -1,6 +1,6 @@
-%global commit0 fe2d07b21403d20202514a5e5860698d52610da3
+%global commit0 3f2b85e73fa104798b333296f241f0a4aee3702d
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 6
 
 %bcond x11 1
 
@@ -29,6 +29,8 @@ Source102:      kde-smartcard
 ## in the repective pkgs themselves? -- rdieter)
 Source40:       ssh-agent.conf
 Source41:       spice-vdagent.conf
+
+Patch:          https://invent.kde.org/plasma/plasma-workspace/-/merge_requests/5844.patch
 
 ## downstream Patches
 # default to enable open terminal action
