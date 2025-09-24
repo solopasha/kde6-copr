@@ -144,17 +144,6 @@ jobs:
           else
 
           cat << 'EOF' >> fedora-build.repo
-          [build]
-          name=build
-          baseurl=file:///repo/
-          skip_if_unavailable=True
-          gpgcheck=1
-          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
-          repo_gpgcheck=0
-          enabled=1
-          enabled_metadata=1
-          priority=97
-
           [copr:copr.fedorainfracloud.org:solopasha:plasma-unstable]
           name=Copr repo for plasma-unstable owned by solopasha
           baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/fedora-$releasever-$basearch/
@@ -217,6 +206,19 @@ jobs:
           metadata_expire=0
           best=1
           protected_packages=
+          EOF
+
+          cat << EOF >> fedora-build.repo
+          [build]
+          name=build
+          baseurl=file:///repo/
+          skip_if_unavailable=True
+          gpgcheck=1
+          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
+          repo_gpgcheck=0
+          enabled=1
+          enabled_metadata=1
+          priority=97
           EOF
 
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
