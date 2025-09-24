@@ -4,12 +4,13 @@
 
 Name:           kwin
 Version:        6.4.90
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        KDE Window manager
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:            https://invent.kde.org/plasma/kwin
 %plasma_source
+Patch:          https://invent.kde.org/plasma/kwin/-/merge_requests/8145.patch
 
 BuildRequires:  systemd-rpm-macros
 
@@ -193,6 +194,9 @@ ln -sr %{buildroot}%{_kf6_bindir}/kwin_wayland %{buildroot}%{_bindir}/kwin
 %{_kf6_libdir}/libkwin.so
 
 %changelog
+* Wed Sep 24 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-2
+- Fix https://bugs.kde.org/show_bug.cgi?id=509331
+
 * Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
 - Update to 6.4.90
 
