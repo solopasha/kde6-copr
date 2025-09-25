@@ -1,6 +1,6 @@
-%global commit0 3f2b85e73fa104798b333296f241f0a4aee3702d
+%global commit0 a066ed7d1e3c390cb705e37cbf4053eba9dedafc
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 7
 
 %bcond x11 1
 
@@ -29,8 +29,6 @@ Source102:      kde-smartcard
 ## in the repective pkgs themselves? -- rdieter)
 Source40:       ssh-agent.conf
 Source41:       spice-vdagent.conf
-
-Patch:          https://invent.kde.org/plasma/plasma-workspace/-/merge_requests/5844.patch
 
 ## downstream Patches
 # default to enable open terminal action
@@ -439,6 +437,7 @@ fi
 %{_kf6_datadir}/kconf_update/plasma6.4-migrate-fullscreen-notifications-to-dnd.upd
 %{_kf6_datadir}/kconf_update/plasmashell-6.0-keep-custom-position-of-panels.upd
 %{_kf6_datadir}/kconf_update/plasmashell-6.0-keep-default-floating-setting-for-plasma-5-panels.upd
+%{_kf6_datadir}/kconf_update/plasmashell-6.5-remove-stop-activity-shortcut.upd
 %{_kf6_datadir}/kfontinst/icons/hicolor/*/actions/*font*.png
 %{_kf6_datadir}/kglobalaccel/org.kde.krunner.desktop
 %{_kf6_datadir}/kio_desktop/
@@ -507,6 +506,7 @@ fi
 %{_kf6_libdir}/kconf_update_bin/plasma6.4-migrate-fullscreen-notifications-to-dnd
 %{_kf6_libdir}/kconf_update_bin/plasmashell-6.0-keep-custom-position-of-panels
 %{_kf6_libdir}/kconf_update_bin/plasmashell-6.0-keep-default-floating-setting-for-plasma-5-panels
+%{_kf6_libdir}/kconf_update_bin/plasmashell-6.5-remove-stop-activity-shortcut
 %{_kf6_libdir}/libbatterycontrol.so.*
 %{_kf6_libdir}/libkfontinst*
 %{_kf6_libdir}/libklipper.so.*

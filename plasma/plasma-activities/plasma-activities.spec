@@ -1,6 +1,6 @@
-%global commit0 25fd29196c249fb79f9ae116f7f56252cd825e7d
+%global commit0 690d377810f775b0e4e7512f9516c8a9ba123d4f
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:           plasma-activities
 Summary:        Core components for the KDE's Activities System
@@ -51,7 +51,7 @@ Provides:       kactivities-devel = %{version}-%{release}
 %{_kf6_bindir}/plasma-activities-cli6
 %{_kf6_datadir}/qlogging-categories6/*categories
 %{_kf6_libdir}/libPlasmaActivities.so.%{version_no_git}
-%{_kf6_libdir}/libPlasmaActivities.so.6
+%{_kf6_libdir}/libPlasmaActivities.so.7
 %{_kf6_qmldir}/org/kde/activities/
 
 %files devel
