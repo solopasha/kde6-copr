@@ -50,7 +50,7 @@ BuildRequires: cmake(KF6Sonnet)
 BuildRequires: cmake(KF6TextWidgets)
 BuildRequires: cmake(KF6Codecs)
 BuildRequires: cmake(KF6DocTools)
-BuildRequires: cmake(PlasmaActivities)
+#BuildRequires: cmake(PlasmaActivities)
 # libkonq
 BuildRequires: cmake(Qt6DBus)
 BuildRequires: cmake(Qt6Test)
