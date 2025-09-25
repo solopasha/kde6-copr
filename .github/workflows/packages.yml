@@ -3385,6 +3385,7 @@ jobs:
       - kf6-kiconthemes
       - kf6-kio
       - kf6-kirigami
+      - kf6-kirigami-addons
       - kf6-kitemmodels
       - kf6-knewstuff
       - kf6-knotifications
@@ -3444,6 +3445,7 @@ jobs:
       - kf6-kidletime
       - kf6-kio
       - kf6-kirigami
+      - kf6-kirigami-addons
       - kf6-kitemmodels
       - kf6-knewstuff
       - kf6-knotifications
@@ -3886,6 +3888,7 @@ jobs:
       - kf6-kglobalaccel
       - kf6-ki18n
       - kf6-kio
+      - kf6-kirigami-addons
       - kf6-kitemmodels
       - kf6-knewstuff
       - kf6-kpackage
@@ -4037,6 +4040,7 @@ jobs:
       - kf6-ki18n
       - kf6-kio
       - kf6-kirigami
+      - kf6-kirigami-addons
       - kf6-kjobwidgets
       - kf6-knewstuff
       - kf6-kservice
@@ -4087,6 +4091,7 @@ jobs:
       - kf6-kidletime
       - kf6-kio
       - kf6-kirigami
+      - kf6-kirigami-addons
       - kf6-kitemmodels
       - kf6-knewstuff
       - kf6-knotifications
@@ -4495,6 +4500,40 @@ jobs:
       copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
       spec: ./related/PackageKit-Qt/PackageKit-Qt.spec
+      deps: ${{ toJson(needs) }}
+      additional_packages: kf6-srpm-macros
+      abidiff: ${{ inputs.abidiff }}
+
+  kf6-kirigami-addons:
+    if: >-
+      ${{
+        ! failure() &&
+        ! cancelled() &&
+        (
+          contains(needs.changed-files.outputs.modified_files, '/kf6-kirigami-addons.spec') ||
+          contains(inputs.specfiles, '/kf6-kirigami-addons.spec')
+        )
+      }}
+    uses: ./.github/workflows/reusable-build-rpm.yml
+    needs:
+      - changed-files
+      - extra-cmake-modules
+      - kf6
+      - kf6-kcolorscheme
+      - kf6-kconfig
+      - kf6-kcoreaddons
+      - kf6-kcrash
+      - kf6-kglobalaccel
+      - kf6-kguiaddons
+      - kf6-ki18n
+      - kf6-kiconthemes
+      - kf6-kirigami
+    secrets:
+      gpgkey: ${{ secrets.gpgkey }}
+      copr_webhook: ${{ secrets.copr_webhook }}
+      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
+    with:
+      spec: ./related/kf6-kirigami-addons/kf6-kirigami-addons.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}

@@ -1,34 +1,36 @@
-%global commit0 6bf8782c742bcd3cabda9ad2a50f91fc13e759c8
+%global commit0 aa5b65fa50d7b88a5a828b562cf770b3dcc4db7f
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 7
+%global bumpver 1
 
 %global base_name kirigami-addons
 
 Name:           kf6-kirigami-addons
-Version:        1.9.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
+Version:        1.10.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        BSD-2-Clause AND CC-BY-SA-4.0 AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND LicenseRef-KFQF-Accepted-GPL
 Summary:        Convergent visual components ("widgets") for Kirigami-based applications
 URL:            https://invent.kde.org/libraries/kirigami-addons
 %kde_meta
 
-BuildRequires:  cmake
-BuildRequires:  extra-cmake-modules
-BuildRequires:  gcc-c++
-BuildRequires:  kf6-rpm-macros
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6Kirigami)
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6QuickControls2)
 
-Requires:       kf6-kitemmodels%{?_isa}
 Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-kitemmodels%{?_isa}
+Requires:       kf6-qqc2-desktop-style%{?_isa}
+Requires:       kf6-sonnet%{?_isa}
+Requires:       qt6-qtmultimedia%{?_isa}
 
 Obsoletes:      kf6-kirigami2-addons < 1:0.11.76-5
 Provides:       kf6-kirigami2-addons = 1:%{version}-%{release}
@@ -86,14 +88,18 @@ or Plasma).
 %license LICENSES/
 %{_kf6_libdir}/libKirigamiAddonsStatefulApp.so.%{version_no_git}
 %{_kf6_libdir}/libKirigamiAddonsStatefulApp.so.6
+%{_kf6_libdir}/libKirigamiApp.so.%{version_no_git}
+%{_kf6_libdir}/libKirigamiApp.so.6
 %{_kf6_qmldir}/org/kde/kirigamiaddons/
 
 %files devel
+%{_includedir}/KirigamiAddons/
 %{_includedir}/KirigamiAddonsStatefulApp/
 %{_kf6_datadir}/kdevappwizard/templates/kirigamiaddons6.tar.bz2
 %{_kf6_datadir}/kdevappwizard/templates/librarymanager6.tar.bz2
 %{_kf6_libdir}/cmake/KF6KirigamiAddons/
 %{_kf6_libdir}/libKirigamiAddonsStatefulApp.so
+%{_kf6_libdir}/libKirigamiApp.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}
