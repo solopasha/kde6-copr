@@ -7,7 +7,7 @@
 Name:           plasma-workspace
 Summary:        Plasma workspace, applications and applets
 Version:        6.4.90
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:            https://invent.kde.org/plasma/%{name}
@@ -29,6 +29,8 @@ Source102:      kde-smartcard
 ## in the repective pkgs themselves? -- rdieter)
 Source40:       ssh-agent.conf
 Source41:       spice-vdagent.conf
+
+Patch:          https://invent.kde.org/plasma/plasma-workspace/-/commit/d9e2215bb5c19391c8a978d9fe939a6647b8d7b9.patch
 
 ## downstream Patches
 # default to enable open terminal action
@@ -562,6 +564,9 @@ fi
 %{_kf6_datadir}/plasma/look-and-feel/org.fedoraproject.fedora.desktop/
 
 %changelog
+* Fri Sep 26 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-2
+- Fix crashes
+
 * Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
 - Update to 6.4.90
 
