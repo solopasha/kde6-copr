@@ -31,6 +31,7 @@ BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6Svg)
 
+BuildRequires:  cmake(KF6KirigamiAddons)
 BuildRequires:  cmake(KF6QQC2DesktopStyle)
 BuildRequires:  pkgconfig(libsodium)
 BuildRequires:  pkgconfig(openssl)
