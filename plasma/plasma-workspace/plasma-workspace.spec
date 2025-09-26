@@ -1,6 +1,6 @@
 %global commit0 4f45f672be8c3f18f1b5af02264929e395a4bbfa
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 8
+%global bumpver 9
 
 %bcond x11 1
 
@@ -371,7 +371,9 @@ mkdir -p %{buildroot}%{_userunitdir}/plasma-core.target.d/
 mkdir -p %{buildroot}%{_userunitdir}/plasma-workspace@.target.d/
 
 install -m644 -p -D %{SOURCE40} %{buildroot}%{_userunitdir}/plasma-core.target.d/ssh-agent.conf
+%if ! (0%{?rhel} >= 11 || 0%{?fedora} >= 43)
 install -m644 -p -D %{SOURCE41} %{buildroot}%{_userunitdir}/plasma-core.target.d/spice-vdagent.conf
+%endif
 
 %find_lang all --with-html --all-name
 
@@ -482,7 +484,9 @@ fi
 %{_userunitdir}/*.service
 %{_userunitdir}/plasma-core.target
 %dir %{_userunitdir}/plasma-core.target.d/
+%if ! (0%{?rhel} >= 11 || 0%{?fedora} >= 43)
 %{_userunitdir}/plasma-core.target.d/spice-vdagent.conf
+%endif
 %{_userunitdir}/plasma-core.target.d/ssh-agent.conf
 %{_userunitdir}/plasma-workspace-wayland.target
 %{_userunitdir}/plasma-workspace-x11.target
