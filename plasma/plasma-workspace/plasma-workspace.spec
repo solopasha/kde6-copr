@@ -7,7 +7,7 @@
 Name:           plasma-workspace
 Summary:        Plasma workspace, applications and applets
 Version:        6.4.90
-Release:        2%{?dist}
+Release:        3%{?dist}
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:            https://invent.kde.org/plasma/%{name}
@@ -374,7 +374,9 @@ mkdir -p %{buildroot}%{_userunitdir}/plasma-core.target.d/
 mkdir -p %{buildroot}%{_userunitdir}/plasma-workspace@.target.d/
 
 install -m644 -p -D %{SOURCE40} %{buildroot}%{_userunitdir}/plasma-core.target.d/ssh-agent.conf
+%if ! (0%{?rhel} >= 11 || 0%{?fedora} >= 43)
 install -m644 -p -D %{SOURCE41} %{buildroot}%{_userunitdir}/plasma-core.target.d/spice-vdagent.conf
+%endif
 
 %find_lang all --with-html --all-name
 
@@ -484,7 +486,9 @@ fi
 %{_userunitdir}/*.service
 %{_userunitdir}/plasma-core.target
 %dir %{_userunitdir}/plasma-core.target.d/
+%if ! (0%{?rhel} >= 11 || 0%{?fedora} >= 43)
 %{_userunitdir}/plasma-core.target.d/spice-vdagent.conf
+%endif
 %{_userunitdir}/plasma-core.target.d/ssh-agent.conf
 %{_userunitdir}/plasma-workspace-wayland.target
 %{_userunitdir}/plasma-workspace-x11.target
@@ -564,6 +568,9 @@ fi
 %{_kf6_datadir}/plasma/look-and-feel/org.fedoraproject.fedora.desktop/
 
 %changelog
+* Sat Sep 27 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-3
+- Drop spice-vdagent snippet for F43+
+
 * Fri Sep 26 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-2
 - Fix crashes
 
