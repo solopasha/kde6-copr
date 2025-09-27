@@ -1,7 +1,7 @@
 
 ARG VERSION=42
 
-FROM registry.fedoraproject.org/fedora-minimal:$VERSION
+FROM registry.fedoraproject.org/fedora:$VERSION
 
 COPY <<'EOF' /etc/yum.repos.d/coprs.repo
 [copr:copr.fedorainfracloud.org:solopasha:plasma-unstable]
