@@ -1,8 +1,11 @@
 packages:
-  - intel-media-driver
-  - libavcodec-freeworld
+  - "'gstreamer1-plugins-bad-freeworld >= 1.26.6'"
+  - "'gstreamer1-plugins-ugly >= 1.26.6'"
   - "'libheif-freeworld >= 1.19.8'"
   - "'mesa-va-drivers-freeworld >= 25.1.4'"
+  - ffmpeg
+  - ffmpeg-libs
+  - intel-media-driver
   - pipewire-codec-aptx
   - rpmfusion-free-release
   - rpmfusion-nonfree-release
