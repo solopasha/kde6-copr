@@ -4,7 +4,6 @@ packages:
   - kde-settings-pulseaudio
   - libappindicator-gtk3
   - mesa-dri-drivers
-  - mesa-vulkan-drivers
   - NetworkManager-config-connectivity-fedora
   - phonon-qt6-backend-vlc
   - pinentry-qt
