@@ -59,6 +59,7 @@ BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6QuickTest)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Test)
+BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(QGpgmeQt6)
 
