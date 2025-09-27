@@ -109,7 +109,6 @@ packages:
   - man-pages
   - mdadm
   - mesa-dri-drivers
-  - mesa-vulkan-drivers
   - mpage
   - mt7xxx-firmware
   - mtr
