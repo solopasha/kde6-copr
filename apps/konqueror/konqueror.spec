@@ -1,6 +1,6 @@
-%global commit0 c783b25738711baa9ae79f11115bfaa19b7d4a6e
+%global commit0 7cdfaa103c24ba5aa3ba716c2026e34bd270b47a
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 12
+%global bumpver 13
 
 ## FIXME: many tests require GLX, which doesn't appear to work as-is under koji
 #global tests 1
@@ -50,7 +50,7 @@ BuildRequires: cmake(KF6Sonnet)
 BuildRequires: cmake(KF6TextWidgets)
 BuildRequires: cmake(KF6Codecs)
 BuildRequires: cmake(KF6DocTools)
-#BuildRequires: cmake(PlasmaActivities)
+BuildRequires: cmake(PlasmaActivities)
 # libkonq
 BuildRequires: cmake(Qt6DBus)
 BuildRequires: cmake(Qt6Test)
