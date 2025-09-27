@@ -3,6 +3,7 @@ packages:
   - "'gstreamer1-plugins-ugly >= 1.26.6'"
   - "'libheif-freeworld >= 1.19.8'"
   - "'mesa-va-drivers-freeworld >= 25.1.4'"
+  - "'mesa-vulkan-drivers-freeworld >= 25.1.4'"
   - ffmpeg
   - ffmpeg-libs
   - intel-media-driver
