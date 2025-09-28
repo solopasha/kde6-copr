@@ -1,6 +1,6 @@
-%global commit0 ef57dd171c736b1bc21eb6924a77a3844eb9234e
+%global commit0 ab0a5249d9c07f085e27e9243a92b600dccf923d
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:    kgpg
 Summary: Manage GPG encryption keys
