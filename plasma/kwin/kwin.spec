@@ -1,6 +1,6 @@
-%global commit0 9aa902536ed82fd187bda920cadf4a1410d394b9
+%global commit0 b5a553d6bdfa361b1e2654ef4c48f315d82450a0
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 13
+%global bumpver 14
 
 Name:           kwin
 Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -10,7 +10,7 @@ Summary:        KDE Window manager
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:            https://invent.kde.org/plasma/kwin
 %plasma_source
-Patch:          https://invent.kde.org/plasma/kwin/-/merge_requests/8145.patch
+Patch:          8145.patch
 Patch:          disable-overlays.patch
 
 BuildRequires:  systemd-rpm-macros
