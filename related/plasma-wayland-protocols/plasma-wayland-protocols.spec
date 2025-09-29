@@ -1,6 +1,6 @@
-%global commit0 d5e0289c156c8c07156d5d228e817c368525e2e7
+%global commit0 d67a799a4712716c8fa4dc18d9171233a2c0a99e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:           plasma-wayland-protocols
 Version:        1.19.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
@@ -38,7 +38,7 @@ developing applications that use %{name}.
 %files devel
 %license LICENSES/* COPYING.LIB
 %{_kf6_datadir}/plasma-wayland-protocols/
-%{_kf6_libdir}/cmake/PlasmaWaylandProtocols/
+%{_kf6_datadir}/cmake/PlasmaWaylandProtocols/
 
 %changelog
 %{?kde_snapshot_changelog_entry}
