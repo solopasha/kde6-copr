@@ -1,6 +1,6 @@
 %global commit0 9aa902536ed82fd187bda920cadf4a1410d394b9
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 12
+%global bumpver 13
 
 Name:           kwin
 Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -11,6 +11,7 @@ License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND G
 URL:            https://invent.kde.org/plasma/kwin
 %plasma_source
 Patch:          https://invent.kde.org/plasma/kwin/-/merge_requests/8145.patch
+Patch:          disable-overlays.patch
 
 BuildRequires:  systemd-rpm-macros
 
