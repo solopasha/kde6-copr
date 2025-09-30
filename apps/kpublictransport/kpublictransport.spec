@@ -1,6 +1,6 @@
-%global commit0 72a0206bd7f5e191527698f55309521786053f65
+%global commit0 8d466dd952eb24787ac8e2f616b144f78fb5c4f1
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 30
+%global bumpver 31
 
 Name:           kpublictransport
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -17,6 +17,7 @@ BuildRequires:  zlib-devel
 BuildRequires:  protobuf-devel
 
 BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Location)
 BuildRequires:  cmake(Qt6Quick)
 
 BuildRequires:  cmake(KF6I18n)
