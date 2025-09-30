@@ -1,6 +1,6 @@
-%global commit0 8d97b7d6672ed1746ece4d2689242fd3c13447e1
+%global commit0 c0aab267de2203ab023dc747e58114d01e5a8616
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:           plasma-workspace-wallpapers
 Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -28,6 +28,7 @@ Requires:       kde-filesystem
 %{_kf6_datadir}/wallpapers/Canopee/
 %{_kf6_datadir}/wallpapers/Cascade/
 %{_kf6_datadir}/wallpapers/Cluster/
+%{_kf6_datadir}/wallpapers/Coast/
 %{_kf6_datadir}/wallpapers/ColdRipple/
 %{_kf6_datadir}/wallpapers/ColorfulCups/
 %{_kf6_datadir}/wallpapers/DarkestHour/
