@@ -1,9 +1,9 @@
-%global commit0 96f63bf4e43b06500a121e9602b7f503d740b754
+%global commit0 79312a2ce0efc18777e5b19a111e8bcd9e5e87da
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           oxygen-sounds
-Version:        6.4.90
+Version:        6.4.91
 Release:        1%{?dist}
 Summary:        The Oxygen Sound Theme
 
@@ -27,6 +27,9 @@ Obsoletes:      oxygen-sound-theme <= 5.24.50
 %{_kf6_datadir}/sounds/oxygen/
 
 %changelog
+* Thu Oct 02 2025 Pavel Solovev <daron439@gmail.com> - 6.4.91-1
+- Update to 6.4.91
+
 * Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
 - Update to 6.4.90
 

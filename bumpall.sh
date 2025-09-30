@@ -11,7 +11,7 @@ done
 shift "$((OPTIND-1))"
 
 if [[ "$BETA" == "1" ]]; then
-    export REMOTE_BRANCH="Plasma/6.4"
+    export REMOTE_BRANCH="Plasma/6.5"
 else
     export REMOTE_BRANCH="master"
 fi
@@ -67,4 +67,4 @@ process_spec() {
 }
 export -f process_spec
 
-parallel process_spec :::: <(fd -espec . './plasma' './frameworks' './related/plasma-wayland-protocols' "${exclude_rendered[@]}")
+parallel process_spec :::: <(fd -espec . './plasma' "${exclude_rendered[@]}")

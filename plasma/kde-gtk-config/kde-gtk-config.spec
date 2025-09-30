@@ -1,10 +1,10 @@
-%global commit0 e1a7cb8bfeae624b5a0d821afa41e5e910bc2ad3
+%global commit0 1659540e91742f7e2d8dd5eef1f1003cfc097eaa
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           kde-gtk-config
 Summary:        Configure the appearance of GTK apps in KDE
-Version:        6.4.90
+Version:        6.4.91
 Release:        1%{?dist}
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only)
@@ -57,6 +57,9 @@ appearance of GTK apps in KDE.
 %{_libexecdir}/gtk3_preview
 
 %changelog
+* Thu Oct 02 2025 Pavel Solovev <daron439@gmail.com> - 6.4.91-1
+- Update to 6.4.91
+
 * Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
 - Update to 6.4.90
 

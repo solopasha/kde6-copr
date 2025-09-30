@@ -1,11 +1,11 @@
-%global commit0 7fe11338b506dd3cc9235ba46396a84e26593d78
+%global commit0 7baab168d58ba0874bc703dd1f4a4ed7a6d52f42
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global base_name milou
 
 Name:           plasma-%{base_name}
-Version:        6.4.90
+Version:        6.4.91
 Release:        1%{?dist}
 Summary:        A dedicated KDE search application built on top of Baloo
 
@@ -35,6 +35,9 @@ Requires:       kf6-filesystem
 %{_kf6_qmldir}/org/kde/milou/
 
 %changelog
+* Thu Oct 02 2025 Pavel Solovev <daron439@gmail.com> - 6.4.91-1
+- Update to 6.4.91
+
 * Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
 - Update to 6.4.90
 

@@ -1,4 +1,4 @@
-%global commit0 8c9c9bc00bc20f2a03422ea23c91c376a4bb702a
+%global commit0 0e6737e5fea7dc346b4ea172bac949a9dd27b812
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
@@ -11,7 +11,7 @@
 
 Name:           plasma-discover
 Summary:        KDE and Plasma resources management GUI
-Version:        6.4.90
+Version:        6.4.91
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -280,6 +280,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_qtplugindir}/discover/kns-backend.so
 
 %changelog
+* Thu Oct 02 2025 Pavel Solovev <daron439@gmail.com> - 6.4.91-1
+- Update to 6.4.91
+
 * Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
 - Update to 6.4.90
 

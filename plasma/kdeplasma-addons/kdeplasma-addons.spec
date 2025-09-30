@@ -1,10 +1,10 @@
-%global commit0 8a1db2a18760b4aab8c1224ec90b01870ef67976
+%global commit0 be5c5273db2756df051569a905ee2cd5b7fc681d
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           kdeplasma-addons
 Summary:        Additional Plasmoids for Plasma 6
-Version:        6.4.90
+Version:        6.4.91
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -43,7 +43,6 @@ BuildRequires:  cmake(Qt6WebEngineQuick)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  cmake(Plasma)
-BuildRequires:  cmake(Plasma5Support)
 BuildRequires:  cmake(PlasmaQuick)
 
 BuildRequires:  libicu-devel
@@ -53,7 +52,8 @@ Recommends:     kf6-purpose%{?_isa}
 
 Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-kitemmodels%{?_isa}
-Requires:       libplasma%{?_isa}
+Requires:       libplasma%{?_isa} >= %{majmin_ver_kf6}
+Requires:       plasma5support%{?_isa} >= %{majmin_ver_kf6}
 Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtquick3d%{?_isa}
 
@@ -120,6 +120,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libplasmapotdprovidercore.so
 
 %changelog
+* Thu Oct 02 2025 Pavel Solovev <daron439@gmail.com> - 6.4.91-1
+- Update to 6.4.91
+
 * Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
 - Update to 6.4.90
 

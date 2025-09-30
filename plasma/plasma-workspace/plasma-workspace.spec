@@ -1,4 +1,4 @@
-%global commit0 caf082bef34b164a8fb577f9b63dc1fbf02cc541
+%global commit0 bc5a84102dd55b58dd41bf339ad88ee559cba040
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
@@ -6,8 +6,8 @@
 
 Name:           plasma-workspace
 Summary:        Plasma workspace, applications and applets
-Version:        6.4.90
-Release:        3%{?dist}
+Version:        6.4.91
+Release:        1%{?dist}
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:            https://invent.kde.org/plasma/%{name}
@@ -29,8 +29,6 @@ Source102:      kde-smartcard
 ## in the repective pkgs themselves? -- rdieter)
 Source40:       ssh-agent.conf
 Source41:       spice-vdagent.conf
-
-Patch:          https://invent.kde.org/plasma/plasma-workspace/-/commit/d9e2215bb5c19391c8a978d9fe939a6647b8d7b9.patch
 
 ## downstream Patches
 # default to enable open terminal action
@@ -74,7 +72,6 @@ BuildRequires:  cmake(KF6StatusNotifierItem)
 BuildRequires:  cmake(KF6Svg)
 BuildRequires:  cmake(KF6TextEditor)
 BuildRequires:  cmake(KF6TextWidgets)
-BuildRequires:  cmake(KF6UnitConversion)
 BuildRequires:  cmake(KF6UserFeedback)
 BuildRequires:  cmake(KF6Wallet)
 
@@ -442,6 +439,7 @@ fi
 %{_kf6_datadir}/kconf_update/plasma6.4-migrate-fullscreen-notifications-to-dnd.upd
 %{_kf6_datadir}/kconf_update/plasmashell-6.0-keep-custom-position-of-panels.upd
 %{_kf6_datadir}/kconf_update/plasmashell-6.0-keep-default-floating-setting-for-plasma-5-panels.upd
+%{_kf6_datadir}/kconf_update/plasmashell-6.5-remove-stop-activity-shortcut.upd
 %{_kf6_datadir}/kfontinst/icons/hicolor/*/actions/*font*.png
 %{_kf6_datadir}/kglobalaccel/org.kde.krunner.desktop
 %{_kf6_datadir}/kio_desktop/
@@ -512,6 +510,7 @@ fi
 %{_kf6_libdir}/kconf_update_bin/plasma6.4-migrate-fullscreen-notifications-to-dnd
 %{_kf6_libdir}/kconf_update_bin/plasmashell-6.0-keep-custom-position-of-panels
 %{_kf6_libdir}/kconf_update_bin/plasmashell-6.0-keep-default-floating-setting-for-plasma-5-panels
+%{_kf6_libdir}/kconf_update_bin/plasmashell-6.5-remove-stop-activity-shortcut
 %{_kf6_libdir}/libbatterycontrol.so.*
 %{_kf6_libdir}/libkfontinst*
 %{_kf6_libdir}/libklipper.so.*
@@ -568,6 +567,9 @@ fi
 %{_kf6_datadir}/plasma/look-and-feel/org.fedoraproject.fedora.desktop/
 
 %changelog
+* Thu Oct 02 2025 Pavel Solovev <daron439@gmail.com> - 6.4.91-1
+- Update to 6.4.91
+
 * Sat Sep 27 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-3
 - Drop spice-vdagent snippet for F43+
 

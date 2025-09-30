@@ -1,11 +1,11 @@
-%global commit0 4c7e7485385fedb640dc483a6420aa67b326812c
+%global commit0 fab73345675cb1c4bcaddd2c831767f1dd9f7b1a
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global orig_name org.kde.plasma.nano
 
 Name:           plasma-nano
-Version:        6.4.90
+Version:        6.4.91
 Release:        1%{?dist}
 License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND MIT
 URL:            https://invent.kde.org/plasma/plasma-nano
@@ -51,6 +51,9 @@ Requires:       qt6-qtdeclarative%{?_isa}
 %{_kf6_qmldir}/org/kde/plasma/private/nanoshell/
 
 %changelog
+* Thu Oct 02 2025 Pavel Solovev <daron439@gmail.com> - 6.4.91-1
+- Update to 6.4.91
+
 * Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
 - Update to 6.4.90
 

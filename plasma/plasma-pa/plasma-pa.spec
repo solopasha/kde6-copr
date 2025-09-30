@@ -1,9 +1,9 @@
-%global commit0 38bcdaaaf3293dfb46442c1cd207acab46c91bbe
+%global commit0 86824c58f066c91e29f603f56f819bba55c6f1b1
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           plasma-pa
-Version:        6.4.90
+Version:        6.4.91
 Release:        1%{?dist}
 Summary:        Plasma applet for audio volume management using PulseAudio
 
@@ -60,6 +60,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_pulseaudio.so
 
 %changelog
+* Thu Oct 02 2025 Pavel Solovev <daron439@gmail.com> - 6.4.91-1
+- Update to 6.4.91
+
 * Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
 - Update to 6.4.90
 

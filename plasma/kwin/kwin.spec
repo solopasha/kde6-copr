@@ -1,16 +1,15 @@
-%global commit0 67917b995e27148c71202e268450be1e2a6d3d60
+%global commit0 d2fa5e89c60df69ae71afede40c5175d76f88baa
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           kwin
-Version:        6.4.90
-Release:        3%{?dist}
+Version:        6.4.91
+Release:        1%{?dist}
 Summary:        KDE Window manager
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:            https://invent.kde.org/plasma/kwin
 %plasma_source
-Patch:          https://invent.kde.org/plasma/kwin/-/merge_requests/8145.patch
 Patch:          disable-overlays.patch
 
 BuildRequires:  systemd-rpm-macros
@@ -156,6 +155,7 @@ ln -sr %{buildroot}%{_kf6_bindir}/kwin_wayland %{buildroot}%{_bindir}/kwin
 %{_bindir}/kwin
 %caps(cap_sys_nice=ep) %{_kf6_bindir}/kwin_wayland
 %{_kf6_bindir}/kwin_wayland_wrapper
+%{_kf6_bindir}/kwindowprop
 %{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/config.kcfg/kwin.kcfg
 %{_kf6_datadir}/config.kcfg/kwindecorationsettings.kcfg
@@ -195,6 +195,9 @@ ln -sr %{buildroot}%{_kf6_bindir}/kwin_wayland %{buildroot}%{_bindir}/kwin
 %{_kf6_libdir}/libkwin.so
 
 %changelog
+* Thu Oct 02 2025 Pavel Solovev <daron439@gmail.com> - 6.4.91-1
+- Update to 6.4.91
+
 * Mon Sep 29 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-3
 - Disable overlay plane usage
 
