@@ -1,6 +1,6 @@
-%global commit0 64517fd660dc6ed00559cc34f199b44448c0ef1f
+%global commit0 72a0206bd7f5e191527698f55309521786053f65
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 29
+%global bumpver 30
 
 Name:           kpublictransport
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -25,8 +25,11 @@ BuildRequires:  cmake(KF6NetworkManagerQt)
 BuildRequires:  cmake(KF6KirigamiAddons)
 BuildRequires:  qt6qml(org.kde.kitemmodels)
 
+Requires:       kf6-kcoreaddons%{?_isa}
 Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-kitemmodels%{?_isa}
+Requires:       qt6-qtlocation%{?_isa}
+Requires:       qt6-qtpositioning%{?_isa}
 
 %package        devel
 Summary:        Development files for %{name}
