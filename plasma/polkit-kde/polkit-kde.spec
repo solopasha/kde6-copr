@@ -1,4 +1,4 @@
-%global commit0 d8c208c938e7aa1574e82b4156ddbc504cf9804a
+%global commit0 bb4ccee827dc8af70328c120778c40c20c73dbb4
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
@@ -6,7 +6,7 @@
 
 Name:           polkit-kde
 Summary:        PolicyKit integration for KDE Desktop
-Version:        6.4.90
+Version:        6.4.91
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later AND CC0-1.0
@@ -50,6 +50,9 @@ Provides Policy Kit Authentication Agent that nicely fits to KDE.
 %{_userunitdir}/plasma-polkit-agent.service
 
 %changelog
+* Thu Oct 02 2025 Pavel Solovev <daron439@gmail.com> - 6.4.91-1
+- Update to 6.4.91
+
 * Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
 - Update to 6.4.90
 

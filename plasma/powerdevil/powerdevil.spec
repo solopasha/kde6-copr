@@ -1,9 +1,9 @@
-%global commit0 c3a04e01f6813a375fdc2d1e569d1ee2d43c1786
+%global commit0 e4301ea1f8d9d6569a52d38c17bab69ff8aeb9d5
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           powerdevil
-Version:        6.4.90
+Version:        6.4.91
 Release:        1%{?dist}
 Summary:        Manages the power consumption settings of a Plasma Shell
 
@@ -114,6 +114,9 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevilcore.so
 %{_userunitdir}/plasma-powerdevil.service
 
 %changelog
+* Thu Oct 02 2025 Pavel Solovev <daron439@gmail.com> - 6.4.91-1
+- Update to 6.4.91
+
 * Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
 - Update to 6.4.90
 

@@ -1,9 +1,9 @@
-%global commit0 4df52a3663501db19b3591d85694bb63b50e16da
+%global commit0 294cbbf34ba1393fc9ea894569193531cb1c70db
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           plasma-workspace-wallpapers
-Version:        6.4.90
+Version:        6.4.91
 Release:        1%{?dist}
 Summary:        Additional wallpapers for Plasma workspace
 License:        LGPLv3
@@ -28,6 +28,7 @@ Requires:       kde-filesystem
 %{_kf6_datadir}/wallpapers/Canopee/
 %{_kf6_datadir}/wallpapers/Cascade/
 %{_kf6_datadir}/wallpapers/Cluster/
+%{_kf6_datadir}/wallpapers/Coast/
 %{_kf6_datadir}/wallpapers/ColdRipple/
 %{_kf6_datadir}/wallpapers/ColorfulCups/
 %{_kf6_datadir}/wallpapers/DarkestHour/
@@ -58,6 +59,9 @@ Requires:       kde-filesystem
 %{_kf6_datadir}/wallpapers/Volna/
 
 %changelog
+* Thu Oct 02 2025 Pavel Solovev <daron439@gmail.com> - 6.4.91-1
+- Update to 6.4.91
+
 * Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
 - Update to 6.4.90
 

@@ -2,10 +2,10 @@
 specfile = $(notdir $(spec))
 
 prepare:
-	dnf install --nodocs -y --setopt=install_weak_deps=0 --repo=plasma-unstable \
-				--repofrompath 'plasma-unstable,https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/fedora-42-x86_64/devel/' \
-				--setopt='plasma-unstable.gpgcheck=1' \
-				--setopt='plasma-unstable.gpgkey=https://download.copr.fedorainfracloud.org/results/solopasha/plasma-unstable/pubkey.gpg' \
+	dnf install --nodocs -y --setopt=install_weak_deps=0 --repo=kde6-beta \
+				--repofrompath 'kde6-beta,https://download.copr.fedorainfracloud.org/results/solopasha/kde6-beta/fedora-42-x86_64/devel/' \
+				--setopt='kde6-beta.gpgcheck=1' \
+				--setopt='kde6-beta.gpgkey=https://download.copr.fedorainfracloud.org/results/solopasha/kde6-beta/pubkey.gpg' \
 				kf6-srpm-macros
 
 goprep:

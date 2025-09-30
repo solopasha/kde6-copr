@@ -1,9 +1,9 @@
-%global commit0 545f3b0f6b41c9f949ea3654169e44e4d47ff79b
+%global commit0 8ed581a44588ec7d301c90d602f1bd0e9291b67a
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           plasma-sdk
-Version:        6.4.90
+Version:        6.4.91
 Release:        1%{?dist}
 Summary:        Development tools for Plasma 6
 
@@ -92,6 +92,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.appdata.
 %{_mandir}/man1/plasmoidviewer.1.*
 
 %changelog
+* Thu Oct 02 2025 Pavel Solovev <daron439@gmail.com> - 6.4.91-1
+- Update to 6.4.91
+
 * Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
 - Update to 6.4.90
 

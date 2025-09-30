@@ -1,9 +1,9 @@
-%global commit0 8ef2a1bfca70f2a37576867fc06796a4104b5d59
+%global commit0 abf26af0d735044fbfe302436650ed73117b1fc9
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           kwin-x11
-Version:        6.4.90
+Version:        6.4.91
 Release:        1%{?dist}
 Summary:        An X11 window manager and a compositing manager
 
@@ -163,6 +163,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/lib%{name}.so
 
 %changelog
+* Thu Oct 02 2025 Pavel Solovev <daron439@gmail.com> - 6.4.91-1
+- Update to 6.4.91
+
 * Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
 - Update to 6.4.90
 

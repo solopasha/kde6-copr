@@ -1,11 +1,11 @@
-%global commit0 d0c2447cc730d3aa4acbcf69468b7b8386d242ef
+%global commit0 9f953f2dd4a083726d4b24290f6309e343d1e514
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global base_name oxygen
 
 Name:           plasma-%{base_name}
-Version:        6.4.90
+Version:        6.4.91
 Release:        1%{?dist}
 Summary:        Plasma and Qt widget style and window decorations for Plasma
 
@@ -149,6 +149,9 @@ popd
 %{_datadir}/icons/Oxygen_Zion/
 
 %changelog
+* Thu Oct 02 2025 Pavel Solovev <daron439@gmail.com> - 6.4.91-1
+- Update to 6.4.91
+
 * Thu Sep 18 2025 Pavel Solovev <daron439@gmail.com> - 6.4.90-1
 - Update to 6.4.90
 
