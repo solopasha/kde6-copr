@@ -19,6 +19,7 @@ BuildRequires:  protobuf-devel
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Location)
 BuildRequires:  cmake(Qt6Quick)
+BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6NetworkManagerQt)
