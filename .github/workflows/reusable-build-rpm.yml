@@ -263,13 +263,25 @@ jobs:
       - name: Fetch build deps (PR)
         if: github.event_name == 'pull_request'
         env:
-          DEPS: ${{ inputs.deps }}
           pr_number: ${{ github.event.number }}
         run: |
-          mapfile -t pr_dependencies < <(jq -r 'del(."changed-files") | to_entries | map(select(.value.result == "success")) | .[].key' <<< "$DEPS" | tr '[:upper:]' '[:lower:]')
-          if [[ "${pr_dependencies[*]}" != "" ]]; then
-            parallel --halt now,fail=1 oras pull "ghcr.io/${repository}/{}:pr-${pr_number}" -o pr-repo ::: "${pr_dependencies[@]}"
-            docker run --rm \
+          mkdir pr-repo
+          if [[ "${gear}" == "true" ]]; then
+            workflow_file=".github/workflows/packages-gear.yml"
+          else
+            workflow_file=".github/workflows/packages.yml"
+          fi
+          mapfile -t repo_dependencies < <(bash needs.sh "${pkgname}" "${workflow_file}" | sed '/changed-files/d' | tr '[:upper:]' '[:lower:]')
+          if [[ "${repo_dependencies[*]}" != "" ]]; then
+            download_dep () {
+              if oras manifest fetch "ghcr.io/${repository}/$1:pr-${pr_number}" &> /dev/null; then
+                oras pull "ghcr.io/${repository}/$1:pr-${pr_number}" -o pr-repo
+              fi
+            }
+            export -f download_dep
+            parallel --halt now,fail=1 download_dep ::: "${repo_dependencies[@]}"
+          fi
+          docker run --rm \
               --cap-drop all \
               --network none \
               --entrypoint="" \
@@ -277,7 +289,6 @@ jobs:
               -w /work \
               ghcr.io/solopasha/kde6-copr/buildroot:latest \
               createrepo_c .
-          fi
 
       - name: Get arch
         id: arch
@@ -425,49 +436,49 @@ jobs:
 
       - name: Create buildroot
         run: |
-            buildah from -q --retry 15 --retry-delay 5s --name build \
-              -v "${GITHUB_WORKSPACE}/fedora-build.repo:/etc/yum.repos.d/fedora-build.repo:ro" \
-              -v "${GITHUB_WORKSPACE}/$(dirname "${spec}"):/work:ro" \
-              -v "${GITHUB_WORKSPACE}/dnf.conf:/etc/dnf/dnf.conf:ro" \
-              -v "${GITHUB_WORKSPACE}/repo:/repo:ro" \
-              -v "${GITHUB_WORKSPACE}/pr-repo:/pr-repo:ro" \
-              registry.fedoraproject.org/fedora:${{ vars.RELEASEVER }}
-            buildah run -e "pkgname=${pkgname}" build /usr/bin/bash <<'EOF'
-            set -e
-            useradd -M -u 1001 builduser
-            mkdir /out && chown builduser:builduser /out
-            mkdir /build && chown builduser:builduser /build
-            dnf -y --disablerepo=updates --disablerepo=fedora install kf6-srpm-macros
-            dnf -y install nosync
-            LD_PRELOAD=/usr/lib64/nosync/nosync.so dnf -y install @buildsys-build 'dnf5-command(builddep)' ${{ inputs.additional_packages }}
-            LD_PRELOAD=/usr/lib64/nosync/nosync.so dnf -y builddep --allowerasing --no-allow-downgrade /work/${pkgname}.spec
-            while [[ "$ec" != "0" ]]; do
-              ec=0
-              setpriv --clear-groups --reuid builduser --regid builduser \
-                --no-new-privs --inh-caps=-all --reset-env -- \
-                rpmbuild -bd ${extra_args} /work/${pkgname}.spec \
-                  --define "_topdir /build" \
-                  --define "_srcrpmdir /out" \
-                  --define "_sourcedir /work" || ec=$?
-              counter=$((counter+1))
-              if [[ "${counter}" -ge "1" ]]; then
-                extra_args="--noprep"
-              fi
-              if [[ "$ec" == "0" ]]; then
-                break
-              elif [[ "$ec" == "11" ]]; then
-                LD_PRELOAD=/usr/lib64/nosync/nosync.so dnf -y builddep --allowerasing --no-allow-downgrade /out/${pkgname}*.buildreqs.nosrc.rpm
-              else
-                exit 1
-              fi
-            done
-            dnf clean all
-            rm -rf /out/* /build/*
-            EOF
-            buildah config --user builduser build
-            buildah commit build docker-daemon:buildcontainer:latest
-            buildah rm build
-            buildah prune --all --force
+          buildah from -q --retry 15 --retry-delay 5s --name build \
+            -v "${GITHUB_WORKSPACE}/fedora-build.repo:/etc/yum.repos.d/fedora-build.repo:ro" \
+            -v "${GITHUB_WORKSPACE}/$(dirname "${spec}"):/work:ro" \
+            -v "${GITHUB_WORKSPACE}/dnf.conf:/etc/dnf/dnf.conf:ro" \
+            -v "${GITHUB_WORKSPACE}/repo:/repo:ro" \
+            -v "${GITHUB_WORKSPACE}/pr-repo:/pr-repo:ro" \
+            registry.fedoraproject.org/fedora:${{ vars.RELEASEVER }}
+          buildah run -e "pkgname=${pkgname}" build /usr/bin/bash <<'EOF'
+          set -e
+          useradd -M -u 1001 builduser
+          mkdir /out && chown builduser:builduser /out
+          mkdir /build && chown builduser:builduser /build
+          dnf -y --disablerepo=updates --disablerepo=fedora install kf6-srpm-macros
+          dnf -y install nosync
+          LD_PRELOAD=/usr/lib64/nosync/nosync.so dnf -y install @buildsys-build 'dnf5-command(builddep)' ${{ inputs.additional_packages }}
+          LD_PRELOAD=/usr/lib64/nosync/nosync.so dnf -y builddep --allowerasing --no-allow-downgrade /work/${pkgname}.spec
+          while [[ "$ec" != "0" ]]; do
+            ec=0
+            setpriv --clear-groups --reuid builduser --regid builduser \
+              --no-new-privs --inh-caps=-all --reset-env -- \
+              rpmbuild -bd ${extra_args} /work/${pkgname}.spec \
+                --define "_topdir /build" \
+                --define "_srcrpmdir /out" \
+                --define "_sourcedir /work" || ec=$?
+            counter=$((counter+1))
+            if [[ "${counter}" -ge "1" ]]; then
+              extra_args="--noprep"
+            fi
+            if [[ "$ec" == "0" ]]; then
+              break
+            elif [[ "$ec" == "11" ]]; then
+              LD_PRELOAD=/usr/lib64/nosync/nosync.so dnf -y builddep --allowerasing --no-allow-downgrade /out/${pkgname}*.buildreqs.nosrc.rpm
+            else
+              exit 1
+            fi
+          done
+          dnf clean all
+          rm -rf /out/* /build/*
+          EOF
+          buildah config --user builduser build
+          buildah commit build docker-daemon:buildcontainer:latest
+          buildah rm build
+          buildah prune --all --force
 
       - name: Build
         env:
@@ -537,9 +548,6 @@ jobs:
           mkdir -p old new
 
           oras pull "ghcr.io/${repository}/${pkgname}:latest-${target_branch}" -o old_pkgs
-          if ! compgen -G "./old_pkgs/${pkgname}-resultdir/*debuginfo*.rpm" > /dev/null; then
-            oras pull "ghcr.io/${repository}/${pkgname}:debuginfo-${target_branch}" -o old_pkgs
-          fi
           docker run --rm \
             --cap-drop all \
             --network none \
