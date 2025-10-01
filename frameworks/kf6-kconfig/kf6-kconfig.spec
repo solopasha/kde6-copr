@@ -6,11 +6,12 @@
 
 Name:           kf6-%{framework}
 Version:        6.18.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with advanced configuration system
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND MIT
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
+Patch:          https://invent.kde.org/frameworks/kconfig/-/commit/7a34db5ab0666addabd038269366407645b04647.patch
 
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
@@ -57,6 +58,9 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6ConfigQml.so
 
 %changelog
+* Wed Oct 01 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-2
+- Pick upstream commit
+
 * Mon Sep 15 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-1
 - Update to 6.18.0
 
