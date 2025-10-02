@@ -1,6 +1,6 @@
-%global commit0 4f7e2c2651ea008d8683eeed0073a3a9d4a9d538
+%global commit0 f99cafb1fc70d6fa24a488ac2e7caf26213d0178
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 7
 
 Name:           kdeplasma-addons
 Summary:        Additional Plasmoids for Plasma 6
@@ -97,8 +97,8 @@ developing applications that use %{name}.
 %{_kf6_datadir}/qlogging-categories6/kdeplasma-addons.categories
 %{_kf6_datadir}/qlogging-categories6/kdeplasma-addons.renamecategories
 %{_kf6_libdir}/libplasmapotdprovidercore.so.2{,.*}
-%{_kf6_libdir}/libweatherdata.so
-%{_kf6_libdir}/libweatherion.so
+%{_kf6_libdir}/libplasmaweatherdata.so.6{,.*}
+%{_kf6_libdir}/libplasmaweatherion.so.6{,.*}
 %{_kf6_libdir}/qt6/qml/org/kde/plasmacalendar/astronomicaleventsconfig/*
 %{_kf6_libexecdir}/kauth/kameleonhelper
 %{_kf6_qmldir}/org/kde/plasma/*
@@ -118,6 +118,8 @@ developing applications that use %{name}.
 %{_kf6_datadir}/kdevappwizard/templates/plasmapotdprovider.tar.bz2
 %{_kf6_libdir}/cmake/PlasmaPotdProvider/
 %{_kf6_libdir}/libplasmapotdprovidercore.so
+%{_kf6_libdir}/libplasmaweatherdata.so
+%{_kf6_libdir}/libplasmaweatherion.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}
