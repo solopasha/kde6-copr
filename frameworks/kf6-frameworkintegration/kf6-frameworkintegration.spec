@@ -6,7 +6,7 @@
 
 Name:           kf6-%{framework}
 Version:        6.18.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        KDE Frameworks 6 Tier 4 workspace and cross-framework integration plugins
 License:        CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
 URL:            https://invent.kde.org/frameworks/%{framework}
@@ -68,6 +68,9 @@ The %{name}-devel package contains files to develop for %{name}.
 %{_kf6_libdir}/libKF6Style.so
 
 %changelog
+* Thu Oct 02 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-2
+- rebuilt
+
 * Mon Sep 15 2025 Pavel Solovev <daron439@gmail.com> - 6.18.0-1
 - Update to 6.18.0
 
