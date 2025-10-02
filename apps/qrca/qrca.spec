@@ -1,6 +1,6 @@
-%global commit0 85abebe53c6c6c3a285daeb69592913c4b809e7d
+%global commit0 9f277400fb9e3cb0125cad2e3f6123428cf40a1e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 Name:           qrca
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -36,6 +36,8 @@ BuildRequires:  cmake(KF6NetworkManagerQt)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Prison)
 BuildRequires:  cmake(KF6Service)
+
+BuildRequires:  cmake(KF6KirigamiAddons)
 
 Requires:       qt6qml(org.kde.config)
 Requires:       qt6qml(org.kde.kirigami)
