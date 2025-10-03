@@ -547,7 +547,7 @@ jobs:
           pushd abi_check
           mkdir -p old new
 
-          oras pull "ghcr.io/${repository}/${pkgname}:latest-${target_branch}" -o old_pkgs
+          oras pull "ghcr.io/${repository}/${pkgname,,}:latest-${target_branch}" -o old_pkgs
           docker run --rm \
             --cap-drop all \
             --network none \
