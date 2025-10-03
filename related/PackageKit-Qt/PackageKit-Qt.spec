@@ -1,15 +1,11 @@
-%global commit0 42902ed51e02e78f13a002c5e81c240601b7445a
-%global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
-
 Summary:   Qt support library for PackageKit
 Name:      PackageKit-Qt
-Version:   1.1.4%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:   1.1.4
 Release:   1%{?dist}
 
 License:   LGPL-2.1-only
 URL:       https://github.com/PackageKit/PackageKit-Qt
-Source:    %{url}/archive/%{commit0}/%{name}-%{shortcommit0}.tar.gz
+Source:    %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires: cmake
 BuildRequires: cmake(Qt6DBus)
@@ -37,7 +33,7 @@ Requires: PackageKit-Qt6%{?_isa} = %{version}-%{release}
 
 
 %prep
-%autosetup -n %{name}-%{commit0} -p1
+%autosetup -p1
 
 
 %build
@@ -52,16 +48,20 @@ Requires: PackageKit-Qt6%{?_isa} = %{version}-%{release}
 %files -n PackageKit-Qt6
 %doc AUTHORS NEWS
 %license COPYING
-%{_libdir}/libpackagekitqt.so.1{,.*}
+%{_libdir}/libpackagekitqt6.so.2
+%{_libdir}/libpackagekitqt6.so.%{version}
 
 %files -n PackageKit-Qt6-devel
-%{_libdir}/libpackagekitqt.so
+%{_libdir}/libpackagekitqt6.so
 %{_libdir}/pkgconfig/packagekitqt6.pc
 %{_includedir}/PackageKitQt/
 %{_libdir}/cmake/packagekitqt6/
 
 
 %changelog
+* Fri Oct 03 2025 Pavel Solovev <daron439@gmail.com> - 1.1.4-1
+- new version
+
 * Sun Sep 14 2025 Pavel Solovev <daron439@gmail.com> - 1.1.4~1.git42902ed-1
 - Bump to a prerelease snapshot to fix discover
 
