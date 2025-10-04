@@ -44,6 +44,7 @@ BuildRequires:  cmake(KF6StatusNotifierItem)
 BuildRequires:  cmake(KF6Svg)
 
 BuildRequires:  wayland-protocols-devel
+BuildRequires:  wayland-devel
 
 BuildRequires:  cmake(Plasma)
 
