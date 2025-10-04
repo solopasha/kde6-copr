@@ -1,6 +1,6 @@
-%global commit0 5d36086e31ce5b42b1a5a753bedd8f209a7885b2
+%global commit0 066171446d4c655f039c04ec0b0f8b91dba84782
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 14
+%global bumpver 15
 
 %global framework karchive
 
