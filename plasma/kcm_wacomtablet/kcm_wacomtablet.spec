@@ -1,6 +1,6 @@
 %global commit0 98cfc6a863bc210a6d3a1e989a4122a51483ce87
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global base_name wacomtablet
 
