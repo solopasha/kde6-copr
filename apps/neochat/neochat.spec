@@ -13,6 +13,7 @@ License: GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later
 URL: https://invent.kde.org/network/%{name}
 Summary: Client for matrix, the decentralized communication protocol
 %apps_source
+Patch: fix-build.diff
 
 Source10: https://github.com/quotient-im/libQuotient/archive/%{libquotient_commit}/libQuotient-%{libquotient_shortcommit}.tar.gz
 

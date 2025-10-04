@@ -1,0 +1,13 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index df12769ba..028fc4e17 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -56,7 +56,7 @@ ecm_setup_version(${PROJECT_VERSION}
+     VERSION_HEADER ${CMAKE_CURRENT_BINARY_DIR}/neochat-version.h
+ )
+ 
+-find_package(Qt6 ${QT_MIN_VERSION} NO_MODULE COMPONENTS Core Quick Gui QuickControls2 Multimedia Svg TextToSpeech WebView)
++find_package(Qt6 ${QT_MIN_VERSION} NO_MODULE COMPONENTS Core Quick Gui QuickControls2 Multimedia Svg TextToSpeech WebView CorePrivate)
+ set_package_properties(Qt6 PROPERTIES
+     TYPE REQUIRED
+     PURPOSE "Basic application components"
