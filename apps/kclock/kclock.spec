@@ -29,6 +29,7 @@ BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
