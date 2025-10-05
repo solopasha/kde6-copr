@@ -1,6 +1,6 @@
-%global commit0 d703aa4d068f7babaab5c7004c54d8a6385abfa3
+%global commit0 9b904be1601e6576adf2f506eb957770b6937576
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 7
 
 Name:          kjournald
 Version:       25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
