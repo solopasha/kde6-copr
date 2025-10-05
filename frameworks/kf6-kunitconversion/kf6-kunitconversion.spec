@@ -1,11 +1,11 @@
-%global commit0 59141ae88c0a0bdab41d4ff6c9091b725df48ce9
+%global commit0 95d4e0ab26f0eeb0b345234bceca8bcff54d2b90
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework kunitconversion
 
 Name:           kf6-%{framework}
-Version:        6.19.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.20.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Converting physical units
 
