@@ -1,6 +1,6 @@
-%global commit0 b0d606638f9b0d60ba8ae98bcf5eca59d0b535a5
+%global commit0 c6e28c727498ef7872f471b0f0a183b3da71727b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 Name:    kolourpaint
 Summary: An easy-to-use paint program
