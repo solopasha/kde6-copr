@@ -1,6 +1,6 @@
-%global commit0 23e9448d48d63d6bf0692e07ac8a46c7b5174146
+%global commit0 f2b915629f4f64d9c5ca258a374c0679c23df307
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 25
+%global bumpver 24
 
 Name:           koko
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
