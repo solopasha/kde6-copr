@@ -1,6 +1,6 @@
-%global commit0 ba6aef35dd18b8adbd8b1704fea66b598b188fca
+%global commit0 846c03fdee66060058004aefbbdf3def37712cee
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:           yakuake
 Version:        25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

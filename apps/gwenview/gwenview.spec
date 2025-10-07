@@ -1,6 +1,6 @@
-%global commit0 f44e68be0db7ebffc4142e3d66c80a1a7c69b74b
+%global commit0 60c860a761a4bd325d39722bb167139ef76d713e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 11
+%global bumpver 12
 
 Name:    gwenview
 Summary: An image viewer

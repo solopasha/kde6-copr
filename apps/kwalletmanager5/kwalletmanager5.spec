@@ -1,6 +1,6 @@
-%global commit0 66feaeaed0136e7377431de7211f8be6bbaf0dbc
+%global commit0 b797965ad0970c96b8f1044b04ca8cc05dc50bfd
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 %global base_name kwalletmanager
 
