@@ -49,9 +49,6 @@ conditional-include:
   - if: exclude_perl == true
     include:
       - exclude-perl.yaml
-  - if: releasever == 43
-    include:
-      - updates-testing.yaml
   - if: releasever == 42
     include:
       - updates-archive.yaml
