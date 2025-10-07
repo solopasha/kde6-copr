@@ -38,6 +38,7 @@ BuildRequires: cmake(Qt6Keychain)
 BuildRequires: cmake(Qt6Network)
 BuildRequires: cmake(Qt6Test)
 BuildRequires: cmake(Qt6Widgets)
+BuildRequires: qt6-qtbase-private-devel
 
 %if 0%{?tests}
 BuildRequires: dbus-x11

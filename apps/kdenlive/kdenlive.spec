@@ -57,6 +57,7 @@ BuildRequires: cmake(Qt6Svg)
 BuildRequires: cmake(Qt6UiPlugin)
 BuildRequires: cmake(Qt6NetworkAuth)
 
+BuildRequires: cmake(OpenTimelineIO)
 BuildRequires: librttr-devel
 BuildRequires: pkgconfig(libavcodec)
 BuildRequires: pkgconfig(libavformat)
