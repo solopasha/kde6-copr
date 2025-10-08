@@ -1,6 +1,6 @@
-%global commit0 3bb442767912f213456b7c2975a05253d967337e
+%global commit0 2bb27ce156c1602051e0d81c201a258630965284
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 17
+%global bumpver 18
 
 Name:    kio-extras
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
