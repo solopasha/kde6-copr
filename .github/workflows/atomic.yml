@@ -129,7 +129,7 @@ jobs:
           for pkg in "${pkgs[@]}"; do
             if [[ "${pkg}" =~ rpmfusion ]]; then
               curl_extra=(-u rpmfusion:rpmfusion)
-            if
+            fi
             curl "${curl_extra[@]}" --connect-timeout 10 --retry 7 --retry-connrefused -Ss -LO "${pkg}"
           done
           createrepo_c .
