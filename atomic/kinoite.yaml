@@ -6,3 +6,4 @@ repos:
   - coprdep:copr.fedorainfracloud.org:solopasha:plasma-unstable
   - fedora
   - updates
+  - custom-repo

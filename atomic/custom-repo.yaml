@@ -1,0 +1,16 @@
+rawhide:
+  packages:
+    - https://koji.rpmfusion.org/kojifiles/packages/ffmpeg/7.1.2/7.fc44/x86_64/ffmpeg-7.1.2-7.fc44.x86_64.rpm
+    - https://koji.rpmfusion.org/kojifiles/packages/ffmpeg/7.1.2/7.fc44/x86_64/ffmpeg-libs-7.1.2-7.fc44.x86_64.rpm
+    - https://koji.rpmfusion.org/kojifiles/packages/ffmpeg/7.1.2/7.fc44/x86_64/libavcodec-freeworld-7.1.2-7.fc44.x86_64.rpm
+    - https://koji.rpmfusion.org/kojifiles/packages/ffmpeg/7.1.2/7.fc44/x86_64/libavdevice-7.1.2-7.fc44.x86_64.rpm
+    - https://koji.rpmfusion.org/kojifiles/packages/libheif-freeworld/1.20.2/2.fc44/x86_64/libheif-freeworld-1.20.2-2.fc44.x86_64.rpm
+    - https://koji.rpmfusion.org/kojifiles/packages/gstreamer1-plugins-bad-freeworld/1.26.6/2.fc44/x86_64/gstreamer1-plugins-bad-freeworld-1.26.6-2.fc44.x86_64.rpm
+43:
+  packages:
+    - https://koji.rpmfusion.org/kojifiles/packages/ffmpeg/7.1.2/7.fc43/x86_64/ffmpeg-7.1.2-7.fc43.x86_64.rpm
+    - https://koji.rpmfusion.org/kojifiles/packages/ffmpeg/7.1.2/7.fc43/x86_64/ffmpeg-libs-7.1.2-7.fc43.x86_64.rpm
+    - https://koji.rpmfusion.org/kojifiles/packages/ffmpeg/7.1.2/7.fc43/x86_64/libavcodec-freeworld-7.1.2-7.fc43.x86_64.rpm
+    - https://koji.rpmfusion.org/kojifiles/packages/ffmpeg/7.1.2/7.fc43/x86_64/libavdevice-7.1.2-7.fc43.x86_64.rpm
+    - https://koji.rpmfusion.org/kojifiles/packages/libheif-freeworld/1.20.2/2.fc43/x86_64/libheif-freeworld-1.20.2-2.fc43.x86_64.rpm
+    - https://koji.rpmfusion.org/kojifiles/packages/gstreamer1-plugins-bad-freeworld/1.26.6/2.fc43/x86_64/gstreamer1-plugins-bad-freeworld-1.26.6-2.fc43.x86_64.rpm

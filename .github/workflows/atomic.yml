@@ -38,6 +38,7 @@ jobs:
           dnf -y up && dnf -y install \
             bsdtar \
             buildah \
+            createrepo_c \
             dbus-daemon \
             distribution-gpg-keys \
             file \
@@ -49,6 +50,7 @@ jobs:
             selinux-policy-targeted \
             skopeo \
             tar \
+            yq \
             zstd
           cat << EOF > /etc/containers/registries.d/sigstore.yaml
           docker:
@@ -116,6 +118,18 @@ jobs:
       #     path: atomic/buildcache.tar.zst
       #     key: build-${{ steps.get-buildid.outputs.buildid }}
       #     restore-keys: build-
+
+      - name: Create custom repo
+        run: |
+          pushd atomic > /dev/null || exit 1
+          mkdir -p custom-repo
+          sed -i "s|@@PATH@@|$(realpath custom-repo)|" custom-repo.repo
+          mapfile -t pkgs < <(yq -r '.${{ matrix.version }}.packages[]' custom-repo.yaml)
+          pushd custom-repo > /dev/null
+          for pkg in "${pkgs[@]}"; do
+            curl --connect-timeout 10 --retry 7 --retry-connrefused -Ss -LO "${pkg}"
+          done
+          createrepo_c .
 
       - name: Build
         run: |

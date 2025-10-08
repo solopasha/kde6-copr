@@ -1,0 +1,5 @@
+[custom-repo]
+name=kmod-nvidia
+baseurl=@@PATH@@
+enabled=1
+gpgcheck=0
