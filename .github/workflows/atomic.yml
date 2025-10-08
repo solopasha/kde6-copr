@@ -127,7 +127,7 @@ jobs:
           mapfile -t pkgs < <(yq -r '.${{ matrix.version }}.packages[]' custom-repo.yaml)
           pushd custom-repo > /dev/null
           for pkg in "${pkgs[@]}"; do
-            curl --connect-timeout 10 --retry 7 --retry-connrefused -Ss -LO "${pkg}"
+            curl -u rpmfusion:rpmfusion --connect-timeout 10 --retry 7 --retry-connrefused -Ss -LO "${pkg}"
           done
           createrepo_c .
 
