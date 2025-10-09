@@ -1,5 +1,5 @@
 Name:           ktextaddons
-Version:        1.7.1
+Version:        1.8.0
 Release:        1%{?dist}
 Summary:        Various text handling addons
 
@@ -42,13 +42,11 @@ BuildRequires:  cmake(Qt6Keychain)
 %package        qt6
 Summary:        Qt6 libraries for %{name}
 Requires:       %{name}-common = %{version}-%{release}
-Obsoletes:      ktextaddons-qt5 < 1.5.4-5
 %description    qt6
 %{summary}.
 
 %package        qt6-devel
 Summary:        Development files for %{name}
-Obsoletes:      ktextaddons-qt5-devel < 1.5.4-5
 %description    qt6-devel
 %{summary}.
 
@@ -147,6 +145,9 @@ BuildArch:      noarch
 %doc README.md
 
 %changelog
+* Thu Oct 09 2025 Pavel Solovev <daron439@gmail.com> - 1.8.0-1
+- new version
+
 * Thu Aug 07 2025 Pavel Solovev <daron439@gmail.com> - 1.7.1-1
 - new version
 
