@@ -24,6 +24,7 @@ BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Multimedia)
+BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  pkgconfig(libavcodec)
 
