@@ -1,6 +1,6 @@
-%global commit0 fc3badc7eca33ce038139370aa8edb41356bf2e8
+%global commit0 e44dad4888841a1d1cdeab55ea346f6567403641
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 16
+%global bumpver 17
 
 #global tests 1
 
@@ -38,7 +38,6 @@ BuildRequires: cmake(Qt6Keychain)
 BuildRequires: cmake(Qt6Network)
 BuildRequires: cmake(Qt6Test)
 BuildRequires: cmake(Qt6Widgets)
-BuildRequires: qt6-qtbase-private-devel
 
 %if 0%{?tests}
 BuildRequires: dbus-x11
