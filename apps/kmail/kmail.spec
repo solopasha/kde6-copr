@@ -1,6 +1,6 @@
-%global commit0 dea4e0940f0060af03a09e4dec01b9e8e8b79739
+%global commit0 49d5b769b15db90c0a91126db9b0250d51455b0e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 29
+%global bumpver 30
 
 #global tests 1
 
@@ -76,6 +76,8 @@ BuildRequires: cmake(KPim6TemplateParser)
 BuildRequires: cmake(KPim6TextEdit)
 BuildRequires: cmake(KPim6Tnef)
 BuildRequires: cmake(KPim6WebEngineViewer)
+
+BuildRequires: cmake(KF6TextAddonsWidgets)
 
 BuildRequires: cmake(Qt6Core5Compat)
 

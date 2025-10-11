@@ -1,6 +1,6 @@
-%global commit0 74de68a8dde52a444b2e4ae42436220c17775b78
+%global commit0 a23b78031186951a05393e1973371344d588babb
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 25
+%global bumpver 26
 
 #global tests 1
 
@@ -51,6 +51,8 @@ BuildRequires: cmake(KPim6MailTransport)
 BuildRequires: cmake(KPim6Mime)
 BuildRequires: cmake(KPim6PimCommonActivities)
 BuildRequires: cmake(KPim6PimCommonAkonadi)
+
+BuildRequires: cmake(KF6TextAddonsWidgets)
 
 BuildRequires: cmake(Qt6DBus)
 BuildRequires: cmake(Qt6Gui)
