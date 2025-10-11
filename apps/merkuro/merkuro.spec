@@ -10,6 +10,7 @@ Summary:        A calendar application using Akonadi to sync with external servi
 License:        GPL-3.0-or-later
 URL:            https://invent.kde.org/pim/%{name}
 %apps_source
+Patch:          revert-6ef48c73.diff
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
