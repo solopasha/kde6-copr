@@ -19,7 +19,6 @@ fi
 exclude_packages=(
     kf6.spec
     kf6-kirigami.spec
-    kf6-solid.spec
 )
 
 IFS=" " read -r -a exclude_rendered <<< "$(printf -- "--exclude=%s " "${exclude_packages[@]}")"
