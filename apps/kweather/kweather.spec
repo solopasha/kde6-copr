@@ -87,7 +87,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
 %files plasma-applet
-%{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.%{name}_1x4/
 %{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.%{name}_1x4.so
 
 %changelog
