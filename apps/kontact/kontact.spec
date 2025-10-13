@@ -1,6 +1,6 @@
-%global commit0 3e4804a497bcf5edece97d16552259ae1ab75fe9
+%global commit0 7cb6939ae1627452a10bfbe8e05570ad566e0028
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 9
+%global bumpver 10
 
 #global tests 1
 
@@ -26,6 +26,7 @@ BuildRequires: cmake(KF6GuiAddons)
 BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6KCMUtils)
+BuildRequires: cmake(KF6TextAddonsWidgets)
 BuildRequires: cmake(KPim6GrantleeTheme)
 BuildRequires: cmake(KPim6KontactInterface)
 BuildRequires: cmake(KPim6Libkdepim)

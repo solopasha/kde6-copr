@@ -1,6 +1,6 @@
-%global commit0 31d98273a094a5fd3bf1d7db247456ba54a66034
+%global commit0 b3010c80140cc5e779c5b9c5cf41f5a1135094f7
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 13
+%global bumpver 14
 
 #global tests 1
 
@@ -32,7 +32,9 @@ BuildRequires: cmake(KF6ItemViews)
 BuildRequires: cmake(KF6KIO)
 BuildRequires: cmake(KF6Notifications)
 BuildRequires: cmake(KF6StatusNotifierItem)
+BuildRequires: cmake(KF6TextAddonsWidgets)
 BuildRequires: cmake(KF6TextCustomEditor)
+BuildRequires: cmake(KF6UserFeedback)
 BuildRequires: cmake(KF6WidgetsAddons)
 BuildRequires: cmake(KF6WidgetsAddons)
 BuildRequires: cmake(KF6XmlGui)
@@ -42,7 +44,6 @@ BuildRequires: cmake(KPim6MailCommon)
 BuildRequires: cmake(KPim6MailTransport)
 BuildRequires: cmake(KPim6Mime)
 BuildRequires: cmake(KPim6PimCommonAkonadi)
-BuildRequires: cmake(KF6UserFeedback)
 BuildRequires: cmake(Qt6Test)
 BuildRequires: cmake(Qt6Widgets)
 
