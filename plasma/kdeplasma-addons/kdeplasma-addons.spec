@@ -97,8 +97,8 @@ developing applications that use %{name}.
 %{_kf6_datadir}/qlogging-categories6/kdeplasma-addons.categories
 %{_kf6_datadir}/qlogging-categories6/kdeplasma-addons.renamecategories
 %{_kf6_libdir}/libplasmapotdprovidercore.so.2{,.*}
-%{_kf6_libdir}/libweatherdata.so
-%{_kf6_libdir}/libweatherion.so
+%{_kf6_libdir}/libplasmaweatherdata.so.6{,.*}
+%{_kf6_libdir}/libplasmaweatherion.so.6{,.*}
 %{_kf6_libdir}/qt6/qml/org/kde/plasmacalendar/astronomicaleventsconfig/*
 %{_kf6_libexecdir}/kauth/kameleonhelper
 %{_kf6_qmldir}/org/kde/plasma/*
@@ -118,6 +118,8 @@ developing applications that use %{name}.
 %{_kf6_datadir}/kdevappwizard/templates/plasmapotdprovider.tar.bz2
 %{_kf6_libdir}/cmake/PlasmaPotdProvider/
 %{_kf6_libdir}/libplasmapotdprovidercore.so
+%{_kf6_libdir}/libplasmaweatherdata.so
+%{_kf6_libdir}/libplasmaweatherion.so
 
 %changelog
 * Thu Oct 16 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.1
