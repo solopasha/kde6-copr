@@ -1,10 +1,10 @@
-%global commit0 7a746346b006bc0a499762bd49e2703b8be7ec82
+%global commit0 1333a34921055898f08733a25903354ec7fd84e8
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           layer-shell-qt
-Version:        6.4.91
-Release:        1%{?dist}
+Version:        6.5.0
+Release:        0.1%{?dist}
 Summary:        Library to easily use clients based on wlr-layer-shell
 
 License:        BSD-3-Clause AND CC0-1.0 AND LGPL-3.0-or-later AND MIT
@@ -46,6 +46,9 @@ Requires:       cmake(Qt6Gui)
 %{_kf6_libdir}/libLayerShellQtInterface.so
 
 %changelog
+* Thu Oct 16 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.1
+- Update to 6.5.0
+
 * Thu Oct 02 2025 Pavel Solovev <daron439@gmail.com> - 6.4.91-1
 - Update to 6.4.91
 

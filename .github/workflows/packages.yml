@@ -49,2011 +49,6 @@ jobs:
           files: |
             **/*.spec
 
-  extra-cmake-modules:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/extra-cmake-modules.spec') ||
-          contains(inputs.specfiles, '/extra-cmake-modules.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/extra-cmake-modules/extra-cmake-modules.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6.spec') ||
-          contains(inputs.specfiles, '/kf6.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6/kf6.spec
-      deps: ${{ toJson(needs) }}
-      debuginfo: false
-      abidiff: false
-
-  kf6-attica:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-attica.spec') ||
-          contains(inputs.specfiles, '/kf6-attica.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-attica/kf6-attica.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-baloo:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-baloo.spec') ||
-          contains(inputs.specfiles, '/kf6-baloo.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-kfilemetadata
-      - kf6-ki18n
-      - kf6-kidletime
-      - kf6-kio
-      - kf6-solid
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-baloo/kf6-baloo.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-bluez-qt:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-bluez-qt.spec') ||
-          contains(inputs.specfiles, '/kf6-bluez-qt.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-bluez-qt/kf6-bluez-qt.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-breeze-icons:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-breeze-icons.spec') ||
-          contains(inputs.specfiles, '/kf6-breeze-icons.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-breeze-icons/kf6-breeze-icons.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-frameworkintegration:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-frameworkintegration.spec') ||
-          contains(inputs.specfiles, '/kf6-frameworkintegration.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcolorscheme
-      - kf6-kconfig
-      - kf6-ki18n
-      - kf6-kiconthemes
-      - kf6-knewstuff
-      - kf6-knotifications
-      - kf6-kpackage
-      - kf6-kwidgetsaddons
-      - PackageKit-Qt
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-frameworkintegration/kf6-frameworkintegration.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-karchive:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-karchive.spec') ||
-          contains(inputs.specfiles, '/kf6-karchive.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-karchive/kf6-karchive.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kauth:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kauth.spec') ||
-          contains(inputs.specfiles, '/kf6-kauth.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcoreaddons
-      - kf6-kwindowsystem
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kauth/kf6-kauth.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kbookmarks:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kbookmarks.spec') ||
-          contains(inputs.specfiles, '/kf6-kbookmarks.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kwidgetsaddons
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kbookmarks/kf6-kbookmarks.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kcalendarcore:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kcalendarcore.spec') ||
-          contains(inputs.specfiles, '/kf6-kcalendarcore.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kcalendarcore/kf6-kcalendarcore.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kcmutils:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kcmutils.spec') ||
-          contains(inputs.specfiles, '/kf6-kcmutils.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfigwidgets
-      - kf6-kcoreaddons
-      - kf6-kguiaddons
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-kitemviews
-      - kf6-kwidgetsaddons
-      - kf6-kxmlgui
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kcmutils/kf6-kcmutils.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kcodecs:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kcodecs.spec') ||
-          contains(inputs.specfiles, '/kf6-kcodecs.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kcodecs/kf6-kcodecs.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kcolorscheme:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kcolorscheme.spec') ||
-          contains(inputs.specfiles, '/kf6-kcolorscheme.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kguiaddons
-      - kf6-ki18n
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kcolorscheme/kf6-kcolorscheme.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kcompletion:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kcompletion.spec') ||
-          contains(inputs.specfiles, '/kf6-kcompletion.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcodecs
-      - kf6-kconfig
-      - kf6-kwidgetsaddons
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kcompletion/kf6-kcompletion.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kconfig:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kconfig.spec') ||
-          contains(inputs.specfiles, '/kf6-kconfig.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kconfig/kf6-kconfig.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kconfigwidgets:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kconfigwidgets.spec') ||
-          contains(inputs.specfiles, '/kf6-kconfigwidgets.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcodecs
-      - kf6-kcolorscheme
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kguiaddons
-      - kf6-ki18n
-      - kf6-kwidgetsaddons
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kconfigwidgets/kf6-kconfigwidgets.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kcontacts:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kcontacts.spec') ||
-          contains(inputs.specfiles, '/kf6-kcontacts.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcodecs
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-ki18n
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kcontacts/kf6-kcontacts.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kcoreaddons:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kcoreaddons.spec') ||
-          contains(inputs.specfiles, '/kf6-kcoreaddons.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kcoreaddons/kf6-kcoreaddons.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kcrash:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kcrash.spec') ||
-          contains(inputs.specfiles, '/kf6-kcrash.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcoreaddons
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kcrash/kf6-kcrash.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kdav:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kdav.spec') ||
-          contains(inputs.specfiles, '/kf6-kdav.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcoreaddons
-      - kf6-ki18n
-      - kf6-kio
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kdav/kf6-kdav.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kdbusaddons:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kdbusaddons.spec') ||
-          contains(inputs.specfiles, '/kf6-kdbusaddons.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kdbusaddons/kf6-kdbusaddons.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kdeclarative:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kdeclarative.spec') ||
-          contains(inputs.specfiles, '/kf6-kdeclarative.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kglobalaccel
-      - kf6-kguiaddons
-      - kf6-ki18n
-      - kf6-kwidgetsaddons
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kdeclarative/kf6-kdeclarative.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kded:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kded.spec') ||
-          contains(inputs.specfiles, '/kf6-kded.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-kdoctools
-      - kf6-kservice
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kded/kf6-kded.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kdesu:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kdesu.spec') ||
-          contains(inputs.specfiles, '/kf6-kdesu.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-ki18n
-      - kf6-kpty
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kdesu/kf6-kdesu.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kdnssd:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kdnssd.spec') ||
-          contains(inputs.specfiles, '/kf6-kdnssd.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kdnssd/kf6-kdnssd.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kdoctools:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kdoctools.spec') ||
-          contains(inputs.specfiles, '/kf6-kdoctools.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-karchive
-      - kf6-ki18n
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kdoctools/kf6-kdoctools.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kfilemetadata:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kfilemetadata.spec') ||
-          contains(inputs.specfiles, '/kf6-kfilemetadata.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-karchive
-      - kf6-kcodecs
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-ki18n
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kfilemetadata/kf6-kfilemetadata.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kglobalaccel:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kglobalaccel.spec') ||
-          contains(inputs.specfiles, '/kf6-kglobalaccel.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kglobalaccel/kf6-kglobalaccel.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kguiaddons:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kguiaddons.spec') ||
-          contains(inputs.specfiles, '/kf6-kguiaddons.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - plasma-wayland-protocols
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kguiaddons/kf6-kguiaddons.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kholidays:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kholidays.spec') ||
-          contains(inputs.specfiles, '/kf6-kholidays.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kholidays/kf6-kholidays.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-ki18n:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-ki18n.spec') ||
-          contains(inputs.specfiles, '/kf6-ki18n.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-ki18n/kf6-ki18n.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kiconthemes:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kiconthemes.spec') ||
-          contains(inputs.specfiles, '/kf6-kiconthemes.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-breeze-icons
-      - kf6-karchive
-      - kf6-kcolorscheme
-      - kf6-ki18n
-      - kf6-kwidgetsaddons
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kiconthemes/kf6-kiconthemes.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kidletime:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kidletime.spec') ||
-          contains(inputs.specfiles, '/kf6-kidletime.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - plasma-wayland-protocols
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kidletime/kf6-kidletime.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kimageformats:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kimageformats.spec') ||
-          contains(inputs.specfiles, '/kf6-kimageformats.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-karchive
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kimageformats/kf6-kimageformats.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kio:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kio.spec') ||
-          contains(inputs.specfiles, '/kf6-kio.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-karchive
-      - kf6-kbookmarks
-      - kf6-kcolorscheme
-      - kf6-kcompletion
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-kded
-      - kf6-kdoctools
-      - kf6-kguiaddons
-      - kf6-ki18n
-      - kf6-kiconthemes
-      - kf6-kitemviews
-      - kf6-kjobwidgets
-      - kf6-kservice
-      - kf6-kwallet
-      - kf6-kwidgetsaddons
-      - kf6-kwindowsystem
-      - kf6-solid
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kio/kf6-kio.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kirigami:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kirigami.spec') ||
-          contains(inputs.specfiles, '/kf6-kirigami.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kirigami/kf6-kirigami.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kitemmodels:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kitemmodels.spec') ||
-          contains(inputs.specfiles, '/kf6-kitemmodels.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kitemmodels/kf6-kitemmodels.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kitemviews:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kitemviews.spec') ||
-          contains(inputs.specfiles, '/kf6-kitemviews.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kitemviews/kf6-kitemviews.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kjobwidgets:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kjobwidgets.spec') ||
-          contains(inputs.specfiles, '/kf6-kjobwidgets.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcoreaddons
-      - kf6-knotifications
-      - kf6-kwidgetsaddons
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kjobwidgets/kf6-kjobwidgets.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-knewstuff:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-knewstuff.spec') ||
-          contains(inputs.specfiles, '/kf6-knewstuff.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-attica
-      - kf6-karchive
-      - kf6-kcompletion
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-ki18n
-      - kf6-kiconthemes
-      - kf6-kirigami
-      - kf6-kitemviews
-      - kf6-kpackage
-      - kf6-kwidgetsaddons
-      - kf6-syndication
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-knewstuff/kf6-knewstuff.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-knotifications:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-knotifications.spec') ||
-          contains(inputs.specfiles, '/kf6-knotifications.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-knotifications/kf6-knotifications.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-knotifyconfig:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-knotifyconfig.spec') ||
-          contains(inputs.specfiles, '/kf6-knotifyconfig.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcompletion
-      - kf6-kconfig
-      - kf6-ki18n
-      - kf6-kio
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-knotifyconfig/kf6-knotifyconfig.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kpackage:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kpackage.spec') ||
-          contains(inputs.specfiles, '/kf6-kpackage.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-karchive
-      - kf6-kcoreaddons
-      - kf6-kdoctools
-      - kf6-ki18n
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kpackage/kf6-kpackage.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kparts:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kparts.spec') ||
-          contains(inputs.specfiles, '/kf6-kparts.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-kjobwidgets
-      - kf6-kservice
-      - kf6-kwidgetsaddons
-      - kf6-kxmlgui
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kparts/kf6-kparts.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kpeople:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kpeople.spec') ||
-          contains(inputs.specfiles, '/kf6-kpeople.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcontacts
-      - kf6-kcoreaddons
-      - kf6-ki18n
-      - kf6-kitemviews
-      - kf6-kwidgetsaddons
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kpeople/kf6-kpeople.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kplotting:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kplotting.spec') ||
-          contains(inputs.specfiles, '/kf6-kplotting.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kplotting/kf6-kplotting.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kpty:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kpty.spec') ||
-          contains(inputs.specfiles, '/kf6-kpty.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcoreaddons
-      - kf6-ki18n
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kpty/kf6-kpty.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kquickcharts:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kquickcharts.spec') ||
-          contains(inputs.specfiles, '/kf6-kquickcharts.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kquickcharts/kf6-kquickcharts.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-krunner:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-krunner.spec') ||
-          contains(inputs.specfiles, '/kf6-krunner.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-ki18n
-      - kf6-kitemmodels
-      - kf6-kwindowsystem
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-krunner/kf6-krunner.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kservice:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kservice.spec') ||
-          contains(inputs.specfiles, '/kf6-kservice.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kdoctools
-      - kf6-ki18n
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kservice/kf6-kservice.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kstatusnotifieritem:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kstatusnotifieritem.spec') ||
-          contains(inputs.specfiles, '/kf6-kstatusnotifieritem.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kwindowsystem
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kstatusnotifieritem/kf6-kstatusnotifieritem.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-ksvg:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-ksvg.spec') ||
-          contains(inputs.specfiles, '/kf6-ksvg.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-karchive
-      - kf6-kcolorscheme
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kguiaddons
-      - kf6-kirigami
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-ksvg/kf6-ksvg.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-ktexteditor:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-ktexteditor.spec') ||
-          contains(inputs.specfiles, '/kf6-ktexteditor.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-karchive
-      - kf6-kauth
-      - kf6-kcolorscheme
-      - kf6-kconfig
-      - kf6-kguiaddons
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-kparts
-      - kf6-sonnet
-      - kf6-syntax-highlighting
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-ktexteditor/kf6-ktexteditor.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-ktexttemplate:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-ktexttemplate.spec') ||
-          contains(inputs.specfiles, '/kf6-ktexttemplate.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-ktexttemplate/kf6-ktexttemplate.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-ktextwidgets:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-ktextwidgets.spec') ||
-          contains(inputs.specfiles, '/kf6-ktextwidgets.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcompletion
-      - kf6-kconfig
-      - kf6-ki18n
-      - kf6-kwidgetsaddons
-      - kf6-sonnet
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-ktextwidgets/kf6-ktextwidgets.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kunitconversion:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kunitconversion.spec') ||
-          contains(inputs.specfiles, '/kf6-kunitconversion.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-ki18n
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kunitconversion/kf6-kunitconversion.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kuserfeedback:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kuserfeedback.spec') ||
-          contains(inputs.specfiles, '/kf6-kuserfeedback.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kuserfeedback/kf6-kuserfeedback.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kwallet:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kwallet.spec') ||
-          contains(inputs.specfiles, '/kf6-kwallet.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcolorscheme
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-kdoctools
-      - kf6-ki18n
-      - kf6-knotifications
-      - kf6-kwidgetsaddons
-      - kf6-kwindowsystem
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kwallet/kf6-kwallet.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kwidgetsaddons:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kwidgetsaddons.spec') ||
-          contains(inputs.specfiles, '/kf6-kwidgetsaddons.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kwidgetsaddons/kf6-kwidgetsaddons.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kwindowsystem:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kwindowsystem.spec') ||
-          contains(inputs.specfiles, '/kf6-kwindowsystem.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - plasma-wayland-protocols
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kwindowsystem/kf6-kwindowsystem.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-kxmlgui:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-kxmlgui.spec') ||
-          contains(inputs.specfiles, '/kf6-kxmlgui.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcolorscheme
-      - kf6-kconfig
-      - kf6-kconfigwidgets
-      - kf6-kcoreaddons
-      - kf6-kglobalaccel
-      - kf6-kguiaddons
-      - kf6-ki18n
-      - kf6-kiconthemes
-      - kf6-kitemviews
-      - kf6-kwidgetsaddons
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-kxmlgui/kf6-kxmlgui.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-modemmanager-qt:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-modemmanager-qt.spec') ||
-          contains(inputs.specfiles, '/kf6-modemmanager-qt.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-modemmanager-qt/kf6-modemmanager-qt.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-networkmanager-qt:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-networkmanager-qt.spec') ||
-          contains(inputs.specfiles, '/kf6-networkmanager-qt.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-networkmanager-qt/kf6-networkmanager-qt.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-prison:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-prison.spec') ||
-          contains(inputs.specfiles, '/kf6-prison.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-prison/kf6-prison.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-purpose:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-purpose.spec') ||
-          contains(inputs.specfiles, '/kf6-purpose.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kdeclarative
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-kirigami
-      - kf6-knotifications
-      - kf6-prison
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-purpose/kf6-purpose.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-qqc2-desktop-style:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-qqc2-desktop-style.spec') ||
-          contains(inputs.specfiles, '/kf6-qqc2-desktop-style.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcolorscheme
-      - kf6-kconfig
-      - kf6-kiconthemes
-      - kf6-kirigami
-      - kf6-sonnet
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-qqc2-desktop-style/kf6-qqc2-desktop-style.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-solid:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-solid.spec') ||
-          contains(inputs.specfiles, '/kf6-solid.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-solid/kf6-solid.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-sonnet:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-sonnet.spec') ||
-          contains(inputs.specfiles, '/kf6-sonnet.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-sonnet/kf6-sonnet.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-syndication:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-syndication.spec') ||
-          contains(inputs.specfiles, '/kf6-syndication.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcodecs
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-syndication/kf6-syndication.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-syntax-highlighting:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-syntax-highlighting.spec') ||
-          contains(inputs.specfiles, '/kf6-syntax-highlighting.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-syntax-highlighting/kf6-syntax-highlighting.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  kf6-threadweaver:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/kf6-threadweaver.spec') ||
-          contains(inputs.specfiles, '/kf6-threadweaver.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./frameworks/kf6-threadweaver/kf6-threadweaver.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
   aurorae:
     if: >-
       ${{
@@ -2067,16 +62,7 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
       - kdecoration
-      - kf6
-      - kf6-kcmutils
-      - kf6-kcolorscheme
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-ki18n
-      - kf6-knewstuff
-      - kf6-kpackage
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -2100,22 +86,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-bluez-qt
-      - kf6-kcmutils
-      - kf6-kcoreaddons
-      - kf6-kdbusaddons
-      - kf6-kdoctools
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-kirigami
-      - kf6-kjobwidgets
-      - kf6-knotifications
-      - kf6-kservice
-      - kf6-ksvg
-      - kf6-kwidgetsaddons
-      - kf6-kwindowsystem
       - libplasma
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
@@ -2140,8 +110,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
       - plasma-breeze
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
@@ -2166,14 +134,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcmutils
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-ki18n
-      - kf6-kitemmodels
-      - kf6-kservice
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -2197,8 +157,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -2223,17 +181,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-kglobalaccel
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-kwindowsystem
-      - kf6-kxmlgui
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -2257,20 +204,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcmutils
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kdbusaddons
-      - kf6-kdoctools
-      - kf6-kglobalaccel
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-knotifications
-      - kf6-kwidgetsaddons
-      - kf6-kwindowsystem
-      - kf6-kxmlgui
       - libplasma
       - plasma5support
     secrets:
@@ -2296,20 +229,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcmutils
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kdesu
-      - kf6-kdoctools
-      - kf6-ki18n
-      - kf6-kiconthemes
-      - kf6-kio
-      - kf6-kparts
-      - kf6-kservice
-      - kf6-kwidgetsaddons
-      - kf6-kwindowsystem
       - plasma-workspace
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
@@ -2334,15 +253,7 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
       - kdecoration
-      - kf6
-      - kf6-kcolorscheme
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kdbusaddons
-      - kf6-kguiaddons
-      - kf6-kwindowsystem
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -2366,9 +277,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-ki18n
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -2392,29 +300,7 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kauth
-      - kf6-kcmutils
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kdbusaddons
-      - kf6-kdeclarative
-      - kf6-kglobalaccel
-      - kf6-kholidays
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-kjobwidgets
-      - kf6-knewstuff
-      - kf6-knotifications
-      - kf6-krunner
-      - kf6-kservice
-      - kf6-ksvg
-      - kf6-kunitconversion
-      - kf6-kxmlgui
-      - kf6-sonnet
       - libplasma
-      - plasma5support
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -2438,13 +324,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcmutils
-      - kf6-kconfig
-      - kf6-kconfigwidgets
-      - kf6-kdoctools
-      - kf6-ki18n
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -2468,17 +347,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-kglobalaccel
-      - kf6-kio
-      - kf6-kjobwidgets
-      - kf6-kservice
-      - kf6-kwindowsystem
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -2502,18 +370,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kauth
-      - kf6-kcmutils
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kdoctools
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-kirigami
-      - kf6-kservice
-      - kf6-solid
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -2537,19 +393,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-kdoctools
-      - kf6-kglobalaccel
-      - kf6-ki18n
-      - kf6-kiconthemes
-      - kf6-kio
-      - kf6-kitemviews
-      - kf6-kwindowsystem
-      - kf6-kxmlgui
-      - kf6-sonnet
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -2573,13 +416,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kdbusaddons
-      - kf6-kholidays
-      - kf6-ki18n
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -2603,10 +439,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcoreaddons
-      - kf6-ki18n
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -2630,16 +462,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcmutils
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-kguiaddons
-      - kf6-ki18n
-      - kf6-kstatusnotifieritem
       - kpipewire
       - plasma-wayland-protocols
     secrets:
@@ -2665,16 +487,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcmutils
-      - kf6-kconfig
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-ki18n
-      - kf6-ksvg
-      - kf6-kwindowsystem
-      - kf6-kxmlgui
       - layer-shell-qt
       - libkscreen
       - libplasma
@@ -2701,19 +513,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcmutils
-      - kf6-kcrash
-      - kf6-kglobalaccel
-      - kf6-ki18n
-      - kf6-kidletime
-      - kf6-kio
-      - kf6-knotifications
-      - kf6-ksvg
-      - kf6-kwindowsystem
-      - kf6-kxmlgui
-      - kf6-solid
       - layer-shell-qt
       - libkscreen
       - libplasma
@@ -2740,13 +539,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcoreaddons
-      - kf6-kdoctools
-      - kf6-ki18n
-      - kf6-kwallet
-      - kf6-kwidgetsaddons
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -2770,13 +562,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcoreaddons
-      - kf6-kcrash
-      - kf6-kio
-      - kf6-networkmanager-qt
-      - kf6-solid
       - libksysguard
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
@@ -2801,8 +586,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
       - plasma-wayland-protocols
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
@@ -2827,8 +610,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
       - plasma-wayland-protocols
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
@@ -2853,32 +634,7 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
       - kdecoration
-      - kf6
-      - kf6-kauth
-      - kf6-kcmutils
-      - kf6-kcolorscheme
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-kdeclarative
-      - kf6-kdoctools
-      - kf6-kglobalaccel
-      - kf6-kguiaddons
-      - kf6-kholidays
-      - kf6-ki18n
-      - kf6-kidletime
-      - kf6-kirigami
-      - kf6-knewstuff
-      - kf6-knotifications
-      - kf6-kpackage
-      - kf6-kservice
-      - kf6-ksvg
-      - kf6-kwidgetsaddons
-      - kf6-kwindowsystem
-      - kf6-kxmlgui
       - kglobalacceld
       - knighttime
       - kscreenlocker
@@ -2909,32 +665,7 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
       - kdecoration
-      - kf6
-      - kf6-kauth
-      - kf6-kcmutils
-      - kf6-kcolorscheme
-      - kf6-kconfig
-      - kf6-kconfigwidgets
-      - kf6-kcoreaddons
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-kdeclarative
-      - kf6-kdoctools
-      - kf6-kglobalaccel
-      - kf6-kguiaddons
-      - kf6-ki18n
-      - kf6-kidletime
-      - kf6-kirigami
-      - kf6-knewstuff
-      - kf6-knotifications
-      - kf6-kpackage
-      - kf6-kservice
-      - kf6-ksvg
-      - kf6-kwidgetsaddons
-      - kf6-kwindowsystem
-      - kf6-kxmlgui
       - kglobalacceld
       - knighttime
       - kscreenlocker
@@ -2965,13 +696,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcoreaddons
-      - kf6-kdbusaddons
-      - kf6-ki18n
-      - kf6-knotifications
-      - kf6-kpty
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -2995,8 +719,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -3020,9 +742,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
       - plasma-wayland-protocols
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
@@ -3047,16 +766,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kauth
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-ki18n
-      - kf6-knewstuff
-      - kf6-kpackage
-      - kf6-kservice
-      - kf6-solid
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -3080,22 +789,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-karchive
-      - kf6-kcolorscheme
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kglobalaccel
-      - kf6-kguiaddons
-      - kf6-ki18n
-      - kf6-kiconthemes
-      - kf6-kio
-      - kf6-kirigami
-      - kf6-knotifications
-      - kf6-kpackage
-      - kf6-ksvg
-      - kf6-kwindowsystem
       - plasma-activities
       - plasma-wayland-protocols
     secrets:
@@ -3121,8 +814,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -3146,8 +837,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -3171,9 +860,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kwallet
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -3197,10 +883,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kcoreaddons
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -3224,9 +906,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
       - plasma-activities
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
@@ -3234,47 +913,6 @@ jobs:
       copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
     with:
       spec: ./plasma/plasma-activities-stats/plasma-activities-stats.spec
-      deps: ${{ toJson(needs) }}
-      additional_packages: kf6-srpm-macros
-      abidiff: ${{ inputs.abidiff }}
-
-  plasma-bigscreen:
-    if: >-
-      ${{
-        ! failure() &&
-        ! cancelled() &&
-        (
-          contains(needs.changed-files.outputs.modified_files, '/plasma-bigscreen.spec') ||
-          contains(inputs.specfiles, '/plasma-bigscreen.spec')
-        )
-      }}
-    uses: ./.github/workflows/reusable-build-rpm.yml
-    needs:
-      - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-bluez-qt
-      - kf6-kcmutils
-      - kf6-kdbusaddons
-      - kf6-kglobalaccel
-      - kf6-ki18n
-      - kf6-kiconthemes
-      - kf6-kio
-      - kf6-kirigami
-      - kf6-knotifications
-      - kf6-ksvg
-      - kf6-kwindowsystem
-      - libkscreen
-      - libplasma
-      - plasma-activities
-      - plasma-activities-stats
-      - plasma-workspace
-    secrets:
-      gpgkey: ${{ secrets.gpgkey }}
-      copr_webhook: ${{ secrets.copr_webhook }}
-      copr_webhook_beta: ${{ secrets.copr_webhook_beta }}
-    with:
-      spec: ./plasma/plasma-bigscreen/plasma-bigscreen.spec
       deps: ${{ toJson(needs) }}
       additional_packages: kf6-srpm-macros
       abidiff: ${{ inputs.abidiff }}
@@ -3292,18 +930,7 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
       - kdecoration
-      - kf6
-      - kf6-frameworkintegration
-      - kf6-kcmutils
-      - kf6-kcolorscheme
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kguiaddons
-      - kf6-ki18n
-      - kf6-kirigami
-      - kf6-kwindowsystem
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -3327,21 +954,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-kfilemetadata
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-kjobwidgets
-      - kf6-knotifications
-      - kf6-krunner
-      - kf6-kservice
-      - kf6-kstatusnotifieritem
-      - kf6-purpose
       - plasma-activities
       - plasma-workspace
     secrets:
@@ -3367,36 +979,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-attica
-      - kf6-baloo
-      - kf6-kauth
-      - kf6-kcmutils
-      - kf6-kcodecs
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-kded
-      - kf6-kdoctools
-      - kf6-kglobalaccel
-      - kf6-kguiaddons
-      - kf6-ki18n
-      - kf6-kiconthemes
-      - kf6-kio
-      - kf6-kirigami
-      - kf6-kitemmodels
-      - kf6-knewstuff
-      - kf6-knotifications
-      - kf6-knotifyconfig
-      - kf6-kpackage
-      - kf6-krunner
-      - kf6-ksvg
-      - kf6-kwidgetsaddons
-      - kf6-kxmlgui
-      - kf6-qqc2-desktop-style
-      - kf6-sonnet
       - kpipewire
       - kscreenlocker
       - kwin
@@ -3430,28 +1012,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-attica
-      - kf6-karchive
-      - kf6-kauth
-      - kf6-kcmutils
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-ki18n
-      - kf6-kiconthemes
-      - kf6-kidletime
-      - kf6-kio
-      - kf6-kirigami
-      - kf6-kitemmodels
-      - kf6-knewstuff
-      - kf6-knotifications
-      - kf6-kstatusnotifieritem
-      - kf6-kuserfeedback
-      - kf6-kxmlgui
-      - kf6-purpose
       - PackageKit-Qt
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
@@ -3476,17 +1036,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kauth
-      - kf6-kcmutils
-      - kf6-kcoreaddons
-      - kf6-kdbusaddons
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-knotifications
-      - kf6-kservice
-      - kf6-solid
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -3510,22 +1059,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kcrash
-      - kf6-ki18n
-      - kf6-kidletime
-      - kf6-kio
-      - kf6-kjobwidgets
-      - kf6-knotifications
-      - kf6-kservice
-      - kf6-kstatusnotifieritem
-      - kf6-kwallet
-      - kf6-kwidgetsaddons
-      - kf6-kwindowsystem
-      - kf6-syntax-highlighting
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -3549,13 +1082,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kauth
-      - kf6-kcmutils
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-ki18n
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -3579,19 +1105,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kconfigwidgets
-      - kf6-kguiaddons
-      - kf6-ki18n
-      - kf6-kiconthemes
-      - kf6-kio
-      - kf6-knotifications
-      - kf6-kstatusnotifieritem
-      - kf6-kwidgetsaddons
-      - kf6-kwindowsystem
-      - kf6-kxmlgui
       - kwayland
       - plasma-breeze
       - plasma-wayland-protocols
@@ -3618,12 +1131,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-ki18n
-      - kf6-krunner
-      - kf6-ksvg
       - libplasma
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
@@ -3648,16 +1155,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcoreaddons
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-kitemmodels
-      - kf6-knotifications
-      - kf6-kpackage
-      - kf6-kservice
-      - kf6-kwindowsystem
       - kwayland
       - kwin
       - libplasma
@@ -3684,25 +1181,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcmutils
-      - kf6-kcompletion
-      - kf6-kconfigwidgets
-      - kf6-kdbusaddons
-      - kf6-kdeclarative
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-kirigami
-      - kf6-knotifications
-      - kf6-kservice
-      - kf6-ksvg
-      - kf6-kwallet
-      - kf6-kwidgetsaddons
-      - kf6-modemmanager-qt
-      - kf6-networkmanager-qt
-      - kf6-prison
-      - kf6-solid
       - libplasma
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
@@ -3727,19 +1205,7 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
       - kdecoration
-      - kf6
-      - kf6-frameworkintegration
-      - kf6-kcmutils
-      - kf6-kcolorscheme
-      - kf6-kcompletion
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kguiaddons
-      - kf6-ki18n
-      - kf6-kservice
-      - kf6-kwindowsystem
       - libplasma
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
@@ -3764,18 +1230,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcmutils
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kdbusaddons
-      - kf6-kdeclarative
-      - kf6-kdoctools
-      - kf6-kglobalaccel
-      - kf6-ki18n
-      - kf6-kstatusnotifieritem
-      - kf6-ksvg
       - libplasma
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
@@ -3800,19 +1254,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcmutils
-      - kf6-kconfig
-      - kf6-kconfigwidgets
-      - kf6-kcoreaddons
-      - kf6-kdbusaddons
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-kirigami
-      - kf6-knotifications
-      - kf6-kwidgetsaddons
-      - kf6-kwindowsystem
       - libplasma
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
@@ -3837,23 +1278,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-karchive
-      - kf6-kcompletion
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-kdoctools
-      - kf6-ki18n
-      - kf6-kiconthemes
-      - kf6-kio
-      - kf6-kirigami
-      - kf6-kitemmodels
-      - kf6-ksvg
-      - kf6-ktexteditor
-      - kf6-kwidgetsaddons
       - libplasma
       - plasma5support
     secrets:
@@ -3879,19 +1303,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-kglobalaccel
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-kitemmodels
-      - kf6-knewstuff
-      - kf6-kpackage
-      - kf6-kservice
-      - kf6-kwindowsystem
       - libksysguard
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
@@ -3916,28 +1327,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kauth
-      - kf6-kcmutils
-      - kf6-kcolorscheme
-      - kf6-kconfig
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-kdoctools
-      - kf6-kguiaddons
-      - kf6-ki18n
-      - kf6-kiconthemes
-      - kf6-kio
-      - kf6-kirigami
-      - kf6-kitemmodels
-      - kf6-kitemviews
-      - kf6-kjobwidgets
-      - kf6-krunner
-      - kf6-kservice
-      - kf6-kwidgetsaddons
-      - kf6-kwindowsystem
-      - kf6-kxmlgui
       - plasma-activities
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
@@ -3962,13 +1351,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcmutils
-      - kf6-kcoreaddons
-      - kf6-kdbusaddons
-      - kf6-ki18n
-      - kf6-knotifications
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -3992,16 +1374,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kdbusaddons
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-kitemmodels
-      - kf6-kservice
-      - kf6-networkmanager-qt
       - libksysguard
       - libplasma
       - plasma-activities
@@ -4028,21 +1400,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcmutils
-      - kf6-kconfig
-      - kf6-kconfigwidgets
-      - kf6-kcoreaddons
-      - kf6-kdbusaddons
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-kirigami
-      - kf6-kjobwidgets
-      - kf6-knewstuff
-      - kf6-kservice
-      - kf6-ksvg
-      - kf6-kwindowsystem
       - libplasma
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
@@ -4067,44 +1424,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-baloo
-      - kf6-karchive
-      - kf6-kauth
-      - kf6-kcmutils
-      - kf6-kcolorscheme
-      - kf6-kcoreaddons
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-kdeclarative
-      - kf6-kded
-      - kf6-kdoctools
-      - kf6-kglobalaccel
-      - kf6-kguiaddons
-      - kf6-kholidays
-      - kf6-ki18n
-      - kf6-kiconthemes
-      - kf6-kidletime
-      - kf6-kio
-      - kf6-kirigami
-      - kf6-kitemmodels
-      - kf6-knewstuff
-      - kf6-knotifications
-      - kf6-knotifyconfig
-      - kf6-kpackage
-      - kf6-kparts
-      - kf6-kquickcharts
-      - kf6-krunner
-      - kf6-kstatusnotifieritem
-      - kf6-ksvg
-      - kf6-ktexteditor
-      - kf6-ktextwidgets
-      - kf6-kunitconversion
-      - kf6-kuserfeedback
-      - kf6-kwallet
-      - kf6-networkmanager-qt
-      - kf6-prison
       - knighttime
       - kscreenlocker
       - kwayland
@@ -4142,8 +1461,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -4167,20 +1484,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kguiaddons
-      - kf6-kholidays
-      - kf6-ki18n
-      - kf6-kidletime
-      - kf6-kio
-      - kf6-knotifications
-      - kf6-kservice
-      - kf6-kunitconversion
-      - kf6-networkmanager-qt
-      - kf6-solid
       - libksysguard
       - libplasma
       - plasma-activities
@@ -4207,15 +1510,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-karchive
-      - kf6-kauth
-      - kf6-kcmutils
-      - kf6-kconfig
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-knewstuff
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -4239,8 +1533,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -4264,14 +1556,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcoreaddons
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-ki18n
-      - kf6-knotifications
-      - kf6-kwindowsystem
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -4295,25 +1579,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kauth
-      - kf6-kcmutils
-      - kf6-kconfig
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-kdoctools
-      - kf6-kglobalaccel
-      - kf6-ki18n
-      - kf6-kidletime
-      - kf6-kio
-      - kf6-kirigami
-      - kf6-kitemmodels
-      - kf6-knotifications
-      - kf6-krunner
-      - kf6-kwindowsystem
-      - kf6-kxmlgui
-      - kf6-solid
       - libkscreen
       - libplasma
       - plasma-activities
@@ -4342,13 +1607,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kcolorscheme
-      - kf6-kconfig
-      - kf6-kguiaddons
-      - kf6-kiconthemes
-      - kf6-kirigami
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -4372,16 +1630,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-karchive
-      - kf6-kauth
-      - kf6-kcmutils
-      - kf6-kcoreaddons
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-knewstuff
-      - kf6-kservice
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
@@ -4405,25 +1653,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kcrash
-      - kf6-kdbusaddons
-      - kf6-kdoctools
-      - kf6-kglobalaccel
-      - kf6-kguiaddons
-      - kf6-ki18n
-      - kf6-kio
-      - kf6-kirigami
-      - kf6-knotifications
-      - kf6-kstatusnotifieritem
-      - kf6-kwidgetsaddons
-      - kf6-kwindowsystem
-      - kf6-kxmlgui
-      - kf6-prison
-      - kf6-purpose
       - kpipewire
       - layer-shell-qt
       - plasma-wayland-protocols
@@ -4450,22 +1679,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
-      - kf6-kconfig
-      - kf6-kcoreaddons
-      - kf6-kcrash
-      - kf6-kglobalaccel
-      - kf6-kguiaddons
-      - kf6-ki18n
-      - kf6-kiconthemes
-      - kf6-kio
-      - kf6-kirigami
-      - kf6-knotifications
-      - kf6-kservice
-      - kf6-kstatusnotifieritem
-      - kf6-kwidgetsaddons
-      - kf6-kwindowsystem
       - kwayland
       - plasma-wayland-protocols
     secrets:
@@ -4514,8 +1727,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-rpm.yml
     needs:
       - changed-files
-      - extra-cmake-modules
-      - kf6
     secrets:
       gpgkey: ${{ secrets.gpgkey }}
       copr_webhook: ${{ secrets.copr_webhook }}
