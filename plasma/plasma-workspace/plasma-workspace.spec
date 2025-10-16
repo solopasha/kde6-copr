@@ -74,6 +74,7 @@ BuildRequires:  cmake(KF6TextEditor)
 BuildRequires:  cmake(KF6TextWidgets)
 BuildRequires:  cmake(KF6UserFeedback)
 BuildRequires:  cmake(KF6Wallet)
+BuildRequires:  cmake(KF6QuickCharts)
 
 BuildRequires:  cmake(Qt6Concurrent)
 BuildRequires:  cmake(Qt6Core5Compat)
