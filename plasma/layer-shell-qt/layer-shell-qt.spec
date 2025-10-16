@@ -1,6 +1,6 @@
-%global commit0 e4b5bdbf1bfd604968785154a1d9b39d71a91d31
+%global commit0 2b8544f5a03b83f18873b884878bea57fc71dcee
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:           layer-shell-qt
 Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
