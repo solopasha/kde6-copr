@@ -1,6 +1,6 @@
-%global commit0 411dd58af08f211692d9223205022f4473392894
+%global commit0 835d46c2d402663e74cc4dbb2142c32faa0a9ea9
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework krunner
 
