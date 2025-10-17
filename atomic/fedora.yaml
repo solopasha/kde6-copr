@@ -1,0 +1,12 @@
+# Enable the fedora-third-party-refresh.service unit that was meant for Atomic
+# Desktops but never got enabled.
+# Remove the Google Chrome repo from the list of Fedora Third Party enabled
+# repos. Workaround for https://github.com/coreos/rpm-ostree/issues/5494
+postprocess:
+  - |
+    #!/bin/bash
+    set -xeuo pipefail
+
+    echo "enable fedora-third-party-refresh.service" >> /usr/lib/systemd/system-preset/81-atomic-desktop.preset
+
+    sed -i -e '/google-chrome/,+2d' /usr/lib/fedora-third-party/conf.d/fedora-workstation.conf
