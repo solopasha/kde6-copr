@@ -19,7 +19,7 @@ postprocess:
     ExecStart=/usr/bin/bootupctl migrate-static-grub-config
     EOF
 
-    echo "enable bootloader-update.service" > /usr/lib/systemd/system-preset/81-atomic-desktop.preset
+    echo "enable bootloader-update.service" >> /usr/lib/systemd/system-preset/81-atomic-desktop.preset
 
     # Turn permissive mode on for bootupd until all SELinux issues are fixed
     semanage permissive --noreload --add bootupd_t

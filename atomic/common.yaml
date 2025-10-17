@@ -25,6 +25,8 @@ include:
   - kernel-install.yaml
   # Enable composefs
   - composefs.yaml
+  # Fixes for Fedora Third Party
+  - fedora.yaml
   # Compress initramfs with zstd
   - initramfs-zstd.yaml
   # RPM Fusion
@@ -46,9 +48,6 @@ conditional-include:
     include:
       - bootc.yaml
       - dnf5.yaml
-  - if: exclude_perl == true
-    include:
-      - exclude-perl.yaml
   - if: releasever == 42
     include:
       - updates-archive.yaml
@@ -144,10 +143,11 @@ packages-x86_64:
 
 # Make sure the following are not pulled in when Recommended by other packages
 exclude-packages:
+  - PackageKit
+  # We can not include openh264. See https://fedoraproject.org/wiki/OpenH264
   - gstreamer1-plugin-openh264
   - mozilla-openh264
   - openh264
-  - PackageKit
   # Do not include dnf4. Classic ostree also exclude dnf5 in another manifest
   - dnf
   - dnf-plugins-core
@@ -163,6 +163,9 @@ exclude-packages:
   - qemu-device-display-virtio-vga
   # See: https://github.com/fedora-silverblue/issue-tracker/issues/646
   - hplip-gui
+  # Ensure that we do not include any Perl package
+  - perl-interpreter
+  - perl-libs
   - python3-boto3
   - python3-botocore
 
