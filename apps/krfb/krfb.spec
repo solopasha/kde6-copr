@@ -1,6 +1,6 @@
-%global commit0 ff96bc1c62f919382417c6e805624d2472f07707
+%global commit0 36e8b60170b8a6c876e52e995c9ac0db2de48cd2
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 Name:    krfb
 Summary: Desktop sharing
