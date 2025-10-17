@@ -1,0 +1,4 @@
+rawhide:
+  packages:
+    - https://koji.rpmfusion.org/kojifiles/packages/mesa-freeworld/25.2.5/1.fc44/x86_64/mesa-va-drivers-freeworld-25.2.5-1.fc44.x86_64.rpm
+    - https://koji.rpmfusion.org/kojifiles/packages/mesa-freeworld/25.2.5/1.fc44/x86_64/mesa-vulkan-drivers-freeworld-25.2.5-1.fc44.x86_64.rpm
