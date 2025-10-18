@@ -124,6 +124,7 @@ Supplements:    korganizer
 %{_kf6_qtplugindir}/plasmacalendarplugins/pimevents.so
 %{_kf6_qtplugindir}/plasmacalendarplugins/pimevents/
 %{_kf6_libdir}/libkaddressbookmergelibprivate.so*
+%{_kf6_qtplugindir}/autogeneratetext/
 
 # KMail
 %{_kf6_bindir}/kmail_*.sh
