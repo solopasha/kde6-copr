@@ -1,6 +1,6 @@
-%global commit0 ce93fb9063caa8d0f00f629e0a529329da6674fa
+%global commit0 5d038c249493ef3704a3ee3599634b8ca711a8f0
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 %global framework kwindowsystem
 
