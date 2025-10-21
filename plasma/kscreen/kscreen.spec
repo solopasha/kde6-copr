@@ -40,6 +40,7 @@ BuildRequires:  cmake(PlasmaQuick)
 BuildRequires:  pkgconfig(xcb-atom)
 BuildRequires:  pkgconfig(xcb)
 BuildRequires:  pkgconfig(xi)
+BuildRequires:  wayland-devel
 BuildRequires:  wayland-protocols-devel
 
 Requires:       kf6-kimageformats%{?_isa}
