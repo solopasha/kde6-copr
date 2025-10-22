@@ -1,0 +1,27 @@
+diff --git a/src/workspace.cpp b/src/workspace.cpp
+index ee66408745..9400e3c3fe 100644
+--- a/src/workspace.cpp
++++ b/src/workspace.cpp
+@@ -1186,7 +1186,7 @@ void Workspace::updateOutputs(const std::optional<QList<Output *>> &outputOrder)
+         }
+     }
+ 
+-    if (!m_activeOutput || !m_outputs.contains(m_activeOutput)) {
++    if (!m_activeOutput) {
+         setActiveOutput(m_outputs[0]);
+     }
+ 
+@@ -2106,6 +2106,10 @@ void Workspace::desktopResized()
+ 
+     rearrange();
+ 
++    if (!m_outputs.contains(m_activeOutput)) {
++        setActiveOutput(m_outputs[0]);
++    }
++
+     const auto stack = stackingOrder();
+     for (Window *window : stack) {
+         window->setMoveResizeOutput(outputAt(window->moveResizeGeometry().center()));
+-- 
+GitLab
+

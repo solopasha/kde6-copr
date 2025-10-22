@@ -4,13 +4,14 @@
 
 Name:           kwin
 Version:        6.5.0
-Release:        0.1%{?dist}
+Release:        0.2%{?dist}
 Summary:        KDE Window manager
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:            https://invent.kde.org/plasma/kwin
 %plasma_source
 Patch:          disable-overlays.patch
+Patch:          a0c63b75dae838d305586c0deec92afa65e1200e.patch
 
 BuildRequires:  systemd-rpm-macros
 
@@ -195,6 +196,9 @@ ln -sr %{buildroot}%{_kf6_bindir}/kwin_wayland %{buildroot}%{_bindir}/kwin
 %{_kf6_libdir}/libkwin.so
 
 %changelog
+* Wed Oct 22 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.2
+- pick patch
+
 * Thu Oct 16 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.1
 - Update to 6.5.0
 
