@@ -1,6 +1,6 @@
-%global commit0 f516aae3cc6a5a4f4dbdb440006b0fa2a32563f4
+%global commit0 ef40ab3a6c4f067626026b75b76bdd92cdb23b7d
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 9
+%global bumpver 10
 
 Name:           plasma-nm
 Summary:        Plasma for managing network connections
@@ -243,9 +243,11 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/applications/kcm_cellular_network.desktop
 %{_kf6_datadir}/applications/kcm_mobile_hotspot.desktop
 %{_kf6_datadir}/applications/kcm_mobile_wifi.desktop
+%{_kf6_datadir}/applications/kcm_mobile_wired.desktop
 %{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_cellular_network.so
 %{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_mobile_hotspot.so
 %{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_mobile_wifi.so
+%{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_mobile_wired.so
 
 %files openvpn -f plasmanetworkmanagement_openvpnui.lang
 %{_kf6_qtplugindir}/plasma/network/vpn/plasmanetworkmanagement_openvpnui.so

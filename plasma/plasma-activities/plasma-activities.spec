@@ -1,6 +1,6 @@
-%global commit0 690d377810f775b0e4e7512f9516c8a9ba123d4f
+%global commit0 abd8437d9bf301ac468a4005f3b4ee80ef7d66ad
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:           plasma-activities
 Summary:        Core components for the KDE's Activities System
