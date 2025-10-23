@@ -1,6 +1,6 @@
-%global commit0 7ad4536e0e1632afdf630d6c73774aab4f063a88
+%global commit0 8463599a0ad6b9ddb5b94891c213d6a499608a13
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 18
+%global bumpver 19
 
 Name:    libkleo
 Version: 25.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
