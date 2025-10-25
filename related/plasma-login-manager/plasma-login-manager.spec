@@ -1,6 +1,6 @@
-%global commit0 09132f0622822e87c6628895a8de2eed850eccea
+%global commit0 4e6332e6730a8206af1e2389f09e636fa91372ec
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 11
+%global bumpver 14
 
 %global selinuxtype targeted
 
@@ -19,8 +19,6 @@ Source12:       sddm-greeter.pam
 
 Source20:       plasmalogin.fc
 Source21:       plasmalogin.te
-
-Patch:          revert-bc6341a.patch
 
 BuildSystem:    cmake_kf6
 
@@ -127,7 +125,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %postun
 %systemd_postun plasmalogin.service
 
-%files
+%files -f %{name}.lang
 %license LICENSE
 %doc README.md
 %config(noreplace) %{_sysconfdir}/pam.d/plasmalogin*
