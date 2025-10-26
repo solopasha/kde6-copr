@@ -1,6 +1,6 @@
-%global commit0 a81dda4fb741687de812e374e8091b27b9cca1cf
+%global commit0 c08826f0fc37b9a1e916d6abd73a42354727f7df
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework prison
 
