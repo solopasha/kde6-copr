@@ -113,7 +113,6 @@ Requires:       qt6-qtdeclarative%{?_isa}
 Requires:       qt6-qtmultimedia%{?_isa}
 Requires:       qt6-qtwayland%{?_isa}
 Requires:       xorg-x11-server-Xwayland%{?_isa}
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 Obsoletes:      %{name}-common < 6.5.80
 Obsoletes:      %{name}-doc < 6.5.80

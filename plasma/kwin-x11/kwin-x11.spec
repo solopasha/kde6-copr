@@ -102,7 +102,6 @@ Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtdeclarative%{?_isa}
 Requires:       qt6-qtmultimedia%{?_isa}
 Requires:       xorg-x11-server-Xorg%{?_isa}
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 Obsoletes:      %{name}-libs < 6.5.80
 Provides:       %{name}-libs = %{version}-%{release}

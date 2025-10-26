@@ -66,7 +66,6 @@ Requires:       kf6-qqc2-desktop-style%{?_isa}
 Requires:       qqc2-breeze-style%{?_isa}
 
 Requires:       (%{name}-qt5 if qt5-qtbase-gui)
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 %description
 %{summary}.

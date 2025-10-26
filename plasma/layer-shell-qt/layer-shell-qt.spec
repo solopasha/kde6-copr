@@ -20,8 +20,6 @@ BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  wayland-devel
 
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
-
 %description
 This component is meant for applications to be able to easily use clients
 based on wlr-layer-shell
