@@ -1,10 +1,10 @@
-%global commit0 51348db770b54dbb07ee18891bd413d8accfd85e
+%global commit0 de7235cd18447a1590880e39d80d482253581e91
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           krdp
-Version:        6.5.0
-Release:        0.1%{?dist}
+Version:        6.5.1
+Release:        1%{?dist}
 Summary:        Desktop sharing using RDP
 
 License:        LGPL-2.1-only OR LGPL-3.0-only
@@ -92,6 +92,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %systemd_user_post app-org.kde.krdpserver.service
 
 %changelog
+* Tue Oct 28 2025 Pavel Solovev <daron439@gmail.com> - 6.5.1-1
+- Update to 6.5.1
+
 * Thu Oct 16 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.1
 - Update to 6.5.0
 

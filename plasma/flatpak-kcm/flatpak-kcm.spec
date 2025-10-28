@@ -1,10 +1,10 @@
-%global commit0 610f3ae3086e6f0bbd55d43b85bfe31a668fc9d6
+%global commit0 7f657ee0165699506a54e28fe2b38abe101fe243
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           flatpak-kcm
-Version:        6.5.0
-Release:        0.1%{?dist}
+Version:        6.5.1
+Release:        1%{?dist}
 License:        BSD-2-Clause and BSD-3-Clause and CC0-1.0 and GPL-2.0-or-later
 Summary:        Flatpak Permissions Management KCM
 URL:            https://invent.kde.org/plasma/flatpak-kcm
@@ -36,6 +36,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_app-permissions.so
 
 %changelog
+* Tue Oct 28 2025 Pavel Solovev <daron439@gmail.com> - 6.5.1-1
+- Update to 6.5.1
+
 * Thu Oct 16 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.1
 - Update to 6.5.0
 

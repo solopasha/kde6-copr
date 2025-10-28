@@ -1,4 +1,4 @@
-%global commit0 f29bbab94c1d0bb352bfae6f9b7e7cec662ea1ea
+%global commit0 c64193b1442ca1d1d818cfdc9f0bef02d02e091c
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
@@ -6,8 +6,8 @@
 
 Name:           plymouth-kcm
 Summary:        Plymouth configuration module for systemsettings
-Version:        6.5.0
-Release:        0.1%{?dist}
+Version:        6.5.1
+Release:        1%{?dist}
 
 License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-or-later
 URL:            https://invent.kde.org/plasma/%{base_name}
@@ -54,6 +54,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_plymouth.so
 
 %changelog
+* Tue Oct 28 2025 Pavel Solovev <daron439@gmail.com> - 6.5.1-1
+- Update to 6.5.1
+
 * Thu Oct 16 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.1
 - Update to 6.5.0
 

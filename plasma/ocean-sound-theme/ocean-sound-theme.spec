@@ -1,11 +1,11 @@
-%global commit0 2f639f63ad8d234487c9cdb65e3fff3688f17849
+%global commit0 de81dbff036af96d561498a94b9bd5693982d66b
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           ocean-sound-theme
 Summary:        Ocean Sound Theme for Plasma
-Version:        6.5.0
-Release:        0.1%{?dist}
+Version:        6.5.1
+Release:        1%{?dist}
 BuildArch:      noarch
 License:        CC0-1.0 AND BSD-2-Clause AND CC-BY-SA-4.0
 URL:            https://invent.kde.org/plasma/%{name}
@@ -24,6 +24,9 @@ Requires:       kf6-filesystem
 %{_kf6_datadir}/sounds/ocean/
 
 %changelog
+* Tue Oct 28 2025 Pavel Solovev <daron439@gmail.com> - 6.5.1-1
+- Update to 6.5.1
+
 * Thu Oct 16 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.1
 - Update to 6.5.0
 

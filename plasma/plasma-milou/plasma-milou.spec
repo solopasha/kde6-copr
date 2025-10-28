@@ -1,12 +1,12 @@
-%global commit0 4a8528c17a3e080d41f0a1bf4b36dc2a4120df45
+%global commit0 1840389c88cf8278a778771124c3b4fb7198fe6c
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global base_name milou
 
 Name:           plasma-%{base_name}
-Version:        6.5.0
-Release:        0.1%{?dist}
+Version:        6.5.1
+Release:        1%{?dist}
 Summary:        A dedicated KDE search application built on top of Baloo
 
 License:        CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -35,6 +35,9 @@ Requires:       kf6-filesystem
 %{_kf6_qmldir}/org/kde/milou/
 
 %changelog
+* Tue Oct 28 2025 Pavel Solovev <daron439@gmail.com> - 6.5.1-1
+- Update to 6.5.1
+
 * Thu Oct 16 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.1
 - Update to 6.5.0
 

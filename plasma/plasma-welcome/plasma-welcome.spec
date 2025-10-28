@@ -1,12 +1,12 @@
-%global commit0 6b8755aa03468a4b9cd32627efdeb9ef10d3f7eb
+%global commit0 77eafb96c167c9c889eec89fea4420e25a437b46
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global orgname org.kde.plasma-welcome
 
 Name:           plasma-welcome
-Version:        6.5.0
-Release:        0.1%{?dist}
+Version:        6.5.1
+Release:        1%{?dist}
 License:        GPL-2.0-or-later and BSD-3-Clause
 Summary:        Plasma Welcome
 URL:            https://invent.kde.org/plasma/%{name}
@@ -66,6 +66,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{orgname}.deskto
 %{_kf6_qmldir}/org/kde/plasma/welcome/
 
 %changelog
+* Tue Oct 28 2025 Pavel Solovev <daron439@gmail.com> - 6.5.1-1
+- Update to 6.5.1
+
 * Thu Oct 16 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.1
 - Update to 6.5.0
 

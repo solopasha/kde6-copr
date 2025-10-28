@@ -1,4 +1,4 @@
-%global commit0 1945ccc3641cf104155a858223ffe8df7e9195a3
+%global commit0 428aedd2ab1aa70eb33b4a2d83078e875f05274f
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
@@ -6,8 +6,8 @@
 
 Name:           plasma-print-manager
 Summary:        Printer management for KDE
-Version:        6.5.0
-Release:        0.1%{?dist}
+Version:        6.5.1
+Release:        1%{?dist}
 
 License:        BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
 URL:            https://invent.kde.org/plasma/%{base_name}
@@ -87,6 +87,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_plugindir}/kded/printmanager.so
 
 %changelog
+* Tue Oct 28 2025 Pavel Solovev <daron439@gmail.com> - 6.5.1-1
+- Update to 6.5.1
+
 * Thu Oct 16 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.1
 - Update to 6.5.0
 

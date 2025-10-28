@@ -1,11 +1,11 @@
-%global commit0 f81fa8cfeaaa3d90e7ca0b9fcac7321fdb9123aa
+%global commit0 a911d9ac00916dc12e1c8e2591a4112360e77806
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           kwrited
 Summary:        KDE Write Daemon
-Version:        6.5.0
-Release:        0.1%{?dist}
+Version:        6.5.1
+Release:        1%{?dist}
 
 License:        CC0-1.0 AND GPL-2.0-or-later
 URL:            https://invent.kde.org/plasma/%{name}
@@ -31,6 +31,9 @@ Requires:       kf6-knotifications
 %{_qt6_plugindir}/kf6/kded/kwrited.so
 
 %changelog
+* Tue Oct 28 2025 Pavel Solovev <daron439@gmail.com> - 6.5.1-1
+- Update to 6.5.1
+
 * Thu Oct 16 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.1
 - Update to 6.5.0
 

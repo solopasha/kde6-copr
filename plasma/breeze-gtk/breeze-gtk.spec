@@ -1,10 +1,10 @@
-%global commit0 7c5d4b07a73d30b5a9357f850e5d4d20748e908e
+%global commit0 894a45f45e124125298b2c1b74ded2d0b138c224
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           breeze-gtk
-Version:        6.5.0
-Release:        0.1%{?dist}
+Version:        6.5.1
+Release:        1%{?dist}
 Summary:        Breeze widget theme for GTK
 
 License:        BSD-3-Clause AND CC0-1.0
@@ -83,6 +83,9 @@ Supplements:    (plasma-breeze and gtk4)
 %{_datadir}/themes/Breeze-Dark/gtk-4.0/
 
 %changelog
+* Tue Oct 28 2025 Pavel Solovev <daron439@gmail.com> - 6.5.1-1
+- Update to 6.5.1
+
 * Thu Oct 16 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.1
 - Update to 6.5.0
 

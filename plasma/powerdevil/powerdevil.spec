@@ -1,10 +1,10 @@
-%global commit0 8de097300ce45a7ee63bc726aec844f4957308d7
+%global commit0 9e76e5bd07509361383baa21f33048dc88119630
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           powerdevil
-Version:        6.5.0
-Release:        0.1%{?dist}
+Version:        6.5.1
+Release:        1%{?dist}
 Summary:        Manages the power consumption settings of a Plasma Shell
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -114,6 +114,9 @@ rm -fv %{buildroot}/%{_libdir}/libpowerdevilcore.so
 %{_userunitdir}/plasma-powerdevil.service
 
 %changelog
+* Tue Oct 28 2025 Pavel Solovev <daron439@gmail.com> - 6.5.1-1
+- Update to 6.5.1
+
 * Thu Oct 16 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.1
 - Update to 6.5.0
 

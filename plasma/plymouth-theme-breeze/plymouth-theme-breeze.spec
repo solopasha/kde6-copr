@@ -1,12 +1,12 @@
-%global commit0 5eaab2e6a76e4da6970468b94ecc73e00248f837
+%global commit0 26085d7ecc7c6292ec6f99ccd8da87ed2c692cb3
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global base_name breeze-plymouth
 
 Name:           plymouth-theme-breeze
-Version:        6.5.0
-Release:        0.1%{?dist}
+Version:        6.5.1
+Release:        1%{?dist}
 Summary:        Breeze theme for Plymouth
 
 License:        GPLv3
@@ -37,6 +37,9 @@ install -D -m644 -p %{SOURCE10} \
 %{_prefix}/lib/dracut/dracut.conf.d/10-plymouth-theme-breeze.conf
 
 %changelog
+* Tue Oct 28 2025 Pavel Solovev <daron439@gmail.com> - 6.5.1-1
+- Update to 6.5.1
+
 * Thu Oct 16 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.1
 - Update to 6.5.0
 

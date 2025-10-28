@@ -1,10 +1,10 @@
-%global commit0 1527b33fbb772d29501af9829a408d68f21e03f8
+%global commit0 4b42c411ed74da0775a8bcfc3a6bdf3fd6fd7ec6
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           oxygen-sounds
-Version:        6.5.0
-Release:        0.1%{?dist}
+Version:        6.5.1
+Release:        1%{?dist}
 Summary:        The Oxygen Sound Theme
 
 License:        LGPL-3.0-or-later AND CC0-1.0 AND CC-BY-3.0 AND BSD-2-Clause
@@ -27,6 +27,9 @@ Obsoletes:      oxygen-sound-theme <= 5.24.50
 %{_kf6_datadir}/sounds/oxygen/
 
 %changelog
+* Tue Oct 28 2025 Pavel Solovev <daron439@gmail.com> - 6.5.1-1
+- Update to 6.5.1
+
 * Thu Oct 16 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.1
 - Update to 6.5.0
 

@@ -1,4 +1,4 @@
-%global commit0 3848e5f439d0daacae86e979b4fe97458e2986c4
+%global commit0 c3db683f9b9de4aa0d2a392f68f00e0f07295c83
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
@@ -6,8 +6,8 @@
 
 Name:           kcm_wacomtablet
 Summary:        KDE Control module for Wacom Graphictablets
-Version:        6.5.0
-Release:        0.1%{?dist}
+Version:        6.5.1
+Release:        1%{?dist}
 
 License:        GPL-2.0-or-later
 URL:            https://invent.kde.org/plasma/wacomtablet
@@ -78,6 +78,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 %{_qt6_plugindir}/plasma5support/dataengine/plasma_engine_wacomtablet.so
 
 %changelog
+* Tue Oct 28 2025 Pavel Solovev <daron439@gmail.com> - 6.5.1-1
+- Update to 6.5.1
+
 * Thu Oct 16 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.1
 - Update to 6.5.0
 

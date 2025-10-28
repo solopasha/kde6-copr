@@ -1,10 +1,10 @@
-%global commit0 2dfcdf4e300a2fe36978150caa0cd3dcff7eb3f3
+%global commit0 ffb8ce1506fbcc0f090df329fa37562ffacade7e
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           ksshaskpass
-Version:        6.5.0
-Release:        0.1%{?dist}
+Version:        6.5.1
+Release:        1%{?dist}
 Summary:        A ssh-add helper that uses kwallet and kpassworddialog
 
 License:        GPLv2
@@ -44,6 +44,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_mandir}/man1/ksshaskpass.1.*
 
 %changelog
+* Tue Oct 28 2025 Pavel Solovev <daron439@gmail.com> - 6.5.1-1
+- Update to 6.5.1
+
 * Thu Oct 16 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.1
 - Update to 6.5.0
 

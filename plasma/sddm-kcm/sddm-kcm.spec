@@ -1,10 +1,10 @@
-%global commit0 b60ad8b6576e34b2719d77bb1ccb4b07c9961eee
+%global commit0 e17bce68c1b98ed3c2453c8db928ece8ab509b31
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           sddm-kcm
-Version:        6.5.0
-Release:        0.1%{?dist}
+Version:        6.5.1
+Release:        1%{?dist}
 Summary:        SDDM KDE configuration module
 
 License:        GPL-2.0-or-later AND GPL-3.0-only AND CC0-1.0 AND (GPL-2.0-only OR GPL-3.0-only)
@@ -50,6 +50,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_sddm.so
 
 %changelog
+* Tue Oct 28 2025 Pavel Solovev <daron439@gmail.com> - 6.5.1-1
+- Update to 6.5.1
+
 * Thu Oct 16 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.1
 - Update to 6.5.0
 

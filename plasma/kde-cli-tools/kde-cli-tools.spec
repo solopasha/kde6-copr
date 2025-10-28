@@ -1,10 +1,10 @@
-%global commit0 ed48798817c208655d0f682156977e5012c0d53e
+%global commit0 eb234dd08b78aa339d06eae1e010b6e8879baeb3
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           kde-cli-tools
-Version:        6.5.0
-Release:        0.1%{?dist}
+Version:        6.5.1
+Release:        1%{?dist}
 Summary:        Tools based on KDE Frameworks 5 to better interact with the system
 
 License:        Artistic-2.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -92,6 +92,9 @@ sed '/kdesu/d;/man/d' -i %{name}.lang
 %{_mandir}/man1/kdesu.1.*
 
 %changelog
+* Tue Oct 28 2025 Pavel Solovev <daron439@gmail.com> - 6.5.1-1
+- Update to 6.5.1
+
 * Thu Oct 16 2025 Pavel Solovev <daron439@gmail.com> - 6.5.0-0.1
 - Update to 6.5.0
 
