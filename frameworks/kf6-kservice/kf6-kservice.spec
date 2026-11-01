@@ -1,6 +1,6 @@
-%global commit0 40db38e55e8b12f5350e3ba5cc98a5da9821f4bc
+%global commit0 978e38607b698eb65b321d2f8c7dc1736883737f
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 %global framework kservice
 

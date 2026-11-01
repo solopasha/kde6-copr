@@ -1,6 +1,6 @@
-%global commit0 db58bb2080f1e8071ff581b7d16a168be222c4fa
+%global commit0 e6e23e762081eb810cab6783ae9be535bf133d22
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework kidletime
 
