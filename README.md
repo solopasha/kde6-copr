@@ -1,4 +1,4 @@
-# Solopasha's repositories with KDE packages
+# solopasha's repositories with KDE packages
 
 Plasma and Frameworks from git - [solopasha/plasma-unstable](https://copr.fedorainfracloud.org/coprs/solopasha/plasma-unstable/)
 
@@ -22,14 +22,8 @@ sudo dnf offline-upgrade download && \
 sudo dnf offline-upgrade reboot
 ```
 
-Although Copr is rarely slow or unstable when building packages, Plasma and Frameworks packages are also published to a GitHub repository (built with GitHub Actions). This is a mirror/backup repository:
+## GitHub repositories and snapshots
 
-```bash
-sudo dnf config-manager addrepo --from-repofile=https://solopasha.github.io/kde6-copr/unstable/kde6-copr-unstable.repo
-```
+Packages are also published to a GitHub [repository](https://solopashachas.github.io/testrpm/) (built with GitHub Actions). This repository serves as a mirror and backup in case COPR is slow or unavailable. In the future, the COPR repositories may be discontinued, and the GitHub repositories may become the primary package source.
 
-Atomic image:
-
-```bash
-sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/solopasha/kde6-copr/kde-unstable:latest
-```
+[Snapshot repositories](https://solopasha.github.io/kde6-copr/snapshots/) provide dated package builds, allowing users to access packages from a specific point in time. This can be useful for rolling back to an earlier version.
