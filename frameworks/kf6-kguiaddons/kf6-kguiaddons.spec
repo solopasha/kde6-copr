@@ -1,11 +1,11 @@
-%global commit0 44685fb1b9ab09aa748d56c7f6cdfbd2775b0ef7
+%global commit0 0622e8fc8f2a73db6f323a664304a5efa9b44a91
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 %global framework kguiaddons
 
 Name:           kf6-%{framework}
-Version:        6.20.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.32.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with various classes on top of QtGui
 
@@ -51,7 +51,8 @@ developing applications that use %{name}.
 %{_kf6_includedir}/KGuiAddons/
 %{_kf6_libdir}/cmake/KF6GuiAddons/
 %{_kf6_libdir}/libKF6GuiAddons.so
-%{_kf6_libdir}/pkgconfig/KF6GuiAddons.pc
+%{_kf6_libdir}/pkgconfig/KF6GuiAddons.pc	
+%{_qt6_metatypesdir}/qt6kf6guiaddons_metatypes.json
 
 %changelog
 %{?kde_snapshot_changelog_entry}

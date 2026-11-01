@@ -1,11 +1,11 @@
-%global commit0 010845492ccb2c8b2f944cc312f1454833b982e7
+%global commit0 a5e55b5ed325a43753c69f6d47a3f9e9fa9cf07e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 5
 
 %global framework kdav
 
 Name:           kf6-%{framework}
-Version:        6.20.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.32.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        A DAV protocol implementation with KJobs
 
@@ -15,11 +15,12 @@ URL:            https://invent.kde.org/frameworks/%{framework}
 
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6KIO)
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6Test)
+BuildRequires:  cmake(Qt6Xml)
 
 %description
 %{summary}.

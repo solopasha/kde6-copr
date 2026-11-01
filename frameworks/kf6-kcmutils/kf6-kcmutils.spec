@@ -1,11 +1,11 @@
-%global commit0 b1d46880cc8775601b94967d4b723c5a67ebd23c
+%global commit0 38570e5bf1cd0717a2f99f64ac10785b00759bc5
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 6
 
 %global framework kcmutils
 
 Name:           kf6-%{framework}
-Version:        6.20.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.32.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 addon with extra API to write KConfigModules
 
@@ -19,8 +19,10 @@ BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6ItemViews)
 BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6KirigamiAddons)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6XmlGui)
+BuildRequires:  qt6qml(org.kde.kirigami)
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
@@ -29,6 +31,8 @@ BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6QuickWidgets)
 BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Qt6Widgets)
+
+Requires:       kf6-kirigami%{?_isa}
 
 %description
 KCMUtils provides various classes to work with KCModules. KCModules can be

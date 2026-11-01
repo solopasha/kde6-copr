@@ -1,11 +1,11 @@
-%global commit0 ec96034d874b862e91dc59e648a597b121d38936
+%global commit0 1d023c58a00cd05654d18df0961cd0979409ca6f
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 9
 
 %global base_name oxygen
 
 Name:           plasma-%{base_name}
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Plasma and Qt widget style and window decorations for Plasma
 
@@ -43,8 +43,9 @@ BuildRequires:  cmake(KF6FrameworkIntegration)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
-BuildRequires:  cmake(KF6WindowSystem)
+BuildRequires:  cmake(KF6KirigamiPlatform)
 BuildRequires:  cmake(KF6Service)
+BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(Plasma)
 
 BuildRequires:  cmake(Qt6Core)
@@ -120,10 +121,16 @@ popd
 %{_kf6_datadir}/applications/kcm_oxygendecoration.desktop
 %{_kf6_datadir}/color-schemes/Oxygen.colors
 %{_kf6_datadir}/color-schemes/OxygenCold.colors
+%{_kf6_datadir}/color-schemes/OxygenDark.colors
 %{_kf6_datadir}/icons/hicolor/*/apps/oxygen-settings.*
 %{_kf6_datadir}/kstyle/themes/oxygen.themerc
+%{_kf6_datadir}/plasma/desktoptheme/air/
 %{_kf6_datadir}/plasma/desktoptheme/oxygen/
+%{_kf6_datadir}/plasma/look-and-feel/org.kde.air/
 %{_kf6_datadir}/plasma/look-and-feel/org.kde.oxygen/
+%{_kf6_datadir}/plasma/look-and-feel/org.kde.oxygenlight/
+%{_kf6_datadir}/wallpapers/Air/
+%{_kf6_datadir}/wallpapers/Horos/
 %{_kf6_qtplugindir}/kstyle_config/kstyle_oxygen_config.so
 %{_kf6_qtplugindir}/org.kde.kdecoration3.kcm/kcm_oxygendecoration.so
 %{_kf6_qtplugindir}/org.kde.kdecoration3/org.kde.oxygen.so

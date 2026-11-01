@@ -1,16 +1,17 @@
-%global commit0 a59a68a2f9f7b65ea692d8c44f9fe582e79c96d2
+%global commit0 1ea0abb59d20705832c121eeebd06e1954f15d0c
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 11
+%global bumpver 16
 
 %global framework kirigami
 
 Name:           kf6-%{framework}
-Version:        6.20.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.32.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        QtQuick plugins to build user interfaces based on the KDE UX guidelines
 License:        BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
+Patch:          revert-81ada72b.patch
 
 BuildRequires:  cmake(Qt6Concurrent)
 BuildRequires:  cmake(Qt6Core)
@@ -48,18 +49,26 @@ developing applications that use %{name}.
 %{_kf6_datadir}/qlogging-categories6/kirigami.categories
 %{_kf6_libdir}/libKirigami.so.%{version_no_git}
 %{_kf6_libdir}/libKirigami.so.6
+%{_kf6_libdir}/libKirigamiControls.so.%{version_no_git}
+%{_kf6_libdir}/libKirigamiControls.so.6
 %{_kf6_libdir}/libKirigamiDelegates.so.%{version_no_git}
 %{_kf6_libdir}/libKirigamiDelegates.so.6
 %{_kf6_libdir}/libKirigamiDialogs.so.%{version_no_git}
 %{_kf6_libdir}/libKirigamiDialogs.so.6
+%{_kf6_libdir}/libKirigamiForms.so.%{version_no_git}
+%{_kf6_libdir}/libKirigamiForms.so.6
+%{_kf6_libdir}/libKirigamiFormsPrivateCards.so.%{version_no_git}
+%{_kf6_libdir}/libKirigamiFormsPrivateCards.so.6
+%{_kf6_libdir}/libKirigamiFormsPrivateFlat.so.%{version_no_git}
+%{_kf6_libdir}/libKirigamiFormsPrivateFlat.so.6
+%{_kf6_libdir}/libKirigamiFormsPrivateTemplates.so.%{version_no_git}
+%{_kf6_libdir}/libKirigamiFormsPrivateTemplates.so.6
 %{_kf6_libdir}/libKirigamiLayouts.so.%{version_no_git}
 %{_kf6_libdir}/libKirigamiLayouts.so.6
 %{_kf6_libdir}/libKirigamiLayoutsPrivate.so.%{version_no_git}
 %{_kf6_libdir}/libKirigamiLayoutsPrivate.so.6
 %{_kf6_libdir}/libKirigamiPlatform.so.%{version_no_git}
 %{_kf6_libdir}/libKirigamiPlatform.so.6
-%{_kf6_libdir}/libKirigamiPolyfill.so.%{version_no_git}
-%{_kf6_libdir}/libKirigamiPolyfill.so.6
 %{_kf6_libdir}/libKirigamiPrimitives.so.%{version_no_git}
 %{_kf6_libdir}/libKirigamiPrimitives.so.6
 %{_kf6_libdir}/libKirigamiPrivate.so.%{version_no_git}
@@ -75,15 +84,20 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6Kirigami2/
 %{_kf6_libdir}/cmake/KF6KirigamiPlatform/
 %{_kf6_libdir}/libKirigami.so
+%{_kf6_libdir}/libKirigamiControls.so
 %{_kf6_libdir}/libKirigamiDelegates.so
 %{_kf6_libdir}/libKirigamiDialogs.so
+%{_kf6_libdir}/libKirigamiForms.so
+%{_kf6_libdir}/libKirigamiFormsPrivateCards.so
+%{_kf6_libdir}/libKirigamiFormsPrivateFlat.so
+%{_kf6_libdir}/libKirigamiFormsPrivateTemplates.so
 %{_kf6_libdir}/libKirigamiLayouts.so
 %{_kf6_libdir}/libKirigamiLayoutsPrivate.so
 %{_kf6_libdir}/libKirigamiPlatform.so
-%{_kf6_libdir}/libKirigamiPolyfill.so
 %{_kf6_libdir}/libKirigamiPrimitives.so
 %{_kf6_libdir}/libKirigamiPrivate.so
 %{_kf6_libdir}/libKirigamiTemplates.so
+%{_qt6_metatypesdir}/qt6kirigamiplatform_metatypes.json
 
 %changelog
 %{?kde_snapshot_changelog_entry}

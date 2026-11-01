@@ -1,17 +1,16 @@
-%global commit0 bb6e9d3ec1f637d9af00b7f47962c84eb18b817b
+%global commit0 246116fb92c10d814261cd9fcfb4c74c2f9ff4fa
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 39
+%global bumpver 36
 
 Name:           kwin
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Window manager
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:            https://invent.kde.org/plasma/kwin
 %plasma_source
-Patch:          8145.patch
-Patch:          disable-overlays.patch
+Patch:          25b1356ffcaa76089e165f7a2bd11fb29ee343e7.patch
 
 BuildRequires:  systemd-rpm-macros
 
@@ -33,6 +32,7 @@ BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6NewStuff)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Package)
+BuildRequires:  cmake(KF6Runner)
 BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6Svg)
 BuildRequires:  cmake(KF6WidgetsAddons)
@@ -77,6 +77,7 @@ BuildRequires:  pkgconfig(libcanberra)
 BuildRequires:  pkgconfig(libdisplay-info)
 BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(libeis-1.0)
+BuildRequires:  pkgconfig(libevdev)
 BuildRequires:  pkgconfig(libinput)
 BuildRequires:  pkgconfig(libpipewire-0.3)
 BuildRequires:  pkgconfig(libudev)
@@ -111,13 +112,15 @@ Requires:       plasma-milou%{?_isa} >= %{majmin_ver_kf6}
 Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtdeclarative%{?_isa}
 Requires:       qt6-qtmultimedia%{?_isa}
-Requires:       qt6-qtwayland%{?_isa}
 Requires:       xorg-x11-server-Xwayland%{?_isa}
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
-Obsoletes:      %{name}-common < 6.5.80
-Obsoletes:      %{name}-doc < 6.5.80
-Obsoletes:      %{name}-libs < 6.5.80
-Obsoletes:      %{name}-wayland < 6.5.80
+Obsoletes:      %{name}-common < %{version}-%{release}
+Obsoletes:      %{name}-doc < %{version}-%{release}
+Obsoletes:      %{name}-libs < %{version}-%{release}
+Obsoletes:      %{name}-wayland < %{version}-%{release}
+Obsoletes:      %{name}-x11 < %{version}-%{release}
+Obsoletes:      %{name}-x11-libs < %{version}-%{release}
 Provides:       %{name}-common = %{version}-%{release}
 Provides:       %{name}-common%{?_isa} = %{version}-%{release}
 Provides:       %{name}-doc = %{version}-%{release}
@@ -166,23 +169,23 @@ ln -sr %{buildroot}%{_kf6_bindir}/kwin_wayland %{buildroot}%{_bindir}/kwin
 %{_kf6_datadir}/knotifications6/kwin.notifyrc
 %{_kf6_datadir}/knsrcfiles/*.knsrc
 %{_kf6_datadir}/krunner/dbusplugins/kwin-runner-windows.desktop
-%{_kf6_datadir}/kwin-wayland/
+%{_kf6_datadir}/kwin/
 %{_kf6_datadir}/qlogging-categories6/org_kde_kwin.categories
 %{_kf6_libdir}/kconf_update_bin/kwin-6.0-delete-desktop-switching-shortcuts
 %{_kf6_libdir}/kconf_update_bin/kwin-6.0-remove-breeze-tabbox-default
 %{_kf6_libdir}/kconf_update_bin/kwin-6.0-reset-active-mouse-screen
 %{_kf6_libdir}/kconf_update_bin/kwin-6.1-remove-gridview-expose-shortcuts
 %{_kf6_libdir}/kconf_update_bin/kwin-6.5-showpaint-changes
-%{_kf6_libdir}/kconf_update_bin/kwin5_update_default_rules
 %{_kf6_libdir}/libkcmkwincommon.so.6{,.*}
 %{_kf6_libdir}/libkwin.so.6{,.*}
 %{_kf6_qtplugindir}/kf6/packagestructure/kwin_*.so
 %{_kf6_qtplugindir}/kwin/
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/*.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/*.so
+%{_libexecdir}/kwin_dialog_helper
+%{_libexecdir}/kwin_eis_prompter
 %{_libexecdir}/kwin_killer_helper
 %{_libexecdir}/kwin-applywindowdecoration
-%{_libexecdir}/kwin-tabbox-preview
 %{_qt6_qmldir}/org/kde/kwin/
 %{_userunitdir}/plasma-kwin_wayland.service
 %dir %{_sysconfdir}/xdg/Xwayland-session.d

@@ -1,10 +1,10 @@
-%global commit0 f24adffc3841e03a5415946bbbecfb7808163b5a
+%global commit0 770042e06d8d5dbda3166a7317b9c524673d3e66
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 1
 
 Name:           plasma-vault
 Summary:        Plasma Vault offers strong encryption features in a user-friendly way
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -17,6 +17,7 @@ BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6ItemModels)
 BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6KirigamiPlatform)
 BuildRequires:  cmake(KF6NetworkManagerQt)
 BuildRequires:  cmake(KF6Service)
 

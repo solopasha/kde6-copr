@@ -1,9 +1,9 @@
-%global commit0 b9e12609492d14c5271affa5a986572b45e0266f
+%global commit0 440e99dfff02460561a61312f4d90d5cc470b21d
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 2
 
 Name:           layer-shell-qt
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Library to easily use clients based on wlr-layer-shell
 
@@ -19,6 +19,7 @@ BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  wayland-devel
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 %description
 This component is meant for applications to be able to easily use clients

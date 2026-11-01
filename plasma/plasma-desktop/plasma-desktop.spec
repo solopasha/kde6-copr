@@ -1,10 +1,10 @@
-%global commit0 ac1a68945539d748b7b4e5263ec655f7755248e1
+%global commit0 ed750e4cef3b9306db0301e5b881f20c08aae1ed
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 30
+%global bumpver 34
 
 Name:           plasma-desktop
 Summary:        Plasma Desktop shell
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -19,7 +19,6 @@ Source20:       https://src.fedoraproject.org/lookaside/pkgs/plasma-workspace/br
 ## downstream patches
 # default kickoff/kicker favorites: +kwrite +konsole
 Patch100:       plasma-desktop-6.4.80-default_favorites.patch
-Patch101:       hide-virtual-keyboard-indicator-on-sddm.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  systemd-rpm-macros
@@ -83,6 +82,7 @@ BuildRequires:  cmake(ScreenSaverDBusInterface)
 BuildRequires:  cmake(AccountsQt6)
 BuildRequires:  cmake(KAccounts6)
 BuildRequires:  cmake(packagekitqt6)
+BuildRequires:  cmake(PolkitQt6-1)
 BuildRequires:  cmake(SDL2)
 BuildRequires:  desktop-backgrounds-compat
 BuildRequires:  intltool
@@ -222,8 +222,6 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %files -f plasmadesktop6.lang
 %license LICENSES
 %{_kf6_bindir}/kaccess
-%{_kf6_bindir}/kapplymousetheme
-%{_kf6_bindir}/kcm-touchpad-list-devices
 %{_kf6_bindir}/knetattach
 %{_kf6_bindir}/krunner-plugininstaller
 %{_kf6_bindir}/plasma-emojier
@@ -234,24 +232,22 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/applications/kde-mimeapps.list
 %{_kf6_datadir}/config.kcfg/*.kcfg
-%{_kf6_datadir}/dbus-1/interfaces/org.kde.touchpad.xml
-%{_kf6_datadir}/dbus-1/system-services/*.service
-%{_kf6_datadir}/dbus-1/system.d/*.conf
 %{_kf6_datadir}/icons/hicolor/*/*/*
 %{_kf6_datadir}/kcm_recentFiles/
 %{_kf6_datadir}/kcmkeys/
 %{_kf6_datadir}/kcmmouse/
 %{_kf6_datadir}/kcmsolidactions/
+%{_kf6_datadir}/kconf_update/50-krunner-activate-typing.sh
+%{_kf6_datadir}/kconf_update/50-krunner-activate-typing.upd
 %{_kf6_datadir}/kglobalaccel/org.kde.plasma.emojier.desktop
+%{_kf6_datadir}/kglobalaccel/org.kde.screenreader.desktop
 %{_kf6_datadir}/kglobalaccel/org.kde.touchpadshortcuts.desktop
 %{_kf6_datadir}/knotifications6/*.notifyrc
 %{_kf6_datadir}/knsrcfiles/
 %{_kf6_datadir}/plasma/*
-%{_kf6_datadir}/polkit-1/actions/org.kde.kcontrol.kcmclock.policy
 %{_kf6_datadir}/qlogging-categories6/*.categories
 %{_kf6_datadir}/solid/devices/*.desktop
 %{_kf6_libdir}/libkglobalaccelmodel.so.6{,.*}
-%{_kf6_libexecdir}/kauth/kcmdatetimehelper
 %{_kf6_metainfodir}/*.xml
 %{_kf6_plugindir}/kded/*.so
 %{_kf6_plugindir}/krunner/krunner*.so
@@ -261,13 +257,17 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_kf6_qmldir}/org/kde/private/desktopcontainment/*
 %{_kf6_qtplugindir}/attica_kde.so
 %{_kf6_qtplugindir}/plasma/applets/org.kde.panel.so
+%{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.dwellclicker.so
+%{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.keyboardlayout.so
 %{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.kicker.so
 %{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.kickoff.so
+%{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.kimpanel.so
+%{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.pager.so
+%{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.showActivityManager.so
 %{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.showdesktop.so
+%{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.taskmanager.so
 %{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.trash.so
 %{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.windowlist.so
-%{_kf6_qtplugindir}/plasma/kcminit/kcm_mouse_init.so
-%{_kf6_qtplugindir}/plasma/kcminit/kcm_touchpad_init.so
 %{_kf6_qtplugindir}/plasma/kcms/desktop/kcm_krunnersettings.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/*.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/*.so

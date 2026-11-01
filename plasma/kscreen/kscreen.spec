@@ -1,10 +1,10 @@
-%global commit0 08b4ae118d446eca4eeb829dd1d86197fbc36b8c
+%global commit0 392b1fe86a4a60af65913e55e384bed2f30ade05
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:           kscreen
 Epoch:          1
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Display Management software
 
@@ -20,6 +20,7 @@ BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
+BuildRequires:  cmake(KF6KirigamiPlatform)
 BuildRequires:  cmake(KF6Svg)
 BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(KF6XmlGui)
@@ -37,6 +38,9 @@ BuildRequires:  cmake(LayerShellQt)
 BuildRequires:  cmake(Plasma)
 BuildRequires:  cmake(PlasmaQuick)
 
+BuildRequires:  qt6qml(org.kde.kitemmodels)
+BuildRequires:  qt6qml(org.kde.plasma.plasma5support)
+
 BuildRequires:  pkgconfig(xcb-atom)
 BuildRequires:  pkgconfig(xcb)
 BuildRequires:  pkgconfig(xi)
@@ -44,6 +48,8 @@ BuildRequires:  wayland-devel
 BuildRequires:  wayland-protocols-devel
 
 Requires:       kf6-kimageformats%{?_isa}
+Requires:       kf6-kitemmodels%{?_isa}
+Requires:       plasma5support%{?_isa} >= %{majmin_ver_kf6}
 
 %description
 KCM and KDED modules for managing displays in KDE.
@@ -55,15 +61,17 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %license LICENSES
 %{_kf6_bindir}/hdrcalibrator
 %{_kf6_bindir}/kscreen-console
+%{_kf6_bindir}/kscreenctl
 %{_kf6_datadir}/applications/kcm_kscreen.desktop
 %{_kf6_datadir}/dbus-1/services/org.kde.kscreen.osdService.service
 %{_kf6_datadir}/kglobalaccel/org.kde.kscreen.desktop
 %{_kf6_datadir}/qlogging-categories6/kscreen.categories
-%{_kf6_plugindir}/kded/kscreen.so
 %{_kf6_qtplugindir}/plasma/applets/org.kde.kscreen.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_kscreen.so
 %{_libexecdir}/kscreen_osd_service
 %{_userunitdir}/plasma-kscreen-osd.service
+%{fish_completions_dir}/kscreenctl.fish
+%{zsh_completions_dir}/_kscreenctl
 
 %changelog
 %{?kde_snapshot_changelog_entry}

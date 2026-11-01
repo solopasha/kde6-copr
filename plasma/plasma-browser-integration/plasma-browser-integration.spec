@@ -1,17 +1,18 @@
-%global commit0 3525f090c7bf3826d1f6b6c915b39daf1e5ee949
+%global commit0 9cb1958592c9a68bc4409ad887e79b34ef1d08bd
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 8
+%global bumpver 6
 
 Name:           plasma-browser-integration
 Summary:        %{name} provides components necessary to integrate browsers into the Plasma Desktop
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later AND GPL-3.0-or-later AND MIT
 URL:            https://invent.kde.org/plasma/plasma-browser-integration
 %plasma_source
-BuildOption:    -DMOZILLA_DIR:PATH=%{_libdir}/mozilla
-BuildOption:    -DLIBREWOLF_DIR:PATH=%{_libdir}/librewolf
+BuildOption:    -DMOZILLA_DIR:PATH=%{_kf6_libdir}/mozilla
+BuildOption:    -DLIBREWOLF_DIR:PATH=%{_kf6_libdir}/librewolf
+BuildOption:    -DWATERFOX_DIR:PATH=%{_kf6_libdir}/waterfox
 
 BuildRequires:  desktop-file-utils
 
@@ -59,6 +60,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/krunner/dbusplugins/plasma-runner-browsertabs.desktop
 %{_kf6_libdir}/librewolf/native-messaging-hosts/org.kde.plasma.browser_integration.json
 %{_kf6_libdir}/mozilla/native-messaging-hosts/org.kde.plasma.browser_integration.json
+%{_kf6_libdir}/waterfox/native-messaging-hosts/org.kde.plasma.browser_integration.json
 %{_kf6_plugindir}/kded/browserintegrationflatpakintegrator.so
 %{_kf6_plugindir}/kded/browserintegrationreminder.so
 

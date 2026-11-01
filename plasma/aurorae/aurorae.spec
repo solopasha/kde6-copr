@@ -1,10 +1,10 @@
-%global commit0 40becb825745b5776283ec455ac1c7d9d9204436
+%global commit0 7316c54a7078e88eca4e5500670d82d57408f49a
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:           aurorae
 Summary:        Aurorae decoration engine
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later
@@ -18,6 +18,7 @@ BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6NewStuff)
 BuildRequires:  cmake(KF6Package)
+BuildRequires:  cmake(KF6Svg)
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
@@ -50,6 +51,7 @@ decorations.
 %{_libexecdir}/plasma-apply-aurorae
 %{_qt6_plugindir}/org.kde.kdecoration3.kcm/kcm_auroraedecoration.so
 %{_qt6_plugindir}/org.kde.kdecoration3/org.kde.kwin.aurorae.so
+%{_qt6_plugindir}/org.kde.kdecoration3/org.kde.kwin.aurorae.v2.so
 %{_qt6_qmldir}/org/kde/kwin/decoration/
 %{_qt6_qmldir}/org/kde/kwin/decorations/plastik/
 

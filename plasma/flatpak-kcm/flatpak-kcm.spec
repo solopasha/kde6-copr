@@ -1,9 +1,9 @@
-%global commit0 be1b10163258ed822bf5446e54c23d7c013f6108
+%global commit0 a10d5150c11ab4812daa15316a251d95f1506463
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 3
 
 Name:           flatpak-kcm
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        BSD-2-Clause and BSD-3-Clause and CC0-1.0 and GPL-2.0-or-later
 Summary:        Flatpak Permissions Management KCM

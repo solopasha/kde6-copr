@@ -1,0 +1,32 @@
+From 25b1356ffcaa76089e165f7a2bd11fb29ee343e7 Mon Sep 17 00:00:00 2001
+From: Xaver Hugl <xaver.hugl@kde.org>
+Date: Sat, 24 Oct 2026 15:30:08 +0200
+Subject: [PATCH] wayland_server: disable commit timing by default
+
+It was supposed to help with frame pacing, but it's pretty much exclusively
+causing problems at the moment. There's some issues with VRR likely caused by
+a bug in KWin, and also a bug in the Nvidia Vulkan driver freezing mpv in some
+situations.
+
+CCBUG: 525514
+CCBUG: 527500
+---
+ src/wayland_server.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/wayland_server.cpp b/src/wayland_server.cpp
+index 88213e9c664..0d84b0f793b 100644
+--- a/src/wayland_server.cpp
++++ b/src/wayland_server.cpp
+@@ -497,7 +497,7 @@ bool WaylandServer::init()
+     m_colorRepresentation = new ColorRepresentationManagerV1(m_display, m_display);
+     m_pointerWarp = new PointerWarpV1(m_display, m_display);
+     m_backgroundEffect = new ExtBackgroundEffectManagerV1(m_display, m_display);
+-    if (environmentVariableBoolValue("KWIN_WAYLAND_SUPPORT_COMMIT_TIMING_V1").value_or(true)) {
++    if (environmentVariableBoolValue("KWIN_WAYLAND_SUPPORT_COMMIT_TIMING_V1").value_or(false)) {
+         m_commitTiming = new CommitTimingManagerV1(m_display, m_display);
+     }
+     return true;
+-- 
+GitLab
+

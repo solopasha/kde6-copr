@@ -1,0 +1,131 @@
+name: Check repository versions
+run-name: Check ${{ inputs.ref || github.ref_name }} in ${{ inputs.profiles }} for Fedora ${{ inputs.releasever }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Git ref containing the package specs
+        required: false
+        type: string
+      releasever:
+        description: Fedora release, such as 44 or fc44
+        required: true
+        type: string
+      profiles:
+        description: Repository profiles separated by spaces or commas
+        required: true
+        default: unstable gear
+        type: string
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    container: ghcr.io/solopasha/kde6-copr/buildroot:latest
+    permissions:
+      contents: read
+      packages: read
+    env:
+      CHECK_REF: ${{ inputs.ref || github.sha }}
+      CHECK_RELEASEVER: ${{ inputs.releasever }}
+      CHECK_PROFILES: ${{ inputs.profiles }}
+    steps:
+      - name: Checkout package definitions
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          ref: ${{ env.CHECK_REF }}
+
+      - name: Set up ORAS
+        uses: oras-project/setup-oras@5e2f2482b30b0cb3e14e67f89a80c88c659a7c63
+
+      - name: Authenticate to GHCR
+        run: oras login ghcr.io --password "${{ secrets.GITHUB_TOKEN }}" -u "${{ github.actor }}"
+
+      - name: Restore committed repository state
+        run: |
+          set -euo pipefail
+          state_repository="ghcr.io/${GITHUB_REPOSITORY}/repodata:latest"
+          for attempt in 1 2 3; do
+            if oras pull "${state_repository}" -o .repository-state; then
+              exit 0
+            fi
+            [[ "${attempt}" == 3 ]] || sleep $((2 ** (attempt - 1)))
+          done
+          exit 1
+
+      - name: Check package versions
+        run: |
+          set -euo pipefail
+          releasever="${CHECK_RELEASEVER#fc}"
+          [[ "${releasever}" =~ ^[0-9]+$ ]]
+          profiles="${CHECK_PROFILES//,/ }"
+          read -r -a requested_profiles <<< "${profiles}"
+          [[ "${#requested_profiles[@]}" -gt 0 ]]
+
+          : > /tmp/published-nvrs
+          : > /tmp/repositories
+          for profile in "${requested_profiles[@]}"; do
+            [[ "${profile}" =~ ^(beta|unstable|gear)$ ]]
+            repository="${profile}-${releasever}"
+            package_list=".repository-state/repo/${repository}/packages.txt"
+            if [[ ! -f "${package_list}" ]]; then
+              echo "Committed repository state does not contain ${repository}" >&2
+              exit 1
+            fi
+            cat "${package_list}" >> /tmp/published-nvrs
+            echo "${repository}" >> /tmp/repositories
+          done
+          sort -u -o /tmp/published-nvrs /tmp/published-nvrs
+
+          : > /tmp/missing-nvrs
+          spec_count=0
+          while IFS= read -r -d '' spec; do
+            spec_count=$((spec_count + 1))
+            nvrs="$(rpmspec \
+              --define "dist .fc${releasever}" \
+              -q --srpm --qf '%{NAME}-%{VERSION}-%{RELEASE}\n' \
+              "${spec}" | sort -u)"
+            [[ -n "${nvrs}" ]]
+            while IFS= read -r nvr; do
+              if ! grep -Fqx -- "${nvr}" /tmp/published-nvrs; then
+                printf '%s\t%s\n' "${spec#./}" "${nvr}" >> /tmp/missing-nvrs
+              fi
+            done <<< "${nvrs}"
+          done < <(
+            find . \
+              -path './.git' -prune -o \
+              -path './.repository-state' -prune -o \
+              -type f -name '*.spec' -print0 |
+              sort -z
+          )
+
+          if [[ "${spec_count}" == 0 ]]; then
+            echo 'No RPM spec files were found at the requested Git ref' >&2
+            exit 1
+          fi
+
+          repository_names="$(paste -sd, /tmp/repositories)"
+          missing_count="$(wc -l < /tmp/missing-nvrs)"
+          {
+            echo '## Repository version check'
+            echo
+            echo "Checked ${spec_count} spec files for Fedora ${releasever} against ${repository_names}."
+            echo
+            if [[ "${missing_count}" == 0 ]]; then
+              echo 'Every Git source NVR is present in the selected repositories.'
+            else
+              echo "${missing_count} source NVRs are missing:"
+              echo
+              echo '| Spec | Expected source NVR |'
+              echo '| --- | --- |'
+              while IFS=$'\t' read -r spec nvr; do
+                printf '| `%s` | `%s` |\n' "${spec}" "${nvr}"
+              done < /tmp/missing-nvrs
+            fi
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+          if [[ "${missing_count}" != 0 ]]; then
+            cat /tmp/missing-nvrs >&2
+            exit 1
+          fi

@@ -1,9 +1,9 @@
-%global commit0 4b7856dc490a5f6c9c995766bfe56a12111bb5b6
+%global commit0 c36bf1627f16e7359743f110275722c4350831b9
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
 Name:           ksshaskpass
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        A ssh-add helper that uses kwallet and kpassworddialog
 
@@ -13,6 +13,7 @@ URL:            https://invent.kde.org/plasma/ksshaskpass
 
 BuildRequires:  desktop-file-utils
 
+BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6I18n)
@@ -20,6 +21,7 @@ BuildRequires:  cmake(KF6Wallet)
 BuildRequires:  cmake(KF6WidgetsAddons)
 
 BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Keychain)
 
 %description
 %{summary}.

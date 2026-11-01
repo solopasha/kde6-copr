@@ -1,10 +1,10 @@
-%global commit0 bc650b79a5575bc45d6129c242dfd8994f63a6a9
+%global commit0 54168ecadc4939897dbd60a0a6c7536591393991
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 6
 
 Name:           bluedevil
 Summary:        Bluetooth stack for KDE
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later
@@ -58,15 +58,18 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/applications/org.kde.bluedevilsendfile.desktop
 %{_kf6_datadir}/applications/org.kde.bluedevilwizard.desktop
 %{_kf6_datadir}/bluedevilwizard/
+%{_kf6_datadir}/config.kcfg/bluedevilglobalsettings.kcfg
+%{_kf6_datadir}/config.kcfg/filereceiver.kcfg
 %{_kf6_datadir}/knotifications6/bluedevil.notifyrc
 %{_kf6_datadir}/mime/packages/bluedevil-mime.xml
-%{_kf6_datadir}/plasma/plasmoids/org.kde.plasma.bluetooth/
 %{_kf6_datadir}/qlogging-categories6/bluedevil.categories
 %{_kf6_datadir}/remoteview/bluetooth-network.desktop
 %{_kf6_plugindir}/kded/bluedevil.so
 %{_kf6_plugindir}/kio/kio_bluetooth.so
 %{_kf6_plugindir}/kio/kio_obexftp.so
+%{_kf6_qmldir}/org/kde/bluedevil/
 %{_kf6_qmldir}/org/kde/plasma/private/bluetooth/
+%{_kf6_qtplugindir}/plasma/applets/org.kde.plasma.bluetooth.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_bluetooth.so
 
 %changelog

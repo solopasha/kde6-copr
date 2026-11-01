@@ -1,9 +1,9 @@
-%global commit0 86e6c07a8d9406563b3255ad5d40a86953a2940c
+%global commit0 6ad3c81f06bbc365d95bd6831b35bd7b8f6701f1
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:           plasma-sdk
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Development tools for Plasma 6
 
@@ -79,7 +79,6 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.appdata.
 %{_kf6_datadir}/applications/org.kde.plasmaengineexplorer.desktop
 %{_kf6_datadir}/applications/org.kde.plasmoidviewer.desktop
 %{_kf6_datadir}/icons/hicolor/scalable/apps/org.kde.iconexplorer.svg
-%{_kf6_datadir}/kpackage/genericqml/org.kde.plasma.themeexplorer/
 %{_kf6_datadir}/plasma/shells/org.kde.plasma.plasmoidviewershell
 %{_kf6_datadir}/zsh/site-functions/_kqml
 %{_kf6_datadir}/zsh/site-functions/_plasmoidviewer

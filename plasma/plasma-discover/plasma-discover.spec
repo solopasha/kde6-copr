@@ -1,6 +1,6 @@
-%global commit0 c477d37819d1acfaf3b644ee7a4600a1fbf79714
+%global commit0 c3385049354d8c2787b1872e472c4f0bf559511d
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 24
+%global bumpver 18
 
 %global base_name discover
 # enable snap support (or not)
@@ -11,12 +11,13 @@
 
 Name:           plasma-discover
 Summary:        KDE and Plasma resources management GUI
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
 URL:            https://invent.kde.org/plasma/discover
 %plasma_source
+Patch:          https://invent.kde.org/plasma/discover/-/merge_requests/1443.patch
 
 BuildOption(conf): -DPACKAGEKIT_AUTOREMOVE:BOOL=ON
 %if 0%{?fedora}
@@ -75,7 +76,6 @@ BuildRequires:  pkgconfig(fwupd)
 BuildRequires:  cmake(AppStreamQt)
 BuildRequires:  cmake(QCoro6)
 BuildRequires:  pkgconfig(flatpak)
-BuildRequires:  pkgconfig(libmarkdown)
 BuildRequires:  pkgconfig(packagekitqt6)
 
 BuildRequires:  qt6qml(org.kde.kitemmodels)
@@ -185,6 +185,12 @@ Supplements:    (%{name} and plasma-workspace%{?_isa})
 %description    kns
 %{summary}.
 
+%package        appstream-preview
+Summary:        Preview AppStream files in Discover
+Requires:       %{name} = %{version}-%{release}
+%description    appstream-preview
+%{summary}.
+
 %install
 %cmake_install
 
@@ -210,6 +216,9 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/applications/kcm_updates.desktop
 %{_kf6_datadir}/applications/org.kde.discover.desktop
 %{_kf6_datadir}/applications/org.kde.discover.urlhandler.desktop
+%{_kf6_datadir}/config.kcfg/discover-updates.kcfg
+%{_kf6_datadir}/config.kcfg/discoversettings-kcm.kcfg
+%{_kf6_datadir}/config.kcfg/discoversettings.kcfg
 %{_kf6_datadir}/icons/hicolor/*/apps/flatpak-discover.*
 %{_kf6_datadir}/icons/hicolor/*/apps/plasmadiscover.*
 %{_kf6_datadir}/kxmlgui5/plasmadiscover/
@@ -226,6 +235,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files libs -f libdiscover.lang
 %license LICENSES/*.txt
+%{_kf6_datadir}/config.kcfg/discover-appstream-settings.kcfg
 %{_kf6_datadir}/qlogging-categories6/discover.categories
 %dir %{_libdir}/plasma-discover/
 %{_libdir}/plasma-discover/libDiscoverNotifiers.so
@@ -278,6 +288,11 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 
 %files kns
 %{_kf6_qtplugindir}/discover/kns-backend.so
+
+%files appstream-preview
+%{_kf6_datadir}/applications/org.kde.discover.appstreampreview.desktop
+%{_kf6_metainfodir}/org.kde.discover.appstreampreview.metainfo.xml
+%{_kf6_qtplugindir}/discover/appstream-preview-backend.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}

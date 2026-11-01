@@ -1,308 +1,226 @@
-name: Create repo
+name: Publish repository batch
+run-name: Publish RPM batch ${{ inputs.batch_id }} (${{ inputs.branch }})
 
 on:
   workflow_dispatch:
     inputs:
-      branch:
-        description: 'Branch'
+      batch_id:
+        description: Durable orchestrator batch ID
         required: true
-        default: 'unstable'
-        type: choice
-        options:
-          - beta
-          - unstable
-  workflow_run:
-    workflows: ["Build Plasma and Frameworks packages"]
-    types: [completed]
-    branches:
-      - unstable
+        type: string
+      commit_sha:
+        description: Commit associated with this batch
+        required: true
+        type: string
+      branch:
+        description: Source branch (profiles are read from batch descriptors)
+        required: true
+        type: string
 
 concurrency:
-    group: repo-publish
-    cancel-in-progress: true
+  group: rpm-repository-publish-${{ github.repository }}
+  cancel-in-progress: false
 
 jobs:
-  repo:
+  repository:
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch'
     container: ghcr.io/solopasha/kde6-copr/buildroot:latest
     permissions:
       contents: write
       packages: write
-
+    env:
+      BATCH_ID: ${{ inputs.batch_id }}
+      COMMIT_SHA: ${{ inputs.commit_sha }}
+      SOURCE_BRANCH: ${{ inputs.branch }}
+      MAX_ASSETS_PER_RELEASE: '990'
+      MAX_PARALLEL_TRANSFERS: '8'
+      SNAPSHOT_RETENTION_DAYS: '7'
+      PUBLISH_GENERATION: ${{ github.run_id }}-${{ github.run_attempt }}
+      GH_TOKEN: ${{ github.token }}
+      REPOSITORY: ${{ github.event.repository.name }}
+      REPOSITORY_OWNER: ${{ github.repository_owner }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
+      - name: Validate request
+        run: |
+          set -euo pipefail
+          [[ "${BATCH_ID}" =~ ^[1-9][0-9]*$ ]]
+          [[ "${COMMIT_SHA}" =~ ^[0-9a-fA-F]{7,64}$ ]]
+          [[ "${SOURCE_BRANCH}" =~ ^[A-Za-z0-9][A-Za-z0-9._/-]*$ ]]
+          [[ "${SNAPSHOT_RETENTION_DAYS}" =~ ^[1-9][0-9]*$ ]]
+
+      - name: Checkout publisher
+        uses: actions/checkout@v7
         with:
           persist-credentials: false
 
-      - name: Get target repo
-        run: |
-          if [[ "${{ github.event_name }}" == "workflow_run" ]]; then
-            repository="${{ github.event.workflow_run.head_branch }}-testing"
-            branch="${{ github.event.workflow_run.head_branch }}"
-          elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            repository="${{ inputs.branch }}"
-            branch="${{ inputs.branch }}"
-          fi
-          echo "repository=${repository}" >> $GITHUB_ENV
-          echo "branch=${branch}" >> $GITHUB_ENV
-
       - name: Set up ORAS
-        uses: oras-project/setup-oras@8d34698a59f5ffe24821f0b48ab62a3de8b64b20
+        uses: oras-project/setup-oras@5e2f2482b30b0cb3e14e67f89a80c88c659a7c63
 
-      - name: Download packages
+      - name: Authenticate to GHCR
+        run: oras login ghcr.io --password "${{ secrets.GITHUB_TOKEN }}" -u "${{ github.actor }}"
+
+      - name: Pull exact batch descriptors
         run: |
-          mapfile -t packages < <(yq -r '.jobs | keys[]' < .github/workflows/packages.yml | sort -u | grep -v 'changed-files')
-          curl -LO -Ss https://github.com/${{ github.repository }}/releases/download/${branch}/packages.txt || :
-          download_package() {
-            version="$(oras manifest fetch ghcr.io/${{ github.repository }}/${1,,}:latest-${branch} | jq -r '.annotations."rpm.version"')"
-            if [[ -f "packages.txt" ]]; then
-              if grep -q "$1-$version" packages.txt; then
-                exit 0
+          set -euo pipefail
+          batch_repository="ghcr.io/${GITHUB_REPOSITORY}/repository-batches"
+          batch_subject="${batch_repository}:batch-${BATCH_ID}-${COMMIT_SHA,,}"
+          mkdir -p batch-descriptors
+          oras manifest fetch "${batch_subject}" > /tmp/batch-subject.json
+          [[ "$(jq -r '.annotations."rpm-orchestrator.batch" // empty' /tmp/batch-subject.json)" == "${BATCH_ID}" ]]
+          [[ "$(jq -r '.annotations."org.opencontainers.image.revision" // empty | ascii_downcase' /tmp/batch-subject.json)" == "${COMMIT_SHA,,}" ]]
+          expected_builds="$(jq -r '.annotations."rpm-orchestrator.build-count" // empty' /tmp/batch-subject.json)"
+          [[ "${expected_builds}" =~ ^[1-9][0-9]*$ ]]
+          [[ "$(jq -r '.annotations."rpm-orchestrator.descriptor-mode" // empty' /tmp/batch-subject.json)" == indexed-tags ]]
+          actual_builds=0
+          complete_builds=0
+          for attempt in 1 2 3 4 5 6 7; do
+            for sequence in $(seq 1 "${expected_builds}"); do
+              descriptor_tag="descriptor-${BATCH_ID}-${COMMIT_SHA,,}-${sequence}"
+              descriptor_dir="batch-descriptors/${sequence}"
+              if [[ ! -e "${descriptor_dir}/.complete" ]]; then
+                rm -rf "${descriptor_dir}"
+                mkdir -p "${descriptor_dir}"
+                if oras pull "${batch_repository}:${descriptor_tag}" -o "${descriptor_dir}"; then
+                  mapfile -d '' -t descriptor_files < <(
+                    find "${descriptor_dir}" -type f -name '*.json' -print0
+                  )
+                  if [[ "${#descriptor_files[@]}" == 1 ]] && jq -e \
+                      --arg batch "${BATCH_ID}" \
+                      --arg sha "${COMMIT_SHA,,}" \
+                      --argjson index "${sequence}" \
+                      '(.batch_id|tostring) == $batch and
+                       (.commit_sha|ascii_downcase) == $sha and
+                       .batch_index == $index' "${descriptor_files[0]}" > /dev/null; then
+                    touch "${descriptor_dir}/.complete"
+                  fi
+                fi
               fi
-            fi
-            oras pull "ghcr.io/${{ github.repository }}/${1,,}:latest-${branch}" -o packages
+            done
+            complete_builds="$(find batch-descriptors -type f -name '.complete' -print | wc -l)"
+            [[ "${complete_builds}" == "${expected_builds}" ]] && break
+            echo "Batch ${BATCH_ID} has ${complete_builds}/${expected_builds} indexed descriptors after attempt ${attempt}" >&2
+            [[ "${attempt}" == 7 ]] || sleep $((2 ** (attempt - 1)))
+          done
+          find batch-descriptors -type f -name '*.json' -print0 |
+            sort -z | xargs -0 -r jq -r '.build_id' |
+            sort -n -u > /tmp/descriptor-build-ids
+          actual_builds="$(wc -l < /tmp/descriptor-build-ids)"
+          if [[ "${actual_builds}" != "${expected_builds}" || \
+                "${complete_builds}" != "${expected_builds}" ]]; then
+            echo "Batch ${BATCH_ID} has ${actual_builds}/${expected_builds} build descriptors" >&2
+            exit 1
+          fi
+
+      - name: Restore committed repository state
+        run: |
+          set -euo pipefail
+          state_repository="ghcr.io/${GITHUB_REPOSITORY}/repodata"
+          mkdir -p repo state
+
+          fetch_manifest() {
+            local reference="$1"
+            local attempt
+            for attempt in 1 2 3; do
+              if oras manifest fetch "${reference}" > /dev/null 2>/tmp/oras-error; then
+                return 0
+              fi
+              [[ "${attempt}" == 3 ]] || sleep $((2 ** (attempt - 1)))
+            done
+            return 1
           }
-          export -f download_package
-          parallel --halt now,fail=1 download_package ::: "${packages[@]}"
 
-      - name: Createrepo
-        run: |
-          mkdir -p repo/unstable{,-debuginfo,-testing,-testing-debuginfo} repo/beta{,-debuginfo,-testing,-testing-debuginfo}
-          mv ./packages/*/*debuginfo-*.rpm repo/${repository}-debuginfo
-          mv ./packages/*/*debugsource-*.rpm repo/${repository}-debuginfo
-          mv ./packages/*/*.rpm repo/${repository}
-          rename -v '~' '_' repo/*/*.rpm > /dev/null || :
-          rename -v '^' '_' repo/*/*.rpm > /dev/null || :
-          createrepo_c -u https://github.com/${{ github.repository }}/releases/download/${repository} repo/${repository}
-          createrepo_c -u https://github.com/${{ github.repository }}/releases/download/${repository}-debuginfo repo/${repository}-debuginfo
-          if ! grep -q 'Not Found' packages.txt; then
-            if curl -f -Ss https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${repository}/repodata/repomd.xml > /dev/null; then
-              mergerepo_c \
-                --repo repo/${repository} \
-                --repo https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${repository}/
-              mergerepo_c \
-                -o merged_repo-debuginfo \
-                --repo repo/${repository}-debuginfo \
-                --repo https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${repository}-debuginfo/
-              rm -rf repo/${repository}/repodata repo/${repository}-debuginfo/repodata
-              mv merged_repo/repodata repo/${repository}/repodata
-              mv merged_repo-debuginfo/repodata repo/${repository}-debuginfo/repodata
-            fi
+          if fetch_manifest "${state_repository}:latest"; then
+            oras pull "${state_repository}:latest" -o .
+            exit 0
           fi
-          dnf -q \
-            --repofrompath="solopasha,repo/${repository}" \
-            --repo=solopasha rq --qf '%{source_name}-%{version}-%{release}\n' | sort -u > repo/${repository}/packages.txt
+          if ! grep -Eqi 'not found|manifest_unknown|name_unknown|404' /tmp/oras-error; then
+            cat /tmp/oras-error >&2
+            echo 'Unable to determine committed repository state' >&2
+            exit 1
+          fi
 
-      - name: Repoclosure
-        if: github.event_name == 'workflow_dispatch'
+          if oras repo tags --format json "${state_repository}" \
+              > /tmp/state-tags.json 2>/tmp/oras-error; then
+            jq -r '.tags[]? | select(startswith("latest-"))' \
+              /tmp/state-tags.json | sort -u > /tmp/legacy-state-tags
+            while IFS= read -r tag; do
+              oras pull "${state_repository}:${tag}" -o .
+            done < /tmp/legacy-state-tags
+          elif ! grep -Eqi 'not found|name_unknown|404' /tmp/oras-error; then
+            cat /tmp/oras-error >&2
+            echo 'Unable to inspect legacy repository state' >&2
+            exit 1
+          fi
+
+      - name: Apply all profile and release groups in the batch
         run: |
-          dnf repoclosure \
-            --disablerepo=copr:copr.fedorainfracloud.org:solopasha:playground \
-            --disablerepo=copr:copr.fedorainfracloud.org:solopasha:plasma-unstable \
-            --repofrompath=n,repo/${repository}/ \
-            --check n --newest
+          set -euo pipefail
+          find batch-descriptors -type f -name '*.json' -print0 |
+            sort -z |
+            xargs -0 jq -r --arg batch "${BATCH_ID}" --arg sha "${COMMIT_SHA,,}" \
+              'select((.batch_id|tostring) == $batch and (.commit_sha|ascii_downcase) == $sha) |
+               [.profile, (.releasever|tostring)] | @tsv' |
+            sort -u |
+            awk -F '\t' '$1 == "unstable" { print "0\t" $0; next }
+                           $1 == "gear" { print "1\t" $0; next }
+                           $1 == "beta" { print "2\t" $0; next }
+                           { print "9\t" $0 }' |
+            sort -t $'\t' -k1,1n -k3,3n |
+            cut -f2- > /tmp/groups.tsv
+          [[ -s /tmp/groups.tsv ]] || { echo 'Batch has no valid groups' >&2; exit 1; }
 
-          dnf repoclosure \
-            --disablerepo=copr:copr.fedorainfracloud.org:solopasha:playground \
-            --disablerepo=copr:copr.fedorainfracloud.org:solopasha:plasma-unstable \
-            --repofrompath=n,repo/${repository}/ \
-            --check n --newest --best
+          while IFS=$'\t' read -r profile releasever; do
+            [[ "${profile}" =~ ^(beta|unstable|gear)$ ]]
+            [[ "${releasever}" =~ ^[0-9]+$ ]]
+            export branch="${profile}" testing=false
+            export releasever
+            export normal_repository="${profile}-${releasever}"
+            export logical_repository="${normal_repository}"
+            export debug_repository="${logical_repository}-debuginfo"
+            mkdir -p "repo/${logical_repository}" "repo/${debug_repository}" \
+              "state/${logical_repository}"
+            touch "state/${logical_repository}/inventory.tsv" \
+              "state/${logical_repository}/retired.tsv" \
+              "state/${logical_repository}/applied-batches.tsv"
+            rm -rf incoming metadata-fragments merged-packages merged-debuginfo
+            rm -f batch-noop new-manifests.tsv packages-before.tsv
 
-      - name: Repoclosure (testing)
-        if: github.event_name == 'workflow_run'
-        run: |
-          dnf repoclosure \
-            --disablerepo=copr:copr.fedorainfracloud.org:solopasha:playground \
-            --disablerepo=copr:copr.fedorainfracloud.org:solopasha:plasma-unstable \
-            --repofrompath=o,https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${branch}/ \
-            --repofrompath=n,repo/${repository}/ \
-            --check n --newest
-
-          dnf repoclosure \
-            --disablerepo=copr:copr.fedorainfracloud.org:solopasha:playground \
-            --disablerepo=copr:copr.fedorainfracloud.org:solopasha:plasma-unstable \
-            --repofrompath=o,https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${branch}/ \
-            --repofrompath=n,repo/${repository}/ \
-            --check n --newest --best
-
-      - name: Createrepo for other branches
-        run: |
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            createrepo_c "repo/${repository}-testing"
-            createrepo_c "repo/${repository}-testing-debuginfo"
-            if [[ "${{ inputs.branch }}" == "unstable" ]]; then
-              another_repositories=(beta beta-testing)
-            else
-              another_repositories=(unstable unstable-testing)
-            fi
-            for repo in "${another_repositories[@]}"; do
-              if ! oras pull "ghcr.io/${{ github.repository }}/repodata:latest-${repo}"; then
-                createrepo_c "repo/${repo}"
-                createrepo_c "repo/${repo}-debuginfo"
-              fi
+            .github/scripts/publish-repo.py batch
+            [[ -e batch-noop ]] && continue
+            for stage in snapshot download assign metadata prune repoclosure repofile validate upload seal summary; do
+              .github/scripts/publish-repo.py "${stage}"
             done
-          fi
-          if [[ "${{ github.event_name }}" == "workflow_run" ]]; then
-            if [[ "${branch}" == "unstable" ]]; then
-              another_repositories=(beta beta-testing unstable)
-            else
-              another_repositories=(unstable unstable-testing beta)
-            fi
-            for repo in "${another_repositories[@]}"; do
-              if ! oras pull "ghcr.io/${{ github.repository }}/repodata:latest-${repo}"; then
-                createrepo_c "repo/${repo}"
-                createrepo_c "repo/${repo}-debuginfo"
-              fi
-            done
-          fi
+          done < /tmp/groups.tsv
 
-      - name: Repofiles
+          export branch="$(head -n1 /tmp/groups.tsv | cut -f1)"
+          export releasever="$(head -n1 /tmp/groups.tsv | cut -f2)"
+          export testing=false normal_repository="${branch}-${releasever}"
+          export logical_repository="${normal_repository}"
+          export debug_repository="${logical_repository}-debuginfo"
+          .github/scripts/snapshot-repositories.py \
+            --date "$(date -u +%F)" \
+            --owner "${REPOSITORY_OWNER}" \
+            --project "${REPOSITORY}" \
+            --retention-days "${SNAPSHOT_RETENTION_DAYS}"
+          .github/scripts/publish-repo.py site
+
+      - name: Save complete candidate state
         run: |
-          cat << 'EOF' > repo/unstable/${{ github.event.repository.name }}-unstable.repo
-          [${{ github.event.repository.name }}-github:unstable]
-          name=${{ github.repository }}(GitHub) - unstable branch
-          baseurl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/unstable/
-          type=rpm-md
-          skip_if_unavailable=True
-          gpgcheck=1
-          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
-          repo_gpgcheck=0
-          enabled=1
-          enabled_metadata=1
-          metadata_expire=6h
+          set -euo pipefail
+          oras push \
+            "ghcr.io/${GITHUB_REPOSITORY}/repodata:candidate-${PUBLISH_GENERATION}" \
+            repo state
 
-          [${{ github.event.repository.name }}-github:unstable-testing]
-          name=${{ github.repository }}(GitHub) - unstable branch - testing
-          baseurl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/unstable-testing/
-          type=rpm-md
-          skip_if_unavailable=True
-          gpgcheck=1
-          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
-          repo_gpgcheck=0
-          enabled=0
-          enabled_metadata=0
-          metadata_expire=6h
+      - name: Prepare Pages artifact
+        run: rm -rf incoming metadata-fragments merged-packages merged-debuginfo state batch-descriptors
 
-          [${{ github.event.repository.name }}-github:unstable-testing-debuginfo]
-          name=${{ github.repository }}(GitHub) - unstable branch - testing - debuginfo
-          baseurl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/unstable-testing-debuginfo/
-          type=rpm-md
-          skip_if_unavailable=True
-          gpgcheck=1
-          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
-          repo_gpgcheck=0
-          enabled=0
-          enabled_metadata=0
-          metadata_expire=6h
-
-          [${{ github.event.repository.name }}-github:unstable-debuginfo]
-          name=${{ github.repository }}(GitHub) - unstable branch - debuginfo
-          baseurl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/unstable-debuginfo/
-          type=rpm-md
-          skip_if_unavailable=True
-          gpgcheck=1
-          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
-          repo_gpgcheck=0
-          enabled=0
-          enabled_metadata=0
-          metadata_expire=6h
-          EOF
-
-          cat << 'EOF' > repo/beta/${{ github.event.repository.name }}-beta.repo
-          [${{ github.event.repository.name }}-github:beta]
-          name=${{ github.repository }}(GitHub) - beta branch
-          baseurl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/beta/
-          type=rpm-md
-          skip_if_unavailable=True
-          gpgcheck=1
-          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
-          repo_gpgcheck=0
-          enabled=1
-          enabled_metadata=1
-          metadata_expire=6h
-
-          [${{ github.event.repository.name }}-github:beta-testing]
-          name=${{ github.repository }}(GitHub) - beta branch - testing
-          baseurl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/beta-testing/
-          type=rpm-md
-          skip_if_unavailable=True
-          gpgcheck=1
-          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
-          repo_gpgcheck=0
-          enabled=0
-          enabled_metadata=0
-          metadata_expire=6h
-
-          [${{ github.event.repository.name }}-github:beta-testing-debuginfo]
-          name=${{ github.repository }}(GitHub) - beta branch - testing - debuginfo
-          baseurl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/beta-testing-debuginfo/
-          type=rpm-md
-          skip_if_unavailable=True
-          gpgcheck=1
-          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
-          repo_gpgcheck=0
-          enabled=0
-          enabled_metadata=0
-          metadata_expire=6h
-
-          [${{ github.event.repository.name }}-github:beta-debuginfo]
-          name=${{ github.repository }}(GitHub) - beta branch - debuginfo
-          baseurl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/beta-debuginfo/
-          type=rpm-md
-          skip_if_unavailable=True
-          gpgcheck=1
-          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
-          repo_gpgcheck=0
-          enabled=0
-          enabled_metadata=0
-          metadata_expire=6h
-          EOF
-
-      - name: Upload RPMs
-        env:
-          GH_TOKEN: ${{ github.token }}
-          REPOSITORY: ${{ github.event.repository.name }}
-          REPOSITORY_OWNER: ${{ github.repository_owner }}
-        run: |
-          git config --global --add safe.directory '*'
-          mapfile -t files < <(find ./repo/${repository} -type f ! -name '*.xml.zst' ! -name '*.xml')
-          mapfile -t files_debug < <(find ./repo/${repository}-debuginfo -type f ! -name '*.xml.zst' ! -name '*.xml')
-          gh release view ${repository} &>/dev/null || gh release create ${repository} || :
-          gh release view ${repository}-debuginfo &>/dev/null || gh release create ${repository}-debuginfo || :
-          TAG="${repository}" bash upload_to_release.sh "${files[@]}"
-          TAG="${repository}-debuginfo" bash upload_to_release.sh "${files_debug[@]}"
-          rm -f repo/${repository}/*.rpm
-          rm -f repo/${repository}-debuginfo/*.rpm
-
-      - name: Prune testing
-        continue-on-error: true
-        if: github.event_name == 'workflow_dispatch'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh release view "${repository}-testing" \
-            -R ${{ github.repository }} \
-            --json assets \
-            -q '.assets[].name' | xargs -I {} gh release delete-asset "${repository}-testing" "{}" -R ${{ github.repository }} -y
-          gh release view "${repository}-testing-debuginfo" \
-            -R ${{ github.repository }} \
-            --json assets \
-            -q '.assets[].name' | xargs -I {} gh release delete-asset "${repository}-testing-debuginfo" "{}" -R ${{ github.repository }} -y
-
-      - name: Upload repodata to ghcr
-        run: |
-          oras login ghcr.io --password "${{ secrets.GITHUB_TOKEN }}" -u "${{ github.actor }}"
-          oras push ghcr.io/${{ github.repository }}/repodata:latest-${repository} repo/${repository}/repodata repo/${repository}-debuginfo/repodata
-
-      - name: Upload repodata to artifacts
-        uses: actions/upload-pages-artifact@v3
+      - name: Upload repository metadata to Pages
+        uses: actions/upload-pages-artifact@v5
         with:
           path: repo/
 
   pages:
-    needs: repo
+    needs: repository
     permissions:
       pages: write
       id-token: write
@@ -311,6 +229,23 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Deploy complete batch to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
+
+  finalize:
+    needs: [repository, pages]
+    permissions:
+      packages: write
+    runs-on: ubuntu-latest
+    env:
+      PUBLISH_GENERATION: ${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: oras-project/setup-oras@5e2f2482b30b0cb3e14e67f89a80c88c659a7c63
+      - run: oras login ghcr.io --password "${{ secrets.GITHUB_TOKEN }}" -u "${{ github.actor }}"
+      - name: Promote repository state after Pages succeeds
+        run: |
+          set -euo pipefail
+          oras tag \
+            "ghcr.io/${GITHUB_REPOSITORY}/repodata:candidate-${PUBLISH_GENERATION}" \
+            latest

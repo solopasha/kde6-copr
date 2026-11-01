@@ -1,11 +1,11 @@
-%global commit0 31bcc024536bdbc2201f230dc32634987fff2359
+%global commit0 6518c819700f151fb1db84fe14c687b2f81e90e6
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 9
 
 %global framework kcoreaddons
 
 Name:           kf6-%{framework}
-Version:        6.20.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.32.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Qt addon library with a collection of non-GUI utilities
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND MPL-1.1 AND LGPL-2.0-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-2.1-only WITH Qt-LGPL-exception-1.1
@@ -17,6 +17,7 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6Qml)
 
+BuildRequires:  pkgconfig(mount)
 BuildRequires:  pkgconfig(libudev)
 
 %description
@@ -52,6 +53,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KF6CoreAddons/
 %{_kf6_libdir}/libKF6CoreAddons.so
 %{_kf6_libdir}/pkgconfig/KF6CoreAddons.pc
+%{_qt6_metatypesdir}/qt6kf6coreaddons_metatypes.json
 
 %changelog
 %{?kde_snapshot_changelog_entry}

@@ -1,0 +1,37 @@
+.TH YTMUSICAPI "1" "June 2026" "ytmusicapi" "User Commands"
+.SH NAME
+ytmusicapi \- Unofficial API for YouTube Music
+.SH SYNOPSIS
+.B ytmusicapi
+[\fIOPTIONS\fR] {\fBoauth\fR|\fBbrowser\fR} [\fISUBOPTIONS\fR]
+.SH DESCRIPTION
+.B ytmusicapi
+is a command-line tool to setup authentication credentials for the ytmusicapi Python library.
+.SH OPTIONS
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Show help message and exit.
+.TP
+\fB\-v\fR, \fB\-\-version\fR
+Show program's version number and exit.
+.SH SUBCOMMANDS
+.SS oauth
+Setup OAuth authentication credentials.
+.TP
+\fB\-\-file\fR \fIFILE\fR
+Optional path to output JSON file.
+.TP
+\fB\-\-client\-id\fR \fICLIENT_ID\fR
+Use specified Google YouTube Data API client ID.
+.TP
+\fB\-\-client\-secret\fR \fICLIENT_SECRET\fR
+Use specified Google YouTube Data API client secret.
+.SS browser
+Setup browser cookie credentials (deprecated).
+.TP
+\fB\-\-file\fR \fIFILE\fR
+Optional path to output JSON file.
+.SH AUTHOR
+ytmusicapi was written by sigma67.
+.SH SEE ALSO
+The online documentation at https://ytmusicapi.readthedocs.io/

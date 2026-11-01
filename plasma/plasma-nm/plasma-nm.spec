@@ -1,10 +1,10 @@
-%global commit0 3328368a25d868fb40a02926e66e905ba16b3218
+%global commit0 f5b6cbbea61f1e23d5d0f6b694c3f5351d601ed8
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 11
+%global bumpver 20
 
 Name:           plasma-nm
 Summary:        Plasma for managing network connections
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -23,6 +23,7 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  cmake(QCoro6)
 BuildRequires:  cmake(Qca-qt6)
+BuildRequires:  cmake(Qt6Keychain)
 
 BuildRequires:  cmake(Plasma)
 BuildRequires:  cmake(KF6I18n)
@@ -43,6 +44,7 @@ BuildRequires:  cmake(KF6Svg)
 # Runtime check
 BuildRequires:  cmake(KF6Prison)
 BuildRequires:  cmake(KF6Kirigami)
+BuildRequires:  qt6qml(org.kde.kirigamiaddons.formcard)
 
 BuildRequires:  pkgconfig(ModemManager) >= 1.0.0
 BuildRequires:  pkgconfig(libnm) >= 1.0.0
@@ -56,9 +58,10 @@ BuildRequires:  cmake(Qt6WebEngineWidgets)
 Obsoletes:      %{name}-openconnect < %{version}-%{release}
 %endif
 
-Requires:       NetworkManager >= 1.0.0
-Requires:       kf6-prison%{?_isa}
 Requires:       kf6-kirigami%{?_isa}
+Requires:       kf6-kquickcharts%{?_isa}
+Requires:       kf6-prison%{?_isa}
+Requires:       NetworkManager >= 1.0.0
 
 Obsoletes:      kde-plasma-networkmanagement < 1:0.9.1.0
 Obsoletes:      kde-plasma-networkmanagement-libs < 1:0.9.1.0
@@ -68,6 +71,11 @@ Provides:       kde-plasma-nm = %{version}-%{release}
 Obsoletes:      %{name}-mobile < 6.4.80~2.git6241b73-2
 Provides:       %{name}-mobile = %{version}-%{release}
 Provides:       %{name}-mobile%{?_isa} = %{version}-%{release}
+
+%if 0%{?fedora} >= 45
+Obsoletes:      %{name}-fortisslvpn < 6.8.80~8.git6f15666-2
+Obsoletes:      %{name}-vpnc        < 6.8.80~8.git6f15666-2
+%endif
 
 %description
 Plasma applet and editor for managing your network connections in KDE 4 using
@@ -140,6 +148,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %description    sstp
 %{summary}.
 
+%if 0%{?fedora} < 45
 %package        fortisslvpn
 Summary:        Fortigate SSL VPN support for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
@@ -147,7 +156,6 @@ Requires:       NetworkManager-fortisslvpn
 %description    fortisslvpn
 %{summary}.
 
-%if 0%{?fedora}
 %package        vpnc
 Summary:        Vpnc support for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
@@ -157,7 +165,9 @@ Obsoletes:      kde-plasma-nm-vpnc < 5.0.0-1
 Provides:       kde-plasma-nm-vpnc = %{version}-%{release}
 %description    vpnc
 %{summary}.
+%endif
 
+%if 0%{?fedora}
 %package        ssh
 Summary:        SSH suppor for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
@@ -188,9 +198,16 @@ rm -f %{buildroot}/usr/share/locale/*/LC_MESSAGES/plasmanetworkmanagement_vpncui
 rm -f %{buildroot}/usr/share/locale/*/LC_MESSAGES/plasmanetworkmanagement_openconnectui.mo
 %endif
 
+%if 0%{?fedora} >= 45
+rm -f %{buildroot}%{_kf6_qtplugindir}/plasma/network/vpn/plasmanetworkmanagement_fortisslvpnui.so
+rm -f %{buildroot}/usr/share/locale/*/LC_MESSAGES/plasmanetworkmanagement_fortisslvpnui.mo
+rm -f %{buildroot}%{_kf6_qtplugindir}/plasma/network/vpn/plasmanetworkmanagement_vpncui.so
+rm -f %{buildroot}/usr/share/locale/*/LC_MESSAGES/plasmanetworkmanagement_vpncui.mo
+%endif
+
+
 %find_lang plasma_applet_org.kde.plasma.networkmanagement
 %find_lang plasmanetworkmanagement-kded
-%find_lang plasmanetworkmanagement-kcm
 %find_lang plasmanetworkmanagement-libs
 %find_lang plasmanetworkmanagement_openvpnui
 %if %{with openconnect}
@@ -201,15 +218,20 @@ rm -f %{buildroot}/usr/share/locale/*/LC_MESSAGES/plasmanetworkmanagement_openco
 %find_lang plasmanetworkmanagement_l2tpui
 %find_lang plasmanetworkmanagement_pptpui
 %find_lang plasmanetworkmanagement_sstpui
+%if 0%{?fedora} < 45
 %find_lang plasmanetworkmanagement_fortisslvpnui
-%if 0%{?fedora}
 %find_lang plasmanetworkmanagement_vpncui
+%endif
+%if 0%{?fedora}
 %find_lang plasmanetworkmanagement_sshui
 %find_lang plasmanetworkmanagement_iodineui
 %endif
 %find_lang kcm_mobile_wifi
 %find_lang kcm_cellular_network
 %find_lang kcm_mobile_hotspot
+%find_lang kcm_mobile_wired
+%find_lang plasmanetworkmanagement-kcm
+%find_lang plasmanetworkmanagement-kcm-qml
 
 %check
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
@@ -222,9 +244,12 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
         -f kcm_mobile_wifi.lang
         -f kcm_cellular_network.lang
         -f kcm_mobile_hotspot.lang
+        -f kcm_mobile_wired.lang
+        -f plasmanetworkmanagement-kcm-qml.lang
         }
 %{_kf6_libdir}/libplasmanm_internal.so
 %{_kf6_libdir}/libplasmanm_editor.so
+%{_kf6_libdir}/libplasmanm_cellular.so
 # plasma-nm applet
 %{_qt6_qmldir}/org/kde/plasma/networkmanagement/
 %{_kf6_datadir}/qlogging-categories6/plasma-nm.categories
@@ -278,13 +303,15 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %files sstp -f plasmanetworkmanagement_sstpui.lang
 %{_kf6_qtplugindir}/plasma/network/vpn/plasmanetworkmanagement_sstpui.so
 
+%if 0%{?fedora} < 45
 %files fortisslvpn -f plasmanetworkmanagement_fortisslvpnui.lang
 %{_kf6_qtplugindir}/plasma/network/vpn/plasmanetworkmanagement_fortisslvpnui.so
 
-%if 0%{?fedora}
 %files vpnc -f plasmanetworkmanagement_vpncui.lang
 %{_kf6_qtplugindir}/plasma/network/vpn/plasmanetworkmanagement_vpncui.so
+%endif
 
+%if 0%{?fedora}
 %files ssh -f plasmanetworkmanagement_sshui.lang
 %{_kf6_qtplugindir}/plasma/network/vpn/plasmanetworkmanagement_sshui.so
 

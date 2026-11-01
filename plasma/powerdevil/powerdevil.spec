@@ -1,9 +1,9 @@
-%global commit0 1b4567697658dff5074d6d647ba9bd8c2ff45396
+%global commit0 af802110c25fc9a5485436dd0c17dbbfdc9fb19c
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 20
 
 Name:           powerdevil
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Manages the power consumption settings of a Plasma Shell
 
@@ -38,6 +38,7 @@ BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(KF6Screen)
+BuildRequires:  cmake(KNightTime)
 BuildRequires:  cmake(LibKWorkspace)
 BuildRequires:  cmake(Plasma)
 BuildRequires:  cmake(PlasmaActivities)

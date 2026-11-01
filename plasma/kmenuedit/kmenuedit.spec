@@ -1,10 +1,10 @@
-%global commit0 6e44bf4c90d9a53ea6b7473395e44a9b0c2eff92
+%global commit0 9333aa654e62edf96f7855e3c216cd62fc591f23
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:          kmenuedit
 Summary:       KDE menu editor
-Version:       6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:       6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:       1%{?dist}
 
 License:       GPL-2.0-or-later OR GPL-2.0-only

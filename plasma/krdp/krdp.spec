@@ -1,9 +1,9 @@
-%global commit0 a60e7b15b681d8a49106ca634654f5ce213eac59
+%global commit0 9d158e1d112b3602b113b8fdd561fb15d9a28ac9
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 13
 
 Name:           krdp
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Desktop sharing using RDP
 
@@ -38,11 +38,14 @@ BuildRequires:  cmake(WinPR) >= 3
 BuildRequires:  cmake(KPipeWire)
 BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  cmake(Qt6Keychain)
+BuildRequires:  pkgconfig(libei-1.0)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pam-devel
 BuildRequires:  wayland-devel
+BuildRequires:  qt6qml(org.kde.kirigamiaddons.formcard)
 BuildRequires:  /usr/bin/winpr-makecert
 Requires:       /usr/bin/winpr-makecert
+Requires:       kf6-kirigami-addons%{?_isa}
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Obsoletes:      %{name}-server < 6.0.90-3
@@ -75,6 +78,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_bindir}/krdpserver
 %{_kf6_datadir}/applications/kcm_krdpserver.desktop
 %{_kf6_datadir}/applications/org.kde.krdpserver.desktop
+%{_kf6_datadir}/config.kcfg/krdpserversettings.kcfg
 %{_kf6_datadir}/qlogging-categories6/kcm_krdpserver.categories
 %{_kf6_datadir}/qlogging-categories6/krdp.categories
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_krdpserver.so

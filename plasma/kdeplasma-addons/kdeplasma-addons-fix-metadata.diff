@@ -1,0 +1,12 @@
+diff -Naur a/kdeds/kameleon/qmk/kameleon-qmk-helper/Cargo.toml b/kdeds/kameleon/qmk/kameleon-qmk-helper/Cargo.toml
+--- a/kdeds/kameleon/qmk/kameleon-qmk-helper/Cargo.toml	2026-09-10 13:08:43.000000000 +0100
++++ b/kdeds/kameleon/qmk/kameleon-qmk-helper/Cargo.toml	2026-09-15 21:18:19.330759213 +0100
+@@ -9,7 +9,7 @@
+ [dependencies]
+ easy_color = "0.1"
+ event-listener = "5"
+-qmk-via-api = "0.8"
++qmk-via-api = ">=0.8, <0.11"
+ tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
+ zbus = { version = "5", default-features = false, features = ["tokio"] }
+ zbus_polkit = { version = "5", default-features = false, features = ["tokio"] }

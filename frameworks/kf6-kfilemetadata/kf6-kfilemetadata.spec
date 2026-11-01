@@ -1,4 +1,4 @@
-%global commit0 e1c6000574b8b394693a43ab08dc32cb5ac07a18
+%global commit0 a0d202a09086d223748e95e587c0ce2531d8e8ab
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 2
 
@@ -6,7 +6,7 @@
 
 Name:           kf6-%{framework}
 Summary:        A Tier 2 KDE Framework for extracting file metadata
-Version:        6.20.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.32.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
@@ -23,6 +23,7 @@ BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Xml)
 
 BuildRequires:  catdoc
+BuildRequires:  cmake(libzip)
 BuildRequires:  cmake(QMobipocket6)
 BuildRequires:  ebook-tools-devel
 BuildRequires:  ffmpeg-free-devel

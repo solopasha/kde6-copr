@@ -1,11 +1,11 @@
-%global commit0 80139bdc330a8e655f36adee3920d3d7c5df2faf
+%global commit0 ba346c3de6bd46092febeda073700ab0f911ebeb
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 3
 
 %global framework knotifications
 
 Name:           kf6-%{framework}
-Version:        6.20.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.32.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 solution with abstraction for system notifications
 License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
@@ -39,7 +39,7 @@ developing applications that use %{name}.
 # We own the folder
 mkdir -p %{buildroot}/%{_kf6_datadir}/knotifications6
 
-%files -f knotifications6_qt.lang
+%files
 %doc README.md
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/%{framework}.*

@@ -1,10 +1,10 @@
-%global commit0 6872506cc43bd735eb41c8112e5a30aaa404a752
+%global commit0 ecd9999773ed5ad55af31e8f9102acf773060d08
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:           kglobalacceld
 Summary:        Daemon providing Global Keyboard Shortcut functionality
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
@@ -15,25 +15,13 @@ BuildRequires:  systemd-rpm-macros
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6Crash)
-BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6JobWidgets)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Service)
-BuildRequires:  cmake(KF6WindowSystem)
 
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
-BuildRequires:  cmake(Qt6Widgets)
-BuildRequires:  qt6-qtbase-private-devel
-
-BuildRequires:  pkgconfig(xcb-keysyms)
-BuildRequires:  pkgconfig(xcb-record)
-BuildRequires:  pkgconfig(xcb-xkb)
-BuildRequires:  pkgconfig(xcb-xtest)
-BuildRequires:  pkgconfig(xcb)
-BuildRequires:  pkgconfig(xkbcommon)
 
 Requires:       kf6-filesystem
 
@@ -44,7 +32,6 @@ Requires:       kf6-filesystem
 Summary:        Developer files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(Qt6DBus)
-Requires:       cmake(Qt6Widgets)
 %description    devel
 %{summary}.
 
@@ -53,11 +40,6 @@ Requires:       cmake(Qt6Widgets)
 %{_kf6_datadir}/qlogging-categories6/kglobalacceld.categories
 %{_kf6_libdir}/libKGlobalAccelD.so.%{version_no_git}
 %{_kf6_libdir}/libKGlobalAccelD.so.0
-%{_libexecdir}/kglobalacceld
-%dir %{_qt6_plugindir}/org.kde.kglobalacceld.platforms
-%{_qt6_plugindir}/org.kde.kglobalacceld.platforms/KGlobalAccelDXcb.so
-%{_sysconfdir}/xdg/autostart/kglobalacceld.desktop
-%{_userunitdir}/plasma-kglobalaccel.service
 
 %files devel
 %{_includedir}/KGlobalAccelD/

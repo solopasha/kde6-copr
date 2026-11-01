@@ -1,12 +1,12 @@
-%global commit0 3499da064469be531567d1da97fb78ae60c31173
+%global commit0 9663155adbd264d32835e7be7054970770322698
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 %global base_name print-manager
 
 Name:           plasma-print-manager
 Summary:        Printer management for KDE
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -33,6 +33,10 @@ BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Widgets)
 
+BuildRequires:  cmake(KF6KirigamiAddons)
+BuildRequires:  qt6qml(org.kde.draganddrop)
+BuildRequires:  qt6qml(org.kde.kitemmodels)
+
 BuildRequires:  cmake(Plasma)
 
 BuildRequires:  cups-devel >= 1.5.0
@@ -44,6 +48,9 @@ BuildRequires:  samba-client
 Obsoletes:      kde-print-manager < 1:%{version}-%{release}
 Provides:       kde-print-manager = 1:%{version}-%{release}
 
+Requires:       kf6-kdeclarative%{?_isa}
+Requires:       kf6-kirigami-addons%{?_isa}
+Requires:       kf6-kitemmodels%{?_isa}
 Requires:       plasma-workspace
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
@@ -71,10 +78,10 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_bindir}/configure-printer
-%{_kf6_bindir}/kde-print-queue
+%{_kf6_bindir}/plasma-print-queue
 %{_kf6_datadir}/applications/kcm_printer_manager.desktop
 %{_kf6_datadir}/applications/org.kde.ConfigurePrinter.desktop
-%{_kf6_datadir}/applications/org.kde.PrintQueue.desktop
+%{_kf6_datadir}/applications/org.kde.plasma.printqueue.desktop
 %{_kf6_datadir}/knotifications6/printmanager.notifyrc
 %{_kf6_datadir}/qlogging-categories6/pmlogs.categories
 %{_kf6_metainfodir}/org.kde.print-manager.metainfo.xml

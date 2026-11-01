@@ -1,0 +1,38 @@
+From 3093bceb003846aef30b47bc522fcef2fc676b70 Mon Sep 17 00:00:00 2001
+From: Harald Sitter <sitter@kde.org>
+Date: Fri, 16 Oct 2026 00:08:51 +0200
+Subject: [PATCH] systemd: decouple baloo from our dependency tree
+
+.target files are special in that they automatically add implicit After=
+relationships for Wants= relationships. this then leads to a tidy
+dependency loop because baloo wants to start up alongside
+graphical-session.target which in turn is After plasma-workspace. to
+break this loop we explicitly order workspace before baloo, thus
+disabling the automatic after rule
+---
+ startkde/systemd/plasma-workspace.target | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/startkde/systemd/plasma-workspace.target b/startkde/systemd/plasma-workspace.target
+index 52424ae1c1..25c0c17b81 100644
+--- a/startkde/systemd/plasma-workspace.target
++++ b/startkde/systemd/plasma-workspace.target
+@@ -15,9 +15,15 @@ Wants=plasma-kaccess.service
+ Wants=plasma-startupsound.service
+ Wants=xdg-desktop-autostart.target
+ BindsTo=graphical-session.target
++
++# .target units automatically add After= for Wants=. In some cases we actually do not want there to be a dependency order.
++# Explicitly setting a Before= disables the automatic After= that would normally be added.
++# This in particular avoids dependency loops.
+ Before=graphical-session.target
+ Before=xdg-desktop-autostart.target
+ Before=plasma-startupsound.service
+ Before=plasma-restoresession.service
++Before=kde-baloo.service
++
+ RefuseManualStart=yes
+ StopWhenUnneeded=true
+-- 
+GitLab
+

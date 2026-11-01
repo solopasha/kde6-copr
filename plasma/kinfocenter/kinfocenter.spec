@@ -1,9 +1,9 @@
-%global commit0 056ae51b473254f9a41f3e582498990f35445a09
+%global commit0 35d4b0c0d705681b6d2aa449842c7cf2e7158541
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 7
 
 Name:           kinfocenter
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Info Center
 
@@ -26,6 +26,7 @@ BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6Solid)
 
 BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6Graphs)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Widgets)
 
@@ -36,18 +37,19 @@ BuildRequires:  pkgconfig(libusb-1.0)
 Requires:       kf6-kirigami%{?_isa}
 
 # Runtime Dependancies
-Requires:       plasma-systemsettings
-Requires:       wayland-utils
-Requires:       dmidecode
-Requires:       vulkan-tools
-Requires:       xdpyinfo
-Requires:       egl-utils
-Requires:       fwupd
 Requires:       aha
 Requires:       clinfo
-Requires:       pulseaudio-utils
+Requires:       dmidecode
+Requires:       egl-utils
+Requires:       fwupd
 Requires:       hwdata
 Requires:       libdisplay-info-tools
+Requires:       libva-utils
+Requires:       plasma-systemsettings
+Requires:       pulseaudio-utils
+Requires:       vulkan-tools
+Requires:       wayland-utils
+Requires:       xdpyinfo
 Recommends:     lm_sensors
 
 %description
@@ -60,7 +62,6 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 %files -f %{name}.lang
 %{_kf6_bindir}/kinfocenter
 %{_kf6_datadir}/applications/kcm_about-distro.desktop
-%{_kf6_datadir}/applications/kcm_energyinfo.desktop
 %{_kf6_datadir}/applications/org.kde.kinfocenter.desktop
 %{_kf6_datadir}/dbus-1/system-services/org.kde.kinfocenter.dmidecode.service
 %{_kf6_datadir}/dbus-1/system.d/org.kde.kinfocenter.dmidecode.conf
@@ -72,7 +73,8 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml 
 %{_kf6_qmldir}/org/kde/kinfocenter/
 %{_kf6_qtplugindir}/plasma/kcms/*.so
 %{_kf6_qtplugindir}/plasma/kcms/kinfocenter/*.so
-%{_libexecdir}/kinfocenter-opengl-helper
+%{_libexecdir}/kinfocenter-egl-helper
+%{_libexecdir}/kinfocenter-vulkan-helper
 
 %changelog
 %{?kde_snapshot_changelog_entry}

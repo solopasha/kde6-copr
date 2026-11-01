@@ -1,11 +1,11 @@
-%global commit0 ea191ac164b91b72b17ce2c5e2703c27879395e8
+%global commit0 2686274a722175011f45605d244bc931f9eee888
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 7
 
 %global framework kcalendarcore
 
 Name:           kf6-%{framework}
-Version:        6.20.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.32.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 KCalendarCore Library
 License:        BSD-3-Clause AND LGPL-2.0-or-later AND LGPL-3.0-or-later
@@ -30,7 +30,9 @@ Requires:       cmake(Qt6Gui)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%files
+%kf6_python_bindings_package
+
+%files -f kcalendarcore6_qt.lang
 %license LICENSES/*.txt
 %{_kf6_datadir}/qlogging-categories6/*kcalendarcore.*
 %{_kf6_libdir}/libKF6CalendarCore.so.%{version_no_git}
@@ -38,6 +40,8 @@ developing applications that use %{name}.
 %{_kf6_qmldir}/org/kde/calendarcore/
 
 %files devel
+%{_includedir}/PySide6/KCalendarCore/kcalendarcore_python.h
+%{_kf6_datadir}/PySide6/typesystems/typesystem_kcalendarcore.xml
 %{_kf6_includedir}/KCalendarCore/
 %{_kf6_libdir}/cmake/KF6CalendarCore/
 %{_kf6_libdir}/libKF6CalendarCore.so

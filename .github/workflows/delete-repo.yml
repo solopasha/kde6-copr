@@ -1,0 +1,170 @@
+name: Delete repository packages
+run-name: Delete ${{ inputs.packages }} from ${{ inputs.profile }}-${{ inputs.releasever }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      profile:
+        description: Repository profile
+        required: true
+        type: choice
+        options:
+          - unstable
+          - gear
+          - beta
+      releasever:
+        description: Fedora release
+        required: true
+        type: string
+      packages:
+        description: Source package names separated by spaces or commas
+        required: true
+        type: string
+
+concurrency:
+  group: rpm-repository-publish-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  repository:
+    runs-on: ubuntu-latest
+    container: ghcr.io/solopasha/kde6-copr/buildroot:latest
+    permissions:
+      contents: write
+      packages: write
+    env:
+      branch: ${{ inputs.profile }}
+      releasever: ${{ inputs.releasever }}
+      testing: false
+      normal_repository: ${{ inputs.profile }}-${{ inputs.releasever }}
+      logical_repository: ${{ inputs.profile }}-${{ inputs.releasever }}
+      debug_repository: ${{ inputs.profile }}-${{ inputs.releasever }}-debuginfo
+      BATCH_ID: ${{ github.run_id }}
+      COMMIT_SHA: ${{ github.sha }}
+      DELETE_ID: ${{ github.run_id }}
+      DELETE_PACKAGES: ${{ inputs.packages }}
+      MAX_ASSETS_PER_RELEASE: '900'
+      MAX_PARALLEL_TRANSFERS: '8'
+      PUBLISH_GENERATION: delete-${{ github.run_id }}-${{ github.run_attempt }}
+      GH_TOKEN: ${{ github.token }}
+      REPOSITORY: ${{ github.event.repository.name }}
+      REPOSITORY_OWNER: ${{ github.repository_owner }}
+    steps:
+      - name: Validate request
+        run: |
+          set -euo pipefail
+          [[ "${branch}" =~ ^(beta|unstable|gear)$ ]]
+          [[ "${releasever}" =~ ^[0-9]+$ ]]
+          [[ -n "${DELETE_PACKAGES//[[:space:],]/}" ]]
+
+      - name: Checkout publisher
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up ORAS
+        uses: oras-project/setup-oras@5e2f2482b30b0cb3e14e67f89a80c88c659a7c63
+
+      - name: Authenticate to GHCR
+        run: oras login ghcr.io --password "${{ secrets.GITHUB_TOKEN }}" -u "${{ github.actor }}"
+
+      - name: Restore committed repository state
+        run: |
+          set -euo pipefail
+          state_repository="ghcr.io/${GITHUB_REPOSITORY}/repodata"
+          mkdir -p repo state
+
+          fetch_manifest() {
+            local reference="$1"
+            local attempt
+            for attempt in 1 2 3; do
+              if oras manifest fetch "${reference}" > /dev/null 2>/tmp/oras-error; then
+                return 0
+              fi
+              [[ "${attempt}" == 3 ]] || sleep $((2 ** (attempt - 1)))
+            done
+            return 1
+          }
+
+          if fetch_manifest "${state_repository}:latest"; then
+            oras pull "${state_repository}:latest" -o .
+            exit 0
+          fi
+          if ! grep -Eqi 'not found|manifest_unknown|name_unknown|404' /tmp/oras-error; then
+            cat /tmp/oras-error >&2
+            echo 'Unable to determine committed repository state' >&2
+            exit 1
+          fi
+
+          if oras repo tags --format json "${state_repository}" \
+              > /tmp/state-tags.json 2>/tmp/oras-error; then
+            jq -r '.tags[]? | select(startswith("latest-"))' \
+              /tmp/state-tags.json | sort -u > /tmp/legacy-state-tags
+            while IFS= read -r tag; do
+              oras pull "${state_repository}:${tag}" -o .
+            done < /tmp/legacy-state-tags
+          elif ! grep -Eqi 'not found|name_unknown|404' /tmp/oras-error; then
+            cat /tmp/oras-error >&2
+            echo 'Unable to inspect legacy repository state' >&2
+            exit 1
+          fi
+
+      - name: Delete packages and validate repository
+        run: |
+          set -euo pipefail
+          mkdir -p "repo/${logical_repository}" "repo/${debug_repository}" \
+            "state/${logical_repository}" incoming/rpms
+          touch "state/${logical_repository}/inventory.tsv" \
+            "state/${logical_repository}/retired.tsv" \
+            "state/${logical_repository}/applied-batches.tsv" \
+            "state/${logical_repository}/applied-deletions.tsv"
+          : > incoming/assignments.tsv
+          for stage in snapshot delete repoclosure repofile validate upload seal-delete summary site; do
+            .github/scripts/publish-repo.py "${stage}"
+          done
+
+      - name: Save complete candidate state
+        run: |
+          set -euo pipefail
+          oras push \
+            "ghcr.io/${GITHUB_REPOSITORY}/repodata:candidate-${PUBLISH_GENERATION}" \
+            repo state
+
+      - name: Prepare Pages artifact
+        run: rm -rf incoming state
+
+      - name: Upload repository metadata to Pages
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: repo/
+
+  pages:
+    needs: repository
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy repository deletion to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
+
+  finalize:
+    needs: [repository, pages]
+    permissions:
+      packages: write
+    runs-on: ubuntu-latest
+    env:
+      PUBLISH_GENERATION: delete-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: oras-project/setup-oras@5e2f2482b30b0cb3e14e67f89a80c88c659a7c63
+      - run: oras login ghcr.io --password "${{ secrets.GITHUB_TOKEN }}" -u "${{ github.actor }}"
+      - name: Promote repository state after Pages succeeds
+        run: |
+          set -euo pipefail
+          oras tag \
+            "ghcr.io/${GITHUB_REPOSITORY}/repodata:candidate-${PUBLISH_GENERATION}" \
+            latest

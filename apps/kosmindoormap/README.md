@@ -1,3 +1,0 @@
-# kosmindoormap
-
-The kosmindoormap package

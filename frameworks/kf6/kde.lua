@@ -7,7 +7,9 @@ local source_urls = {
     "https://download.kde.org/%{stable_kf6}/plasma/%{maj_ver_kf6}.%{min_ver_kf6}.%{bug_ver_kf6}/%{base_name}-%{version}.tar.xz",
     ["gear"] =
     "https://download.kde.org/%{stable_kf6}/release-service/%{maj_ver_kf6}.%{min_ver_kf6}.%{bug_ver_kf6}/src/%{base_name}-%{version}.tar.xz",
-    ["git"] =
+    ["github"] =
+    "https://github.com/KDE/%{base_name}/archive/%{commit0}/%{base_name}-%{shortcommit0}.tar.gz",
+    ["invent"] =
     "https://invent.kde.org/%{name2name_with_namespace}/-/archive/%{commit0}/%{base_name}-%{shortcommit0}.tar.gz",
 }
 
@@ -50,8 +52,13 @@ function kde_maps:source_url(name, namespace, is_git)
     local source
 
     if is_git then
+        local git_source = macros._kde_git_source or "github"
+        if git_source ~= "github" and git_source ~= "invent" then
+            rpm.expand("%{error:unsupported _kde_git_source '" .. git_source ..
+                "'; expected github or invent}")
+        end
         source = rpm.expand("Source0:   " ..
-            source_urls("git"):gsub("%%{name2name_with_namespace}", self:name2name_with_namespace(name)) .. "\n")
+            source_urls(git_source):gsub("%%{name2name_with_namespace}", self:name2name_with_namespace(name)) .. "\n")
         macros.sourcerootdir = rpm.expand(name .. "-%{commit}")
     else
         source = "Source0: " .. rpm.expand(source_urls(name, namespace)) .. "\n" ..

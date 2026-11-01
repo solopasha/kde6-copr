@@ -1,0 +1,13 @@
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index b9ccd5f..70e4c63 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -30,6 +30,8 @@ set_target_properties(KQuickImageEditor PROPERTIES
+     EXPORT_NAME KQuickImageEditor
+ )
+ 
++set_target_properties(KQuickImageEditor PROPERTIES QT_QMLCACHEGEN_ARGUMENTS "--only-bytecode")
++
+ kconfig_target_kcfg_file(KQuickImageEditor
+     FILE annotationconfig.kcfg
+     CLASS_NAME AnnotationConfig

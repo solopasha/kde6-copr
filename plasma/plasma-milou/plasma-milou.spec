@@ -1,11 +1,11 @@
-%global commit0 cac8ff46a4f67480ea532399ea5dd26aac7d9d8f
+%global commit0 11a31964d6fc67584f3fd6d5e0daf849c89a191b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 4
 
 %global base_name milou
 
 Name:           plasma-%{base_name}
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        A dedicated KDE search application built on top of Baloo
 
@@ -15,6 +15,7 @@ URL:            https://invent.kde.org/plasma/%{base_name}.git
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6KirigamiPlatform)
 BuildRequires:  cmake(KF6Runner)
 BuildRequires:  cmake(KF6Svg)
 
@@ -31,8 +32,8 @@ Requires:       kf6-filesystem
 
 %files -f %{name}.lang
 %license LICENSES/*
-%{_kf6_datadir}/plasma/plasmoids/org.kde.milou/
 %{_kf6_qmldir}/org/kde/milou/
+%{_kf6_qtplugindir}/plasma/applets/org.kde.milou.so
 
 %changelog
 %{?kde_snapshot_changelog_entry}

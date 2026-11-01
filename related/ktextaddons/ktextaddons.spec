@@ -1,5 +1,5 @@
 Name:           ktextaddons
-Version:        1.8.0
+Version:        2.2.0
 Release:        1%{?dist}
 Summary:        Various text handling addons
 
@@ -28,6 +28,7 @@ BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Sonnet)
 BuildRequires:  cmake(KF6SyntaxHighlighting)
@@ -47,6 +48,8 @@ Requires:       %{name}-common = %{version}-%{release}
 
 %package        qt6-devel
 Summary:        Development files for %{name}
+Requires:       cmake(KF6SyntaxHighlighting)
+Requires:       cmake(Qt6TextToSpeech)
 %description    qt6-devel
 %{summary}.
 
@@ -62,6 +65,9 @@ BuildArch:      noarch
 
 %files qt6
 %license LICENSES/
+%{_kf6_bindir}/kokoro_helper.py
+%{_kf6_bindir}/whisper_helper.py
+%{_kf6_datadir}/config.kcfg/textautogeneratetextglobalconfig.kcfg
 %{_kf6_datadir}/qlogging-categories6/ktextaddons.categories
 %{_kf6_datadir}/qlogging-categories6/ktextaddons.renamecategories
 %{_kf6_libdir}/libKF6TextAddonsWidgets.so.%{version}
@@ -73,6 +79,10 @@ BuildArch:      noarch
 %{_kf6_libdir}/libKF6TextAutoGenerateText.so
 %{_kf6_libdir}/libKF6TextAutoGenerateText.so.%{version}
 %{_kf6_libdir}/libKF6TextAutoGenerateText.so.1
+%{_kf6_libdir}/libKF6TextAutoGenerateTextMcpProtocolCore.so.%{version}
+%{_kf6_libdir}/libKF6TextAutoGenerateTextMcpProtocolCore.so.1
+%{_kf6_libdir}/libKF6TextAutoGenerateTextMcpProtocolWidgets.so.%{version}
+%{_kf6_libdir}/libKF6TextAutoGenerateTextMcpProtocolWidgets.so.1
 %{_kf6_libdir}/libKF6TextCustomEditor.so.%{version}
 %{_kf6_libdir}/libKF6TextCustomEditor.so.1
 %{_kf6_libdir}/libKF6TextEditTextToSpeech.so.%{version}
@@ -83,27 +93,52 @@ BuildArch:      noarch
 %{_kf6_libdir}/libKF6TextEmoticonsWidgets.so.1
 %{_kf6_libdir}/libKF6TextGrammarCheck.so.%{version}
 %{_kf6_libdir}/libKF6TextGrammarCheck.so.1
-%{_kf6_libdir}/libKF6TextSpeechToText.so
 %{_kf6_libdir}/libKF6TextSpeechToText.so.%{version}
 %{_kf6_libdir}/libKF6TextSpeechToText.so.1
 %{_kf6_libdir}/libKF6TextTranslator.so.%{version}
 %{_kf6_libdir}/libKF6TextTranslator.so.1
 %{_kf6_libdir}/libKF6TextUtils.so.%{version}
 %{_kf6_libdir}/libKF6TextUtils.so.1
-%{_kf6_libdir}/libtextautogenerate-cmark-rc-copy.so.0{,.*}
+%{_kf6_libdir}/libkokoroinstalltexttospeech.so.%{version}
+%{_kf6_libdir}/libkokoroinstalltexttospeech.so.1
+%{_kf6_libdir}/libkokorotexttospeech.so.%{version}
+%{_kf6_libdir}/libkokorotexttospeech.so.1
+%{_kf6_libdir}/libmcpprotocolclientplugin.so.0
+%{_kf6_libdir}/libmcpprotocolserverplugin.so.0
+%{_kf6_libdir}/libspeechtotextwhisper.so.%{version}
+%{_kf6_libdir}/libspeechtotextwhisper.so.1
+%{_kf6_libdir}/libspeechtotextwhisperinstall.so.%{version}
+%{_kf6_libdir}/libspeechtotextwhisperinstall.so.1
 %{_kf6_libdir}/libtextautogenerategenericnetwork.so.%{version}
 %{_kf6_libdir}/libtextautogenerategenericnetwork.so.1
+%{_kf6_libdir}/libtextautogeneratellamacpp.so.%{version}
+%{_kf6_libdir}/libtextautogeneratellamacpp.so.1
+%{_kf6_libdir}/libtextautogeneratelmstudio.so.%{version}
+%{_kf6_libdir}/libtextautogeneratelmstudio.so.1
 %{_kf6_libdir}/libtextautogenerateollama.so.%{version}
 %{_kf6_libdir}/libtextautogenerateollama.so.1
+%{_kf6_libdir}/libtextautogenerateollamacloud.so.%{version}
+%{_kf6_libdir}/libtextautogenerateollamacloud.so.1
+%{_kf6_libdir}/libtextautogenerateollamacommon.so.%{version}
+%{_kf6_libdir}/libtextautogenerateollamacommon.so.1
+%{_kf6_libdir}/libtextautogenerateollamaonline.so.%{version}
+%{_kf6_libdir}/libtextautogenerateollamaonline.so.1
+%{_kf6_libdir}/libtextautogenerateplugincommon.so.%{version}
+%{_kf6_libdir}/libtextautogenerateplugincommon.so.1
+%{_kf6_libdir}/libtextutils-cmark-rc-copy.so.0*
 %{_kf6_plugindir}/speechtotext/
 %{_kf6_plugindir}/textautogeneratetext/
 %{_kf6_plugindir}/translator/
+%{_kf6_qtplugindir}/texttospeech/
+
 
 %files qt6-devel
 %{_kf6_includedir}/TextAddonsWidgets/
 %{_kf6_includedir}/TextAutoCorrectionCore/
 %{_kf6_includedir}/TextAutoCorrectionWidgets/
 %{_kf6_includedir}/TextAutoGenerateText/
+%{_kf6_includedir}/TextAutoGenerateTextMcpProtocolCore/
+%{_kf6_includedir}/TextAutoGenerateTextMcpProtocolWidgets/
 %{_kf6_includedir}/TextCustomEditor/
 %{_kf6_includedir}/TextEditTextToSpeech/
 %{_kf6_includedir}/TextEmoticonsCore/
@@ -116,6 +151,8 @@ BuildArch:      noarch
 %{_kf6_libdir}/cmake/KF6TextAutoCorrectionCore/
 %{_kf6_libdir}/cmake/KF6TextAutoCorrectionWidgets/
 %{_kf6_libdir}/cmake/KF6TextAutoGenerateText/
+%{_kf6_libdir}/cmake/KF6TextAutoGenerateTextMcpProtocolCore/
+%{_kf6_libdir}/cmake/KF6TextAutoGenerateTextMcpProtocolWidgets/
 %{_kf6_libdir}/cmake/KF6TextCustomEditor/
 %{_kf6_libdir}/cmake/KF6TextEditTextToSpeech/
 %{_kf6_libdir}/cmake/KF6TextEmoticonsCore/
@@ -124,11 +161,13 @@ BuildArch:      noarch
 %{_kf6_libdir}/cmake/KF6TextSpeechToText/
 %{_kf6_libdir}/cmake/KF6TextTranslator/
 %{_kf6_libdir}/cmake/KF6TextUtils/
-%{_kf6_libdir}/cmake/textautogenerate-cmark-rc-copy/
+%{_kf6_libdir}/cmake/textutils-cmark-rc-copy/
 %{_kf6_libdir}/libKF6TextAddonsWidgets.so
 %{_kf6_libdir}/libKF6TextAutoCorrectionCore.so
 %{_kf6_libdir}/libKF6TextAutoCorrectionWidgets.so
 %{_kf6_libdir}/libKF6TextAutoGenerateText.so
+%{_kf6_libdir}/libKF6TextAutoGenerateTextMcpProtocolCore.so
+%{_kf6_libdir}/libKF6TextAutoGenerateTextMcpProtocolWidgets.so
 %{_kf6_libdir}/libKF6TextCustomEditor.so
 %{_kf6_libdir}/libKF6TextEditTextToSpeech.so
 %{_kf6_libdir}/libKF6TextEmoticonsCore.so
@@ -137,7 +176,7 @@ BuildArch:      noarch
 %{_kf6_libdir}/libKF6TextSpeechToText.so
 %{_kf6_libdir}/libKF6TextTranslator.so
 %{_kf6_libdir}/libKF6TextUtils.so
-%{_kf6_libdir}/libtextautogenerate-cmark-rc-copy.so
+%{_kf6_libdir}/libtextutils-cmark-rc-copy.so
 %{_kf6_qtplugindir}/designer/textcustomeditor.so
 %{_kf6_qtplugindir}/designer/texttranslatorwidgets6.so
 
@@ -145,6 +184,9 @@ BuildArch:      noarch
 %doc README.md
 
 %changelog
+* Mon Sep 28 2026 Zakir Zamirov <268826384+solopashachas@users.noreply.github.com> - 2.2.0-1
+- new version
+
 * Thu Oct 09 2025 Pavel Solovev <daron439@gmail.com> - 1.8.0-1
 - new version
 

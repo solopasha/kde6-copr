@@ -1,15 +1,19 @@
-%global commit0 19e31bb4ba2be756548c9d41621923144e872596
+%global commit0 acdd682885fa904d0dd2c2813cdc492561b90b82
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 10
+%global bumpver 29
 
 Name:           kdeplasma-addons
 Summary:        Additional Plasmoids for Plasma 6
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
 URL:            https://invent.kde.org/plasma/%{name}
 %plasma_source
+Patch:          kdeplasma-addons-fix-metadata.diff
+
+BuildRequires:  cmake(Corrosion)
+BuildRequires:  rust-packaging
 
 BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6Config)
@@ -22,6 +26,7 @@ BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6JobWidgets)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6KirigamiPlatform)
 BuildRequires:  cmake(KF6NewStuff)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Runner)
@@ -55,6 +60,7 @@ Requires:       kf6-kitemmodels%{?_isa}
 Requires:       libplasma%{?_isa} >= %{majmin_ver_kf6}
 Requires:       plasma5support%{?_isa} >= %{majmin_ver_kf6}
 Requires:       qt6-qt5compat%{?_isa}
+Requires:       qt6-qtgraphs%{?_isa}
 Requires:       qt6-qtquick3d%{?_isa}
 
 %description
@@ -78,21 +84,31 @@ Requires:       cmake(KF6CoreAddons)
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
+%prep -a
+%cargo_prep
+find -name "Cargo.lock" -print -delete
+
+%generate_buildrequires
+cd kdeds/kameleon/qmk/kameleon-qmk-helper
+%cargo_generate_buildrequires
+
 %files -f %{name}.lang
 %license LICENSES/*.txt
+%{_kf6_datadir}/dbus-1/system-services/org.kde.kameleon.qmk.helper.service
 %{_kf6_datadir}/dbus-1/system-services/org.kde.kameleonhelper.service
+%{_kf6_datadir}/dbus-1/system.d/org.kde.kameleon.qmk.helper.conf
 %{_kf6_datadir}/dbus-1/system.d/org.kde.kameleonhelper.conf
-%{_kf6_datadir}/icons/hicolor/*/apps/fifteenpuzzle.*
 %{_kf6_datadir}/icons/hicolor/scalable/apps/accessories-dictionary.svgz
 %{_kf6_datadir}/knotifications6/plasma_applet_timer.notifyrc
 %{_kf6_datadir}/knsrcfiles/comic.knsrc
 %{_kf6_datadir}/kwin/effects/cube/
+%{_kf6_datadir}/kwin/scripts/virtualdesktopsonlyonprimary/
 %{_kf6_datadir}/kwin/tabbox/
-%{_kf6_datadir}/plasma/desktoptheme/default/weather/
 %{_kf6_datadir}/plasma/desktoptheme/default/widgets/*
 %{_kf6_datadir}/plasma/plasmoids/*
 %{_kf6_datadir}/plasma/wallpapers/*
 %{_kf6_datadir}/plasma/weather/
+%{_kf6_datadir}/polkit-1/actions/org.kde.kameleon.qmk.helper.policy
 %{_kf6_datadir}/polkit-1/actions/org.kde.kameleonhelper.policy
 %{_kf6_datadir}/qlogging-categories6/kdeplasma-addons.categories
 %{_kf6_datadir}/qlogging-categories6/kdeplasma-addons.renamecategories
@@ -100,6 +116,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libplasmaweatherdata.so.6{,.*}
 %{_kf6_libdir}/libplasmaweatherion.so.6{,.*}
 %{_kf6_libdir}/qt6/qml/org/kde/plasmacalendar/astronomicaleventsconfig/*
+%{_kf6_libexecdir}/kameleon-qmk-helper
 %{_kf6_libexecdir}/kauth/kameleonhelper
 %{_kf6_qmldir}/org/kde/plasma/*
 %{_kf6_qtplugindir}/kf6/
@@ -115,8 +132,10 @@ developing applications that use %{name}.
 
 %files devel
 %{_includedir}/plasma/potdprovider/
+%{_includedir}/plasma/weather/
 %{_kf6_datadir}/kdevappwizard/templates/plasmapotdprovider.tar.bz2
 %{_kf6_libdir}/cmake/PlasmaPotdProvider/
+%{_kf6_libdir}/cmake/PlasmaWeather/
 %{_kf6_libdir}/libplasmapotdprovidercore.so
 %{_kf6_libdir}/libplasmaweatherdata.so
 %{_kf6_libdir}/libplasmaweatherion.so

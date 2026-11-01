@@ -1,11 +1,11 @@
-%global commit0 47b1effd2016380335f106284a1a66f6127cfee0
+%global commit0 ef634116b16a9a2a0be51b77a738d8643ab0adf6
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 3
 
 %global base_name breeze
 
 Name:           plasma-breeze
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Artwork, styles and assets for the Breeze visual style for the Plasma Desktop
 
@@ -121,6 +121,8 @@ Development files for %{name}.
 
 %files common
 %{_kf6_datadir}/color-schemes/*.colors
+%{_kf6_datadir}/config.kcfg/breeze-decoration.kcfg
+%{_kf6_datadir}/config.kcfg/breeze.kcfg
 %{_kf6_datadir}/icons/hicolor/*/apps/breeze-settings.*
 %{_kf6_datadir}/kstyle/themes/breeze.themerc
 %dir %{_kf6_datadir}/QtCurve

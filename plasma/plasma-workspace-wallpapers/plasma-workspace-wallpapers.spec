@@ -1,9 +1,9 @@
-%global commit0 c0aab267de2203ab023dc747e58114d01e5a8616
+%global commit0 4e46cfb320b2a2f1929b3eac2e3fe40a64bb7e9d
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 1
 
 Name:           plasma-workspace-wallpapers
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Additional wallpapers for Plasma workspace
 License:        LGPLv3
@@ -49,14 +49,17 @@ Requires:       kde-filesystem
 %{_kf6_datadir}/wallpapers/Nuvole/
 %{_kf6_datadir}/wallpapers/OneStandsOut/
 %{_kf6_datadir}/wallpapers/Opal/
+%{_kf6_datadir}/wallpapers/Orionids/
 %{_kf6_datadir}/wallpapers/PastelHills/
 %{_kf6_datadir}/wallpapers/Patak/
 %{_kf6_datadir}/wallpapers/Path/
 %{_kf6_datadir}/wallpapers/SafeLanding/
 %{_kf6_datadir}/wallpapers/ScarletTree/
 %{_kf6_datadir}/wallpapers/Shell/
+%{_kf6_datadir}/wallpapers/Sub-Arctic/
 %{_kf6_datadir}/wallpapers/summer_1am/
 %{_kf6_datadir}/wallpapers/Volna/
+%{_kf6_datadir}/wallpapers/Waterfall/
 
 %changelog
 %{?kde_snapshot_changelog_entry}

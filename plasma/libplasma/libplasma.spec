@@ -1,9 +1,9 @@
-%global commit0 5fdd67f00524f9f591b1d427483d2a8d8081cc68
+%global commit0 ea09eec9da3b349c274298805888d9ad11c78138
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 14
 
 Name:           libplasma
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Plasma is the foundation of the KDE user interface (v6)
 
@@ -40,6 +40,7 @@ BuildRequires:  cmake(PlasmaActivities)
 BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  libxcb-devel
 BuildRequires:  wayland-devel
+BuildRequires:  wayland-protocols-devel
 
 Requires:       kf6-filesystem
 
@@ -60,6 +61,7 @@ Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake(KF6Package)
 Requires:       qt6-qtbase-devel
+Requires:       cmake(KF6KirigamiPlatform)
 Requires:       cmake(KF6WindowSystem)
 Obsoletes:      kf6-plasma-devel < 1:%{version}-%{release}
 Provides:       kf6-plasma-devel = 1:%{version}-%{release}
@@ -85,9 +87,9 @@ mkdir -p %{buildroot}%{_kf6_qmldir}/org/kde/private
 %{_kf6_datadir}/plasma/
 %{_kf6_datadir}/qlogging-categories6/*plasma*
 %{_kf6_libdir}/libPlasma.so.%{version_no_git}
-%{_kf6_libdir}/libPlasma.so.6
+%{_kf6_libdir}/libPlasma.so.8
 %{_kf6_libdir}/libPlasmaQuick.so.%{version_no_git}
-%{_kf6_libdir}/libPlasmaQuick.so.6
+%{_kf6_libdir}/libPlasmaQuick.so.8
 %{_kf6_plugindir}/kirigami/
 %{_kf6_plugindir}/packagestructure/
 %{_kf6_qmldir}/org/kde/kirigami/styles/Plasma/
@@ -102,6 +104,7 @@ mkdir -p %{buildroot}%{_kf6_qmldir}/org/kde/private
 %{_kf6_libdir}/cmake/PlasmaQuick/
 %{_kf6_libdir}/libPlasma.so
 %{_kf6_libdir}/libPlasmaQuick.so
+%{_qt6_metatypesdir}/qt6plasma*_metatypes.json
 
 %changelog
 %{?kde_snapshot_changelog_entry}

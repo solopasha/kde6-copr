@@ -1,12 +1,10 @@
-%global commit0 e5843e7dcc367751b894eca6dbaf6965c2f5b647
+%global commit0 340765ced48b6b765023d961d16e350971d565bc
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 33
-
-%bcond x11 1
+%global bumpver 41
 
 Name:           plasma-workspace
 Summary:        Plasma workspace, applications and applets
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LGPL-3.0-or-later AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND MIT
@@ -19,6 +17,8 @@ BuildOption(conf): -DGLIBC_LOCALE_GEN:BOOL=OFF
 
 Source11:       startkderc
 Source15:       fedora-lookandfeel.json
+Source16:       fedoradark-lookandfeel.json
+Source17:       fedoralight-lookandfeel.json
 
 Source100:      kde
 Source101:      kde-fingerprint
@@ -106,16 +106,17 @@ BuildRequires:  cmake(PlasmaActivities)
 BuildRequires:  cmake(PlasmaActivitiesStats)
 BuildRequires:  cmake(PlasmaQuick)
 BuildRequires:  cmake(ScreenSaverDBusInterface)
+BuildRequires:  cmake(Union)
 
 BuildRequires:  cmake(AppStreamQt)
 BuildRequires:  cmake(KExiv2Qt6)
 BuildRequires:  cmake(KF6KirigamiAddons)
 BuildRequires:  cmake(packagekitqt6)
-BuildRequires:  cmake(Phonon4Qt6)
 BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  cmake(QCoro6)
 
 BuildRequires:  pkgconfig(dbus-1)
+BuildRequires:  pkgconfig(flatpak)
 BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  pkgconfig(icu-io)
 BuildRequires:  pkgconfig(icu-uc)
@@ -133,6 +134,7 @@ BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xau)
 BuildRequires:  pkgconfig(xcb-cursor)
+BuildRequires:  pkgconfig(xcb-icccm)
 BuildRequires:  pkgconfig(xcb-image)
 BuildRequires:  pkgconfig(xcb-randr)
 BuildRequires:  pkgconfig(xcb-util)
@@ -162,6 +164,7 @@ Requires:       kwin >= %{majmin_ver_kf6}
 Requires:       qt6-qt5compat%{?_isa}
 Requires:       qt6-qtlocation%{?_isa}
 Requires:       xdg-desktop-portal-kde >= %{majmin_ver_kf6}
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 Recommends:     plasma-pa
 Recommends:     plasma-welcome
@@ -216,7 +219,7 @@ Requires:       ocean-sound-theme
 Requires:       polkit-kde
 
 # onscreen keyboard
-Recommends:     maliit-keyboard
+Recommends:     plasma-keyboard
 
 # lockscreen look-and-feel imports qml: QtQuick.VirtualKeyboard
 Requires:       qt6-qtvirtualkeyboard
@@ -235,11 +238,12 @@ Conflicts:      %{name}-wayland < 6.4.80~33.gitb00294e-2
 Provides:       %{name}-wayland = %{version}-%{release}
 Provides:       %{name}-wayland%{?_isa} = %{version}-%{release}
 
-%if ! %{with x11}
 Obsoletes:      %{name}-x11 < %{version}-%{release}
-%endif
 # khotkeys was dropped
 Obsoletes:      khotkeys < 6
+
+Obsoletes:      kgamma < %{version}-%{release}
+Obsoletes:      kcm_wacomtablet < %{version}-%{release}
 
 %description
 Plasma 6 libraries and runtime components
@@ -300,19 +304,6 @@ BuildArch:      noarch
 This package contains configuration and dependencies for SDDM
 to use KWin for the Wayland compositor for the greeter.
 
-%if %{with x11}
-%package        x11
-Summary:        Xorg support for Plasma
-Provides:       %{name}-xorg = %{version}-%{release}
-Provides:       %{name}-xorg%{?_isa} = %{version}-%{release}
-Requires:       %{name} = %{version}-%{release}
-Requires:       kf6-kidletime-x11
-Requires:       kwin-x11
-Requires:       xorg-x11-server-Xorg
-%description    x11
-%{summary}.
-%endif
-
 %package -n     plasma-lookandfeel-fedora
 Summary:        Fedora look-and-feel for Plasma
 Requires:       %{name} = %{version}-%{release}
@@ -330,32 +321,32 @@ BuildArch:      noarch
 %prep -a
 # Populate initial lookandfeel package
 cp -a lookandfeel/org.kde.breeze lookandfeel/org.fedoraproject.fedora
+cp -a lookandfeel/org.kde.breeze lookandfeel/org.fedoraproject.fedoradark
+cp -a lookandfeel/org.kde.breeze lookandfeel/org.fedoraproject.fedoralight
 # Overwrite settings to configure twilight mode
 cp -a lookandfeel/org.kde.breezetwilight/* lookandfeel/org.fedoraproject.fedora
+# Overwrite settings to configure dark mode
+cp -a lookandfeel/org.kde.breezedark/* lookandfeel/org.fedoraproject.fedoradark
+# Write the correct lookandfeel package names
 install -m 0644 %{SOURCE15} lookandfeel/org.fedoraproject.fedora/metadata.json
+install -m 0644 %{SOURCE16} lookandfeel/org.fedoraproject.fedoradark/metadata.json
+install -m 0644 %{SOURCE17} lookandfeel/org.fedoraproject.fedoralight/metadata.json
 cat >> lookandfeel/CMakeLists.txt <<EOL
 plasma_install_package(org.fedoraproject.fedora org.fedoraproject.fedora.desktop look-and-feel lookandfeel)
+plasma_install_package(org.fedoraproject.fedoradark org.fedoraproject.fedoradark.desktop look-and-feel lookandfeel)
+plasma_install_package(org.fedoraproject.fedoralight org.fedoraproject.fedoralight.desktop look-and-feel lookandfeel)
 EOL
 
 %install
 %cmake_install
 
-%if ! %{with x11}
-# Delete x11 session stuff
-rm -v %{buildroot}%{_kf6_bindir}/startplasma-x11 %{buildroot}%{_datadir}/xsessions/plasmax11.desktop
-%endif
-
 # General startplasma symlink
 ln -sr %{buildroot}%{_kf6_bindir}/startplasma-wayland %{buildroot}%{_kf6_bindir}/startplasma
-
-# move sddm configuration snippet to the right place
-mkdir -p %{buildroot}%{_prefix}/lib/sddm
-mv %{buildroot}%{_sysconfdir}/sddm.conf.d %{buildroot}%{_prefix}/lib/sddm
 
 ## customize plasma-lookandfeel-fedora defaults
 # from [Wallpaper] Image=Next to Image=Fedora
 sed -i -e 's|^Image=.*$|Image=Fedora|g' \
-  %{buildroot}%{_kf6_datadir}/plasma/look-and-feel/org.fedoraproject.fedora.desktop/contents/defaults
+  %{buildroot}%{_kf6_datadir}/plasma/look-and-feel/org.fedoraproject.fedora*.desktop/contents/defaults
 
 # PAM
 # https://invent.kde.org/plasma/kscreenlocker/-/merge_requests/163#less-simple-method-for-redhat-and-redhat-adjacent-fedora-opensuse-etc-systems
@@ -395,8 +386,6 @@ fi
 
 %files -f %{name}.lang
 %{_kf6_bindir}/gmenudbusmenuproxy
-%{_kf6_bindir}/kcminit
-%{_kf6_bindir}/kcminit_startup
 %{_kf6_bindir}/kcolorschemeeditor
 %{_kf6_bindir}/kde-systemd-start-condition
 %{_kf6_bindir}/kfontinst
@@ -416,6 +405,7 @@ fi
 %{_kf6_bindir}/startplasma-wayland
 %{_kf6_bindir}/xembedsniproxy
 %{_kf6_datadir}/applications/kcm_*
+%{_kf6_datadir}/applications/org.kde.baloorunner.desktop
 %{_kf6_datadir}/applications/org.kde.kcolorschemeeditor.desktop
 %{_kf6_datadir}/applications/org.kde.kfontinst.desktop
 %{_kf6_datadir}/applications/org.kde.kfontview.desktop
@@ -424,6 +414,7 @@ fi
 %{_kf6_datadir}/applications/org.kde.plasma-interactiveconsole.desktop
 %{_kf6_datadir}/applications/org.kde.plasmashell.desktop
 %{_kf6_datadir}/applications/org.kde.plasmawindowed.desktop
+%{_kf6_datadir}/applications/org.kde.secretprompter.desktop
 %{_kf6_datadir}/config.kcfg/*
 %{_kf6_datadir}/dbus-1/services/*.service
 %{_kf6_datadir}/dbus-1/system-services/org.kde.fontinst.service
@@ -437,6 +428,7 @@ fi
 %{_kf6_datadir}/kconf_update/plasma6.0-remove-old-shortcuts.upd
 %{_kf6_datadir}/kconf_update/plasma6.3-update-clipboard-database-2-to-3.upd
 %{_kf6_datadir}/kconf_update/plasma6.4-migrate-fullscreen-notifications-to-dnd.upd
+%{_kf6_datadir}/kconf_update/plasma6.8-remove-action-menu-shortcut.upd
 %{_kf6_datadir}/kconf_update/plasmashell-6.0-keep-custom-position-of-panels.upd
 %{_kf6_datadir}/kconf_update/plasmashell-6.0-keep-default-floating-setting-for-plasma-5-panels.upd
 %{_kf6_datadir}/kconf_update/plasmashell-6.5-remove-stop-activity-shortcut.upd
@@ -449,8 +441,8 @@ fi
 %{_kf6_datadir}/konqsidebartng/virtual_folders/services/fonts.desktop
 %{_kf6_datadir}/krunner/dbusplugins/plasma-runner-baloosearch.desktop
 %{_kf6_datadir}/kstyle/
-%{_kf6_datadir}/kxmlgui5/kfontview/kfontviewpart.rc
 %{_kf6_datadir}/kxmlgui5/kfontview/kfontviewui.rc
+%{_kf6_datadir}/kxmlgui5/kfontviewpart/kfontviewpart.rc
 %{_kf6_datadir}/plasma/avatars/
 %dir %{_kf6_datadir}/plasma/look-and-feel/
 %{_kf6_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/
@@ -458,7 +450,6 @@ fi
 %{_kf6_datadir}/plasma/look-and-feel/org.kde.breezetwilight.desktop/
 %{_kf6_datadir}/plasma/plasmoids/
 %{_kf6_datadir}/plasma/wallpapers/
-%{_kf6_datadir}/plasma5support/services/*.operations
 %{_kf6_datadir}/polkit-1/actions/org.kde.fontinst.policy
 %{_kf6_datadir}/qlogging-categories6/*.categories
 %{_kf6_datadir}/solid/
@@ -466,21 +457,24 @@ fi
 %{_kf6_datadir}/timezonefiles/timezones.json
 %{_kf6_datadir}/wayland-sessions/plasma.desktop
 %{_kf6_datadir}/xdg-desktop-portal/kde-portals.conf
+%{_kf6_datadir}/xdg-desktop-portal/portals/plasmanotify.portal
 %{_kf6_datadir}/zsh/site-functions/_plasmashell
 %{_kf6_qmldir}/org/kde/*
 %{_libexecdir}/baloorunner
 %{_libexecdir}/kf6/kauth/fontinst*
 %{_libexecdir}/kfontprint
+%{_libexecdir}/ksecretprompter
 %{_libexecdir}/ksmserver-logout-greeter
 %{_libexecdir}/plasma-changeicons
 %{_libexecdir}/plasma-dbus-run-session-if-needed
 %{_libexecdir}/plasma-fallback-session-*
+%{_libexecdir}/plasma-setup-xwayland
 %{_libexecdir}/plasma-sourceenv.sh
+%{_libexecdir}/plasma-startup-sound
 %{_sysconfdir}/xdg/autostart/*.desktop
 %{_sysconfdir}/xdg/menus/plasma-applications.menu
 %{_sysconfdir}/xdg/plasmanotifyrc
 %{_sysconfdir}/xdg/startkderc
-%{_sysconfdir}/xdg/taskmanagerrulesrc
 %{_userunitdir}/*.service
 %{_userunitdir}/plasma-core.target
 %dir %{_userunitdir}/plasma-core.target.d/
@@ -489,7 +483,6 @@ fi
 %endif
 %{_userunitdir}/plasma-core.target.d/ssh-agent.conf
 %{_userunitdir}/plasma-workspace-wayland.target
-%{_userunitdir}/plasma-workspace-x11.target
 %{_userunitdir}/plasma-workspace.target
 %{zsh_completions_dir}/_krunner
 %dir %{_userunitdir}/plasma-workspace@.target.d/
@@ -508,6 +501,7 @@ fi
 %{_kf6_libdir}/kconf_update_bin/plasma6.0-remove-old-shortcuts
 %{_kf6_libdir}/kconf_update_bin/plasma6.3-update-clipboard-database-2-to-3
 %{_kf6_libdir}/kconf_update_bin/plasma6.4-migrate-fullscreen-notifications-to-dnd
+%{_kf6_libdir}/kconf_update_bin/plasma6.8-remove-action-menu-shortcut
 %{_kf6_libdir}/kconf_update_bin/plasmashell-6.0-keep-custom-position-of-panels
 %{_kf6_libdir}/kconf_update_bin/plasmashell-6.0-keep-default-floating-setting-for-plasma-5-panels
 %{_kf6_libdir}/kconf_update_bin/plasmashell-6.5-remove-stop-activity-shortcut
@@ -516,7 +510,6 @@ fi
 %{_kf6_libdir}/libklipper.so.*
 %{_kf6_libdir}/libklookandfeel.so.*
 %{_kf6_libdir}/libkmpris.so.*
-%{_kf6_libdir}/libkrdb.so
 %{_kf6_libdir}/libnotificationmanager.*
 %{_kf6_libdir}/libtaskmanager.so.*
 %{_kf6_plugindir}/kded/*.so
@@ -528,20 +521,15 @@ fi
 %{_kf6_qtplugindir}/kf6/packagestructure/wallpaper_images.so
 %{_kf6_qtplugindir}/kf6/parts/kfontviewpart.so
 %{_kf6_qtplugindir}/kf6/thumbcreator/fontthumbnail.so
-%dir %{_kf6_qtplugindir}/phonon_platform
-%{_kf6_qtplugindir}/phonon_platform/kde.so
 %{_kf6_qtplugindir}/plasma/
-%{_kf6_qtplugindir}/plasma5support/dataengine/*
 %{_kf6_qtplugindir}/plasmacalendarplugins/
 
 %files devel
 %{_includedir}/klookandfeel/
-%{_includedir}/krdb/
 %{_includedir}/kworkspace6/
 %{_includedir}/notificationmanager/
 %{_includedir}/taskmanager/
 %{_kf6_datadir}/dbus-1/interfaces/*.xml
-%{_kf6_libdir}/cmake/Krdb/
 %{_kf6_libdir}/cmake/KRunnerAppDBusInterface/
 %{_kf6_libdir}/cmake/KSMServerDBusInterface/
 %{_kf6_libdir}/cmake/LibKLookAndFeel/
@@ -557,14 +545,8 @@ fi
 %files -n sddm-wayland-plasma
 %{_prefix}/lib/sddm/sddm.conf.d/plasma-wayland.conf
 
-%if %{with x11}
-%files x11
-%{_kf6_bindir}/startplasma-x11
-%{_kf6_datadir}/xsessions/plasmax11.desktop
-%endif
-
 %files -n plasma-lookandfeel-fedora
-%{_kf6_datadir}/plasma/look-and-feel/org.fedoraproject.fedora.desktop/
+%{_kf6_datadir}/plasma/look-and-feel/org.fedoraproject.fedora*.desktop/
 
 %changelog
 %{?kde_snapshot_changelog_entry}

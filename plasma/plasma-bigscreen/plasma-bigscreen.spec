@@ -1,10 +1,10 @@
-%global commit0 dc3b5d8af31f85b4b83cc6ff2f8f416c843a1dec
+%global commit0 483eb344bb7175492c371f83b13a7bcd7b52f130
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 21
 
 Name:           plasma-bigscreen
 Summary:        Plasma shell for TVs
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND GPL-2.0-or-later AND (GPL-2.0-only OR GPL-3.0-only) AND LGPL-2.0-or-later AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -16,7 +16,6 @@ ExclusiveArch:  %{qt6_qtwebengine_arches}
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
 
-BuildRequires:  cmake(KF6BluezQt)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6I18n)
@@ -42,10 +41,15 @@ BuildRequires:  cmake(LibKWorkspace)
 BuildRequires:  cmake(Plasma)
 BuildRequires:  cmake(PlasmaActivities)
 BuildRequires:  cmake(PlasmaActivitiesStats)
+BuildRequires:  cmake(PlasmaWaylandProtocols)
 
 BuildRequires:  cmake(QCoro6Core)
 BuildRequires:  cmake(QCoro6Qml)
 BuildRequires:  cmake(QCoro6Quick)
+
+BuildRequires:  cmake(SDL3)
+BuildRequires:  pkgconfig(libcec)
+BuildRequires:  qt6qml(org.kde.kdeconnect)
 
 Requires:       kde-connect%{?_isa}
 Requires:       kf6-kdeclarative%{?_isa}
@@ -76,26 +80,36 @@ from a distance using remote controls.
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml
 
+%install -a
+mkdir -p %{buildroot}%{_udevrulesdir}
+mv %{buildroot}%{_kf6_libdir}/udev/rules.d/40-uinput.rules %{buildroot}%{_udevrulesdir}/40-uinput.rules
+
 %files -f %{name}.lang
 %{_kf6_bindir}/plasma-bigscreen-common-env
 %{_kf6_bindir}/plasma-bigscreen-envmanager
+%{_kf6_bindir}/plasma-bigscreen-inputhandler
 %{_kf6_bindir}/plasma-bigscreen-settings
 %{_kf6_bindir}/plasma-bigscreen-swap-session
 %{_kf6_bindir}/plasma-bigscreen-uvcviewer
 %{_kf6_bindir}/plasma-bigscreen-wayland
 %{_kf6_bindir}/plasma-bigscreen-webapp
 %{_kf6_datadir}/applications/kcm_mediacenter_*.desktop
+%{_kf6_datadir}/applications/org.kde.plasma.bigscreen.inputhandler.desktop
+%{_kf6_datadir}/applications/org.kde.plasma.bigscreen.settings.desktop
 %{_kf6_datadir}/applications/org.kde.plasma.bigscreen.uvcviewer.desktop
 %{_kf6_datadir}/applications/plasma-bigscreen-swap-session.desktop
+%{_kf6_datadir}/dbus-1/interfaces/org.kde.biglauncher.xml
 %{_kf6_datadir}/plasma/look-and-feel/org.kde.plasma.bigscreen/
 %{_kf6_datadir}/plasma/plasmoids/org.kde.bigscreen.homescreen/
 %{_kf6_datadir}/plasma/shells/org.kde.plasma.bigscreen/
 %{_kf6_datadir}/sounds/plasma-bigscreen/
 %{_kf6_datadir}/wayland-sessions/plasma-bigscreen-wayland.desktop
 %{_kf6_metainfodir}/org.kde.plasma.bigscreen.metainfo.xml
+%{_kf6_plugindir}/kded/kded_plasma_bigscreen_start.so
 %{_kf6_qmldir}/org/kde/bigscreen/
 %{_kf6_qtplugindir}/plasma/applets/org.kde.bigscreen.homescreen.so
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_mediacenter_*.so
+%{_udevrulesdir}/40-uinput.rules
 
 %changelog
 %{?kde_snapshot_changelog_entry}

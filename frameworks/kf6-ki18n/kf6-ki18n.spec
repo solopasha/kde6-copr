@@ -1,11 +1,11 @@
-%global commit0 29cf4bcaa5114cd1c9957930f6a25c1e12ca148f
+%global commit0 59ca2ae11fdb9f24633dd9d7ce8d74be4c45700e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 4
 
 %global framework ki18n
 
 Name:           kf6-%{framework}
-Version:        6.20.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.32.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon for localization
 License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND ODbL-1.0
@@ -46,6 +46,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKF6I18nQml.so.%{version_no_git}
 %{_kf6_libdir}/libKF6I18nQml.so.6
 %{_kf6_qmldir}/org/kde/i18n/
+%{_kf6_qmldir}/org/kde/ki18n/
 %{_kf6_qtplugindir}/kf6/ktranscript.so
 %lang(ca) %{_datadir}/locale/ca/LC_SCRIPTS/ki18n6/
 %lang(ca@valencia) %{_datadir}/locale/ca@valencia/LC_SCRIPTS/ki18n6/
@@ -65,6 +66,7 @@ developing applications that use %{name}.
 %files devel
 %{_kf6_includedir}/KI18n/
 %{_kf6_includedir}/KI18nLocaleData/
+%{_kf6_includedir}/KI18nQml/
 %{_kf6_libdir}/cmake/KF6I18n/
 %{_kf6_libdir}/libKF6I18n.so
 %{_kf6_libdir}/libKF6I18nLocaleData.so

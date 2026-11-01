@@ -1,10 +1,10 @@
-%global commit0 0e174b8b575eb8299bd6223955823ddf4314c5ad
+%global commit0 3408842370f3e508935bca05e666bb68593acc40
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 4
 
 Name:           libkscreen
 Summary:        KDE display configuration library
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later
@@ -48,16 +48,12 @@ developing applications that use %{name}.
 %files -f libkscreen6_qt.lang
 %license LICENSES/*
 %{_kf6_bindir}/kscreen-doctor
-%{_kf6_datadir}/dbus-1/services/org.kde.kscreen.service
 %{_kf6_datadir}/qlogging-categories6/libkscreen.categories
 %{_kf6_datadir}/zsh/site-functions/_kscreen-doctor
 %{_kf6_libdir}/libKF6Screen.so.%{version_no_git}
 %{_kf6_libdir}/libKF6Screen.so.8
 %{_kf6_libdir}/libKF6ScreenDpms.so.%{version_no_git}
 %{_kf6_libdir}/libKF6ScreenDpms.so.8
-%{_kf6_libexecdir}/kscreen_backend_launcher
-%{_kf6_plugindir}/kscreen/
-%{_userunitdir}/plasma-kscreen.service
 
 %files devel
 %{_kf6_includedir}/kscreen_version.h

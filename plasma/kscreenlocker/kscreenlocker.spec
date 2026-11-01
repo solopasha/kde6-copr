@@ -1,9 +1,9 @@
-%global commit0 cce4fbdbaaaa5d5289afefc030c18a8d00ea8f48
+%global commit0 2411b3f03ba5a4d005dfd87396df462e55e3dce0
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 6
 
 Name:           kscreenlocker
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Library and components for secure lock screen architecture
 
@@ -19,6 +19,7 @@ BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IdleTime)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6KirigamiPlatform)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Solid)
 BuildRequires:  cmake(KF6Svg)
@@ -40,7 +41,6 @@ BuildRequires:  pam-devel
 BuildRequires:  pkgconfig(xcb-keysyms)
 BuildRequires:  pkgconfig(xcb-xtest)
 BuildRequires:  pkgconfig(xi)
-BuildRequires:  wayland-devel
 
 %description
 %{summary}.
@@ -58,14 +58,15 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %files -f %{name}.lang
 %license COPYING
 %{_kf6_datadir}/applications/kcm_screenlocker.desktop
+%{_kf6_datadir}/config.kcfg/kscreenlockersettings.kcfg
 %{_kf6_datadir}/knotifications6/*.notifyrc
-%dir %{_kf6_datadir}/ksmserver/
-%{_kf6_datadir}/ksmserver/screenlocker/
 %{_kf6_datadir}/qlogging-categories6/kscreenlocker.categories
 %{_kf6_libdir}/libKScreenLocker.so.%{version_no_git}
 %{_kf6_libdir}/libKScreenLocker.so.6
+%{_kf6_qmldir}/org/kde/kscreenlocker/
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_screenlocker.so
 %{_libexecdir}/kscreenlocker_greet
+%{_libexecdir}/kscreenlocker_worker
 
 %files devel
 %{_includedir}/KScreenLocker/

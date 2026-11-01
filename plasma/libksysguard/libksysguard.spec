@@ -1,10 +1,10 @@
-%global commit0 d11e922c095145dd7bef8dc0d390d4ecfa001d70
+%global commit0 778afd2f87d9a1eb87939761aedd450bee2d97b5
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 7
+%global bumpver 6
 
 Name:           libksysguard
 Summary:        Library for managing processes running on the system
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL
@@ -61,6 +61,7 @@ Summary:        Runtime data files shared by libksysguard and ksysguard-libs
 
 %files -f %{name}.lang
 %license LICENSES
+%{_kf6_bindir}/ksysguard-identify
 %{_kf6_datadir}/dbus-1/interfaces/org.kde.ksystemstats1.xml
 %{_kf6_datadir}/ksysguard/
 %{_kf6_datadir}/qlogging-categories6/libksysguard.categories
@@ -73,7 +74,7 @@ Summary:        Runtime data files shared by libksysguard and ksysguard-libs
 %{_kf6_libdir}/libKSysGuardSystemStats.so.%{version_no_git}
 %{_kf6_libdir}/libKSysGuardSystemStats.so.2
 %{_kf6_libdir}/libprocesscore.so.%{version_no_git}
-%{_kf6_libdir}/libprocesscore.so.10
+%{_kf6_libdir}/libprocesscore.so.11
 %{_qt6_plugindir}/kf6/packagestructure/ksysguard_sensorface.so
 %{_qt6_plugindir}/ksysguard/
 %{_qt6_qmldir}/org/kde/ksysguard/

@@ -1,9 +1,9 @@
-%global commit0 d1f6cbe7f9c5346cfe97495861a23f10f3d5e791
+%global commit0 60430c65744772d229900c2a9abb50f4a50c52e8
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 10
 
 Name:           plasma-pa
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Plasma applet for audio volume management using PulseAudio
 
@@ -21,6 +21,7 @@ BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
+BuildRequires:  cmake(KF6KirigamiPlatform)
 BuildRequires:  cmake(KF6StatusNotifierItem)
 BuildRequires:  cmake(KF6Svg)
 
@@ -51,6 +52,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %files -f %{name}.lang
 %license LICENSES/*
 %{_kf6_datadir}/applications/kcm_pulseaudio.desktop
+%{_kf6_datadir}/config.kcfg/plasmapa.kcfg
 %{_kf6_datadir}/qlogging-categories6/plasmapa.categories
 %{_kf6_libdir}/libplasma-volume.so.%{version_no_git}
 %{_kf6_libdir}/libplasma-volume.so.6

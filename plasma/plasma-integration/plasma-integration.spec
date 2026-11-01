@@ -1,10 +1,10 @@
-%global commit0 3a2a4caec74d9a2296817bae6f1b21c08e2d519b
+%global commit0 494a479a8f9458ffdd48c645db0b6a7e4db374cb
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 7
+%global bumpver 3
 
 Name:           plasma-integration
 Summary:        Qt Platform Theme integration plugin for Plasma
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL
@@ -65,7 +65,11 @@ Recommends:     plasma-workspace
 Requires:       kf6-qqc2-desktop-style%{?_isa}
 Requires:       qqc2-breeze-style%{?_isa}
 
+Requires:       font(notosans)
+Requires:       font(hack)
+
 Requires:       (%{name}-qt5 if qt5-qtbase-gui)
+%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 
 %description
 %{summary}.

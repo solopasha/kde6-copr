@@ -1,11 +1,11 @@
-%global commit0 d78ddd45219607b713fc73a48cfd0a2e460d411c
+%global commit0 a36eea95c0779262af10414101ab0e07ee3e0f98
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global orig_name org.kde.plasma.nano
 
 Name:           plasma-nano
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND MIT
 URL:            https://invent.kde.org/plasma/plasma-nano
@@ -17,17 +17,18 @@ BuildRequires:  libappstream-glib
 BuildRequires:  hicolor-icon-theme
 BuildRequires:  desktop-file-utils
 
-BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(KF6Notifications)
-BuildRequires:  cmake(Plasma)
-BuildRequires:  cmake(KF6Service)
-BuildRequires:  cmake(KWayland)
-BuildRequires:  cmake(KF6ItemModels)
-BuildRequires:  cmake(KWinDBusInterface)
-BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  cmake(KF6Package)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6I18n)
+BuildRequires:  cmake(KF6ItemModels)
+BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6KirigamiPlatform)
+BuildRequires:  cmake(KF6Notifications)
+BuildRequires:  cmake(KF6Package)
+BuildRequires:  cmake(KF6Service)
+BuildRequires:  cmake(KF6WindowSystem)
+BuildRequires:  cmake(KWayland)
+BuildRequires:  cmake(KWinDBusInterface)
+BuildRequires:  cmake(Plasma)
 BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Svg)
 

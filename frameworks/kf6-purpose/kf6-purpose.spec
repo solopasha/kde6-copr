@@ -1,12 +1,12 @@
-%global commit0 dc25509afc119fbd139ab23a1c000b745541d84c
+%global commit0 8eb7606e52815943a744c8a9f4296a4ee86f1db7
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework purpose
 
 Name:           kf6-purpose
 Summary:        Framework for providing abstractions to get the developer's purposes fulfilled
-Version:        6.20.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.32.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later
@@ -21,6 +21,7 @@ BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Prison)
 BuildRequires:  cmake(KF6Declarative)
+BuildRequires:  qt6qml(org.kde.kitemmodels)
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)

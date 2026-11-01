@@ -3,7 +3,7 @@ name: Bump revisions
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 15 * * *'
+    - cron: '0 5 * * *'
 
 jobs:
   main:
@@ -16,9 +16,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
-        with:
-          token: ${{ secrets.WORKFLOW_TOKEN }}
+        uses: actions/checkout@v7
 
       - name: Branch
         run: |
@@ -28,12 +26,14 @@ jobs:
           git checkout -b "${branch}"
 
       - name: Bump revisions
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          bash bumpall.sh -g
+          bash bumpall.sh
 
       - name: Commit and push
         env:
-          GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"

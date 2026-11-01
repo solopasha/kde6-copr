@@ -1,11 +1,11 @@
-%global commit0 53a1cf6ef77ae699752082c7d4e88c78472268ef
+%global commit0 d4502ab654a342b976e302a77ca3510d883ec69e
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 3
 
 %global framework kxmlgui
 
 Name:           kf6-%{framework}
-Version:        6.20.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.32.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 solution for user-configurable main windows
 

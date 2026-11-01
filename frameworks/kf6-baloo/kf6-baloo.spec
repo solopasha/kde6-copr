@@ -1,12 +1,12 @@
-%global commit0 e12ce60aa33ed380ef4701b9a2550a44ed7ef661
+%global commit0 48ef701b7e734061c34d391c476a7177a3c8d28a
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 18
 
 %global framework baloo
 
 Name:           kf6-%{framework}
 Summary:        A Tier 3 KDE Frameworks 6 module that provides indexing and search functionality
-Version:        6.20.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.32.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-GPL AND LicenseRef-KDE-Accepted-LGPL AND bzip2-1.0.6
 URL:            https://invent.kde.org/frameworks/%{framework}
@@ -94,12 +94,14 @@ cat baloo_file6.lang baloo_file_extractor6.lang \
 
 %files file -f %{name}-file.lang
 %config(noreplace) %{_kf6_sysconfdir}/xdg/autostart/baloo_file.desktop
+%{_kf6_datadir}/dbus-1/services/org.kde.baloo.service
 %{_kf6_libexecdir}/baloo_file
 %{_kf6_libexecdir}/baloo_file_extractor
 %{_userunitdir}/kde-baloo.service
 
 %files libs
 %license LICENSES/*
+%{_kf6_datadir}/config.kcfg/baloosettings.kcfg
 %{_kf6_libdir}/libKF6Baloo.so.%{version_no_git}
 %{_kf6_libdir}/libKF6Baloo.so.6
 %{_kf6_libdir}/libKF6BalooEngine.so.%{version_no_git}

@@ -1,9 +1,9 @@
-%global commit0 d607d3fd3f2a229aa91311e67941502954030a68
+%global commit0 8819e808ea5e2a1be28856f1481250e9c1fa4386
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 8
 
 Name:           qqc2-breeze-style
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        QtQuickControls2 breeze style
 

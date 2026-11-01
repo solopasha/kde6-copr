@@ -1,11 +1,11 @@
-%global commit0 ab1b9187c1bf18357ba10f74e4648ab3a3158124
+%global commit0 6792f0d7c967467e0a7802a223f74fe23e83aeb0
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 9
 
 Name:           spectacle
 Summary:        Screenshot capture utility
 Epoch:          1
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        LGPL-2.0-or-later AND GPL-2.0-or-later AND (LGPL-2.1-only OR LGPL-3.0-only)
@@ -51,16 +51,20 @@ BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  cmake(KPipeWire)
 BuildRequires:  cmake(LayerShellQt)
 
+BuildRequires:  cmake(KQuickImageEditor)
 BuildRequires:  cmake(OpenCV)
 BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  cmake(ZXing)
+BuildRequires:  pkgconfig(tesseract)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(xcb-cursor)
 BuildRequires:  pkgconfig(xcb-image)
 BuildRequires:  pkgconfig(xcb-randr)
 BuildRequires:  pkgconfig(xcb-util)
 BuildRequires:  pkgconfig(xcb-xfixes)
+BuildRequires:  qt6qml(org.kde.kquickimageeditor)
 
+Requires:       kquickimageeditor-qt6%{?_isa}
 Requires:       qt6-qtimageformats%{?_isa}
 
 %description
@@ -74,6 +78,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.spectacle
 %license LICENSES/*
 %{_kf6_bindir}/spectacle
 %{_kf6_datadir}/applications/org.kde.spectacle.desktop
+%{_kf6_datadir}/config.kcfg/spectacle.kcfg
 %{_kf6_datadir}/dbus-1/interfaces/org.kde.Spectacle.xml
 %{_kf6_datadir}/dbus-1/services/org.kde.spectacle.service
 %{_kf6_datadir}/dbus-1/services/org.kde.Spectacle.service

@@ -1,11 +1,11 @@
-%global commit0 dfda863841e46bba875baaa4f78d53bc746f05e6
+%global commit0 e2c6317079311f1e96f8a32820ca1f2e3e97b3be
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 11
+%global bumpver 16
 
 %global framework kimageformats
 
 Name:           kf6-%{framework}
-Version:        6.20.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.32.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 1 addon with additional image plugins for QtGui
 License:        LGPLv2+
@@ -49,13 +49,13 @@ image formats.
 %{_kf6_qtplugindir}/imageformats/kimg_dds.so
 %{_kf6_qtplugindir}/imageformats/kimg_eps.so
 %{_kf6_qtplugindir}/imageformats/kimg_exr.so
+%{_kf6_qtplugindir}/imageformats/kimg_ff.so
 %{_kf6_qtplugindir}/imageformats/kimg_hdr.so
 %{_kf6_qtplugindir}/imageformats/kimg_heif.so
 %{_kf6_qtplugindir}/imageformats/kimg_iff.so
 %{_kf6_qtplugindir}/imageformats/kimg_jp2.so
 %{_kf6_qtplugindir}/imageformats/kimg_jxl.so
 %{_kf6_qtplugindir}/imageformats/kimg_kra.so
-%{_kf6_qtplugindir}/imageformats/kimg_ora.so
 %{_kf6_qtplugindir}/imageformats/kimg_pcx.so
 %{_kf6_qtplugindir}/imageformats/kimg_pfm.so
 %{_kf6_qtplugindir}/imageformats/kimg_pic.so
@@ -67,6 +67,7 @@ image formats.
 %{_kf6_qtplugindir}/imageformats/kimg_rgb.so
 %{_kf6_qtplugindir}/imageformats/kimg_sct.so
 %{_kf6_qtplugindir}/imageformats/kimg_tga.so
+%{_kf6_qtplugindir}/imageformats/kimg_tim.so
 %{_kf6_qtplugindir}/imageformats/kimg_xcf.so
 
 %files devel

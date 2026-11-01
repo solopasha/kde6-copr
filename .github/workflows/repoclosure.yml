@@ -13,8 +13,8 @@ jobs:
       matrix:
         version:
           - rawhide
-          - 43
-          - 42
+          - 45
+          - 44
     container:
       image: registry.fedoraproject.org/fedora:${{ matrix.version }}
     steps:

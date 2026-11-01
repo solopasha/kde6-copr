@@ -1,10 +1,10 @@
-%global commit0 cb00651ab5de86d42652958a15adfbc0a8d08f91
+%global commit0 71ba11ff887c6eb900b5541b4a8d7bf74bd3ae28
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 7
+%global bumpver 6
 
 Name:           kpipewire
 Summary:        Set of convenient classes to use PipeWire in Qt projects
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only
@@ -61,6 +61,8 @@ developing applications that use %{name}.
 %{_kf6_libdir}/libKPipeWire.so.6
 %{_kf6_libdir}/libKPipeWireDmaBuf.so.%{version_no_git}
 %{_kf6_libdir}/libKPipeWireDmaBuf.so.6
+%{_kf6_libdir}/libKPipeWireMonitor.so.%{version_no_git}
+%{_kf6_libdir}/libKPipeWireMonitor.so.6
 %{_kf6_libdir}/libKPipeWireRecord.so.%{version_no_git}
 %{_kf6_libdir}/libKPipeWireRecord.so.6
 %{_qt6_qmldir}/org/kde/pipewire/
@@ -70,6 +72,7 @@ developing applications that use %{name}.
 %{_kf6_libdir}/cmake/KPipeWire/
 %{_kf6_libdir}/libKPipeWire.so
 %{_kf6_libdir}/libKPipeWireDmaBuf.so
+%{_kf6_libdir}/libKPipeWireMonitor.so
 %{_kf6_libdir}/libKPipeWireRecord.so
 
 %changelog

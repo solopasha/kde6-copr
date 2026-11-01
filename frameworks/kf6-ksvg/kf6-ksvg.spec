@@ -1,12 +1,12 @@
-%global commit0 12dd6541fd9884938c286cd4cda7a2904060fef8
+%global commit0 8cab6b343091c837dc542b3659d5cc37838ef9bf
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework ksvg
 
 Name:           kf6-ksvg
 Summary:        Components for handling SVGs
-Version:        6.20.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.32.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later

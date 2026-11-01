@@ -1,11 +1,11 @@
-%global commit0 1a9862d8c76ed6a52bc1ee9ffdd4bea0306e44e9
+%global commit0 4dfba7eb9c6b7ee87613ac9d713c2750adbf2a8f
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 %global framework kwallet
 
 Name:           kf6-%{framework}
-Version:        6.20.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.32.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 3 solution for password management
 
@@ -60,6 +60,8 @@ developing applications that use %{name}.
 %{_kf6_bindir}/kwallet-query
 %{_kf6_bindir}/kwalletd6
 %{_kf6_datadir}/applications/org.kde.ksecretd.desktop
+%{_kf6_datadir}/applications/org.kde.kwalletd.desktop
+%{_kf6_datadir}/config.kcfg/kwalletsettings.kcfg
 %{_kf6_datadir}/dbus-1/services/org.freedesktop.impl.portal.desktop.kwallet.service
 %{_kf6_datadir}/dbus-1/services/org.kde.kwalletd5.service
 %{_kf6_datadir}/dbus-1/services/org.kde.kwalletd6.service

@@ -1,9 +1,9 @@
-%global commit0 4bd457af4319c13d6276e2fef89f9064d81d2280
+%global commit0 e61718e45200479a1fc282849baad5742dca651f
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 8
 
 Name:           plasma-systemmonitor
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        An application for monitoring system resources
 
@@ -51,6 +51,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %license LICENSES/*.txt
 %{_kf6_bindir}/plasma-systemmonitor
 %{_kf6_datadir}/applications/org.kde.plasma-systemmonitor.desktop
+%{_kf6_datadir}/config.kcfg/systemmonitor.kcfg
 %{_kf6_datadir}/kconf_update/plasma-systemmonitor-replace-vmpss.py
 %{_kf6_datadir}/kconf_update/plasma-systemmonitor.upd
 %{_kf6_datadir}/kglobalaccel/org.kde.plasma-systemmonitor.desktop

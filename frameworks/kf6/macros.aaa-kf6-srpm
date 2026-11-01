@@ -24,6 +24,11 @@
   print((macros.version:gsub('[%^~].*', '')))
 }
 
+# Git snapshot source host: github (default) or invent.
+# Override in a spec with %%global _kde_git_source invent, or on the command
+# line with --define '_kde_git_source invent'. Release sources are unaffected.
+%_kde_git_source github
+
 %frameworks_meta(n) %kde_meta %{**}
 
 %plasma_source(n) %kde_meta %{**}

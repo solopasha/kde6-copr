@@ -1,9 +1,9 @@
-%global commit0 dea2f686ee3d4e7e4dffbe907e3d4fc41b56b17f
+%global commit0 5e970a50f8b2ed2b52e3acc4c66c1a8f5b698e5a
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 Name:           kwayland-integration
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Provides integration plugins for various KDE Frameworks for Wayland
 
@@ -19,7 +19,6 @@ BuildRequires:  qt5-qtwayland-devel
 BuildRequires:  kf5-rpm-macros
 BuildRequires:  gnupg2
 
-BuildRequires:  kf5-kidletime-devel
 BuildRequires:  kf5-kwindowsystem-devel
 BuildRequires:  kf5-kwayland-devel
 BuildRequires:  cmake(KF5GuiAddons)

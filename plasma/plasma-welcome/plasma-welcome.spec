@@ -1,11 +1,11 @@
-%global commit0 63dbb9273f032250dd6d98572162386a6ccd388f
+%global commit0 d83d55cd8abfa1ce583e3d80518ca19e7c373e06
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 9
 
 %global orgname org.kde.plasma-welcome
 
 Name:           plasma-welcome
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPL-2.0-or-later and BSD-3-Clause
 Summary:        Plasma Welcome
@@ -25,7 +25,9 @@ BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
+BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6JobWidgets)
 BuildRequires:  cmake(KF6KCMUtils)
@@ -35,6 +37,7 @@ BuildRequires:  cmake(KF6NewStuff)
 BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6Svg)
 BuildRequires:  cmake(KF6WindowSystem)
+BuildRequires:  qt6qml(org.kde.draganddrop)
 
 BuildRequires:  cmake(KF6KirigamiAddons)
 BuildRequires:  cmake(Plasma)
@@ -61,8 +64,10 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{orgname}.deskto
 %doc README.md
 %{_kf6_bindir}/plasma-welcome
 %{_kf6_datadir}/applications/%{orgname}.desktop
+%{_kf6_datadir}/config.kcfg/plasma-welcome.kcfg
+%{_kf6_datadir}/qlogging-categories6/welcome.categories
 %{_kf6_metainfodir}/%{orgname}.*.xml
-%{_kf6_plugindir}/kded/kded_plasma-welcome.so
+%{_kf6_plugindir}/kded/kded_plasma_welcome.so
 %{_kf6_qmldir}/org/kde/plasma/welcome/
 
 %changelog

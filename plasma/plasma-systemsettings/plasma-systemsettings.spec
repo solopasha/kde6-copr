@@ -1,12 +1,12 @@
-%global commit0 5ffa99d22007a5cb5524ec1694b1037830bf7bab
+%global commit0 5f1fc2f751f39f6601114044d83fc02af39469b8
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 4
 
 %global base_name systemsettings
 
 Name:           plasma-%{base_name}
 Summary:        KDE System Settings application
-Version:        6.5.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-or-later AND (GPL-2.0-only OR GPL-3.0-only)
@@ -56,6 +56,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_bindir}/systemsettings
 %{_kf6_datadir}/applications/kdesystemsettings.desktop
 %{_kf6_datadir}/applications/systemsettings.desktop
+%{_kf6_datadir}/config.kcfg/systemsettings-config.kcfg
 %{_kf6_datadir}/kglobalaccel/systemsettings.desktop
 %{_kf6_datadir}/metainfo/org.kde.systemsettings.metainfo.xml
 %{_kf6_datadir}/qlogging-categories6/systemsettings.categories
