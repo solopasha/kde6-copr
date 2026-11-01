@@ -34,7 +34,7 @@ jobs:
       SOURCE_BRANCH: ${{ inputs.branch }}
       MAX_ASSETS_PER_RELEASE: '990'
       MAX_PARALLEL_TRANSFERS: '8'
-      SNAPSHOT_RETENTION_DAYS: '7'
+      SNAPSHOT_RETENTION_DAYS: '15'
       PUBLISH_GENERATION: ${{ github.run_id }}-${{ github.run_attempt }}
       GH_TOKEN: ${{ github.token }}
       REPOSITORY: ${{ github.event.repository.name }}

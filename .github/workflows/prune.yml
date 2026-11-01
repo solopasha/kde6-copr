@@ -39,8 +39,8 @@ jobs:
       packages: write
     env:
       RETIRED_ASSET_DAYS: ${{ inputs.retired_asset_days || '1' }}
-      REGISTRY_RETENTION_DAYS: ${{ inputs.registry_version_days || '7' }}
-      BATCH_RETENTION_DAYS: ${{ inputs.batch_descriptor_days || '7' }}
+      REGISTRY_RETENTION_DAYS: ${{ inputs.registry_version_days || '15' }}
+      BATCH_RETENTION_DAYS: ${{ inputs.batch_descriptor_days || '15' }}
       DRY_RUN: ${{ inputs.dry_run || false }}
       GH_TOKEN: ${{ github.token }}
       REPOSITORY: ${{ github.event.repository.name }}
