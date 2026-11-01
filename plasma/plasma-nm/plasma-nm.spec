@@ -1,6 +1,6 @@
 %global commit0 f5b6cbbea61f1e23d5d0f6b694c3f5351d601ed8
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 20
+%global bumpver 21
 
 Name:           plasma-nm
 Summary:        Plasma for managing network connections
@@ -73,8 +73,8 @@ Provides:       %{name}-mobile = %{version}-%{release}
 Provides:       %{name}-mobile%{?_isa} = %{version}-%{release}
 
 %if 0%{?fedora} >= 45
-Obsoletes:      %{name}-fortisslvpn < 6.8.80~8.git6f15666-2
-Obsoletes:      %{name}-vpnc        < 6.8.80~8.git6f15666-2
+Obsoletes:      %{name}-fortisslvpn < 6.8.81
+Obsoletes:      %{name}-vpnc        < 6.8.81
 %endif
 
 %description
