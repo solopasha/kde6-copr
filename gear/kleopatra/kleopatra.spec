@@ -1,6 +1,6 @@
-%global commit0 1a233c9ced8ba8925e51399b55421bdf48e4ad1a
+%global commit0 e80be3e286445c1ce9a45518922d3fb8c9f029a0
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 28
+%global bumpver 29
 
 Name:    kleopatra
 Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
