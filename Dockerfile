@@ -2,10 +2,9 @@ ARG VERSION=45
 
 FROM ghcr.io/oras-project/oras:v1.3.6 AS oras
 
-ARG OCI_REF=ghcr.io/solopashachas/testrpm/kf6:latest-unstable-44
-
+ARG VERSION
 RUN mkdir /out && \
-    oras pull "${OCI_REF}" -o /out
+    oras pull ghcr.io/solopasha/kde6-copr/kf6:latest-unstable-${VERSION} -o /out
 
 
 FROM registry.fedoraproject.org/fedora:$VERSION
