@@ -1,6 +1,6 @@
-%global commit0 de49b534e06349d71f5c777e2d0d1d9e69649dd1
+%global commit0 8cf95a7eaff635d2ce5badc3fa5b4a6f5e7c88eb
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 36
+%global bumpver 37
 
 Name:           plasma-desktop
 Summary:        Plasma Desktop shell
@@ -225,7 +225,6 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_kf6_bindir}/knetattach
 %{_kf6_bindir}/krunner-plugininstaller
 %{_kf6_bindir}/plasma-emojier
-%{_kf6_bindir}/solid-action-desktop-gen
 %{_kf6_bindir}/tastenbrett
 %{_kf6_datadir}/accounts/providers/kde/opendesktop.provider
 %{_kf6_datadir}/accounts/services/kde/opendesktop-rating.service
@@ -236,7 +235,6 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_kf6_datadir}/kcm_recentFiles/
 %{_kf6_datadir}/kcmkeys/
 %{_kf6_datadir}/kcmmouse/
-%{_kf6_datadir}/kcmsolidactions/
 %{_kf6_datadir}/kconf_update/50-krunner-activate-typing.sh
 %{_kf6_datadir}/kconf_update/50-krunner-activate-typing.upd
 %{_kf6_datadir}/kglobalaccel/org.kde.plasma.emojier.desktop
@@ -246,7 +244,6 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_kf6_datadir}/knsrcfiles/
 %{_kf6_datadir}/plasma/*
 %{_kf6_datadir}/qlogging-categories6/*.categories
-%{_kf6_datadir}/solid/devices/*.desktop
 %{_kf6_libdir}/libkglobalaccelmodel.so.6{,.*}
 %{_kf6_metainfodir}/*.xml
 %{_kf6_plugindir}/kded/*.so

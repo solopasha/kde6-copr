@@ -1,6 +1,6 @@
-%global commit0 5a3c0c46eb2fe51be11fcc7f0b6f7112a884d0eb
+%global commit0 4f6a334708ddab29c16695c793f141bd429625b2
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 43
+%global bumpver 44
 
 Name:           plasma-workspace
 Summary:        Plasma workspace, applications and applets
