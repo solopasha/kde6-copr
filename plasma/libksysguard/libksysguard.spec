@@ -1,6 +1,6 @@
 %global commit0 aaf9748143af0ea72b18b6ddf3b5642f593b39f2
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 7
+%global bumpver 8
 
 Name:           libksysguard
 Summary:        Library for managing processes running on the system
@@ -33,6 +33,7 @@ BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(libnl-3.0)
 BuildRequires:  pkgconfig(libnl-route-3.0)
 BuildRequires:  pkgconfig(libpcap)
+BuildRequires:  pkgconfig(libudev)
 BuildRequires:  zlib-devel
 
 Requires:       %{name}-common = %{version}-%{release}

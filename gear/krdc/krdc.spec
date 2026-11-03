@@ -1,6 +1,6 @@
 %global commit0 cf2a59449e67fcaf96d4333e3ae4e0dc934d8ca1
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 27
+%global bumpver 28
 
 Name:           krdc
 Summary:        Remote desktop client
@@ -50,6 +50,7 @@ BuildRequires:  pkgconfig(libvncclient)
 BuildRequires:  pkgconfig(libvncserver)
 BuildRequires:  pkgconfig(spice-client-glib-2.0)
 BuildRequires:  wayland-devel
+BuildRequires:  cmake(KF6Screen)
 
 # see icon hack in %%install
 BuildRequires:  breeze-icon-theme
