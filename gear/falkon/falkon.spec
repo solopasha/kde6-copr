@@ -1,6 +1,6 @@
 %global commit0 03645682399014fe609181d7d7eb7fc4b823ab46
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 11
+%global bumpver 12
 
 # build Python plugins (disabled by default due to #2048781)
 %bcond_with python
@@ -47,6 +47,7 @@ BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  cmake(KF6Archive)
 
 BuildRequires:  openssl-devel
+BuildRequires:  pkgconfig(xcb)
 BuildRequires:  xcb-util-devel
 
 %if 0%{?with_python}

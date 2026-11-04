@@ -1,6 +1,6 @@
 %global commit0 4b957a1f00b92159904e1f9ed750a4cbaae76112
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:    audiocd-kio
 Summary: KIO worker for accessing audio CDs
@@ -21,18 +21,17 @@ BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6KCMUtils)
 BuildRequires: cmake(KF6KIO)
+BuildRequires: cmake(KF6Solid)
+BuildRequires: cmake(KF6WidgetsAddons)
 
 BuildRequires: cmake(Qt6Core)
-BuildRequires: cmake(Qt6Core5Compat)
 BuildRequires: cmake(Qt6Widgets)
 
 BuildRequires: cmake(KCddb6)
-BuildRequires: cmake(KCompactDisc6)
 BuildRequires: cmake(Phonon4Qt6)
 BuildRequires: pkgconfig(alsa)
 BuildRequires: pkgconfig(cdparanoia-3)
 BuildRequires: pkgconfig(flac)
-BuildRequires: pkgconfig(theora)
 BuildRequires: pkgconfig(vorbis)
 
 # The MP3 and Opus Encoder tabs are only available if the tools are installed

@@ -1,6 +1,6 @@
 %global commit0 c3485968027dba2121dee1c90d4d375a2cff5cb2
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 27
+%global bumpver 28
 
 %global base_name elisa
 
@@ -30,7 +30,6 @@ BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Baloo)
-BuildRequires:  cmake(KF6Declarative)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6FileMetaData)
 BuildRequires:  cmake(KF6ConfigWidgets)

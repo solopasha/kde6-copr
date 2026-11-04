@@ -1,6 +1,6 @@
 %global commit0 71cecb697ed1f371619065fe56d4449946e07a47
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 41
+%global bumpver 42
 
 ## uncomment to enable bootstrap mode
 #global bootstrap 1
@@ -32,6 +32,7 @@ BuildRequires: kf6-rpm-macros
 
 BuildRequires: cmake(KF6Archive)
 BuildRequires: cmake(KF6Bookmarks)
+BuildRequires: cmake(KF6ColorScheme)
 BuildRequires: cmake(KF6Completion)
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6ConfigWidgets)
@@ -39,6 +40,7 @@ BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6KIO)
 BuildRequires: cmake(KF6ThreadWeaver)
+BuildRequires: cmake(KF6WidgetsAddons)
 BuildRequires: cmake(KF6WindowSystem)
 BuildRequires: cmake(KF6XmlGui)
 BuildRequires: cmake(KF6Wallet)
@@ -48,7 +50,6 @@ BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6Parts)
 BuildRequires: cmake(KF6TextWidgets)
 BuildRequires: cmake(KF6Purpose)
-BuildRequires: cmake(KF6Pty)
 
 BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6PrintSupport)
@@ -75,7 +76,6 @@ BuildRequires: pkgconfig(libzip)
 %if 0%{?ebook}
 BuildRequires: ebook-tools-devel
 %endif
-BuildRequires: libjpeg-devel
 BuildRequires: libtiff-devel
 BuildRequires: pkgconfig(freetype2)
 BuildRequires: pkgconfig(libmarkdown)

@@ -1,6 +1,6 @@
 %global commit0 9e2d74861913d14acfc55ba1f9076d18bb588da0
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:    kamera
 Summary: Digital camera support for KDE 
@@ -17,7 +17,6 @@ BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib
 
 BuildRequires: cmake(Qt6Core)
-BuildRequires: cmake(Qt6Core5Compat)
 
 BuildRequires: cmake(KF6ConfigWidgets)
 BuildRequires: cmake(KF6XmlGui)

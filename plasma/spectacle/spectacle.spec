@@ -1,6 +1,6 @@
 %global commit0 a795d5e9bbd8a250a18de905154bdeea3857a5ed
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 10
+%global bumpver 11
 
 Name:           spectacle
 Summary:        Screenshot capture utility
@@ -52,9 +52,7 @@ BuildRequires:  cmake(KPipeWire)
 BuildRequires:  cmake(LayerShellQt)
 
 BuildRequires:  cmake(KQuickImageEditor)
-BuildRequires:  cmake(OpenCV)
 BuildRequires:  cmake(PlasmaWaylandProtocols)
-BuildRequires:  cmake(ZXing)
 BuildRequires:  pkgconfig(tesseract)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(xcb-cursor)

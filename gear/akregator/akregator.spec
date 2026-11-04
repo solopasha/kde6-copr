@@ -1,6 +1,6 @@
 %global commit0 78175ac46092e7ef25c9a8a999be733577c9507b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 30
+%global bumpver 31
 
 #global tests 1
 
@@ -33,7 +33,6 @@ BuildRequires: cmake(KF6Syndication)
 BuildRequires: cmake(KF6TextAddonsWidgets)
 BuildRequires: cmake(KF6TextEditTextToSpeech)
 BuildRequires: cmake(KF6TextUtils)
-BuildRequires: cmake(KF6TextWidgets)
 BuildRequires: cmake(KF6UserFeedback)
 BuildRequires: cmake(KF6XmlGui)
 

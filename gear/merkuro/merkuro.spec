@@ -1,6 +1,6 @@
 %global commit0 0d5a9ae8be530064ba9db0a69de3c0971f0d2c75
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 43
+%global bumpver 44
 
 Name:           merkuro
 Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -45,11 +45,16 @@ BuildRequires:  cmake(KPim6AkonadiMime)
 BuildRequires:  cmake(KPim6AkonadiSearch)
 BuildRequires:  cmake(KPim6CalendarUtils)
 BuildRequires:  cmake(KPim6IdentityManagementQuick)
+BuildRequires:  cmake(KPim6Libkdepim)
 BuildRequires:  cmake(KPim6MailCommon)
 BuildRequires:  cmake(KPim6MailTransport)
 BuildRequires:  cmake(KPim6Mbox)
 BuildRequires:  cmake(KF6Mime)
+BuildRequires:  cmake(KPim6MessageComposer)
+BuildRequires:  cmake(KPim6MessageCore)
+BuildRequires:  cmake(KPim6MessageList)
 BuildRequires:  cmake(KPim6MimeTreeParserCore)
+BuildRequires:  cmake(KPim6PimCommonAkonadi)
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)

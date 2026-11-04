@@ -1,6 +1,6 @@
 %global commit0 34bf28bf892a8a56fa543671c061198a24df067e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:    kaccounts-integration
 Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -67,6 +67,7 @@ Requires:       cmake(Qt6Widgets)
 Requires:       cmake(AccountsQt6)
 Requires:       cmake(KF6CoreAddons)
 Requires:       cmake(SignOnQt6)
+Requires:       intltool
 Obsoletes:      kaccounts-integration-devel < 24.01.85
 Provides:       kaccounts-integration-devel = %{version}-%{release}
 %description    qt6-devel

@@ -1,6 +1,6 @@
 %global commit0 6651538ff1591cbdabfcf47fe0f32d520cc92968
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 37
+%global bumpver 38
 
 %global base_name akonadi
 %global mysql mysql
@@ -44,6 +44,7 @@ BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Designer)
 BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Sql)
 BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Qt6Widgets)

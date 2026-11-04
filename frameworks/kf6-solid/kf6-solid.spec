@@ -1,6 +1,6 @@
 %global commit0 0f0894a398ce447a2acb78d57f33e8a40ac47887
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 %global framework solid
 
@@ -18,7 +18,6 @@ BuildRequires:  cmake(Qt6Xml)
 
 BuildRequires:  bison
 BuildRequires:  flex
-BuildRequires:  libupnp-devel
 BuildRequires:  pkgconfig(libimobiledevice-1.0)
 BuildRequires:  pkgconfig(libplist-2.0)
 BuildRequires:  pkgconfig(mount)

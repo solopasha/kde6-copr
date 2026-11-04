@@ -1,6 +1,6 @@
 %global commit0 25103b883bf0889a00c29ec76e0de3fd89398efb
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 21
+%global bumpver 22
 
 #global tests 1
 
@@ -27,6 +27,7 @@ BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6KIO)
 BuildRequires: cmake(KF6UserFeedback)
+BuildRequires: cmake(KF6WindowSystem)
 BuildRequires: cmake(KF6XmlGui)
 
 BuildRequires: cmake(KPim6IMAP)

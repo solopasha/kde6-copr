@@ -1,6 +1,6 @@
 %global commit0 c36bf1627f16e7359743f110275722c4350831b9
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:           ksshaskpass
 Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -17,7 +17,6 @@ BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6Wallet)
 BuildRequires:  cmake(KF6WidgetsAddons)
 
 BuildRequires:  cmake(Qt6Core)

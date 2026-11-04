@@ -1,6 +1,6 @@
 %global commit0 4bf8ec4816f8da021c2019b1185a1667489e6a2f
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 9
+%global bumpver 10
 
 Name:    kturtle
 Summary: Educational Programming Environment 
@@ -22,7 +22,6 @@ BuildRequires: cmake(Qt6Gui)
 BuildRequires: cmake(Qt6Svg)
 BuildRequires: cmake(Qt6Widgets)
 BuildRequires: cmake(Qt6PrintSupport)
-BuildRequires: cmake(Qt6Core5Compat)
 BuildRequires: cmake(Qt6SvgWidgets)
 
 BuildRequires: cmake(KF6Crash)

@@ -1,6 +1,6 @@
 %global commit0 738ba0a79c0b8337bf203c8c5f5d29cd1faaf72b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 29
+%global bumpver 30
 
 Name:    kitinerary
 Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -15,6 +15,7 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6CalendarCore)
+BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  cmake(KF6Contacts)
 BuildRequires:  cmake(KF6I18n)
 

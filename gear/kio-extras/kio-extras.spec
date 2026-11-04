@@ -1,6 +1,6 @@
 %global commit0 e0761c7ba78298f8f06b3ae8ca6750f49c810e97
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 25
+%global bumpver 26
 
 Name:    kio-extras
 Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -19,6 +19,7 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6Archive)
+BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6CoreAddons)

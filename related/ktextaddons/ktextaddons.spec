@@ -1,6 +1,6 @@
 Name:           ktextaddons
 Version:        2.2.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Various text handling addons
 
 License:        CC0-1.0 AND LGPL-2.0-or-later AND GPL-2.0-or-later AND BSD-3-Clause
@@ -48,6 +48,7 @@ Requires:       %{name}-common = %{version}-%{release}
 
 %package        qt6-devel
 Summary:        Development files for %{name}
+Requires:       cmake(KF6Sonnet)
 Requires:       cmake(KF6SyntaxHighlighting)
 Requires:       cmake(Qt6TextToSpeech)
 %description    qt6-devel
@@ -184,6 +185,9 @@ BuildArch:      noarch
 %doc README.md
 
 %changelog
+* Thu Nov 05 2026 Pavel Solovev <daron439@gmail.com> - 2.2.0-2
+- rebuilt
+
 * Mon Sep 28 2026 Zakir Zamirov <268826384+solopashachas@users.noreply.github.com> - 2.2.0-1
 - new version
 

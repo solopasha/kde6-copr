@@ -1,6 +1,6 @@
 %global commit0 ff85ccd65cbe5b7d2e482983ddfe0a0a4f42db6a
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 7
 
 Name:           kcalc
 Summary:        Scientific Calculator
@@ -15,6 +15,7 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
 BuildRequires:  libappstream-glib
 
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6CoreAddons)
@@ -27,7 +28,6 @@ BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  cmake(Qt6Core)
-BuildRequires:  cmake(Qt6Core5Compat)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  pkgconfig(gmp)

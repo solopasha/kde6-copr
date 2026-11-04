@@ -1,6 +1,6 @@
 %global commit0 3172fdd68c0d4c3ed458b03e398bd0a4f3c50272
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:           ksystemstats
 Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -19,7 +19,6 @@ BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6NetworkManagerQt)
 BuildRequires:  cmake(KF6Solid)
 
-BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  cmake(KSysGuard)
 

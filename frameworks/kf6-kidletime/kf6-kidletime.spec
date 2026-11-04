@@ -1,6 +1,6 @@
 %global commit0 e6e23e762081eb810cab6783ae9be535bf133d22
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 %global framework kidletime
 
@@ -22,7 +22,6 @@ BuildRequires:  pkgconfig(x11-xcb)
 BuildRequires:  pkgconfig(xcb-sync)
 BuildRequires:  pkgconfig(xcb)
 BuildRequires:  pkgconfig(xext)
-BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(xscrnsaver)
 BuildRequires:  wayland-devel
 BuildRequires:  wayland-protocols-devel

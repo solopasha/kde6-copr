@@ -1,6 +1,6 @@
 %global commit0 c0f8409f82f058d592a408affb68d2ceee1bcf9b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 %global framework kcrash
 
@@ -17,7 +17,6 @@ BuildRequires:  cmake(KF6CoreAddons)
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Gui)
-BuildRequires:  cmake(Qt6OpenGL)
 BuildRequires:  cmake(Qt6Test)
 
 BuildRequires:  pkgconfig(x11)

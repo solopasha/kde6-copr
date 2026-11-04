@@ -1,6 +1,6 @@
 %global commit0 baa14045ba951e64f82d88932e65237a1142f3f8
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 32
+%global bumpver 33
 
 Name:    pimcommon
 Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -31,7 +31,6 @@ BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6TextAddonsWidgets)
 BuildRequires:  cmake(KF6TextAutoCorrectionWidgets)
 BuildRequires:  cmake(KF6TextCustomEditor)
-BuildRequires:  cmake(KF6TextWidgets)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6XmlGui)

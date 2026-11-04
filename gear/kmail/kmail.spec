@@ -1,6 +1,6 @@
 %global commit0 e032c5e846687113f251014a2fbc1d59d37d2c7d
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 63
+%global bumpver 64
 
 #global tests 1
 
@@ -18,6 +18,7 @@ BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
 BuildRequires: libappstream-glib
+BuildRequires: pkgconfig(gpg-error)
 
 BuildRequires: cmake(KF6Bookmarks)
 BuildRequires: cmake(KF6CalendarCore)
@@ -44,7 +45,6 @@ BuildRequires: cmake(KF6TextAutoCorrectionWidgets)
 BuildRequires: cmake(KF6TextCustomEditor)
 BuildRequires: cmake(KF6TextEditTextToSpeech)
 BuildRequires: cmake(KF6TextUtils)
-BuildRequires: cmake(KF6TextWidgets)
 BuildRequires: cmake(KF6WidgetsAddons)
 BuildRequires: cmake(KF6WindowSystem)
 BuildRequires: cmake(KF6XmlGui)
@@ -54,7 +54,6 @@ BuildRequires: cmake(KPim6Akonadi)
 BuildRequires: cmake(KPim6AkonadiContactWidgets)
 BuildRequires: cmake(KPim6AkonadiMime)
 BuildRequires: cmake(KPim6AkonadiSearch)
-BuildRequires: cmake(KPim6CalendarUtils)
 BuildRequires: cmake(KPim6Gravatar)
 BuildRequires: cmake(KPim6IdentityManagementCore)
 BuildRequires: cmake(KPim6KontactInterface)
@@ -79,7 +78,6 @@ BuildRequires: cmake(KPim6WebEngineViewer)
 
 BuildRequires: cmake(KF6TextAddonsWidgets)
 
-BuildRequires: cmake(Qt6Core5Compat)
 
 BuildRequires: cmake(Gpgmepp)
 BuildRequires: cmake(Qt6Keychain)

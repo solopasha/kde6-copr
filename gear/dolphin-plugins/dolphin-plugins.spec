@@ -1,6 +1,6 @@
 %global commit0 a59aabecc95118844ca7cf7deaabbe076fe311e9
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 Name:    dolphin-plugins
 Summary: Dolphin plugins
@@ -16,12 +16,14 @@ BuildRequires:  dolphin-devel
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 
+BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Solid)
 BuildRequires:  cmake(KF6TextEditor)
 BuildRequires:  cmake(KF6TextWidgets)
+BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  cmake(Qt6Core)

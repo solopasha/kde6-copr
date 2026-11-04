@@ -1,6 +1,6 @@
 %global commit0 6b4139933a39f7500a47b14ebf20e5d940bd2416
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:           plasma5support
 Summary:        Support components for porting from KF5/Qt5 to KF6/Qt6
@@ -37,8 +37,6 @@ BuildRequires:  cmake(Plasma)
 BuildRequires:  cmake(PlasmaActivities)
 
 BuildRequires:  pkgconfig(libgps)
-BuildRequires:  pkgconfig(x11)
-BuildRequires:  pkgconfig(xfixes)
 
 Requires:       kf6-filesystem
 

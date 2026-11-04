@@ -1,6 +1,6 @@
 %global commit0 0bf8338a20a31daa2be30ebe1e5fe6955c963b97
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 36
+%global bumpver 37
 
 Name:    neochat
 Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -41,7 +41,6 @@ BuildRequires: cmake(KF6Notifications)
 BuildRequires: cmake(KF6Purpose)
 BuildRequires: cmake(KF6QQC2DesktopStyle)
 BuildRequires: cmake(KF6Sonnet)
-BuildRequires: cmake(KF6StatusNotifierItem)
 BuildRequires: cmake(KF6SyntaxHighlighting)
 BuildRequires: cmake(KF6WindowSystem)
 

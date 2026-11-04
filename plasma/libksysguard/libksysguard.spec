@@ -1,6 +1,6 @@
 %global commit0 7dc5af97d699915154f2d38a93e37e639cd164cc
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 9
+%global bumpver 10
 
 Name:           libksysguard
 Summary:        Library for managing processes running on the system
@@ -27,7 +27,6 @@ BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  libcap-devel
-BuildRequires:  libXres-devel
 BuildRequires:  lm_sensors-devel
 BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(libnl-3.0)

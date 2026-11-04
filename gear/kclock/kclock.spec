@@ -1,6 +1,6 @@
 %global commit0 60b1d822f7fa1eac8d7632eb6e972247e9a22cf6
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 14
+%global bumpver 15
 
 %global klockd_name org.kde.kclockd
 %global orig_name org.kde.kclock
@@ -28,6 +28,7 @@ BuildRequires:  cmake(Qt6QuickControls2)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Qt6WaylandClient)
+BuildRequires:  cmake(Qt6WaylandClientPrivate)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
 
@@ -43,6 +44,7 @@ BuildRequires:  cmake(KF6KirigamiAddons)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6StatusNotifierItem)
 BuildRequires:  cmake(KF6Svg)
+BuildRequires:  cmake(KF6WindowSystem)
 
 BuildRequires:  wayland-protocols-devel
 BuildRequires:  wayland-devel

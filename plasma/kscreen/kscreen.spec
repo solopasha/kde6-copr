@@ -1,6 +1,6 @@
 %global commit0 0ce1e6736ebbec557f26af922f8dec429397f519
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 6
 
 Name:           kscreen
 Epoch:          1
@@ -29,7 +29,6 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6GuiPrivate)
 BuildRequires:  cmake(Qt6QuickControls2)
-BuildRequires:  cmake(Qt6Sensors)
 BuildRequires:  cmake(Qt6Test)
 BuildRequires:  cmake(Qt6WaylandClient)
 
@@ -41,9 +40,6 @@ BuildRequires:  cmake(PlasmaQuick)
 BuildRequires:  qt6qml(org.kde.kitemmodels)
 BuildRequires:  qt6qml(org.kde.plasma.plasma5support)
 
-BuildRequires:  pkgconfig(xcb-atom)
-BuildRequires:  pkgconfig(xcb)
-BuildRequires:  pkgconfig(xi)
 BuildRequires:  wayland-devel
 BuildRequires:  wayland-protocols-devel
 

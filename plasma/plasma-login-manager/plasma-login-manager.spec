@@ -1,6 +1,6 @@
 %global commit0 64f6f78f354065633e90e57cb7170c04e3e6fc92
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 12
+%global bumpver 13
 
 # Disable X11 for RHEL
 %bcond x11 %[%{undefined rhel}]
@@ -43,7 +43,6 @@ BuildRequires:  pam-devel
 BuildRequires:  pkgconfig(libsystemd)
 BuildRequires:  pkgconfig(systemd)
 BuildRequires:  pkgconfig(xcb)
-BuildRequires:  pkgconfig(xcb-xkb)
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)

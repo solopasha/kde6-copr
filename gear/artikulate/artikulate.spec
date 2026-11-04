@@ -1,6 +1,6 @@
 %global commit0 1d09f8bf3eff5472a2308d1eb485656f8b8d9877
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 7
 
 Name:           artikulate
 Summary:        Improve your pronunciation by listening to native speakers
@@ -25,7 +25,6 @@ BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6ItemModels)
 BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6NewStuff)
-BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  cmake(Qt6Multimedia)
 BuildRequires:  cmake(Qt6Qml)

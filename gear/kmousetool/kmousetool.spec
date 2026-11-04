@@ -1,6 +1,6 @@
 %global commit0 7ecb2557412a0587184abbb1bb3f9920d5244098
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 
 Name:    kmousetool
@@ -33,6 +33,7 @@ BuildRequires: cmake(Qt6Gui)
 BuildRequires: cmake(Qt6Multimedia)
 BuildRequires: cmake(Qt6Widgets)
 
+BuildRequires: pkgconfig(x11)
 BuildRequires: pkgconfig(xt)
 BuildRequires: pkgconfig(xtst)
 

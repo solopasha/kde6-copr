@@ -1,6 +1,6 @@
 %global commit0 30e3ade885c6e6fe035e71657d690b441ee67195
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 22
+%global bumpver 23
 
 %global framework oxygen-icons
 
@@ -18,6 +18,8 @@ BuildArch:      noarch
 
 BuildRequires:  libappstream-glib
 BuildRequires:  cmake(Qt6Core)
+# icon optimizations
+BuildRequires:  hardlink
 
 %description
 Oxygen Icons is a freedesktop.org compatible icon theme originally

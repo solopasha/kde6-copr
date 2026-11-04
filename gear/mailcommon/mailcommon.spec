@@ -1,6 +1,6 @@
 %global commit0 186ad0c90c59374b5c0a936a0f789d5692eea8ee
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 29
+%global bumpver 30
 
 Name:    mailcommon
 Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -28,7 +28,6 @@ BuildRequires:  cmake(KF6ItemViews)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6SyntaxHighlighting)
 BuildRequires:  cmake(KF6TextCustomEditor)
-BuildRequires:  cmake(KF6TextWidgets)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6XmlGui)
 
@@ -49,7 +48,6 @@ BuildRequires:  cmake(KPim6PimCommonAkonadi)
 BuildRequires:  cmake(KPim6TemplateParser)
 
 BuildRequires:  cmake(QGpgmeQt6)
-BuildRequires:  cmake(Qt6Core5Compat)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Multimedia)
 BuildRequires:  cmake(Qt6Widgets)

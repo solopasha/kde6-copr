@@ -1,6 +1,6 @@
 %global commit0 3242274405e95889b345b189c7751990af3ca74b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 7
 
 Name:    ffmpegthumbs
 Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -22,6 +22,8 @@ BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6KIO)
 
 BuildRequires: ffmpeg-free-devel
+BuildRequires: cmake(Qt6Core)
+BuildRequires: cmake(Qt6Gui)
 
 Provides: kffmpegthumbnailer = %{version}-%{release}
 Provides: kdemultimedia-extras-freeworld = %{version}-%{release}

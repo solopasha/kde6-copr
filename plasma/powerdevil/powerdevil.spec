@@ -1,6 +1,6 @@
 %global commit0 f066bfb1266b7e6b2e119b0ebca92bd91b8bc9f7
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 21
+%global bumpver 22
 
 Name:           powerdevil
 Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -50,9 +50,6 @@ BuildRequires:  pkgconfig(ddcutil)
 BuildRequires:  pkgconfig(libcap)
 BuildRequires:  pkgconfig(libudev)
 BuildRequires:  pkgconfig(wayland-client)
-BuildRequires:  pkgconfig(xcb-dpms)
-BuildRequires:  pkgconfig(xcb-randr)
-BuildRequires:  pkgconfig(xcb)
 
 Requires:       kf6-kitemmodels%{?_isa}
 Requires:       kf6-kirigami%{?_isa}

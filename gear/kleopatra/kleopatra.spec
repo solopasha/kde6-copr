@@ -1,6 +1,6 @@
 %global commit0 e80be3e286445c1ce9a45518922d3fb8c9f029a0
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 29
+%global bumpver 30
 
 Name:    kleopatra
 Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -17,10 +17,10 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(KF6Codecs)
+BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
-BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
@@ -29,8 +29,6 @@ BuildRequires:  cmake(KF6ItemModels)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Notifications)
-BuildRequires:  cmake(KF6StatusNotifierItem)
-BuildRequires:  cmake(KF6TextWidgets)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(KF6XmlGui)

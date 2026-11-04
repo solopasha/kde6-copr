@@ -1,6 +1,6 @@
 %global commit0 b3e91d5a57df2d735da0ec14da013b04f4795460
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:           kactivitymanagerd
 Summary:        Plasma service to manage user's activities
@@ -26,7 +26,6 @@ BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  boost-devel

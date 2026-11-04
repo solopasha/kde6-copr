@@ -1,6 +1,6 @@
 %global commit0 32009db10b7074a9f34dfe807dc2fc8d22759f79
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 %global framework knewstuff
 
@@ -18,8 +18,6 @@ BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6IconThemes)
-BuildRequires:  cmake(KF6ItemViews)
 BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6Syndication)
 BuildRequires:  cmake(KF6WidgetsAddons)

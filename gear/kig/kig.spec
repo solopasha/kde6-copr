@@ -1,6 +1,6 @@
 %global commit0 39a06d709c9b7202b1fc0a1434a18e466b8a5b39
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 %define _python3_include %(%{__python3} -Ic 'from sysconfig import get_path; print(get_path("include"))')
 %define _python3_lib /usr/%{_lib}/lib%(basename %{_python3_include}).so
@@ -20,7 +20,6 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-rpm-macros
 
 BuildRequires:  desktop-file-utils
-BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(KF6Archive)
 BuildRequires:  cmake(KF6ConfigWidgets)

@@ -1,6 +1,6 @@
 %global commit0 c90d235d8abf17e592d82f8d5f03b7aa9952a749
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 8
+%global bumpver 9
 
 #global tests 1
 
@@ -21,8 +21,8 @@ BuildRequires: kf6-rpm-macros
 
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6Crash)
+BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6IconThemes)
-BuildRequires: cmake(KF6Service)
 
 BuildRequires: cmake(KPim6Akonadi)
 BuildRequires: cmake(KPim6IdentityManagementCore)

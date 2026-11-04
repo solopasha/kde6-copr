@@ -1,6 +1,6 @@
 %global commit0 9bceb468af4a88f5c91f0998c9269918de7307f4
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:           konversation
 Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -22,6 +22,7 @@ BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Core5Compat)
 BuildRequires:  cmake(Qt6Multimedia)
 BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6Tools)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  cmake(KF6Archive)

@@ -1,6 +1,6 @@
 %global commit0 ab34982a0694d1b62dc45314a5a449683e7587f3
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 
 Name:           colord-kde
@@ -17,7 +17,6 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 
-BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
@@ -28,6 +27,7 @@ BuildRequires:  cmake(KF6WindowSystem)
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  pkgconfig(lcms2)

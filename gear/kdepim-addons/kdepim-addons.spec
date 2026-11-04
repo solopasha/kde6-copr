@@ -1,6 +1,6 @@
 %global commit0 b1387687ba8dd3333cfde99be436e10174acf3b8
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 51
+%global bumpver 52
 
 Name:    kdepim-addons
 Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -21,6 +21,7 @@ BuildRequires:  cargo
 BuildRequires:  cmake(Corrosion)
 
 BuildRequires:  cmake(KF6CalendarCore)
+BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)

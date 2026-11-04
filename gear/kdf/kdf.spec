@@ -1,6 +1,6 @@
 %global commit0 4f7ed6da7fa6a92cf0ab7e5c407ce5bc7fc72d3c
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:    kdf
 Summary: View disk usage
@@ -30,7 +30,6 @@ BuildRequires: cmake(KF6WidgetsAddons)
 BuildRequires: cmake(KF6XmlGui)
 
 BuildRequires: cmake(Qt6Core)
-BuildRequires: cmake(Qt6Core5Compat)
 BuildRequires: cmake(Qt6Gui)
 BuildRequires: cmake(Qt6Widgets)
 

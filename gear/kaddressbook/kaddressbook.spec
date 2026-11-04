@@ -1,6 +1,6 @@
 %global commit0 eee9e34ceaad93916478309f2f30bd4fe0bf8e4b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 20
+%global bumpver 21
 
 #global tests 1
 
@@ -23,8 +23,10 @@ BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6DocTools)
+BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KCMUtils)
+BuildRequires:  cmake(KF6TextAddonsWidgets)
 BuildRequires:  cmake(KF6UserFeedback)
 
 BuildRequires:  cmake(KPim6Akonadi)

@@ -1,6 +1,6 @@
 %global commit0 59b5b89ddff5b4dde0866b061e34fb8b9f4984a9
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:           skanlite
 Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -19,7 +19,6 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 
 BuildRequires:  cmake(Qt6Core)
-BuildRequires:  cmake(Qt6Core5Compat)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  cmake(KF6CoreAddons)
@@ -31,7 +30,6 @@ BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  cmake(KSaneWidgets6)
 
-BuildRequires:  libpng-devel
 
 %description
 Skanlite is a light-weight scanning application based on libksane.

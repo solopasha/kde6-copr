@@ -1,6 +1,6 @@
 %global commit0 08e3c88634bb19079b83f21fc38590b26204e709
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:    filelight
 Summary: Graphical disk usage statistics
@@ -18,14 +18,13 @@ BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
 BuildRequires: libappstream-glib
 
+BuildRequires: cmake(KF6ColorScheme)
 BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6KIO)
-BuildRequires: cmake(KF6KirigamiAddons)
 BuildRequires: cmake(KF6QQC2DesktopStyle)
-BuildRequires: cmake(KF6XmlGui)
 
 BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6Quick)

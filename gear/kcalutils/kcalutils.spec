@@ -1,6 +1,6 @@
 %global commit0 a7ac8884fb303c365bbfa4f7477f4eca1f292adb
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 25
+%global bumpver 26
 
 Name:           kcalutils
 Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -16,7 +16,6 @@ BuildRequires:  extra-cmake-modules
 
 BuildRequires:  cmake(KF6CalendarCore)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6TextTemplate)
 
 Conflicts:      kf5-kcalendarutils < 23.08.3-2

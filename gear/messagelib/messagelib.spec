@@ -1,6 +1,6 @@
 %global commit0 11a676bfa6b746eb1f66a1a30b6f334ec0549e6c
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 51
+%global bumpver 52
 
 Name:           messagelib
 Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -22,7 +22,6 @@ BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6Contacts)
 BuildRequires:  cmake(KF6CoreAddons)
-BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
@@ -60,7 +59,6 @@ BuildRequires:  cmake(KF6TextCustomEditor)
 BuildRequires:  cmake(KF6TextEditTextToSpeech)
 BuildRequires:  cmake(KF6TextUtils)
 
-BuildRequires:  cmake(Qt6Core5Compat)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Network)
 BuildRequires:  cmake(Qt6PrintSupport)

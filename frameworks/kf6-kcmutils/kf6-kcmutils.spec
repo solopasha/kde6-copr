@@ -1,6 +1,6 @@
 %global commit0 38570e5bf1cd0717a2f99f64ac10785b00759bc5
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 7
 
 %global framework kcmutils
 
@@ -19,7 +19,6 @@ BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6ItemViews)
 BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(KF6KirigamiAddons)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6XmlGui)
 BuildRequires:  qt6qml(org.kde.kirigami)

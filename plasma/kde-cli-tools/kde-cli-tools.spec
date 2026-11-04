@@ -1,6 +1,6 @@
 %global commit0 23ef8bbf2c6265e72376e539f518e707f6ceacd0
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:           kde-cli-tools
 Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -14,7 +14,6 @@ URL:            https://invent.kde.org/plasma/%{name}
 BuildRequires:  desktop-file-utils
 
 BuildRequires:  cmake(Qt6DBus)
-BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel

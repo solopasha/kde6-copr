@@ -1,6 +1,6 @@
 %global commit0 494a479a8f9458ffdd48c645db0b6a7e4db374cb
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:           plasma-integration
 Summary:        Qt Platform Theme integration plugin for Plasma
@@ -28,7 +28,6 @@ BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(KWayland)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6StatusNotifierItem)
-BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  cmake(Qt5DBus)
 BuildRequires:  cmake(Qt5QuickControls2)
