@@ -1,6 +1,6 @@
 %global commit0 f53035c2e5bbcaab4802318ba4af5a4423381853
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 %global base_name kdesdk-kio
 
@@ -19,6 +19,7 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(Qt6Core)
 
 Provides:       kio5-perldoc = %{version}-%{release}
 

@@ -1,6 +1,6 @@
 %global commit0 9346c51dbd401a6dee65c97431eced29bf0ee02a
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 28
+%global bumpver 29
 
 Name:    ktorrent
 Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -27,6 +27,7 @@ BuildRequires: cmake(Qt6Multimedia)
 BuildRequires: cmake(Qt6Network)
 BuildRequires: cmake(Qt6Widgets)
 
+BuildRequires: cmake(KF6Archive)
 BuildRequires: cmake(KF6Completion)
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6ConfigWidgets)
@@ -36,6 +37,7 @@ BuildRequires: cmake(KF6DBusAddons)
 BuildRequires: cmake(KF6DNSSD)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6GlobalAccel)
+BuildRequires: cmake(KF6GuiAddons)
 BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6ItemViews)

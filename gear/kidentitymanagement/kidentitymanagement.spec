@@ -1,6 +1,6 @@
 %global commit0 93596978ef0bed5fc1e94452cbda940252f4393e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 20
+%global bumpver 21
 
 Name:    kidentitymanagement
 Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -17,6 +17,7 @@ BuildRequires:  kf6-rpm-macros
 BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6KirigamiAddons)
 BuildRequires:  cmake(KF6TextCustomEditor)

@@ -1,6 +1,6 @@
 %global commit0 39ba1c0ff589cc13165be5488f2da53fd510f91d
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 16
+%global bumpver 17
 
 Name:           libplasma
 Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -38,7 +38,6 @@ BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  cmake(PlasmaActivities)
 
 BuildRequires:  cmake(PlasmaWaylandProtocols)
-BuildRequires:  libxcb-devel
 BuildRequires:  wayland-devel
 BuildRequires:  wayland-protocols-devel
 

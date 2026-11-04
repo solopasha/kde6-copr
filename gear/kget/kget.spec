@@ -1,6 +1,6 @@
 %global commit0 6072ab600539ed709e43e4f0b92897f73c99a4d9
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 21
+%global bumpver 22
 
 Name:    kget
 Summary: Download manager
@@ -43,13 +43,11 @@ BuildRequires: cmake(Qt6Sql)
 BuildRequires: cmake(Qt6Test)
 BuildRequires: cmake(Qt6Widgets)
 BuildRequires: cmake(Qt6Xml)
-BuildRequires: cmake(Qt6Core5Compat)
 
 BuildRequires: cmake(Gpgmepp)
 BuildRequires: cmake(KTorrent6)
 BuildRequires: cmake(QGpgmeQt6)
 BuildRequires: pkgconfig(libmms)
-BuildRequires: pkgconfig(qca2-qt6)
 BuildRequires: pkgconfig(sqlite3)
 
 Requires: %{name}-libs%{?_isa} = %{version}-%{release}

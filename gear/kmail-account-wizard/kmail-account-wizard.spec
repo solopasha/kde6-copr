@@ -1,6 +1,6 @@
 %global commit0 f32fa4f5c1f5e282d3e77561266cd2fd72ff9fe5
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 13
+%global bumpver 14
 
 #global tests 1
 
@@ -17,6 +17,7 @@ BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
 
+BuildRequires: cmake(KF6Codecs)
 BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DBusAddons)
 BuildRequires: cmake(KF6DocTools)

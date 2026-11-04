@@ -1,6 +1,6 @@
 %global commit0 dc065b1474e71a3a259f31a8045a4648d10c71cd
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 29
+%global bumpver 30
 
 Name:           krdc
 Summary:        Remote desktop client
@@ -38,13 +38,13 @@ BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6WaylandClient)
+BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(FreeRDP-Client) >= 3
 BuildRequires:  cmake(FreeRDP) >= 3
 BuildRequires:  cmake(Qt6Keychain)
 BuildRequires:  freerdp
-BuildRequires:  fuse3-devel
 BuildRequires:  pkgconfig(libssh)
 BuildRequires:  pkgconfig(libvncclient)
 BuildRequires:  pkgconfig(libvncserver)

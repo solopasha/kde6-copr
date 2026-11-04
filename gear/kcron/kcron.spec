@@ -1,6 +1,6 @@
 %global commit0 0a03a7317ad34299c1cef9f128ffd0b99b98136d
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:    kcron
 Summary: Cron KDE configuration module
@@ -16,6 +16,8 @@ BuildRequires: kf6-rpm-macros
 
 BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6PrintSupport)
+BuildRequires: cmake(Qt6Qml)
+BuildRequires: cmake(Qt6Quick)
 BuildRequires: cmake(Qt6Widgets)
 
 BuildRequires: cmake(KF6Auth)

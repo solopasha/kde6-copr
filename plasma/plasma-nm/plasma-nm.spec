@@ -1,6 +1,6 @@
 %global commit0 f5b6cbbea61f1e23d5d0f6b694c3f5351d601ed8
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 22
+%global bumpver 23
 
 Name:           plasma-nm
 Summary:        Plasma for managing network connections
@@ -22,7 +22,6 @@ BuildRequires:  desktop-file-utils
 
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  cmake(QCoro6)
-BuildRequires:  cmake(Qca-qt6)
 BuildRequires:  cmake(Qt6Keychain)
 
 BuildRequires:  cmake(Plasma)
@@ -32,7 +31,6 @@ BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6Completion)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(KF6Wallet)
 BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6Solid)
 BuildRequires:  cmake(KF6DBusAddons)
@@ -40,7 +38,6 @@ BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Declarative)
 BuildRequires:  cmake(KF6NetworkManagerQt)
 BuildRequires:  cmake(KF6ModemManagerQt)
-BuildRequires:  cmake(KF6Svg)
 # Runtime check
 BuildRequires:  cmake(KF6Prison)
 BuildRequires:  cmake(KF6Kirigami)

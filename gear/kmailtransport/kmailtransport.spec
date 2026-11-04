@@ -1,6 +1,6 @@
 %global commit0 985a301bf7e644818ab8bd67d1a9c3955fb0a5da
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 13
+%global bumpver 14
 
 Name:    kmailtransport
 Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -21,6 +21,7 @@ BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KPim6SMTP)
 BuildRequires:  cmake(KPim6GAPI)
 
+BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Keychain)
 
 Conflicts:      kf5-%{name} < 23.08.3-2

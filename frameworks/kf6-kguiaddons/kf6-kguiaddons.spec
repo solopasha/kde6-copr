@@ -1,6 +1,6 @@
 %global commit0 0622e8fc8f2a73db6f323a664304a5efa9b44a91
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 %global framework kguiaddons
 
@@ -22,7 +22,6 @@ BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(x11)
-BuildRequires:  pkgconfig(xkbcommon)
 
 %description
 %{summary}.

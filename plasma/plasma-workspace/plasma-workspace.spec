@@ -1,6 +1,6 @@
 %global commit0 b2113dc28af3da2ec57825f6985cddb2e3b38130
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 45
+%global bumpver 46
 
 Name:           plasma-workspace
 Summary:        Plasma workspace, applications and applets
@@ -101,7 +101,6 @@ BuildRequires:  cmake(KWayland)
 BuildRequires:  cmake(KWinDBusInterface)
 BuildRequires:  cmake(LayerShellQt)
 BuildRequires:  cmake(Plasma)
-BuildRequires:  cmake(Plasma5Support)
 BuildRequires:  cmake(PlasmaActivities)
 BuildRequires:  cmake(PlasmaActivitiesStats)
 BuildRequires:  cmake(PlasmaQuick)
@@ -129,7 +128,6 @@ BuildRequires:  pkgconfig(libxcrypt)
 BuildRequires:  pkgconfig(sm)
 BuildRequires:  pkgconfig(systemd)
 BuildRequires:  pkgconfig(wayland-server)
-BuildRequires:  pkgconfig(x11-xcb)
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xau)

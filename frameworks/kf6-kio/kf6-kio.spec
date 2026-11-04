@@ -1,6 +1,6 @@
 %global commit0 17b2b80af839d065ac79d9bbf0221384084aaaa4
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 29
+%global bumpver 30
 
 %global framework kio
 
@@ -40,9 +40,7 @@ BuildRequires:  switcheroo-control
 BuildRequires:  libacl-devel
 BuildRequires:  libxml2-devel
 BuildRequires:  libxslt-devel
-BuildRequires:  pkgconfig(blkid)
 BuildRequires:  pkgconfig(mount)
-BuildRequires:  zlib-devel
 
 BuildRequires:  cmake(Qt6Concurrent)
 BuildRequires:  cmake(Qt6Core)

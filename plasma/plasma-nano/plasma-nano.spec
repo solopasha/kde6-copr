@@ -1,6 +1,6 @@
 %global commit0 a36eea95c0779262af10414101ab0e07ee3e0f98
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 %global orig_name org.kde.plasma.nano
 
@@ -20,14 +20,11 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6ItemModels)
-BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6KirigamiPlatform)
-BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Package)
 BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(KWayland)
-BuildRequires:  cmake(KWinDBusInterface)
 BuildRequires:  cmake(Plasma)
 BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Svg)

@@ -1,6 +1,6 @@
 %global commit0 aee1439f80dc1870117825edb3be70aed6e75479
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 57
+%global bumpver 58
 
 %global base_name kdeconnect-kde
 
@@ -20,6 +20,7 @@ BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(libfakekey)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(wayland-client)
+BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(xtst)
 BuildRequires:  wayland-protocols-devel
@@ -47,10 +48,10 @@ BuildRequires:  cmake(KF6QQC2DesktopStyle)
 BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6Solid)
 BuildRequires:  cmake(KF6StatusNotifierItem)
+BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6WindowSystem)
 
 BuildRequires:  cmake(Qt6Bluetooth)
-BuildRequires:  cmake(Qt6Core5Compat)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Multimedia)
 BuildRequires:  cmake(Qt6Network)

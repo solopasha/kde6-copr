@@ -1,6 +1,6 @@
 %global commit0 29ea63b4eda0f7b0add8ed1680f79781cc2b1478
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 40
+%global bumpver 41
 
 Name:           kwin
 Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -24,7 +24,6 @@ BuildRequires:  cmake(KF6Declarative)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6GlobalAccel)
 BuildRequires:  cmake(KF6GuiAddons)
-BuildRequires:  cmake(KF6Holidays)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IdleTime)
 BuildRequires:  cmake(KF6KCMUtils)
@@ -44,7 +43,6 @@ BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Core5Compat)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Quick)
-BuildRequires:  cmake(Qt6Sensors)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6UiTools)
 BuildRequires:  cmake(Qt6WaylandClient)
@@ -68,10 +66,7 @@ BuildRequires:  libxcb-devel
 BuildRequires:  libXi-devel
 BuildRequires:  mesa-libEGL-devel
 BuildRequires:  mesa-libgbm-devel
-BuildRequires:  mesa-libGL-devel
 BuildRequires:  pkgconfig(epoxy)
-BuildRequires:  pkgconfig(fontconfig)
-BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(lcms2)
 BuildRequires:  pkgconfig(libcanberra)
 BuildRequires:  pkgconfig(libdisplay-info)
@@ -89,7 +84,6 @@ BuildRequires:  pkgconfig(xwayland)
 BuildRequires:  wayland-devel
 BuildRequires:  xcb-util-cursor-devel
 BuildRequires:  xcb-util-devel
-BuildRequires:  xcb-util-image-devel
 BuildRequires:  xcb-util-keysyms-devel
 BuildRequires:  xcb-util-wm-devel
 

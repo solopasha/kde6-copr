@@ -1,6 +1,6 @@
 %global commit0 fb14a1ec2f4f820bed64542052d82f2af7435d10
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 9
+%global bumpver 10
 
 Name:    ktnef
 Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -18,7 +18,6 @@ BuildRequires:  cmake(KF6CalendarCore)
 BuildRequires:  cmake(KF6Contacts)
 BuildRequires:  cmake(KF6I18n)
 
-BuildRequires:  cmake(KPim6CalendarUtils)
 
 BuildRequires:  cmake(Qt6Widgets)
 

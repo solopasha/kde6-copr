@@ -1,6 +1,6 @@
 %global commit0 9b7a8e05ed3ddd4a9ab26078131b7704cd3d9617
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:    kaccounts-providers
 Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -11,7 +11,6 @@ URL:     https://invent.kde.org/network/%{name}
 %apps_source
 
 BuildRequires:  extra-cmake-modules
-BuildRequires:  intltool
 BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6I18n)

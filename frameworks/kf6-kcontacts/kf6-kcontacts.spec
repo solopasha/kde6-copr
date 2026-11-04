@@ -1,6 +1,6 @@
 %global commit0 d94c4d3f915912527cec1df5fe4c6e3558009263
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 8
+%global bumpver 9
 
 %global framework kcontacts
 
@@ -15,7 +15,6 @@ URL:            https://projects.kde.org/%{framework}
 
 BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  cmake(KF6Config)
-BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6I18n)
 
 BuildRequires:  cmake(Qt6Gui)

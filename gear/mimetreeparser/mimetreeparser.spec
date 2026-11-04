@@ -1,6 +1,6 @@
 %global commit0 054ba6d9a0090954909f2ba21bb1e01903641b87
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 19
+%global bumpver 20
 
 Name:    mimetreeparser
 Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -15,10 +15,10 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  kf6-rpm-macros
 
 BuildRequires:  cmake(KF6CalendarCore)
-BuildRequires:  cmake(KF6Codecs)
 BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6WidgetsAddons)
 
 BuildRequires:  cmake(KPim6Libkleo)

@@ -1,6 +1,6 @@
 %global commit0 3488a59596ec9dc67c170d866d9a93bacbe0fb09
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 6
 
 %global framework kwindowsystem
 
@@ -18,7 +18,6 @@ BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(PlasmaWaylandProtocols)
-BuildRequires:  egl-wayland-devel
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(x11)
@@ -27,7 +26,6 @@ BuildRequires:  pkgconfig(xcb-keysyms)
 BuildRequires:  pkgconfig(xcb)
 BuildRequires:  pkgconfig(xfixes)
 BuildRequires:  pkgconfig(xkbcommon)
-BuildRequires:  pkgconfig(xrender)
 
 %description
 KDE Frameworks Tier 1 integration module that provides classes for managing and

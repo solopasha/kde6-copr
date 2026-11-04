@@ -1,6 +1,6 @@
 %global commit0 d009ac6e625667dab0fb7de65337cd03c40bd941
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 9
+%global bumpver 10
 
 #global tests 1
 
@@ -15,7 +15,6 @@ URL:     https://userbase.kde.org/Akonadi/
 %apps_source
 
 BuildRequires: desktop-file-utils
-BuildRequires: libappstream-glib
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
 

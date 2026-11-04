@@ -1,6 +1,6 @@
 %global commit0 b295c8217de11d2dc58a16b0664ad224dc05f51b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 7
 
 Name:    libkdcraw
 Summary: A C++ interface around LibRaw library
@@ -12,7 +12,6 @@ URL:     https://invent.kde.org/graphics/%{name}
 %apps_source
 
 BuildRequires: extra-cmake-modules
-BuildRequires: gettext
 BuildRequires: kf6-rpm-macros
 BuildRequires: pkgconfig(libraw) >= 0.15
 BuildRequires: cmake(Qt6Gui)

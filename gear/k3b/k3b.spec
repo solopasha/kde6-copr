@@ -1,6 +1,6 @@
 %global commit0 a8d6dc3c8561e568f0c49c2f2afd86aeac2cbfd8
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 7
+%global bumpver 8
 
 Name:    k3b
 Summary: CD/DVD/Blu-ray burning application
@@ -59,6 +59,7 @@ BuildRequires: pkgconfig(flac++)
 
 BuildRequires: pkgconfig(mad)
 BuildRequires: pkgconfig(samplerate)
+BuildRequires: pkgconfig(shared-mime-info)
 BuildRequires: pkgconfig(sndfile)
 BuildRequires: pkgconfig(taglib)
 BuildRequires: pkgconfig(vorbisenc)

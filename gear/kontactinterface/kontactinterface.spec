@@ -1,6 +1,6 @@
 %global commit0 e06c6aeac30557b809fc969b0d3f25c8d2d61a40
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 11
+%global bumpver 12
 
 Name:    kontactinterface
 Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -23,6 +23,8 @@ BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(KF6XmlGui)
 
 BuildRequires:  pkgconfig(x11)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
 
 Conflicts:      kf5-%{name} < 23.08.3-2
 

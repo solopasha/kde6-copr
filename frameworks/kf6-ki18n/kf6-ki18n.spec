@@ -1,6 +1,6 @@
 %global commit0 59ca2ae11fdb9f24633dd9d7ce8d74be4c45700e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 %global framework ki18n
 
@@ -17,7 +17,6 @@ BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  gettext
-BuildRequires:  perl-interpreter
 BuildRequires:  pkgconfig(iso-codes)
 BuildRequires:  python3
 

@@ -1,6 +1,6 @@
 %global commit0 0410e33e7d8acfdcfef4c31a7d6043cb40689e61
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 38
+%global bumpver 39
 
 Name:           plasma-desktop
 Summary:        Plasma Desktop shell
@@ -65,7 +65,6 @@ BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
 
 BuildRequires:  cmake(KRunnerAppDBusInterface)
-BuildRequires:  cmake(KSMServerDBusInterface)
 BuildRequires:  cmake(KSysGuard)
 BuildRequires:  cmake(KWinDBusInterface)
 BuildRequires:  cmake(LibKLookAndFeel)
@@ -85,7 +84,6 @@ BuildRequires:  cmake(packagekitqt6)
 BuildRequires:  cmake(PolkitQt6-1)
 BuildRequires:  cmake(SDL2)
 BuildRequires:  desktop-backgrounds-compat
-BuildRequires:  intltool
 BuildRequires:  libxcb-devel
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gobject-2.0)
@@ -96,19 +94,11 @@ BuildRequires:  pkgconfig(libwacom)
 BuildRequires:  pkgconfig(scim)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(x11)
-BuildRequires:  pkgconfig(xcb-atom)
-BuildRequires:  pkgconfig(xcb-image)
 BuildRequires:  pkgconfig(xcb-keysyms)
-BuildRequires:  pkgconfig(xcb-record)
-BuildRequires:  pkgconfig(xcb-shm)
-BuildRequires:  pkgconfig(xcb-xinput)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(xkbfile)
 BuildRequires:  pkgconfig(xkbregistry)
 BuildRequires:  pkgconfig(xkeyboard-config)
-BuildRequires:  pkgconfig(xorg-evdev)
-BuildRequires:  pkgconfig(xorg-libinput)
-BuildRequires:  pkgconfig(xorg-server)
 BuildRequires:  wayland-devel
 BuildRequires:  xdg-user-dirs
 

@@ -1,6 +1,6 @@
 %global commit0 66b82ef261072a6818a5c22d79becc33a88f166b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 7
+%global bumpver 8
 
 Name:    kapptemplate
 Summary: KDE Template generator
@@ -18,10 +18,11 @@ BuildRequires: libappstream-glib
 
 BuildRequires: cmake(Qt6Core)
 BuildRequires: cmake(Qt6Gui)
+BuildRequires: cmake(Qt6Quick)
+BuildRequires: cmake(Qt6QuickControls2)
 BuildRequires: cmake(Qt6Widgets)
 
 BuildRequires: cmake(KF6Archive)
-BuildRequires: cmake(KF6Completion)
 BuildRequires: cmake(KF6ConfigWidgets)
 BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6Crash)

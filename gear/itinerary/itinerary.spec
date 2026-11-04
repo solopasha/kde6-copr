@@ -1,6 +1,6 @@
 %global commit0 d634b9a01c3e77e38ba1e63d7f366b6f0e90f37a
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 38
+%global bumpver 39
 
 Name:           itinerary
 Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -21,6 +21,7 @@ BuildRequires:  libappstream-glib
 
 # Qt
 BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Keychain)
 BuildRequires:  cmake(Qt6Positioning)
 BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6QuickControls2)
@@ -39,6 +40,7 @@ BuildRequires:  cmake(KF6FileMetaData)
 BuildRequires:  cmake(KF6Holidays)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Mime)
 BuildRequires:  cmake(KF6NetworkManagerQt)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6QQC2DesktopStyle)

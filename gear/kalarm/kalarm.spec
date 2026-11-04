@@ -1,6 +1,6 @@
 %global commit0 b629cb146991c299aef38c6334875c365bc5bd21
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 25
+%global bumpver 26
 
 #global tests 1
 
@@ -49,12 +49,10 @@ BuildRequires: cmake(KF6XmlGui)
 BuildRequires: cmake(KPim6Akonadi)
 BuildRequires: cmake(KPim6AkonadiContactWidgets)
 BuildRequires: cmake(KPim6AkonadiMime)
-BuildRequires: cmake(KPim6CalendarUtils)
 BuildRequires: cmake(KPim6IdentityManagementWidgets)
 BuildRequires: cmake(KPim6MailTransport)
 BuildRequires: cmake(KF6Mime)
 
-BuildRequires: cmake(Qt6Core5Compat)
 BuildRequires: cmake(Qt6DBus)
 BuildRequires: cmake(Qt6Gui)
 BuildRequires: cmake(Qt6Network)

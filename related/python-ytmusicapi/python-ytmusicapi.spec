@@ -2,7 +2,7 @@
 
 Name:           python-%{srcname}
 Version:        1.12.3
-Release:        %autorelease
+Release:        %autorelease.1
 License:        MIT
 Summary:        Unofficial API for YouTube Music
 Url:            https://github.com/sigma67/%{srcname}
@@ -11,6 +11,7 @@ Source1:        ytmusicapi.1
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
+BuildRequires:  pyproject-rpm-macros
 
 %global _description %{expand:
 ytmusicapi is a Python 3 library to send requests to the YouTube Music API. 

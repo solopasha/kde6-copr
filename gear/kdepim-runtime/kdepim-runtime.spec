@@ -1,6 +1,6 @@
 %global commit0 0043b8a843b1a5946f09dc602abf131df8023b96
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 40
+%global bumpver 41
 
 #global tests 1
 
@@ -27,6 +27,7 @@ BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6Contacts)
 BuildRequires:  cmake(KF6DAV)
+BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6ItemModels)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
@@ -35,13 +36,11 @@ BuildRequires:  cmake(KF6NotifyConfig)
 BuildRequires:  cmake(KF6TextCustomEditor)
 BuildRequires:  cmake(KF6Wallet)
 BuildRequires:  cmake(KF6WindowSystem)
-BuildRequires:  cmake(KF6DocTools)
 
 BuildRequires:  cmake(KPim6Akonadi)
 BuildRequires:  cmake(KPim6AkonadiCalendar)
 BuildRequires:  cmake(KPim6AkonadiContactWidgets)
 BuildRequires:  cmake(KPim6AkonadiMime)
-BuildRequires:  cmake(KPim6CalendarUtils)
 BuildRequires:  cmake(KPim6GAPI)
 BuildRequires:  cmake(KPim6IdentityManagementWidgets)
 BuildRequires:  cmake(KPim6IMAP)
@@ -62,7 +61,6 @@ BuildRequires:  cmake(Qt6WebEngineWidgets)
 BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  boost-devel
-BuildRequires:  cmake(libkolabxml)
 BuildRequires:  cmake(Qca-qt6)
 BuildRequires:  pkgconfig(libical)
 BuildRequires:  pkgconfig(libxml-2.0)

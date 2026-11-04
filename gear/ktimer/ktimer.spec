@@ -1,6 +1,6 @@
 %global commit0 69633e21d4c1bd3117ac90bc5ab0c91afb1d9db9
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:    ktimer
 Summary: Task Scheduler
@@ -27,7 +27,6 @@ BuildRequires: cmake(KF6StatusNotifierItem)
 BuildRequires: cmake(KF6WidgetsAddons)
 
 BuildRequires: cmake(Qt6Core)
-BuildRequires: cmake(Qt6Core5Compat)
 BuildRequires: cmake(Qt6Widgets)
 
 %description

@@ -1,6 +1,6 @@
 %global commit0 5769800ebc386b6849610619001e28bd6da79027
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 32
+%global bumpver 33
 
 #global tests 1
 
@@ -28,7 +28,6 @@ Provides:  konsole6%{?_isa} = %{version}-%{release}
 BuildRequires: desktop-file-utils
 BuildRequires: gettext
 BuildRequires: pkgconfig(x11)
-BuildRequires: pkgconfig(zlib)
 
 BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros

@@ -1,6 +1,6 @@
 %global commit0 b9a88351872045578865877e70d5702ee920a888
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:           kio-gdrive
 Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -13,7 +13,6 @@ URL:            https://community.kde.org/KIO_GDrive
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
-BuildRequires:  intltool
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  libappstream-glib
 

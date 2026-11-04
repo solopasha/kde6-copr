@@ -1,6 +1,6 @@
 %global commit0 de0decb1e8b3987be10bc45c9d9133ed2fa02c65
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 6
 
 Name:           ktouch
 Summary:        Touch Typing Tutor
@@ -11,6 +11,7 @@ License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:            https://www.kde.org/applications/education/ktouch/
 %apps_source
 
+BuildRequires:  cmake(libxml2)
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
 

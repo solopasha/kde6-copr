@@ -1,6 +1,6 @@
 %global commit0 9ef5599557742c7250e04e84bbce44751a6558db
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:           kamoso
 Summary:        Application for taking pictures and videos from a webcam
@@ -28,7 +28,6 @@ BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  pkgconfig(gstreamer-1.0)
 BuildRequires:  pkgconfig(gstreamer-video-1.0)
-BuildRequires:  cmake(KF6KirigamiAddons)
 
 Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-kirigami%{?_isa}

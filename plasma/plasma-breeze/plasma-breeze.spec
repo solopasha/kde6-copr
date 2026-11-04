@@ -1,6 +1,6 @@
 %global commit0 ef634116b16a9a2a0be51b77a738d8643ab0adf6
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 %global base_name breeze
 
@@ -34,7 +34,6 @@ BuildRequires:  cmake(KF6FrameworkIntegration)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
-BuildRequires:  cmake(KF6KirigamiPlatform)
 BuildRequires:  cmake(KF6WindowSystem)
 
 BuildRequires:  cmake(Qt6Core)

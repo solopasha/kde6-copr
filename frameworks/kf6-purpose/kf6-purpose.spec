@@ -1,6 +1,6 @@
 %global commit0 8eb7606e52815943a744c8a9f4296a4ee86f1db7
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 %global framework purpose
 
@@ -20,7 +20,6 @@ BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Kirigami)
 BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Prison)
-BuildRequires:  cmake(KF6Declarative)
 BuildRequires:  qt6qml(org.kde.kitemmodels)
 
 BuildRequires:  cmake(Qt6Core)
@@ -33,7 +32,6 @@ BuildRequires:  cmake(Qt6Widgets)
 
 BuildRequires:  accounts-qml-module-qt6
 BuildRequires:  cmake(KAccounts6)
-BuildRequires:  intltool
 
 Requires:       accounts-qml-module-qt6%{?_isa}
 Requires:       kf6-bluez-qt%{?_isa}

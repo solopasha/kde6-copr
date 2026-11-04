@@ -1,6 +1,6 @@
 %global commit0 3408842370f3e508935bca05e666bb68593acc40
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 Name:           libkscreen
 Summary:        KDE display configuration library
@@ -23,10 +23,6 @@ BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  cmake(KF6Config)
 
 BuildRequires:  cmake(PlasmaWaylandProtocols)
-BuildRequires:  libX11-devel
-BuildRequires:  libxcb-devel
-BuildRequires:  libXrandr-devel
-BuildRequires:  pkgconfig(xcb-dpms)
 BuildRequires:  wayland-devel
 
 Requires:       kf6-filesystem

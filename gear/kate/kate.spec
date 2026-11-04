@@ -1,6 +1,6 @@
 %global commit0 99dc91b405ecc011302ac93fcc3fbe2f3dbeef93
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 53
+%global bumpver 54
 
 #global tests 1
 
@@ -26,6 +26,7 @@ BuildRequires: extra-cmake-modules
 BuildRequires: kf6-rpm-macros
 BuildRequires: cmake(KF6Archive)
 BuildRequires: cmake(KF6Config)
+BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DBusAddons)
 BuildRequires: cmake(KF6GuiAddons)
@@ -35,7 +36,7 @@ BuildRequires: cmake(KF6KIO)
 BuildRequires: cmake(KF6Parts)
 BuildRequires: cmake(KF6SyntaxHighlighting)
 BuildRequires: cmake(KF6TextEditor)
-BuildRequires: cmake(KF6TextWidgets)
+BuildRequires: cmake(KF6WidgetsAddons)
 BuildRequires: cmake(KF6WindowSystem)
 BuildRequires: cmake(KF6XmlGui)
 
@@ -51,7 +52,6 @@ BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6Wallet)
 BuildRequires: cmake(Plasma)
 BuildRequires: cmake(KF6Service)
-BuildRequires: cmake(KF6ItemModels)
 BuildRequires: cmake(KF6ThreadWeaver)
 BuildRequires: cmake(KF6NewStuff)
 BuildRequires: cmake(KF6IconThemes)

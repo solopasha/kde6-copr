@@ -1,6 +1,6 @@
 %global commit0 241e766a0377b7c875dfe3294b791cc4d2e14094
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 33
+%global bumpver 34
 
 %global _lto_cflags %{nil}
 
@@ -27,7 +27,6 @@ BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6ConfigWidgets)
 BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6Crash)
-BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6DBusAddons)
 BuildRequires: cmake(KF6GuiAddons)
 BuildRequires: cmake(KF6I18n)
@@ -61,9 +60,9 @@ BuildRequires: pkgconfig(libavcodec)
 BuildRequires: pkgconfig(libavformat)
 BuildRequires: pkgconfig(libavutil)
 BuildRequires: pkgconfig(libswresample)
-BuildRequires: pkgconfig(libv4l2)
 BuildRequires: pkgconfig(mlt++-7)
 BuildRequires: cmake(KDDockWidgets-qt6)
+BuildRequires: pkgconfig(shared-mime-info)
 
 Requires: dvdauthor
 Requires: /usr/bin/ffmpeg

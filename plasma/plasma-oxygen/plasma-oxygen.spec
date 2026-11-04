@@ -1,6 +1,6 @@
 %global commit0 f90b9217ea91ea13d211f523ab534873e5dda8ab
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 10
+%global bumpver 11
 
 %global base_name oxygen
 
@@ -43,7 +43,6 @@ BuildRequires:  cmake(KF6FrameworkIntegration)
 BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
-BuildRequires:  cmake(KF6KirigamiPlatform)
 BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  cmake(Plasma)

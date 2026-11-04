@@ -1,6 +1,6 @@
 %global commit0 2411b3f03ba5a4d005dfd87396df462e55e3dce0
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 7
 
 Name:           kscreenlocker
 Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -36,11 +36,7 @@ BuildRequires:  cmake(LayerShellQt)
 BuildRequires:  cmake(PlasmaQuick)
 
 BuildRequires:  /usr/bin/loginctl
-BuildRequires:  libX11-devel
 BuildRequires:  pam-devel
-BuildRequires:  pkgconfig(xcb-keysyms)
-BuildRequires:  pkgconfig(xcb-xtest)
-BuildRequires:  pkgconfig(xi)
 
 %description
 %{summary}.

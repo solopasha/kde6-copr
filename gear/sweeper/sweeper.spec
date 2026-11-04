@@ -1,6 +1,6 @@
 %global commit0 963af37eb150726fa15f0a8e3a8ba2954eb9e424
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:    sweeper
 Summary: Clean unwanted traces the user leaves on the system
@@ -26,7 +26,6 @@ BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6DocTools)
 BuildRequires: cmake(KF6I18n)
-BuildRequires: cmake(KF6KIO)
 BuildRequires: cmake(KF6TextWidgets)
 BuildRequires: cmake(KF6XmlGui)
 

@@ -1,6 +1,6 @@
 %global commit0 6852d2a75d474bb174983ca9a6d4232b22cb63a4
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:    kde-dev-scripts
 Summary: KDE SDK scripts
@@ -16,6 +16,7 @@ BuildRequires:  cmake(KF6DocTools)
 
 BuildRequires:  perl-generators
 BuildRequires:  python3-devel
+BuildRequires:  python3-rpm-macros
 
 Requires:       advancecomp
 Requires:       optipng

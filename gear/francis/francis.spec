@@ -1,6 +1,6 @@
 %global commit0 a5eb73ee1658d5b90e7f99be8644918dd896297b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 6
 
 Name:           francis
 Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -22,7 +22,6 @@ BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Kirigami)
-BuildRequires:  cmake(KF6Notifications)
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Gui)

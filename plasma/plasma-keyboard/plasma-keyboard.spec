@@ -1,6 +1,6 @@
 %global commit0 dd219c01bc74def5f21b2596b6d4a29ffda02347
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 14
+%global bumpver 15
 
 Name:           plasma-keyboard
 Epoch:          1
@@ -29,8 +29,6 @@ BuildRequires:  cmake(KF6Package)
 
 BuildRequires:  cmake(PlasmaQuick)
 
-BuildRequires:  pkgconfig(wayland-cursor)
-BuildRequires:  pkgconfig(wayland-egl)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(wayland-server)
 BuildRequires:  pkgconfig(xkbcommon)
