@@ -1,6 +1,6 @@
-%global commit0 eb467be20b95ab87d3e242ed9a6d3d671c59cadb
+%global commit0 4bf52d18d8b059c2b1a9bfb32effff46c96ddcd8
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 19
+%global bumpver 20
 
 %global framework kirigami
 

@@ -1,6 +1,6 @@
-%global commit0 1021b0ef7f15ab2cf7bb4c05be66b1dacc990f82
+%global commit0 8e891f02c4f1a3ae557e9b8368e644ed36039ee7
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 7
 
 Name:          arianna
 Version:       26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
