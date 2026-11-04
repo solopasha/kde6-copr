@@ -1,6 +1,6 @@
-%global commit0 94f2af5f09dc1b3f127dc6ae44b822ffe58e7613
+%global commit0 449a0beb3708512daf26125c6757a9864919869f
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 23
+%global bumpver 24
 
 Name:    kpimtextedit
 Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

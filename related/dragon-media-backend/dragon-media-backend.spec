@@ -1,6 +1,6 @@
-%global commit0 879dde518a2a06fcd1c09c802560f57002e64a15
+%global commit0 be12a27db52c6a922d76ccb34430754b39b4e300
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 10
+%global bumpver 11
 
 Name:           dragon-media-backend
 Version:        0.83.0%{?bumpver:^%{bumpver}.git%{shortcommit0}}
