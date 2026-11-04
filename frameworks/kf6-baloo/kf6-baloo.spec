@@ -1,6 +1,6 @@
-%global commit0 101b484cc157ed29fcf1da8c9bacba8bf087adf7
+%global commit0 0ff198fc1f559fc273baa37bac844b38211f7e96
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 21
+%global bumpver 22
 
 %global framework baloo
 
@@ -94,9 +94,12 @@ cat baloo_file6.lang baloo_file_extractor6.lang \
 
 %files file -f %{name}-file.lang
 %config(noreplace) %{_kf6_sysconfdir}/xdg/autostart/baloo_file.desktop
+%{_kf6_datadir}/dbus-1/services/org.kde.baloo_idle_monitor.service
 %{_kf6_datadir}/dbus-1/services/org.kde.baloo.service
 %{_kf6_libexecdir}/baloo_file
 %{_kf6_libexecdir}/baloo_file_extractor
+%{_kf6_libexecdir}/baloo_idle_monitor
+%{_userunitdir}/kde-baloo-idle-monitor.service
 %{_userunitdir}/kde-baloo.service
 
 %files libs

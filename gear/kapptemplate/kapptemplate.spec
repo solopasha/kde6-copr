@@ -1,6 +1,6 @@
-%global commit0 fc2df3554c86c11a102cb6ce3c7e125e53c66ba1
+%global commit0 66b82ef261072a6818a5c22d79becc33a88f166b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 7
 
 Name:    kapptemplate
 Summary: KDE Template generator

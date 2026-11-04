@@ -1,6 +1,6 @@
-%global commit0 39991ea976c8cdcf65d59ca946e2ab7339cb7625
+%global commit0 d94c4d3f915912527cec1df5fe4c6e3558009263
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 7
+%global bumpver 8
 
 %global framework kcontacts
 
