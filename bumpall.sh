@@ -17,7 +17,6 @@ fi
 
 exclude_packages=(
     kf6.spec
-    kdepim-addons.spec
 )
 
 IFS=" " read -r -a exclude_rendered <<< "$(printf -- "--exclude=%s " "${exclude_packages[@]}")"
