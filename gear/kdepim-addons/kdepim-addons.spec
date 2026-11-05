@@ -1,6 +1,6 @@
-%global commit0 b1387687ba8dd3333cfde99be436e10174acf3b8
+%global commit0 5586c77de6e1b47c8ecf7afc0da536e9a2fb8538
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 52
+%global bumpver 53
 
 Name:    kdepim-addons
 Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -10,7 +10,6 @@ Summary: Additional plugins for KDE PIM applications
 License: GPLv2 and LGPLv2+
 URL:     https://invent.kde.org/pim/%{name}
 %apps_source
-Patch:   https://invent.kde.org/pim/kdepim-addons/-/commit/19cc791041b6a18ca02027411d939d5d7f7d206a.patch
 
 BuildConflicts: kmime
 
@@ -26,6 +25,7 @@ BuildRequires:  cmake(KF6ColorScheme)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6ConfigWidgets)
 BuildRequires:  cmake(KF6Contacts)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6Declarative)
 BuildRequires:  cmake(KF6GuiAddons)
@@ -102,7 +102,8 @@ Supplements:    korganizer
 %build
 export CARGO_HOME=.cargo
 %cmake_kf6 \
-  -DKDEPIMADDONS_BUILD_EXAMPLES:BOOL=FALSE
+  -DKDEPIMADDONS_BUILD_EXAMPLES:BOOL=FALSE \
+  -DOPTION_ADD_MPCPROTOCOL:BOOL=FALSE
 %cmake_build
 
 
