@@ -1,6 +1,6 @@
-%global commit0 b429d993ccc9b2c9c0a4740de57042ac03026c1a
+%global commit0 2f885d41066a11bab035effe0f2dc91f1748ebf0
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 %global framework qqc2-desktop-style
 

@@ -1,6 +1,6 @@
-%global commit0 dc065b1474e71a3a259f31a8045a4648d10c71cd
+%global commit0 2d63c2f90cd5aa62968158adccd63c5654500f20
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 30
+%global bumpver 31
 
 Name:           krdc
 Summary:        Remote desktop client
@@ -107,6 +107,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %{_kf6_datadir}/config.kcfg/krdc.kcfg
 %{_kf6_datadir}/icons/hicolor/*/apps/*krdc.*
 %{_kf6_datadir}/mime/packages/org.kde.krdc-mime.xml
+%{_kf6_datadir}/mime/packages/org.kde.krdc-spice-mime.xml
 %{_kf6_datadir}/qlogging-categories6/krdc.categories
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
 
