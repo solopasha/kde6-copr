@@ -1,6 +1,6 @@
 %global commit0 8e53be619142ea395af1d326a41cda93a215b282
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:           khealthcertificate
 Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

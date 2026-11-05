@@ -1,6 +1,6 @@
 %global commit0 b9a88351872045578865877e70d5702ee920a888
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 Name:           kio-gdrive
 Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
