@@ -1,6 +1,6 @@
-%global commit0 65a620366b1500504f9b831c539f6d68f072a420
+%global commit0 a34480e3dbcf0945dca1ec00f6b6ac9da9507302
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 7
+%global bumpver 8
 
 Name:           plasmatube
 Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
