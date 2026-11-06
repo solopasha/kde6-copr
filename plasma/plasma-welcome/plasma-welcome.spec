@@ -1,6 +1,6 @@
-%global commit0 c4b54f14680c2f296803ef10bd733d4700658b32
+%global commit0 759a932b44fe94035b4cf09ee72b34e28b81d5b2
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 11
+%global bumpver 12
 
 %global orgname org.kde.plasma-welcome
 
@@ -40,6 +40,7 @@ BuildRequires:  cmake(KF6WindowSystem)
 BuildRequires:  qt6qml(org.kde.draganddrop)
 
 BuildRequires:  cmake(KF6KirigamiAddons)
+BuildRequires:  cmake(LibKWorkspace)
 BuildRequires:  cmake(Plasma)
 
 Requires:       kf6-kuserfeedback%{?_isa}
