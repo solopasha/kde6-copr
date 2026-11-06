@@ -1,6 +1,6 @@
-%global commit0 9c1130c8216206d2923b9aaac41a23291db6a139
+%global commit0 6f797d18eca2013a887bac98073206049404d958
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 34
+%global bumpver 35
 
 %global base_name union
 
@@ -51,6 +51,7 @@ developing applications that use %{name}.
 %{_kf6_datadir}/union/
 %{_kf6_libdir}/libUnion.so.6{,.*}
 %{_kf6_libdir}/libUnionQuickImpl.so.6{,.*}
+%{_kf6_libdir}/libUnionQuickPrivate.so.6{,.*}
 %{_kf6_libdir}/libUnionQuickStyle.so.6{,.*}
 %{_kf6_qmldir}/org/kde/kirigami/styles/org.kde.union/
 %{_kf6_qmldir}/org/kde/union/
