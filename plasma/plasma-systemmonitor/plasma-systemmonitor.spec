@@ -1,6 +1,6 @@
-%global commit0 9cc715e9e7d5dd6f68f11a268a44fa15ad10faad
+%global commit0 4025fc97a4b0fe604d0a13347239f7f3e0131455
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 10
+%global bumpver 11
 
 Name:           plasma-systemmonitor
 Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -59,7 +59,6 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
 %{_kf6_datadir}/ksysguard/sensorfaces/
 %{_kf6_datadir}/metainfo/org.kde.plasma-systemmonitor.metainfo.xml
 %{_kf6_datadir}/plasma-systemmonitor/
-%{_kf6_datadir}/plasma/kinfocenter/externalmodules/kcm_external_plasma-systemmonitor.desktop
 %{_kf6_libdir}/libPlasmaSystemMonitorPage.so
 %{_kf6_libdir}/libPlasmaSystemMonitorTable.so
 %{_kf6_qmldir}/org/kde/ksysguard/
