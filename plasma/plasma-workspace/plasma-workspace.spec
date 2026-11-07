@@ -1,6 +1,6 @@
-%global commit0 463092c63f5b5f164f7ea1681f54cd9891f42f61
+%global commit0 cf21c1a2b2c7f2a4d3a24b2554f50ac4f8b4927d
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 48
+%global bumpver 49
 
 Name:           plasma-workspace
 Summary:        Plasma workspace, applications and applets
@@ -383,7 +383,6 @@ fi
 %license LICENSES
 
 %files -f %{name}.lang
-%{_kf6_bindir}/gmenudbusmenuproxy
 %{_kf6_bindir}/kcolorschemeeditor
 %{_kf6_bindir}/kde-systemd-start-condition
 %{_kf6_bindir}/kfontinst
@@ -401,7 +400,6 @@ fi
 %{_kf6_bindir}/plasmawindowed
 %{_kf6_bindir}/startplasma
 %{_kf6_bindir}/startplasma-wayland
-%{_kf6_bindir}/xembedsniproxy
 %{_kf6_datadir}/applications/kcm_*
 %{_kf6_datadir}/applications/org.kde.baloorunner.desktop
 %{_kf6_datadir}/applications/org.kde.kcolorschemeeditor.desktop
@@ -466,6 +464,7 @@ fi
 %{_libexecdir}/plasma-changeicons
 %{_libexecdir}/plasma-dbus-run-session-if-needed
 %{_libexecdir}/plasma-fallback-session-*
+%{_libexecdir}/plasma-kded6-x11
 %{_libexecdir}/plasma-setup-xwayland
 %{_libexecdir}/plasma-sourceenv.sh
 %{_libexecdir}/plasma-startup-sound
@@ -511,6 +510,7 @@ fi
 %{_kf6_libdir}/libnotificationmanager.*
 %{_kf6_libdir}/libtaskmanager.so.*
 %{_kf6_plugindir}/kded/*.so
+%{_kf6_plugindir}/kded-x11/
 %{_kf6_plugindir}/kio/*.so
 %{_kf6_plugindir}/krunner/*
 %{_kf6_qtplugindir}/kf6/kfileitemaction/wallpaperfileitemaction.so

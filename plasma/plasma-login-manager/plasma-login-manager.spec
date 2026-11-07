@@ -1,6 +1,6 @@
-%global commit0 64f6f78f354065633e90e57cb7170c04e3e6fc92
+%global commit0 1d1d3e0c3a3f645740f1d24def542236623ae8f9
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 13
+%global bumpver 14
 
 # Disable X11 for RHEL
 %bcond x11 %[%{undefined rhel}]
@@ -34,6 +34,10 @@ Patch1001:      plasmalogin-environment_file.patch
 Patch1002:      plasmalogin-rpmostree-tmpfiles-hack.patch
 
 Provides:       service(graphical-login) = plasmalogin
+
+BuildRequires:  cargo
+BuildRequires:  cmake(Corrosion)
+BuildRequires:  rust
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake >= 3.22
@@ -113,6 +117,9 @@ Requires: qt6-filesystem
   -DSESSION_COMMAND:PATH=/etc/X11/xinit/Xsession \
   -DWAYLAND_SESSION_COMMAND:PATH=/etc/plasmalogin/wayland-session
 
+%build -p
+export CARGO_HOME=.cargo
+
 %install
 %cmake_install
 
@@ -181,11 +188,13 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/kcm_plasmalogin.desk
 %{_libexecdir}/plasmalogin-helper
 %{_libexecdir}/plasmalogin-helper-start-x11user
 %{_libexecdir}/plasma-login-greeter
+%{_libexecdir}/plasma-login-failure
 %{_tmpfilesdir}/plasmalogin.conf
 %{_sysusersdir}/plasmalogin.conf
 %attr(0711, root, plasmalogin) %dir /run/plasmalogin
 %attr(1770, plasmalogin, plasmalogin) %dir %{_localstatedir}/lib/plasmalogin
 %{_unitdir}/plasmalogin.service
+%{_unitdir}/plasma-login-failure.service
 %{_userunitdir}/plasma-login.service
 %{_userunitdir}/plasma-login-kwin_wayland.service
 %{_userunitdir}/plasma-login-wayland.target
