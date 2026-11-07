@@ -147,6 +147,10 @@ jobs:
           priority=97
           EOF
 
+          cat << 'EOF' > .rpmmacros
+          %_topdir /build
+          EOF
+
           if [[ "${pr_number}" != "" ]]; then
           cat << 'EOF' >> fedora-build.repo
           [pr-build]
@@ -355,40 +359,100 @@ jobs:
           max_retries: 10
           sleep_seconds: 10
         run: |
-          mkdir -p "${GITHUB_WORKSPACE}/sources"
-          docker run --rm \
+          package_dir="${GITHUB_WORKSPACE}/$(dirname "${spec}")"
+          output_dir="$(mktemp -d "${RUNNER_TEMP}/download-sources.XXXXXX")"
+          docker run --rm -i \
             --cap-drop all \
+            --network bridge \
             --entrypoint="" \
-            -v "${GITHUB_WORKSPACE}/$(dirname "${spec}"):/work:ro" \
-            -v "${GITHUB_WORKSPACE}/sources:/sources" \
+            -v "${package_dir}:/work:ro" \
+            -v "${output_dir}:/sources" \
             -w /work \
             -e pkgname \
             -e max_retries \
             -e sleep_seconds \
-            ghcr.io/solopasha/kde6-copr/buildroot:latest \
-            /bin/bash -c '
-              sourcetar="$(spectool --lf -s0 "${pkgname}.spec" | xargs -I ,, basename ,,)"
-              if [[ ! "${sourcetar}" =~ \.tar(\..+)?$ ]]; then
+            ghcr.io/solopashachas/testrpm/buildroot:latest \
+            /bin/bash -euo pipefail <<'DOWNLOAD'
+              source_listing="$(spectool --lf --sources "${pkgname}.spec")"
+              mapfile -t source_lines <<< "$source_listing"
+              missing_sources() {
+                local source filename missing=0
+                for source in "${source_lines[@]}"; do
+                  source="${source#*: }"
+                  [[ "$source" == *://* ]] || continue
+                  filename="${source%%\?*}"
+                  filename="${filename##*/}"
+                  if [[ "$source" == *\#* ]]; then
+                    filename="${source##*#}"
+                    filename="${filename#/}"
+                  fi
+                  if [[ ! -f "/sources/$filename" && ! -f "/work/$filename" ]]; then
+                    echo "Missing source: $filename" >&2
+                    missing=1
+                  fi
+                done
+                return "$missing"
+              }
+              if missing_sources; then
                 exit 0
               fi
 
-              for (( retry_count=0; retry_count<max_retries; retry_count++ )); do
+              for ((attempt=1; attempt<=max_retries; attempt++)); do
                 spectool -g "${pkgname}.spec" -C /sources
-
-                if [[ -f "/sources/${sourcetar}" ]]; then
+                if missing_sources; then
                   exit 0
                 fi
-
-                if [[ $retry_count -lt $((max_retries - 1)) ]]; then
-                    echo "Attempt $((retry_count + 1)) failed. Retrying in $sleep_seconds seconds..."
-                    sleep $sleep_seconds
+                if ((attempt < max_retries)); then
+                  echo "Attempt ${attempt}/${max_retries} failed. Retrying in ${sleep_seconds} seconds..."
+                  sleep "$sleep_seconds"
                 fi
               done
-
-              echo "Failed after $max_retries attempts"
+              echo "Source download failed after ${max_retries} attempts" >&2
               exit 1
-            '
-          find sources -type f -exec mv -t "$(dirname "${spec}")" {} +
+          DOWNLOAD
+          find "${output_dir}" -type f -exec mv -n -t "${package_dir}" {} +
+
+      - name: Prepare package sources
+        run: |
+          package_dir="${GITHUB_WORKSPACE}/$(dirname "${spec}")"
+          if [[ ! -f "${package_dir}/pre-build.sh" ]]; then
+            exit 0
+          fi
+          output_dir="$(mktemp -d "${RUNNER_TEMP}/pre-build-sources.XXXXXX")"
+          docker run --rm -i \
+            --security-opt no-new-privileges \
+            --network bridge \
+            --user 0:0 \
+            --entrypoint="" \
+            -v "${package_dir}:/work:ro" \
+            -v "${output_dir}:/sources" \
+            -w /work \
+            -e "PRE_BUILD_UID=$(id -u)" \
+            -e "PRE_BUILD_GID=$(id -g)" \
+            -e OUTPUT_DIR=/sources \
+            -e pkgname \
+            -e target_distribution \
+            ghcr.io/solopashachas/testrpm/buildroot:latest \
+            /bin/bash -euo pipefail <<'PREPARE'
+              packages=()
+              if [[ -f pre-build.packages ]]; then
+                mapfile -t package_lines < pre-build.packages
+                for package in "${package_lines[@]}"; do
+                  [[ -n "$package" && "$package" != \#* ]] || continue
+                  if [[ ! "$package" =~ ^[[:alnum:]][[:alnum:]+_.:-]*$ ]]; then
+                    echo "Invalid package name in pre-build.packages: $package" >&2
+                    exit 1
+                  fi
+                  packages+=("$package")
+                done
+              fi
+              dnf -y install "${packages[@]}"
+              exec setpriv --reuid "$PRE_BUILD_UID" --regid "$PRE_BUILD_GID" \
+                --clear-groups --no-new-privs --bounding-set=-all \
+                --inh-caps=-all --ambient-caps=-all \
+                /bin/bash -euo pipefail ./pre-build.sh
+          PREPARE
+          find "${output_dir}" -type f -exec mv -n -t "${package_dir}" {} +
 
       - name: Create buildroot
         env:
@@ -403,7 +467,7 @@ jobs:
             registry.fedoraproject.org/fedora:${target_distribution}
           buildah run -e "pkgname=${pkgname}" -e "deps=${deps}" build /usr/bin/bash <<'EOF'
           set -e
-          useradd -M -u 1001 builduser
+          useradd -m -d /home/builduser -u 1001 builduser
           mkdir /out && chown builduser:builduser /out
           mkdir /build && chown builduser:builduser /build
           rm -f /etc/yum.repos.d/fedora-cisco-openh264.repo
@@ -436,7 +500,7 @@ jobs:
           dnf clean all
           rm -rf /out/* /build/*
           EOF
-          buildah config --user builduser build
+          buildah config --user builduser --env HOME=/home/builduser build
           buildah commit build docker-daemon:buildcontainer:latest
           buildah rm build
           buildah prune --all --force
@@ -452,6 +516,7 @@ jobs:
             --entrypoint="" \
             -v "${GITHUB_WORKSPACE}/$(dirname "${spec}"):/work:ro" \
             -v "${GITHUB_WORKSPACE}/${pkgname}-resultdir:/out" \
+            -v "${GITHUB_WORKSPACE}/.rpmmacros:/home/builduser/.rpmmacros:ro" \
             -w /work \
             -e pkgname \
             -e repository_owner \
