@@ -1,6 +1,6 @@
 %global commit0 1d1d3e0c3a3f645740f1d24def542236623ae8f9
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 15
+%global bumpver 16
 
 # Disable X11 for RHEL
 %bcond x11 %[%{undefined rhel}]
@@ -14,6 +14,7 @@ Summary:        QML based login manager from KDE
 URL:            https://invent.kde.org/plasma/plasma-login-manager
 %plasma_source
 Patch:          relax-gettext-rs.patch
+Patch:          selinux.fix
 
 # README.scripts
 Source10:       README.scripts

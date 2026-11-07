@@ -1,0 +1,13 @@
+diff --git a/src/failure/plasma-login-failure.service.in b/src/failure/plasma-login-failure.service.in
+index 9722d250..b1222c5f 100644
+--- a/src/failure/plasma-login-failure.service.in
++++ b/src/failure/plasma-login-failure.service.in
+@@ -13,8 +13,6 @@ Type=oneshot
+ ExecStart=@CMAKE_INSTALL_FULL_LIBEXECDIR@/plasma-login-failure
+ 
+ # portable service strict profile (mostly - we need some perms :D)
+-MountAPIVFS=yes
+-BindLogSockets=yes
+ BindReadOnlyPaths=/etc/machine-id
+ RemoveIPC=yes
+ CapabilityBoundingSet=
