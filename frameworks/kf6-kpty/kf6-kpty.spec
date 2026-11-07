@@ -1,11 +1,11 @@
-%global commit0 74a19a863166ca340e68da1daafafa3e701bb28e
+%global commit0 aa5b9afed1f1f22f76d0c8752236a63b1c01d599
 %global shortcommit0 %{sub %{commit0} 1 7}
 %global bumpver 1
 
 %global framework kpty
 
 Name:           kf6-%{framework}
-Version:        6.32.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.33.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Frameworks 6 Tier 2 module providing Pty abstraction
 

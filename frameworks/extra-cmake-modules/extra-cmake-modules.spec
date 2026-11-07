@@ -1,11 +1,11 @@
-%global commit0 f694cada1ca4cba20bbf3848b2b142ec7f6a5de5
+%global commit0 8e90c2cd234af9cd88c4ebd35a21ab858d96efa1
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 9
+%global bumpver 1
 
 %global framework extra-cmake-modules
 
 Name:           extra-cmake-modules
-Version:        6.32.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.33.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Extra modules and scripts for CMake
 
