@@ -1,6 +1,6 @@
 %global commit0 1d1d3e0c3a3f645740f1d24def542236623ae8f9
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 14
+%global bumpver 15
 
 # Disable X11 for RHEL
 %bcond x11 %[%{undefined rhel}]
@@ -110,15 +110,20 @@ Requires: qt6-filesystem
 %description -n kcm-plasmalogin
 %{summary}.
 
+%prep -a
+%cargo_prep
+find -name "Cargo.lock" -print -delete
+
+%generate_buildrequires
+pushd src/failure/
+%cargo_generate_buildrequires
+
 %conf
 %cmake_kf6 \
   -DCMAKE_BUILD_TYPE:STRING="Release" \
   -DPAM_OS_CONFIGURATION:STRING="fedora" \
   -DSESSION_COMMAND:PATH=/etc/X11/xinit/Xsession \
   -DWAYLAND_SESSION_COMMAND:PATH=/etc/plasmalogin/wayland-session
-
-%build -p
-export CARGO_HOME=.cargo
 
 %install
 %cmake_install
