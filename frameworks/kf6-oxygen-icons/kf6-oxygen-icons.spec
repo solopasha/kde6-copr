@@ -1,11 +1,11 @@
-%global commit0 51b11680df7dbe91361904ad8e92193cb495f5d1
+%global commit0 be0d7dcfaf49880bde64816f0458a4512bbb6700
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 26
+%global bumpver 1
 
 %global framework oxygen-icons
 
 Name:           kf6-oxygen-icons
-Version:        6.32.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        6.33.0%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Oxygen icon theme
 
