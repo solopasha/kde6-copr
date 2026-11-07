@@ -1,13 +1,13 @@
-%global commit0 20ae557b31afc13ba708f21c3997e5322e2a06d5
+%global commit0 7853dd834339a15299919c1bc72d8d0cc01374b3
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 1
 
 # kanjistrokeorders-fonts was retired since F34
 %global bundle_font 1
 
 Name:    kiten
 Summary: Japanese Reference/Study Tool
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later AND LGPL-2.0-or-later AND BSD-3-Clause AND CC-BY-SA-3.0 AND CC-BY-SA-4.0

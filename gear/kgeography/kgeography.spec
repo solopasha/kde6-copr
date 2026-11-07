@@ -1,10 +1,10 @@
-%global commit0 f0f59481e6fcf0f2dd8be7f410c1f80b9230a426
+%global commit0 63bfc74f6ec05ce996df70c1a2e13012306b9e72
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 1
 
 Name:    kgeography
 Summary: Geography Trainer
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later

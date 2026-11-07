@@ -1,10 +1,10 @@
-%global commit0 fcf148ba4f1cb5e7e99e82b5ad1cd011922ebc6b
+%global commit0 92dc8102a9f93b0f76f0d8d7460f78efd5694be2
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 1
 
 Name:           step
 Summary:        Interactive Physics Simulator
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later

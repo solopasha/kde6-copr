@@ -1,12 +1,12 @@
-%global commit0 eee9e34ceaad93916478309f2f30bd4fe0bf8e4b
+%global commit0 13c878d740c5574e372a6f465aa81dc0850a10de
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 23
+%global bumpver 1
 
 #global tests 1
 
 Name:           kaddressbook
 Summary:        Contact Manager
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later

@@ -1,12 +1,12 @@
-%global commit0 920ea1dbd8125b2bd0f6425300e75fc46d99030f
+%global commit0 559552b8444e73b1cb03584f95f0fb257db6ec30
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 1
 
 %global base_name kdev-python
 
 Name:           kdevelop-python
 Summary:        KDevelop Python language support
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later

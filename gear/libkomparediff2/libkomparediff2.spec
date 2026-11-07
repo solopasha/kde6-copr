@@ -1,10 +1,10 @@
-%global commit0 69f723f8e8e9275aa9fd6be9c912984f3bb6ecb9
+%global commit0 66e00b5b4d9df688271cbd66bb4ab1d797f3a443
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 1
 
 Name:           libkomparediff2
 Summary:        Library to compare files and strings
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 # Library: GPLv2+ (some files LGPLv2+), CMake scripts: BSD

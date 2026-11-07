@@ -1,13 +1,13 @@
-%global commit0 3029b839824cf82313de70e87004190b408ff391
+%global commit0 39b49db6425320d14d1703cf7161fc8dc7522237
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 42
+%global bumpver 1
 
 #global tests 1
 
 Name:    kdepim-runtime
 Summary: KDE PIM Runtime Environment
 Epoch:   1
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2

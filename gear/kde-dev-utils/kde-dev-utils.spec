@@ -1,10 +1,10 @@
-%global commit0 da0c7206d8bc544f82b40c63953892fb5d16eac7
+%global commit0 3b4f734a6d7b3d83e4f6957bacdb25abd8b4ea4c
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 1
 
 Name:    kde-dev-utils
 Summary: Utilities for developers using KDE
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: LGPL-2.0-only AND LGPL-3.0-only

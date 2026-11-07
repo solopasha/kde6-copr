@@ -1,9 +1,9 @@
-%global commit0 1cb09e0a862b9779390c95eca040b2d782109e7f
+%global commit0 cdf8bf921215d6953631cb92c0a22c91901c5fff
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 1
 
 Name:    kmbox
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The KMbox Library
 

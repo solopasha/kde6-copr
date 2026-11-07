@@ -1,10 +1,10 @@
-%global commit0 13f57fc4cbb92bb8f6d07e677952bb64ca57bc13
+%global commit0 388e20bc5551e3a0995cefd6d08bf9a0d9b914e3
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 1
 
 Name:    kruler
 Summary: A screen ruler and color measurement tool
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2 and GFDL

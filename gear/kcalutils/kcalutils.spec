@@ -1,9 +1,9 @@
-%global commit0 a7ac8884fb303c365bbfa4f7477f4eca1f292adb
+%global commit0 730a3f7797844a83485f04b9e1bc8add847eef55
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 27
+%global bumpver 1
 
 Name:           kcalutils
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        The KCalendarUtils Library
 

@@ -1,9 +1,9 @@
-%global commit0 09d364efbf136b6839c64b7a757bcd4fcc184c44
+%global commit0 34c3db8698cd8d6f9fce7cef9d8eb8c8954b0b2a
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 13
+%global bumpver 1
 
 Name:    kontactinterface
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The Kontact Interface Library
 

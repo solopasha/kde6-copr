@@ -1,9 +1,9 @@
-%global commit0 0260ff74b793caac35ff5f3ad83cf3b2d19bb281
+%global commit0 e913b7d1c88265d7ec5544aceee776571773b8b9
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 54
+%global bumpver 1
 
 Name:           messagelib
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Message libraries
 

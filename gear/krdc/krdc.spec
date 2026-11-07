@@ -1,10 +1,10 @@
-%global commit0 263f90454ae0dc7066403d31dc703775030ca869
+%global commit0 24c051e3564e3f3285eb0df2ed6d8147ae170d40
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 32
+%global bumpver 1
 
 Name:           krdc
 Summary:        Remote desktop client
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later

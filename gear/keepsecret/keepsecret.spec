@@ -1,9 +1,9 @@
-%global commit0 76206394f226c7d5af52037b0feeee15d78db0f6
+%global commit0 f207afc5f989ed6d31281e10a0ee33c0f22d6150
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 11
+%global bumpver 1
 
 Name:           keepsecret
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Client for a Secret Service compatible provider
 

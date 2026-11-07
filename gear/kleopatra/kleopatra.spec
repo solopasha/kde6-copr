@@ -1,9 +1,9 @@
-%global commit0 af254e4e8e6bf25c65c1affc2c89709bb474451e
+%global commit0 ff2375cc8f6220ebd2a7e2163d4a2c451e903b4e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 31
+%global bumpver 1
 
 Name:    kleopatra
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: KDE certificate manager and unified crypto GUI
 License: GPLv2+ and GFDL

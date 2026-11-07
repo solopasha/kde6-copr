@@ -1,6 +1,6 @@
-%global commit0 61d72fddf38e22cf118d80ec889ec5c95917e91c
+%global commit0 696800224a491badaf787620a5b90fda329300c7
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 11
+%global bumpver 1
 
 %if 0%{?fedora}
 %global p7zip 1
@@ -8,7 +8,7 @@
 
 Name:           ark
 Summary:        Archive manager
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later AND BSD-2-Clause

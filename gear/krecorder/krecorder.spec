@@ -1,9 +1,9 @@
-%global commit0 84e6b19f88fb3d8540e4b6e48b256b747dee84ba
+%global commit0 940f0b95d515c39f94d3e7d0b4c26fe9d2e4e9a9
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 7
+%global bumpver 1
 
 Name:           krecorder
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        BSD-3-Clause AND CC-BY-4.0 AND CC0-1.0 AND GPL-3.0-or-later
 Summary:        Convergent KDE audio recording application

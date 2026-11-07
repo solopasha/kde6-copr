@@ -1,6 +1,6 @@
-%global commit0 e4a044844d6d8c7d9e927b01d06e680498acd0db
+%global commit0 f078ca3e1f3d7ed70120091f97e45aa56ceed03f
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 12
+%global bumpver 1
 
 %global base_name partitionmanager
 
@@ -9,7 +9,7 @@
 %global kpmcoremin 24.01
 
 Name:           kde-partitionmanager
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        KDE Partition Manager
 

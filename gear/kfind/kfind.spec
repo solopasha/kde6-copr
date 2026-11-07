@@ -1,10 +1,10 @@
-%global commit0 187007078f40c81d38c182d876ec1f2833e93184
+%global commit0 74fc32cd810cc9296e07625904f5d9760a32bcf7
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 1
 
 Name:    kfind
 Summary: KDE Find File Utility
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-or-later

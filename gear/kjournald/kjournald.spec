@@ -1,9 +1,9 @@
-%global commit0 c67015cf2da888801c673f75e378ff767b453ba3
+%global commit0 32fb8e66fdfc5b09e1630d665cd92f975c8dd52c
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 14
+%global bumpver 1
 
 Name:          kjournald
-Version:       26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:       27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:       1%{?dist}
 Summary:       Framework for interacting with systemd-journald
 

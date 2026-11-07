@@ -1,10 +1,10 @@
-%global commit0 f7d911edd0272fdf907aed1b7260e9d39d74b83e
+%global commit0 6a13529f97c785925e74a867c790bcde909125b4
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 1
 
 Name:           massif-visualizer
 Summary:        Visualizer for Massif heap memory profiler data files
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPL-2.0-or-later
 URL:            https://invent.kde.org/sdk/massif-visualizer

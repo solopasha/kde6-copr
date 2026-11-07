@@ -1,9 +1,9 @@
-%global commit0 a5eb73ee1658d5b90e7f99be8644918dd896297b
+%global commit0 7da35f1963399c172cfcd65590ba0a720af3eb59
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 1
 
 Name:           francis
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPL-3.0-or-later AND CC0-1.0 AND LGPL-2.1-or-later
 Summary:        Track your time

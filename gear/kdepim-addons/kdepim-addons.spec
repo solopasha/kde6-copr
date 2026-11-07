@@ -1,9 +1,9 @@
-%global commit0 e3fe43e5904869b8ee933ba8956c1c51909c3fd4
+%global commit0 da203f544b9efc7c9cb41b5b23a0dd2a78d64a20
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 54
+%global bumpver 1
 
 Name:    kdepim-addons
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Additional plugins for KDE PIM applications
 
@@ -34,6 +34,7 @@ BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
+BuildRequires:  cmake(KF6Notifications)
 BuildRequires:  cmake(KF6Parts)
 BuildRequires:  cmake(KF6Prison)
 BuildRequires:  cmake(KF6SyntaxHighlighting)

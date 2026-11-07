@@ -1,9 +1,9 @@
-%global commit0 904d76764178385d403112d7af8dfb055b3930d4
+%global commit0 fe1ed98baf42a7e5ce1d7f0659bfb1188e563a96
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 1
 
 Name:    kopeninghours
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Library for parsing and evaluating OSM opening hours expressions
 
@@ -55,7 +55,7 @@ developing applications that use %{name}.
 %doc README.md
 %{_kf6_datadir}/qlogging-categories6/org_kde_kopeninghours.categories
 %{_kf6_libdir}/libKOpeningHours.so.1
-%{_kf6_libdir}/libKOpeningHours.so.26*
+%{_kf6_libdir}/libKOpeningHours.so.%{version_no_git}
 %{_qt6_qmldir}/org/kde/kopeninghours/
 %{python3_sitelib}/PyKOpeningHours/
 

@@ -1,12 +1,12 @@
-%global commit0 c48433fd8a24411ac5e4744da3b2dd8431a5200b
+%global commit0 9ebcfff4521ba068669f1632821c900a8da452f5
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 1
 
 %global base_name kio-zeroconf
 
 Name:    kdnssd
 Summary: KDE Network Monitor for DNS-SD services (Zeroconf)
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # KDE e.V. may determine that future GPL versions are accepted

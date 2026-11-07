@@ -1,9 +1,9 @@
-%global commit0 1432b6962bb571c497095a6ba0ef5d76ede71980
+%global commit0 19f212b22a78f71b8bfdf8fff518a92b2ff47f49
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 15
+%global bumpver 1
 
 Name:    kmailtransport
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The KMailTransport Library
 

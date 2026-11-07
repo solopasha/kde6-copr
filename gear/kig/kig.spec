@@ -1,13 +1,13 @@
-%global commit0 39a06d709c9b7202b1fc0a1434a18e466b8a5b39
+%global commit0 12bc39c3ae8fd50f694298dc3d9ef1cf1766b83b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 1
 
 %define _python3_include %(%{__python3} -Ic 'from sysconfig import get_path; print(get_path("include"))')
 %define _python3_lib /usr/%{_lib}/lib%(basename %{_python3_include}).so
 
 Name:           kig
 Summary:        Interactive Geometry
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-3-Clause AND GFDL-1.2-or-later AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-or-later

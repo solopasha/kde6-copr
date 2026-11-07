@@ -1,9 +1,9 @@
-%global commit0 ff277b8bab6caa70ca91fde364b43c38ae003356
+%global commit0 719f047f0eae2ce48e031b70cc591b262231998e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 25
+%global bumpver 1
 
 Name:    libksieve
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Sieve support library
 

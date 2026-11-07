@@ -1,9 +1,9 @@
-%global commit0 e0761c7ba78298f8f06b3ae8ca6750f49c810e97
+%global commit0 e634c376b87dc70a26a0ff81dea13f15b6ea5753
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 26
+%global bumpver 1
 
 Name:    kio-extras
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Additional components to increase the functionality of KIO Framework
 

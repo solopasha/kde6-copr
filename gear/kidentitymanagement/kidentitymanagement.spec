@@ -1,9 +1,9 @@
-%global commit0 ea6d4c7f30e1e46933081981b9c6f48c76d5ebeb
+%global commit0 dc3482378bea863eb3842465d421e1ddfb88a1f7
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 23
+%global bumpver 1
 
 Name:    kidentitymanagement
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The KIdentityManagement Library
 

@@ -1,10 +1,10 @@
-%global commit0 6072ab600539ed709e43e4f0b92897f73c99a4d9
+%global commit0 c34205708aab367f253e4a0a7f02ddd9e1576865
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 23
+%global bumpver 1
 
 Name:    kget
 Summary: Download manager
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+ and GFDL

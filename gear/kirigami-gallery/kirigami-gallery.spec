@@ -1,9 +1,9 @@
-%global commit0 6f8cba9e3499a7c5267c2d212292239b809f017b
+%global commit0 df9b5fc5ac64cb27a9bb1cbd409dbf9a37066699
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 11
+%global bumpver 1
 
 Name:    kirigami-gallery
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Gallery application built using Kirigami
 License: LGPL-2.1-or-later

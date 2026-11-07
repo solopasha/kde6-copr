@@ -1,9 +1,9 @@
-%global commit0 e0ac4828577d843b43f0269056d9caddae2d4433
+%global commit0 33b2b3197f68028ff334de1c223cee9b0cba9eb7
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 11
+%global bumpver 1
 
 Name:    ktnef
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The KTNef Library
 

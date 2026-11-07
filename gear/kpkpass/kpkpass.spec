@@ -1,9 +1,9 @@
-%global commit0 9f255f4d026c31e49922593ede2db9458b4edbb0
+%global commit0 c41aef046d8b1f45f3a06ab5951c5dc2556ee4fe
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 1
 
 Name:    kpkpass
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Library to deal with Apple Wallet pass files
 

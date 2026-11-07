@@ -1,9 +1,9 @@
-%global commit0 b9a88351872045578865877e70d5702ee920a888
+%global commit0 af6af3e475356c877e36a104d21f08a07b78af8e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 1
 
 Name:           kio-gdrive
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        An Google Drive KIO slave for KDE
 

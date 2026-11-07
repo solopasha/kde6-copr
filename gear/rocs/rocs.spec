@@ -1,10 +1,10 @@
-%global commit0 f211e83ce00279ff3b8d4da8fb5e5e4bcdef5ff0
+%global commit0 3fda587ed4aed0f57d5237947be22b8137244cd2
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 1
 
 Name:           rocs
 Summary:        Graph Theory IDE
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        BSD-2-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)

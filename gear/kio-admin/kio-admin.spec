@@ -1,9 +1,9 @@
-%global commit0 b005161ed3b99a700f088ead811f4b3ffd8904bc
+%global commit0 3c4d5aed4ae8841f61a932beb3b4333d03feb356
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 1
 
 Name:           kio-admin
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Manage files as administrator using the admin:// KIO protocol
 License:        (GPL-2.0-only or GPL-3.0-only) and BSD-3-Clause and CC0-1.0 and FSFAP

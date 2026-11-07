@@ -1,10 +1,10 @@
-%global commit0 38a204346737462e6f60bb0eaae325765e687e25
+%global commit0 3308687b2bc0a58eced21f5aac4e05508427ea86
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 1
 
 Name:           kmix
 Summary:        KDE volume control
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND GPL-2.0-or-later

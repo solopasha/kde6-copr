@@ -1,9 +1,9 @@
-%global commit0 a3ddb54a3f489f310125f400c3f9d630fedf23e8
+%global commit0 d1a6278bbd19be409fe5cf42b0fa756dba5a1618
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 15
+%global bumpver 1
 
 Name:    akonadi-search
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The Akonadi Search library and indexing agent
 

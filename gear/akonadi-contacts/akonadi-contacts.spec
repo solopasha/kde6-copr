@@ -1,11 +1,11 @@
-%global commit0 e76ca4c38697116fd1c0c28aab9ea8522198ab13
+%global commit0 fe279e2d2183c4d110763cf61ecc4ce5d68cb20c
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 20
+%global bumpver 1
 
 #global tests 1
 
 Name:    akonadi-contacts
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: The Akonadi Contacts Library
 

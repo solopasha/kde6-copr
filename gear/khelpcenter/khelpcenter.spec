@@ -1,12 +1,12 @@
-%global commit0 5251234711f96bb32a7e1fb99a8200968c3806b7
+%global commit0 f556257c4a52ad1a4299837f6aeb947d3eee9cb2
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 8
+%global bumpver 1
 
 Name:    khelpcenter
 Summary: Show documentation for KDE applications
 # Override khelpcenter subpackage from kde-runtime-15.04 (no longer built)
 Epoch:   1
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: (GPL-2.0-only OR GPL-3.0-only) AND GPL-2.0-or-later
