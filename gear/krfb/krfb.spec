@@ -1,10 +1,10 @@
-%global commit0 518e877a7dcb0c28c78217055344aab33b45f38b
+%global commit0 897b81d432e8b39dffb044e86a65b461609e4cb4
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 10
+%global bumpver 1
 
 Name:    krfb
 Summary: Desktop sharing
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-only AND LGPL-2.1-only AND GFDL-1.2-no-invariants-only

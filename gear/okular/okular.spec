@@ -1,6 +1,6 @@
-%global commit0 0bc4d80e6df9a9501a8d919e3878f897e655d808
+%global commit0 fd0f7647074de7356dadf201261ee997ecf35b30
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 44
+%global bumpver 1
 
 ## uncomment to enable bootstrap mode
 #global bootstrap 1
@@ -17,7 +17,7 @@
 
 Name:    okular
 Summary: A document viewer
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPL-2.0-only

@@ -1,9 +1,9 @@
-%global commit0 2cd86af4d65512fa823f5f8b78137c0154962e6f
+%global commit0 16b03276b6fa909b5918d59f5bb61e0dd48ae20b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 1
 
 Name:           yakuake
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        A drop-down terminal emulator
 

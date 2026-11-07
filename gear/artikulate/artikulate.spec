@@ -1,10 +1,10 @@
-%global commit0 1d09f8bf3eff5472a2308d1eb485656f8b8d9877
+%global commit0 2e14d5d4b38ad5ab2e44bcc3206715aee986a51c
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 7
+%global bumpver 1
 
 Name:           artikulate
 Summary:        Improve your pronunciation by listening to native speakers
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 # artwork: LGPL3

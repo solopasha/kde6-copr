@@ -1,9 +1,9 @@
-%global commit0 9de6c8ebcc474352723eb9f0d2f7b1c202119e6d
+%global commit0 2bc5990969b9bc5db91275772ebcb715c650c730
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 7
+%global bumpver 1
 
 Name:           kunifiedpush
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        UnifiedPush client components
 

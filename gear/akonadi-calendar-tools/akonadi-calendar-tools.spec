@@ -1,12 +1,12 @@
-%global commit0 44bc2c72f118fc01deb6a5963f73f0b44f8dc192
+%global commit0 d849ffdd18e94f6262f181617b4edac40f56f118
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 11
+%global bumpver 1
 
 #global tests 1
 
 Name:    akonadi-calendar-tools
 Summary: Akonadi Calendar Tools
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL

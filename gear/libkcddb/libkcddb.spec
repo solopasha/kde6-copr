@@ -1,9 +1,9 @@
-%global commit0 81a6fc4f7e8f8b05fb8deee098b84ea7d1865092
+%global commit0 8a66a9f4275e9a1f644c4c09e04c7c3d01749a9b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 7
+%global bumpver 1
 
 Name:           libkcddb
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        CDDB retrieval library
 

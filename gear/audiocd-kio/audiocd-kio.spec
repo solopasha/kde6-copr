@@ -1,10 +1,10 @@
-%global commit0 4b957a1f00b92159904e1f9ed750a4cbaae76112
+%global commit0 6835b6069f8028f23ab6591269e0e381be7e7797
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 1
 
 Name:    audiocd-kio
 Summary: KIO worker for accessing audio CDs
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND LGPL-3.0-or-later

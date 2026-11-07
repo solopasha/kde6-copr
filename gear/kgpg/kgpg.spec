@@ -1,10 +1,10 @@
-%global commit0 0748f61e7bab1518750d1ae087e9d23f7983cdb8
+%global commit0 1681578e4e3d9fdb908af6b55c66f335be09ee5a
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 8
+%global bumpver 1
 
 Name:    kgpg
 Summary: Manage GPG encryption keys
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LicenseRef-KDE-Accepted-GPL

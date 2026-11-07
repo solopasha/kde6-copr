@@ -1,10 +1,10 @@
-%global commit0 5b4eccfe4166ce045c7196081ab7c1013306dd87
+%global commit0 9cfdc50ef81a0d296497635d3206e731034fd4de
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 1
 
 Name:    klettres
 Summary: Learn the alphabet and read some syllables in different languages
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: GPLv2+

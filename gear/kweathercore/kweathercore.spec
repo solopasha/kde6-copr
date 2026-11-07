@@ -1,9 +1,9 @@
-%global commit0 ca3e0d10b1566e704cad059ec5af035452415c31
+%global commit0 1d70ef1f6730bd4217a9ceeb44d74af85def9a54
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 1
 
 Name:           kweathercore
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        LGPLv2+
 Summary:        Library to facilitate retrieval of weather information

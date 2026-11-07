@@ -1,12 +1,12 @@
-%global commit0 f56a0ea3933c6f35c676329377aea7e2b3cfe77d
+%global commit0 70a701ab13e917ac43af285477a30cab8e1b2672
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 45
+%global bumpver 1
 
 #global tests 1
 
 Name:    korganizer
 Summary: Personal Organizer
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL

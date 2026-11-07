@@ -1,10 +1,10 @@
-%global commit0 f8aad92426e582e7053ddf7ffe7df3d62cb68a7f
+%global commit0 418c8831cb56479118b5086a006503dd6846c8b9
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 1
 
 Name:           svgpart
 Summary:        SVG KPart
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later

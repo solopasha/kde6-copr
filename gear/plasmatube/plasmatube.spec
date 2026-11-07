@@ -1,9 +1,9 @@
-%global commit0 a34480e3dbcf0945dca1ec00f6b6ac9da9507302
+%global commit0 bcc80bb05f3bad2b5aba39b903eaf590d586fba2
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 8
+%global bumpver 1
 
 Name:           plasmatube
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPL-3.0-or-later AND GPL-2.0-or-later AND CC0-1.0 AND CC-BY-SA-4.0
 Summary:        YouTube video player based on QtMultimedia and youtube-dl

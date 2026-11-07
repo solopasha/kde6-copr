@@ -1,9 +1,9 @@
-%global commit0 0ad64969843fb89ffb56494f3142c4ff195a36cb
+%global commit0 99e5d6fbfc238d98d26257335f54982eedde7b90
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 31
+%global bumpver 1
 
 Name:           kasts
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPLv2 and GPLv2+ and GPLv3+ and BSD and LGPLv3+
 Summary:        A mobile podcast application

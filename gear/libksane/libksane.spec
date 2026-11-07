@@ -1,10 +1,10 @@
-%global commit0 56f60b6caa9f7cd25a79090627c94845f220790e
+%global commit0 1b020e68701d5f0ff714b4fa409f451964051efc
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 1
 
 Name:           libksane
 Summary:        SANE Library interface for KDE
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL

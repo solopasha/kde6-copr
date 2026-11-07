@@ -1,9 +1,9 @@
-%global commit0 44fe8015727cff86bdfe7f1859890fd0a85d012d
+%global commit0 7021f24e1617a187075d3dd5e29897f1f6c13900
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 9
+%global bumpver 1
 
 Name:    kosmindoormap
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: OSM multi-floor indoor map renderer
 

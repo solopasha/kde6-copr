@@ -1,9 +1,9 @@
-%global commit0 2739f2763048230c7f68617173a24f6ea568ccd3
+%global commit0 d9e7581bb7d1335da6d1592f6514173426cffed8
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 1
 
 Name:    kmouth
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: A program that speaks for you
 

@@ -1,11 +1,11 @@
-%global commit0 9d5a743222aa6fc8a0cb6695d929ae4128543b66
+%global commit0 580b32cbbeaedfc6c83721bcb281d7efc3ccab92
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 29
+%global bumpver 1
 
 %global base_name elisa
 
 Name:       elisa-player
-Version:    26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:    27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:    1%{?dist}
 Summary:    Elisa music player
 

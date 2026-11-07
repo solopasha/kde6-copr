@@ -1,10 +1,10 @@
-%global commit0 b9b65fdac9004d3363a5dd37161a0acd3ab06656
+%global commit0 f57ff70e85e331b08049e8c8cc677fb10d2fd5fe
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 65
+%global bumpver 1
 
 Name:           dolphin
 Summary:        KDE File Manager
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPLv2+

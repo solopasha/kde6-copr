@@ -1,9 +1,9 @@
-%global commit0 ffd123a31692dfd40dcc965bf5e258dad365f22b
+%global commit0 362b262ab5006744305c995b04fc1f2ced3fbac2
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 31
+%global bumpver 1
 
 Name:    mailcommon
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Mail applications support library
 

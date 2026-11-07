@@ -1,10 +1,10 @@
-%global commit0 b061e03a5cf5771eacb6b7afda8fbd082bee55b0
+%global commit0 800850595301b966c1a6ab2a4319b3f96eb9c46c
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 1
 
 Name:    juk
 Summary: Music player
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code: KDE e.V. may determine that future GPL versions are accepted

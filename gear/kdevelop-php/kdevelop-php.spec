@@ -1,12 +1,12 @@
-%global commit0 370d7fbf36ff8c4b89d36cd28b79ae4acb8cdcd6
+%global commit0 b26500fc75875ea69cdfe9853dd0cc0a63685fb7
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 1
 
 %global base_name kdev-php
 
 Name:           kdevelop-php
 Summary:        Php language and documentation plugins for KDevelop
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 # Most files LGPLv2+/GPLv2+

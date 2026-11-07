@@ -1,9 +1,9 @@
-%global commit0 8b7ac2135fc05aaf7a909cdf20041ebc90297490
+%global commit0 9040a920777c41f90dccbe55bbc98992e775fb7f
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 1
 
 Name:           audex
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 Summary:        Audio ripper
 License:        BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-2.0-or-later

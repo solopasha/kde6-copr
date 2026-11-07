@@ -1,9 +1,9 @@
-%global commit0 6ade03fd650e322c1ea5f574dbb8baad76142715
+%global commit0 f6b27420b17762af89e19de5ef07788641c8c708
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 9
+%global bumpver 1
 
 Name:    libkdepim
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Library for common kdepim apps
 

@@ -1,10 +1,10 @@
-%global commit0 4740ecf9a8b5b953d6d64ea1e751242ce3f894b2
+%global commit0 90ad3db30d8b4bdc483c2c43503b4e8e1ea5ba44
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 1
 
 Name:           poxml
 Summary:        Text utilities from kdesdk
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPLv2+

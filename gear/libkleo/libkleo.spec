@@ -1,9 +1,9 @@
-%global commit0 3ac62fc4b1be4cf8d56ae025c2aaf72c2f9e5203
+%global commit0 3f27aa75a5255a7d03654fed15d810d83857401f
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 18
+%global bumpver 1
 
 Name:    libkleo
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: KDE PIM cryptographic library
 

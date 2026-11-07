@@ -1,10 +1,10 @@
-%global commit0 7ecb2557412a0587184abbb1bb3f9920d5244098
+%global commit0 a8e64f05dd8f1b4a8dc13d817f4190eb15996d0c
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 1
 
 
 Name:    kmousetool
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: A program that clicks the mouse for you
 

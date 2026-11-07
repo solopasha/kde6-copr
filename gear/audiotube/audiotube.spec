@@ -1,9 +1,9 @@
-%global commit0 9dc17cae62e92e9ade7e15fc70f4a512684bd283
+%global commit0 33ddf839ba982b9014ae39a3d1908a0cc8d949ac
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 13
+%global bumpver 1
 
 Name:           audiotube
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        (GPL-2.0-only OR GPL-3.0-only) AND GPL-2.0-or-later AND LGPL-2.1-or-later AND CC0-1.0
 Summary:        AudioTube can search YouTube Music, list albums and artists, play automatically generated playlists, albums and allows to put your own playlist together.

@@ -1,10 +1,10 @@
-%global commit0 9ef5599557742c7250e04e84bbce44751a6558db
+%global commit0 63b3184c4470274450326e0d995abc8d32f968dc
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 1
 
 Name:           kamoso
 Summary:        Application for taking pictures and videos from a webcam
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later

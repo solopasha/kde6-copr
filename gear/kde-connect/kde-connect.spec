@@ -1,11 +1,11 @@
-%global commit0 aee1439f80dc1870117825edb3be70aed6e75479
+%global commit0 bcdda9ba85739ab87c0f53365a2c6a37c99c9cd4
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 58
+%global bumpver 1
 
 %global base_name kdeconnect-kde
 
 Name:    kde-connect
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 License: GPLv2+
 Summary: KDE Connect client for communication with smartphones

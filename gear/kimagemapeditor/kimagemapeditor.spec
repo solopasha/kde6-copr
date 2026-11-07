@@ -1,10 +1,10 @@
-%global commit0 ed482bde1b73c8340cab8e75212ba5eac37f2e69
+%global commit0 a06d42ed228cb980f733691c59e6fb0a8e8e27b4
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 1
 
 Name:           kimagemapeditor
 Summary:        HTML Image Map Editor
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 
 License:        GPL-2.0-or-later

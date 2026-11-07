@@ -1,6 +1,6 @@
-%global commit0 1aa0c93d904f4ab1473380b3c1e3c04fb5faa776
+%global commit0 9c3efc121d782fcf4c61e587e6873d509770f635
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 39
+%global bumpver 1
 
 %global base_name akonadi
 %global mysql mysql
@@ -11,7 +11,7 @@
 
 Name:    akonadi-server
 Summary: PIM Storage Service
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 License: BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-KDE-Accepted-GPL AND MIT

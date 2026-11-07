@@ -1,12 +1,12 @@
-%global commit0 c90d235d8abf17e592d82f8d5f03b7aa9952a749
+%global commit0 4f59144302610ea944b8dfe379287c9c2ca77bf9
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 10
+%global bumpver 1
 
 #global tests 1
 
 Name:    mbox-importer
 Summary: MBox Importer
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL

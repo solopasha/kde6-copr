@@ -1,12 +1,12 @@
-%global commit0 c6e0d2cb433db2331428cd632546a675d04f8098
+%global commit0 0fe1342744caf6d93afe8ba1d977797836fb0d68
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 16
+%global bumpver 1
 
 #global tests 1
 
 Name:    akonadi-import-wizard
 Summary: Akonadi Import Wizard
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 
 # code (generally) GPLv2, docs GFDL

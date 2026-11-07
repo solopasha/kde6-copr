@@ -1,9 +1,9 @@
-%global commit0 7735f04a3b5d4cd5220ef629782ec739a6aa9415
+%global commit0 f8081d40c20cd6abc04cfded06758b3e8a1a729b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 1
 
 Name:    kmag
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: A screen magnifier
 

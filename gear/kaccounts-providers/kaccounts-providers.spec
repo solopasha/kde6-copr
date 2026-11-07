@@ -1,9 +1,9 @@
-%global commit0 9b7a8e05ed3ddd4a9ab26078131b7704cd3d9617
+%global commit0 1dbb050941b2b1b7dc0ce321f46371fae9ad931e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 1
 
 Name:    kaccounts-providers
-Version: 26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release: 1%{?dist}
 Summary: Additional service providers for KAccounts framework
 License: GPL-2.0-or-later AND LGPL-2.0-or-later

@@ -1,13 +1,13 @@
-%global commit0 e473ba782f9be15f8f9bfade3af3fe6aa962a53a
+%global commit0 4e7145d170e8408b1bfdf52effc9f03e82ae5682
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 17
+%global bumpver 1
 
 %global __requires_exclude ^/usr/bin/zsh$
 
 Name:           kdevelop
 Summary:        Integrated Development Environment for C++/C
 Epoch:          9
-Version:        26.11.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
+Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
 Release:        1%{?dist}
 License:        GPL-2.0-only
 URL:            http://www.kdevelop.org/
