@@ -1,6 +1,6 @@
-%global commit0 78f7059ae191e15d274dcc62570ef21304f3b527
+%global commit0 c54b633f18f86e94bb7e9adab366c8d791290188
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 24
+%global bumpver 25
 
 Name:           plasma-bigscreen
 Summary:        Plasma shell for TVs
@@ -50,6 +50,7 @@ BuildRequires:  cmake(QCoro6Quick)
 BuildRequires:  cmake(SDL3)
 BuildRequires:  pkgconfig(libcec)
 BuildRequires:  qt6qml(org.kde.kdeconnect)
+BuildRequires:  qt6qml(org.kde.prison)
 
 Requires:       kde-connect%{?_isa}
 Requires:       kf6-kdeclarative%{?_isa}
@@ -57,6 +58,7 @@ Requires:       kf6-kirigami-addons%{?_isa}
 Requires:       kf6-kirigami%{?_isa}
 Requires:       kf6-kitemmodels%{?_isa}
 Requires:       kf6-ksvg%{?_isa}
+Requires:       kf6-prison%{?_isa}
 Requires:       plasma-milou%{?_isa} >= %{majmin_ver_kf6}
 Requires:       plasma-nano%{?_isa} >= %{majmin_ver_kf6}
 Requires:       plasma-nm%{?_isa} >= %{majmin_ver_kf6}
@@ -85,6 +87,7 @@ mkdir -p %{buildroot}%{_udevrulesdir}
 mv %{buildroot}%{_kf6_libdir}/udev/rules.d/40-uinput.rules %{buildroot}%{_udevrulesdir}/40-uinput.rules
 
 %files -f %{name}.lang
+%{_kf6_bindir}/plasma-bigscreen-linkredirector
 %{_kf6_bindir}/plasma-bigscreen-common-env
 %{_kf6_bindir}/plasma-bigscreen-envmanager
 %{_kf6_bindir}/plasma-bigscreen-inputhandler
@@ -94,9 +97,7 @@ mv %{buildroot}%{_kf6_libdir}/udev/rules.d/40-uinput.rules %{buildroot}%{_udevru
 %{_kf6_bindir}/plasma-bigscreen-wayland
 %{_kf6_bindir}/plasma-bigscreen-webapp
 %{_kf6_datadir}/applications/kcm_mediacenter_*.desktop
-%{_kf6_datadir}/applications/org.kde.plasma.bigscreen.inputhandler.desktop
-%{_kf6_datadir}/applications/org.kde.plasma.bigscreen.settings.desktop
-%{_kf6_datadir}/applications/org.kde.plasma.bigscreen.uvcviewer.desktop
+%{_kf6_datadir}/applications/org.kde.plasma.bigscreen.*.desktop
 %{_kf6_datadir}/applications/plasma-bigscreen-swap-session.desktop
 %{_kf6_datadir}/dbus-1/interfaces/org.kde.biglauncher.xml
 %{_kf6_datadir}/plasma/look-and-feel/org.kde.plasma.bigscreen/
