@@ -1,6 +1,6 @@
-%global commit0 be0d7dcfaf49880bde64816f0458a4512bbb6700
+%global commit0 89f08e61b7037d0c477736fdbc7c4c94f407c441
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework oxygen-icons
 
