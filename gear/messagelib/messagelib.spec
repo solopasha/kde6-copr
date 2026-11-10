@@ -1,6 +1,6 @@
-%global commit0 e913b7d1c88265d7ec5544aceee776571773b8b9
+%global commit0 c5ac449d92fd93b1d8d01ae0c2d692c96f06e310
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:           messagelib
 Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

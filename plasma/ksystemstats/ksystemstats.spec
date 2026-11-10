@@ -1,6 +1,6 @@
-%global commit0 3172fdd68c0d4c3ed458b03e398bd0a4f3c50272
+%global commit0 f054defebad824d9f5bbfa64bd1dd3f6bb0cd322
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:           ksystemstats
 Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}

@@ -1,6 +1,6 @@
-%global commit0 05d47b83e93cf1b99f8f7284333a0895f6d0953c
+%global commit0 571489b8c220b8dae1ea38b20d5bf5d7d455e479
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 6
 
 Name:           kde-gtk-config
 Summary:        Configure the appearance of GTK apps in KDE
@@ -53,6 +53,7 @@ appearance of GTK apps in KDE.
 %{_kf6_libdir}/gtk-3.0/modules/libwindow-decorations-gtk-module.so
 %{_kf6_libdir}/kconf_update_bin/gtk_theme
 %{_kf6_libdir}/kconf_update_bin/remove_deprecated_gtk4_option_v2
+%{_kf6_plugindir}/kded-x11/gtkconfig_xsettings.so
 %{_kf6_plugindir}/kded/gtkconfig.so
 %{_libexecdir}/gtk3_preview
 

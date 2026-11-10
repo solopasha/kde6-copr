@@ -1,6 +1,6 @@
-%global commit0 17cd7e9c8eab6de2e81ad02848df815de9d5a21c
+%global commit0 d95f15eb7e8e122cae343a4a39f022f9884c4571
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:           kirigami-app-components
 Version:        1.1.1%{?bumpver:^%{bumpver}.git%{shortcommit0}}
@@ -12,19 +12,22 @@ URL:            https://invent.kde.org/libraries/kirigami-app-components
 
 BuildSystem:    cmake_kf6
 
-BuildRequires:  cmake(KF6Config) 
-BuildRequires:  cmake(KF6GuiAddons) 
+BuildRequires:  cmake(KF6Config)
+BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
-BuildRequires:  cmake(KF6KirigamiPlatform) 
+BuildRequires:  cmake(KF6ItemModels)
+BuildRequires:  cmake(KF6KirigamiPlatform)
 
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Network)
-BuildRequires:  cmake(Qt6Quick) 
+BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(Qt6QuickControls2)
-BuildRequires:  cmake(Qt6Widgets) 
+BuildRequires:  cmake(Qt6Widgets)
+
+Requires:       kf6-kitemmodels%{?_isa}
 
 %description
-Kirigami addons and modules necessary to do a full featured KDE application, 
+Kirigami addons and modules necessary to do a full featured KDE application,
 such as integration with configurable keyboard shortcuts and standard actions.
 
 %package        devel

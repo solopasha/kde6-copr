@@ -1,6 +1,6 @@
-%global commit0 7dd647a4f1b301aa731c2304ac27ff91639a1cd9
+%global commit0 e4d81d3cfda3fbff13e3018f36ede2d9db89aceb
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 51
+%global bumpver 52
 
 Name:           plasma-workspace
 Summary:        Plasma workspace, applications and applets
@@ -419,7 +419,7 @@ fi
 %{_kf6_datadir}/dbus-1/system.d/org.kde.fontinst.conf
 %{_kf6_datadir}/desktop-directories/*.directory
 %{_kf6_datadir}/icons/hicolor/*/*/*font*.png
-%{_kf6_datadir}/icons/hicolor/scalable/apps/preferences-desktop-font-installer.svgz
+%{_kf6_datadir}/icons/hicolor/scalable/apps/preferences-desktop-font-installer.svg
 %{_kf6_datadir}/kconf_update/migrate-calendar-to-plugin-id.py
 %{_kf6_datadir}/kconf_update/migrate-calendar-to-plugin-id.upd
 %{_kf6_datadir}/kconf_update/plasma6.0-remove-dpi-settings.upd
@@ -467,7 +467,6 @@ fi
 %{_libexecdir}/plasma-dbus-run-session-if-needed
 %{_libexecdir}/plasma-fallback-session-*
 %{_libexecdir}/plasma-kded6-x11
-%{_libexecdir}/plasma-setup-xwayland
 %{_libexecdir}/plasma-sourceenv.sh
 %{_libexecdir}/plasma-startup-sound
 %{_sysconfdir}/xdg/autostart/*.desktop
