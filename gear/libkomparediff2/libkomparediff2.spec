@@ -1,6 +1,6 @@
-%global commit0 66e00b5b4d9df688271cbd66bb4ab1d797f3a443
+%global commit0 0f311064b7bbca88036a330b7fd081317239585b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:           libkomparediff2
 Summary:        Library to compare files and strings

@@ -1,6 +1,6 @@
-%global commit0 e4eb5f92d4ae991e2ac9e18307c73d0597cde8ba
+%global commit0 e092494b508313dcf40cb26656e32e5515a4d9c5
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:    eventviews
 Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

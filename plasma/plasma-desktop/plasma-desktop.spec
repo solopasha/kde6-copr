@@ -1,6 +1,6 @@
-%global commit0 7cbe33ccbd5428a6f1d91050ce42280534e4dd05
+%global commit0 d3b61e764cd8d5c31ff9cf0f89e8e9787c3703c3
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 41
+%global bumpver 42
 
 Name:           plasma-desktop
 Summary:        Plasma Desktop shell
@@ -211,7 +211,6 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 
 %files -f plasmadesktop6.lang
 %license LICENSES
-%{_kf6_bindir}/kaccess
 %{_kf6_bindir}/knetattach
 %{_kf6_bindir}/krunner-plugininstaller
 %{_kf6_bindir}/plasma-emojier
@@ -230,7 +229,6 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_kf6_datadir}/kglobalaccel/org.kde.plasma.emojier.desktop
 %{_kf6_datadir}/kglobalaccel/org.kde.screenreader.desktop
 %{_kf6_datadir}/kglobalaccel/org.kde.touchpadshortcuts.desktop
-%{_kf6_datadir}/knotifications6/*.notifyrc
 %{_kf6_datadir}/knsrcfiles/
 %{_kf6_datadir}/plasma/*
 %{_kf6_datadir}/qlogging-categories6/*.categories
@@ -260,8 +258,6 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/*.so
 %{_libexecdir}/kimpanel-ibus-panel
 %{_libexecdir}/kimpanel-ibus-panel-launcher
-%{_sysconfdir}/xdg/autostart/*.desktop
-%{_userunitdir}/plasma-kaccess.service
 
 # How to include these in the .lang file?
 %{_kf6_datadir}/locale/sr/LC_SCRIPTS/kfontinst/kfontinst.js

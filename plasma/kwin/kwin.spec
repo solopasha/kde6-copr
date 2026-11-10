@@ -1,6 +1,6 @@
-%global commit0 5ba2e6ea74e872a80dc731948149e59bf2500889
+%global commit0 b692d1c8d88721a4a10680f779e0667d5e4d59d0
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 43
+%global bumpver 44
 
 Name:           kwin
 Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -160,6 +160,7 @@ ln -sr %{buildroot}%{_kf6_bindir}/kwin_wayland %{buildroot}%{_bindir}/kwin
 %{_kf6_datadir}/config.kcfg/virtualdesktopssettings.kcfg
 %{_kf6_datadir}/icons/hicolor/*/apps/kwin.*
 %{_kf6_datadir}/kconf_update/kwin.upd
+%{_kf6_datadir}/knotifications6/kaccess.notifyrc
 %{_kf6_datadir}/knotifications6/kwin.notifyrc
 %{_kf6_datadir}/knsrcfiles/*.knsrc
 %{_kf6_datadir}/krunner/dbusplugins/kwin-runner-windows.desktop
