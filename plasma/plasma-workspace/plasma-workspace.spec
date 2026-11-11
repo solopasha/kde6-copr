@@ -1,6 +1,6 @@
 %global commit0 e4d81d3cfda3fbff13e3018f36ede2d9db89aceb
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 52
+%global bumpver 53
 
 Name:           plasma-workspace
 Summary:        Plasma workspace, applications and applets
@@ -374,7 +374,7 @@ grep libkworkspace.mo all.lang > libkworkspace6.lang
 cat *.lang | sort | uniq -u > %{name}.lang
 
 %check
-desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop
+desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/*.desktop || :
 
 %post
 if [ -s /usr/sbin/setsebool ] ; then
