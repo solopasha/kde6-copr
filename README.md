@@ -24,6 +24,6 @@ sudo dnf offline-upgrade reboot
 
 ## GitHub repositories and snapshots
 
-Packages are also published to a GitHub [repository](https://solopashachas.github.io/testrpm/) (built with GitHub Actions). This repository serves as a mirror and backup in case COPR is slow or unavailable. In the future, the COPR repositories may be discontinued, and the GitHub repositories may become the primary package source.
+Packages are also published to a GitHub [repository](https://solopasha.github.io/kde6-copr/) (built with GitHub Actions). This repository serves as a mirror and backup in case COPR is slow or unavailable. In the future, the COPR repositories may be discontinued, and the GitHub repositories may become the primary package source.
 
 [Snapshot repositories](https://solopasha.github.io/kde6-copr/snapshots/) provide dated package builds, allowing users to access packages from a specific point in time. This can be useful for rolling back to an earlier version.
