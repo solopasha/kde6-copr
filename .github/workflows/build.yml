@@ -118,6 +118,7 @@ jobs:
       - name: Configs
         env:
           pr_number: ${{ inputs.pr_number }}
+          profile: ${{ inputs.repository_profile }}
         run: |
 
           cat << 'EOF' > dnf.conf
@@ -135,6 +136,18 @@ jobs:
           EOF
 
           cat << 'EOF' >> fedora-build.repo
+          [kde6-copr-github:unstable]
+          name=solopasha/kde6-copr (GitHub) - Unstable Fedora $releasever
+          baseurl=https://solopasha.github.io/kde6-copr/unstable-$releasever/
+          type=rpm-md
+          skip_if_unavailable=False
+          gpgcheck=1
+          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
+          repo_gpgcheck=0
+          enabled=1
+          enabled_metadata=1
+          metadata_expire=6h
+
           [build]
           name=build
           baseurl=file:///repo/
@@ -150,6 +163,21 @@ jobs:
           cat << 'EOF' > .rpmmacros
           %_topdir /build
           EOF
+
+          if [[ "${profile}" == "gear" ]]; then
+          cat << 'EOF' >> fedora-build.repo
+          [kde6-copr-github:gear]
+          name=solopasha/kde6-copr (GitHub) - KDE Gear Fedora $releasever
+          baseurl=https://solopasha.github.io/kde6-copr/gear-$releasever/
+          type=rpm-md
+          skip_if_unavailable=False
+          gpgcheck=1
+          gpgkey=https://raw.githubusercontent.com/solopasha/kde6-copr/refs/heads/unstable/RPM-GPG-KEY-solopasha
+          repo_gpgcheck=0
+          enabled=1
+          enabled_metadata=1
+          metadata_expire=6h
+          fi
 
           if [[ "${pr_number}" != "" ]]; then
           cat << 'EOF' >> fedora-build.repo
