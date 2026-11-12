@@ -1,6 +1,6 @@
-%global commit0 e4d81d3cfda3fbff13e3018f36ede2d9db89aceb
+%global commit0 b2edc3799c297e6ab83afb5465abb0b5a80b416d
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 53
+%global bumpver 54
 
 Name:           plasma-workspace
 Summary:        Plasma workspace, applications and applets
@@ -98,6 +98,7 @@ BuildRequires:  cmake(KNightTime)
 BuildRequires:  cmake(KScreenLocker)
 BuildRequires:  cmake(KSysGuard)
 BuildRequires:  cmake(KWayland)
+# <resolverskip>
 BuildRequires:  cmake(KWinDBusInterface)
 BuildRequires:  cmake(LayerShellQt)
 BuildRequires:  cmake(Plasma)
