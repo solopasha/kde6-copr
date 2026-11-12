@@ -1,6 +1,6 @@
 %global commit0 5ce50d4c77935576988842b9af2f5d2529e92253
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 10
+%global bumpver 11
 
 Name:           kinfocenter
 Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -35,6 +35,7 @@ BuildRequires:  pkgconfig(libudev)
 BuildRequires:  pkgconfig(libusb-1.0)
 
 Requires:       kf6-kirigami%{?_isa}
+Requires:       qt6-qtgraphs%{?_isa}
 
 # Runtime Dependancies
 Requires:       aha
