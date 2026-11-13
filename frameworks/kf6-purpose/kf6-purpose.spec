@@ -1,6 +1,6 @@
 %global commit0 7358cd99e3fb752330ed2084573b88a1a5beecf1
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 %global framework purpose
 
@@ -12,6 +12,7 @@ Release:        1%{?dist}
 License:        CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later
 URL:            https://invent.kde.org/frameworks/%{framework}
 %frameworks_meta
+Patch:          revert-7358cd99.patch
 
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
