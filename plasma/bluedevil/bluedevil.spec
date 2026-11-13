@@ -1,6 +1,6 @@
-%global commit0 959b53bd26dc1142c301cb8fe5c6b9dff8fd0e65
+%global commit0 67b2c58da054873d4a093d4631c278bd450056dd
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 8
+%global bumpver 9
 
 Name:           bluedevil
 Summary:        Bluetooth stack for KDE
@@ -16,6 +16,7 @@ BuildRequires:  shared-mime-info
 
 BuildRequires:  cmake(KF6BluezQt)
 BuildRequires:  cmake(KF6CoreAddons)
+BuildRequires:  cmake(KF6Crash)
 BuildRequires:  cmake(KF6DBusAddons)
 BuildRequires:  cmake(KF6DocTools)
 BuildRequires:  cmake(KF6I18n)

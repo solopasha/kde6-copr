@@ -1,6 +1,6 @@
-%global commit0 07932515640e4343dc5f3e4fb3925fb483e962ce
+%global commit0 b2ef1b970ee58dbc06e6bc84aba0c46505a64ad7
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework kbookmarks
 
