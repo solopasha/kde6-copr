@@ -1,6 +1,6 @@
-%global commit0 7c78ac43bc93632077ffde5c8faf5d2edfe2ffbd
+%global commit0 d2cb77d3165cf85ebc1dac0c904ce320e417eb8d
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:    ffmpegthumbs
 Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
