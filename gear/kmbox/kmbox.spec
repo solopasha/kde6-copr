@@ -1,6 +1,6 @@
-%global commit0 71311477901e8347038b0f0ce605cf873e217d85
+%global commit0 244f7ce6df25d10cf924881c7c835701bcfbaf1c
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:    kmbox
 Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

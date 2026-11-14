@@ -1,6 +1,6 @@
-%global commit0 56e7c0244dabdddbd043179a02a1e031fa13a93f
+%global commit0 5ea54bd0b711f5ac9b39fcc3d117eeea0db406dc
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 %global framework kjobwidgets
 
