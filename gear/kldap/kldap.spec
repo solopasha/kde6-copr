@@ -1,6 +1,6 @@
-%global commit0 7742370e0a926fabb82b2b1024dfe61545a11f26
+%global commit0 747812fe8c323373e17ff6e24961216baedef54a
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:    kldap
 Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
