@@ -1,6 +1,6 @@
-%global commit0 c105bb2a3e3655adaa27242b5feccae0015968b2
+%global commit0 d38873c6152d64566d1d8ef27847796d5194a3fa
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:    mailcommon
 Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
