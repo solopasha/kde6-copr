@@ -11,6 +11,20 @@ FROM registry.fedoraproject.org/fedora:$VERSION
 
 COPY --from=oras /out /tmp/rpms
 
+COPY <<'EOF' /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:solopasha:playground.repo
+[copr:copr.fedorainfracloud.org:solopasha:playground]
+name=Copr repo for playground owned by solopasha
+baseurl=https://download.copr.fedorainfracloud.org/results/solopasha/playground/fedora-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=False
+gpgcheck=1
+gpgkey=https://download.copr.fedorainfracloud.org/results/solopasha/playground/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+includepkgs=gh
+EOF
+
 RUN rm /usr/share/dnf5/repos.d/fedora-cisco-openh264.repo && \
     dnf -y in /tmp/rpms/kf6-resultdir/kf6-srpm-macros*.rpm && \
     dnf -y up && dnf -y in --nodocs --setopt=install_weak_deps=False \
