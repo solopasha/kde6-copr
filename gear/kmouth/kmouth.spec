@@ -1,6 +1,6 @@
-%global commit0 d9e7581bb7d1335da6d1592f6514173426cffed8
+%global commit0 af9cc7654fe57a6db402ef3c1ea64076a67513ee
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:    kmouth
 Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

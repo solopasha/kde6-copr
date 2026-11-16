@@ -1,6 +1,6 @@
-%global commit0 c8d16110bf16e08625f7610d9a60a65c1524d138
+%global commit0 6820dad3ae70a613b3d8c53b03d439d8d39d5a0e
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 7
 
 %global base_name akonadi
 %global mysql mysql
