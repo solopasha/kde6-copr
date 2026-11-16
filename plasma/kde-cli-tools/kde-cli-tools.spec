@@ -1,6 +1,6 @@
-%global commit0 23ef8bbf2c6265e72376e539f518e707f6ceacd0
+%global commit0 23212a3a4105d3532b3447c9a73ffab392a5a370
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:           kde-cli-tools
 Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -25,7 +25,6 @@ BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6KIO)
-BuildRequires:  cmake(KF6Parts)
 BuildRequires:  cmake(KF6Service)
 BuildRequires:  cmake(KF6Su)
 BuildRequires:  cmake(KF6WidgetsAddons)

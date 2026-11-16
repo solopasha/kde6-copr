@@ -1,6 +1,6 @@
-%global commit0 7da35f1963399c172cfcd65590ba0a720af3eb59
+%global commit0 8b4d3e5ec9e5c59bc27f68dcfb29b0af24e4db75
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:           francis
 Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
