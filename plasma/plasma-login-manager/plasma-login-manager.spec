@@ -1,6 +1,6 @@
-%global commit0 c00f305103c43d46359a4f26279d952c77b98c5a
+%global commit0 8ab89124cedceb5de4cc5395430c94dda4310a8b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 18
+%global bumpver 19
 
 # Disable X11 for RHEL
 %bcond x11 %[%{undefined rhel}]
