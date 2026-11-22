@@ -1,6 +1,6 @@
-%global commit0 6a13529f97c785925e74a867c790bcde909125b4
+%global commit0 f6277efdc8ccfc6ce74a30f0fbf337f631f73673
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:           massif-visualizer
 Summary:        Visualizer for Massif heap memory profiler data files

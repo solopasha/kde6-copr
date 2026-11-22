@@ -1,6 +1,6 @@
-%global commit0 7b9b412e41f002c813ebb3da6f6242b8161a1b0e
+%global commit0 bbc63b1f9c7db214c9ce49f787a17d006f53ff7a
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 46
+%global bumpver 47
 
 Name:           plasma-desktop
 Summary:        Plasma Desktop shell
@@ -232,6 +232,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*.desktop
 %{_kf6_datadir}/knsrcfiles/
 %{_kf6_datadir}/plasma/*
 %{_kf6_datadir}/qlogging-categories6/*.categories
+%{_kf6_datadir}/wayland-sessions/plasma.desktop
 %{_kf6_libdir}/libkglobalaccelmodel.so.6{,.*}
 %{_kf6_metainfodir}/*.xml
 %{_kf6_plugindir}/kded/*.so

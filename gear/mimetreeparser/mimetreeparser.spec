@@ -1,6 +1,6 @@
-%global commit0 3edb20843dd68ff80912f608efccae6af7ba3fd3
+%global commit0 0c830a663a5955dc8e0a2f3944b59dcc5ede2ca5
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 Name:    mimetreeparser
 Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
