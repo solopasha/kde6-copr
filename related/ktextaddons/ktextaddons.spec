@@ -1,6 +1,6 @@
 Name:           ktextaddons
-Version:        2.2.0
-Release:        2%{?dist}
+Version:        2.3.0
+Release:        1%{?dist}
 Summary:        Various text handling addons
 
 License:        CC0-1.0 AND LGPL-2.0-or-later AND GPL-2.0-or-later AND BSD-3-Clause
@@ -185,6 +185,9 @@ BuildArch:      noarch
 %doc README.md
 
 %changelog
+* Mon Nov 23 2026 Pavel Solovev <daron439@gmail.com> - 2.3.0-1
+- new version
+
 * Thu Nov 05 2026 Pavel Solovev <daron439@gmail.com> - 2.2.0-2
 - rebuilt
 

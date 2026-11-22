@@ -1,6 +1,6 @@
-%global commit0 38fec0273ee03a0e7035e2713f6db69669a5ffde
+%global commit0 34de09b22a58517fcf4a3f973ecdcddd6667b831
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 58
+%global bumpver 59
 
 Name:           plasma-workspace
 Summary:        Plasma workspace, applications and applets
@@ -454,7 +454,6 @@ fi
 %{_kf6_datadir}/solid/
 %dir %{_kf6_datadir}/timezonefiles
 %{_kf6_datadir}/timezonefiles/timezones.json
-%{_kf6_datadir}/wayland-sessions/plasma.desktop
 %{_kf6_datadir}/xdg-desktop-portal/kde-portals.conf
 %{_kf6_datadir}/xdg-desktop-portal/portals/plasmanotify.portal
 %{_kf6_datadir}/zsh/site-functions/_plasmashell

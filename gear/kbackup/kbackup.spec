@@ -1,6 +1,6 @@
-%global commit0 be2862c2432f6955342ea98b83fd050c5d2f1e47
+%global commit0 a327a38710725f5a46d3aa5b526ea3f7a0a1c346
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:           kbackup
 Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

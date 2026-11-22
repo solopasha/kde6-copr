@@ -1,6 +1,6 @@
-%global commit0 f8081d40c20cd6abc04cfded06758b3e8a1a729b
+%global commit0 9507d0a392c0565d941ed36d9dd532a0ed558203
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:    kmag
 Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

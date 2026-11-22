@@ -1,6 +1,6 @@
-%global commit0 4461ce9a3732d84c41f56abd97d70c3661f53084
+%global commit0 4d75e674fcbbb10589ff9f887a5071b471a2be50
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 18
+%global bumpver 19
 
 Name:           plasma-keyboard
 Epoch:          1

@@ -1,6 +1,6 @@
-%global commit0 77bbb3b18012ea42671a659cf439a8f9057d16d2
+%global commit0 cf2b031279c5dd55e5c0626ec43742c287ac1ee6
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 %if 0%{?fedora}
 %global p7zip 1

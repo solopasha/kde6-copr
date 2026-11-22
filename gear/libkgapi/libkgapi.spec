@@ -1,6 +1,6 @@
-%global commit0 f1371ceb1c6217b552df511e69fe51c9d0f22789
+%global commit0 b9683316ec28cedac429a183e9bd5258406f032a
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1895674
 %global _lto_cflags %{nil}

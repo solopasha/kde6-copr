@@ -1,10 +1,10 @@
-%global commit0 cd83c6059a495eedf761c57d057e3832bbc0dac2
+%global commit0 4284b48d60e9e4271d6ae06c612348dc90188628
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 %global kf6min 5.240.0
 %global qt6min 6.5.0
-%global sover 13
+%global sover 14
 
 Name:           kpmcore
 Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}

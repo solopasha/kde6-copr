@@ -1,6 +1,6 @@
-%global commit0 6051193c1c783a75ab3089b85ff640c2bfcd1b36
+%global commit0 bce03320bc3a1eba5e26fd7c8cdb7b40ad04d8b9
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:    ksmtp
 Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
