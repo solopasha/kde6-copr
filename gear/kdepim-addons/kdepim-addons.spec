@@ -103,8 +103,7 @@ Supplements:    korganizer
 %build
 export CARGO_HOME=.cargo
 %cmake_kf6 \
-  -DKDEPIMADDONS_BUILD_EXAMPLES:BOOL=FALSE \
-  -DOPTION_ADD_MPCPROTOCOL:BOOL=FALSE
+  -DKDEPIMADDONS_BUILD_EXAMPLES:BOOL=FALSE
 %cmake_build
 
 
@@ -116,8 +115,10 @@ export CARGO_HOME=.cargo
 
 %files -f %{name}.lang
 %license LICENSES/*
+%{_kf6_bindir}/akonadimcpprotocol
 %{_kf6_bindir}/kmail_*.sh
 %{_kf6_datadir}/config.kcfg/webengineurlinterceptoradblock.kcfg
+%{_kf6_datadir}/knotifications6/akonadimcpprotocol.notifyrc
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
 %{_kf6_libdir}/libadblockplugin.so.6{,.*}
 %{_kf6_libdir}/libakonadidatasetools.so.6{,.*}
