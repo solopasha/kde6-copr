@@ -137,6 +137,7 @@ export CARGO_HOME=.cargo
 %{_kf6_qtplugindir}/autogeneratetext/toolplugins/kaichat_calendarplugin.so
 %{_kf6_qtplugindir}/pim6/
 %{_kf6_qtplugindir}/plasmacalendarplugins/pimevents.so
+%{_kf6_sysconfdir}/xdg/autostart/org.kde.akonadimcpprotocol.desktop
 %{_kf6_sysconfdir}/xdg/kmail.antispamrc
 %{_kf6_sysconfdir}/xdg/kmail.antivirusrc
 
