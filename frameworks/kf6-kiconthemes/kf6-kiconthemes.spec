@@ -1,6 +1,6 @@
 %global commit0 4df9c7d8127842c752926d60d7c54029d78c4e70
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 %global framework kiconthemes
 
@@ -27,6 +27,7 @@ BuildRequires:  cmake(Qt6Widgets)
 BuildRequires:  qt6-qtbase-private-devel
 
 Requires:       hicolor-icon-theme
+Requires:       gtk-update-icon-cache%{?_isa}
 
 %description
 KDE Frameworks 6 Tier 3 integration module with icon themes
