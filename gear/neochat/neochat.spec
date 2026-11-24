@@ -1,6 +1,6 @@
 %global commit0 c8aa9dd5857601b99e265b94d6823024f8137472
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 7
+%global bumpver 8
 
 Name:    neochat
 Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -86,6 +86,7 @@ Requires: kquickimageeditor-qt6%{?_isa}
 Requires: qt6-qtlocation%{?_isa}
 Requires: qt6-qtmultimedia%{?_isa}
 Requires: qt6-qtpositioning%{?_isa}
+Requires: kirigami-app-components%{?_isa}
 %ifarch %{qt6_qtwebengine_arches}
 Requires: qt6-qtwebview%{?_isa}
 %endif

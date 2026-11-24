@@ -1,6 +1,6 @@
 %global commit0 f207afc5f989ed6d31281e10a0ee33c0f22d6150
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 1
+%global bumpver 2
 
 Name:           keepsecret
 Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -32,13 +32,14 @@ BuildRequires:  cmake(KF6Crash)
 BuildRequires:  pkgconfig(libsecret-1)
 BuildRequires:  cmake(KF6KirigamiAppComponents)
 
-Requires:       qt6qml(org.kde.kirigamiaddons.components)
-Requires:       qt6qml(org.kde.kirigamiaddons.formcard)
+Requires:       hicolor-icon-theme
 Requires:       qt6qml(org.kde.config)
 Requires:       qt6qml(org.kde.coreaddons)
+Requires:       qt6qml(org.kde.kirigami.actioncollection)
 Requires:       qt6qml(org.kde.kirigami)
+Requires:       qt6qml(org.kde.kirigamiaddons.components)
+Requires:       qt6qml(org.kde.kirigamiaddons.formcard)
 Requires:       qt6qml(org.kde.kitemmodels)
-Requires:       hicolor-icon-theme
 
 %description
 KeepSecret is a Password manager GUI intended to be a
