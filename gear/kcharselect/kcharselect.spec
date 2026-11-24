@@ -1,6 +1,6 @@
-%global commit0 d15def4f59848b6551ce2561f0a769ce0b68e860
+%global commit0 3d102ea689b1d5abd9843dd3e89caf6c65f27f83
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:    kcharselect
 Summary: Character selector

@@ -1,6 +1,6 @@
-%global commit0 7190f462f02d66271c625bc8a01203351fb77daa
+%global commit0 55fb0aa20e739fe775dd42eb01633b97b1798474
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 17
+%global bumpver 18
 
 Name:           krdp
 Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -40,6 +40,7 @@ BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  cmake(Qt6Keychain)
 BuildRequires:  pkgconfig(libei-1.0)
 BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pam-devel
 BuildRequires:  wayland-devel
 BuildRequires:  qt6qml(org.kde.kirigamiaddons.formcard)
