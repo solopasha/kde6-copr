@@ -1,6 +1,6 @@
-%global commit0 e1131e1a20d9f3eaf963e0e628f292e586750814
+%global commit0 698f6e4622b2fef291e765f7ff537b62c637ad25
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 7
 
 %global base_name elisa
 

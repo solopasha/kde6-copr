@@ -1,6 +1,6 @@
-%global commit0 a170f73a615b044be93c52e3ac3e7a208f9dec61
+%global commit0 b1e1796c0b538aa765562c2461fcea86487beebf
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 2
+%global bumpver 3
 
 Name:    kdf
 Summary: View disk usage

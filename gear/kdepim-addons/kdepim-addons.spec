@@ -1,6 +1,6 @@
-%global commit0 dd605f35f62490585e7b5de96f3cf314acb29adc
+%global commit0 4ee3963d09fa04176c2f3a2f9fab3e497589ac1d
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 8
+%global bumpver 9
 
 Name:    kdepim-addons
 Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
