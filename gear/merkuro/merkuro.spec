@@ -1,6 +1,6 @@
-%global commit0 ffe1f7acf8c77024604cc7ec3089fcdfe3c82701
+%global commit0 a7305ec7e1a4be7d26063515702303c52a51e214
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:           merkuro
 Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
