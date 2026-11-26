@@ -1,6 +1,6 @@
 %global commit0 a7305ec7e1a4be7d26063515702303c52a51e214
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 Name:           merkuro
 Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -79,6 +79,8 @@ Requires:       qt6-qtlocation%{?_isa}
 Requires:       qt6-qtpositioning%{?_isa}
 Requires:       kf6-qqc2-desktop-style%{?_isa}
 
+Recommends:     (%{name}-plasma-applet%{?_isa} = %{version}-%{release} if plasma-workspace)
+
 # kalendar has been renamed to merkuro
 Obsoletes:      kalendar < 23.08
 Provides:       kalendar = %{version}-%{release}
@@ -94,6 +96,12 @@ calendars, contacts, and tasks simple. Merkuro handles local and \
 remote accounts of your choice, keeping changes synchronised across \
 your Plasma desktop or phone.
 
+%package        plasma-applet
+Summary:        Contacts plasma applet
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       qt6qml(org.kde.plasma.plasmoid)
+%description    plasma-applet
+%{summary}.
 
 %prep
 %{!?bumpver:%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'}
@@ -136,6 +144,8 @@ appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/*.xml ||:
 %{_kf6_libdir}/libMerkuroComponents.so.{6,%{version_no_git}}
 %{_kf6_metainfodir}/org.kde.merkuro.*.xml
 %{_kf6_qmldir}/org/kde/merkuro/
+
+%files plasma-applet
 %{_kf6_qtplugindir}/plasma/applets/org.kde.merkuro.contact.applet.so
 
 %changelog
