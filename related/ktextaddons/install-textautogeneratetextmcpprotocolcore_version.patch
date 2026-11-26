@@ -1,0 +1,18 @@
+diff --git a/textautogeneratetextmcpprotocol/core/CMakeLists.txt b/textautogeneratetextmcpprotocol/core/CMakeLists.txt
+index ae0f52575..e07e10269 100644
+--- a/textautogeneratetextmcpprotocol/core/CMakeLists.txt
++++ b/textautogeneratetextmcpprotocol/core/CMakeLists.txt
+@@ -517,6 +517,13 @@ ecm_generate_headers(TextAutoGenerateTextMcpProtocol_Camelcasesmcpprotocolimpl_H
+     RELATIVE impl
+ )
+ 
++install(
++    FILES
++        ${CMAKE_CURRENT_BINARY_DIR}/textautogeneratetextmcpprotocolcore_version.h
++    DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/TextAutoGenerateTextMcpProtocolCore
++    COMPONENT Devel
++)
++
+ install(
+     FILES
+         ${CMAKE_CURRENT_BINARY_DIR}/textautogeneratetextmcpprotocolcore_export.h

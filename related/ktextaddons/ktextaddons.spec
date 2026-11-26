@@ -1,6 +1,6 @@
 Name:           ktextaddons
 Version:        2.3.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Various text handling addons
 
 License:        CC0-1.0 AND LGPL-2.0-or-later AND GPL-2.0-or-later AND BSD-3-Clause
@@ -8,6 +8,9 @@ URL:            https://invent.kde.org/libraries/ktextaddons
 Source0:        https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz
 Source1:        https://download.kde.org/stable/%{name}/%{name}-%{version}.tar.xz.sig
 Source2:        https://invent.kde.org/sysadmin/release-keyring/-/raw/master/keys/mlaurent@key1.asc?ref_type=heads#/signing-key.pgp
+
+Patch:          install-textautogeneratetextmcpprotocolcore_version.patch
+
 BuildSystem:    cmake_kf6
 
 BuildRequires:  cmake
@@ -185,6 +188,9 @@ BuildArch:      noarch
 %doc README.md
 
 %changelog
+* Thu Nov 26 2026 Pavel Solovev <daron439@gmail.com> - 2.3.0-2
+- install-textautogeneratetextmcpprotocolcore_version.patch
+
 * Mon Nov 23 2026 Pavel Solovev <daron439@gmail.com> - 2.3.0-1
 - new version
 
