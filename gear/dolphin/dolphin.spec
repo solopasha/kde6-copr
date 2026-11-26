@@ -1,6 +1,6 @@
-%global commit0 243a8b73320327a235d59820843fbda3ccfd354c
+%global commit0 65117433b32433e5baea39ef93d4ed2702f5f4d7
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 9
+%global bumpver 10
 
 Name:           dolphin
 Summary:        KDE File Manager
@@ -148,6 +148,7 @@ desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/org.kde.%{name}.d
 %{_kf6_datadir}/icons/hicolor/*/apps/system-file-manager.*
 %endif
 %{_kf6_datadir}/icons/hicolor/scalable/apps/org.kde.dolphin.svg
+%{_kf6_datadir}/icons/hicolor/scalable/categories/dolphin-*.svg
 
 %files libs
 %{_kf6_libdir}/libdolphinprivate.so.*
