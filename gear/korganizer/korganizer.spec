@@ -1,6 +1,6 @@
-%global commit0 69918de8c0a2ad407bbebb5ce5cf9f8055013861
+%global commit0 e7b854c92b25a06cb128cf1ff6ff5d0999c585ca
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 6
 
 #global tests 1
 
@@ -118,7 +118,7 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_datadir}/icons/hicolor/*
 %{_kf6_datadir}/korganizer/
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
-%{_kf6_metainfodir}/org.kde.korganizer.appdata.xml
+%{_kf6_metainfodir}/org.kde.korganizer.metainfo.xml
 
 %files libs
 %{_kf6_libdir}/libkorganizer_core.so.*

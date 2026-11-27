@@ -1,6 +1,6 @@
-%global commit0 71ac93506fcd2ee49febf01accfa0de9a85004e8
+%global commit0 3e05aacd454b3702b8160ed98dae351c493cab6b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 #global tests 1
 
@@ -105,7 +105,7 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_datadir}/icons/hicolor/*/apps/akregator.*
 %{_kf6_datadir}/knotifications6/akregator.notifyrc
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
-%{_kf6_metainfodir}/org.kde.akregator.appdata.xml
+%{_kf6_metainfodir}/org.kde.akregator.metainfo.xml
 
 %files libs
 %{_kf6_libdir}/libakregatorinterfaces.so.*

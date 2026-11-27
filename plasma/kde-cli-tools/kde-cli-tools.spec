@@ -1,6 +1,6 @@
-%global commit0 b790a760aa93e17dd25691c16bb8d59cbbfb8e66
+%global commit0 4726fdd682144efa39be19284c9235b43419698a
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 6
 
 Name:           kde-cli-tools
 Version:        6.8.80%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -81,7 +81,7 @@ sed '/kdesu/d;/man/d' -i %{name}.lang
 %{_kf6_datadir}/applications/org.kde.keditfiletype.desktop
 %{_kf6_datadir}/applications/org.kde.plasma.settings.open.desktop
 %{_kf6_libexecdir}/kdeeject
-%{_kf6_qtplugindir}/plasma/kcms/systemsettings_qwidgets/kcm_filetypes.so
+%{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_filetypes.so
 %{zsh_completions_dir}/_kde-inhibit
 
 %files -n kdesu -f kdesu.lang

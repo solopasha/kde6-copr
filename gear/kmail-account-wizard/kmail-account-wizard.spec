@@ -1,6 +1,6 @@
-%global commit0 29e4c45434900d452414fc36fbaf7abc105e43c3
+%global commit0 e9ec4a683db3cc772b4f582e90ea7a4e6a337667
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 #global tests 1
 
@@ -85,7 +85,7 @@ xvfb-run -a bash -c "%ctest"
 %license LICENSES/*
 %{_kf6_bindir}/accountwizard
 %{_kf6_datadir}/applications/org.kde.accountwizard.desktop
-%{_kf6_datadir}/metainfo/org.kde.accountwizard.appdata.xml
+%{_kf6_datadir}/metainfo/org.kde.accountwizard.metainfo.xml
 
 
 %changelog

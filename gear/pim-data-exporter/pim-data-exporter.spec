@@ -1,6 +1,6 @@
-%global commit0 aa51490c79e1477be450fdeabe66cdf0e54e31f6
+%global commit0 f77e9a9031bf2f952d031965f79797a4f1e0c8b7
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 #global tests 1
 
@@ -98,7 +98,7 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_datadir}/applications/org.kde.pimdataexporter.desktop
 %{_kf6_datadir}/config.kcfg/pimdataexporterglobalconfig.kcfg
 %{_kf6_datadir}/qlogging-categories6/*pimdataexporter.*
-%{_kf6_metainfodir}/org.kde.pimdataexporter.appdata.xml
+%{_kf6_metainfodir}/org.kde.pimdataexporter.metainfo.xml
 
 
 %files libs
