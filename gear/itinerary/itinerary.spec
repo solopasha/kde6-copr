@@ -1,6 +1,6 @@
-%global commit0 139127f330a3818f796bacc31424eb22befb1609
+%global commit0 cd2342249a37fa5e620f1617975ccd6ac436bb2f
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 Name:           itinerary
 Version:        27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -90,7 +90,7 @@ Requires:       qt6-qtmultimedia%{?_isa}
 %cmake_install
 %find_lang kde-itinerary
 desktop-file-validate %{buildroot}/%{_datadir}/applications/org.kde.itinerary.desktop
-appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
+appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.metainfo.xml
 
 %files -f kde-itinerary.lang
 %license LICENSES/*
@@ -99,7 +99,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_kf6_datadir}/icons/hicolor/scalable/apps/org.kde.itinerary.svg
 %{_kf6_datadir}/knotifications6/itinerary.notifyrc
 %{_kf6_datadir}/qlogging-categories6/org_kde_itinerary.categories
-%{_kf6_metainfodir}/org.kde.itinerary.appdata.xml
+%{_kf6_metainfodir}/org.kde.itinerary.metainfo.xml
 %{_qt6_plugindir}/kf6/kfilemetadata/kfilemetadata_itineraryextractor.so
 %{_qt6_plugindir}/kf6/thumbcreator/itinerarythumbnail.so
 

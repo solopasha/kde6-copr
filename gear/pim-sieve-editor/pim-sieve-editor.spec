@@ -1,6 +1,6 @@
-%global commit0 45b0afedc9c79e239847c686ff08335c53e22d8d
+%global commit0 def40a53ff56a35e581bd980fb5595f1ee034859
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 6
 
 #global tests 1
 
@@ -83,7 +83,7 @@ xvfb-run -a bash -c "%ctest"
 %{_kf6_datadir}/icons/hicolor/*/*/*
 %{_kf6_datadir}/qlogging-categories6/*sieveeditor.*
 %{_kf6_libdir}/libsieveeditor.so.6{,.*}
-%{_kf6_metainfodir}/org.kde.sieveeditor.appdata.xml
+%{_kf6_metainfodir}/org.kde.sieveeditor.metainfo.xml
 
 
 %changelog

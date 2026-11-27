@@ -1,6 +1,6 @@
-%global commit0 874477a6a87d7b50c3964817bfe5ed314b236f66
+%global commit0 2818cad879dcf737ba374cdb9125ed63f937600a
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 6
 
 #global tests 1
 
@@ -113,7 +113,7 @@ xvfb-run -a bash -c "%ctest"
 %{_kf6_libdir}/libkalarmcalendar.so.6{,.*}
 %{_kf6_libdir}/libkalarmplugin.so.6{,.*}
 %{_kf6_libexecdir}/kauth/kalarm_helper
-%{_kf6_metainfodir}/org.kde.kalarm.appdata.xml
+%{_kf6_metainfodir}/org.kde.kalarm.metainfo.xml
 %{_kf6_qtplugindir}/pim6/kalarm/akonadiplugin.so
 %{_kf6_qtplugindir}/pim6/kalarm/audioplugin_mpv.so
 %{_kf6_qtplugindir}/pim6/kalarm/audioplugin_vlc.so

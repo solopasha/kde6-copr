@@ -1,6 +1,6 @@
-%global commit0 4d75e674fcbbb10589ff9f887a5071b471a2be50
+%global commit0 3f9abf9704efcdf41dad5526a0938a29086792eb
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 19
+%global bumpver 20
 
 Name:           plasma-keyboard
 Epoch:          1
@@ -23,6 +23,7 @@ BuildRequires:  cmake(Qt6Quick)
 BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6CoreAddons)
 BuildRequires:  cmake(KF6Crash)
+BuildRequires:  cmake(KF6GuiAddons)
 BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KCMUtils)
 BuildRequires:  cmake(KF6Package)
@@ -38,8 +39,10 @@ BuildRequires:  pkgconfig(wayland-server)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  cmake(PlasmaWaylandProtocols)
 BuildRequires:  qt6-qtbase-private-devel
+BuildRequires:  kemoji-devel
 
 Requires:       (kcm-%{name}%{?_isa} if plasma-systemsettings%{?_isa})
+Requires:       kemoji%{?_isa}
 
 %description
 The plasma-keyboard is a virtual keyboard

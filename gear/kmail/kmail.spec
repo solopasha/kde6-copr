@@ -1,6 +1,6 @@
-%global commit0 159bef3281633f18c5776766ff9bdc9e1bd044b3
+%global commit0 b78a3b4d850a7da5fc11b98ed3b90d08af83d1d8
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 6
+%global bumpver 7
 
 #global tests 1
 
@@ -163,7 +163,7 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_datadir}/knotifications6/kmail2.notifyrc
 %{_kf6_datadir}/knotifications6/kontact.notifyrc
 %{_kf6_datadir}/qlogging-categories6/*kmail.*
-%{_kf6_metainfodir}/org.kde.kmail2.appdata.xml
+%{_kf6_metainfodir}/org.kde.kmail2.metainfo.xml
 
 %files libs
 %{_kf6_libdir}/libkmailprivate.so.*

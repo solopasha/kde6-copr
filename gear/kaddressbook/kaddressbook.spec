@@ -1,6 +1,6 @@
-%global commit0 9ae1385cf153027f4dce3bb8cb24420143194011
+%global commit0 9b94bb6a9d1e24977fa992d3aed2bd595e39f98b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 5
+%global bumpver 6
 
 #global tests 1
 
@@ -98,7 +98,7 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_datadir}/icons/hicolor/*/apps/kaddressbook.*
 %{_kf6_datadir}/kaddressbook/
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
-%{_kf6_metainfodir}/org.kde.kaddressbook.appdata.xml
+%{_kf6_metainfodir}/org.kde.kaddressbook.metainfo.xml
 
 %files libs
 %{_kf6_libdir}/libkaddressbookprivate.so.*

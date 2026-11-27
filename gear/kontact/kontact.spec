@@ -1,6 +1,6 @@
-%global commit0 73b0c598e804e07dae9149512f20e3a87d56ed26
+%global commit0 2652325a08a26aa47d8f67241aeb65321e9763d6
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 4
+%global bumpver 5
 
 #global tests 1
 
@@ -94,7 +94,7 @@ xvfb-run -a bash -c "%ctest" || :
 %{_kf6_datadir}/messageviewer/about/default/introduction_kontact.html
 %{_kf6_datadir}/messageviewer/about/default/loading_kontact.html
 %{_kf6_datadir}/qlogging-categories6/*%{name}.*
-%{_kf6_metainfodir}/org.kde.kontact.appdata.xml
+%{_kf6_metainfodir}/org.kde.kontact.metainfo.xml
 
 %files libs
 %{_kf6_libdir}/libkontactprivate.so.*
