@@ -1,6 +1,6 @@
-%global commit0 03fd4ab2bf48404a5963d92399608e7d1687ffee
+%global commit0 ffdc82a4de9cd8b252c8743ecf63e056073ed3ae
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 8
+%global bumpver 9
 
 Name:           kde-gtk-config
 Summary:        Configure the appearance of GTK apps in KDE
@@ -28,6 +28,7 @@ BuildRequires:  pkgconfig(gio-2.0)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gobject-2.0)
 BuildRequires:  pkgconfig(gtk+-3.0)
+BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  gtk2-devel
 BuildRequires:  sassc
 
@@ -48,14 +49,16 @@ appearance of GTK apps in KDE.
 %{_kf6_datadir}/kconf_update/gtkconfig.upd
 %{_kf6_datadir}/kconf_update/remove_window_decorations_from_gtk_css.sh
 %{_kf6_datadir}/qlogging-categories6/kde-gtk-config.categories
+%{_kf6_datadir}/themes/Breeze/adwaita_colors.css
 %{_kf6_datadir}/themes/Breeze/window_decorations.css
 %{_kf6_libdir}/gtk-3.0/modules/libcolorreload-gtk-module.so
+%{_kf6_libdir}/gtk-3.0/modules/libmenubar-hover-gtk-module.so
 %{_kf6_libdir}/gtk-3.0/modules/libwindow-decorations-gtk-module.so
 %{_kf6_libdir}/kconf_update_bin/gtk_theme
 %{_kf6_libdir}/kconf_update_bin/remove_deprecated_gtk4_option_v2
 %{_kf6_plugindir}/kded-x11/gtkconfig_xsettings.so
 %{_kf6_plugindir}/kded/gtkconfig.so
-%{_libexecdir}/gtk3_preview
+%{_libexecdir}/gtk4_preview
 
 %changelog
 %{?kde_snapshot_changelog_entry}

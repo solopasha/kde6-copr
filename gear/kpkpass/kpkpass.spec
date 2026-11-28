@@ -1,6 +1,6 @@
-%global commit0 aa59c52f6adc99af480554ccd54b575eaff4df26
+%global commit0 0a8e47736ec467780b7e8d61cc69bba032f1335b
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 3
+%global bumpver 4
 
 Name:    kpkpass
 Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
