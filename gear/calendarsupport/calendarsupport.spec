@@ -1,6 +1,6 @@
-%global commit0 e11a0f27c003bb4c7cfcd3fdcab4edb00152d2ac
+%global commit0 ca7ce7b70a605b41a9933991de13cbfdee251a78
 %global shortcommit0 %{sub %{commit0} 1 7}
-%global bumpver 8
+%global bumpver 9
 
 Name:    calendarsupport
 Version: 27.03.70%{?bumpver:~%{bumpver}.git%{shortcommit0}}
@@ -22,7 +22,6 @@ BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6IconThemes)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6Mime)
-BuildRequires:  cmake(KF6TextCustomEditor)
 BuildRequires:  cmake(KF6TextTemplate)
 
 BuildRequires:  cmake(KPim6Akonadi)
